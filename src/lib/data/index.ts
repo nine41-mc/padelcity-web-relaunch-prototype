@@ -1,4 +1,5 @@
 import "server-only";
+import { whatsappForClub } from "../content/whatsapp";
 import { cache } from "react";
 import type { Club, ClubEvent, DataSource } from "./types";
 import type { Locale } from "../i18n/config";
@@ -56,7 +57,12 @@ const resolveAllClubs = cache(async (locale: Locale): Promise<Club[]> => {
   const extra = supplementClubs
     .filter((s) => !taken.has(s.slug) && !taken.has(nameKey(s.name)))
     .map((s) => (locale === "en" ? toEnglishSupplement(s) : s));
-  return [...base, ...extra];
+  // WhatsApp community links (padelcity.de) – only for open clubs, Contentful value wins.
+  return [...base, ...extra].map((c) =>
+    c.status === "planned" || c.contact?.whatsappGroupUrl
+      ? c
+      : { ...c, contact: { ...c.contact, whatsappGroupUrl: whatsappForClub(c) } },
+  );
 });
 
 /** Open clubs only (default for all pages: cards, maps, detail pages, static params). */
