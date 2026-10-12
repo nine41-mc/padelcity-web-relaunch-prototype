@@ -39,7 +39,7 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
               {keepTogether(event.title)}
             </Link>
           </h3>
-          {event.level && <Chip className="shrink-0">{event.level}</Chip>}
+          {event.level && <Chip tone="level" className="shrink-0">{event.level}</Chip>}
         </div>
         <ul className="space-y-1 text-sm text-white/70">
           <li className="flex items-center gap-2">

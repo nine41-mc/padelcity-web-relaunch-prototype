@@ -6,7 +6,7 @@ export function Chip({
   className,
 }: {
   children: React.ReactNode;
-  tone?: "default" | "gradient" | "neon" | "solid" | "dark";
+  tone?: "default" | "gradient" | "neon" | "solid" | "dark" | "level";
   className?: string;
 }) {
   return (
@@ -18,6 +18,8 @@ export function Chip({
         tone === "neon" && "bg-neon-500 text-ink-800",
         tone === "solid" && "bg-white text-ink-800",
         tone === "dark" && "bg-black/60 text-white backdrop-blur",
+        // Skill level ("Level 1–3") – always in the neon brand accent
+        tone === "level" && "border border-neon-500/70 text-neon-500",
         className,
       )}
     >

@@ -331,7 +331,7 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
               />
               <div className="mt-8 flex flex-wrap gap-2">
                 <Chip tone="gradient">{t.types[event.type]}</Chip>
-                {event.level && <Chip>{event.level}</Chip>}
+                {event.level && <Chip tone="level">{event.level}</Chip>}
                 {event.recurrence && <Chip>{event.recurrence}</Chip>}
               </div>
               <Headline as="h1" size="lg" className="mt-5">
