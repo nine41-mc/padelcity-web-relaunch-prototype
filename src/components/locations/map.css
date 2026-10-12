@@ -1,0 +1,101 @@
+/* Leaflet theming for the PadelCity dark map (locations area only). */
+.pc-map.leaflet-container {
+  background: #0b0b0f;
+  font-family: var(--font-sans);
+}
+.pc-map .leaflet-control-zoom a {
+  background: #15171f;
+  color: #f8f8f8;
+  border-color: rgb(255 255 255 / 0.35);
+  width: 40px;
+  height: 40px;
+  line-height: 38px;
+}
+.pc-map .leaflet-control-zoom a:hover {
+  background: #20222e;
+}
+.pc-map .leaflet-control-attribution {
+  background: rgb(11 11 15 / 0.85);
+  color: rgb(255 255 255 / 0.75);
+  font-size: 12px;
+}
+.pc-map .leaflet-control-attribution a {
+  color: rgb(255 255 255 / 0.75);
+}
+.pc-map .leaflet-popup-content-wrapper,
+.pc-map .leaflet-popup-tip {
+  background: #15171f;
+  color: #f8f8f8;
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.6);
+}
+.pc-map .leaflet-popup-content-wrapper {
+  border-radius: 16px;
+}
+.pc-map .leaflet-popup-content {
+  margin: 14px 16px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.pc-map a.leaflet-popup-close-button {
+  color: rgb(255 255 255 / 0.6);
+}
+.pc-pin {
+  background: none;
+  border: 0;
+}
+.pc-pin__body {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  background: linear-gradient(313deg, #e005a4 0%, #8512b5 100%);
+  box-shadow: 0 0 0 2px #0b0b0f, 0 8px 18px rgb(224 5 195 / 0.45);
+  transition: transform 0.2s ease;
+}
+.pc-pin__body::after {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 50%;
+  background: #f8f8f8;
+}
+.pc-pin--active .pc-pin__body {
+  background: #b4e854;
+  box-shadow: 0 0 0 2px #0b0b0f, 0 8px 22px rgb(180 232 84 / 0.6);
+  transform: rotate(-45deg) scale(1.2);
+}
+.pc-pin--active .pc-pin__body::after {
+  background: #0b0b0f;
+}
+.pc-user {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #b4e854;
+  box-shadow: 0 0 0 4px rgb(180 232 84 / 0.3), 0 0 0 2px #0b0b0f inset;
+}
+
+/* Keyless fallback: turn OSM's light tiles into a dark, purple-tinted base map. */
+.pc-map--filtered .leaflet-tile-pane {
+  filter: invert(1) hue-rotate(200deg) brightness(0.85) contrast(0.9) saturate(0.35);
+}
+
+/* Planned club ("coming soon"): outline pin, no fill. */
+.pc-pin--planned .pc-pin__body {
+  width: 26px;
+  height: 26px;
+  margin: 4px;
+  background: rgb(11 11 15 / 0.85);
+  box-shadow: 0 0 0 2px #e005a4, 0 6px 14px rgb(0 0 0 / 0.5);
+}
+.pc-pin--planned .pc-pin__body::after {
+  inset: 8px;
+  background: transparent;
+  box-shadow: 0 0 0 2px rgb(248 248 248 / 0.8);
+}
+.pc-pin--planned.pc-pin--active .pc-pin__body {
+  background: rgb(11 11 15 / 0.85);
+  box-shadow: 0 0 0 2px #b4e854, 0 6px 18px rgb(180 232 84 / 0.5);
+}

@@ -1,0 +1,55 @@
+import type { Milestone } from "@/lib/content/about";
+import type { Locale } from "@/lib/i18n/config";
+import { brandStrings } from "./strings";
+import { Reveal } from "../ui/Reveal";
+import { cn } from "../ui/cn";
+
+// Contentful module: milestoneTimeline (entries: milestone { year, title, text, highlight })
+
+/**
+ * Milestone timeline shared by About and Investors.
+ * Phone + tablet: horizontal snap-scroll strip. Desktop: all milestones in one row on a court line.
+ */
+export function Timeline({ items, locale, className }: { items: Milestone[]; locale: Locale; className?: string }) {
+  const t = brandStrings[locale].timeline;
+  return (
+    <div className={cn("relative", className)}>
+      <ol
+        className="scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:-mx-8 md:px-8 lg:mx-0 lg:grid lg:snap-none lg:gap-6 lg:overflow-visible lg:px-0"
+        style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
+        aria-label={t.aria}
+      >
+        {items.map((m, i) => (
+          <li key={m.year + m.title} className="relative w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-auto">
+            <Reveal delay={i * 0.06} className="h-full">
+              <div className="relative mb-5 flex items-center">
+                <span
+                  className={cn(
+                    "relative z-10 size-4 rounded-full ring-4 ring-ink-800",
+                    m.highlight ? "bg-neon-500 shadow-neon" : "bg-magenta-500",
+                  )}
+                  aria-hidden
+                />
+                {/* connecting line */}
+                {i < items.length - 1 && <span className="absolute left-4 right-[-1rem] top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-magenta-500/70 to-white/10 lg:right-[-1.5rem]" aria-hidden />}
+              </div>
+              <div
+                className={cn(
+                  "flex h-[calc(100%-2.25rem)] flex-col rounded-[20px] border p-5 md:p-6",
+                  m.highlight ? "border-neon-500/40 bg-neon-500/[0.06]" : "border-white/10 bg-ink-700",
+                )}
+              >
+                <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-neon-500" : "text-brand-gradient")}>{m.year}</p>
+                <h3 className="mt-4 text-lg font-semibold leading-snug">{m.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/70">{m.text}</p>
+              </div>
+            </Reveal>
+          </li>
+        ))}
+      </ol>
+      <p className="mt-2 text-sm text-white/70 lg:hidden" aria-hidden>
+        {t.swipe}
+      </p>
+    </div>
+  );
+}

@@ -1,0 +1,301 @@
+import "server-only";
+import type { Club, CourtSummary, Facility, ImageAsset } from "./types";
+import {
+  DEFAULT_TIMEZONE,
+  LIVE_TIMEOUT_MS,
+  deriveCountry,
+  deriveTags,
+  findMockMatch,
+  mapOpeningTimes,
+  normalizeCourtType,
+  normalizeLocationType,
+  regionForCity,
+  regionFromSubdivision,
+  slugify,
+  teaserFrom,
+  uniq,
+} from "./mappers";
+
+/**
+ * Contentful Delivery API adapter (master data: clubs, courts, facilities).
+ *
+ * Field names are taken from api-platform, which syncs the same space into its DB:
+ *   - api/src/Service/ContentfulSynchronizationService/Handler/ClubHandler.php
+ *       club: name (localized), description (rich text, localized), timezone, subdivisionCode,
+ *             location {lat, lon}, streetName, buildingNumber, postalCode, localityName,
+ *             contact → contact {name, email, website, phoneNumber, profileImage},
+ *             facilities → facility[], openingTimes (JSON), dayOpeningTimes (JSON),
+ *             fallbackCourtPricePerHour (number, EUR), mainImage (asset), images (asset[]), operator → operator
+ *   - Handler/CourtHandler.php
+ *       court: name (localized), locationType (INDOOR|OUTDOOR), courtType (SINGLE|DOUBLE|ARBITRARY),
+ *              isPremium, club → club, images (asset[]), sportType, possibleMatchModes
+ *   - Handler/FacilityHandler.php
+ *       facility: name (localized), type (e.g. SAUNA, PARKING_SPACE, BAR …)
+ *   - Handler/ClubPriceListHandler.php
+ *       clubPriceList: name, validFrom, assignedClub → club, pricing (JSON) – not used by the website yet.
+ * Note: courts link to their club (court.club), not the other way round → two queries.
+ * Note: "isShownInApp" / "isActive" live only in the api-platform DB, not in Contentful.
+ */
+
+type Sys = { id: string; type: string; linkType?: "Entry" | "Asset"; contentType?: { sys: { id: string } } };
+type Link = { sys: Sys };
+type CfEntry = { sys: Sys; fields: Record<string, unknown> };
+type CfAsset = {
+  sys: Sys;
+  fields: {
+    title?: string;
+    description?: string;
+    file?: { url?: string; contentType?: string; details?: { image?: { width: number; height: number } } };
+  };
+};
+type CfResponse = {
+  items: CfEntry[];
+  includes?: { Entry?: CfEntry[]; Asset?: CfAsset[] };
+  total: number;
+};
+
+export type CfLocale = "de" | "en";
+/** Contentful default locale of the PadelCity space. api-platform reads clubs with locale EN
+ *  (ClubHandler.php `$entry->setLocale(LocaleService::LOCALE__EN)`), so non-text fields
+ *  (mainImage, images, location, openingTimes, prices, court types …) are maintained in "en" only. */
+const DEFAULT_CF_LOCALE: CfLocale = "en";
+const REVALIDATE_S = 600;
+
+function env() {
+  const spaceId = process.env.CONTENTFUL_SPACE_ID;
+  const environmentId = process.env.CONTENTFUL_ENVIRONMENT_ID || "master";
+  const token = process.env.CONTENTFUL_DELIVERY_TOKEN;
+  return spaceId && token ? { spaceId, environmentId, token } : null;
+}
+
+export function isContentfulConfigured(): boolean {
+  return env() !== null;
+}
+
+export async function getEntries(contentType: string, include: number, locale: CfLocale | "*" = "de"): Promise<CfResponse> {
+  const cfg = env();
+  if (!cfg) throw new Error("Contentful env vars missing");
+  const url =
+    `https://cdn.contentful.com/spaces/${encodeURIComponent(cfg.spaceId)}` +
+    `/environments/${encodeURIComponent(cfg.environmentId)}/entries` +
+    `?content_type=${contentType}&include=${include}&locale=${locale}&limit=1000`;
+  const res = await fetch(url, {
+    headers: { Authorization: `Bearer ${cfg.token}` },
+    next: { revalidate: REVALIDATE_S, tags: ["contentful"] },
+    signal: AbortSignal.timeout(LIVE_TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`Contentful ${contentType}: HTTP ${res.status}`);
+  return (await res.json()) as CfResponse;
+}
+
+const isEmpty = (v: unknown) =>
+  v === undefined || v === null || (typeof v === "string" && v.trim() === "") || (Array.isArray(v) && v.length === 0);
+
+/**
+ * `locale=*` returns every field as a locale map ({ de: …, en: … }) – for entries AND included assets.
+ * Flattens one field: requested locale first, then the default locale ("en"), then any filled locale.
+ * Unlike Contentful's built-in fallback this also skips empty strings / empty arrays, so a DE entry
+ * whose media or JSON fields were only maintained in EN still gets them.
+ */
+function pickLocale(value: unknown, locale: CfLocale): unknown {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return value;
+  const map = value as Record<string, unknown>;
+  for (const key of [locale, DEFAULT_CF_LOCALE]) if (!isEmpty(map[key])) return map[key];
+  return Object.values(map).find((v) => !isEmpty(v));
+}
+
+function flattenFields<T extends { fields: object }>(item: T, locale: CfLocale): T {
+  const fields = Object.fromEntries(Object.entries(item.fields).map(([k, v]) => [k, pickLocale(v, locale)]));
+  return { ...item, fields } as T;
+}
+
+/** Same response shape as a single-locale request, with per-field locale fallback (see pickLocale). */
+export function flattenLocales(res: CfResponse, locale: CfLocale): CfResponse {
+  return {
+    ...res,
+    items: res.items.map((e) => flattenFields(e, locale)),
+    includes: {
+      Entry: res.includes?.Entry?.map((e) => flattenFields(e, locale)),
+      Asset: res.includes?.Asset?.map((a) => flattenFields(a, locale)),
+    },
+  };
+}
+
+/** Resolves links against items + includes of one or more responses. */
+class LinkResolver {
+  private entries = new Map<string, CfEntry>();
+  private assets = new Map<string, CfAsset>();
+
+  add(res: CfResponse) {
+    for (const e of res.items) this.entries.set(e.sys.id, e);
+    for (const e of res.includes?.Entry ?? []) this.entries.set(e.sys.id, e);
+    for (const a of res.includes?.Asset ?? []) this.assets.set(a.sys.id, a);
+  }
+
+  entry(link: unknown): CfEntry | undefined {
+    const id = (link as Link | undefined)?.sys?.id;
+    return id ? this.entries.get(id) : undefined;
+  }
+
+  asset(link: unknown): CfAsset | undefined {
+    const id = (link as Link | undefined)?.sys?.id;
+    return id ? this.assets.get(id) : undefined;
+  }
+
+  image(link: unknown, fallbackAlt: string): ImageAsset | undefined {
+    const a = this.asset(link);
+    const url = a?.fields.file?.url;
+    if (!url) return undefined;
+    const abs = url.startsWith("//") ? `https:${url}` : url;
+    const dims = a.fields.file?.details?.image;
+    return {
+      url: `${abs}?w=1600&fm=webp`,
+      alt: a.fields.description || a.fields.title || fallbackAlt,
+      width: dims?.width,
+      height: dims?.height,
+    };
+  }
+}
+
+/** Rich text document → plain paragraphs joined by blank lines. */
+function richTextToPlain(node: unknown): string {
+  if (node == null) return "";
+  if (typeof node === "string") return node;
+  const n = node as { nodeType?: string; value?: string; content?: unknown[] };
+  if (n.nodeType === "text") return n.value ?? "";
+  const children = (n.content ?? []).map(richTextToPlain);
+  if (n.nodeType === "document") return children.filter(Boolean).join("\n\n");
+  return children.join("");
+}
+
+const str = (v: unknown): string | undefined => (typeof v === "string" && v.trim() !== "" ? v : undefined);
+
+function mapCourt(e: CfEntry): CourtSummary {
+  return {
+    id: e.sys.id,
+    name: str(e.fields.name) ?? "Court",
+    locationType: normalizeLocationType(e.fields.locationType),
+    courtType: normalizeCourtType(e.fields.courtType),
+    isPremium: e.fields.isPremium === true,
+  };
+}
+
+function mapFacility(e: CfEntry): Facility {
+  const type = String(e.fields.type ?? "").toLowerCase();
+  return { type, name: str(e.fields.name) ?? type, iconUrl: `/icons/${type}.svg` };
+}
+
+function mapContact(r: LinkResolver, raw: unknown): Club["contact"] {
+  // Normally a link to a "contact" entry; tolerate an inline JSON object as well.
+  const fields = (r.entry(raw)?.fields ?? (raw && typeof raw === "object" && !("sys" in raw) ? raw : undefined)) as
+    | Record<string, unknown>
+    | undefined;
+  if (!fields) return undefined;
+  return {
+    name: str(fields.name),
+    phoneNumber: str(fields.phoneNumber),
+    emailAddress: str(fields.email) ?? str(fields.emailAddress),
+  };
+}
+
+export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de"): Promise<Club[]> {
+  // locale=* + flattenLocales: text in the page locale, media/JSON/number fields fall back to EN (see DEFAULT_CF_LOCALE).
+  const [clubsRes, courtsRes] = (
+    await Promise.all([getEntries("club", 2, "*"), getEntries("court", 1, "*")])
+  ).map((res) => flattenLocales(res, locale));
+  const r = new LinkResolver();
+  r.add(clubsRes);
+  r.add(courtsRes);
+
+  const courtsByClub = new Map<string, CourtSummary[]>();
+  for (const c of courtsRes.items) {
+    const clubId = (c.fields.club as Link | undefined)?.sys?.id;
+    if (!clubId) continue;
+    const sport = String(c.fields.sportType ?? "PADEL").toUpperCase();
+    if (sport !== "PADEL") continue;
+    const list = courtsByClub.get(clubId) ?? [];
+    list.push(mapCourt(c));
+    courtsByClub.set(clubId, list);
+  }
+
+  const clubs: Club[] = [];
+  for (const e of clubsRes.items) {
+    const f = e.fields;
+    const name = str(f.name);
+    if (!name) continue;
+
+    const city = str(f.localityName) ?? "";
+    const slug = slugify(name);
+    const timezone = str(f.timezone) ?? DEFAULT_TIMEZONE;
+    const subdivision = str(f.subdivisionCode);
+    const description = richTextToPlain(f.description).trim();
+    const courts = (courtsByClub.get(e.sys.id) ?? []).sort((a, b) =>
+      a.name.localeCompare(b.name, "de", { numeric: true }),
+    );
+    const mainImage = r.image(f.mainImage, `${name} – Courts`);
+    const gallery = (Array.isArray(f.images) ? f.images : [])
+      .map((l, i) => r.image(l, `${name} – Bild ${i + 1}`))
+      .filter((x): x is ImageAsset => Boolean(x));
+    const facilities = (Array.isArray(f.facilities) ? f.facilities : [])
+      .map((l) => r.entry(l))
+      .filter((x): x is CfEntry => Boolean(x))
+      .map(mapFacility);
+    const loc = f.location as { lat?: number; lon?: number } | undefined;
+    const price = Number(f.fallbackCourtPricePerHour);
+
+    const mock = findMockMatch(mocks, { slug, name, city });
+    const country = deriveCountry({ subdivision, timezone: str(f.timezone), city, name, postalCode: str(f.postalCode) });
+    // A German subdivision on a club abroad would put it under "Bayern" → only trust DE codes for DE clubs.
+    const subRegion = country === "DE" || !subdivision?.toUpperCase().startsWith("DE-") ? regionFromSubdivision(subdivision) : undefined;
+
+    clubs.push({
+      id: e.sys.id,
+      slug: mock?.slug ?? slug, // keep curated URLs stable when a mock counterpart exists
+      contentfulId: e.sys.id,
+      name,
+      city,
+      region: subRegion ?? (country === "DE" ? mock?.region : regionForCity(city) ?? regionForCity(name.replace(/^padel\s*city\s+/i, ""))),
+      country,
+      description: description || mock?.description || "",
+      teaser: mock?.teaser ?? teaserFrom(description) ?? `${courts.length} Courts in ${city}`,
+      address: {
+        streetName: str(f.streetName) ?? "",
+        buildingNumber: str(f.buildingNumber) ?? "",
+        postalCode: str(f.postalCode) ?? "",
+        localityName: city,
+      },
+      position: { latitude: Number(loc?.lat ?? mock?.position.latitude ?? 0), longitude: Number(loc?.lon ?? mock?.position.longitude ?? 0) },
+      courts,
+      facilities,
+      openingHours: mapOpeningTimes(f.openingTimes, timezone),
+      defaultPricePerHour: Number.isFinite(price) && price > 0 ? price : undefined,
+      mainImage: mainImage ?? gallery[0] ?? mock?.mainImage,
+      // Gallery = main image + all `images` (deduplicated by URL).
+      images: mainImage || gallery.length ? uniqByUrl([mainImage, ...gallery]) : (mock?.images ?? []),
+      contact: mapContact(r, f.contact),
+      tags: uniq([...deriveTags(courts), ...(mock?.tags ?? [])]),
+      isFranchise: mock?.isFranchise,
+      source: "contentful",
+    });
+  }
+
+  return ensureUniqueSlugs(clubs.sort((a, b) => a.name.localeCompare(b.name, "de")));
+}
+
+function uniqByUrl(images: (ImageAsset | undefined)[]): ImageAsset[] {
+  const seen = new Set<string>();
+  return images.filter((i): i is ImageAsset => {
+    if (!i || seen.has(i.url)) return false;
+    seen.add(i.url);
+    return true;
+  });
+}
+
+export function ensureUniqueSlugs(clubs: Club[]): Club[] {
+  const seen = new Map<string, number>();
+  return clubs.map((c) => {
+    const n = (seen.get(c.slug) ?? 0) + 1;
+    seen.set(c.slug, n);
+    return n === 1 ? c : { ...c, slug: `${c.slug}-${n}` };
+  });
+}
