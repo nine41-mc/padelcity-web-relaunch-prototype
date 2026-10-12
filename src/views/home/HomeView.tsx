@@ -70,13 +70,12 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 { v: keyFacts.clubs, s: "+", l: t.leader.facts.clubs },
                 { v: keyFacts.courts, s: "+", l: t.leader.facts.courts },
                 { v: keyFacts.cities, s: "+", l: t.leader.facts.cities },
-                { v: countries.length, s: "", l: t.leader.facts.countries, sub: countries.join(" · ") },
+                { v: countries.length, s: "", l: t.leader.facts.countries },
               ].map((f, i) => (
                 <Reveal key={f.l} delay={i * 0.08}>
                   <dt className="text-sm font-medium uppercase tracking-[0.14em] text-white/80">{f.l}</dt>
                   <dd className="mt-1 font-display text-6xl font-extrabold italic text-white md:text-7xl">
                     <CountUp to={f.v} suffix={f.s} intl={intl} />
-                    {"sub" in f && f.sub && <span className="ml-3 align-middle font-sans text-base font-semibold not-italic tracking-wide text-neon-500">{f.sub}</span>}
                   </dd>
                 </Reveal>
               ))}
