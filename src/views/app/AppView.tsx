@@ -1,4 +1,5 @@
-import { Sparkles, Star } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight, Sparkles, Star } from "lucide-react";
 import { site, stores } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -173,6 +174,10 @@ export function AppView({ locale }: { locale: Locale }) {
           <div>
             <Eyebrow className="mb-4">{t.faqSection.eyebrow}</Eyebrow>
             <Headline size="md">{t.faqSection.title}</Headline>
+            <Link href={href(locale, "faq")} className="group mt-6 inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white/80 hover:text-white">
+              {t.faqSection.all}
+              <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
+            </Link>
           </div>
           <Faq items={t.faq} />
         </div>

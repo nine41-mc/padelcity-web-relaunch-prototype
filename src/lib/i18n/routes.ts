@@ -18,6 +18,7 @@ export const routes = {
   partners: { de: "/partner", en: "/en/partners" },
   about: { de: "/ueber-uns", en: "/en/about" },
   jobs: { de: "/jobs", en: "/en/jobs" },
+  faq: { de: "/faq", en: "/en/faq" },
   imprint: { de: "/impressum", en: "/en/imprint" },
   privacy: { de: "/datenschutz", en: "/en/privacy" },
   terms: { de: "/agb", en: "/en/terms" },

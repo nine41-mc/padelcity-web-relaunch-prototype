@@ -29,7 +29,7 @@ export type NavItem = { key: RouteKey };
 
 /** Main navigation (labels in src/lib/i18n/dictionaries.ts → nav.<key>). */
 export const mainNav: RouteKey[] = ["locations", "app", "events", "academy", "magazine", "franchise"];
-export const secondaryNav: RouteKey[] = ["about", "jobs", "partners", "investors"];
+export const secondaryNav: RouteKey[] = ["about", "jobs", "partners", "investors", "faq"];
 export const legalNav: RouteKey[] = ["imprint", "privacy", "terms"];
 
 const ADJUST_BASE = process.env.NEXT_PUBLIC_ADJUST_BASE ?? "https://padelcity.go.link";

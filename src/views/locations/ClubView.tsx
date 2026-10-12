@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Clock, MapPin, Navigation } from "lucide-react";
-import { getClub, getClubs, getEvents } from "@/lib/data";
+import { ArrowUpRight, Clock, Mail, MapPin, MessageCircleQuestionMark, Navigation } from "lucide-react";
+import { getClub, getClubs, getCoaches, getEvents } from "@/lib/data";
 import { getClubReviews, reviewModuleClubs } from "@/lib/data/google-reviews";
 import type { Club, ImageAsset } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
@@ -10,6 +10,10 @@ import { localeTags } from "@/lib/i18n/config";
 import { alternates, href } from "@/lib/i18n/routes";
 import { deeplinks, site } from "@/lib/site";
 import { fill, locationsContent } from "@/lib/content/locations";
+import { academyContent } from "@/lib/content/academy";
+import { coachesForClub, resolveCoachClubsFor } from "@/components/play/coaches/resolve";
+import { fill as fillCount } from "@/components/play/coaches/clubs";
+import { ClubCoaches } from "@/components/locations/ClubCoaches";
 import { ClubCard } from "@/components/cards/ClubCard";
 import { EventCard } from "@/components/cards/EventCard";
 import { Button } from "@/components/ui/Button";
@@ -108,7 +112,13 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
   if (!club) notFound();
 
   const t = locationsContent[locale].club;
-  const [events, allClubs] = await Promise.all([getEvents({ clubId: club.id, locale }), getClubs(locale)]);
+  const [events, allClubs, allCoaches] = await Promise.all([getEvents({ clubId: club.id, locale }), getClubs(locale), getCoaches(locale)]);
+  // Coaches of this club: match coach club keys against the German club list (coach clubs are written in German).
+  const coachRefs = resolveCoachClubsFor(allCoaches, locale === "de" ? allClubs : await getClubs("de"), allClubs, locale);
+  const { exact: clubCoaches, nearby: cityCoaches } = coachesForClub(allCoaches, club.id, coachRefs);
+  const shownCoaches = clubCoaches.length ? clubCoaches : cityCoaches;
+  const coachLabels = academyContent[locale].coachesSection;
+  const clubEmail = club.contact?.emailAddress ?? site.email;
   const nearby = allClubs
     .filter((c) => c.id !== club.id)
     .map((c) => ({ club: c, km: distanceKm(club.position, c.position) }))
@@ -197,6 +207,15 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         <Section id="book" className={sectionCls}>
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />
+          <div className="mt-6 flex items-start gap-2 text-sm text-white/70">
+            <MessageCircleQuestionMark className="mt-3 size-4 shrink-0 text-neon-500" aria-hidden />
+            <p className="flex flex-wrap items-center gap-x-2">
+              <span className="py-2.5">{t.faqLink.text}</span>
+              <Link href={href(locale, "faq")} className="inline-flex min-h-11 items-center gap-1 font-semibold text-white underline-offset-4 hover:underline">
+                {t.faqLink.cta} <ArrowUpRight className="size-4" aria-hidden />
+              </Link>
+            </p>
+          </div>
         </Section>
 
         {/* Facilities */}
@@ -225,22 +244,79 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           </Section>
         )}
 
-        {/* Coaching */}
+        {/* Coaching: real coaches of this club (getCoaches → matched via coach club keys) */}
         <Section id="coaching" className={sectionCls}>
-          {/* Contentful module: academyTeaser */}
-          <div className="grid overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 md:grid-cols-2">
-            <Media src="/images/academy/coaching.jpg" alt={t.coaching.imageAlt} className="aspect-[16/10] md:aspect-auto md:min-h-[320px]" sizes="(min-width:768px) 50vw, 100vw" />
-            <div className="flex flex-col justify-center gap-5 p-6 md:p-10">
-              <Eyebrow>{t.coaching.eyebrow}</Eyebrow>
-              <Headline size="sm">
-                {t.coaching.title} <Accent>{t.coaching.accent}</Accent>
-              </Headline>
-              <p className="text-white/70">{fill(t.coaching.text, { city: club.city })}</p>
-              <Button href={href(locale, "academy")} variant="outline" className="w-fit">
-                {t.coaching.cta}
-              </Button>
+          {shownCoaches.length > 0 ? (
+            <>
+              <div className="mb-8 grid gap-5 md:mb-10 md:grid-cols-[1.3fr_1fr] md:items-end md:gap-10">
+                <div>
+                  <Eyebrow className="mb-4">
+                    {fill(t.coaching.eyebrowCount, {
+                      count: shownCoaches.length === 1 ? coachLabels.countOne : fillCount(coachLabels.countMany, { n: shownCoaches.length }),
+                    })}
+                  </Eyebrow>
+                  {clubCoaches.length > 0 ? (
+                    <Headline size="sm">
+                      {t.coaching.titleClub} <Accent>{t.coaching.accentClub}</Accent>
+                    </Headline>
+                  ) : (
+                    <Headline size="sm">{fill(t.coaching.titleNearby, { city: club.city })}</Headline>
+                  )}
+                </div>
+                <div className="flex flex-col gap-4 md:items-end md:text-right">
+                  <p className="max-w-md text-white/70">
+                    {clubCoaches.length > 0 ? fill(t.coaching.textClub, { club: club.name }) : fill(t.coaching.textNearby, { city: club.city })}
+                  </p>
+                  <Link
+                    href={href(locale, "academy")}
+                    className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white/80 hover:text-white"
+                  >
+                    {t.coaching.allAcademy}
+                    <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
+                  </Link>
+                </div>
+              </div>
+              <ClubCoaches
+                coaches={shownCoaches}
+                locale={locale}
+                labels={coachLabels}
+                clubs={coachRefs}
+                fallbackEmail={clubEmail}
+                appHref={bookHref}
+                listLabel={fill(t.coaching.listLabel, { club: club.name })}
+                prevLabel={t.coaching.prev}
+                nextLabel={t.coaching.next}
+              />
+            </>
+          ) : (
+            // Contentful module: academyTeaser (empty state – no coach matched to this club)
+            <div className="grid overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 md:grid-cols-2">
+              <Media src="/images/academy/coaching.jpg" alt={t.coaching.imageAlt} className="aspect-[16/10] md:aspect-auto md:min-h-[320px]" sizes="(min-width:768px) 50vw, 100vw" />
+              <div className="flex min-w-0 flex-col justify-center gap-5 p-6 md:p-10">
+                <Eyebrow>{t.coaching.emptyEyebrow}</Eyebrow>
+                <Headline size="sm">
+                  {t.coaching.emptyTitle} <Accent>{t.coaching.emptyAccent}</Accent>
+                </Headline>
+                <p className="text-white/70">{fill(t.coaching.emptyText, { club: club.name })}</p>
+                <a
+                  href={`mailto:${clubEmail}?subject=${encodeURIComponent(fill(t.coaching.emptyMailSubject, { club: club.name }))}`}
+                  className="inline-flex min-h-11 w-fit max-w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-2.5 transition hover:border-neon-500 hover:bg-white/5"
+                  data-track="club_coaching_inquiry_click"
+                >
+                  <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-gradient">
+                    <Mail className="size-4" aria-hidden />
+                  </span>
+                  <span className="min-w-0">
+                    <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.coaching.emptyMail}</span>
+                    <span className="block break-all text-sm">{clubEmail}</span>
+                  </span>
+                </a>
+                <Button href={href(locale, "academy")} variant="outline" className="w-fit">
+                  {t.coaching.cta}
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
         </Section>
 
         {/* Events */}
@@ -314,8 +390,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
             </div>
           </div>
         </Section>
-
-
 
         {/* Nearby */}
         <Section tone="black" className="!py-14 md:!py-20">

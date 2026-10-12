@@ -27,6 +27,7 @@ export function CoachDialog({
   clubs,
   fallbackEmail,
   fallbackAppHref,
+  appHref: appHrefOverride,
   onClose,
 }: {
   coach: Person | null;
@@ -35,6 +36,8 @@ export function CoachDialog({
   clubs: Record<string, CoachClubRef>;
   fallbackEmail: string;
   fallbackAppHref: string;
+  /** Forces the "book in the app" deep link (club detail page: always this club). */
+  appHref?: string;
   onClose: () => void;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -75,7 +78,7 @@ export function CoachDialog({
   const keys = coach ? coachClubKeys(coach.club) : [];
   const refs = keys.map((k) => clubs[k] ?? { key: k, label: k, href: "" });
   const single = refs.length === 1 ? refs[0] : undefined;
-  const appHref = single?.appHref ?? fallbackAppHref;
+  const appHref = appHrefOverride ?? single?.appHref ?? fallbackAppHref;
   const hasDirect = Boolean(coach?.email || coach?.phone);
 
   return (

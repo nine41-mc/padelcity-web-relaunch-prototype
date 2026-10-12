@@ -10,6 +10,7 @@
 Seiten (Server Components) ──► @/lib/data (index.ts = Fassade)
                                    ├─ contentful.ts          Contentful Delivery API (Clubs, Courts, Facilities)
                                    ├─ contentful-coaches.ts  Coaches inkl. Kontakt + Trainingsangebot
+                                   ├─ faq.ts                 FAQ (Hilfe-Bereich der App) via api-platform /faq, öffentlich
                                    ├─ mappers.ts             reine Mapping-Helfer (Slug, Öffnungszeiten, Region)
                                    └─ mock/*                 Fallback-Daten
 ```
@@ -18,6 +19,7 @@ Seiten (Server Components) ──► @/lib/data (index.ts = Fassade)
 |---|---|---|
 | Clubs (Stammdaten, Bilder, Facilities, Öffnungszeiten, Basispreis) | Contentful, Locale `de`/`en` | Mock |
 | Events (Marketing) | noch offen – Vorschlag: eigener Content-Type in Contentful | Mock |
+| FAQ (`getFaq(locale)` in `faq.ts`) | api-platform `GET /faq/sections` + `/faq/sections/{id}/topics` (öffentlich) | `src/lib/content/faq.ts` (statisch) |
 | Coaches (`getCoaches(locale)`) | Contentful `coach` + `coachTrainingTime` (`contentful-coaches.ts`) | `src/lib/content/people.ts` (ohne Kontakt/Preise/Zahlen) |
 
 - Die Seite wird **statisch exportiert** (`output: "export"`); Contentful wird beim Build gelesen. Inhaltsänderungen → Pipeline neu laufen lassen (Schedule oder Contentful-Webhook auf den GitLab-Pipeline-Trigger).
@@ -46,9 +48,21 @@ API-Keys anlegen dürfen Space-Admins; ein eigener Key pro Anwendung lässt sich
 - **Events**: Quelle für Marketing-Events (Hero-Events, wiederkehrende Formate) ohne Buchungsdaten festlegen.
 - **Google-Bewertungen**: Place-IDs pro Club + API-Key (Places API (New), Abrechnung über Google Cloud) – siehe unten.
 
+## FAQ (`faq.ts`)
+
+Die Seite `/faq` · `/en/faq` zeigt dieselben Fragen wie der Hilfe-Bereich der App. Das ist **redaktioneller Inhalt aus Contentful**, keine Buchungsdaten – deshalb ist es mit dem Grundsatz oben vereinbar.
+
+- Quelle: api-platform (Prod) `GET https://api.prod.cluster.padelcity.de/faq/sections` → `[{ id, title, icon, totalTopics }]`, danach je Sektion `GET /faq/sections/{id}/topics` → `[{ id, title, html }]` (`FaqSection.php`, `FaqTopic.php`, `GetFaqSectionsProvider.php`). `^/faq` ist in `security.yaml` `PUBLIC_ACCESS` – kein Token.
+- Sprache über den Header `Accept-Language: de|en` (nicht per Query-Parameter; `ContentfulLocaleService` fällt sonst auf EN zurück). Stand 13.10.2026: 11 Sektionen, 62 Fragen je Sprache.
+- Wird **beim Build** gelesen (statischer Export), sequenziell (~24 Requests pro Build). Die Ingress drosselt generische User-Agents (`Python-urllib` → 429), daher sendet der Build einen eigenen User-Agent.
+- Antwort-HTML wird mit einer Allow-List bereinigt (`p, br, ul, ol, li, strong, b, em, i, u, a[href]`); Links auf `padelcity.de/locations` werden auf die lokalisierte Standortseite umgeschrieben, externe Links öffnen in neuem Tab. Klartext (Suche, JSON-LD `FAQPage`) wird daraus abgeleitet.
+- Fallback bei Fehler/Timeout/leerem Ergebnis: statische FAQ aus `src/lib/content/faq.ts` (fünf Themen: Buchen & Bezahlen, Vor Ort, Benefits, Academy & Events, Konto & App; offene Fakten als `TODO(content)`), ein `console.warn` pro Build.
+- Env (optional): `FAQ_API_URL` (Default Prod-URL), `FAQ_SOURCE=static` erzwingt den Fallback (z. B. Offline-Build).
+- Offen: Änderungen an den FAQ in Contentful erscheinen erst nach dem nächsten Build (wie Clubs/Coaches).
+
 ## Coaches aus Contentful
 
-`getCoaches(locale)` (Fassade) → `fetchContentfulCoaches(locale)` in `contentful-coaches.ts` → `Person[]` (Typ aus `src/lib/content/people.ts`). Ohne Zugangsdaten, bei Fehlern oder 0 Einträgen: Fallback auf `coaches` aus `people.ts` (Stand padelcity.de). Head Coaches zuerst. Genutzt von der Academy-Seite (`CoachExplorer`).
+`getCoaches(locale)` (Fassade) → `fetchContentfulCoaches(locale)` in `contentful-coaches.ts` → `Person[]` (Typ aus `src/lib/content/people.ts`). Ohne Zugangsdaten, bei Fehlern oder 0 Einträgen: Fallback auf `coaches` aus `people.ts` (Stand padelcity.de). Head Coaches zuerst. Genutzt von der Academy-Seite (`CoachExplorer`) und der Clubseite (Abschnitt „Coachings“, `ClubCoaches`). Zuordnung Coach → Club über `resolveCoachClubs()` in `src/components/play/coaches/resolve.ts`: exakter Clubname („München Tucherpark“) oder eindeutige Stadt; ein mehrdeutiger Schlüssel (nur „München“) wird keinem Club fest zugeordnet – solche Coaches erscheinen auf den Clubs dieser Stadt nur als Hinweis „Coaches in München“, wenn dort kein Coach exakt passt.
 
 | Website (`Person`) | Contentful | Hinweis |
 |---|---|---|

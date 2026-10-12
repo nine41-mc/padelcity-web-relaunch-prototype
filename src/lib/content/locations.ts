@@ -100,7 +100,7 @@ const de = {
     courtsPlural: "Courts",
     distance: "entfernt",
     tabsLabel: "Club-Bereiche",
-    tabs: { book: "In der App buchen", facilities: "Facilities", coaching: "Coachings", events: "Events", directions: "Anfahrt", faq: "FAQ", contact: "Kontakt", reviews: "Bewertungen" },
+    tabs: { book: "In der App buchen", facilities: "Facilities", coaching: "Coachings", events: "Events", directions: "Anfahrt", contact: "Kontakt", reviews: "Bewertungen" },
     gallery: {
       extra: ["Courts von oben", "Lounge", "Umkleiden", "Community nach dem Match", "Bar & Bistro", "Court-Details"],
       photos: "Fotos",
@@ -141,6 +141,22 @@ const de = {
       accent: "Gemeinsam.",
       text: "Schnupperkurs, Technik-Training oder Kids-Camp: Unsere Coaches in {city} holen dich auf deinem Level ab.",
       cta: "Zur Academy",
+      eyebrowCount: "PadelCity Academy · {count}",
+      titleClub: "Deine Coaches",
+      accentClub: "im Club.",
+      textClub: "Sie kennen jeden Court in {club}. Tipp auf einen Coach für Kontakt, Trainingszeiten und Preise.",
+      titleNearby: "Coaches in {city}",
+      textNearby: "Diese Coaches sind für PadelCity in {city} unterwegs. Frag im Club, wer bei dir trainiert – oder tipp auf einen Coach für Kontakt & Preise.",
+      listLabel: "Coaches von {club}",
+      allAcademy: "Alle Coaches & Programme der Academy",
+      emptyEyebrow: "Coaching",
+      emptyTitle: "Coaching",
+      emptyAccent: "auf Anfrage.",
+      emptyText: "Für {club} sind hier noch keine Coaches eingetragen. Schreib dem Club – das Team bringt dich mit dem passenden Coach zusammen.",
+      emptyMail: "Club anschreiben",
+      emptyMailSubject: "Coaching bei {club}",
+      prev: "Vorherige Coaches",
+      next: "Nächste Coaches",
     },
     events: {
       title: "Events & Turniere",
@@ -150,7 +166,7 @@ const de = {
       emptyText: "Offene Matches findest du jeden Tag in der App – oder schau, was in anderen Clubs los ist.",
     },
     directions: { title: "Anfahrt & Öffnungszeiten", hours: "Öffnungszeiten", route: "Route öffnen" },
-    faq: { title: "Gut zu wissen" },
+    faqLink: { text: "Fragen zu Buchung, Storno oder Hansefit & Wellpass?", cta: "Zu den FAQ" },
     contactBar: {
       label: "Kontakt zum Club",
       address: "Adresse",
@@ -174,34 +190,6 @@ const de = {
     nearby: "Weitere Clubs in der Nähe",
     jsonLdPrice: "ab {price} € / Court & Stunde",
   },
-  faqs: (club: { name: string; parking: boolean }) => [
-    {
-      q: "Kann ich mir Schläger und Bälle ausleihen?",
-      a: `Klar. Bei ${club.name} bekommst du Leihschläger direkt vor Ort – Bälle gibt's am Automaten oder an der Bar. Einfach vorbeikommen und loslegen.`,
-    },
-    {
-      q: "Wie komme ich hin?",
-      a: `Tippe auf „Route öffnen“ und lass dich hinführen.${club.parking ? " Parkplätze gibt's direkt am Club." : ""} Plane ein paar Minuten zum Aufwärmen ein.`,
-    },
-    {
-      q: "Wie buche ich einen Court?",
-      a: "Ausschließlich in der PadelCity App: Club wählen, Zeit und Court aussuchen, bezahlen – fertig. Die Bestätigung kommt sofort.",
-    },
-    {
-      q: "Kann ich meine Buchung stornieren?",
-      a: "Ja – die Stornobedingungen siehst du vor dem Buchen in der PadelCity App. Dort kannst du deine Buchung auch direkt verwalten.",
-      // TODO(content): exact cancellation window (e.g. "kostenlos bis X Std. vorher") from Ops/AGB
-    },
-    {
-      q: "Kann ich mit Hansefit oder Wellpass spielen?",
-      a: "Ja, wir sind Partner von Firmenfitness-Anbietern wie Hansefit und Wellpass. Verknüpfe deine Mitgliedschaft in der App – der Rabatt wird beim Buchen automatisch berücksichtigt.",
-      // TODO(content): confirm per-club partner list + conditions (e.g. once per day)
-    },
-    {
-      q: "Dürfen Kinder mitspielen?",
-      a: "Unbedingt! Kids sind auf unseren Courts willkommen – für den Einstieg empfehlen wir die Kids-Kurse der PadelCity Academy.",
-    },
-  ],
 };
 
 export type LocationsContent = typeof de;
@@ -303,7 +291,7 @@ const en: LocationsContent = {
     courtsPlural: "courts",
     distance: "away",
     tabsLabel: "Club sections",
-    tabs: { book: "Book in the app", facilities: "Facilities", coaching: "Coaching", events: "Events", directions: "Getting here", faq: "FAQ", contact: "Contact", reviews: "Reviews" },
+    tabs: { book: "Book in the app", facilities: "Facilities", coaching: "Coaching", events: "Events", directions: "Getting here", contact: "Contact", reviews: "Reviews" },
     gallery: {
       extra: ["Courts from above", "Lounge", "Changing rooms", "Community after the match", "Bar & bistro", "Court details"],
       photos: "photos",
@@ -344,6 +332,22 @@ const en: LocationsContent = {
       accent: "Together.",
       text: "Taster session, technique training or kids' camp: our coaches in {city} meet you at your level.",
       cta: "Explore the Academy",
+      eyebrowCount: "PadelCity Academy · {count}",
+      titleClub: "Your coaches",
+      accentClub: "at this club.",
+      textClub: "They know every court at {club}. Tap a coach for contact details, training times and prices.",
+      titleNearby: "Coaches in {city}",
+      textNearby: "These coaches work for PadelCity in {city}. Ask the club who coaches at your venue – or tap a coach for contact details and prices.",
+      listLabel: "Coaches at {club}",
+      allAcademy: "All Academy coaches & programmes",
+      emptyEyebrow: "Coaching",
+      emptyTitle: "Coaching",
+      emptyAccent: "on request.",
+      emptyText: "We haven't listed any coaches for {club} here yet. Drop the club a line – the team will match you with the right coach.",
+      emptyMail: "Email the club",
+      emptyMailSubject: "Coaching at {club}",
+      prev: "Previous coaches",
+      next: "Next coaches",
     },
     events: {
       title: "Events & tournaments",
@@ -353,7 +357,7 @@ const en: LocationsContent = {
       emptyText: "You'll find open matches every day in the app – or see what's on at other clubs.",
     },
     directions: { title: "Getting here & opening hours", hours: "Opening hours", route: "Get directions" },
-    faq: { title: "Good to know" },
+    faqLink: { text: "Questions about booking, cancelling or Hansefit & Wellpass?", cta: "Read the FAQ" },
     contactBar: {
       label: "Club contact",
       address: "Address",
@@ -377,34 +381,6 @@ const en: LocationsContent = {
     nearby: "More clubs nearby",
     jsonLdPrice: "from €{price} per court & hour",
   },
-  faqs: (club) => [
-    {
-      q: "Can I hire rackets and balls?",
-      a: `Of course. At ${club.name} you can hire rackets on site – balls are available from the vending machine or at the bar. Just turn up and play.`,
-    },
-    {
-      q: "How do I get there?",
-      a: `Tap “Get directions” and follow the route.${club.parking ? " There's parking right by the club." : ""} Allow a few minutes to warm up.`,
-    },
-    {
-      q: "How do I book a court?",
-      a: "Only in the PadelCity app: pick the club, choose a time and court, pay – done. Confirmation is instant.",
-    },
-    {
-      q: "Can I cancel my booking?",
-      a: "Yes – you'll see the cancellation terms in the PadelCity app before you book, and you can manage your booking there too.",
-      // TODO(content): exact cancellation window from Ops/terms
-    },
-    {
-      q: "Can I play with Hansefit or Wellpass?",
-      a: "Yes, we partner with corporate fitness providers such as Hansefit and Wellpass. Link your membership in the app and the discount is applied automatically when you book.",
-      // TODO(content): confirm per-club partner list + conditions (e.g. once per day)
-    },
-    {
-      q: "Can kids play too?",
-      a: "Absolutely! Kids are welcome on our courts – to get started we recommend the PadelCity Academy kids' courses.",
-    },
-  ],
 };
 
 export const locationsContent: Record<Locale, LocationsContent> = { de, en };

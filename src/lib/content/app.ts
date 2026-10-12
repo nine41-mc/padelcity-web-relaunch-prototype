@@ -241,7 +241,7 @@ const de = {
       { step: "03", title: "Let's play Padel!", text: "Bezahlen, Freunde einladen, auf den Court. #bettertogether" },
     ],
   },
-  faqSection: { eyebrow: "FAQ", title: "Gut zu wissen" },
+  faqSection: { eyebrow: "FAQ", title: "Gut zu wissen", all: "Alle Fragen & Antworten" },
   faq: [
     { q: "Was kostet die App?", a: "Download und Konto sind kostenlos. Du zahlst nur, was du buchst – Courts, Events oder Trainings." },
     { q: "Kann ich Courts auch auf der Website buchen?", a: "Nein, die Buchung läuft exklusiv über die App. Auf der Website findest du alle Clubs mit Infos und Preisen – ein Tap bringt dich direkt zum Club in der App." },
@@ -398,7 +398,7 @@ const en: AppContent = {
       { step: "03", title: "Let's play Padel!", text: "Pay, invite your friends, hit the court. #bettertogether" },
     ],
   },
-  faqSection: { eyebrow: "FAQ", title: "Good to know" },
+  faqSection: { eyebrow: "FAQ", title: "Good to know", all: "All questions & answers" },
   faq: [
     { q: "How much does the app cost?", a: "Downloading it and creating an account are free. You only pay for what you book – courts, events or training." },
     { q: "Can I book courts on the website?", a: "No, booking happens exclusively in the app. On the website you'll find every club with info and prices – one tap takes you straight to the club in the app." },

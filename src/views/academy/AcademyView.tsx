@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getClubs, getCoaches } from "@/lib/data";
-import type { Club } from "@/lib/data";
 import { deeplinks, site } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -18,7 +17,7 @@ import { ClubCard } from "@/components/cards/ClubCard";
 import { CollegiateBadge, VarsityText } from "@/components/play/Collegiate";
 import { LevelPath } from "@/components/play/LevelPath";
 import { CoachExplorer } from "@/components/play/coaches/CoachExplorer";
-import { coachClubKeys, type CoachClubRef } from "@/components/play/coaches/clubs";
+import { resolveCoachClubsFor } from "@/components/play/coaches/resolve";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
 import { Faq } from "@/components/play/Faq";
 import { cn } from "@/components/ui/cn";
@@ -31,8 +30,8 @@ export async function AcademyView({ locale }: { locale: Locale }) {
   const clubs = allClubs.slice(0, 6);
   // Contentful → people.ts fallback; Head Coaches first.
   const academyCoaches = await getCoaches(locale);
-  const coachClubs = resolveCoachClubs(
-    academyCoaches.flatMap((c) => coachClubKeys(c.club)),
+  const coachClubs = resolveCoachClubsFor(
+    academyCoaches,
     locale === "de" ? allClubs : await getClubs("de"),
     allClubs,
     locale,
@@ -208,31 +207,4 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       </Section>
     </>
   );
-}
-
-/**
- * Maps coach club keys ("Fürth", "Frankfurt", "München") to club pages. Matching runs against the German
- * club list (coach clubs are written in German); labels/links use the page locale (slugs are shared).
- * Exactly one match → club detail page + app deep link; several (München) or none → locations overview.
- */
-function resolveCoachClubs(keys: string[], deClubs: Club[], localClubs: Club[], locale: Locale): Record<string, CoachClubRef> {
-  const bySlug = new Map(localClubs.map((c) => [c.slug, c]));
-  const norm = (s: string) => s.toLocaleLowerCase("de").trim();
-  const out: Record<string, CoachClubRef> = {};
-  for (const key of new Set(keys)) {
-    const k = norm(key);
-    const exact = deClubs.find((c) => norm(c.name) === `padelcity ${k}`);
-    const matches = exact ? [exact] : deClubs.filter((c) => norm(c.city) === k || norm(c.city).startsWith(`${k} `));
-    const one = matches.length === 1 ? matches[0] : undefined;
-    const local = matches[0] ? bySlug.get(matches[0].slug) : undefined;
-    // Translate the city part only ("München" → "Munich"), keep the rest of the key.
-    const label = local && matches[0] && local.city !== matches[0].city ? key.replace(matches[0].city, local.city) : key;
-    out[key] = {
-      key,
-      label,
-      href: one ? href(locale, "locations", one.slug) : href(locale, "locations"),
-      appHref: one ? deeplinks.club(one.id) : undefined,
-    };
-  }
-  return out;
 }

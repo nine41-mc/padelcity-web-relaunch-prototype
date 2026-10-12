@@ -1,4 +1,4 @@
-/** Club reference for a coach's club key (built server-side in AcademyView from getClubs). */
+/** Club reference for a coach's club key (built server-side via resolveCoachClubs() in ./resolve.ts). */
 export type CoachClubRef = {
   /** Key as written in coach.club, e.g. "Fürth" (from "Fürth & Erlangen"). */
   key: string;
@@ -8,6 +8,10 @@ export type CoachClubRef = {
   href: string;
   /** App deep link to the club (only for an unambiguous match). */
   appHref?: string;
+  /** Id of the club if the key maps to exactly one club. */
+  clubId?: string;
+  /** Ids of all matching clubs if the key is ambiguous (e.g. "München" → several Munich clubs). */
+  candidates?: string[];
 };
 
 /**
