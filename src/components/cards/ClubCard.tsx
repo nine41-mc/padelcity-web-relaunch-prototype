@@ -5,14 +5,19 @@ import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Media } from "../ui/Media";
-import { Chip } from "../ui/Chip";
+import { OpenStatus, SportChips } from "./ClubMeta";
 import { cn } from "../ui/cn";
 
 export function courtSummary(club: Club, locale: Locale = "de") {
+  // "9 Outdoor Courts · 2 Indoor Courts" – all sports, larger group first
   const indoor = club.courts.filter((c) => c.locationType === "indoor").length;
   const outdoor = club.courts.length - indoor;
   const courts = getDictionary(locale).clubCard.courts;
-  return [indoor && `${indoor} Indoor`, outdoor && `${outdoor} Outdoor`].filter(Boolean).join(" · ") + ` ${courts}`;
+  const parts = [
+    { n: indoor, label: `${indoor} Indoor ${courts}` },
+    { n: outdoor, label: `${outdoor} Outdoor ${courts}` },
+  ].filter((p) => p.n > 0);
+  return parts.sort((a, b) => b.n - a.n).map((p) => p.label).join(" · ");
 }
 
 /**
@@ -32,7 +37,6 @@ export function ClubCard({
 }) {
   const t = getDictionary(locale).clubCard;
   const intl = localeTags[locale].intl;
-  const highlight = club.tags.find((tag) => tag !== "Indoor" && tag !== "Outdoor") ?? club.tags[0];
   const url = href(locale, "locations", club.slug);
   return (
     <article
@@ -50,9 +54,6 @@ export function ClubCard({
           sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw"
           overlay
         />
-        <div className="absolute inset-x-3 top-3 flex items-start justify-between">
-          {highlight && <Chip tone={club.isFranchise ? "solid" : "gradient"}>{highlight}</Chip>}
-        </div>
       </div>
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex items-start justify-between gap-3">
@@ -73,9 +74,10 @@ export function ClubCard({
             </p>
           )}
         </div>
-        <div className="mt-auto flex flex-wrap gap-2">
-          <Chip>{courtSummary(club, locale)}</Chip>
-          {club.facilities.some((f) => f.type === "parking_space") && <Chip>{t.parking}</Chip>}
+        <div className="mt-auto space-y-3">
+          <OpenStatus club={club} locale={locale} />
+          <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
+          <SportChips club={club} locale={locale} />
         </div>
       </div>
     </article>

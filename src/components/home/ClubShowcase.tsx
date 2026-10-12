@@ -6,8 +6,8 @@ import { useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
-import { Chip } from "../ui/Chip";
 import { courtSummary } from "../cards/ClubCard";
+import { OpenStatus, SportChips } from "../cards/ClubMeta";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 
@@ -29,7 +29,7 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
         ref={ref}
         className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-4 md:gap-6 md:scroll-px-8 md:px-8 lg:scroll-px-16 lg:px-16"
       >
-        {clubs.map((club, i) => (
+        {clubs.map((club) => (
           <Link
             key={club.id}
             href={href(locale, "locations", club.slug)}
@@ -43,20 +43,14 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
               sizes="(min-width:1200px) 420px, (min-width:768px) 42vw, 78vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent transition-opacity group-hover:from-purple-900" />
-            <div className="absolute left-5 top-5 flex gap-2">
-              <Chip tone="dark">{String(i + 1).padStart(2, "0")}</Chip>
-              {club.tags.filter((t) => t !== "Indoor" && t !== "Outdoor").slice(0, 1).map((t) => (
-                <Chip key={t} tone="neon">
-                  {t}
-                </Chip>
-              ))}
-            </div>
             <div className="absolute inset-x-5 bottom-5">
               <p className="text-sm text-white/70">{club.city}</p>
               <h3 className="mt-1 font-display text-4xl leading-none font-extrabold italic uppercase md:text-5xl">{club.name.replace("PadelCity ", "")}</h3>
               <p className="mt-3 text-white/80">{club.teaser}</p>
-              <div className="mt-4 flex items-center justify-between text-sm text-white/70">
-                <span>{courtSummary(club, locale)}</span>
+              <div className="mt-4 space-y-2.5">
+                <OpenStatus club={club} locale={locale} />
+                <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
+                <SportChips club={club} locale={locale} />
               </div>
             </div>
           </Link>

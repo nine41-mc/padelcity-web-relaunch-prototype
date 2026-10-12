@@ -1,5 +1,6 @@
 import "server-only";
-import type { Club, CourtSummary, Facility, ImageAsset } from "./types";
+import type { Club, CourtSummary, Facility, ImageAsset, Sport } from "./types";
+import { SPORTS } from "./types";
 import {
   DEFAULT_TIMEZONE,
   LIVE_TIMEOUT_MS,
@@ -177,7 +178,13 @@ function mapCourt(e: CfEntry): CourtSummary {
     locationType: normalizeLocationType(e.fields.locationType),
     courtType: normalizeCourtType(e.fields.courtType),
     isPremium: e.fields.isPremium === true,
+    sport: normalizeSport(e.fields.sportType),
   };
+}
+
+function normalizeSport(v: unknown): Sport {
+  const s = String(v ?? "PADEL").toLowerCase().replace(/[^a-z]/g, "");
+  return (SPORTS as string[]).includes(s) ? (s as Sport) : s === "football" ? "soccer" : "padel";
 }
 
 function mapFacility(e: CfEntry): Facility {
@@ -211,8 +218,7 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
   for (const c of courtsRes.items) {
     const clubId = (c.fields.club as Link | undefined)?.sys?.id;
     if (!clubId) continue;
-    const sport = String(c.fields.sportType ?? "PADEL").toUpperCase();
-    if (sport !== "PADEL") continue;
+    // All sports (padel, pickleball, tennis, squash, …) – the website shows them as labels.
     const list = courtsByClub.get(clubId) ?? [];
     list.push(mapCourt(c));
     courtsByClub.set(clubId, list);

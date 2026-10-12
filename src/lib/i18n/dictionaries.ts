@@ -66,7 +66,8 @@ const de = {
     text: "Alle Courts, Matches und Events buchst du in der PadelCity App – in wenigen Klicks, mit Sofortbestätigung.",
     open: "App öffnen",
   },
-  clubCard: { from: "ab", courts: "Courts", parking: "Parkplätze", view: "ansehen", perHour: "/ Std." },
+  clubCard: { from: "ab", courts: "Courts", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", opensAt: "Öffnet heute um {t}", closed: "Heute geschlossen", sportsLabel: "Sportarten" },
+  sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
   eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "In der App anmelden", free: "Free", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
 };
@@ -137,7 +138,8 @@ const en: Dictionary = {
     text: "Book every court, match and event in the PadelCity app – in a few taps, instantly confirmed.",
     open: "Open the app",
   },
-  clubCard: { from: "from", courts: "courts", parking: "Parking", view: "view", perHour: "/ hr" },
+  clubCard: { from: "from", courts: "courts", parking: "Parking", view: "view", perHour: "/ hr", openUntil: "Open until {t}", opensAt: "Opens today at {t}", closed: "Closed today", sportsLabel: "Sports" },
+  sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Football", multisport: "Multisport" },
   eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up in the app", free: "Free", time: "" },
   media: { placeholder: "Image coming soon" },
 };

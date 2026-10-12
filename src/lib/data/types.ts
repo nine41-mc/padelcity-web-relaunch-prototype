@@ -26,7 +26,11 @@ export type CourtSummary = {
   locationType: "indoor" | "outdoor";
   courtType: "double" | "single";
   isPremium?: boolean; // e.g. "Panorama Court"
+  sport?: Sport; // default "padel"
 };
+
+export type Sport = "padel" | "pickleball" | "tennis" | "squash" | "badminton" | "soccer" | "multisport";
+export const SPORTS: Sport[] = ["padel", "pickleball", "tennis", "squash", "badminton", "soccer", "multisport"];
 
 export type OpeningHours = {
   label: string; // "Mo – Fr"

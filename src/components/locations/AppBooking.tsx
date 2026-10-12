@@ -2,6 +2,7 @@
 
 import { Clock, Euro, LayoutGrid, Smartphone } from "lucide-react";
 import type { Club } from "@/lib/data/types";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { deeplinks } from "@/lib/site";
@@ -20,15 +21,21 @@ export function courtGroups(club: Pick<Club, "courts">, locale: Locale) {
   const t = locationsContent[locale].club;
   const groups = new Map<string, number>();
   for (const c of club.courts) {
-    const key = `${c.locationType}|${c.courtType}`;
+    // Padel: indoor/outdoor × double/single. Other sports (tennis, pickleball, …): indoor/outdoor × sport.
+    const sport = c.sport ?? "padel";
+    const key = `${c.locationType}|${sport === "padel" ? c.courtType : sport}`;
     groups.set(key, (groups.get(key) ?? 0) + 1);
   }
+  const sports = getDictionary(locale).sports;
   return [...groups.entries()].map(([key, n]) => {
-    const [loc, type] = key.split("|") as ["indoor" | "outdoor", "double" | "single"];
+    const [loc, kind] = key.split("|") as ["indoor" | "outdoor", string];
+    const isPadel = kind === "double" || kind === "single";
     return {
       key,
-      courtType: type,
-      label: `${n} ${t[loc]} ${t[type]} ${n > 1 ? t.courtsPlural : t.court}`,
+      courtType: (isPadel ? kind : "double") as "double" | "single",
+      label: isPadel
+        ? `${n} ${t[loc]} ${t[kind as "double" | "single"]} ${n > 1 ? t.courtsPlural : t.court}`
+        : `${n} ${t[loc]} ${sports[kind as keyof typeof sports] ?? kind} ${n > 1 ? t.courtsPlural : t.court}`,
     };
   });
 }
