@@ -15,7 +15,7 @@ export function formatPrice(value: number, locale: Locale) {
   return new Intl.NumberFormat(localeTags[locale].intl, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(value);
 }
 
-/** Groups courts by indoor/outdoor × double/single, e.g. "4 Indoor Double Courts (4 Spieler)". */
+/** Groups courts by indoor/outdoor × double/single, e.g. "4 Indoor Double Courts" (Double/Single is self-explanatory – no player count). */
 export function courtGroups(club: Pick<Club, "courts">, locale: Locale) {
   const t = locationsContent[locale].club;
   const groups = new Map<string, number>();
@@ -29,13 +29,12 @@ export function courtGroups(club: Pick<Club, "courts">, locale: Locale) {
       key,
       courtType: type,
       label: `${n} ${t[loc]} ${t[type]} ${n > 1 ? t.courtsPlural : t.court}`,
-      players: `${type === "double" ? 4 : 2} ${t.players}`,
     };
   });
 }
 
 /**
- * "Court buchen in der App": price from, opening hours, court overview, deep link + store badges + 3 steps.
+ * "Court buchen in der App": price from, opening hours, court overview, deep link + 3 steps.
  * PadelCity credo: no times, slots or availability on the website – booking lives in the app.
  */
 export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }) {
@@ -108,7 +107,6 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
                   <AppIcon name={`${g.courtType}_court`} className="size-5 shrink-0 text-neon-500" />
                   <span className="leading-tight">
                     <span className="font-medium">{g.label}</span>
-                    <span className="block text-sm text-white/70">{g.players}</span>
                   </span>
                 </li>
               ))}

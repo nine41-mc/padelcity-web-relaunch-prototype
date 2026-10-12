@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Clock, Mail, MapPin, Navigation, Phone } from "lucide-react";
+import { Clock, MapPin, Navigation } from "lucide-react";
 import { getClub, getClubs, getEvents } from "@/lib/data";
 import { getClubReviews, reviewModuleClubs } from "@/lib/data/google-reviews";
 import type { Club, ImageAsset } from "@/lib/data/types";
@@ -22,10 +22,10 @@ import { Section } from "@/components/ui/Section";
 import { AppBookingBlock, courtGroups, formatPrice } from "@/components/locations/AppBooking";
 import { AppBookingBar } from "@/components/locations/AppBookingBar";
 import { ClubDistance } from "@/components/locations/ClubDistance";
-import { ClubFaq, clubFaqs } from "@/components/locations/ClubFaq";
 import { ClubGallery } from "@/components/locations/ClubGallery";
 import { ClubMapLazy } from "@/components/locations/ClubMapLazy";
 import { ClubReviews } from "@/components/locations/ClubReviews";
+import { ClubContactBar } from "@/components/locations/ClubContactBar";
 import { SectionTabs } from "@/components/locations/SectionTabs";
 import { dayLabel, distanceKm, googleMapsRoute, schemaDays } from "@/components/locations/geo";
 
@@ -128,8 +128,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
     { id: "coaching", label: t.tabs.coaching },
     { id: "events", label: t.tabs.events },
     { id: "directions", label: t.tabs.directions },
-    { id: "faq", label: t.tabs.faq },
-    { id: "contact", label: t.tabs.contact },
   ];
 
   return (
@@ -176,13 +174,18 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                 {courtGroups(club, locale).map((g) => (
                   <li key={g.key}>
                     <Chip className="py-1.5 text-sm">
-                      {g.label} ({g.players})
+                      {g.label}
                     </Chip>
                   </li>
                 ))}
               </ul>
             </div>
             <p className="text-lg leading-relaxed text-white/75 lg:pt-2">{club.description}</p>
+          </div>
+
+          {/* Contact at a glance – above the section tabs */}
+          <div className="mt-10">
+            <ClubContactBar club={club} locale={locale} />
           </div>
         </div>
       </section>
@@ -312,51 +315,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           </div>
         </Section>
 
-        {/* FAQ */}
-        <Section id="faq" tone="black" className={sectionCls}>
-          <div className="grid gap-8 lg:grid-cols-[1fr_2fr]">
-            <Headline size="sm">{t.faq.title}</Headline>
-            <ClubFaq items={clubFaqs(club, locale)} />
-          </div>
-        </Section>
 
-        {/* Contact */}
-        <Section id="contact" className={sectionCls}>
-          {/* Contentful module: clubContact */}
-          <Headline size="sm" className="mb-8">
-            {t.contact.title}
-          </Headline>
-          <div className="grid gap-3 md:grid-cols-3">
-            <div className="rounded-[20px] border border-white/10 bg-ink-700 p-6">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.contact.club}</p>
-              <p className="mt-2 font-semibold">{club.name}</p>
-              <p className="mt-1 text-sm text-white/70">{addressLine}</p>
-            </div>
-            {club.contact?.emailAddress && (
-              <a href={`mailto:${club.contact.emailAddress}`} className="group rounded-[20px] border border-white/10 bg-ink-700 p-6 transition hover:border-magenta-500/50">
-                <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
-                  <Mail className="size-4" aria-hidden /> {t.contact.email}
-                </p>
-                <p className="mt-2 break-all font-semibold group-hover:text-neon-500">{club.contact.emailAddress}</p>
-                {club.contact.name && <p className="mt-1 text-sm text-white/70">{club.contact.name}</p>}
-              </a>
-            )}
-            {club.contact?.phoneNumber ? (
-              <a href={`tel:${club.contact.phoneNumber.replace(/\s/g, "")}`} className="group rounded-[20px] border border-white/10 bg-ink-700 p-6 transition hover:border-magenta-500/50">
-                <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
-                  <Phone className="size-4" aria-hidden /> {t.contact.phone}
-                </p>
-                <p className="mt-2 font-semibold group-hover:text-neon-500">{club.contact.phoneNumber}</p>
-              </a>
-            ) : (
-              <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="group rounded-[20px] border border-white/10 bg-ink-700 p-6 transition hover:border-magenta-500/50">
-                <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.contact.community}</p>
-                <p className="mt-2 font-semibold group-hover:text-neon-500">{t.contact.instagram}</p>
-                <p className="mt-1 text-sm text-white/70">{t.contact.instagramText}</p>
-              </a>
-            )}
-          </div>
-        </Section>
 
         {/* Nearby */}
         <Section tone="black" className="!py-14 md:!py-20">

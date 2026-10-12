@@ -55,7 +55,8 @@ export type Club = {
   defaultPricePerHour?: number; // EUR, per court & hour
   mainImage?: ImageAsset;
   images: ImageAsset[];
-  contact?: { name?: string; phoneNumber?: string; emailAddress?: string };
+  /** Club manager contact (Contentful contact entry). whatsappGroupUrl = proposed new Contentful field on club. */
+  contact?: { name?: string; phoneNumber?: string; emailAddress?: string; whatsappGroupUrl?: string };
   // No `rating` on purpose: ratings are never mocked. Real Google ratings come from lib/data/google-reviews.ts (module clubReviews).
   tags: string[]; // "Indoor", "Outdoor", "Panorama Court", "Franchise", "Neu"
   isFranchise?: boolean;

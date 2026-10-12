@@ -272,7 +272,7 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
       mainImage: mainImage ?? gallery[0] ?? mock?.mainImage,
       // Gallery = main image + all `images` (deduplicated by URL).
       images: mainImage || gallery.length ? uniqByUrl([mainImage, ...gallery]) : (mock?.images ?? []),
-      contact: mapContact(r, f.contact),
+      contact: { ...mapContact(r, f.contact), whatsappGroupUrl: str(f.whatsappGroupUrl) ?? str(f.whatsappGroup) },
       tags: uniq([...deriveTags(courts), ...(mock?.tags ?? [])]),
       isFranchise: mock?.isFranchise,
       source: "contentful",
