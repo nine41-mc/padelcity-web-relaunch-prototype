@@ -138,17 +138,10 @@ export function GermanyMap({
         {current && <PinLabel pin={current} soon={legend.soon} width={W} />}
       </svg>
 
-      <div className="mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-white/80">
-        <span className="inline-flex items-center gap-2">
-          <span className="size-2.5 rounded-full bg-white" aria-hidden /> {legend.live}
-        </span>
-        <span className="inline-flex items-center gap-2">
-          <span className="size-2.5 rounded-full border border-dashed border-white" aria-hidden /> {legend.soon}
-        </span>
-        <span className="text-white/70" aria-live="polite">
-          {current ? current.club.name : hint}
-        </span>
-      </div>
+      {/* No visible legend – the pin label explains itself. Announce the active club for screen readers. */}
+      <p className="sr-only" aria-live="polite">
+        {current ? current.club.name : hint}
+      </p>
     </div>
   );
 }
