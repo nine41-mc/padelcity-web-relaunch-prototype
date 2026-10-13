@@ -47,7 +47,7 @@ export function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className="relative isolate overflow-hidden bg-black">
       {/* Facts ticker – neon band as the hand-over from page to footer */}
-      <div className="relative z-10 bg-neon-500 py-3 text-ink-800" lang={locale}>
+      <div className="relative z-10 flex h-14 items-center overflow-hidden bg-neon-500 text-ink-800 md:h-16" lang={locale}>
         <Marquee>
           {[...t.footer.facts, "#bettertogether", "Let's play Padel"].map((item) => (
             <span key={item} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">
