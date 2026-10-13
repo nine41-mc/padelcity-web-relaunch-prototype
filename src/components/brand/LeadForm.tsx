@@ -7,6 +7,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { brandStrings } from "./strings";
 import { Button } from "../ui/Button";
+import { Select } from "@/components/ui/Select";
 import { cn } from "../ui/cn";
 
 // Contentful module: leadForm (config: title, fields, consent text, success text, CRM target)
@@ -80,16 +81,7 @@ export function LeadForm({
               {f.type === "textarea" ? (
                 <textarea id={id} name={f.name} required={f.required} rows={4} placeholder={f.placeholder} className={cn(inputCls, "py-3")} />
               ) : f.type === "select" ? (
-                <select id={id} name={f.name} required={f.required} defaultValue="" className={cn(inputCls, "h-12 appearance-none")}>
-                  <option value="" disabled>
-                    {t.choose}
-                  </option>
-                  {f.options.map((o) => (
-                    <option key={o} value={o} className="bg-ink-700">
-                      {o}
-                    </option>
-                  ))}
-                </select>
+                <FormSelect id={id} name={f.name} required={f.required} label={f.label} placeholder={t.choose} options={f.options} />
               ) : (
                 <input id={id} name={f.name} type={f.type} required={f.required} autoComplete={f.autoComplete} placeholder={f.placeholder} className={cn(inputCls, "h-12")} />
               )}
@@ -114,5 +106,23 @@ export function LeadForm({
         </Button>
       </div>
     </form>
+  );
+}
+
+/** Branded select inside the (uncontrolled) lead form – keeps its own state, posts via hidden input. */
+function FormSelect({ id, name, required, label, placeholder, options }: { id: string; name: string; required?: boolean; label: string; placeholder: string; options: string[] }) {
+  const [value, setValue] = useState("");
+  return (
+    <Select
+      id={id}
+      name={name}
+      required={required}
+      label={label}
+      placeholder={placeholder}
+      size="lg"
+      value={value}
+      onChange={setValue}
+      options={options.map((o) => ({ value: o, label: o }))}
+    />
   );
 }

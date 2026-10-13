@@ -1,12 +1,13 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { CalendarSearch, RotateCcw } from "lucide-react";
+import { CalendarSearch, MapPin, RotateCcw } from "lucide-react";
 import type { ClubEvent } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { EventCard } from "@/components/cards/EventCard";
 import { Reveal } from "@/components/ui/Reveal";
+import { Select } from "@/components/ui/Select";
 import { cn } from "@/components/ui/cn";
 
 type TypeFilter = "all" | "social" | "tournament" | "training";
@@ -93,22 +94,15 @@ export function EventsExplorer({
           ))}
         </div>
         <div className="flex gap-2">
-          <label className="sr-only" htmlFor="event-city">
-            {t.cityLabel}
-          </label>
-          <select
+          <Select
             id="event-city"
             value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className="h-10 min-w-0 flex-1 rounded-full border border-white/45 bg-ink-700 px-4 text-sm text-white focus:border-neon-500 focus:outline-none focus:ring-2 focus:ring-neon-500/50 md:flex-none"
-          >
-            <option value="all">{t.allCities}</option>
-            {cities.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+            onChange={setCity}
+            label={t.cityLabel}
+            icon={<MapPin />}
+            className="min-w-0 flex-1 md:w-56 md:flex-none"
+            options={[{ value: "all", label: t.allCities }, ...cities.map((c) => ({ value: c, label: c }))]}
+          />
           <button
             type="button"
             aria-pressed={thisWeek}

@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight, ChevronDown, ChevronLeft, ChevronRight, GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
 import type { Person } from "@/lib/content/people";
 import type { Locale } from "@/lib/i18n/config";
+import { Select } from "@/components/ui/Select";
 import { cn } from "@/components/ui/cn";
 import { CoachCard } from "./CoachCard";
 import { CoachDialog } from "./CoachDialog";
@@ -136,23 +137,14 @@ export function CoachExplorer({
       {/* Toolbar: filters · count · view toggle · arrows */}
       <div className="mt-8 flex flex-col gap-3 md:mt-10 lg:flex-row lg:items-center lg:justify-between">
         <div role="group" aria-label={labels.filterLabel} className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <label className="relative block">
-            <span className="sr-only">{labels.clubLabel}</span>
-            <MapPin className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-white/60" aria-hidden />
-            <select
-              value={club}
-              onChange={(e) => setClub(e.target.value)}
-              className="h-11 w-full appearance-none rounded-full border border-white/20 bg-ink-700 pl-10 pr-10 text-sm text-chalk transition hover:border-white/50 focus-visible:border-neon-500 focus-visible:outline-none sm:w-60"
-            >
-              <option value="">{labels.allClubs}</option>
-              {clubOptions.map((o) => (
-                <option key={o.key} value={o.key}>
-                  {o.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDown className="pointer-events-none absolute right-4 top-1/2 size-4 -translate-y-1/2 text-white/60" aria-hidden />
-          </label>
+          <Select
+            value={club}
+            onChange={setClub}
+            label={labels.clubLabel}
+            icon={<MapPin />}
+            className="w-full sm:w-64"
+            options={[{ value: "", label: labels.allClubs }, ...clubOptions.map((o) => ({ value: o.key, label: o.label }))]}
+          />
 
           <div role="group" aria-label={labels.roleLabel} className="flex rounded-full border border-white/15 bg-white/5 p-0.5">
             {roles.map(([key, label]) => (
