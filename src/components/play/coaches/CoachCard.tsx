@@ -63,7 +63,7 @@ export function CoachStat({
           </>
         )}
       </p>
-      <p className="mt-1.5 text-[11px] font-semibold uppercase leading-tight tracking-[0.14em] text-white/70 md:text-xs">{label}</p>
+      <p className="mt-1.5 text-[13px] font-semibold uppercase leading-tight tracking-[0.12em] text-white/85">{label}</p>
     </div>
   );
 }
@@ -169,7 +169,7 @@ export function CoachCard({
       {feature && (
         <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col gap-5 md:flex lg:right-8">
           <CoachStat value={coach.hoursOnCourt} label={labels.hours} pending={labels.pending} locale={locale} align="right" />
-          <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} suffix="+" align="right" />
+          <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} align="right" />
         </div>
       )}
 
@@ -178,7 +178,7 @@ export function CoachCard({
         {feature && (
           <div className="mb-4 grid grid-cols-2 gap-3 md:hidden">
             <CoachStat value={coach.hoursOnCourt} label={labels.hours} pending={labels.pending} locale={locale} size="md" />
-            <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} suffix="+" size="md" />
+            <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} size="md" />
           </div>
         )}
         <div className={cn(feature && "md:flex md:items-end md:justify-between md:gap-6")}>
@@ -210,7 +210,7 @@ export function CoachCard({
         {!feature && (
           <div className="mt-3 hidden grid-cols-2 gap-2 border-t border-white/15 pt-3 md:grid">
             <CoachStat value={coach.hoursOnCourt} label={labels.hours} pending={labels.pending} locale={locale} size="md" />
-            <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} suffix="+" size="md" />
+            <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} size="md" />
           </div>
         )}
       </div>

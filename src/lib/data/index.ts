@@ -110,6 +110,8 @@ export async function getEvent(slug: string): Promise<ClubEvent | undefined> {
  * Academy coaches: Contentful (incl. contact + training offer, see contentful-coaches.ts) → fallback people.ts.
  * Head Coaches first, otherwise source order.
  */
+const EXAMPLE_COACH_STATS = { hoursOnCourt: 7000, students: 350 };
+
 export const getCoaches = cache(async (locale: Locale = "de"): Promise<Person[]> => {
   let list: Person[] = peopleCoaches;
   if (isContentfulConfigured()) {
@@ -122,7 +124,10 @@ export const getCoaches = cache(async (locale: Locale = "de"): Promise<Person[]>
     }
   }
   const isHead = (p: Person) => /head/i.test(p.role.en);
-  return [...list].sort((a, b) => Number(isHead(b)) - Number(isHead(a)));
+  // Prototype: example stats given by PadelCity (13.10.2026) until Contentful has coach fields
+  // (hoursOnCourt, students). Real values on a coach always win.
+  const withStats = list.map((p) => ({ ...p, hoursOnCourt: p.hoursOnCourt ?? EXAMPLE_COACH_STATS.hoursOnCourt, students: p.students ?? EXAMPLE_COACH_STATS.students }));
+  return withStats.sort((a, b) => Number(isHead(b)) - Number(isHead(a)));
 });
 
 export async function getDataStatus(): Promise<{ contentfulConfigured: boolean; clubs: DataSource }> {

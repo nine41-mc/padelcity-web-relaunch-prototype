@@ -141,7 +141,7 @@ const coach = same("Coach");
 
 // Contentful module: coaches (Academy "Meet your coaches") – order as on padelcity.de/academy
 export const coaches: Person[] = [
-  { id: "daniel-lingen", name: "Daniel Lingen", role: headCoach, bio: { de: "Sport- und Regionalmanager", en: "Sports & Regional Manager" }, image: c("daniel-lingen"), source: "padelcity.de" },
+  { id: "daniel-lingen", name: "Daniel Lingen", role: headCoach, club: "Dortmund", bio: { de: "Sport- und Regionalmanager", en: "Sports & Regional Manager" }, image: c("daniel-lingen"), source: "padelcity.de" },
   { id: "harry-payrleitner", name: "Harry Payrleitner", role: headCoach, club: "Fürth & Erlangen", bio: { de: "Anlagenleiter Fürth", en: "Club Manager, Fürth" }, image: c("harry-payrleitner"), source: "padelcity.de" },
   { id: "alvaro-bastarreche", name: "Álvaro Bastarreche", role: headCoach, club: "Leipzig", bio: { de: "Sportlicher Leiter Leipzig", en: "Head of Sport, Leipzig" }, image: c("alvaro-bastarreche"), source: "padelcity.de" },
   { id: "markus-erdmann", name: "Markus Erdmann", role: headCoach, club: "Frankfurt & Wiesbaden", bio: { de: "Anlagenleiter Wiesbaden", en: "Club Manager, Wiesbaden" }, image: c("markus-erdmann"), source: "padelcity.de" },
