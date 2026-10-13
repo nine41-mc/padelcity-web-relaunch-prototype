@@ -44,9 +44,11 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent transition-opacity group-hover:from-purple-900" />
             <div className="absolute inset-x-5 bottom-5">
-              <p className="text-sm text-white/70">{club.city}</p>
-              <h3 className="mt-1 font-display text-4xl leading-none font-extrabold italic uppercase md:text-5xl">{club.name.replace("PadelCity ", "")}</h3>
-              <p className="mt-3 text-white/80">{club.teaser}</p>
+              <p className="truncate text-sm text-white/80">
+                {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
+              </p>
+              {/* Fixed slots (2-line title, 2-line teaser) so every tile in the strip has the same rhythm */}
+              <h3 className="mt-1 line-clamp-2 min-h-[2lh] font-display text-4xl leading-none font-extrabold italic uppercase md:text-5xl">{club.name}</h3>
               <div className="mt-4 space-y-2.5">
                 <OpenStatus club={club} locale={locale} />
                 <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
