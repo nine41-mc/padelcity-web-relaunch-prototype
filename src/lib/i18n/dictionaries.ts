@@ -71,7 +71,7 @@ const de = {
   },
   clubCard: { from: "ab", courts: "Courts", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", opensAt: "Öffnet heute um {t}", closed: "Heute geschlossen", sportsLabel: "Sportarten" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
-  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", free: "Free", time: "Uhr" },
+  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der PadelCity App anmelden", free: "Free", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
 };
 
@@ -146,7 +146,7 @@ const en: Dictionary = {
   },
   clubCard: { from: "from", courts: "courts", parking: "Parking", view: "view", perHour: "/ hr", openUntil: "Open until {t}", opensAt: "Opens today at {t}", closed: "Closed today", sportsLabel: "Sports" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Football", multisport: "Multisport" },
-  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", free: "Free", time: "" },
+  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", signupLabel: "Sign up", web: "On the web", app: "In the app", webAria: "Sign up on the web (opens new tab)", appAria: "Sign up in the PadelCity app", free: "Free", time: "" },
   media: { placeholder: "Image coming soon" },
 };
 

@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { keepTogether } from "@/lib/typography";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import type { ClubEvent } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { eventsContent } from "@/lib/content/events";
-import { deeplinks, webApp } from "@/lib/site";
-import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
+import { EventSignup } from "@/components/events/EventSignup";
 import { cn } from "@/components/ui/cn";
 import { Countdown } from "./Countdown";
 import { dayParts, formatDateRange } from "./eventFormat";
@@ -17,7 +16,6 @@ import { dayParts, formatDateRange } from "./eventFormat";
 /** Big immersive card for hero events (One Point Challenge, Series Finals). */
 export function HeroEventCard({ event, locale, className, priority }: { event: ClubEvent; locale: Locale; className?: string; priority?: boolean }) {
   const t = eventsContent[locale];
-  const d = getDictionary(locale).eventCard;
   const { day, month } = dayParts(event.start, locale);
   return (
     <article
@@ -57,29 +55,8 @@ export function HeroEventCard({ event, locale, className, priority }: { event: C
         {event.subtitle && <p className="max-w-md text-white/85">{event.subtitle}</p>}
         <div className="flex flex-wrap items-end justify-between gap-5">
           <Countdown start={event.start} labels={t.countdown} size="sm" />
-          {/* Sign-up on the web (primary) or in the app; the card itself links to the detail page */}
-          <div className="flex flex-col items-start gap-2 sm:items-end">
-            <a
-              href={webApp.event(event.id)}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="event_signup_web"
-              className="relative z-10 inline-flex h-12 items-center gap-3 rounded-full bg-white pl-6 pr-1.5 font-display text-lg italic uppercase tracking-wide text-ink-800 transition-shadow hover:shadow-glow md:text-xl"
-            >
-              <span className="leading-none">{d.signup}</span>
-              <span className="grid size-9 place-items-center rounded-full bg-brand-gradient text-white transition-transform duration-300 group-hover:rotate-45">
-                <ArrowUpRight className="size-4" strokeWidth={2.5} aria-hidden />
-              </span>
-            </a>
-            <p className="flex items-center gap-4 text-[13px] font-semibold text-white/80">
-              <a href={deeplinks.event(event.id)} data-track="event_signup_app" className="relative z-10 inline-flex min-h-7 items-center underline-offset-4 hover:text-white hover:underline">
-                {d.signupApp}
-              </a>
-              <span className="inline-flex min-h-7 items-center gap-1" aria-hidden>
-                {t.card.more} <ArrowUpRight className="size-3.5" />
-              </span>
-            </p>
-          </div>
+          {/* Equal sign-up options; the card itself links to the detail page */}
+          <EventSignup eventId={event.id} locale={locale} size="md" className="w-full sm:w-auto" />
         </div>
       </div>
     </article>

@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock, MapPin, Trophy, Users } from "lucide-react";
 import { getClubs, getEvent, getEvents } from "@/lib/data";
 import type { Club, ClubEvent } from "@/lib/data/types";
-import { deeplinks, site, webApp } from "@/lib/site";
+import { site, webApp } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { alternates, href } from "@/lib/i18n/routes";
@@ -14,6 +14,7 @@ import { eventsContent, heroEventContent, localizeEvent, type HeroEventContent }
 import { AppCta } from "@/components/modules/AppCta";
 import { Section } from "@/components/ui/Section";
 import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { EventSignup } from "@/components/events/EventSignup";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { Media } from "@/components/ui/Media";
@@ -149,12 +150,7 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <Countdown start={event.start} labels={t.countdown} />
             <div className="flex flex-wrap gap-3">
-              <Button href={webApp.event(event.id)} variant="gradient" size="lg" data-track="event_signup_web">
-                {t.detail.signup}
-              </Button>
-              <Button href={deeplinks.event(event.id)} variant="outline" size="lg" data-track="event_signup_app">
-                {t.detail.signupApp}
-              </Button>
+              <EventSignup eventId={event.id} locale={locale} size="lg" className="w-full sm:w-auto" />
               <Button href="#format" variant="outline" size="lg" arrow={false}>
                 {t.detail.formatCta}
               </Button>
@@ -296,14 +292,7 @@ function SignupBanner({ event, locale, t }: { event: ClubEvent; locale: Locale; 
           <p className="mt-4 max-w-lg text-white/80">{t.detail.bannerText(event.title)}</p>
         </div>
         <div className="flex flex-col gap-4 md:items-end">
-          <div className="flex flex-wrap gap-3 md:justify-end">
-            <Button href={webApp.event(event.id)} size="lg" data-track="event_signup_web">
-              {t.detail.signup}
-            </Button>
-            <Button href={deeplinks.event(event.id)} variant="outline" size="lg" data-track="event_signup_app">
-              {t.detail.signupApp}
-            </Button>
-          </div>
+          <EventSignup eventId={event.id} locale={locale} size="lg" className="w-full md:w-auto" />
           <StoreBadges locale={locale} />
         </div>
       </div>
@@ -388,12 +377,7 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
                   <p className="text-sm text-white/70">{t.detail.perPerson}</p>
                   <p className="font-display text-4xl font-extrabold italic">{price}</p>
                 </div>
-                <Button href={webApp.event(event.id)} variant="gradient" size="lg" className="mt-6 w-full" data-track="event_signup_web">
-                  {t.detail.signup}
-                </Button>
-                <Button href={deeplinks.event(event.id)} variant="outline" size="lg" className="mt-3 w-full" data-track="event_signup_app">
-                  {t.detail.signupApp}
-                </Button>
+                <EventSignup eventId={event.id} locale={locale} size="md" showLabel className="mt-6" />
                 <p className="mt-4 text-center text-sm text-white/70">{t.detail.appOnly}</p>
               </div>
             </aside>

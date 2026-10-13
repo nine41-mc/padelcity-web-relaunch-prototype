@@ -3,8 +3,6 @@ import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts, partners } from "@/lib/content/partners";
-import { deeplinks, webApp } from "@/lib/site";
-import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href, type RouteKey } from "@/lib/i18n/routes";
@@ -13,6 +11,7 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { CountUp } from "@/components/home/CountUp";
 import { GermanyMap } from "@/components/home/GermanyMap";
 import { ClubShowcase } from "@/components/home/ClubShowcase";
+import { EventSignup } from "@/components/events/EventSignup";
 import { EventCard } from "@/components/cards/EventCard";
 import { AppCta } from "@/components/modules/AppCta";
 import { Testimonials } from "@/components/modules/Testimonials";
@@ -27,7 +26,6 @@ import { Section } from "@/components/ui/Section";
 /** Home page – shared by / (de) and /en (en). */
 export async function HomeView({ locale }: { locale: Locale }) {
   const t = homeContent[locale];
-  const d = getDictionary(locale);
   const intl = localeTags[locale].intl;
   const clubs = await getClubs(locale);
   const events = (await getEvents({ locale })).filter((e) => e.type !== "hero").slice(0, 3);
@@ -197,24 +195,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
                   </Link>
                 </h3>
                 {heroEvent.subtitle && <p className="mt-4 text-lg text-white/80">{heroEvent.subtitle}</p>}
-                {/* Event sign-up: web app (primary) or app deep link; the teaser itself links to the detail page */}
-                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
-                  <a
-                    href={webApp.event(heroEvent.id)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-track="event_signup_web"
-                    className="relative z-10 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-display text-lg italic uppercase leading-none text-ink-800 transition-shadow hover:shadow-glow md:text-xl"
-                  >
-                    <span>{d.eventCard.signup}</span> <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
-                  </a>
-                  <a href={deeplinks.event(heroEvent.id)} data-track="event_signup_app" className="relative z-10 inline-flex min-h-11 items-center text-sm font-semibold text-white/85 underline-offset-4 hover:text-white hover:underline">
-                    {d.eventCard.signupApp}
-                  </a>
-                  <span className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-white/85" aria-hidden>
-                    {t.events.more} <ArrowUpRight className="size-3.5" />
-                  </span>
-                </div>
+                {/* Equal sign-up options; the whole teaser links to the detail page */}
+                <EventSignup eventId={heroEvent.id} locale={locale} size="md" showLabel className="mt-6 max-w-md" />
               </div>
             </div>
           </Reveal>

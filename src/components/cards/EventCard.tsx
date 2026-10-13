@@ -2,9 +2,9 @@ import Link from "next/link";
 import { keepTogether } from "@/lib/typography";
 import { CalendarDays, MapPin } from "lucide-react";
 import type { ClubEvent } from "@/lib/data/types";
-import { deeplinks, webApp } from "@/lib/site";
 import { Media } from "../ui/Media";
 import { Chip } from "../ui/Chip";
+import { EventSignup } from "../events/EventSignup";
 import { cn } from "../ui/cn";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -54,27 +54,10 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
             </li>
           )}
         </ul>
-        {/* Sign-up: web app (primary) or app deep link (secondary). No capacity/places left. */}
-        <div className="relative z-10 mt-auto flex items-end justify-between gap-3 border-t border-white/10 pt-4">
-          <p className="pb-1 font-display text-3xl font-extrabold italic leading-none">{price}</p>
-          <div className="flex flex-col items-end gap-1">
-            <a
-              href={webApp.event(event.id)}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-track="event_signup_web"
-              className="inline-flex min-h-11 items-center rounded-full bg-brand-gradient px-5 font-display text-lg italic leading-none uppercase tracking-wide text-white transition hover:brightness-110"
-            >
-              {t.signup}
-            </a>
-            <a
-              href={deeplinks.event(event.id)}
-              data-track="event_signup_app"
-              className="inline-flex min-h-7 items-center px-1 text-[13px] font-semibold text-white/70 underline-offset-4 transition hover:text-white hover:underline"
-            >
-              {t.signupApp}
-            </a>
-          </div>
+        {/* Price + equal sign-up options (web / app). No capacity/places left. */}
+        <div className="relative z-10 mt-auto space-y-3 border-t border-white/10 pt-4">
+          <p className="font-display text-3xl font-extrabold italic leading-none">{price}</p>
+          <EventSignup eventId={event.id} locale={locale} size="sm" tone="glass" />
         </div>
       </div>
     </article>
