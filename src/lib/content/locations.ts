@@ -188,7 +188,7 @@ const de = {
       instagramText: "News, Events & Highlights",
     },
     nearby: "Weitere Clubs in der Nähe",
-    jsonLdPrice: "ab {price} € / Court & Stunde",
+    jsonLdPrice: "ab {price} / Court & Stunde",
   },
 };
 
@@ -379,7 +379,7 @@ const en: LocationsContent = {
       instagramText: "News, events & highlights",
     },
     nearby: "More clubs nearby",
-    jsonLdPrice: "from €{price} per court & hour",
+    jsonLdPrice: "from {price} per court & hour",
   },
 };
 

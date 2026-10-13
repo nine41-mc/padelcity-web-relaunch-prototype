@@ -84,8 +84,8 @@ function jsonLd(club: Club, locale: Locale) {
     image: club.mainImage ? absolute(club.mainImage.url) : undefined,
     telephone: club.contact?.phoneNumber,
     email: club.contact?.emailAddress,
-    priceRange: club.defaultPricePerHour ? fill(t.jsonLdPrice, { price: club.defaultPricePerHour }) : undefined,
-    currenciesAccepted: "EUR",
+    priceRange: club.defaultPricePerHour ? fill(t.jsonLdPrice, { price: formatPrice(club.defaultPricePerHour, locale, club.currency) }) : undefined,
+    currenciesAccepted: club.currency ?? "EUR",
     address: {
       "@type": "PostalAddress",
       streetAddress: `${a.streetName} ${a.buildingNumber}`,
