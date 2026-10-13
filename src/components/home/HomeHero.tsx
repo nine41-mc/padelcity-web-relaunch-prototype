@@ -146,9 +146,12 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
           <Button href={href(locale, "app")} size="md" data-track="hero_app_cta">
             {t.ctaApp}
           </Button>
-          <Button href={href(locale, "locations")} variant="outline" size="md">
-            {t.ctaLocations}
-          </Button>
+          {/* Phone: the search above already leads to the locations – one CTA less keeps the hero calm */}
+          <div className="hidden md:block">
+            <Button href={href(locale, "locations")} variant="outline" size="md">
+              {t.ctaLocations}
+            </Button>
+          </div>
         </div>
       </div>
     </section>
