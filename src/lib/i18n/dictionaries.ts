@@ -43,8 +43,11 @@ const de = {
     claim1: "Make some",
     claimAccent: "noise",
     claim2: "for Padel.",
-    whatsapp: "WhatsApp Community",
+    whatsapp: "WhatsApp-Gruppe deines Clubs",
     about: "Deutschlands führender Padel-Betreiber. 30+ Clubs, eine Community. #bettertogether",
+    facts: ["30+ Clubs", "200+ Courts", "25+ Städte", "3 Länder"],
+    appTitle: "Court buchen? In der App.",
+    findClub: "Club finden",
     play: "Spielen",
     company: "PadelCity",
     follow: "Folge uns",
@@ -68,7 +71,7 @@ const de = {
   },
   clubCard: { from: "ab", courts: "Courts", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", opensAt: "Öffnet heute um {t}", closed: "Heute geschlossen", sportsLabel: "Sportarten" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
-  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "In der App anmelden", free: "Free", time: "Uhr" },
+  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", free: "Free", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
 };
 
@@ -115,8 +118,11 @@ const en: Dictionary = {
     claim1: "Make some",
     claimAccent: "noise",
     claim2: "for Padel.",
-    whatsapp: "WhatsApp Community",
+    whatsapp: "Your club's WhatsApp group",
     about: "Germany's leading padel operator. 30+ clubs, one community. #bettertogether",
+    facts: ["30+ clubs", "200+ courts", "25+ cities", "3 countries"],
+    appTitle: "Book a court? In the app.",
+    findClub: "Find a club",
     play: "Play",
     company: "PadelCity",
     follow: "Follow us",
@@ -140,7 +146,7 @@ const en: Dictionary = {
   },
   clubCard: { from: "from", courts: "courts", parking: "Parking", view: "view", perHour: "/ hr", openUntil: "Open until {t}", opensAt: "Opens today at {t}", closed: "Closed today", sportsLabel: "Sports" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Football", multisport: "Multisport" },
-  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up in the app", free: "Free", time: "" },
+  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", free: "Free", time: "" },
   media: { placeholder: "Image coming soon" },
 };
 
