@@ -187,9 +187,30 @@ function normalizeSport(v: unknown): Sport {
   return (SPORTS as string[]).includes(s) ? (s as Sport) : s === "football" ? "soccer" : "padel";
 }
 
+/** Contentful facility type → icon file in /public/icons (same mapping as mobile-app-flutter core/util/extension/facility.dart). */
+const FACILITY_ICONS: Record<string, string> = {
+  academy: "muscle",
+  ball_machine: "ball_machine",
+  bar: "bar",
+  changing_room: "locker_room",
+  charging: "charging",
+  free_parking: "parking_space",
+  interactive_play_wall: "interactive_playwall",
+  reception: "reception",
+  rental_bats: "padel",
+  restaurant: "restaurant",
+  sauna: "sauna",
+  shop: "shopping_bag",
+  showers: "shower",
+  toilets: "wc",
+  vending_machine: "vending_machine",
+  wifi: "wifi",
+};
+
 function mapFacility(e: CfEntry): Facility {
   const type = String(e.fields.type ?? "").toLowerCase();
-  return { type, name: str(e.fields.name) ?? type, iconUrl: `/icons/${type}.svg` };
+  const icon = FACILITY_ICONS[type] ?? type;
+  return { type, icon, name: str(e.fields.name) ?? type, iconUrl: `/icons/${icon}.svg` };
 }
 
 function mapContact(r: LinkResolver, raw: unknown): Club["contact"] {
@@ -207,9 +228,11 @@ function mapContact(r: LinkResolver, raw: unknown): Club["contact"] {
 
 export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de"): Promise<Club[]> {
   // locale=* + flattenLocales: text in the page locale, media/JSON/number fields fall back to EN (see DEFAULT_CF_LOCALE).
-  const [clubsRes, courtsRes] = (
-    await Promise.all([getEntries("club", 2, "*"), getEntries("court", 1, "*")])
-  ).map((res) => flattenLocales(res, locale));
+  const [rawClubs, rawCourts] = await Promise.all([getEntries("club", 2, "*"), getEntries("court", 1, "*")]);
+  const [clubsRes, courtsRes] = [rawClubs, rawCourts].map((res) => flattenLocales(res, locale));
+  // URL slugs are shared across locales (/standorte/x ↔ /en/locations/x) → always derived from the German name,
+  // otherwise "München Tucherpark" / "Munich Tucherpark" would get different slugs and break hreflang + language switch.
+  const slugNames = new Map(rawClubs.items.map((e) => [e.sys.id, str(pickLocale(e.fields.name, "de"))]));
   const r = new LinkResolver();
   r.add(clubsRes);
   r.add(courtsRes);
@@ -231,7 +254,7 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
     if (!name) continue;
 
     const city = str(f.localityName) ?? "";
-    const slug = slugify(name);
+    const slug = slugify(slugNames.get(e.sys.id) ?? name);
     const timezone = str(f.timezone) ?? DEFAULT_TIMEZONE;
     const subdivision = str(f.subdivisionCode);
     const description = richTextToPlain(f.description).trim();

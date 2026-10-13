@@ -219,7 +219,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
                 >
                   {code !== "all" && <CountryFlag country={code} />}
                   {t.countries[code]}
-                  <span className={cn("tabular-nums text-[13px]", active ? "text-ink-800/70" : "text-white/70")}>{count}</span>
+                  <span className={cn("tabular-nums text-[13px]", active ? "text-white/80" : "text-white/70")}>{count}</span>
                 </button>
               );
             })}

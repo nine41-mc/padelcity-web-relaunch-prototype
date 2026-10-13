@@ -5,6 +5,7 @@ import { localeTags } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { basePath } from "@/lib/asset";
 
 export const siteViewport: Viewport = { themeColor: "#0b0b0f" };
 
@@ -22,21 +23,59 @@ export function siteMetadata(locale: Locale): Metadata {
   };
 }
 
-/** Root document for one locale (DE and EN each have their own root layout). */
-export function SiteShell({ locale, children }: { locale: Locale; children: React.ReactNode }) {
+const skipCls =
+  "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-neon-500 focus:px-4 focus:py-2 focus:text-ink-800";
+
+/**
+ * The single 404 document (static export: one 404.html for every URL) detects /en/... before paint:
+ * sets <html lang="en" data-locale="en">, which swaps skip link + footer to English via the variants below.
+ */
+const detectLocaleScript = `(function(){var p=location.pathname.slice(${JSON.stringify(basePath)}.length);if(p==="/en"||p.indexOf("/en/")===0){var h=document.documentElement;h.lang="en";h.setAttribute("data-locale","en");}})();`;
+const onlyDe = "[html[data-locale=en]_&]:hidden";
+const onlyEn = "hidden [html[data-locale=en]_&]:block";
+
+/** Root document for one locale (DE and EN each have their own root layout). `bilingual`: 404 document for both locales. */
+export function SiteShell({ locale, children, bilingual = false }: { locale: Locale; children: React.ReactNode; bilingual?: boolean }) {
   const t = getDictionary(locale);
   return (
-    <html lang={localeTags[locale].lang} className={`${poppins.variable} ${soehneSchmal.variable} ${goodBrush.variable}`}>
+    <html
+      lang={localeTags[locale].lang}
+      className={`${poppins.variable} ${soehneSchmal.variable} ${goodBrush.variable}`}
+      suppressHydrationWarning={bilingual}
+    >
       <body className="antialiased">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-neon-500 focus:px-4 focus:py-2 focus:text-ink-800"
-        >
-          {t.header.skip}
-        </a>
+        {bilingual ? (
+          <>
+            <script dangerouslySetInnerHTML={{ __html: detectLocaleScript }} />
+            <a href="#main" className={`${skipCls} ${onlyDe}`}>
+              {getDictionary("de").header.skip}
+            </a>
+            <a href="#main" lang="en" className={`${skipCls} ${onlyEn}`}>
+              {getDictionary("en").header.skip}
+            </a>
+          </>
+        ) : (
+          <a href="#main" className={skipCls}>
+            {t.header.skip}
+          </a>
+        )}
         <Header />
-        <main id="main">{children}</main>
-        <Footer locale={locale} />
+        {/* overflow-x-clip: rotated tickers/bleeds never create a horizontal scrollbar (clip keeps position:sticky working) */}
+        <main id="main" className="overflow-x-clip">
+          {children}
+        </main>
+        {bilingual ? (
+          <>
+            <div className={onlyDe}>
+              <Footer locale="de" />
+            </div>
+            <div className={onlyEn}>
+              <Footer locale="en" />
+            </div>
+          </>
+        ) : (
+          <Footer locale={locale} />
+        )}
       </body>
     </html>
   );

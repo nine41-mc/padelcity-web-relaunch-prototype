@@ -141,7 +141,23 @@ export function Select({
 
   return (
     <div ref={rootRef} className={cn("relative", className)}>
-      {name && <input type="hidden" name={name} value={value} required={required} />}
+      {name &&
+        (required ? (
+          // type="hidden" is never validated → a visually hidden text input carries `required`, so the browser
+          // blocks submit and shows its message here; focusing it forwards focus to the combobox.
+          <input
+            name={name}
+            value={value}
+            required
+            onChange={() => {}}
+            onFocus={() => buttonRef.current?.focus()}
+            tabIndex={-1}
+            aria-hidden
+            className="pointer-events-none absolute bottom-0 left-4 h-px w-px opacity-0"
+          />
+        ) : (
+          <input type="hidden" name={name} value={value} />
+        ))}
       <button
         ref={buttonRef}
         id={baseId}

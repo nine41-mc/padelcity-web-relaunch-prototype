@@ -72,8 +72,9 @@ const de = {
     bannerAccent: "dabei.",
     bannerText: (title: string) => `Anmelden und bezahlen kannst du für ${title} im Web oder in der PadelCity App – alle Updates bekommst du per Push in der App.`,
     fallbackDescription: (type: string, where: string) =>
-      `${type} bei ${where}: Komm allein oder mit Freund:innen – wir mischen die Teams nach Level, damit jedes Match spannend bleibt.`,
-    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} bei ${where}. Jetzt im Web oder in der PadelCity App anmelden.`,
+      `${type} im Club ${where}: Komm allein oder mit Freund:innen – wir mischen die Teams nach Level, damit jedes Match spannend bleibt.`,
+    metaTitle: (title: string, city: string) => `${title} – Padel-Event in ${city}`,
+    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} im Club ${where}. Jetzt im Web oder in der PadelCity App anmelden.`,
     steps: [
       { title: "Ankommen", text: "15 Min vorher da sein, Schläger gibt's zur Not an der Rezeption." },
       { title: "Spielen", text: "Wechselnde Partner, kurze Matches, viel Spaß." },
@@ -154,8 +155,9 @@ const en: EventsContent = {
     bannerAccent: "there.",
     bannerText: (title: string) => `Sign up and pay for ${title} on the web or in the PadelCity app – you'll get every update via push notification in the app.`,
     fallbackDescription: (type: string, where: string) =>
-      `${type} at ${where}: come on your own or bring friends – we mix the teams by level so every match stays exciting.`,
-    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} at ${where}. Sign up now on the web or in the PadelCity app.`,
+      `${type} at our ${where} club: come on your own or bring friends – we mix the teams by level so every match stays exciting.`,
+    metaTitle: (title: string, city: string) => `${title} – padel event in ${city}`,
+    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} at our ${where} club. Sign up now on the web or in the PadelCity app.`,
     steps: [
       { title: "Arrive", text: "Be there 15 minutes early – if you need a racket, reception has you covered." },
       { title: "Play", text: "Rotating partners, short matches, loads of fun." },

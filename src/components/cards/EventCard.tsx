@@ -25,7 +25,7 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50",
+        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50",
         className,
       )}
     >

@@ -1,5 +1,6 @@
 import "server-only";
 import { whatsappForClub } from "../content/whatsapp";
+import { localizeEvent } from "../content/events";
 import { cache } from "react";
 import type { Club, ClubEvent, DataSource } from "./types";
 import type { Locale } from "../i18n/config";
@@ -95,7 +96,8 @@ export async function getClub(slug: string, locale: Locale = "de"): Promise<Club
 }
 
 export async function getEvents(opts: { clubId?: string; locale?: Locale } = {}): Promise<ClubEvent[]> {
-  const events = mockEvents.map((e) => (e.clubName ? { ...e, clubName: stripBrand(e.clubName) } : e));
+  // Mock events are German; EN fields (subtitle, level, recurrence, alt texts) come from content/events.ts.
+  const events = mockEvents.map((e) => localizeEvent(e.clubName ? { ...e, clubName: stripBrand(e.clubName) } : e, opts.locale ?? "de"));
   if (!opts.clubId) return events;
   const club = (await getClubs(opts.locale)).find((c) => c.id === opts.clubId);
   return events.filter((e) => e.clubId === opts.clubId || (club && e.clubId === club.slug));

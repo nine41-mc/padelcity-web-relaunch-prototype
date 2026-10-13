@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { mainNav, secondaryNav } from "@/lib/site";
@@ -20,6 +20,7 @@ export function Header() {
   const t = getDictionary(locale);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -32,10 +33,20 @@ export function Header() {
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     if (!open) return;
-    // Esc closes the mobile menu (keyboard users)
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    // The menu covers the page: make page content inert so Tab stays in header + menu (WCAG 2.4.11/2.4.3).
+    const covered = Array.from(document.querySelectorAll<HTMLElement>("body > main, body > footer, body > div:has(> footer)"));
+    covered.forEach((el) => (el.inert = true));
+    // Esc closes the mobile menu (keyboard users) and returns focus to the toggle
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      toggleRef.current?.focus();
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      covered.forEach((el) => (el.inert = false));
+    };
   }, [open]);
 
   return (
@@ -82,6 +93,7 @@ export function Header() {
             </Button>
           </div>
           <button
+            ref={toggleRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
             className="grid size-12 place-items-center rounded-full bg-white text-ink-800 lg:hidden"
@@ -89,7 +101,7 @@ export function Header() {
             aria-controls="mobile-menu"
             aria-label={open ? t.header.menuClose : t.header.menuOpen}
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            {open ? <X className="size-5" aria-hidden /> : <Menu className="size-5" aria-hidden />}
           </button>
         </div>
       </div>

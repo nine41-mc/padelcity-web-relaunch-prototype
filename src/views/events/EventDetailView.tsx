@@ -44,10 +44,12 @@ export async function eventMetadata(slug: string, locale: Locale): Promise<Metad
   const t = eventsContent[locale];
   const where = event.clubName ?? event.city ?? site.name;
   return {
-    title: event.title,
+    // Event names are the same in both locales → localized suffix keeps DE/EN titles distinct.
+    title: t.detail.metaTitle(event.title, event.city ?? where),
     description: event.subtitle ?? t.detail.metaDescription(event.title, t.types[event.type], where),
     alternates: alternates("events", slug, locale),
-    openGraph: { images: event.image ? [{ url: event.image.url, alt: event.image.alt }] : undefined },
+    // openGraph replaces the layout's object → repeat type/locale/siteName
+    openGraph: { type: "website", siteName: site.name, locale: localeTags[locale].og, images: event.image ? [{ url: event.image.url, alt: event.image.alt }] : undefined },
   };
 }
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts, partners } from "@/lib/content/partners";
-import { deeplinks, site, webApp } from "@/lib/site";
+import { deeplinks, webApp } from "@/lib/site";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -31,7 +31,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
   const intl = localeTags[locale].intl;
   const clubs = await getClubs(locale);
   const events = (await getEvents({ locale })).filter((e) => e.type !== "hero").slice(0, 3);
-  const heroEvent = (await getEvents()).find((e) => e.isHighlighted);
+  const heroEvent = (await getEvents({ locale })).find((e) => e.isHighlighted);
   const planned = await getPlannedClubs(locale);
   // Countries with live clubs (DE · AT · PL), derived from data.
   const countries = [...new Set(clubs.map((c) => c.country))].sort((a, b) => (a === "DE" ? -1 : b === "DE" ? 1 : a.localeCompare(b)));
@@ -261,7 +261,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
               {t.community.text}
             </Lead>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={site.whatsappCommunity} variant="gradient" data-track="whatsapp_join">
+              {/* WhatsApp groups exist per club (club page → contact bar); no central invite link yet (site.whatsappCommunity is a TODO) */}
+              <Button href={href(locale, "locations")} variant="gradient" data-track="whatsapp_join">
                 {t.community.whatsapp}
               </Button>
               <Button href={href(locale, "app")} variant="outline">

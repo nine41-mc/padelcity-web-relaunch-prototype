@@ -2,7 +2,7 @@
 
 // Contentful module: clubShowcase (selected clubs, headline)
 import Link from "next/link";
-import { useRef } from "react";
+import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
@@ -14,19 +14,38 @@ import { href } from "@/lib/i18n/routes";
 /** Big, swipeable club cards – "every location as a hero moment". */
 export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale: Locale; labels: { prev: string; next: string } }) {
   const ref = useRef<HTMLDivElement>(null);
-  const scroll = (dir: 1 | -1) => ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.8, behavior: "smooth" });
+  const trackId = useId();
+  const [edges, setEdges] = useState({ start: true, end: false });
+  const updateEdges = useCallback(() => {
+    const el = ref.current;
+    if (!el) return;
+    setEdges({ start: el.scrollLeft <= 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
+  }, []);
+  useEffect(() => {
+    updateEdges();
+    window.addEventListener("resize", updateEdges);
+    return () => window.removeEventListener("resize", updateEdges);
+  }, [updateEdges]);
+  const scroll = (dir: 1 | -1) => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.8, behavior: reduce ? "auto" : "smooth" });
+  };
+  const arrowCls =
+    "grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10 disabled:pointer-events-none disabled:opacity-30";
   return (
     <div className="relative">
       <div className="container-site mb-6 hidden justify-end gap-2 md:flex">
-        <button onClick={() => scroll(-1)} className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10" aria-label={labels.prev}>
-          <ArrowLeft className="size-5" />
+        <button type="button" onClick={() => scroll(-1)} disabled={edges.start} aria-controls={trackId} className={arrowCls} aria-label={labels.prev}>
+          <ArrowLeft className="size-5" aria-hidden />
         </button>
-        <button onClick={() => scroll(1)} className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10" aria-label={labels.next}>
-          <ArrowRight className="size-5" />
+        <button type="button" onClick={() => scroll(1)} disabled={edges.end} aria-controls={trackId} className={arrowCls} aria-label={labels.next}>
+          <ArrowRight className="size-5" aria-hidden />
         </button>
       </div>
       <div
         ref={ref}
+        id={trackId}
+        onScroll={updateEdges}
         className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-4 md:gap-6 md:scroll-px-8 md:px-8 lg:scroll-px-16 lg:px-16"
       >
         {clubs.map((club) => (

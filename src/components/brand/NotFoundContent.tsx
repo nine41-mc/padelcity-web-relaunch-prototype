@@ -42,7 +42,13 @@ export function NotFoundContent() {
   useEffect(() => {
     const path = window.location.pathname.slice(basePath.length) || "/";
     const detected = localeFromPath(path);
-    if (detected !== "de") setLocale(detected);
+    if (detected !== "de") {
+      setLocale(detected);
+      // React resets <html> attributes on hydration → re-apply what SiteShell's inline script set before paint
+      // (lang for screen readers, data-locale swaps skip link + footer).
+      document.documentElement.lang = detected;
+      document.documentElement.setAttribute("data-locale", detected);
+    }
   }, []);
 
   const t = copy[locale];

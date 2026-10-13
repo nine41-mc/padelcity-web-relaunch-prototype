@@ -17,6 +17,8 @@ export type ImageAsset = {
 export type Facility = {
   type: string; // e.g. "sauna", "parking_space" → maps to /icons/<type>.svg
   name: string;
+  /** Icon file name in /public/icons when it differs from `type` (Contentful types, e.g. "free_parking" → "parking_space"). */
+  icon?: string;
   iconUrl?: string;
 };
 

@@ -49,7 +49,8 @@ export async function clubMetadata(slug: string, locale: Locale): Promise<Metada
     title: fill(t.clubTitle, { club: club.fullName ?? club.name, city: club.city }),
     description: `${club.teaser} ${fill(t.clubDescription, { n: club.courts.length })}`,
     alternates: alternates("locations", club.slug, locale),
-    openGraph: { images: club.mainImage ? [{ url: club.mainImage.url, alt: club.mainImage.alt }] : undefined },
+    // openGraph replaces the layout's object → repeat type/locale/siteName
+    openGraph: { type: "website", siteName: site.name, locale: localeTags[locale].og, images: club.mainImage ? [{ url: club.mainImage.url, alt: club.mainImage.alt }] : undefined },
   };
 }
 
@@ -228,7 +229,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
             {club.facilities.map((f) => (
               <li key={f.type} className="flex items-center gap-3 rounded-[20px] border border-white/10 bg-ink-700 p-4 md:p-5">
                 <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
-                  <AppIcon name={f.type} className="size-5 text-white" />
+                  <AppIcon name={f.icon ?? f.type} className="size-5 text-white" />
                 </span>
                 {/* TODO(content): facility names come from Contentful in the requested locale */}
                 <span className="text-sm font-medium leading-tight">{f.name}</span>

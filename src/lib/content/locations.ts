@@ -6,7 +6,7 @@ const de = {
   meta: {
     title: "Standorte – Finde deinen Court",
     description: "Alle 30+ PadelCity Clubs in Deutschland, Österreich und Polen: Courts, Facilities, Öffnungszeiten und Anfahrt. Buchen in der PadelCity App.",
-    clubTitle: "{club} – Padel in {city}",
+    clubTitle: "{club} – Padel spielen in {city}",
     clubDescription: "{n} Courts, Öffnungszeiten, Facilities & Anfahrt. Court buchen in der PadelCity App.",
   },
   hero: {
@@ -154,7 +154,7 @@ const de = {
       emptyAccent: "auf Anfrage.",
       emptyText: "Für {club} sind hier noch keine Coaches eingetragen. Schreib dem Club – das Team bringt dich mit dem passenden Coach zusammen.",
       emptyMail: "Club anschreiben",
-      emptyMailSubject: "Coaching bei {club}",
+      emptyMailSubject: "Coaching – PadelCity {club}",
       prev: "Vorherige Coaches",
       next: "Nächste Coaches",
     },
@@ -198,7 +198,7 @@ const en: LocationsContent = {
   meta: {
     title: "Locations – Find your court",
     description: "All 30+ PadelCity clubs in Germany, Austria and Poland: courts, facilities, opening hours and directions. Book in the PadelCity app.",
-    clubTitle: "{club} – Padel in {city}",
+    clubTitle: "{club} – Play padel in {city}",
     clubDescription: "{n} courts, opening hours, facilities & directions. Book your court in the PadelCity app.",
   },
   hero: {
@@ -345,7 +345,7 @@ const en: LocationsContent = {
       emptyAccent: "on request.",
       emptyText: "We haven't listed any coaches for {club} here yet. Drop the club a line – the team will match you with the right coach.",
       emptyMail: "Email the club",
-      emptyMailSubject: "Coaching at {club}",
+      emptyMailSubject: "Coaching – PadelCity {club}",
       prev: "Previous coaches",
       next: "Next coaches",
     },

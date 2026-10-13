@@ -49,7 +49,12 @@ export function LeadForm({
 
   if (done) {
     return (
-      <div className={cn("rounded-[28px] border border-magenta-500/40 bg-magenta-500/[0.06] p-8 md:p-12", className)} role="status">
+      <div
+        ref={(el) => el?.focus()}
+        tabIndex={-1}
+        className={cn("rounded-[28px] border border-magenta-500/40 bg-magenta-500/[0.06] p-8 outline-none md:p-12", className)}
+        role="status"
+      >
         <span className="grid size-14 place-items-center rounded-full bg-brand-gradient text-white">
           <Check className="size-7" strokeWidth={3} aria-hidden />
         </span>

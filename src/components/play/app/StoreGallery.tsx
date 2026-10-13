@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import type { StorePanel } from "@/lib/content/app";
 import { cn } from "@/components/ui/cn";
@@ -22,18 +22,31 @@ export function StoreGallery({
   className?: string;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ start: true, end: false });
+  const updateEdges = useCallback(() => {
+    const el = scroller.current;
+    if (!el) return;
+    setEdges({ start: el.scrollLeft <= 4, end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4 });
+  }, []);
+  useEffect(() => {
+    updateEdges();
+    window.addEventListener("resize", updateEdges);
+    return () => window.removeEventListener("resize", updateEdges);
+  }, [updateEdges]);
   const scroll = (dir: 1 | -1) => {
     const el = scroller.current;
     if (!el) return;
     const item = el.querySelector("li");
     const step = item ? item.getBoundingClientRect().width + 16 : 256;
-    el.scrollBy({ left: dir * step * 2, behavior: "smooth" });
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollBy({ left: dir * step * 2, behavior: reduce ? "auto" : "smooth" });
   };
 
   return (
     <div className={cn("relative", className)}>
       <div
         ref={scroller}
+        onScroll={updateEdges}
         role="region"
         aria-label={labels.label}
         tabIndex={0}
@@ -58,16 +71,18 @@ export function StoreGallery({
         <button
           type="button"
           onClick={() => scroll(-1)}
+          disabled={edges.start}
           aria-label={labels.prev}
-          className="grid size-11 place-items-center rounded-full border border-white/20 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-neon-500"
+          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-neon-500"
         >
           <ArrowLeft className="size-5" aria-hidden />
         </button>
         <button
           type="button"
           onClick={() => scroll(1)}
+          disabled={edges.end}
           aria-label={labels.next}
-          className="grid size-11 place-items-center rounded-full border border-white/20 transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-neon-500"
+          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-neon-500"
         >
           <ArrowRight className="size-5" aria-hidden />
         </button>
