@@ -6,7 +6,7 @@ import { cn } from "@/components/ui/cn";
 const stageTone: Record<AcademyLevelStage["key"], string> = {
   beginner: "from-purple-700/70 to-purple-900/20",
   intermediate: "from-magenta-700/70 to-purple-900/20",
-  competition: "from-neon-600/50 to-ink-700/20",
+  competition: "from-magenta-600/50 to-ink-700/20",
 };
 
 // Contentful module: levelPath (stages, scale)
@@ -26,14 +26,14 @@ export function LevelPath({
     <div>
       {/* Scale 1–7 */}
       <div className="relative mb-12 md:mb-16" role="img" aria-label={scaleLabel}>
-        <div className="absolute inset-x-0 top-[22px] h-1.5 rounded-full bg-gradient-to-r from-purple-500 via-magenta-500 to-neon-500 md:top-7" aria-hidden />
+        <div className="absolute inset-x-0 top-[22px] h-1.5 rounded-full bg-gradient-to-r from-purple-500 via-magenta-500 to-magenta-300 md:top-7" aria-hidden />
         <ol className="relative grid grid-cols-7 gap-1">
           {scale.map((l) => (
             <li key={l.level} className="flex flex-col items-center text-center">
               <span
                 className={cn(
                   "grid size-11 place-items-center rounded-[10px] border-2 bg-ink-800 font-display text-2xl font-extrabold not-italic md:size-14 md:text-3xl",
-                  l.level <= 2 ? "border-purple-400" : l.level <= 5 ? "border-magenta-400" : "border-neon-500 text-neon-500",
+                  l.level <= 2 ? "border-purple-400" : l.level <= 5 ? "border-magenta-400" : "border-white text-white",
                 )}
               >
                 {l.level}
@@ -60,7 +60,7 @@ export function LevelPath({
               <ul className="mt-6 space-y-2 border-t border-white/15 pt-5 text-sm">
                 {s.bullets.map((b) => (
                   <li key={b} className="flex items-start gap-2">
-                    <Check className="mt-0.5 size-4 shrink-0 text-neon-500" aria-hidden /> {b}
+                    <Check className="mt-0.5 size-4 shrink-0 text-magenta-300" aria-hidden /> {b}
                   </li>
                 ))}
               </ul>

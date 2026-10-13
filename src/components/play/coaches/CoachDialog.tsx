@@ -215,7 +215,7 @@ export function CoachDialog({
             </section>
 
             <div className="mt-8 flex flex-col items-start gap-2 border-t border-white/10 pt-6">
-              <Button href={appHref} variant="neon" size="sm" data-track="coach_book_click">
+              <Button href={appHref} variant="gradient" size="sm" data-track="coach_book_click">
                 {labels.book}
               </Button>
               <p className="text-xs text-white/60">{labels.bookNote}</p>
@@ -229,7 +229,7 @@ export function CoachDialog({
 
 function ContactLink({ href, icon, label, value }: { href: string; icon: React.ReactNode; label: string; value: string }) {
   return (
-    <a href={href} className="flex min-h-11 items-center gap-3 rounded-2xl border border-white/15 px-4 py-3 transition hover:border-neon-500 hover:bg-white/5">
+    <a href={href} className="flex min-h-11 items-center gap-3 rounded-2xl border border-white/15 px-4 py-3 transition hover:border-white/40 hover:bg-white/5">
       <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-gradient">{icon}</span>
       <span className="min-w-0">
         <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{label}</span>

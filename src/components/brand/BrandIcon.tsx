@@ -46,14 +46,13 @@ const appIcons: Record<string, string> = { padel: "padel", court: "double_court"
 export type BrandIconName = keyof typeof lucide | "padel" | "court";
 
 /** Round icon badge used on brand / B2B pages. */
-export function BrandIcon({ name, className, tone = "gradient" }: { name: BrandIconName; className?: string; tone?: "gradient" | "neon" | "glass" }) {
+export function BrandIcon({ name, className, tone = "gradient" }: { name: BrandIconName; className?: string; tone?: "gradient" | "glass" }) {
   const Lucide = name in lucide ? lucide[name as keyof typeof lucide] : null;
   return (
     <span
       className={cn(
         "grid size-12 shrink-0 place-items-center rounded-2xl",
         tone === "gradient" && "bg-brand-gradient text-white",
-        tone === "neon" && "bg-neon-500 text-ink-800",
         tone === "glass" && "border border-white/15 bg-white/5 text-white",
         className,
       )}

@@ -81,7 +81,7 @@ export function PeopleGrid({
               <figcaption className={cn(showBio ? "relative -mt-16" : "absolute inset-x-0 bottom-0", compact ? "p-3 md:p-4" : "p-4 md:p-5")}>
                 {variant === "quote" && p.quote && <p className="mb-3 text-sm italic leading-snug text-white/80">{open}{p.quote[locale]}{close}</p>}
                 <p className={cn("font-display font-extrabold italic uppercase leading-none", compact ? "text-lg" : "text-xl md:text-2xl")}>{p.name}</p>
-                <p className={cn("mt-1 font-medium uppercase tracking-[0.12em] text-neon-500", compact ? "text-[13px] font-semibold leading-snug" : "text-[13px] font-semibold md:text-sm")}>
+                <p className={cn("mt-1 font-medium uppercase tracking-[0.12em] text-magenta-300", compact ? "text-[13px] font-semibold leading-snug" : "text-[13px] font-semibold md:text-sm")}>
                   {p.role[locale]}
                   {p.club && <span className="text-white/70"> · {p.club}</span>}
                 </p>

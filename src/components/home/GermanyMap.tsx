@@ -157,11 +157,11 @@ export function GermanyMap({
           {offMap.map(({ club, planned: p }) =>
             p ? (
               <li key={club.id} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-dashed border-white/45 px-3.5 text-sm text-white/85">
-                {club.name} <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-neon-500">{legend.soon}</span>
+                {club.name} <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-magenta-300">{legend.soon}</span>
               </li>
             ) : (
               <li key={club.id}>
-                <Link href={href(locale, "locations", club.slug)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/45 bg-white/5 px-3.5 text-sm font-semibold text-white hover:border-neon-500 hover:text-neon-500">
+                <Link href={href(locale, "locations", club.slug)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/45 bg-white/5 px-3.5 text-sm font-semibold text-white hover:border-white hover:bg-white/10">
                   <span className="size-2 rounded-full bg-white" aria-hidden /> {club.name}
                 </Link>
               </li>

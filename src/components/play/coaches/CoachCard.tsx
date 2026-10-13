@@ -10,10 +10,10 @@ import { coachClubKeys, fill, isHeadCoach, type CoachClubRef } from "./clubs";
 import type { CoachLabels } from "./labels";
 
 // Contentful module: coach (card) – inside coachCarousel
-/** Neon 3×3 dot grid (Elephant inspo "dot-grid badge"). */
+/** White 3×3 dot grid (Elephant inspo "dot-grid badge"). */
 export function DotGrid({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 14 14" className={cn("size-3.5 shrink-0 text-neon-500", className)} aria-hidden>
+    <svg viewBox="0 0 14 14" className={cn("size-3.5 shrink-0 text-white", className)} aria-hidden>
       {[2, 7, 12].flatMap((y) => [2, 7, 12].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.6" fill="currentColor" />))}
     </svg>
   );
@@ -129,7 +129,7 @@ export function CoachCard({
           <ul className="flex flex-col gap-1.5" aria-label={coach.name}>
             {head && (
               <li className="grid size-9 place-items-center rounded-xl border border-white/15 bg-black/55 backdrop-blur" title={labels.headBadge}>
-                <Award className="size-4 text-neon-500" aria-hidden />
+                <Award className="size-4 text-white" aria-hidden />
                 <span className="sr-only">{labels.headBadge}</span>
               </li>
             )}
@@ -157,7 +157,7 @@ export function CoachCard({
         aria-label={fill(labels.openFor, { name: coach.name })}
         className={cn(
           "absolute z-10 inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-black/55 font-display uppercase italic tracking-wide backdrop-blur transition",
-          "hover:border-neon-500 hover:text-neon-500 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
+          "hover:border-white hover:bg-white/10 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
           feature ? "right-4 top-4 h-11 px-4 text-base md:right-6 md:top-6 md:text-lg" : "right-3 top-3 size-11",
         )}
       >

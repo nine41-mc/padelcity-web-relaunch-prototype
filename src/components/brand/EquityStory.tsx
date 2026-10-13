@@ -44,7 +44,7 @@ export function EquityStory({ chapters, ariaLabel }: { chapters: EquityChapter[]
                   )}
                   aria-current={active === i ? "step" : undefined}
                 >
-                  <span className={cn("font-display text-4xl font-extrabold italic transition-colors", active === i ? "text-neon-500" : "text-white/70")}>
+                  <span className={cn("font-display text-4xl font-extrabold italic transition-colors", active === i ? "text-white" : "text-white/70")}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-display text-3xl font-extrabold italic uppercase leading-none">{c.label}</span>

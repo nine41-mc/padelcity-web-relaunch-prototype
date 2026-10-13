@@ -45,7 +45,16 @@ GitLab Pages über `.gitlab-ci.yml`: jeder Push auf `main` (sowie Schedules/manu
 ## Design-System
 
 - Tokens in `src/app/globals.css` – 1:1 aus den Figma-Foundations bzw. `padel_city_ui` (Purple, Magenta, Gray-Blue, Radii, Shadows).
-- **Neu:** Neon-Akzent `#B4E854` („Tennisball“, aus Elephants Pitch) – sparsam, max. ein Akzent pro Viewport.
+- **Farbrollen (verbindlich, Details im Kommentar oben in `globals.css`):**
+
+  | Rolle | Farbe | Wofür |
+  |---|---|---|
+  | Primär | Brand-Gradient Purple `#8412B5` → Magenta `#E005C3` (`bg-brand-gradient`) | Primäre CTAs (inkl. runder Pfeil auf weißen Buttons), aktive Zustände (aktiver Tab, gewählter Filter-Chip/Segment, gewählte Option, offenes Akkordeon), lila Flächen und Glows (`shadow-glow`) |
+  | Sekundär | Weiß auf Ink | Text, **alle** Icons (Ausstattung, Sportarten, Kontakt, Social, Filter …), Outline-Buttons, Rahmen, Hover (→ Weiß bzw. Magenta-300 bei Links) |
+  | Highlight | Neon `#B4E854` („Tennisball“) | **Nur:** `<Accent>`-Brush-Wort, Neon-Ticker (Home + Footer), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball, kleiner Live-/Status-Punkt im Eyebrow |
+  | Status | Success / Danger / Warning | Nur System-Feedback |
+
+  Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Magenta-300 auf Ink ≈ 7:1, Neon-Fokusring auf Ink ≈ 13,7:1.
 - Schriften wie in der App: Söhne Schmal Fett Kursiv (Headlines), Good Brush (Akzentwort), Poppins (Text).
 - Icons: App-Icons aus `mobile-app-flutter/assets/icons` (als CSS-Mask), sonst lucide.
 

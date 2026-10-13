@@ -37,7 +37,7 @@ export function MagazinHub({
             data-track="magazin_filter"
             className={cn(
               "h-11 shrink-0 rounded-full border px-5 font-display text-lg italic uppercase transition-colors",
-              hub === h.id ? "border-transparent bg-white text-ink-800" : "border-white/20 text-white/80 hover:border-white/50",
+              hub === h.id ? "border-transparent bg-brand-gradient text-white" : "border-white/20 text-white/80 hover:border-white/50",
             )}
           >
             {h.label}

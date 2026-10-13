@@ -128,7 +128,7 @@ export function Testimonials({ locale, items = allTestimonials }: { locale: Loca
                 aria-current={active === i ? "true" : undefined}
                 className="grid size-11 place-items-center"
               >
-                <span className={cn("block h-2 rounded-full transition-all", active === i ? "w-6 bg-neon-500" : "w-2 bg-white/40")} />
+                <span className={cn("block h-2 rounded-full transition-all", active === i ? "w-6 bg-brand-gradient" : "w-2 bg-white/40")} />
               </button>
             ))}
           </div>
@@ -138,7 +138,7 @@ export function Testimonials({ locale, items = allTestimonials }: { locale: Loca
               onClick={() => goTo(Math.max(0, (target.current ?? active) - 1))}
               disabled={active === 0}
               aria-label={c.prev}
-              className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-neon-500 hover:text-neon-500 disabled:opacity-40"
+              className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10 disabled:opacity-40"
             >
               <ArrowLeft className="size-5" aria-hidden />
             </button>
@@ -147,7 +147,7 @@ export function Testimonials({ locale, items = allTestimonials }: { locale: Loca
               onClick={() => goTo(Math.min(items.length - 1, (target.current ?? active) + 1))}
               disabled={active === items.length - 1}
               aria-label={c.next}
-              className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-neon-500 hover:text-neon-500 disabled:opacity-40"
+              className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10 disabled:opacity-40"
             >
               <ArrowRight className="size-5" aria-hidden />
             </button>

@@ -46,7 +46,7 @@ export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: st
             transition={{ duration: 0.35 }}
             className="relative flex h-full flex-col justify-end"
           >
-            <p className="font-brush text-3xl text-neon-500 md:text-4xl">{current.claim}</p>
+            <p className="font-brush text-3xl text-magenta-300 md:text-4xl">{current.claim}</p>
             <p className="mt-3 font-display text-6xl font-extrabold italic uppercase leading-[0.9] md:text-8xl">{current.name}</p>
             <p className="mt-5 max-w-md text-lg text-white/85">{current.text}</p>
           </motion.div>

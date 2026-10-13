@@ -13,7 +13,7 @@ function Stars({ value, className, starClassName = "size-4" }: { value?: number;
   return (
     <span className={cn("flex w-fit gap-1", className)} aria-hidden>
       {[0, 1, 2, 3, 4].map((i) => (
-        <Star key={i} className={cn(starClassName, "text-neon-500", i < filled ? "fill-neon-500" : "fill-transparent")} strokeWidth={1.75} />
+        <Star key={i} className={cn(starClassName, "text-white", i < filled ? "fill-white" : "fill-transparent")} strokeWidth={1.75} />
       ))}
     </span>
   );
@@ -34,7 +34,7 @@ function ReviewCard({ review, locale }: { review: GoogleReview; locale: Locale }
       <div className="mt-auto flex items-end justify-between gap-3 pt-5 text-sm">
         <span>
           {review.authorUri ? (
-            <a href={review.authorUri} target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-neon-500">
+            <a href={review.authorUri} target="_blank" rel="noopener noreferrer" className="font-semibold hover:text-magenta-300">
               {review.author}
             </a>
           ) : (
@@ -83,8 +83,8 @@ export function ClubReviews({ data, locale }: { data: ClubReviewsData; locale: L
           {t.title} <Accent>{t.accent}</Accent>
         </Headline>
         {!live && (
-          <p className="inline-flex w-fit items-center gap-2 rounded-full border border-dashed border-neon-500/70 px-4 py-2 text-sm font-semibold text-neon-500">
-            <span className="size-2 rounded-full bg-neon-500" aria-hidden />
+          <p className="inline-flex w-fit items-center gap-2 rounded-full border border-dashed border-white/50 px-4 py-2 text-sm font-semibold text-white/85">
+            <span className="size-2 rounded-full bg-white/70" aria-hidden />
             {t.placeholderBadge}
           </p>
         )}
@@ -113,7 +113,7 @@ export function ClubReviews({ data, locale }: { data: ClubReviewsData; locale: L
             href={data.mapsUri}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white px-5 py-2 text-left text-sm leading-tight font-semibold text-ink-800 transition hover:bg-neon-500"
+            className="group inline-flex min-h-11 w-fit items-center gap-2 rounded-full bg-white px-5 py-2 text-left text-sm leading-tight font-semibold text-ink-800 transition hover:shadow-glow"
           >
             {t.all} <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
             <span className="sr-only">{t.newTab}</span>

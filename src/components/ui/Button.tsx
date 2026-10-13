@@ -12,9 +12,10 @@ const variants: Record<Variant, string> = {
   // Elephant pitch: white pill + round gradient arrow
   primary: "bg-white text-ink-800 hover:shadow-glow",
   gradient: "bg-brand-gradient text-white hover:shadow-glow hover:brightness-110",
+  // HIGHLIGHT role – reserved for the newsletter module only (see globals.css colour roles)
   neon: "bg-neon-500 text-ink-800 hover:bg-neon-400 hover:shadow-neon",
   outline: "border-2 border-white/60 text-white hover:border-white hover:bg-white/5",
-  ghost: "text-white hover:text-neon-500",
+  ghost: "text-white hover:text-magenta-300",
 };
 
 // Söhne Schmal is condensed – it needs a larger size than Poppins to read well.

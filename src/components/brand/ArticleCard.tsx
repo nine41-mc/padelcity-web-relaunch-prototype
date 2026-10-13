@@ -46,7 +46,7 @@ export function ArticleCard({ article, locale, className, large = false }: { art
         <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/70">{article.excerpt}</p>
         <div className="mt-auto flex items-center justify-between pt-5 text-sm text-white/70">
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt, locale)}</time>
-          <span className="grid size-9 place-items-center rounded-full bg-white/10 transition-transform duration-300 group-hover:rotate-45 group-hover:bg-neon-500 group-hover:text-ink-800" aria-hidden>
+          <span className="grid size-9 place-items-center rounded-full bg-white/10 transition-transform duration-300 group-hover:rotate-45 group-hover:bg-brand-gradient group-hover:text-white" aria-hidden>
             <ArrowUpRight className="size-4" />
           </span>
         </div>

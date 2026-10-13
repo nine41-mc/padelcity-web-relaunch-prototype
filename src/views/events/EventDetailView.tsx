@@ -147,7 +147,7 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <Countdown start={event.start} labels={t.countdown} />
             <div className="flex flex-wrap gap-3">
-              <Button href={webApp.event(event.id)} variant="neon" size="lg" data-track="event_signup_web">
+              <Button href={webApp.event(event.id)} variant="gradient" size="lg" data-track="event_signup_web">
                 {t.detail.signup}
               </Button>
               <Button href={deeplinks.event(event.id)} variant="outline" size="lg" data-track="event_signup_app">
@@ -206,7 +206,7 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {content.schedule.map((d) => (
               <div key={d.day} className="rounded-[20px] border border-white/10 p-6">
-                <p className="font-display text-2xl font-extrabold italic uppercase text-neon-500">{d.day}</p>
+                <p className="font-display text-2xl font-extrabold italic uppercase text-white">{d.day}</p>
                 <ul className="mt-4 space-y-3">
                   {d.items.map((it) => (
                     <li key={it.time + it.title} className="flex gap-4 border-t border-white/10 pt-3">

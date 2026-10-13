@@ -65,7 +65,7 @@ export async function EventsView({ locale }: { locale: Locale }) {
             <Headline size="md">{t.local.title}</Headline>
           </div>
           <p className="flex max-w-sm items-start gap-3 text-sm text-white/70">
-            <Smartphone className="mt-0.5 size-5 shrink-0 text-neon-500" aria-hidden />
+            <Smartphone className="mt-0.5 size-5 shrink-0 text-white" aria-hidden />
             {t.local.note}
           </p>
         </div>

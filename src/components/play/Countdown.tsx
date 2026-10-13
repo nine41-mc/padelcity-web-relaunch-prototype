@@ -28,7 +28,7 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
   }, [target]);
 
   if (t?.done) {
-    return <p className={cn("font-display text-2xl italic uppercase text-neon-500", className)}>{labels.live}</p>;
+    return <p className={cn("font-display text-2xl italic uppercase text-white", className)}>{labels.live}</p>;
   }
 
   const units: [string, number | undefined][] = [

@@ -120,7 +120,7 @@ export function AppView({ locale }: { locale: Locale }) {
                     className="block h-full rounded-[20px] border border-white/10 bg-ink-700 p-5 transition-transform hover:-translate-y-0.5"
                   >
                     <p className="flex items-center gap-2 font-display text-4xl font-extrabold italic">
-                      {r.value} <Star className="size-6 fill-neon-500 text-neon-500" aria-hidden />
+                      {r.value} <Star className="size-6 fill-white text-white" aria-hidden />
                     </p>
                     <p className="mt-1 text-sm text-white/70">{r.store}</p>
                     <p className="text-sm text-white/70">{r.count}</p>

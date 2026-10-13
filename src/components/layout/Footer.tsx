@@ -81,14 +81,14 @@ export function Footer({ locale }: { locale: Locale }) {
               <Link
                 href={href(locale, "locations")}
                 data-track="footer_whatsapp_club"
-                className="group flex flex-col justify-between rounded-[24px] border border-white/12 bg-white/[0.04] p-5 backdrop-blur transition-colors hover:border-neon-500/60"
+                className="group flex flex-col justify-between rounded-[24px] border border-white/12 bg-white/[0.04] p-5 backdrop-blur transition-colors hover:border-white/40"
               >
                 <span className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.12em] text-white/85">
-                  <MessageCircle className="size-4 text-neon-500" aria-hidden /> WhatsApp
+                  <MessageCircle className="size-4 text-white" aria-hidden /> WhatsApp
                 </span>
                 <span className="mt-3 flex items-end justify-between gap-3">
-                  <span className="font-display text-2xl font-extrabold italic uppercase leading-none group-hover:text-neon-500">{t.footer.whatsapp}</span>
-                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 transition-all group-hover:rotate-45 group-hover:bg-neon-500 group-hover:text-ink-800">
+                  <span className="font-display text-2xl font-extrabold italic uppercase leading-none group-hover:text-magenta-300">{t.footer.whatsapp}</span>
+                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 transition-all group-hover:rotate-45 group-hover:bg-brand-gradient group-hover:text-white">
                     <ArrowUpRight className="size-5" aria-hidden />
                   </span>
                 </span>
@@ -111,7 +111,7 @@ export function Footer({ locale }: { locale: Locale }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="grid size-12 place-items-center rounded-full border border-white/25 transition-all hover:-translate-y-0.5 hover:border-neon-500 hover:bg-neon-500 hover:text-ink-800"
+                    className="grid size-12 place-items-center rounded-full border border-white/25 transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-ink-800"
                   >
                     <I className="size-5" />
                   </a>
@@ -125,7 +125,7 @@ export function Footer({ locale }: { locale: Locale }) {
             <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/75">{t.footer.findClub}</h2>
             <Link
               href={href(locale, "locations")}
-              className="group mt-4 inline-flex items-center gap-3 font-display text-3xl font-extrabold italic uppercase leading-none hover:text-neon-500"
+              className="group mt-4 inline-flex items-center gap-3 font-display text-3xl font-extrabold italic uppercase leading-none hover:text-magenta-300"
             >
               {t.nav.locations}
               <span className="grid size-9 place-items-center rounded-full bg-brand-gradient text-white transition-transform group-hover:rotate-45">
@@ -182,8 +182,8 @@ function FooterCol({ title, keys, locale }: { title: string; keys: RouteKey[]; l
       <ul className="mt-4 space-y-1">
         {keys.map((key) => (
           <li key={key}>
-            <Link href={href(locale, key)} className="group inline-flex min-h-9 items-center gap-2 text-base text-white/85 transition-colors hover:text-neon-500">
-              <span className="h-px w-0 bg-neon-500 transition-all duration-300 group-hover:w-4" aria-hidden />
+            <Link href={href(locale, key)} className="group inline-flex min-h-9 items-center gap-2 text-base text-white/85 transition-colors hover:text-white">
+              <span className="h-px w-0 bg-brand-gradient transition-all duration-300 group-hover:w-4" aria-hidden />
               {t.nav[key]}
             </Link>
           </li>

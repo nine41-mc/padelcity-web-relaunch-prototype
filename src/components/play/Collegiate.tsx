@@ -8,13 +8,13 @@ export function CollegiateBadge({ className, top = "PadelCity", main = "Academy"
   return (
     <div
       className={cn(
-        "inline-flex flex-col items-center rounded-[18px] border-[3px] border-neon-500 p-1 text-neon-500 [transform:rotate(-4deg)]",
+        "inline-flex flex-col items-center rounded-[18px] border-[3px] border-white p-1 text-white [transform:rotate(-4deg)]",
         className,
       )}
       aria-label={`${top} ${main}, ${bottom}`}
       role="img"
     >
-      <div className="flex flex-col items-center rounded-[12px] border border-neon-500/70 px-5 py-2.5">
+      <div className="flex flex-col items-center rounded-[12px] border border-white/60 px-5 py-2.5">
         <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">{top}</span>
         <span className="font-display text-4xl font-extrabold uppercase not-italic leading-none tracking-wide [-webkit-text-stroke:1.5px_currentColor] [color:transparent] md:text-5xl">
           {main}
@@ -33,7 +33,7 @@ export function CollegiateBadge({ className, top = "PadelCity", main = "Academy"
 export function VarsityText({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
     <span className={cn("relative inline-block whitespace-nowrap font-display font-extrabold uppercase not-italic tracking-wide", className)}>
-      <span aria-hidden className="absolute left-[0.06em] top-[0.06em] [-webkit-text-stroke:1.5px_var(--color-neon-500)] [color:transparent]">
+      <span aria-hidden className="absolute left-[0.06em] top-[0.06em] [-webkit-text-stroke:1.5px_var(--color-magenta-500)] [color:transparent]">
         {children}
       </span>
       <span className="relative">{children}</span>

@@ -1,12 +1,11 @@
 import { cn } from "./cn";
 
-type Tone = "ink" | "black" | "purple" | "light" | "neon";
+type Tone = "ink" | "black" | "purple" | "light";
 const tones: Record<Tone, string> = {
   ink: "bg-ink-800 text-chalk",
   black: "bg-black text-chalk",
   purple: "bg-brandbook-gradient text-white",
   light: "bg-chalk text-ink-800",
-  neon: "bg-neon-500 text-ink-800",
 };
 
 export function Section({

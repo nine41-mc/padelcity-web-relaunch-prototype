@@ -26,7 +26,7 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
                 <span
                   className={cn(
                     "relative z-10 size-4 rounded-full ring-4 ring-ink-800",
-                    m.highlight ? "bg-neon-500 shadow-neon" : "bg-magenta-500",
+                    m.highlight ? "bg-brand-gradient shadow-glow" : "bg-magenta-500",
                   )}
                   aria-hidden
                 />
@@ -36,10 +36,10 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
               <div
                 className={cn(
                   "flex h-[calc(100%-2.25rem)] flex-col rounded-[20px] border p-5 md:p-6",
-                  m.highlight ? "border-neon-500/40 bg-neon-500/[0.06]" : "border-white/10 bg-ink-700",
+                  m.highlight ? "border-magenta-500/50 bg-magenta-500/[0.08]" : "border-white/10 bg-ink-700",
                 )}
               >
-                <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-neon-500" : "text-brand-gradient")}>{m.year}</p>
+                <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-white" : "text-brand-gradient")}>{m.year}</p>
                 <h3 className="mt-4 min-h-[2lh] text-lg font-semibold leading-snug">{m.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/70">{m.text}</p>
               </div>

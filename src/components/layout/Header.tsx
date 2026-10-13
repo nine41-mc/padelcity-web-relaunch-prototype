@@ -62,11 +62,11 @@ export function Header() {
                     aria-current={active ? "page" : undefined}
                     className={cn(
                       "relative rounded-full px-3 py-2 text-[15px] font-semibold uppercase tracking-[0.06em] transition-colors xl:px-4 xl:text-base",
-                      active ? "text-neon-500" : "text-white hover:text-neon-500",
+                      active ? "text-white" : "text-white/85 hover:text-white",
                     )}
                   >
                     {t.nav[key]}
-                    {active && <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-neon-500" />}
+                    {active && <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-brand-gradient" />}
                   </Link>
                 </li>
               );
@@ -130,7 +130,7 @@ export function Header() {
               </ul>
             </nav>
             <div className="mt-8 space-y-4">
-              <Button href={href(locale, "locations")} variant="neon" size="lg" className="w-full justify-between">
+              <Button href={href(locale, "locations")} variant="gradient" size="lg" className="w-full justify-between">
                 {t.header.findCourt}
               </Button>
               <StoreBadges locale={locale} />
@@ -156,7 +156,7 @@ function LanguageSwitch({ pathname, current, label, className }: { pathname: str
           aria-label={localeTags[l].label}
           className={cn(
             "flex h-11 min-w-11 items-center justify-center rounded-full px-3 pt-px transition-colors",
-            l === current ? "bg-white text-ink-800" : "text-white/85 hover:text-neon-500",
+            l === current ? "bg-brand-gradient text-white" : "text-white/85 hover:text-white",
           )}
         >
           {l}

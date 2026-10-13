@@ -18,10 +18,10 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
   return (
     <div className="relative">
       <div className="container-site mb-6 hidden justify-end gap-2 md:flex">
-        <button onClick={() => scroll(-1)} className="grid size-12 place-items-center rounded-full border border-white/40 hover:border-neon-500 hover:text-neon-500" aria-label={labels.prev}>
+        <button onClick={() => scroll(-1)} className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10" aria-label={labels.prev}>
           <ArrowLeft className="size-5" />
         </button>
-        <button onClick={() => scroll(1)} className="grid size-12 place-items-center rounded-full border border-white/40 hover:border-neon-500 hover:text-neon-500" aria-label={labels.next}>
+        <button onClick={() => scroll(1)} className="grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10" aria-label={labels.next}>
           <ArrowRight className="size-5" />
         </button>
       </div>

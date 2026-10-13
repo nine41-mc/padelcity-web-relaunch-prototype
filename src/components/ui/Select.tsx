@@ -158,11 +158,11 @@ export function Select({
         className={cn(
           "flex w-full items-center gap-2.5 rounded-full border bg-ink-700 pr-3 text-left font-medium text-white transition-colors",
           size === "lg" ? "h-12 pl-5 text-base" : "h-11 pl-4 text-sm",
-          open ? "border-neon-500" : "border-white/45 hover:border-white/75",
-          "focus-visible:border-neon-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-500/40",
+          open ? "border-white" : "border-white/45 hover:border-white/75",
+          "focus-visible:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-500/40",
         )}
       >
-        {icon && <span className="shrink-0 text-neon-500 [&>svg]:size-4" aria-hidden>{icon}</span>}
+        {icon && <span className="shrink-0 text-white [&>svg]:size-4" aria-hidden>{icon}</span>}
         <span className={cn("min-w-0 flex-1 truncate", !selected && "text-white/70")}>{selected?.label ?? placeholder ?? label}</span>
         <ChevronDown className={cn("size-4 shrink-0 text-white/80 transition-transform", open && "rotate-180")} aria-hidden />
       </button>
@@ -195,7 +195,7 @@ export function Select({
                 o.disabled && "cursor-not-allowed opacity-50",
               )}
             >
-              <Check className={cn("size-4 shrink-0 text-neon-500", !isSel && "invisible")} aria-hidden />
+              <Check className={cn("size-4 shrink-0 text-magenta-300", !isSel && "invisible")} aria-hidden />
               <span className="flex-1">{o.label}</span>
               {o.count !== undefined && <span className="tabular-nums text-white/70">{o.count}</span>}
             </li>

@@ -123,14 +123,14 @@ export async function HomeView({ locale }: { locale: Locale }) {
             <Reveal key={c.title} delay={i * 0.06}>
               <Link
                 href={c.href}
-                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br ${c.tone} p-6 transition-all duration-300 hover:-translate-y-1 hover:border-neon-500/60`}
+                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br ${c.tone} p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/40`}
               >
-                <c.icon className="size-8 text-neon-500" aria-hidden />
+                <c.icon className="size-8 text-white" aria-hidden />
                 <div>
                   <h3 className="font-display text-3xl font-extrabold italic uppercase">{c.title}</h3>
                   <p className="mt-2 text-white/85 md:min-h-[3lh]">{c.text}</p>
                 </div>
-                <span className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-white/10 transition-all group-hover:rotate-45 group-hover:bg-neon-500 group-hover:text-ink-800">
+                <span className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-white/10 transition-all group-hover:rotate-45 group-hover:bg-brand-gradient group-hover:text-white">
                   <ArrowUpRight className="size-5" />
                 </span>
               </Link>
@@ -190,7 +190,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10 md:bg-gradient-to-r md:from-black/90 md:via-black/50 md:to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-6 md:max-w-2xl md:p-12">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-neon-500">{t.events.hero} · {heroEvent.city}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-magenta-300">{t.events.hero} · {heroEvent.city}</p>
                 <h3 className="mt-3 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-7xl">
                   <Link href={href(locale, "events", heroEvent.slug)} className="after:absolute after:inset-0 after:content-['']">
                     {keepTogether(heroEvent.title)}
@@ -237,9 +237,9 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 <Media src={s.img} alt={s.eyebrow} className="aspect-[4/5] md:aspect-[16/11]" imgClassName="transition-transform duration-[1.2s] group-hover:scale-105" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
                 <div className="absolute inset-x-6 bottom-6 md:inset-x-10 md:bottom-10">
-                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-neon-500">{s.eyebrow}</p>
+                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-magenta-300">{s.eyebrow}</p>
                   <h3 className="mt-2 max-w-md font-display text-4xl leading-[0.95] font-extrabold italic uppercase text-balance md:text-5xl lg:min-h-[1.9em]">{s.title}</h3>
-                  <span className="mt-5 inline-flex items-center gap-2 text-white/85 group-hover:text-neon-500">
+                  <span className="mt-5 inline-flex items-center gap-2 text-white/85 group-hover:text-white">
                     {s.cta} <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
                   </span>
                 </div>
@@ -261,7 +261,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
               {t.community.text}
             </Lead>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={site.whatsappCommunity} variant="neon" data-track="whatsapp_join">
+              <Button href={site.whatsappCommunity} variant="gradient" data-track="whatsapp_join">
                 {t.community.whatsapp}
               </Button>
               <Button href={href(locale, "app")} variant="outline">
@@ -288,7 +288,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <Section tone="black" className="py-12 md:py-16">
         <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border border-dashed border-white/20 p-6 md:flex-row md:items-center md:p-10">
           <div className="flex items-center gap-5">
-            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-neon-500 text-ink-800">
+            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-white">
               <ShoppingBag className="size-7" />
             </span>
             <div>

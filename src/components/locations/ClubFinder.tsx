@@ -136,7 +136,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
   const chip = (active: boolean) =>
     cn(
       "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-medium transition-colors",
-      active ? "border-transparent bg-white text-ink-800" : "border-white/40 bg-white/5 text-white/85 hover:border-white/70 hover:text-white",
+      active ? "border-transparent bg-brand-gradient text-white" : "border-white/40 bg-white/5 text-white/85 hover:border-white/70 hover:text-white",
     );
 
   return (
@@ -153,7 +153,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         }}
         className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
       >
-        <label className="flex min-h-14 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5 focus-within:ring-2 focus-within:ring-neon-500">
+        <label className="flex min-h-14 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5 focus-within:ring-2 focus-within:ring-white/70">
           <Search className="size-5 shrink-0 text-white/70" aria-hidden />
           <span className="flex flex-1 flex-col">
             <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.where}</span>
@@ -179,7 +179,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           aria-pressed={!!user}
           className={cn(
             "flex min-h-14 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors",
-            user ? "bg-neon-500 text-ink-800" : "text-white/85 hover:bg-white/5",
+            user ? "bg-brand-gradient text-white" : "text-white/85 hover:bg-white/5",
           )}
         >
           {geo === "loading" ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <LocateFixed className="size-5" aria-hidden />}
@@ -214,7 +214,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
                   onClick={() => setCountry(code)}
                   className={cn(
                     "flex min-h-10 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors",
-                    active ? "bg-white text-ink-800" : "text-white/75 hover:text-white",
+                    active ? "bg-brand-gradient text-white" : "text-white/75 hover:text-white",
                   )}
                 >
                   {code !== "all" && <CountryFlag country={code} />}
@@ -256,7 +256,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
                 onClick={() => setView(key)}
                 className={cn(
                   "flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors",
-                  view === key ? "bg-white text-ink-800" : "text-white/70 hover:text-white",
+                  view === key ? "bg-brand-gradient text-white" : "text-white/70 hover:text-white",
                 )}
               >
                 <Icon className="size-4" aria-hidden /> {label}
@@ -297,7 +297,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
             {results.map(({ club, km }) => (
               <li
                 key={club.id}
-                className={cn("flex rounded-[22px] transition-shadow", activeId === club.id && "ring-2 ring-neon-500")}
+                className={cn("flex rounded-[22px] transition-shadow", activeId === club.id && "ring-2 ring-magenta-400")}
                 onMouseEnter={() => setActiveId(club.id)}
                 onFocus={() => setActiveId(club.id)}
               >

@@ -49,8 +49,8 @@ export function LeadForm({
 
   if (done) {
     return (
-      <div className={cn("rounded-[28px] border border-neon-500/40 bg-neon-500/[0.06] p-8 md:p-12", className)} role="status">
-        <span className="grid size-14 place-items-center rounded-full bg-neon-500 text-ink-800">
+      <div className={cn("rounded-[28px] border border-magenta-500/40 bg-magenta-500/[0.06] p-8 md:p-12", className)} role="status">
+        <span className="grid size-14 place-items-center rounded-full bg-brand-gradient text-white">
           <Check className="size-7" strokeWidth={3} aria-hidden />
         </span>
         <p className="mt-6 font-display text-4xl font-extrabold italic uppercase">{successTitle ?? t.successTitle}</p>
@@ -90,10 +90,10 @@ export function LeadForm({
         })}
       </div>
       <label className="mt-6 flex cursor-pointer items-start gap-3 text-sm text-white/70">
-        <input type="checkbox" required name="consent" className="size-6 shrink-0 accent-[#b4e854]" />
+        <input type="checkbox" required name="consent" className="size-6 shrink-0 accent-[#e005c3]" />
         <span>
           {consentText ?? t.consent}{" "}
-          <Link href={href(locale, "privacy")} className="underline underline-offset-2 hover:text-neon-500">
+          <Link href={href(locale, "privacy")} className="underline underline-offset-2 hover:text-white">
             {t.privacy}
           </Link>
           . <span className="text-magenta-300">*</span>

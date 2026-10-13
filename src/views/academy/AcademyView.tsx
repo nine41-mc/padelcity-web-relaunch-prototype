@@ -46,7 +46,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
           lead={t.hero.lead}
           actions={
             <>
-              <Button href={deeplinks.events()} size="lg" variant="neon" data-track="academy_signup_click">
+              <Button href={deeplinks.events()} size="lg" variant="gradient" data-track="academy_signup_click">
                 {t.hero.ctaApp}
               </Button>
               <Button href="#programme" size="lg" variant="outline" arrow={false}>
@@ -57,7 +57,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
         >
           {t.hero.title} <Accent>{t.hero.accent}</Accent>
         </PageHero>
-        <CollegiateBadge {...t.hero.badge} className="absolute right-6 top-32 hidden md:flex lg:right-16 lg:top-44 lg:scale-125" />
+        <CollegiateBadge {...t.hero.badge} className="absolute right-6 top-32 max-md:hidden lg:right-16 lg:top-44 lg:scale-125" />
       </div>
 
       {/* Contentful module: levelPath */}
@@ -93,12 +93,12 @@ export async function AcademyView({ locale }: { locale: Locale }) {
                 <li
                   className={cn(
                     "group relative flex h-full flex-col overflow-hidden rounded-[20px] border bg-ink-700 transition-all duration-300 hover:-translate-y-1",
-                    p.highlight ? "border-neon-500/60 hover:shadow-neon" : "border-white/10 hover:border-magenta-500/50",
+                    p.highlight ? "border-magenta-500/60 hover:shadow-glow" : "border-white/10 hover:border-magenta-500/50",
                   )}
                 >
                   <Media src={p.image.url} alt={p.image.alt} className="aspect-[16/10]" overlay imgClassName="transition-transform duration-700 group-hover:scale-105" sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw" />
                   <div className="absolute inset-x-4 top-4 flex justify-between">
-                    <Chip tone={p.highlight ? "neon" : "dark"}>{p.highlight ? t.programmesSection.startHere : p.level}</Chip>
+                    <Chip tone={p.highlight ? "gradient" : "dark"}>{p.highlight ? t.programmesSection.startHere : p.level}</Chip>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-3xl font-extrabold uppercase not-italic leading-none tracking-wide md:min-h-[2lh]">{p.title}</h3>

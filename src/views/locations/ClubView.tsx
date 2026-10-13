@@ -208,7 +208,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />
           <div className="mt-6 flex items-start gap-2 text-sm text-white/70">
-            <MessageCircleQuestionMark className="mt-3 size-4 shrink-0 text-neon-500" aria-hidden />
+            <MessageCircleQuestionMark className="mt-3 size-4 shrink-0 text-white" aria-hidden />
             <p className="flex flex-wrap items-center gap-x-2">
               <span className="py-2.5">{t.faqLink.text}</span>
               <Link href={href(locale, "faq")} className="inline-flex min-h-11 items-center gap-1 font-semibold text-white underline-offset-4 hover:underline">
@@ -300,7 +300,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                 <p className="text-white/70">{fill(t.coaching.emptyText, { club: club.name })}</p>
                 <a
                   href={`mailto:${clubEmail}?subject=${encodeURIComponent(fill(t.coaching.emptyMailSubject, { club: club.name }))}`}
-                  className="inline-flex min-h-11 w-fit max-w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-2.5 transition hover:border-neon-500 hover:bg-white/5"
+                  className="inline-flex min-h-11 w-fit max-w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-2.5 transition hover:border-white/40 hover:bg-white/5"
                   data-track="club_coaching_inquiry_click"
                 >
                   <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-gradient">
@@ -383,7 +383,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                 href={googleMapsRoute(club.position)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:bg-neon-500"
+                className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:shadow-glow"
               >
                 <Navigation className="size-4" aria-hidden /> {t.directions.route}
               </a>

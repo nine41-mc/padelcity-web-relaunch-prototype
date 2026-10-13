@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Check, Link2, Linkedin, MessageCircle, Share2 } from "lucide-react";
 
 const btn =
-  "inline-flex h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-medium transition-colors hover:border-neon-500 hover:text-neon-500";
+  "inline-flex h-11 items-center gap-2 rounded-full border border-white/20 px-4 text-sm font-medium transition-colors hover:border-white hover:bg-white/10";
 
 /** Share bar for articles: native share (if available), WhatsApp, LinkedIn, copy link. */
 export function ShareButtons({ url, title, t }: { url: string; title: string; t: { aria: string; share: string; copy: string; copied: string } }) {
@@ -47,7 +47,7 @@ export function ShareButtons({ url, title, t }: { url: string; title: string; t:
           setTimeout(() => setCopied(false), 2000);
         }}
       >
-        {copied ? <Check className="size-4 text-neon-500" aria-hidden /> : <Link2 className="size-4" aria-hidden />}
+        {copied ? <Check className="size-4 text-white" aria-hidden /> : <Link2 className="size-4" aria-hidden />}
         <span aria-live="polite">{copied ? t.copied : t.copy}</span>
       </button>
     </div>

@@ -54,7 +54,7 @@ export function NotFoundContent() {
       <div className="absolute inset-0 -z-10 bg-court-lines" aria-hidden />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-ink-800" aria-hidden />
       {/* Ball flying out of the court */}
-      <span className="absolute right-[8%] top-[22%] -z-10 size-16 rounded-full bg-neon-500 opacity-90 shadow-neon md:size-24" aria-hidden />
+      <span className="absolute right-[8%] top-[22%] -z-10 size-16 rounded-full bg-white opacity-90 shadow-glow md:size-24" aria-hidden />
       <div className="container-site">
         <p className="font-display text-[34vw] font-extrabold italic leading-[0.8] text-white/10 md:text-[22vw] lg:text-[16rem]" aria-hidden>
           404

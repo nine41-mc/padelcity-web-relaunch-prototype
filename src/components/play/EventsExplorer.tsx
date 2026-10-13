@@ -86,7 +86,7 @@ export function EventsExplorer({
               onClick={() => setType(o.value)}
               className={cn(
                 "h-11 shrink-0 rounded-full px-5 text-sm font-medium transition-colors",
-                type === o.value ? "bg-white text-ink-800" : "border border-white/40 text-white/85 hover:border-white/70",
+                type === o.value ? "bg-brand-gradient text-white" : "border border-white/40 text-white/85 hover:border-white/70",
               )}
             >
               {o.label}
@@ -109,7 +109,7 @@ export function EventsExplorer({
             onClick={() => setThisWeek((v) => !v)}
             className={cn(
               "inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors",
-              thisWeek ? "bg-neon-500 text-ink-800" : "border border-white/40 text-white/85 hover:border-white/70",
+              thisWeek ? "bg-brand-gradient text-white" : "border border-white/40 text-white/85 hover:border-white/70",
             )}
           >
             <CalendarSearch className="size-4" aria-hidden /> {t.thisWeek}

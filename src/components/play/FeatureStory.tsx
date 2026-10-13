@@ -114,7 +114,7 @@ export function FeatureStory({
                 <ul className="mt-6 space-y-2">
                   {f.bullets.map((b) => (
                     <li key={b} className="flex items-center gap-3">
-                      <Check className="size-4 text-neon-500" aria-hidden /> {b}
+                      <Check className="size-4 text-magenta-300" aria-hidden /> {b}
                     </li>
                   ))}
                 </ul>
@@ -174,7 +174,7 @@ export function FeatureStory({
           </div>
           <ol className="absolute right-0 top-1/2 flex -translate-y-1/2 flex-col gap-2" aria-hidden>
             {features.map((f, i) => (
-              <li key={f.id} className={cn("h-8 w-1 rounded-full transition-colors", i === active ? "bg-neon-500" : "bg-white/15")} />
+              <li key={f.id} className={cn("h-8 w-1 rounded-full transition-colors", i === active ? "bg-brand-gradient" : "bg-white/15")} />
             ))}
           </ol>
         </div>

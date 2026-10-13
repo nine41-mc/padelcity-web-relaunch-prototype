@@ -12,7 +12,8 @@
   line-height: 38px;
 }
 .pc-map .leaflet-control-zoom a:hover {
-  background: #20222e;
+  background: #f8f8f8;
+  color: #0b0b0f;
 }
 .pc-map .leaflet-control-attribution {
   background: rgb(11 11 15 / 0.85);
@@ -62,8 +63,9 @@
   background: #f8f8f8;
 }
 .pc-pin--active .pc-pin__body {
-  background: #b4e854;
-  box-shadow: 0 0 0 2px #0b0b0f, 0 8px 22px rgb(180 232 84 / 0.6);
+  /* Active pin = SECONDARY (white) – neon is reserved for the home map (see globals.css colour roles). */
+  background: #f8f8f8;
+  box-shadow: 0 0 0 2px #0b0b0f, 0 0 0 5px rgb(224 5 195 / 0.55), 0 8px 22px rgb(224 5 195 / 0.5);
   transform: rotate(-45deg) scale(1.2);
 }
 .pc-pin--active .pc-pin__body::after {
@@ -73,8 +75,8 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #b4e854;
-  box-shadow: 0 0 0 4px rgb(180 232 84 / 0.3), 0 0 0 2px #0b0b0f inset;
+  background: #f8f8f8;
+  box-shadow: 0 0 0 4px rgb(224 5 195 / 0.45), 0 0 0 2px #0b0b0f inset;
 }
 
 /* Keyless fallback: turn OSM's light tiles into a dark, purple-tinted base map. */
@@ -97,5 +99,5 @@
 }
 .pc-pin--planned.pc-pin--active .pc-pin__body {
   background: rgb(11 11 15 / 0.85);
-  box-shadow: 0 0 0 2px #b4e854, 0 6px 18px rgb(180 232 84 / 0.5);
+  box-shadow: 0 0 0 2px #f8f8f8, 0 6px 18px rgb(224 5 195 / 0.5);
 }

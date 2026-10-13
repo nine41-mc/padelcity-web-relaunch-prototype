@@ -155,7 +155,7 @@ export function CoachExplorer({
                 onClick={() => setRole(key)}
                 className={cn(
                   "h-11 flex-1 whitespace-nowrap rounded-full px-4 text-sm font-semibold transition sm:flex-none",
-                  role === key ? "bg-white text-ink-800" : "text-white/75 hover:text-white",
+                  role === key ? "bg-brand-gradient text-white" : "text-white/75 hover:text-white",
                 )}
               >
                 {label}

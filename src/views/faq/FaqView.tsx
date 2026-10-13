@@ -54,7 +54,7 @@ export async function FaqView({ locale }: { locale: Locale }) {
             <a
               href={`mailto:${site.email}?subject=${encodeURIComponent(t.contact.mailSubject)}`}
               data-track="faq_contact_click"
-              className="flex min-h-11 w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-3 transition hover:border-neon-500 hover:bg-white/5 md:w-auto"
+              className="flex min-h-11 w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-3 transition hover:border-white/40 hover:bg-white/5 md:w-auto"
             >
               <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-gradient">
                 <Mail className="size-4" aria-hidden />

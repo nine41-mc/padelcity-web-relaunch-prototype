@@ -109,7 +109,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
             <ul className="space-y-2.5">
               {courtGroups(club, locale).map((g) => (
                 <li key={g.key} className="flex items-center gap-3">
-                  <AppIcon name={`${g.courtType}_court`} className="size-5 shrink-0 text-neon-500" />
+                  <AppIcon name={`${g.courtType}_court`} className="size-5 shrink-0 text-white" />
                   <span className="leading-tight">
                     <span className="font-medium">{g.label}</span>
                   </span>

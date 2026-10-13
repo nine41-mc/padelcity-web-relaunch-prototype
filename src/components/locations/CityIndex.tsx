@@ -69,7 +69,7 @@ export function CityIndex({ clubs, planned = [], locale = "de" }: { clubs: Club[
                             <li key={club.id}>
                               <Link href={href(locale, "locations", club.slug)} className="group flex min-h-11 items-center justify-between gap-3 py-1.5 text-white/85 hover:text-white">
                                 {label}
-                                <span className="text-sm text-white/70 transition-colors group-hover:text-neon-500">
+                                <span className="text-sm text-white/70 transition-colors group-hover:text-white">
                                   {club.courts.length > 0 ? `${club.courts.length} ${t.courts} →` : "→"}
                                 </span>
                               </Link>

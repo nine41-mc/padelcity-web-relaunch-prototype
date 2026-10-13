@@ -122,7 +122,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
                 <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.contact.eyebrow}</p>
                 <p className="mt-6 font-display text-4xl font-extrabold italic uppercase leading-none">{t.contact.title}</p>
                 <p className="mt-4 text-white/80">{t.contact.text}</p>
-                <Button href={mailto} variant="neon" className="mt-8" data-track="ir_contact_mail">
+                <Button href={mailto} variant="gradient" className="mt-8" data-track="ir_contact_mail">
                   {t.contact.mailLabel}
                 </Button>
               </div>

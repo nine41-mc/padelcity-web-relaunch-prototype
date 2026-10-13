@@ -112,10 +112,10 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                 <li key={c.id} className="shrink-0">
                   <a
                     href={`#faq-${c.id}`}
-                    className="group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full border border-white/20 bg-white/5 px-4 text-sm font-semibold text-white/85 transition hover:border-neon-500 hover:text-white lg:w-full lg:justify-between lg:whitespace-normal lg:rounded-2xl lg:py-2"
+                    className="group inline-flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full border border-white/20 bg-white/5 px-4 text-sm font-semibold text-white/85 transition hover:border-white/60 hover:text-white lg:w-full lg:justify-between lg:whitespace-normal lg:rounded-2xl lg:py-2"
                   >
                     <span className="inline-flex items-center gap-2">
-                      <Icon className="size-4 shrink-0 text-neon-500" aria-hidden />
+                      <Icon className="size-4 shrink-0 text-white" aria-hidden />
                       {c.title}
                     </span>
                     <span className="text-xs font-medium text-white/50 tabular-nums">{c.items.length}</span>
@@ -157,7 +157,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                         <details key={i.id} id={`faq-q-${i.id}`} className="group scroll-mt-28" open={Boolean(q) && total <= 3}>
                           <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-[20px] px-5 py-4 font-semibold transition hover:text-white md:px-6 md:text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-neon-500">
                             {i.q}
-                            <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 transition-transform duration-300 group-open:rotate-45 group-open:border-neon-500 group-open:text-neon-500 motion-reduce:transition-none">
+                            <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 transition-transform duration-300 group-open:rotate-45 group-open:border-transparent group-open:bg-brand-gradient group-open:text-white motion-reduce:transition-none">
                               <Plus className="size-4" aria-hidden />
                             </span>
                           </summary>
@@ -166,7 +166,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                               className={cn(
                                 "max-w-3xl px-5 pb-5 text-white/75 md:px-6",
                                 "[&_p+p]:mt-3 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1",
-                                "[&_a]:font-medium [&_a]:text-white [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-neon-500 [&_strong]:text-white [&_a]:break-words",
+                                "[&_a]:font-medium [&_a]:text-white [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-magenta-300 [&_strong]:text-white [&_a]:break-words",
                               )}
                               // Sanitised server-side (allow-list) in src/lib/data/faq.ts
                               dangerouslySetInnerHTML={{ __html: i.html }}

@@ -6,6 +6,24 @@
  * web-app-flutter/packages/padel_city_ui/lib/src/theme/padel_colors.dart,
  * so APL / ADM / App and the website speak the same colour language.
  * NEW for the relaunch: `neon` (tennis-ball accent from Elephant's pitch).
+ *
+ * ───────────── COLOUR ROLES (strict – check every new colour use against this) ─────────────
+ * PRIMARY   = brand gradient purple #8412B5 → magenta #E005C3 (`bg-brand-gradient`, purple-* and magenta-* tokens).
+ *             Primary CTAs (Button "gradient", the round arrow on white "primary" buttons), active
+ *             states (active tab / nav underline, selected filter chip, segmented control, selected
+ *             option), open accordion toggles, purple surfaces and glows (`shadow-glow`).
+ * SECONDARY = white on ink. Body text, ALL icons (facility, sport, contact, clock, map pin, social,
+ *             filter, select), outline buttons, borders, hover states (→ white, or magenta-300 for
+ *             text links), carousel arrows, rating stars. Never neon on hover.
+ * HIGHLIGHT = neon #B4E854 (`neon-*`). ONLY these uses – nothing else:
+ *             1. <Accent> brush word in headlines          6. keyboard focus ring / skip link (a11y)
+ *             2. neon marquee / ticker bands (home+footer)  7. active pin + pin label on the HOME map
+ *             3. level labels (Chip tone="level")          8. the footer padel ball
+ *             4. coach stats numbers (hours / students)    9. small live/status dot in eyebrows
+ *             5. the newsletter module (neon button + success state, Button variant "neon")
+ * STATUS    = success / danger / warning – unchanged, only for system feedback.
+ * Contrast (WCAG AA): white on gradient ≥ 4.5:1 (4.6:1 at the #DC05A1 end); magenta-300 on ink-800 ≈ 7:1;
+ * neon on ink-800 ≈ 13:1 (focus ring); never neon text on white/chalk.
  */
 /* Metric-matched fallback for Söhne Schmal (see src/app/fonts.ts): Arial scaled so UPPERCASE italic lines
    wrap like the real condensed font; ascent/descent keep the original line box. Prevents CLS on font swap. */
@@ -61,7 +79,7 @@
   --color-stone: #b8b8be;
   --color-graphite: #646464;
 
-  /* NEW: neon accent ("tennis ball"). Use sparingly: one accent per view. */
+  /* NEW: neon accent ("tennis ball") = HIGHLIGHT role. Only the uses listed in the colour roles above. */
   --color-neon-300: #d4f58f;
   --color-neon-400: #c4ef6e;
   --color-neon-500: #b4e854;
@@ -184,8 +202,8 @@
     text-wrap: balance;
   }
   ::selection {
-    background: var(--color-neon-500);
-    color: var(--color-ink-800);
+    background: var(--color-purple-500);
+    color: #fff;
   }
   :focus-visible {
     outline: 2px solid var(--color-neon-500);

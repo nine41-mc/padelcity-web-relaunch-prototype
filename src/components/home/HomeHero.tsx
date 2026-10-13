@@ -124,9 +124,9 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
               e.preventDefault();
               router.push(`${href(locale, "locations")}${q ? `?q=${encodeURIComponent(q)}` : ""}`);
             }}
-            className="flex w-full max-w-xl items-center gap-2 rounded-full border border-white/45 bg-black/40 p-1.5 pl-5 backdrop-blur-xl focus-within:border-neon-500"
+            className="flex w-full max-w-xl items-center gap-2 rounded-full border border-white/45 bg-black/40 p-1.5 pl-5 backdrop-blur-xl focus-within:border-white"
           >
-            <MapPin className="size-5 shrink-0 text-neon-500" aria-hidden />
+            <MapPin className="size-5 shrink-0 text-white" aria-hidden />
             <label htmlFor="hero-q" className="sr-only">
               {t.searchLabel}
             </label>
@@ -137,7 +137,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
               placeholder={t.searchPlaceholder}
               className="h-12 min-w-0 flex-1 bg-transparent text-base text-white placeholder:text-white/60 focus:outline-none"
             />
-            <button type="submit" className="grid size-12 shrink-0 place-items-center rounded-full bg-neon-500 text-ink-800 transition hover:shadow-neon" aria-label={t.searchSubmit}>
+            <button type="submit" className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-gradient text-white transition hover:shadow-glow hover:brightness-110" aria-label={t.searchSubmit}>
               <Search className="size-5" />
             </button>
           </form>

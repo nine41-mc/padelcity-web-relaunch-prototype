@@ -23,7 +23,7 @@ function FilterRow({ label, allLabel, options, value, onChange }: { label: strin
             onClick={() => onChange(o)}
             className={cn(
               "h-10 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors",
-              value === o ? "border-transparent bg-white text-ink-800" : "border-white/20 text-white/80 hover:border-white/50",
+              value === o ? "border-transparent bg-brand-gradient text-white" : "border-white/20 text-white/80 hover:border-white/50",
             )}
           >
             {o === ALL ? allLabel : o}
@@ -63,7 +63,7 @@ export function JobsBoard({ jobs, t }: { jobs: Job[]; t: JobsContent["board"] })
             >
               <div className="min-w-0">
                 <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-magenta-300">{j.department}</p>
-                <p className="mt-1 font-display text-2xl font-extrabold italic uppercase leading-tight transition-colors group-hover:text-neon-500 md:text-3xl">{j.title}</p>
+                <p className="mt-1 font-display text-2xl font-extrabold italic uppercase leading-tight transition-colors group-hover:text-magenta-300 md:text-3xl">{j.title}</p>
                 <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-sm text-white/70">
                   <span className="inline-flex items-center gap-1.5">
                     <MapPin className="size-4" aria-hidden /> {j.location}
@@ -73,7 +73,7 @@ export function JobsBoard({ jobs, t }: { jobs: Job[]; t: JobsContent["board"] })
                   </span>
                 </p>
               </div>
-              <span className="grid size-11 shrink-0 place-items-center rounded-full border border-white/20 transition-all duration-300 group-hover:rotate-45 group-hover:border-neon-500 group-hover:bg-neon-500 group-hover:text-ink-800 md:size-14">
+              <span className="grid size-11 shrink-0 place-items-center rounded-full border border-white/20 transition-all duration-300 group-hover:rotate-45 group-hover:border-transparent group-hover:bg-brand-gradient group-hover:text-white md:size-14">
                 <ArrowUpRight className="size-5" aria-hidden />
                 <span className="sr-only">{t.open}</span>
               </span>

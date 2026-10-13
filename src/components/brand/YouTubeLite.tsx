@@ -40,7 +40,7 @@ export function YouTubeLite({ videoId, title, poster, t }: { videoId?: string; t
         className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-center"
         aria-label={videoId ? `${t.play}: ${title}` : `${t.soon}: ${title}`}
       >
-        <span className="grid size-16 place-items-center rounded-full bg-neon-500 text-ink-800 shadow-neon transition-transform duration-300 group-hover:scale-110 md:size-20">
+        <span className="grid size-16 place-items-center rounded-full bg-brand-gradient text-white shadow-glow transition-transform duration-300 group-hover:scale-110 md:size-20">
           <Play className="size-7 translate-x-0.5 fill-current md:size-8" aria-hidden />
         </span>
         <span className="px-6">
