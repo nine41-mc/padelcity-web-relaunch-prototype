@@ -56,7 +56,8 @@ export type Club = {
   courts: CourtSummary[];
   facilities: Facility[];
   openingHours: OpeningHours;
-  defaultPricePerHour?: number; // EUR, per court & hour
+  defaultPricePerHour?: number; // major units (e.g. 24 = 24 €), per court & hour
+  currency?: "EUR" | "PLN"; // club country currency (default EUR)
   mainImage?: ImageAsset;
   images: ImageAsset[];
   /** Club manager contact (Contentful contact entry). whatsappGroupUrl = proposed new Contentful field on club. */

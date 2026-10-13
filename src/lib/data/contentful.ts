@@ -247,7 +247,10 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
       .filter((x): x is CfEntry => Boolean(x))
       .map(mapFacility);
     const loc = f.location as { lat?: number; lon?: number } | undefined;
-    const price = Number(f.fallbackCourtPricePerHour);
+    // fallbackCourtPricePerHour is stored in MINOR units (api-platform: MoneyFactory::forClub → moneyphp, cents).
+    // A few entries hold whole euros (e.g. 24) – values < 100 are treated as major units.
+    const rawPrice = Number(f.fallbackCourtPricePerHour);
+    const price = Number.isFinite(rawPrice) && rawPrice >= 100 ? rawPrice / 100 : rawPrice;
 
     const mock = findMockMatch(mocks, { slug, name, city });
     const country = deriveCountry({ subdivision, timezone: str(f.timezone), city, name, postalCode: str(f.postalCode) });
@@ -275,6 +278,7 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
       facilities,
       openingHours: mapOpeningTimes(f.openingTimes, timezone),
       defaultPricePerHour: Number.isFinite(price) && price > 0 ? price : undefined,
+      currency: country === "PL" ? "PLN" : "EUR",
       mainImage: mainImage ?? gallery[0] ?? mock?.mainImage,
       // Gallery = main image + all `images` (deduplicated by URL).
       images: mainImage || gallery.length ? uniqByUrl([mainImage, ...gallery]) : (mock?.images ?? []),

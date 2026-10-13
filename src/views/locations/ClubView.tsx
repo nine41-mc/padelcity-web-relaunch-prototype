@@ -405,7 +405,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           </ul>
         </Section>
 
-        <AppBookingBar href={bookHref} price={club.defaultPricePerHour ? formatPrice(club.defaultPricePerHour, locale) : undefined} locale={locale} />
+        <AppBookingBar href={bookHref} price={club.defaultPricePerHour ? formatPrice(club.defaultPricePerHour, locale, club.currency) : undefined} locale={locale} />
       </div>
     </div>
   );

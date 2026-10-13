@@ -12,8 +12,8 @@ import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { AppIcon } from "@/components/ui/Icon";
 import { dayLabel } from "./geo";
 
-export function formatPrice(value: number, locale: Locale) {
-  return new Intl.NumberFormat(localeTags[locale].intl, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(value);
+export function formatPrice(value: number, locale: Locale, currency: "EUR" | "PLN" = "EUR") {
+  return new Intl.NumberFormat(localeTags[locale].intl, { style: "currency", currency, maximumFractionDigits: 0 }).format(value);
 }
 
 /** Groups courts by indoor/outdoor × double/single, e.g. "4 Indoor Double Courts" (Double/Single is self-explanatory – no player count). */
@@ -79,7 +79,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
             {club.defaultPricePerHour ? (
               <p className="font-display text-5xl font-extrabold italic uppercase md:text-6xl">
                 <span className="text-2xl text-white/70 md:text-3xl">{t.priceFrom} </span>
-                {formatPrice(club.defaultPricePerHour, locale)}
+                {formatPrice(club.defaultPricePerHour, locale, club.currency)}
                 <span className="text-2xl text-white/70 md:text-3xl"> {t.perHour}</span>
               </p>
             ) : (
