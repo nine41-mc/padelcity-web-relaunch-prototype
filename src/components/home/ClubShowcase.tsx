@@ -47,7 +47,7 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
               <p className="truncate text-sm text-white/80">
                 {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
               </p>
-              {/* Fixed slots (2-line title, 2-line teaser) so every tile in the strip has the same rhythm */}
+              {/* Fixed slot (2-line title) so every tile in the strip has the same rhythm */}
               <h3 className="mt-1 line-clamp-2 min-h-[2lh] font-display text-4xl leading-none font-extrabold italic uppercase md:text-5xl">{club.name}</h3>
               <div className="mt-4 space-y-2.5">
                 <OpenStatus club={club} locale={locale} />
