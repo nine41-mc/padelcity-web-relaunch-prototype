@@ -132,7 +132,7 @@ export function CoachDialog({
             {coach.bio && <p className="mt-2 text-sm text-white/70">{coach.bio[locale]}</p>}
             {refs.length > 0 && (
               <p className="mt-2 flex items-center gap-1.5 text-sm text-white/80">
-                <MapPin className="size-3.5 shrink-0" aria-hidden /> PadelCity {refs.map((r) => r.label).join(" & ")}
+                <MapPin className="size-3.5 shrink-0" aria-hidden /> {refs.map((r) => r.label).join(" & ")}
               </p>
             )}
 
@@ -168,7 +168,7 @@ export function CoachDialog({
                       r.href ? (
                         <li key={r.key}>
                           <Link href={r.href} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 px-4 text-sm transition hover:border-white hover:bg-white/5">
-                            <MapPin className="size-3.5" aria-hidden /> PadelCity {r.label}
+                            <MapPin className="size-3.5" aria-hidden /> {r.label}
                             <span className="sr-only">– {labels.clubPage}</span>
                             <ArrowUpRight className="size-4" aria-hidden />
                           </Link>

@@ -203,7 +203,7 @@ export function CoachCard({
           {feature && clubLabel && (
             <p className="mt-2 flex items-start gap-1.5 text-sm text-white/80 md:mt-0 md:max-w-[36%] md:shrink-0 md:justify-end md:text-right">
               <MapPin className="mt-0.5 size-3.5 shrink-0" aria-hidden />
-              <span className="line-clamp-2">PadelCity {clubLabel}</span>
+              <span className="line-clamp-2">{clubLabel}</span>
             </p>
           )}
         </div>

@@ -33,6 +33,11 @@ function warnOnce(source: string, err: unknown) {
   console.warn(`[data] ${source} unavailable (${errorMessage(err)}) – falling back to mock data.`);
 }
 
+/** "PadelCity Andernach" → "Andernach" */
+export function stripBrand(name: string) {
+  return name.replace(/^PadelCity\s+/i, "").trim() || name;
+}
+
 /** Internal test clubs in Contentful must never appear on the website. */
 function isTestClub(c: Pick<Club, "name" | "slug">) {
   return /\btest\b/i.test(c.name) || /(^|-)test(-|$)/.test(c.slug);
@@ -65,11 +70,14 @@ const resolveAllClubs = cache(async (locale: Locale): Promise<Club[]> => {
     .filter((s) => !taken.has(s.slug) && !taken.has(nameKey(s.name)))
     .map((s) => (locale === "en" ? toEnglishSupplement(s) : s));
   // WhatsApp community links (padelcity.de) – only for open clubs, Contentful value wins.
-  return [...base, ...extra].map((c) =>
-    c.status === "planned" || c.contact?.whatsappGroupUrl
-      ? c
-      : { ...c, contact: { ...c.contact, whatsappGroupUrl: whatsappForClub(c) } },
-  );
+  return [...base, ...extra]
+    .map((c) =>
+      c.status === "planned" || c.contact?.whatsappGroupUrl
+        ? c
+        : { ...c, contact: { ...c.contact, whatsappGroupUrl: whatsappForClub(c) } },
+    )
+    // UI shows names without the brand prefix ("Andernach", "München Tucherpark"); fullName keeps the official name.
+    .map((c) => ({ ...c, fullName: c.fullName ?? c.name, name: stripBrand(c.name) }));
 });
 
 /** Open clubs only (default for all pages: cards, maps, detail pages, static params). */
@@ -87,14 +95,15 @@ export async function getClub(slug: string, locale: Locale = "de"): Promise<Club
 }
 
 export async function getEvents(opts: { clubId?: string; locale?: Locale } = {}): Promise<ClubEvent[]> {
-  const events = mockEvents;
+  const events = mockEvents.map((e) => (e.clubName ? { ...e, clubName: stripBrand(e.clubName) } : e));
   if (!opts.clubId) return events;
   const club = (await getClubs(opts.locale)).find((c) => c.id === opts.clubId);
   return events.filter((e) => e.clubId === opts.clubId || (club && e.clubId === club.slug));
 }
 
 export async function getEvent(slug: string): Promise<ClubEvent | undefined> {
-  return mockEvents.find((e) => e.slug === slug);
+  const e = mockEvents.find((x) => x.slug === slug);
+  return e?.clubName ? { ...e, clubName: stripBrand(e.clubName) } : e;
 }
 
 /**

@@ -46,7 +46,7 @@ export async function clubMetadata(slug: string, locale: Locale): Promise<Metada
   if (!club) return {};
   const t = locationsContent[locale].meta;
   return {
-    title: fill(t.clubTitle, { club: club.name, city: club.city }),
+    title: fill(t.clubTitle, { club: club.fullName ?? club.name, city: club.city }),
     description: `${club.teaser} ${fill(t.clubDescription, { n: club.courts.length })}`,
     alternates: alternates("locations", club.slug, locale),
     openGraph: { images: club.mainImage ? [{ url: club.mainImage.url, alt: club.mainImage.alt }] : undefined },
@@ -77,7 +77,7 @@ function jsonLd(club: Club, locale: Locale) {
   return {
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
-    name: club.name,
+    name: club.fullName ?? club.name,
     description: club.description,
     url: `${site.url}${href(locale, "locations", club.slug)}/`,
     inLanguage: localeTags[locale].lang,

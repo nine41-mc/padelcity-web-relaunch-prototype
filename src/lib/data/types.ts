@@ -45,7 +45,8 @@ export type Club = {
   id: string;
   slug: string;
   contentfulId?: string;
-  name: string; // "PadelCity Tucherpark"
+  name: string; // display name without brand prefix: "Tucherpark", "Andernach"
+  fullName?: string; // official name incl. brand: "PadelCity Tucherpark" (SEO, JSON-LD, titles)
   city: string; // "München"
   region?: string; // Bundesland / subdivision
   country: ClubCountry;
