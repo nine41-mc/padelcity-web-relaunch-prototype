@@ -40,7 +40,7 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
                 )}
               >
                 <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-neon-500" : "text-brand-gradient")}>{m.year}</p>
-                <h3 className="mt-4 text-lg font-semibold leading-snug">{m.title}</h3>
+                <h3 className="mt-4 min-h-[2lh] text-lg font-semibold leading-snug">{m.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/70">{m.text}</p>
               </div>
             </Reveal>

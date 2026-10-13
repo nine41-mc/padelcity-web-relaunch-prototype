@@ -1,10 +1,10 @@
-import Image from "next/image";
 import { keepTogether } from "@/lib/typography";
 import Link from "next/link";
-import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy, Users } from "lucide-react";
+import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts, partners } from "@/lib/content/partners";
-import { site } from "@/lib/site";
+import { deeplinks, site, webApp } from "@/lib/site";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href, type RouteKey } from "@/lib/i18n/routes";
@@ -20,12 +20,14 @@ import { Button } from "@/components/ui/Button";
 import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
 import { Marquee } from "@/components/ui/Marquee";
 import { Media } from "@/components/ui/Media";
+import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 
 /** Home page – shared by / (de) and /en (en). */
 export async function HomeView({ locale }: { locale: Locale }) {
   const t = homeContent[locale];
+  const d = getDictionary(locale);
   const intl = localeTags[locale].intl;
   const clubs = await getClubs(locale);
   const events = (await getEvents({ locale })).filter((e) => e.type !== "hero").slice(0, 3);
@@ -179,7 +181,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         </div>
         {heroEvent && (
           <Reveal className="mb-6">
-            <Link href={href(locale, "events", heroEvent.slug)} className="group relative block overflow-hidden rounded-[28px]">
+            <div className="group relative overflow-hidden rounded-[28px]">
               <Media
                 src={heroEvent.image?.url}
                 alt={heroEvent.image?.alt ?? heroEvent.title}
@@ -189,13 +191,32 @@ export async function HomeView({ locale }: { locale: Locale }) {
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10 md:bg-gradient-to-r md:from-black/90 md:via-black/50 md:to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-6 md:max-w-2xl md:p-12">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-neon-500">{t.events.hero} · {heroEvent.city}</p>
-                <h3 className="mt-3 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-7xl">{keepTogether(heroEvent.title)}</h3>
+                <h3 className="mt-3 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-7xl">
+                  <Link href={href(locale, "events", heroEvent.slug)} className="after:absolute after:inset-0 after:content-['']">
+                    {keepTogether(heroEvent.title)}
+                  </Link>
+                </h3>
                 {heroEvent.subtitle && <p className="mt-4 text-lg text-white/80">{heroEvent.subtitle}</p>}
-                <span className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-display text-lg italic uppercase leading-none text-ink-800 md:text-xl">
-                  {t.events.more} <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
-                </span>
+                {/* Event sign-up: web app (primary) or app deep link; the teaser itself links to the detail page */}
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+                  <a
+                    href={webApp.event(heroEvent.id)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-track="event_signup_web"
+                    className="relative z-10 inline-flex w-fit items-center gap-2 rounded-full bg-white px-5 py-3 font-display text-lg italic uppercase leading-none text-ink-800 transition-shadow hover:shadow-glow md:text-xl"
+                  >
+                    <span>{d.eventCard.signup}</span> <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
+                  </a>
+                  <a href={deeplinks.event(heroEvent.id)} data-track="event_signup_app" className="relative z-10 inline-flex min-h-11 items-center text-sm font-semibold text-white/85 underline-offset-4 hover:text-white hover:underline">
+                    {d.eventCard.signupApp}
+                  </a>
+                  <span className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-white/85" aria-hidden>
+                    {t.events.more} <ArrowUpRight className="size-3.5" />
+                  </span>
+                </div>
               </div>
-            </Link>
+            </div>
           </Reveal>
         )}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
@@ -287,23 +308,26 @@ export async function HomeView({ locale }: { locale: Locale }) {
       </Section>
 
       {/* Partners */}
-      <section className="border-t border-white/10 bg-black py-14 md:py-20">
-        <div className="container-site mb-8 flex items-center justify-between">
-          <p className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.14em] text-white/70">
-            <Users className="size-4" /> {t.partners.title}
-          </p>
-          <Link href={href(locale, "partners")} className="inline-flex min-h-11 items-center text-sm text-white/75 hover:text-neon-500">
+      <Section tone="black" bleed className="border-t border-white/10">
+        <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <Reveal>
+            <Eyebrow>{t.partners.eyebrow}</Eyebrow>
+            <Headline className="mt-6">
+              {t.partners.title} <Accent>{t.partners.accent}</Accent>
+            </Headline>
+          </Reveal>
+          <Button href={href(locale, "partners")} variant="outline">
             {t.partners.cta}
-          </Link>
+          </Button>
         </div>
         <Marquee>
           {partners.map((p) => (
-            <div key={p.name} className="flex h-16 w-44 items-center justify-center px-6 opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 md:w-56">
-              <Image src={p.logo} alt={p.name} width={160} height={56} className="max-h-12 w-auto object-contain" />
+            <div key={p.name} className="flex h-16 items-center px-7 opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 md:px-10">
+              <PartnerLogo partner={p} className="h-9 max-w-none md:h-10" />
             </div>
           ))}
         </Marquee>
-      </section>
+      </Section>
     </>
   );
 }

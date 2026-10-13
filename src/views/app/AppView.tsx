@@ -160,7 +160,7 @@ export function AppView({ locale }: { locale: Locale }) {
                   {s.step}
                 </span>
                 <span className="font-display text-5xl font-extrabold italic text-brand-gradient">{s.step}</span>
-                <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
+                <h3 className="mt-4 text-xl font-semibold md:min-h-[2lh]">{s.title}</h3>
                 <p className="mt-2 text-white/70">{s.text}</p>
               </li>
             </Reveal>

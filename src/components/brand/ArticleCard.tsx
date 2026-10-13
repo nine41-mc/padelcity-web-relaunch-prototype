@@ -38,7 +38,7 @@ export function ArticleCard({ article, locale, className, large = false }: { art
             <Clock className="size-3.5" aria-hidden /> {article.readingTimeMin} {t.minutes}
           </span>
         </p>
-        <h3 className={cn("mt-3 font-display font-extrabold italic uppercase leading-[0.98]", large ? "text-3xl md:text-4xl" : "text-2xl")}>
+        <h3 className={cn("mt-3 font-display font-extrabold italic uppercase leading-[0.98]", large ? "text-3xl md:min-h-[2lh] md:text-4xl" : "text-2xl md:min-h-[3lh]")}>
           <Link href={href(locale, "magazine", article.slug)} className="after:absolute after:inset-0 after:content-['']">
             {article.title}
           </Link>

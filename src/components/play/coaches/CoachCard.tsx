@@ -161,7 +161,7 @@ export function CoachCard({
           feature ? "right-4 top-4 h-11 px-4 text-base md:right-6 md:top-6 md:text-lg" : "right-3 top-3 size-11",
         )}
       >
-        {feature && <span className="hidden pt-0.5 leading-none sm:inline">{labels.open}</span>}
+        {feature && <span className="hidden leading-none sm:inline">{labels.open}</span>}
         <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:rotate-45" aria-hidden />
       </button>
 
@@ -192,7 +192,8 @@ export function CoachCard({
               <span className="block">{first}</span>
               {rest.length > 0 && <span className="block">{rest.join(" ")}</span>}
             </h3>
-            {feature && coach.bio && <p className="mt-2 line-clamp-1 text-sm text-white/70">{coach.bio[locale]}</p>}
+            {/* Bio line is always reserved so names sit at the same height on every carousel tile */}
+            {feature && <p className="mt-2 line-clamp-1 min-h-[1lh] text-sm text-white/70">{coach.bio?.[locale]}</p>}
             {!feature && clubLabel && (
               <p className="mt-1.5 flex items-center gap-1 truncate text-xs text-white/70 md:text-sm">
                 <MapPin className="size-3 shrink-0" aria-hidden />

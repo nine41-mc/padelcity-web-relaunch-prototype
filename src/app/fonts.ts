@@ -17,6 +17,11 @@ export const poppins = localFont({
 export const soehneSchmal = localFont({
   variable: "--font-soehne-schmal",
   display: "swap",
+  // next/font's auto fallback (Arial, size-adjust 69%) is ~24% wider than the condensed caps → headlines
+  // re-wrap when the font swaps in (CLS up to 0.25). Use a fallback tuned on uppercase italic widths instead
+  // (@font-face "soehneSchmal Tuned Fallback" in globals.css).
+  adjustFontFallback: false,
+  fallback: ["soehneSchmal Tuned Fallback", "Arial Narrow", "sans-serif"],
   src: [{ path: "./fonts/licensed/SoehneSchmal-FettKursiv.ttf", weight: "800", style: "italic" }],
 });
 

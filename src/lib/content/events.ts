@@ -30,7 +30,7 @@ const de = {
   local: {
     eyebrow: "In deinem Club",
     title: "Spielen, lachen, wiederkommen",
-    note: "Anmeldung & Bezahlung laufen exklusiv über die PadelCity App – ein Tap auf „In der App anmelden“ bringt dich direkt hin.",
+    note: "Anmelden & bezahlen kannst du im Web oder in der PadelCity App – ein Tap auf „Im Web anmelden“ bringt dich direkt hin.",
   },
   explorer: {
     filterLabel: "Events filtern",
@@ -51,7 +51,8 @@ const de = {
   card: { more: "Mehr erfahren" },
   detail: {
     back: "Alle Events",
-    signup: "In der App anmelden",
+    signup: "Im Web anmelden",
+    signupApp: "In der App anmelden",
     formatCta: "Format & Zeitplan",
     date: "Datum",
     place: "Ort",
@@ -69,10 +70,10 @@ const de = {
     partnerLink: "Partner werden",
     bannerTitle: "Sei",
     bannerAccent: "dabei.",
-    bannerText: (title: string) => `Anmeldung, Bezahlung und alle Updates zu ${title} laufen über die PadelCity App.`,
+    bannerText: (title: string) => `Anmelden und bezahlen kannst du für ${title} im Web oder in der PadelCity App – alle Updates bekommst du per Push in der App.`,
     fallbackDescription: (type: string, where: string) =>
       `${type} bei ${where}: Komm allein oder mit Freund:innen – wir mischen die Teams nach Level, damit jedes Match spannend bleibt.`,
-    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} bei ${where}. Jetzt in der PadelCity App anmelden.`,
+    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} bei ${where}. Jetzt im Web oder in der PadelCity App anmelden.`,
     steps: [
       { title: "Ankommen", text: "15 Min vorher da sein, Schläger gibt's zur Not an der Rezeption." },
       { title: "Spielen", text: "Wechselnde Partner, kurze Matches, viel Spaß." },
@@ -80,7 +81,7 @@ const de = {
     ],
     perPerson: "pro Person",
     free: "Free",
-    appOnly: "Anmeldung & Bezahlung exklusiv in der PadelCity App.",
+    appOnly: "Anmeldung & Bezahlung im Web oder in der PadelCity App.",
     moreIn: "Mehr in",
   },
   date: { time: "Uhr" },
@@ -111,7 +112,7 @@ const en: EventsContent = {
   local: {
     eyebrow: "At your club",
     title: "Play, laugh, come back",
-    note: "Sign-up and payment happen exclusively in the PadelCity app – one tap on “Sign up in the app” takes you straight there.",
+    note: "Sign up and pay on the web or in the PadelCity app – one tap on “Sign up on the web” takes you straight there.",
   },
   explorer: {
     filterLabel: "Filter events",
@@ -132,7 +133,8 @@ const en: EventsContent = {
   card: { more: "Find out more" },
   detail: {
     back: "All events",
-    signup: "Sign up in the app",
+    signup: "Sign up on the web",
+    signupApp: "Sign up in the app",
     formatCta: "Format & schedule",
     date: "Date",
     place: "Venue",
@@ -150,10 +152,10 @@ const en: EventsContent = {
     partnerLink: "Become a partner",
     bannerTitle: "Be",
     bannerAccent: "there.",
-    bannerText: (title: string) => `Sign-up, payment and every update for ${title} run through the PadelCity app.`,
+    bannerText: (title: string) => `Sign up and pay for ${title} on the web or in the PadelCity app – you'll get every update via push notification in the app.`,
     fallbackDescription: (type: string, where: string) =>
       `${type} at ${where}: come on your own or bring friends – we mix the teams by level so every match stays exciting.`,
-    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} at ${where}. Sign up now in the PadelCity app.`,
+    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} at ${where}. Sign up now on the web or in the PadelCity app.`,
     steps: [
       { title: "Arrive", text: "Be there 15 minutes early – if you need a racket, reception has you covered." },
       { title: "Play", text: "Rotating partners, short matches, loads of fun." },
@@ -161,7 +163,7 @@ const en: EventsContent = {
     ],
     perPerson: "per person",
     free: "Free",
-    appOnly: "Sign-up and payment exclusively in the PadelCity app.",
+    appOnly: "Sign-up and payment on the web or in the PadelCity app.",
     moreIn: "More at",
   },
   date: { time: "" },

@@ -42,6 +42,18 @@ function adjustLink(path: string, params: Record<string, string | undefined> = {
   return url.toString();
 }
 
+const WEBAPP_BASE = process.env.NEXT_PUBLIC_WEBAPP_BASE ?? "https://app.padelcity.de";
+
+/**
+ * PadelCity web app (web-app-flutter). Event sign-up works in the app OR on the web;
+ * court booking stays app-only (deeplinks.club).
+ * Route mirrors web-app-flutter `/events/:eventId` (pre-prod: https://app.pre-prod.padelcity.de).
+ */
+export const webApp = {
+  base: WEBAPP_BASE,
+  event: (eventId: string) => `${WEBAPP_BASE}/events/${eventId}`,
+};
+
 export const deeplinks = {
   club: (clubId: string) => adjustLink(`/playtab/play/club/${clubId}`),
   event: (eventId: string) => adjustLink(`/playtab/play/event/${eventId}`),

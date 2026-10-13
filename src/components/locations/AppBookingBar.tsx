@@ -38,7 +38,7 @@ export function AppBookingBar({ href, price, locale }: { href: string; price?: s
         <p className="min-w-0 flex-1 pl-2 text-sm leading-tight text-white/70">
           {price ? (
             <>
-              {t.priceFrom} <span className="text-lg font-semibold text-white">{price}</span> {t.perHour}
+              {t.priceFrom} <span className="font-display text-2xl font-extrabold italic leading-none text-white">{price}</span> {t.perHour}
             </>
           ) : (
             t.priceOnRequest

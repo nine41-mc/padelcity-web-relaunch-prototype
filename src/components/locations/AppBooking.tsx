@@ -4,7 +4,6 @@ import { Clock, Euro, LayoutGrid, Smartphone } from "lucide-react";
 import type { Club } from "@/lib/data/types";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import type { Locale } from "@/lib/i18n/config";
-import { localeTags } from "@/lib/i18n/config";
 import { deeplinks } from "@/lib/site";
 import { fill, locationsContent } from "@/lib/content/locations";
 import { Button } from "@/components/ui/Button";
@@ -12,9 +11,8 @@ import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { AppIcon } from "@/components/ui/Icon";
 import { dayLabel } from "./geo";
 
-export function formatPrice(value: number, locale: Locale, currency: "EUR" | "PLN" = "EUR") {
-  return new Intl.NumberFormat(localeTags[locale].intl, { style: "currency", currency, maximumFractionDigits: 0 }).format(value);
-}
+export { formatPrice } from "@/lib/format";
+import { formatPrice } from "@/lib/format";
 
 /** Groups courts by indoor/outdoor × double/single, e.g. "4 Indoor Double Courts" (Double/Single is self-explanatory – no player count). */
 export function courtGroups(club: Pick<Club, "courts">, locale: Locale) {

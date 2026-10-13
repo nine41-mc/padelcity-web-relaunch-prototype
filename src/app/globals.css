@@ -7,6 +7,19 @@
  * so APL / ADM / App and the website speak the same colour language.
  * NEW for the relaunch: `neon` (tennis-ball accent from Elephant's pitch).
  */
+/* Metric-matched fallback for Söhne Schmal (see src/app/fonts.ts): Arial scaled so UPPERCASE italic lines
+   wrap like the real condensed font; ascent/descent keep the original line box. Prevents CLS on font swap. */
+@font-face {
+  font-family: "soehneSchmal Tuned Fallback";
+  src: local("Arial Bold Italic"), local("Arial-BoldItalicMT"), local("Arial");
+  font-style: italic;
+  font-weight: 800;
+  size-adjust: 55.7%;
+  ascent-override: 186%;
+  descent-override: 51.9%;
+  line-gap-override: 0%;
+}
+
 @theme {
   /* Purple (primary) */
   --color-purple-50: #f6e8fd;

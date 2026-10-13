@@ -14,9 +14,16 @@ export function CountUp({ to, suffix = "", duration = 1.6, intl = "de-DE" }: { t
     return () => controls.stop();
   }, [inView, to, duration, reduce]);
   return (
-    <span ref={ref} className="tabular-nums">
-      {value.toLocaleString(intl)}
-      {suffix}
+    // Invisible final value in the same grid cell reserves the width → no reflow while counting.
+    <span ref={ref} className="inline-grid tabular-nums">
+      <span aria-hidden className="invisible col-start-1 row-start-1">
+        {to.toLocaleString(intl)}
+        {suffix}
+      </span>
+      <span className="col-start-1 row-start-1">
+        {value.toLocaleString(intl)}
+        {suffix}
+      </span>
     </span>
   );
 }

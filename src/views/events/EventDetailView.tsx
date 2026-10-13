@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { keepTogether } from "@/lib/typography";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, CalendarDays, Clock, MapPin, Trophy, Users } from "lucide-react";
 import { getClubs, getEvent, getEvents } from "@/lib/data";
 import type { Club, ClubEvent } from "@/lib/data/types";
-import { deeplinks, site } from "@/lib/site";
+import { deeplinks, site, webApp } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { alternates, href } from "@/lib/i18n/routes";
@@ -18,6 +17,7 @@ import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { Media } from "@/components/ui/Media";
+import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { Reveal } from "@/components/ui/Reveal";
 import { StoreBadges } from "@/components/ui/StoreBadges";
 import { EventCard } from "@/components/cards/EventCard";
@@ -82,7 +82,7 @@ function eventJsonLd(event: ClubEvent, locale: Locale, club?: Club) {
     // Price only – no availability/capacity (no booking-system data on the website).
     offers: {
       "@type": "Offer",
-      url: deeplinks.event(event.id),
+      url: webApp.event(event.id),
       price: event.pricePerPerson ?? 0,
       priceCurrency: "EUR",
     },
@@ -147,8 +147,11 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <Countdown start={event.start} labels={t.countdown} />
             <div className="flex flex-wrap gap-3">
-              <Button href={deeplinks.event(event.id)} variant="neon" size="lg" data-track="event_signup_click">
+              <Button href={webApp.event(event.id)} variant="neon" size="lg" data-track="event_signup_web">
                 {t.detail.signup}
+              </Button>
+              <Button href={deeplinks.event(event.id)} variant="outline" size="lg" data-track="event_signup_app">
+                {t.detail.signupApp}
               </Button>
               <Button href="#format" variant="outline" size="lg" arrow={false}>
                 {t.detail.formatCta}
@@ -236,8 +239,8 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <p className="mb-8 text-center text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.detail.partners}</p>
           <ul className="grid grid-cols-2 items-center gap-6 md:grid-cols-5">
             {eventPartners.map((p) => (
-              <li key={p.name} className="flex h-20 items-center justify-center rounded-[16px] border border-white/10 px-6 opacity-80 transition-opacity hover:opacity-100">
-                <Image src={p.logo} alt={p.name} width={140} height={48} className="max-h-10 w-auto object-contain brightness-0 invert" />
+              <li key={p.name} className="flex h-20 items-center justify-center rounded-[16px] border border-white/10 px-5 opacity-80 transition-opacity hover:opacity-100">
+                <PartnerLogo partner={p} className="h-8 brightness-0 invert" />
               </li>
             ))}
           </ul>
@@ -291,9 +294,14 @@ function SignupBanner({ event, locale, t }: { event: ClubEvent; locale: Locale; 
           <p className="mt-4 max-w-lg text-white/80">{t.detail.bannerText(event.title)}</p>
         </div>
         <div className="flex flex-col gap-4 md:items-end">
-          <Button href={deeplinks.event(event.id)} size="lg" data-track="event_signup_click">
-            {t.detail.signup}
-          </Button>
+          <div className="flex flex-wrap gap-3 md:justify-end">
+            <Button href={webApp.event(event.id)} size="lg" data-track="event_signup_web">
+              {t.detail.signup}
+            </Button>
+            <Button href={deeplinks.event(event.id)} variant="outline" size="lg" data-track="event_signup_app">
+              {t.detail.signupApp}
+            </Button>
+          </div>
           <StoreBadges locale={locale} />
         </div>
       </div>
@@ -378,8 +386,11 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
                   <p className="text-sm text-white/70">{t.detail.perPerson}</p>
                   <p className="font-display text-4xl font-extrabold italic">{price}</p>
                 </div>
-                <Button href={deeplinks.event(event.id)} variant="gradient" size="lg" className="mt-6 w-full" data-track="event_signup_click">
+                <Button href={webApp.event(event.id)} variant="gradient" size="lg" className="mt-6 w-full" data-track="event_signup_web">
                   {t.detail.signup}
+                </Button>
+                <Button href={deeplinks.event(event.id)} variant="outline" size="lg" className="mt-3 w-full" data-track="event_signup_app">
+                  {t.detail.signupApp}
                 </Button>
                 <p className="mt-4 text-center text-sm text-white/70">{t.detail.appOnly}</p>
               </div>

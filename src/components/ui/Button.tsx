@@ -55,7 +55,8 @@ export function Button({ variant = "primary", size = "md", arrow = true, classNa
   const cls = cn(base, variants[variant], sizes[size], arrow ? paddings[size].arrow : paddings[size].plain, className);
   const content = (
     <>
-      <span className="pt-0.5 leading-none">{children}</span>
+      {/* No top nudge: measured Söhne Schmal caps ink sits within 0.4px of the line centre; pt-0.5 pushed labels ~1.4px low */}
+      <span className="leading-none">{children}</span>
       {arrow && (
         <span
           className={cn(

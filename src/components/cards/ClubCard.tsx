@@ -4,6 +4,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { formatPrice } from "@/lib/format";
 import { Media } from "../ui/Media";
 import { OpenStatus, SportChips } from "./ClubMeta";
 import { cn } from "../ui/cn";
@@ -57,20 +58,24 @@ export function ClubCard({
       </div>
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex items-start justify-between gap-3">
-          <div>
+          <div className="min-w-0">
             <h3 className="text-lg font-semibold leading-tight">
               <Link href={url} className="after:absolute after:inset-0 after:content-['']">
                 {club.name}
               </Link>
             </h3>
-            <p className="mt-1 text-sm text-white/70">
-              {club.city}
+            <p className="mt-1 truncate text-sm text-white/70">
+              {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
               {distanceKm !== undefined && ` · ${distanceKm.toLocaleString(intl, { maximumFractionDigits: 1 })} km`}
             </p>
           </div>
           {club.defaultPricePerHour && (
-            <p className="shrink-0 text-right text-sm text-white/70">
-              {t.from} <span className="text-lg font-semibold text-white">{club.defaultPricePerHour} €</span>
+            <p className="shrink-0 text-right leading-none text-white/70">
+              <span className="text-[13px]">{t.from} </span>
+              <span className="font-display text-3xl font-extrabold italic text-white">
+                {formatPrice(club.defaultPricePerHour, locale, club.currency)}
+              </span>
+              <span className="mt-1 block text-[13px]">{t.perHour}</span>
             </p>
           )}
         </div>

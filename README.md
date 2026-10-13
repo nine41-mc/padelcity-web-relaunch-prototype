@@ -28,7 +28,7 @@ GitLab Pages über `.gitlab-ci.yml`: jeder Push auf `main` (sowie Schedules/manu
 |---|---|---|
 | `/` | `/en` | Video-Hero, Nr.-1-Zahlen + Club-Karte, Club-Showcase, Zielgruppen-Einstiege, Series A (qualitativ), Events, Academy/Magazin, Community, Shop-Teaser (Phase 2), Partner |
 | `/standorte`, `/standorte/[slug]` | `/en/locations/…` | Club-Finder (Suche, Filter, Nähe, Liste/Karte), Club-Seite mit Galerie, „In der App buchen“ (Preis ab, Öffnungszeiten, Courts, Deeplink), Facilities, Coaches, Events, FAQ |
-| `/events`, `/events/[slug]` | `/en/events/…` | Hero-Events (Countdown) + lokale Events, Anmeldung per App-Deeplink |
+| `/events`, `/events/[slug]` | `/en/events/…` | Hero-Events (Countdown) + lokale Events, Anmeldung im Web (`webApp.event`) oder per App-Deeplink |
 | `/academy` | `/en/academy` | Level-Pfad, Programme, 19 echte Coaches, Standorte, Videos |
 | `/app` | `/en/app` | App-Landingpage mit Feature-Story |
 | `/franchise`, `/investoren`, `/partner` | `/en/franchise`, `/en/investors`, `/en/partners` | B2B-Zielgruppen inkl. Lead-Formularen (Prototyp: sendet nichts) |

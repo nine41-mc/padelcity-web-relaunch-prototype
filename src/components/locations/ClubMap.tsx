@@ -7,6 +7,7 @@ import { useEffect, useMemo } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import type { Locale } from "@/lib/i18n/config";
 import { asset } from "@/lib/asset";
+import { formatPrice } from "@/lib/format";
 import { href } from "@/lib/i18n/routes";
 import { locationsContent } from "@/lib/content/locations";
 import type { LatLng } from "./geo";
@@ -18,6 +19,7 @@ export type MapClub = {
   city: string;
   position: LatLng;
   priceFrom?: number;
+  currency?: "EUR" | "PLN";
   /** Planned club: outline pin, popup without link (no detail page). */
   planned?: boolean;
 };
@@ -115,7 +117,7 @@ export default function ClubMap({
               <p className="font-semibold">{c.name}</p>
               <p className="text-white/70">
                 {c.city}
-                {c.priceFrom ? ` · ${t.from} ${c.priceFrom} €` : ""}
+                {c.priceFrom ? ` · ${t.from} ${formatPrice(c.priceFrom, locale, c.currency)}` : ""}
               </p>
               {/* Raw <a> inside Leaflet popup (outside Next router) → needs basePath via asset() */}
               <a href={asset(href(locale, "locations", c.slug)) + "/"} className="mt-2 inline-block font-medium !text-neon-500 underline-offset-2 hover:underline">

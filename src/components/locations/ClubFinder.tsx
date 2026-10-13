@@ -113,6 +113,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         city: club.city,
         position: club.position,
         priceFrom: club.defaultPricePerHour,
+        currency: club.currency,
       })),
       ...plannedOnMap.map((club) => ({
         id: club.id,

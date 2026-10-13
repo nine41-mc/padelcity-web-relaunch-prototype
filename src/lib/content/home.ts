@@ -70,7 +70,7 @@ const de = {
     imgAlt: "PadelCity Community",
   },
   shop: { title: "Merch & Gutscheine", text: "Wear the movement. Der PadelCity Shop kommt – Gutscheine gibt's schon jetzt in der App.", cta: "Gutschein verschenken" },
-  partners: { title: "Better together – unsere Partner", cta: "Partner werden →" },
+  partners: { eyebrow: "Unsere Partner", title: "Better", accent: "together.", cta: "Partner werden" },
 };
 
 export type HomeContent = typeof de;
@@ -139,7 +139,7 @@ const en: HomeContent = {
     imgAlt: "PadelCity community",
   },
   shop: { title: "Merch & vouchers", text: "Wear the movement. The PadelCity shop is coming – vouchers are already available in the app.", cta: "Give a voucher" },
-  partners: { title: "Better together – our partners", cta: "Become a partner →" },
+  partners: { eyebrow: "Our partners", title: "Better", accent: "together.", cta: "Become a partner" },
 };
 
 export const homeContent: Record<Locale, HomeContent> = { de, en };

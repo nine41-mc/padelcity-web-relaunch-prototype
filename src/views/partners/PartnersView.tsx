@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { Check } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -129,17 +129,17 @@ export function PartnersView({ locale }: { locale: Locale }) {
                     return (
                       <li key={p.name}>
                         <div
-                          className={`group flex h-full flex-col items-center justify-center gap-3 rounded-[20px] border border-ink-800/10 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated ${tier === "premium" ? "min-h-36 md:min-h-44" : "min-h-28"}`}
+                          className={`group flex h-full flex-col items-center justify-center gap-3 rounded-[20px] border border-ink-800/10 bg-white px-4 py-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-elevated ${tier === "premium" ? "min-h-36 md:min-h-44" : "min-h-28"}`}
                           title={description ?? p.name}
                         >
-                          <Image
-                            src={p.logo}
-                            alt={p.name}
-                            width={160}
-                            height={64}
-                            className={`w-auto object-contain grayscale transition-all duration-300 group-hover:grayscale-0 ${tier === "premium" ? "h-12 md:h-16" : "h-9 md:h-10"}`}
-                          />
-                          {description && tier !== "supplier" && <p className="text-center text-[13px] leading-snug text-ink-400">{description}</p>}
+                          <div className="flex w-full flex-1 items-center justify-center">
+                            <PartnerLogo
+                              partner={p}
+                              className={`grayscale transition-all duration-300 group-hover:grayscale-0 ${tier === "premium" ? "h-12 md:h-14" : "h-9"}`}
+                            />
+                          </div>
+                          {/* Description slot is reserved (2 lines) on premium/official tiles so all logos in a row sit at the same height */}
+                          {tier !== "supplier" && <p className="min-h-[2lh] text-center text-[13px] leading-snug text-ink-400">{description}</p>}
                         </div>
                       </li>
                     );

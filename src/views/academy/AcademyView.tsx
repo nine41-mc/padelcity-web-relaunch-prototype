@@ -101,7 +101,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
                     <Chip tone={p.highlight ? "neon" : "dark"}>{p.highlight ? t.programmesSection.startHere : p.level}</Chip>
                   </div>
                   <div className="flex flex-1 flex-col p-6">
-                    <h3 className="font-display text-3xl font-extrabold uppercase not-italic leading-none tracking-wide">{p.title}</h3>
+                    <h3 className="font-display text-3xl font-extrabold uppercase not-italic leading-none tracking-wide md:min-h-[2lh]">{p.title}</h3>
                     <p className="mt-3 flex-1 text-white/70">{p.text}</p>
                     <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
                       <span className="text-sm text-white/70">{p.meta}</span>
