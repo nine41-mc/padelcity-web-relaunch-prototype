@@ -118,7 +118,14 @@ export const getCoaches = cache(async (locale: Locale = "de"): Promise<Person[]>
     try {
       const cf = await fetchContentfulCoaches(locale);
       if (cf.length === 0) throw new Error("no coach entries");
-      list = cf;
+      // Coach photos in Contentful are weak (PadelCity, 13.10.2026) → keep the padelcity.de portraits
+      // from people.ts when the same coach exists there; Contentful contributes contact, prices & times.
+      const key = (n: string) => n.toLocaleLowerCase("de").normalize("NFD").replace(/[^a-z]/g, "");
+      const portraits = new Map(peopleCoaches.map((p) => [key(p.name), p]));
+      list = cf.map((c) => {
+        const local = portraits.get(key(c.name));
+        return local ? { ...c, image: local.image ?? c.image, club: c.club ?? local.club, bio: c.bio ?? local.bio } : c;
+      });
     } catch (err) {
       warnOnce("contentful coaches", err);
     }
