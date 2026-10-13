@@ -33,10 +33,17 @@ function warnOnce(source: string, err: unknown) {
   console.warn(`[data] ${source} unavailable (${errorMessage(err)}) – falling back to mock data.`);
 }
 
+/** Internal test clubs in Contentful must never appear on the website. */
+function isTestClub(c: Pick<Club, "name" | "slug">) {
+  return /\btest\b/i.test(c.name) || /(^|-)test(-|$)/.test(c.slug);
+}
+
 const resolveBaseClubs = cache(async (locale: Locale): Promise<Club[]> => {
   if (isContentfulConfigured()) {
     try {
-      const clubs = await fetchContentfulClubs(mockClubs, locale);
+      // Contentful also holds internal test entries ("Test Club | POLAND", "Test Club | alle Sportarten") –
+      // there is no website-visibility flag yet (see README), so they are filtered by name.
+      const clubs = (await fetchContentfulClubs(mockClubs, locale)).filter((c) => !isTestClub(c));
       if (clubs.length === 0) throw new Error("no club entries");
       return clubs;
     } catch (err) {

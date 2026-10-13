@@ -17,11 +17,17 @@ const variants: Record<Variant, string> = {
   ghost: "text-white hover:text-neon-500",
 };
 
+// Söhne Schmal is condensed – it needs a larger size than Poppins to read well.
 const sizes: Record<Size, string> = {
-  // Söhne Schmal is condensed – it needs a larger size than Poppins to read well.
-  sm: "h-11 pl-5 pr-1.5 text-lg",
-  md: "h-13 pl-6 pr-1.5 text-lg md:text-xl",
-  lg: "h-14 md:h-16 pl-7 pr-2 text-xl md:text-2xl",
+  sm: "h-11 text-lg",
+  md: "h-13 text-lg md:text-xl",
+  lg: "h-14 md:h-16 text-xl md:text-2xl",
+};
+// With arrow: text left, round arrow right. Without arrow: symmetric padding so the label is centred.
+const paddings: Record<Size, { arrow: string; plain: string }> = {
+  sm: { arrow: "pl-5 pr-1.5", plain: "px-5" },
+  md: { arrow: "pl-6 pr-1.5", plain: "px-7" },
+  lg: { arrow: "pl-7 pr-2", plain: "px-8" },
 };
 
 const arrowSizes: Record<Size, string> = { sm: "size-8", md: "size-10", lg: "size-10 md:size-12" };
@@ -46,7 +52,7 @@ type Props = {
 );
 
 export function Button({ variant = "primary", size = "md", arrow = true, className, children, ...rest }: Props) {
-  const cls = cn(base, variants[variant], sizes[size], !arrow && "px-6", className);
+  const cls = cn(base, variants[variant], sizes[size], arrow ? paddings[size].arrow : paddings[size].plain, className);
   const content = (
     <>
       <span className="pt-0.5 leading-none">{children}</span>
