@@ -100,7 +100,7 @@ const de = {
     courtsPlural: "Courts",
     distance: "entfernt",
     tabsLabel: "Club-Bereiche",
-    tabs: { book: "In der App buchen", facilities: "Facilities", coaching: "Coachings", events: "Events", directions: "Anfahrt", contact: "Kontakt", reviews: "Bewertungen" },
+    tabs: { book: "In der App buchen", facilities: "Facilities", coaching: "Coaches", events: "Events", directions: "Anfahrt", contact: "Kontakt", reviews: "Bewertungen" },
     gallery: {
       extra: ["Courts von oben", "Lounge", "Umkleiden", "Community nach dem Match", "Bar & Bistro", "Court-Details"],
       photos: "Fotos",
@@ -291,7 +291,7 @@ const en: LocationsContent = {
     courtsPlural: "courts",
     distance: "away",
     tabsLabel: "Club sections",
-    tabs: { book: "Book in the app", facilities: "Facilities", coaching: "Coaching", events: "Events", directions: "Getting here", contact: "Contact", reviews: "Reviews" },
+    tabs: { book: "Book in the app", facilities: "Facilities", coaching: "Coaches", events: "Events", directions: "Getting here", contact: "Contact", reviews: "Reviews" },
     gallery: {
       extra: ["Courts from above", "Lounge", "Changing rooms", "Community after the match", "Bar & bistro", "Court details"],
       photos: "photos",
