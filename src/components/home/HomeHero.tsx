@@ -16,6 +16,21 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
   const router = useRouter();
   const [q, setQ] = useState("");
   const reduce = useReducedMotion();
+  const [wide, setWide] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setWide(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  // The <source> is added after hydration → reload so the browser picks it up (autoplay unless reduced motion)
+  useEffect(() => {
+    const v = video.current;
+    if (!wide || !v) return;
+    v.load();
+    if (!reduce) void v.play().catch(() => {});
+  }, [wide, reduce]);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 800], [0, reduce ? 0 : 160]);
   const scale = useTransform(scrollY, [0, 800], [1, reduce ? 1 : 1.12]);
@@ -50,15 +65,17 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
           muted
           loop
           playsInline
-          preload="metadata"
+          preload={wide ? "metadata" : "none"}
           poster={asset("/images/hero/home-1.jpg")}
           aria-hidden
         >
-          <source src={asset("/video/hero.mp4")} type="video/mp4" />
+          {/* Phones get the poster only (video is ~11 MB); tablets/desktops stream the clip */}
+          {wide && <source src={asset("/video/hero.mp4")} type="video/mp4" />}
         </video>
       </motion.div>
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_30%_20%,rgb(132_18_181/0.55),transparent_60%),linear-gradient(to_bottom,rgb(11_11_15/0.6),rgb(64_27_120/0.7)_55%,#0b0b0f)]" />
       <div className="absolute inset-0 -z-10 bg-grain" />
+      {wide && (
       <button
         type="button"
         onClick={toggleVideo}
@@ -67,6 +84,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
       >
         {playing ? <Pause className="size-4" aria-hidden /> : <Play className="size-4" aria-hidden />}
       </button>
+      )}
       {/* Brush stroke (brand book: dynamic gestures) */}
       <svg className="pointer-events-none absolute -bottom-10 -left-20 -z-10 w-[140%] max-w-none opacity-70 md:w-[110%]" viewBox="0 0 1600 500" fill="none" aria-hidden>
         <motion.path
