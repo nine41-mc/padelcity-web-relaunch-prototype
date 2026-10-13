@@ -73,7 +73,12 @@ export function GermanyMap({
 
   return (
     <div className="relative">
-      <svg viewBox={`0 0 ${viewW} ${H}`} className={narrow ? "h-auto w-full overflow-hidden" : "h-auto w-full overflow-visible"} role="img" aria-label={`${label} (${clubs.length})`}>
+      <svg viewBox={`0 0 ${viewW} ${H}`} className={narrow ? "h-auto w-full overflow-hidden" : "h-auto w-full overflow-visible"} role="img" aria-label={`${label} (${clubs.length})`}
+        onPointerDown={(e) => {
+          // Touch: tapping the map background hides the label again
+          if (!(e.target as Element).closest("a, [role=button]")) setActive(null);
+        }}
+      >
         <defs>
           <radialGradient id="pinGlow" r="0.5">
             <stop offset="0" stopColor="#b4e854" stopOpacity="0.9" />
@@ -100,8 +105,13 @@ export function GermanyMap({
                 pointer.current = e.pointerType;
                 if (e.pointerType === "mouse") setActive(club.id);
               }}
+              onPointerLeave={(e) => {
+                // Mouse leaves the pin → label disappears, map is clean again
+                if (e.pointerType === "mouse") setActive((cur) => (cur === club.id ? null : cur));
+              }}
               onPointerDown={(e) => (pointer.current = e.pointerType)}
               onFocus={() => setActive(club.id)}
+              onBlur={() => setActive((cur) => (cur === club.id ? null : cur))}
             >
               {isActive && <circle r="22" fill="url(#pinGlow)" />}
               {p ? (
