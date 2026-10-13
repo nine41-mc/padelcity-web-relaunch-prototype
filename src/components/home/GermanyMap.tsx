@@ -2,7 +2,7 @@
 
 // Contentful module: clubMap (live + planned clubs, derived from club entries)
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -27,6 +27,8 @@ const COS = 0.63; // ≈ cos(51°)
 const W = (LON1 - LON0) * COS * K;
 const H = (LAT1 - LAT0) * K;
 const project = (lon: number, lat: number) => [(lon - LON0) * COS * K, (LAT1 - lat) * K] as const;
+// Phone frame: Germany (+ Innsbruck) only – clubs further east are listed below the map instead.
+const W_NARROW = (15.4 - LON0) * COS * K;
 
 type Pin = { club: Club; x: number; y: number; planned: boolean };
 
@@ -46,6 +48,15 @@ export function GermanyMap({
   legend: { live: string; soon: string };
 }) {
   const [active, setActive] = useState<string | null>(null);
+  const [narrow, setNarrow] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setNarrow(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const viewW = narrow ? W_NARROW : W;
   const pointer = useRef<string>("mouse");
   const outline = OUTLINE.map(([lon, lat], i) => `${i ? "L" : "M"}${project(lon, lat).join(" ")}`).join(" ") + "Z";
 
@@ -56,11 +67,13 @@ export function GermanyMap({
     const [x, y] = project(club.position.longitude, club.position.latitude);
     return { club, x, y, planned: p };
   });
-  const current = pins.find((p) => p.club.id === active);
+  const visiblePins = pins.filter((p) => p.x <= viewW);
+  const offMap = pins.filter((p) => p.x > viewW);
+  const current = visiblePins.find((p) => p.club.id === active);
 
   return (
     <div className="relative">
-      <svg viewBox={`0 0 ${W} ${H}`} className="h-auto w-full overflow-visible" role="img" aria-label={`${label} (${clubs.length})`}>
+      <svg viewBox={`0 0 ${viewW} ${H}`} className={narrow ? "h-auto w-full overflow-hidden" : "h-auto w-full overflow-visible"} role="img" aria-label={`${label} (${clubs.length})`}>
         <defs>
           <radialGradient id="pinGlow" r="0.5">
             <stop offset="0" stopColor="#b4e854" stopOpacity="0.9" />
@@ -77,7 +90,7 @@ export function GermanyMap({
         <path d={outline} fill="url(#landFill)" stroke="rgb(255 255 255 / 0.55)" strokeWidth="0.8" strokeLinejoin="round" />
         <path d={outline} fill="url(#dots)" />
 
-        {pins.map(({ club, x, y, planned: p }) => {
+        {visiblePins.map(({ club, x, y, planned: p }) => {
           const isActive = active === club.id;
           const dot = (
             <g
@@ -135,8 +148,27 @@ export function GermanyMap({
         })}
 
         {/* Active label – drawn last so it sits above all pins */}
-        {current && <PinLabel pin={current} soon={legend.soon} width={W} />}
+        {current && <PinLabel pin={current} soon={legend.soon} width={viewW} />}
       </svg>
+
+      {/* Phone: clubs outside the Germany frame (Poland) as chips below the map */}
+      {narrow && offMap.length > 0 && (
+        <ul className="mt-4 flex flex-wrap justify-center gap-2">
+          {offMap.map(({ club, planned: p }) =>
+            p ? (
+              <li key={club.id} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-dashed border-white/45 px-3.5 text-sm text-white/85">
+                {club.name} <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-neon-500">{legend.soon}</span>
+              </li>
+            ) : (
+              <li key={club.id}>
+                <Link href={href(locale, "locations", club.slug)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/45 bg-white/5 px-3.5 text-sm font-semibold text-white hover:border-neon-500 hover:text-neon-500">
+                  <span className="size-2 rounded-full bg-white" aria-hidden /> {club.name}
+                </Link>
+              </li>
+            ),
+          )}
+        </ul>
+      )}
 
       {/* No visible legend – the pin label explains itself. Announce the active club for screen readers. */}
       <p className="sr-only" aria-live="polite">
