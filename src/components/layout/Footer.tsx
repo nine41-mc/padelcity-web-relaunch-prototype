@@ -120,7 +120,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </ul>
           </div>
           <FooterCol title={t.footer.play} keys={mainNav} locale={locale} />
-          <FooterCol title={t.footer.company} keys={secondaryNav} locale={locale} />
+          <FooterCol title={t.footer.company} keys={[...secondaryNav, "sitemap"]} locale={locale} />
           <div>
             <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/75">{t.footer.findClub}</h2>
             <Link
@@ -153,7 +153,10 @@ export function Footer({ locale }: { locale: Locale }) {
       {/* Legal bar */}
       <div className="relative border-t border-white/12 bg-black/80 backdrop-blur">
         <div className="container-site flex flex-col gap-4 py-6 text-sm text-white/75 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} The Padel City GmbH · München</p>
+          {/* Easter egg: the © line opens the hidden styleguide (no visual hint on purpose). */}
+          <Link href={href(locale, "styleguide")} className="w-fit hover:text-white/75" data-track="footer_styleguide_easteregg">
+            © {new Date().getFullYear()} The Padel City GmbH · München
+          </Link>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {legalNav.map((key) => (
               <li key={key}>

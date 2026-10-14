@@ -22,6 +22,9 @@ export const routes = {
   imprint: { de: "/impressum", en: "/en/imprint" },
   privacy: { de: "/datenschutz", en: "/en/privacy" },
   terms: { de: "/agb", en: "/en/terms" },
+  sitemap: { de: "/sitemap", en: "/en/sitemap" },
+  // Hidden: not in any navigation or the sitemap, reached by clicking the © line in the footer.
+  styleguide: { de: "/styleguide", en: "/en/styleguide" },
 } as const satisfies Record<string, Record<Locale, string>>;
 
 export type RouteKey = keyof typeof routes;

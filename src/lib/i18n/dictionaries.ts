@@ -19,6 +19,8 @@ const de = {
     imprint: "Impressum",
     privacy: "Datenschutz",
     terms: "AGB",
+    sitemap: "Sitemap",
+    styleguide: "Styleguide",
   } satisfies Record<RouteKey, string>,
   navDescriptions: {
     locations: "Alle Clubs & Infos",
@@ -94,6 +96,8 @@ const en: Dictionary = {
     imprint: "Imprint",
     privacy: "Privacy",
     terms: "Terms",
+    sitemap: "Sitemap",
+    styleguide: "Styleguide",
   },
   navDescriptions: {
     locations: "All clubs & info",
