@@ -353,8 +353,8 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>Club-Poster („Clubs mit Vibe“ auf der Startseite)</H3>
         <p className="max-w-3xl text-white/75">
           Look aus den Instagram-Posts zu Neueröffnungen, automatisch für jeden Club: lila, körniger Himmel über dem Club-Foto, Clubname riesig in Poppins Bold (Silbentrennung
-          automatisch, letzte Zeile als Outline), weiße Abrisskante, Region als Brush-Chip, Courts als „0006 Double Courts“. Der Brush-Chip ist die einzige Stelle, an der Good Brush
-          außerhalb einer Headline vorkommt – bewusst, weil er das Instagram-Original zitiert.
+          automatisch, letzte Zeile als Outline), weiße Abrisskante. Oben links der Öffnungsstatus in PadelCity-Pink. Courts und Sportarten erscheinen erst beim Hover (auf Touch-Geräten
+          immer sichtbar), damit das Poster ruhig bleibt.
         </p>
 
         <H3>Instagram-Bildwand (Startseite)</H3>

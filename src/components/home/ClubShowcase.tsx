@@ -6,13 +6,15 @@ import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
+import { courtSummary } from "../cards/ClubCard";
+import { OpenStatus, SportChips } from "../cards/ClubMeta";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 
 /**
  * Big, swipeable club posters – "every location as a hero moment".
  * Look taken from PadelCity's Instagram opening posts: purple grainy sky, huge city name (second line outlined),
- * torn paper line, court counts as "0006 Double Courts". Built from data, so it works for every club.
+ * torn paper line. Opening status top-left; courts + sports appear on hover (always visible on touch devices).
  */
 export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale: Locale; labels: { prev: string; next: string } }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -86,7 +88,6 @@ function posterLines(name: string): string[] {
   const words = name.split(/\s+/).filter(Boolean);
   return (words.length === 1 ? splitWord(words[0]) : words).slice(0, 3);
 }
-const pad = (n: number) => String(n).padStart(4, "0");
 
 // Grain for the purple sky (inline SVG noise – no extra asset)
 const NOISE = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
@@ -94,12 +95,6 @@ const NOISE = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/
 function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
   const lines = posterLines(club.name);
   const longest = Math.max(...lines.map((l) => l.length));
-  const doubles = club.courts.filter((c) => c.courtType === "double").length;
-  const singles = club.courts.length - doubles;
-  const stats = [
-    doubles > 0 && { n: doubles, label: "Double Courts" },
-    singles > 0 && { n: singles, label: "Single Courts" },
-  ].filter(Boolean) as { n: number; label: string }[];
   return (
     <Link
       href={href(locale, "locations", club.slug)}
@@ -118,12 +113,10 @@ function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
       <div className="absolute inset-x-0 top-0 h-[70%] opacity-35 mix-blend-overlay [mask-image:linear-gradient(to_bottom,black_55%,transparent)]" style={{ backgroundImage: NOISE }} aria-hidden />
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 to-transparent transition-colors" aria-hidden />
 
-      {/* Region chip (brush, as on Instagram) */}
-      {(club.region || club.city) && (
-        <span className="absolute left-4 top-4 rounded-lg bg-purple-500 px-2.5 py-1 font-brush text-[15px] leading-none text-white shadow-elevated">
-          {club.region ?? club.city}
-        </span>
-      )}
+      {/* Opening status (PadelCity pink) where the Instagram posts carry their chip */}
+      <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1.5 backdrop-blur">
+        <OpenStatus club={club} locale={locale} />
+      </span>
 
       {/* City name: huge Poppins Bold, last line outlined */}
       <div className="absolute inset-x-0 top-[12%]" aria-hidden>
@@ -140,16 +133,10 @@ function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
         </svg>
       </div>
 
-      {/* Court counts, Insta style */}
-      <div className="absolute bottom-5 left-5 text-[13px] font-light leading-[1.05] text-white">
-        {stats.map((st, i) => (
-          <p key={st.label} className={i > 0 ? "mt-2 border-t border-white/80 pt-2" : undefined}>
-            <span className="block tabular-nums">{pad(st.n)}</span>
-            {st.label.split(" ").map((w) => (
-              <span key={w} className="block">{w}</span>
-            ))}
-          </p>
-        ))}
+      {/* Courts + sports: revealed on hover/focus; always visible on touch devices (no hover) */}
+      <div className="absolute inset-x-5 bottom-5 pr-14 transition-all duration-300 [@media(hover:hover)]:translate-y-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
+        <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
+        <SportChips club={club} locale={locale} className="mt-2.5" />
       </div>
       <h3 className="sr-only">{club.name}</h3>
       <span className="absolute bottom-5 right-5 grid size-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
