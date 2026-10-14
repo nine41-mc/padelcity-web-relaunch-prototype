@@ -53,6 +53,7 @@ input{width:100%;font:inherit;padding:12px 16px;border-radius:999px;border:1px s
 input:focus{outline:2px solid #b4e854;outline-offset:2px}
 button{font:800 italic 18px/1 "Arial Narrow",Arial,sans-serif;text-transform:uppercase;letter-spacing:.03em;min-height:48px;border:0;border-radius:999px;color:#fff;background:linear-gradient(313deg,#dc05a1,#8512b5);cursor:pointer}
 button:disabled{opacity:.6}.err{color:var(--err);font-size:14px;min-height:1.3em}
+[hidden]{display:none!important} /* the form must stay invisible while a stored key decrypts the page */
 </style></head><body>
 <form id="f" hidden>
   <h1>PadelCity Prototyp</h1>
