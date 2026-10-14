@@ -14,6 +14,8 @@ import { CountUp } from "@/components/home/CountUp";
 import { GermanyMap } from "@/components/home/GermanyMap";
 import { ClubShowcase } from "@/components/home/ClubShowcase";
 import { EventSignup } from "@/components/events/EventSignup";
+import { VoucherCard } from "@/components/brand/VoucherCard";
+import { deeplinks } from "@/lib/site";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { EventCard } from "@/components/cards/EventCard";
 import { AppCta } from "@/components/modules/AppCta";
@@ -282,21 +284,38 @@ export async function HomeView({ locale }: { locale: Locale }) {
       {/* Instagram image wall */}
       <SocialWall locale={locale} />
 
-      {/* Shop teaser (phase 2) */}
-      <Section tone="black" className="py-12 md:py-16">
-        <div className="flex flex-col items-start justify-between gap-6 rounded-[28px] border border-dashed border-white/20 p-6 md:flex-row md:items-center md:p-10">
-          <div className="flex items-center gap-5">
-            <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-brand-gradient text-white">
-              <ShoppingBag className="size-7" />
-            </span>
-            <div>
-              <p className="font-display text-3xl font-extrabold italic uppercase">{t.shop.title}</p>
-              <p className="text-white/70">{t.shop.text}</p>
-            </div>
+      {/* Contentful module: voucherTeaser (copy from padelcity.de) – merch shop is phase 2 */}
+      <Section tone="black">
+        <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-white/10 bg-ink-800 p-6 md:p-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:p-16">
+          <div className="absolute -left-24 -top-24 size-80 rounded-full bg-purple-600/30 blur-[110px]" aria-hidden />
+          <div className="relative">
+            <Eyebrow className="mb-4">{t.shop.eyebrow}</Eyebrow>
+            <Headline size="lg">
+              {t.shop.title} <Accent>{t.shop.accent}</Accent>
+            </Headline>
+            <p className="mt-4 text-xl font-semibold">{t.shop.subline}</p>
+            <p className="mt-3 max-w-lg text-lg text-white/70">{t.shop.text}</p>
+            <ol className="mt-6 space-y-3">
+              {t.shop.steps.map((step, i) => (
+                <li key={step} className="flex items-center gap-3">
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-white/30 font-display text-lg font-extrabold italic">{i + 1}</span>
+                  {step}
+                </li>
+              ))}
+            </ol>
+            <p className="mt-6 text-white/70">{t.shop.closing}</p>
+            <Button href={deeplinks.vouchers()} variant="primary" className="mt-8" data-track="home_voucher_cta">
+              {t.shop.cta}
+            </Button>
+            <p className="mt-6 flex items-center gap-2 text-sm text-white/60">
+              <ShoppingBag className="size-4" aria-hidden /> {t.shop.merch}
+            </p>
           </div>
-          <Button href={href(locale, "app")} variant="outline">
-            {t.shop.cta}
-          </Button>
+          <div className="relative mx-auto w-full max-w-[460px] py-6 [perspective:1200px]">
+            {/* second card peeking out behind */}
+            <div className="absolute inset-x-6 top-0 aspect-[1.586] rotate-[8deg] rounded-[22px] border border-white/15 bg-ink-600" aria-hidden />
+            <VoucherCard {...t.shop.card} className="relative -rotate-[5deg] transition-transform duration-500 hover:rotate-0 hover:scale-[1.02]" />
+          </div>
         </div>
       </Section>
 

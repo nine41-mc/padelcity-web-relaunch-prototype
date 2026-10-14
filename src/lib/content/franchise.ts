@@ -75,7 +75,7 @@ const de = {
     title: "Das solltest du mitbringen",
     // TODO(content): minimum court count, ceiling height and investment range – only once confirmed by the franchise team.
     items: [
-      { title: "Halle / Fläche", value: "20 x 10 m", text: "So groß ist ein Padel-Court. Ideal: eine Indoor-Halle mit ausreichend Deckenhöhe oder eine gut erreichbare Outdoor-Fläche." },
+      { title: "Halle / Fläche", value: "20 × 10 m", text: "So groß ist ein Padel-Court. Ideal: eine Indoor-Halle mit ausreichend Deckenhöhe oder eine gut erreichbare Outdoor-Fläche." },
       { title: "Investment", value: "Individuell", text: "Das Gesamtinvestment hängt von Größe, Ausbau und Bestand ab. Die Zahlen rechnen wir gemeinsam im Business Case durch." },
       { title: "Standort", value: "Top-Lage", text: "Gute Erreichbarkeit, Parkplätze und ein Einzugsgebiet mit sportbegeisterter Zielgruppe." },
     ],
@@ -175,7 +175,7 @@ const en: FranchiseContent = {
     eyebrow: "Requirements",
     title: "What you should bring",
     items: [
-      { title: "Hall / site", value: "20 x 10 m", text: "That's the size of one padel court. Ideally an indoor hall with enough ceiling height or an easily accessible outdoor site." },
+      { title: "Hall / site", value: "20 × 10 m", text: "That's the size of one padel court. Ideally an indoor hall with enough ceiling height or an easily accessible outdoor site." },
       { title: "Investment", value: "Tailored", text: "The total investment depends on size, fit-out and existing building. We work through the numbers together in the business case." },
       { title: "Location", value: "Prime spot", text: "Easy to reach, with parking and a catchment area full of sport-loving people." },
     ],

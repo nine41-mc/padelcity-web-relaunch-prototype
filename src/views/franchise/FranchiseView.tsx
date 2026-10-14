@@ -7,7 +7,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Accent, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
-import { ClubCard } from "@/components/cards/ClubCard";
+import { ClubPoster } from "@/components/home/ClubShowcase";
 import { SectionIntro } from "@/components/brand/SectionIntro";
 import { BrandIcon } from "@/components/brand/BrandIcon";
 import { LeadForm } from "@/components/brand/LeadForm";
@@ -131,7 +131,15 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
               <Reveal delay={i * 0.06} className="h-full">
                 <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{r.title}</p>
-                  <p className="mt-4 font-display text-4xl font-extrabold italic uppercase text-white md:text-3xl lg:text-5xl">{r.value}</p>
+                  <p className="mt-4 font-display text-4xl font-extrabold italic uppercase text-white md:text-3xl lg:text-5xl">
+                    {/* Söhne Schmal italic has no clean "×" – set it upright in Poppins with some air */}
+                    {r.value.split("×").map((part, i) => (
+                      <span key={i}>
+                        {i > 0 && <span className="mx-[0.12em] inline-block align-[0.08em] font-sans text-[0.6em] font-semibold not-italic">×</span>}
+                        {part.trim()}
+                      </span>
+                    ))}
+                  </p>
                   <p className="mt-4 text-white/70">{r.text}</p>
                 </div>
               </Reveal>
@@ -144,11 +152,11 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
       {franchiseClubs.length > 0 && (
         <Section>
           <SectionIntro eyebrow={`${franchiseClubs.length} ${t.clubs.eyebrowSuffix}`} title={t.clubs.title} lead={t.clubs.lead} />
-          <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {franchiseClubs.map((c, i) => (
               <li key={c.id} className="min-w-0">
                 <Reveal delay={i * 0.05} className="h-full">
-                  <ClubCard club={c} locale={locale} className="h-full" />
+                  <ClubPoster club={c} locale={locale} fill />
                 </Reveal>
               </li>
             ))}

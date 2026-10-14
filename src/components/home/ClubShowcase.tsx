@@ -8,6 +8,7 @@ import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
 import { PosterSky, PosterTitle } from "../cards/Poster";
 import { courtSummary } from "../cards/ClubCard";
+import { cn } from "../ui/cn";
 import { OpenStatus, SportList } from "../cards/ClubMeta";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -74,12 +75,16 @@ export function ClubShowcase({
 
 /* ---------- Poster tile ---------- */
 
-function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
+/** Poster tile; `fill` = full width of a grid cell (e.g. franchise clubs) instead of the carousel width. */
+export function ClubPoster({ club, locale, fill = false }: { club: Club; locale: Locale; fill?: boolean }) {
   return (
     <Link
       href={href(locale, "locations", club.slug)}
       aria-label={club.fullName ?? club.name}
-      className="group relative aspect-[3/4] w-[78vw] shrink-0 snap-start overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size] md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]"
+      className={cn(
+        "group relative block overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size]",
+        fill ? "aspect-[4/5] w-full" : "aspect-[3/4] w-[78vw] shrink-0 snap-start md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]",
+      )}
     >
       <Media
         src={club.mainImage?.url}

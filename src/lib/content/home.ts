@@ -69,7 +69,19 @@ const de = {
     matches: "Open Matches in der App",
     imgAlt: "PadelCity Community",
   },
-  shop: { title: "Merch & Gutscheine", text: "Wear the movement. Der PadelCity Shop kommt – Gutscheine gibt's schon jetzt in der App.", cta: "Gutschein verschenken" },
+  // Copy from padelcity.de (voucher section), combined
+  shop: {
+    eyebrow: "Gutscheine",
+    title: "Verschenk",
+    accent: "Spielzeit.",
+    subline: "Nicht irgendein Zeug.",
+    text: "Mit dem PadelCity Gutschein schenkst du jede Menge Matchball-Momente.",
+    steps: ["In der App kaufen", "Code per E-Mail erhalten", "Bei der nächsten Courtbuchung einlösen"],
+    closing: "Drei Schritte. Ein Geschenk, das garantiert gespielt wird.",
+    cta: "Gutschein verschenken",
+    merch: "Merch-Shop: Wear the movement – kommt bald.",
+    card: { label: "Gutschein", amount: "20 €", aria: "PadelCity Gutschein über 20 €" },
+  },
   partners: { eyebrow: "Unsere Partner", title: "Better", accent: "together.", cta: "Partner werden" },
 };
 
@@ -138,7 +150,18 @@ const en: HomeContent = {
     matches: "Open matches in the app",
     imgAlt: "PadelCity community",
   },
-  shop: { title: "Merch & vouchers", text: "Wear the movement. The PadelCity shop is coming – vouchers are already available in the app.", cta: "Give a voucher" },
+  shop: {
+    eyebrow: "Gift vouchers",
+    title: "Give",
+    accent: "playtime.",
+    subline: "Not just any old stuff.",
+    text: "With a PadelCity voucher you give plenty of match-point moments.",
+    steps: ["Buy it in the app", "Get the code by email", "Redeem it on the next court booking"],
+    closing: "Three steps. A gift that's guaranteed to get played.",
+    cta: "Give a voucher",
+    merch: "Merch shop: wear the movement – coming soon.",
+    card: { label: "Gift voucher", amount: "€20", aria: "PadelCity gift voucher for €20" },
+  },
   partners: { eyebrow: "Our partners", title: "Better", accent: "together.", cta: "Become a partner" },
 };
 
