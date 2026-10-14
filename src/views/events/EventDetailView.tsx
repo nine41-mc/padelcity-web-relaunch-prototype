@@ -337,18 +337,12 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
                 {keepTogether(event.title)}
               </Headline>
               <Lead className="mt-5">{event.subtitle ?? t.detail.fallbackDescription(t.types[event.type], where)}</Lead>
-              <div className="mt-10 grid gap-4 md:grid-cols-3">
-                {t.detail.steps.map((s) => (
-                  <div key={s.title} className="rounded-[20px] border border-white/10 p-5">
-                    <p className="font-display text-xl font-extrabold italic uppercase">{s.title}</p>
-                    <p className="mt-2 text-sm text-white/70">{s.text}</p>
-                  </div>
-                ))}
-              </div>
             </div>
 
             {/* Contentful module: eventSignupCard (info + deep link; no capacity/places left) */}
-            <aside className="lg:sticky lg:top-28 lg:self-start">
+            {/* Phone: date, place, price & sign-up directly below the intro (before the "how it works" steps);
+                desktop: sticky right column spanning both rows */}
+            <aside className="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
               <div className="rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-8">
                 <ul className="space-y-4">
                   <li className="flex items-start gap-3">
@@ -373,14 +367,23 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
                     </span>
                   </li>
                 </ul>
-                <div className="mt-6 flex items-end justify-between border-t border-white/10 pt-6">
-                  <p className="text-sm text-white/70">{t.detail.perPerson}</p>
-                  <p className="font-display text-4xl font-extrabold italic">{price}</p>
-                </div>
+                <p className="mt-6 flex items-baseline gap-2 border-t border-white/10 pt-6">
+                  <span className="font-display text-4xl font-extrabold italic">{price}</span>
+                  {event.pricePerPerson ? <span className="text-sm text-white/70">{t.detail.perPerson}</span> : null}
+                </p>
                 <EventSignup eventId={event.id} locale={locale} size="md" showLabel className="mt-6" />
                 <p className="mt-4 text-center text-sm text-white/70">{t.detail.appOnly}</p>
               </div>
             </aside>
+
+            <div className="grid gap-4 md:grid-cols-3 lg:col-start-1">
+              {t.detail.steps.map((s) => (
+                <div key={s.title} className="rounded-[20px] border border-white/10 p-5">
+                  <p className="font-display text-xl font-extrabold italic uppercase">{s.title}</p>
+                  <p className="mt-2 text-sm text-white/70">{s.text}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

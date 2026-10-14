@@ -218,11 +218,11 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       claim: "Ein Punkt. Alles oder",
       claimAccent: "nichts.",
       intro:
-        "Die verrückteste Turnierform im Padel kommt zurück: Jeder Ballwechsel ist ein K.-o.-Spiel. Profis, Promis und Qualifikanten aus allen PadelCity Clubs kämpfen um bis zu 100.000 € Preisgeld.",
+        "Die verrückteste Turnierform im Padel kommt zurück: Jeder Ballwechsel ist ein K.‑o.-Spiel. Profis, Promis und Qualifikanten aus allen PadelCity Clubs kämpfen um bis zu 100.000 € Preisgeld.",
       presenter: "powered by CUPRA",
       facts: [
         { label: "Preisgeld", value: "bis zu 100.000 €" },
-        { label: "Format", value: "One Point · K.-o." },
+        { label: "Format", value: "One Point · K.‑o." },
         { label: "Qualifier", value: "In den PadelCity Clubs" },
         { label: "Tickets", value: "Zuschauer frei" }, // TODO(content): confirm ticketing
       ],
@@ -274,13 +274,13 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       presenter: "powered by Babolat",
       facts: [
         { label: "Preisgeld", value: "[XX.XXX] €" }, // TODO(content): prize money from Events team
-        { label: "Format", value: "Gruppen + K.-o." },
+        { label: "Format", value: "Gruppen + K.‑o." },
         { label: "Kategorien", value: "Herren · Damen · Mixed" },
         { label: "Qualifiziert", value: "Top-Teams der Saison" },
       ],
       format: [
         { title: "Gruppenphase", text: "Die Top-Teams aus allen Regionen spielen in Vierergruppen – best of 3 Sets." },
-        { title: "K.-o.-Runde", text: "Ab dem Viertelfinale zählt jeder Punkt. Center Court mit Tribüne." },
+        { title: "K.‑o.-Runde", text: "Ab dem Viertelfinale zählt jeder Punkt. Center Court mit Tribüne." },
         { title: "Champions Night", text: "Siegerehrung, Awards und Party mit der ganzen PadelCity Community." },
       ],
       schedule: [
