@@ -16,7 +16,17 @@ import { href } from "@/lib/i18n/routes";
  * Look taken from PadelCity's Instagram opening posts: purple grainy sky, huge city name (second line outlined),
  * torn paper line. Opening status top-left; courts + sports appear on hover (always visible on touch devices).
  */
-export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale: Locale; labels: { prev: string; next: string } }) {
+export function ClubShowcase({
+  clubs,
+  locale,
+  labels,
+  action,
+}: {
+  clubs: Club[];
+  locale: Locale;
+  labels: { prev: string; next: string };
+  action?: React.ReactNode;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const trackId = useId();
   const [edges, setEdges] = useState({ start: true, end: false });
@@ -35,14 +45,15 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
     ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.8, behavior: reduce ? "auto" : "smooth" });
   };
   const arrowCls =
-    "grid size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10 disabled:pointer-events-none disabled:opacity-30";
+    "size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10 disabled:pointer-events-none disabled:opacity-30";
   return (
     <div className="relative">
-      <div className="container-site mb-6 hidden justify-end gap-2 md:flex">
-        <button type="button" onClick={() => scroll(-1)} disabled={edges.start} aria-controls={trackId} className={arrowCls} aria-label={labels.prev}>
+      <div className="container-site mb-6 flex items-center gap-2 md:justify-end">
+        {action && <div className="mr-auto md:mr-2">{action}</div>}
+        <button type="button" onClick={() => scroll(-1)} disabled={edges.start} aria-controls={trackId} className={`hidden md:grid ${arrowCls}`} aria-label={labels.prev}>
           <ArrowLeft className="size-5" aria-hidden />
         </button>
-        <button type="button" onClick={() => scroll(1)} disabled={edges.end} aria-controls={trackId} className={arrowCls} aria-label={labels.next}>
+        <button type="button" onClick={() => scroll(1)} disabled={edges.end} aria-controls={trackId} className={`hidden md:grid ${arrowCls}`} aria-label={labels.next}>
           <ArrowRight className="size-5" aria-hidden />
         </button>
       </div>
@@ -84,6 +95,21 @@ function splitWord(word: string): string[] {
   }
   return [word.slice(0, best), word.slice(best)];
 }
+/**
+ * Poster title = the city, big; the location inside the city goes small below the torn line.
+ * "München Frankfurter Ring" → München + Frankfurter Ring · "Tucherpark" (city München) → München + Tucherpark ·
+ * "Frankfurt" (city Frankfurt am Main) → Frankfurt.
+ */
+function posterName(club: Club): { city: string; spot: string } {
+  const name = club.name.trim();
+  const cityFull = club.city.trim();
+  const city = cityFull.length > 12 ? cityFull.split(/\s+/)[0] : cityFull;
+  for (const prefix of [cityFull, city]) {
+    if (name.toLowerCase().startsWith(prefix.toLowerCase())) return { city: prefix.length > 12 ? city : prefix, spot: name.slice(prefix.length).replace(/^[\s–-]+/, "").trim() };
+  }
+  return { city, spot: name };
+}
+
 function posterLines(name: string): string[] {
   const words = name.split(/\s+/).filter(Boolean);
   return (words.length === 1 ? splitWord(words[0]) : words).slice(0, 3);
@@ -93,7 +119,8 @@ function posterLines(name: string): string[] {
 const NOISE = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
 
 function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
-  const lines = posterLines(club.name);
+  const { city, spot } = posterName(club);
+  const lines = posterLines(city);
   const longest = Math.max(...lines.map((l) => l.length));
   return (
     <Link
@@ -131,6 +158,10 @@ function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
         <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="mt-3 h-2.5 w-full text-white" aria-hidden>
           <path d="M0 5 L22 3 L38 6 L61 2 L80 5 L104 4 L131 7 L150 3 L178 5 L203 2 L229 6 L251 4 L276 6 L300 2 L323 5 L349 3 L372 6 L400 4 L400 9 L377 8 L351 10 L330 7 L305 9 L280 8 L252 10 L230 8 L206 10 L181 7 L158 9 L131 8 L109 10 L84 8 L60 9 L39 7 L18 10 L0 8 Z" fill="currentColor" />
         </svg>
+        {/* Location within the city (e.g. München → Frankfurter Ring / Tucherpark) below the torn line */}
+        {spot && (
+          <p className="mt-2 px-4 font-sans text-[8cqw] font-bold leading-none tracking-[-0.03em] text-white">{spot}</p>
+        )}
       </div>
 
       {/* Courts + sports: revealed on hover/focus; always visible on touch devices (no hover) */}

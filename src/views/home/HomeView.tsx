@@ -99,11 +99,18 @@ export async function HomeView({ locale }: { locale: Locale }) {
               {t.showcase.title} <Accent>{t.showcase.accent}</Accent>
             </Headline>
           </Reveal>
-          <Button href={href(locale, "locations")} variant="outline">
-            {t.showcase.all}
-          </Button>
         </div>
-        <ClubShowcase clubs={showcase} locale={locale} labels={t.showcase} />
+        {/* "Alle Standorte" sits in one line with the carousel arrows */}
+        <ClubShowcase
+          clubs={showcase}
+          locale={locale}
+          labels={t.showcase}
+          action={
+            <Button href={href(locale, "locations")} variant="outline">
+              {t.showcase.all}
+            </Button>
+          }
+        />
       </section>
 
       {/* Audience paths: players, partners, investors, franchise */}
