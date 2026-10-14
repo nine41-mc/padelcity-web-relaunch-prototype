@@ -145,7 +145,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="relative border-t border-white/12 bg-black/80 backdrop-blur">
         <div className="container-site flex flex-col gap-4 py-6 text-sm text-white/75 md:flex-row md:items-center md:justify-between">
           {/* Easter egg: the © line opens the hidden styleguide (no visual hint on purpose). */}
-          <Link href={href(locale, "styleguide")} className="w-fit hover:text-white/75" data-track="footer_styleguide_easteregg">
+          <Link href={href(locale, "styleguide")} className="inline-flex min-h-11 w-fit items-center hover:text-white/75" data-track="footer_styleguide_easteregg">
             © {new Date().getFullYear()} The Padel City GmbH · München
           </Link>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">

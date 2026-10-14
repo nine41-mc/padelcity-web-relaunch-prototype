@@ -85,7 +85,28 @@ button:disabled{opacity:.6}.err{color:var(--err);font-size:14px;min-height:1.3em
     const key = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["decrypt"]);
     return new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: d(P.iv) }, key, d(P.ct)));
   }
-  function writeDoc(html) { document.open(); document.write(html); document.close(); }
+  // Fallback (no service worker in control): decrypt RSC payloads in the page itself, otherwise Next's client
+  // router receives the encrypted *.txt and falls back to opening the raw file (seen in Safari).
+  let rawKey = null;
+  function installFetchShim() {
+    if (window.__pcFetchShim || !rawKey) return;
+    window.__pcFetchShim = true;
+    const orig = window.fetch.bind(window);
+    window.fetch = async (...args) => {
+      const res = await orig(...args);
+      try {
+        const url = new URL(res.url || String(args[0] && args[0].url || args[0]), location.href);
+        if (!url.pathname.endsWith(".txt")) return res;
+        const text = await res.clone().text();
+        if (!text.startsWith('{"pcenc"')) return res;
+        const p = JSON.parse(text);
+        const key = await crypto.subtle.importKey("raw", rawKey, "AES-GCM", false, ["decrypt"]);
+        const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: d(p.iv) }, key, d(p.ct));
+        return new Response(plain, { status: res.status, headers: { "content-type": "text/plain; charset=utf-8" } });
+      } catch { return res; }
+    };
+  }
+  function writeDoc(html) { installFetchShim(); document.open(); document.write(html); document.close(); }
   // Hand over to the service worker: once it controls the page, a reload returns the decrypted document.
   async function viaWorker() {
     if (!swOK) return false;
@@ -101,6 +122,7 @@ button:disabled{opacity:.6}.err{color:var(--err);font-size:14px;min-height:1.3em
   if (saved && saved.salt === P.salt) {
     try {
       const html = await decrypt(d(saved.raw));
+      rawKey = d(saved.raw);
       if (await viaWorker()) return;
       writeDoc(html);
       return;
@@ -115,6 +137,7 @@ button:disabled{opacity:.6}.err{color:var(--err);font-size:14px;min-height:1.3em
       const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(document.getElementById("pw").value), "PBKDF2", false, ["deriveBits"]);
       const raw = new Uint8Array(await crypto.subtle.deriveBits({ name: "PBKDF2", salt: d(P.salt), iterations: P.iter, hash: "SHA-256" }, base, 256));
       const html = await decrypt(raw); // throws on a wrong password
+      rawKey = raw;
       await store(raw);
       if (await viaWorker()) return;
       writeDoc(html);
