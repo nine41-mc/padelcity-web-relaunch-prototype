@@ -111,7 +111,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
           transition={{ duration: 0.6 }}
           className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3.5 py-1.5 text-[13px] font-semibold tracking-wide text-white/90 backdrop-blur md:text-sm"
         >
-          <span className="size-2 rounded-full bg-neon-500 animate-pulse-dot" aria-hidden />
+          <span className="size-2 rounded-full bg-magenta-400 animate-pulse-dot" aria-hidden />
           {t.badge}
         </motion.p>
         <motion.h1

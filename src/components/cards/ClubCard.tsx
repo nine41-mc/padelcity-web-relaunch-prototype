@@ -64,7 +64,7 @@ export function ClubCard({
         <span className="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1.5 backdrop-blur">
           <OpenStatus club={club} locale={locale} />
         </span>
-        <PosterTitle club={club} className="top-[22%]" size={{ factor: 110, max: 19, spot: 6 }} />
+        <PosterTitle club={club} className="top-[22%]" size={{ font: 13, spot: 5.5 }} />
         {club.defaultPricePerHour && (
           <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
             {t.from} {formatPrice(club.defaultPricePerHour, locale, club.currency)}/h

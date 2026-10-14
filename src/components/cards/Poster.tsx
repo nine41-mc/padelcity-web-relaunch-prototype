@@ -72,24 +72,27 @@ export function PosterSky({ bottom = "h-1/2" }: { bottom?: string }) {
 }
 
 /**
- * City name + torn line + location. `size`: font-size factor and cap in container units –
- * portrait posters use the default, the landscape club-card image a smaller one.
+ * City name + torn line + location – fixed rules so every tile looks the same:
+ *  - ONE font size per tile type (container units), independent of the name length;
+ *  - names up to 7 letters stay on one line (Berlin, München, Fürth), longer ones split at a syllable
+ *    (Frank|furt, Gelsen|kirchen) with the second line outlined;
+ *  - so the torn line sits at exactly two heights: below one line or below two lines.
+ * Sized so the longest line we have (8 letters, "Reckling") still fits the tile width.
  */
 export function PosterTitle({
   club,
   className,
-  size = { factor: 150, max: 30, spot: 8 },
+  size = { font: 19, spot: 7 },
 }: {
   club: Pick<Club, "name" | "city">;
   className?: string;
-  size?: { factor: number; max: number; spot: number };
+  size?: { font: number; spot: number };
 }) {
   const { city, spot } = posterName(club);
   const lines = posterLines(city);
-  const longest = Math.max(...lines.map((l) => l.length));
   return (
     <div className={cn("absolute inset-x-0", className)} aria-hidden>
-      <p className="px-3 font-sans font-bold leading-[0.8] tracking-[-0.05em] text-white" style={{ fontSize: `min(${(size.factor / longest).toFixed(1)}cqw, ${size.max}cqw)` }}>
+      <p className="px-4 font-sans font-bold leading-[0.82] tracking-[-0.05em] text-white" style={{ fontSize: `${size.font}cqw` }}>
         {lines.map((l, i) => (
           <span key={i} className={i > 0 && i === lines.length - 1 ? "block text-transparent [-webkit-text-stroke:1.5px_white]" : "block"}>
             {l}

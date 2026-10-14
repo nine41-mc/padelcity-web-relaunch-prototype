@@ -118,7 +118,7 @@ export function CoachExplorer({
       {/* Header rule: "Coaches / Train like a Pro ——— Swipe to see all →" */}
       <div className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70 md:gap-4">
         <span className="inline-flex items-center gap-2 whitespace-nowrap">
-          <span className="size-1.5 rounded-full bg-neon-500 animate-pulse-dot" aria-hidden />
+          <span className="size-1.5 rounded-full bg-magenta-400 animate-pulse-dot" aria-hidden />
           Coaches
           <span className="hidden sm:inline">
             <span className="text-white/35">/</span> {labels.kicker}

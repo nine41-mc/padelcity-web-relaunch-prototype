@@ -62,7 +62,7 @@ export function Eyebrow({ children, className, dot = true }: { children: React.R
         className,
       )}
     >
-      {dot && <span className="size-1.5 rounded-full bg-neon-500 animate-pulse-dot" aria-hidden />}
+      {dot && <span className="size-1.5 rounded-full bg-magenta-400 animate-pulse-dot" aria-hidden />}
       {children}
     </p>
   );

@@ -130,7 +130,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             name="Brand-Verlauf"
             swatch={<div className="h-28 rounded-[16px] bg-brand-gradient" />}
             values="#8412B5 → #DC05A1"
-            uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows"]}
+            uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows", "Pulsierender Punkt im Eyebrow (Pink)"]}
           />
           <RoleCard
             role="Secondary"
@@ -144,7 +144,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             name="Neon „Tennisball“"
             swatch={<div className="h-28 rounded-[16px] bg-neon-500" />}
             values="#B4E854"
-            uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer", "Live-Punkt im Eyebrow"]}
+            uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer"]}
           />
         </div>
         <Note>Neon ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,35 : 1).</Note>
@@ -352,8 +352,8 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
         <H3>Club-Poster („Clubs mit Vibe“ und Club-Karten)</H3>
         <p className="max-w-3xl text-white/75">
-          Look aus den Instagram-Posts zu Neueröffnungen, automatisch für jeden Club: lila, körniger Himmel über dem Club-Foto, Stadt riesig in Poppins Bold (Silbentrennung
-          automatisch, letzte Zeile als Outline), der Standort innerhalb der Stadt (z. B. Frankfurter Ring, Tucherpark) kleiner unter der Abrisskante, weiße Abrisskante. Oben links der Öffnungsstatus in PadelCity-Pink. Courts und Sportarten erscheinen erst beim Hover (auf Touch-Geräten
+          Look aus den Instagram-Posts zu Neueröffnungen, automatisch für jeden Club: lila, körniger Himmel über dem Club-Foto, Stadt in Poppins Bold mit fester Schriftgröße je Kachel-Typ. Regel: bis 7 Buchstaben
+          einzeilig (Berlin, München), längere Namen an einer Silbe geteilt (Frank|furt), zweite Zeile als Outline – damit sitzt die Abrisskante immer auf einer von zwei festen Höhen, der Standort innerhalb der Stadt (z. B. Frankfurter Ring, Tucherpark) kleiner unter der Abrisskante, weiße Abrisskante. Oben links der Öffnungsstatus in PadelCity-Pink. Courts und Sportarten erscheinen erst beim Hover (auf Touch-Geräten
           immer sichtbar), damit das Poster ruhig bleibt. Die Club-Karten (Standorte, Academy, Franchise, Clubs in der Nähe) nutzen denselben Look im Bild – Status oben, Stadt mit Abrisskante, Preis unten rechts im Bild –, darunter statisch Adresse, Courts, Sportarten und Pfeil.
         </p>
 

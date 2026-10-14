@@ -55,7 +55,7 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
   |---|---|---|
   | Primär | Brand-Gradient Purple `#8412B5` → Magenta `#E005C3` (`bg-brand-gradient`) | Primäre CTAs (inkl. runder Pfeil auf weißen Buttons), aktive Zustände (aktiver Tab, gewählter Filter-Chip/Segment, gewählte Option, offenes Akkordeon), lila Flächen und Glows (`shadow-glow`) |
   | Sekundär | Weiß auf Ink | Text, **alle** Icons (Ausstattung, Sportarten, Kontakt, Social, Filter …), Outline-Buttons, Rahmen, Hover (→ Weiß bzw. Magenta-300 bei Links) |
-  | Highlight | Neon `#B4E854` („Tennisball“) | **Nur:** `<Accent>`-Brush-Wort, Neon-Ticker (Home + Footer), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball, kleiner Live-/Status-Punkt im Eyebrow |
+  | Highlight | Neon `#B4E854` („Tennisball“) | **Nur:** `<Accent>`-Brush-Wort, Neon-Ticker (Home + Footer), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball |
   | Status | Success / Danger / Warning | Nur System-Feedback |
 
   Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Magenta-300 auf Ink ≈ 7:1, Neon-Fokusring auf Ink ≈ 13,7:1.
