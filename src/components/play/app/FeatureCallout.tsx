@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Minus, Plus, Ticket, User } from "lucide-react";
 import type { AppCallouts, AppFeatureId } from "@/lib/content/app";
@@ -115,18 +114,6 @@ function Matches({ c }: { c: AppCallouts["matches"] }) {
   );
 }
 
-function Coach({ c }: { c: AppCallouts["events"] }) {
-  return (
-    <div className="flex items-center gap-4 rounded-2xl border-2 border-magenta-400 bg-gradient-to-br from-purple-700 to-[#6c1d86] p-4 font-sans text-white shadow-[0_24px_60px_-12px_rgb(0_0_0/0.7)]">
-      <Image src={c.image} alt="" width={64} height={64} className="size-14 shrink-0 rounded-full object-cover" />
-      <div>
-        <p className="text-base font-medium">{c.name}</p>
-        <p className="text-sm text-white/90">{c.text}</p>
-      </div>
-    </div>
-  );
-}
-
 function Vouchers({ c }: { c: AppCallouts["vouchers"] }) {
   const total = c.code.length + 4; // type the code, then show "applied" for a few ticks
   const step = useLoop(total + 1, 220);
@@ -158,11 +145,11 @@ function Benefits({ c }: { c: AppCallouts["benefits"] }) {
 /** `onMount`: animate in right away (sticky phone swaps); otherwise when scrolled into view. */
 export function FeatureCallout({ id, callouts, className, onMount }: { id: AppFeatureId; callouts: AppCallouts; className?: string; onMount?: boolean }) {
   const reduce = useReducedMotion();
+  if (id === "events") return null; // the events screen speaks for itself
   const body =
     id === "booking" ? <Booking c={callouts.booking} /> :
     id === "split" ? <Split c={callouts.split} /> :
     id === "matches" ? <Matches c={callouts.matches} /> :
-    id === "events" ? <Coach c={callouts.events} /> :
     id === "vouchers" ? <Vouchers c={callouts.vouchers} /> :
     <Benefits c={callouts.benefits} />;
   return (

@@ -48,7 +48,6 @@ export type AppCallouts = {
   booking: { times: string[]; durations: { value: string; unit: string; price: string }[] };
   split: { label: string; text: string; slots: string; price: string };
   matches: { title: string; text: string };
-  events: { name: string; text: string; image: string };
   vouchers: { label: string; code: string; applied: string };
   benefits: { title: string; text: string };
 };
@@ -65,10 +64,10 @@ export type StorePanel = { src: string; width: number; height: number; alt: stri
 // Raw app screenshots (1284×2778, with status bar) taken from the phones in Figma "PadelCity – Store Assets"
 // (DE 6529:6108, EN 6529:7942) – without the store headlines and overlay cards. Versioned path → no stale caches.
 const S = "/images/app/screens/v1-32";
-const shot = (key: ScreenKey, locale: "de" | "en", alt: string): AppScreenshot => ({ src: `${S}/${key}-${locale}.jpg`, width: 720, height: 1557, hasStatusBar: true, alt });
+const shot = (key: ScreenKey, locale: "de" | "en", alt: string, file: string = key): AppScreenshot => ({ src: `${S}/${file}-${locale}.jpg`, width: 720, height: 1557, hasStatusBar: true, alt });
 
 const screensDe: Record<ScreenKey, AppScreenshot> = {
-  home: shot("home", "de", "Startseite der App: Court buchen, Spiele finden, Training buchen, Events entdecken und Open Matches in deiner Nähe"),
+  home: shot("home", "de", "Startseite der App: Court buchen, Spiele finden, Training buchen, Events entdecken und Open Matches in deiner Nähe", "home-top"),
   booking: shot("booking", "de", "Court buchen: Club, Datum und Uhrzeit wählen, Startzeiten und Preise je Spieldauer"),
   checkout: shot("checkout", "de", "Buchung abschließen: Buchungsübersicht, anteilige Zahlung, Equipment, Gutschein einlösen und Summe"),
   split: shot("split", "de", "Buchung abschließen mit dem Schalter „Anteilige Zahlung“ für die Player Slots"),
@@ -78,7 +77,7 @@ const screensDe: Record<ScreenKey, AppScreenshot> = {
 };
 
 const screensEn: Record<ScreenKey, AppScreenshot> = {
-  home: shot("home", "en", "App home screen: book a match, find matches, book a training, discover events and open matches near you"),
+  home: shot("home", "en", "App home screen: book a match, find matches, book a training, discover events and open matches near you", "home-top"),
   booking: shot("booking", "en", "Book a court: pick club, date and time, start times and prices per duration"),
   checkout: shot("checkout", "en", "Confirm booking: booking summary, split payment, equipment, add voucher and total"),
   split: shot("split", "en", "Confirm booking with the “Split payment” switch for the player slots"),
@@ -87,12 +86,10 @@ const screensEn: Record<ScreenKey, AppScreenshot> = {
   benefits: shot("benefits", "en", "Profile: EGYM Wellpass account linked – the discount is shown automatically at checkout"),
 };
 
-const coachImage = "/images/academy/real-coaches/alvaro-bastarreche.jpg";
 const calloutsDe: AppCallouts = {
   booking: { times: ["16:00", "17:30", "21:00"], durations: [{ value: "60", unit: "Minuten", price: "36 €" }, { value: "90", unit: "Minuten", price: "54 €" }] },
   split: { label: "Anteilige Zahlung", text: "Platzmiete auf mehrere Spieler:innen aufteilen", slots: "2 von 4 Player Slots", price: "17 €" },
   matches: { title: "Match bestätigt", text: "Genug Spieler:innen dabei – der Court ist verbindlich reserviert." },
-  events: { name: "Alvaro Bastarreche", text: "50 €/h für 1er Training", image: coachImage },
   vouchers: { label: "Gutschein einlösen", code: "PADEL-LOVE", applied: "Gutschein eingelöst" },
   benefits: { title: "Nutze deine exklusiven Discounts!", text: "Die persönlichen Rabatte für deinen Player Slot werden dir automatisch im Checkout angezeigt." },
 };
@@ -100,7 +97,6 @@ const calloutsEn: AppCallouts = {
   booking: { times: ["16:00", "17:00", "18:00"], durations: [{ value: "60", unit: "Minutes", price: "€36" }, { value: "90", unit: "Minutes", price: "€54" }] },
   split: { label: "Split payment", text: "Split the court price between several players", slots: "2 of 4 player slots", price: "€17" },
   matches: { title: "Match confirmed", text: "Enough players have joined – the court is now booked bindingly." },
-  events: { name: "Alvaro Bastarreche", text: "€50/h for personal training", image: coachImage },
   vouchers: { label: "Add voucher", code: "PADEL-LOVE", applied: "Voucher applied" },
   benefits: { title: "Use your exclusive discounts!", text: "Your applicable discounts for your player slot will be applied at checkout." },
 };
@@ -250,12 +246,6 @@ const de = {
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} von 5 Sternen im ${store}, ${count}`,
     asOf: "Stand: Oktober 2026",
-    // No testimonials: brand promises instead of attributed quotes.
-    promises: [
-      { title: "#bettertogether", text: "Open Match erstellt, Mitspieler:innen gefunden, auf den Court. So einfach soll Padel sein." },
-      { title: "Make some noise", text: "Turniere, Club-Events und Trainings – die App bringt dich mittenrein." },
-      { title: "Welcoming", text: "Vom ersten Training bis zum Turnier: Die App führt dich Schritt für Schritt in die Community." },
-    ],
   },
   how: {
     eyebrow: "So funktioniert's",
@@ -407,11 +397,6 @@ const en: AppContent = {
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} out of 5 stars on ${store}, ${count}`,
     asOf: "As of October 2026",
-    promises: [
-      { title: "#bettertogether", text: "Create an open match, find your players, get on court. That's how easy padel should be." },
-      { title: "Make some noise", text: "Tournaments, club events and training – the app puts you right in the middle of it." },
-      { title: "Welcoming", text: "From your first training session to your first tournament: the app guides you into the community step by step." },
-    ],
   },
   how: {
     eyebrow: "How it works",

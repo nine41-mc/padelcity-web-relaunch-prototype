@@ -439,7 +439,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <p className="max-w-3xl text-white/75">
           In den Handy-Rahmen stehen nur vollständige App-Screenshots (Originale aus der Figma-Datei „Store Assets“, mit Statusleiste, ohne Store-Headlines).
           Darüber schwebt pro Feature ein Element des jeweiligen Screens – in HTML nachgebaut, immer vollständig sichtbar und nie abgeschnitten – mit einer kleinen Schleife:
-          Startzeit wählen, „Anteilige Zahlung“ einschalten, Spieler:innen treten bei, Gutscheincode tippen, Coach-Karte, Discount-Hinweis.
+          Startzeit wählen, „Anteilige Zahlung“ einschalten, Spieler:innen treten bei, Gutscheincode tippen, Discount-Hinweis. Store-Bewertungen stehen direkt im Hero.
         </p>
 
         <H3>Standortfinder: Filter</H3>

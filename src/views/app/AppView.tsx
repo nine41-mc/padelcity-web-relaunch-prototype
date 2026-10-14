@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Sparkles, Star } from "lucide-react";
+import { ArrowUpRight, Star } from "lucide-react";
 import { site, stores } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -56,6 +56,30 @@ export function AppView({ locale }: { locale: Locale }) {
               {t.hero.title} <Accent>{t.hero.accent}</Accent>
             </Headline>
             <Lead className="mt-6">{t.hero.lead}</Lead>
+            {/* Store ratings (real, dated) right in the hero – socialProof module */}
+            <ul className="mt-8 flex flex-wrap gap-3">
+              {t.socialProof.ratings.map((r) => (
+                <li key={r.store}>
+                  <a
+                    href={r.store === "App Store" ? stores.ios : stores.android}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-track={r.track}
+                    aria-label={t.socialProof.ratingsLabel(r.value, r.store, r.count)}
+                    className="flex items-center gap-3 rounded-full border border-white/20 bg-black/30 py-2 pl-4 pr-5 backdrop-blur transition-colors hover:border-white/50"
+                  >
+                    <span className="flex items-center gap-1.5 font-display text-2xl font-extrabold italic leading-none">
+                      {r.value} <Star className="size-4 fill-white text-white" aria-hidden />
+                    </span>
+                    <span className="text-sm leading-tight text-white/80">
+                      {r.store}
+                      <span className="block text-xs text-white/60">{r.count}</span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs text-white/60">{t.socialProof.asOf}</p>
             <div id="download" className="mt-10 flex scroll-mt-28 flex-col gap-6 md:flex-row md:items-center">
               <StoreBadges locale={locale} />
               <QrPlaceholder className="hidden lg:flex" labels={t.qr} />
@@ -100,50 +124,6 @@ export function AppView({ locale }: { locale: Locale }) {
           </Button>
         </div>
         <StoreGallery panels={t.gallery.panels} labels={t.gallery} />
-      </Section>
-
-      {/* Contentful module: socialProof (real store ratings, dated; no testimonials) */}
-      <Section tone="black">
-        <div className="grid gap-10 lg:grid-cols-[1fr_2fr] lg:items-start">
-          <div>
-            <Eyebrow className="mb-4">{t.socialProof.eyebrow}</Eyebrow>
-            <Headline size="md">{t.socialProof.title}</Headline>
-            <ul className="mt-8 grid grid-cols-2 gap-3">
-              {t.socialProof.ratings.map((r) => (
-                <li key={r.store}>
-                  <a
-                    href={r.store === "App Store" ? stores.ios : stores.android}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-track={r.track}
-                    aria-label={t.socialProof.ratingsLabel(r.value, r.store, r.count)}
-                    className="block h-full rounded-[20px] border border-white/10 bg-ink-700 p-5 transition-transform hover:-translate-y-0.5"
-                  >
-                    <p className="flex items-center gap-2 font-display text-4xl font-extrabold italic">
-                      {r.value} <Star className="size-6 fill-white text-white" aria-hidden />
-                    </p>
-                    <p className="mt-1 text-sm text-white/70">{r.store}</p>
-                    <p className="text-sm text-white/70">{r.count}</p>
-                  </a>
-                </li>
-              ))}
-            </ul>
-            <p className="mt-3 text-xs text-white/60">{t.socialProof.asOf}</p>
-          </div>
-          <ul className="grid gap-5 md:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3">
-            {t.socialProof.promises.map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.06} className="h-full">
-                <li className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 p-6">
-                  <span className="grid size-10 place-items-center rounded-full bg-brand-gradient">
-                    <Sparkles className="size-5" aria-hidden />
-                  </span>
-                  <p className="mt-5 font-display text-2xl font-extrabold uppercase italic leading-none">{p.title}</p>
-                  <p className="mt-3 text-white/70">{p.text}</p>
-                </li>
-              </Reveal>
-            ))}
-          </ul>
-        </div>
       </Section>
 
       {/* Contentful module: howItWorks */}
