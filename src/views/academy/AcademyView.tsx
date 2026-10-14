@@ -157,7 +157,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {clubs.map((c, i) => (
-            <Reveal key={c.id} delay={(i % 3) * 0.06} className="flex">
+            <Reveal key={c.id} delay={(i % 3) * 0.06} className="flex min-w-0">
               <ClubCard club={c} locale={locale} className="w-full" />
             </Reveal>
           ))}

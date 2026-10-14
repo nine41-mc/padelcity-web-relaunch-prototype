@@ -399,7 +399,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           </Headline>
           <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {nearby.map(({ club: c, km }) => (
-              <li key={c.id} className="flex">
+              <li key={c.id} className="flex min-w-0">
                 <ClubCard club={c} distanceKm={km} locale={locale} className="w-full" />
               </li>
             ))}

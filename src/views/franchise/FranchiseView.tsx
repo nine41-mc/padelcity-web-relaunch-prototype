@@ -146,7 +146,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           <SectionIntro eyebrow={`${franchiseClubs.length} ${t.clubs.eyebrowSuffix}`} title={t.clubs.title} lead={t.clubs.lead} />
           <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             {franchiseClubs.map((c, i) => (
-              <li key={c.id}>
+              <li key={c.id} className="min-w-0">
                 <Reveal delay={i * 0.05} className="h-full">
                   <ClubCard club={c} locale={locale} className="h-full" />
                 </Reveal>

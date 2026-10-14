@@ -2,9 +2,9 @@
 
 // Contentful module: locationFinder (filters + list/map view; Contentful club master data only – no booking data)
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { LayoutGrid, LocateFixed, Loader2, Map as MapIcon, Search, X } from "lucide-react";
+import { LayoutGrid, LocateFixed, Loader2, Map as MapIcon, Search, SlidersHorizontal, X } from "lucide-react";
 import type { Club, ClubCountry } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { COUNTRY_ORDER, locationsContent } from "@/lib/content/locations";
@@ -12,6 +12,7 @@ import { ClubCard } from "@/components/cards/ClubCard";
 import { cn } from "@/components/ui/cn";
 import { ClubMapLazy } from "./ClubMapLazy";
 import { CountryFlag } from "./CountryFlag";
+import { FilterSheet, SheetGroup, sheetChip } from "./FilterSheet";
 import { distanceKm, type LatLng } from "./geo";
 
 type FilterKey = "indoor" | "outdoor" | "panorama" | "franchise";
@@ -44,6 +45,8 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
   const [user, setUser] = useState<LatLng | null>(null);
   const [geo, setGeo] = useState<GeoState>("idle");
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const closeSheet = useCallback(() => setSheetOpen(false), []);
 
   const toggle = (k: FilterKey) =>
     setFilters((prev) => {
@@ -127,6 +130,8 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
     [results, plannedOnMap],
   );
 
+  const activeCount = filters.size + (country !== "all" ? 1 : 0);
+
   const reset = () => {
     setQuery("");
     setFilters(new Set());
@@ -198,7 +203,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
       {/* Country segmented control (DE · AT · PL …) – combines with search + filters below */}
       {countries.length > 1 && (
         <div
-          className="-mx-4 mt-10 flex overflow-x-auto px-4 scrollbar-none md:mx-0 md:px-0"
+          className="mt-10 hidden md:flex"
           role="group"
           aria-label={t.countryLabel}
           data-testid="country-filter"
@@ -229,8 +234,8 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
 
       {/* Toolbar */}
       <h2 className="sr-only">{t.resultsHeading}</h2>
-      <div id="results" className={cn("flex scroll-mt-32 flex-col gap-4 md:flex-row md:items-center md:justify-between", countries.length > 1 ? "mt-4" : "mt-10")}>
-        <div className="-mx-4 flex gap-2 overflow-x-auto px-4 scrollbar-none md:mx-0 md:flex-wrap md:px-0" role="group" aria-label={t.filterLabel}>
+      <div id="results" className={cn("mt-8 flex scroll-mt-32 flex-col gap-4 md:flex-row md:items-center md:justify-between", countries.length > 1 ? "md:mt-4" : "md:mt-10")}>
+        <div className="hidden flex-wrap gap-2 md:flex" role="group" aria-label={t.filterLabel}>
           {FILTER_KEYS.map((key) => (
             <button key={key} type="button" aria-pressed={filters.has(key)} onClick={() => toggle(key)} className={chip(filters.has(key))}>
               {t.filters[key]}
@@ -242,6 +247,26 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
             <span className="font-semibold text-white">{results.length}</span> {results.length === 1 ? t.club : t.clubs}
             {user && t.byDistance}
           </p>
+          <div className="flex items-center gap-2">
+          {/* Phone: country + features collapse into one filter button → bottom sheet */}
+          <button
+            type="button"
+            onClick={() => setSheetOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={sheetOpen}
+            aria-label={activeCount ? `${t.filterLabel} (${activeCount})` : t.filterLabel}
+            className={cn(
+              "relative grid size-12 place-items-center rounded-full border transition-colors md:hidden",
+              activeCount ? "border-transparent bg-brand-gradient text-white" : "border-white/40 bg-white/5 text-white",
+            )}
+          >
+            <SlidersHorizontal className="size-5" aria-hidden />
+            {activeCount > 0 && (
+              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-white text-[11px] font-bold tabular-nums text-ink-800" aria-hidden>
+                {activeCount}
+              </span>
+            )}
+          </button>
           <div className="flex rounded-full border border-white/15 p-1" role="group" aria-label={t.viewLabel}>
             {(
               [
@@ -254,17 +279,52 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
                 type="button"
                 aria-pressed={view === key}
                 onClick={() => setView(key)}
+                aria-label={label}
                 className={cn(
-                  "flex min-h-10 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors",
+                  "flex min-h-10 min-w-10 items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors md:px-4",
                   view === key ? "bg-brand-gradient text-white" : "text-white/70 hover:text-white",
                 )}
               >
-                <Icon className="size-4" aria-hidden /> {label}
+                {/* Phone: icon only (label stays the accessible name) */}
+                <Icon className="size-4" aria-hidden /> <span className="hidden md:inline">{label}</span>
               </button>
             ))}
           </div>
+          </div>
         </div>
       </div>
+
+      <FilterSheet
+        open={sheetOpen}
+        onClose={closeSheet}
+        title={t.filterLabel}
+        closeLabel={t.close}
+        resetLabel={t.resetShort}
+        showLabel={t.show(results.length)}
+        onReset={() => {
+          setFilters(new Set());
+          setCountry("all");
+        }}
+      >
+        {countries.length > 1 && (
+          <SheetGroup label={t.countryLabel}>
+            {[{ code: "all" as const, count: clubs.length }, ...countries].map(({ code, count }) => (
+              <button key={code} type="button" aria-pressed={country === code} onClick={() => setCountry(code)} className={sheetChip(country === code)}>
+                {code !== "all" && <CountryFlag country={code} />}
+                {t.countries[code]}
+                <span className={cn("tabular-nums text-[13px]", country === code ? "text-white/80" : "text-white/70")}>{count}</span>
+              </button>
+            ))}
+          </SheetGroup>
+        )}
+        <SheetGroup label={t.featuresLabel}>
+          {FILTER_KEYS.map((key) => (
+            <button key={key} type="button" aria-pressed={filters.has(key)} onClick={() => toggle(key)} className={sheetChip(filters.has(key))}>
+              {t.filters[key]}
+            </button>
+          ))}
+        </SheetGroup>
+      </FilterSheet>
 
       {/* Results */}
       {results.length === 0 ? (
@@ -278,7 +338,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
       ) : view === "list" ? (
         <ul className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {results.map(({ club, km }) => (
-            <li key={club.id} className="flex">
+            <li key={club.id} className="flex min-w-0">
               <ClubCard club={club} distanceKm={km} locale={locale} className="w-full" />
             </li>
           ))}
@@ -297,7 +357,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
             {results.map(({ club, km }) => (
               <li
                 key={club.id}
-                className={cn("flex rounded-[22px] transition-shadow", activeId === club.id && "ring-2 ring-magenta-400")}
+                className={cn("flex min-w-0 rounded-[22px] transition-shadow", activeId === club.id && "ring-2 ring-magenta-400")}
                 onMouseEnter={() => setActiveId(club.id)}
                 onFocus={() => setActiveId(club.id)}
               >
