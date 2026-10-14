@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Instagram, Linkedin, MessageCircle, Youtube } from "lucide-react";
+import { ArrowUpRight, Facebook, Instagram, Linkedin, MessageCircle, Youtube } from "lucide-react";
 import { legalNav, mainNav, secondaryNav, site } from "@/lib/site";
 import { asset } from "@/lib/asset";
 import type { Locale } from "@/lib/i18n/config";
@@ -8,6 +8,8 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { NewsletterSignup } from "../modules/NewsletterSignup";
 import { Accent } from "../ui/Headline";
 import { Marquee } from "../ui/Marquee";
+import { WhatsAppGroups } from "../community/WhatsAppGroups";
+import { whatsappGroupCount } from "@/lib/content/whatsapp";
 
 function TikTok({ className }: { className?: string }) {
   return (
@@ -37,10 +39,12 @@ function PadelBall({ className, id = "ballShade" }: { className?: string; id?: s
 export function Footer({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
   const socials = [
-    { href: site.social.instagram, icon: Instagram, label: "Instagram" },
-    { href: site.social.tiktok, icon: TikTok, label: "TikTok" },
-    { href: site.social.youtube, icon: Youtube, label: "YouTube" },
+    // Order as on padelcity.de: LinkedIn, Facebook, Instagram, YouTube, TikTok
     { href: site.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+    { href: site.social.facebook, icon: Facebook, label: "Facebook" },
+    { href: site.social.instagram, icon: Instagram, label: "Instagram" },
+    { href: site.social.youtube, icon: Youtube, label: "YouTube" },
+    { href: site.social.tiktok, icon: TikTok, label: "TikTok" },
   ];
 
   return (
@@ -64,7 +68,7 @@ export function Footer({ locale }: { locale: Locale }) {
       </div>
 
       <div className="container-site relative pt-20 md:pt-28">
-        {/* Hero row: claim + ball + app/community | newsletter */}
+        {/* Hero row: claim + ball | newsletter */}
         <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
           <div className="relative">
             <PadelBall id={`ballShade-${locale}`} className="absolute -top-6 right-0 size-20 rotate-12 drop-shadow-[0_12px_30px_rgba(180,232,84,0.45)] motion-safe:animate-[ball-bob_3.2s_ease-in-out_infinite] md:-top-10 md:size-28 lg:right-6" />
@@ -72,27 +76,27 @@ export function Footer({ locale }: { locale: Locale }) {
               {t.footer.claim1} <Accent>{t.footer.claimAccent}</Accent> {t.footer.claim2}
             </p>
 
-            {/* App-store card removed (PadelCity, 15.10.2026) – the WhatsApp card stays on its own. */}
-            <div className="mt-10 max-w-md">
-              <Link
-                href={href(locale, "locations")}
-                data-track="footer_whatsapp_club"
-                className="group flex flex-col justify-between rounded-[24px] border border-white/12 bg-white/[0.04] p-5 backdrop-blur transition-colors hover:border-white/40"
-              >
-                <span className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.12em] text-white/85">
-                  <MessageCircle className="size-4 text-white" aria-hidden /> WhatsApp
-                </span>
-                <span className="mt-3 flex items-end justify-between gap-3">
-                  <span className="font-display text-2xl font-extrabold italic uppercase leading-none group-hover:text-magenta-300">{t.footer.whatsapp}</span>
-                  <span className="grid size-10 shrink-0 place-items-center rounded-full bg-white/10 transition-all group-hover:rotate-45 group-hover:bg-brand-gradient group-hover:text-white">
-                    <ArrowUpRight className="size-5" aria-hidden />
-                  </span>
-                </span>
-              </Link>
-            </div>
           </div>
 
+          {/* Newsletter stands on its own */}
           <NewsletterSignup locale={locale} className="border-white/15 bg-ink-800/70 backdrop-blur-xl lg:mt-6" />
+        </div>
+
+        {/* WhatsApp community – full-width band, opens the overlay with every location's group */}
+        <div className="relative mt-16 overflow-hidden rounded-[32px] bg-brandbook-gradient p-6 md:mt-20 md:p-10 lg:p-12">
+          <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
+          <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto]">
+            <div>
+              <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85">
+                <MessageCircle className="size-4 text-white" aria-hidden /> {t.footer.community.eyebrow(whatsappGroupCount)}
+              </p>
+              <p className="mt-4 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-6xl lg:text-7xl">
+                {t.footer.community.title} <Accent>{t.footer.community.accent}</Accent>
+              </p>
+              <p className="mt-4 max-w-xl text-white/85 md:text-lg">{t.footer.community.text}</p>
+            </div>
+            <WhatsAppGroups locale={locale} label={t.footer.community.cta} variant="primary" size="lg" className="w-full md:w-auto" track="footer_whatsapp_overlay" />
+          </div>
         </div>
 
         {/* Link columns */}

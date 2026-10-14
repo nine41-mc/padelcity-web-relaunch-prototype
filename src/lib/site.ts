@@ -12,11 +12,13 @@ export const site = {
   url: "https://www.padelcity.de",
   email: "info@padelcity.de",
   whatsappCommunity: "https://chat.whatsapp.com/", // TODO: real invite link from Marketing
+  // Profiles as linked on padelcity.de (checked 15.10.2026). LinkedIn is not linked there – URL unverified.
   social: {
-    instagram: "https://www.instagram.com/padelcity.de/",
-    tiktok: "https://www.tiktok.com/@padelcity",
-    youtube: "https://www.youtube.com/@padelcity",
     linkedin: "https://www.linkedin.com/company/padelcity/",
+    facebook: "https://www.facebook.com/p/PadelCity-100084223325300/",
+    instagram: "https://www.instagram.com/padelcity.de/",
+    youtube: "https://www.youtube.com/@PadelCityTV",
+    tiktok: "https://www.tiktok.com/@padelcity.de",
   },
 } as const;
 

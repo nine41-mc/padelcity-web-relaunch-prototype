@@ -39,6 +39,9 @@ export const whatsappByCity: Record<string, string> = {
   Wiesbaden: "https://chat.whatsapp.com/D2S0d7DHKYC55sZGwqk4hb",
 };
 
+/** Number of distinct WhatsApp groups/channels (for teasers). */
+export const whatsappGroupCount = new Set(Object.values(whatsappByCity)).size;
+
 const norm = (s: string) =>
   s.toLocaleLowerCase("de").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss").replace(/[^a-z]/g, "");
 

@@ -58,7 +58,7 @@ export function NewsletterSignup({
             type="email"
             required
             placeholder={t.placeholder}
-            className="h-12 flex-1 rounded-full border border-white/45 bg-black/40 px-5 text-white placeholder:text-white/60 focus:border-neon-500 focus:outline-none focus:ring-2 focus:ring-neon-500/50"
+            className="h-12 shrink-0 rounded-full border border-white/45 bg-black/40 px-5 sm:flex-1 text-white placeholder:text-white/60 focus:border-neon-500 focus:outline-none focus:ring-2 focus:ring-neon-500/50"
           />
           <Button type="submit" variant="neon" data-track="newsletter_submit">
             {t.submit}

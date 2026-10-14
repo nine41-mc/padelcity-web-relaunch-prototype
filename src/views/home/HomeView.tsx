@@ -1,4 +1,5 @@
 import { keepTogether } from "@/lib/typography";
+import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
@@ -243,10 +244,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
               {t.community.text}
             </Lead>
             <div className="mt-8 flex flex-wrap gap-3">
-              {/* WhatsApp groups exist per club (club page → contact bar); no central invite link yet (site.whatsappCommunity is a TODO) */}
-              <Button href={href(locale, "locations")} variant="gradient" data-track="whatsapp_join">
-                {t.community.whatsapp}
-              </Button>
+              {/* Opens the overlay with every location's WhatsApp group (no central community link) */}
+              <WhatsAppGroups locale={locale} label={t.community.whatsapp} track="whatsapp_join" />
               <Button href={href(locale, "app")} variant="outline">
                 {t.community.matches}
               </Button>
