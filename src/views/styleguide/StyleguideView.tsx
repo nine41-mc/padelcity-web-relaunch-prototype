@@ -371,6 +371,13 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Esc schließt. Highlights liefert die Instagram-API nicht – sie werden pro Club in Contentful gepflegt.
         </p>
 
+        <H3>Coming-soon-Seite mit Padel-Pong</H3>
+        <p className="max-w-3xl text-white/75">
+          Ziel aller Links, die im Prototyp noch ins Leere laufen würden (App-Deeplinks, Event-Anmeldung in der Web-App). Endloses Pong auf einem dunklen Court: Schläger in Purple
+          und Magenta, Ball in Neon mit Leuchtspur, Rally-Zähler in Neon. Wer die Maus oder den Finger über das Feld bewegt, übernimmt den linken Schläger. Bei reduzierter Bewegung
+          steht das Bild still. Zweisprachig, weil Links von DE- und EN-Seiten hier landen.
+        </p>
+
         <H3>Clubkarte auf der Startseite</H3>
         <p className="max-w-3xl text-white/75">
           Deutschland im Brand-Verlauf mit Punktraster. Österreich und Polen sind grau und gestrichelt angedeutet, damit Innsbruck, Warschau, Krakau und Kielce nicht frei schweben.

@@ -1,4 +1,5 @@
 import { Monitor, Smartphone } from "lucide-react";
+import { asset } from "@/lib/asset";
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { deeplinks, webApp } from "@/lib/site";
@@ -40,15 +41,20 @@ export function EventSignup({
     <div className={cn("relative z-10", className)}>
       {showLabel && <p className="mb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85">{t.signupLabel}</p>}
       <div className="grid grid-cols-2 gap-2.5">
-        <a href={webApp.event(eventId)} target="_blank" rel="noopener noreferrer" aria-label={t.webAria} data-track="event_signup_web" className={btn}>
+        <a {...linkProps(webApp.event(eventId))} aria-label={t.webAria} data-track="event_signup_web" className={btn}>
           <Monitor className={cn(icon, "shrink-0")} aria-hidden />
           {t.web}
         </a>
-        <a href={deeplinks.event(eventId)} aria-label={t.appAria} data-track="event_signup_app" className={btn}>
+        <a {...linkProps(deeplinks.event(eventId))} aria-label={t.appAria} data-track="event_signup_app" className={btn}>
           <Smartphone className={cn(icon, "shrink-0")} aria-hidden />
           {t.app}
         </a>
       </div>
     </div>
   );
+}
+
+/** Internal targets (the "Coming soon" page while app links aren't live) need the basePath and open in the same tab. */
+function linkProps(url: string) {
+  return url.startsWith("/") ? { href: asset(url + "/") } : { href: url, target: "_blank", rel: "noopener noreferrer" };
 }
