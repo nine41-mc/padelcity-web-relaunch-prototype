@@ -3,7 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/components/ui/cn";
 
-/** Sticky in-page tab nav (anchor links). Highlights the section in view via IntersectionObserver. */
+/**
+ * Sticky in-page tab nav (anchor links). Highlights the section in view via IntersectionObserver.
+ * Tablet/desktop only: on phones header + tabs + booking bar covered ~25 % of the screen (PadelCity, 14.10.2026).
+ */
 export function SectionTabs({ items, label, className }: { items: { id: string; label: string }[]; label: string; className?: string }) {
   const [active, setActive] = useState(items[0]?.id);
   const listRef = useRef<HTMLUListElement>(null);
@@ -31,7 +34,7 @@ export function SectionTabs({ items, label, className }: { items: { id: string; 
   }, [active]);
 
   return (
-    <nav aria-label={label} className={cn("sticky top-[76px] z-30 md:top-[92px]", className)}>
+    <nav aria-label={label} className={cn("sticky top-[92px] z-30 hidden md:block", className)}>
       <div className="container-site">
         <ul ref={listRef} className="flex gap-1 overflow-x-auto rounded-full border border-white/10 bg-ink-700/85 p-1 shadow-elevated backdrop-blur-xl scrollbar-none">
           {items.map((i) => (

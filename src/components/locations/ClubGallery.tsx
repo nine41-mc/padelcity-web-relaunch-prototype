@@ -50,7 +50,7 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
             <Media src={img.url} alt={img.alt} className="aspect-[4/3]" priority={i === 0} sizes="86vw" />
             {i === 0 && (
               <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-[13px] font-semibold backdrop-blur">
-                <Images className="size-3.5" aria-hidden /> {images.length} {t.photos}
+                <Images className="size-3.5" aria-hidden /> {images.length} {images.length === 1 ? t.photo : t.photos}
               </span>
             )}
           </button>

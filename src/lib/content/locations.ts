@@ -108,6 +108,7 @@ const de = {
     gallery: {
       extra: ["Courts von oben", "Lounge", "Umkleiden", "Community nach dem Match", "Bar & Bistro", "Court-Details"],
       photos: "Fotos",
+      photo: "Foto",
       photosOf: "Fotos {club}",
       galleryOf: "Fotogalerie {club}",
       enlarge: "Foto {i} von {n} vergrößern",
@@ -169,7 +170,7 @@ const de = {
       emptyTitle: "Gerade keine Events in {city} geplant.",
       emptyText: "Offene Matches findest du jeden Tag in der App – oder schau, was in anderen Clubs los ist.",
     },
-    directions: { title: "Anfahrt & Öffnungszeiten", hours: "Öffnungszeiten", route: "Route öffnen" },
+    directions: { title: "Anfahrt", hours: "Öffnungszeiten", route: "Route öffnen" },
     faqLink: { text: "Fragen zu Buchung, Storno oder Hansefit & Wellpass?", cta: "Zu den FAQ" },
     contactBar: {
       label: "Kontakt zum Club",
@@ -303,6 +304,7 @@ const en: LocationsContent = {
     gallery: {
       extra: ["Courts from above", "Lounge", "Changing rooms", "Community after the match", "Bar & bistro", "Court details"],
       photos: "photos",
+      photo: "photo",
       photosOf: "Photos of {club}",
       galleryOf: "Photo gallery {club}",
       enlarge: "Enlarge photo {i} of {n}",
@@ -364,7 +366,7 @@ const en: LocationsContent = {
       emptyTitle: "No events planned in {city} right now.",
       emptyText: "You'll find open matches every day in the app – or see what's on at other clubs.",
     },
-    directions: { title: "Getting here & opening hours", hours: "Opening hours", route: "Get directions" },
+    directions: { title: "Getting here", hours: "Opening hours", route: "Get directions" },
     faqLink: { text: "Questions about booking, cancelling or Hansefit & Wellpass?", cta: "Read the FAQ" },
     contactBar: {
       label: "Club contact",

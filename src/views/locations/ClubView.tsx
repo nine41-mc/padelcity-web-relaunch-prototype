@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Clock, Mail, MapPin, MessageCircleQuestionMark, Navigation } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircleQuestionMark, Navigation } from "lucide-react";
 import { getClub, getClubs, getCoaches, getEvents } from "@/lib/data";
 import { getClubReviews, reviewModuleClubs } from "@/lib/data/google-reviews";
 import type { Club, ImageAsset } from "@/lib/data/types";
@@ -31,7 +31,7 @@ import { ClubMapLazy } from "@/components/locations/ClubMapLazy";
 import { ClubReviews } from "@/components/locations/ClubReviews";
 import { ClubContactBar } from "@/components/locations/ClubContactBar";
 import { SectionTabs } from "@/components/locations/SectionTabs";
-import { dayLabel, distanceKm, googleMapsRoute, schemaDays } from "@/components/locations/geo";
+import { distanceKm, googleMapsRoute, schemaDays } from "@/components/locations/geo";
 
 export type ClubParams = { slug: string };
 
@@ -349,31 +349,17 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           )}
         </Section>
 
-        {/* Directions: opening hours + map */}
+        {/* Directions: address + map (opening hours are in the booking block) */}
         <Section id="directions" className={sectionCls}>
           <Headline size="sm" className="mb-8">
             {t.directions.title}
           </Headline>
-          <div className="grid gap-5 lg:grid-cols-[1fr_2fr]">
-            <div className="rounded-[20px] border border-white/10 bg-ink-700 p-6">
-              <p className="mb-4 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
-                <Clock className="size-4" aria-hidden /> {t.directions.hours}
-              </p>
-              <dl className="space-y-3">
-                {club.openingHours.map((h) => (
-                  <div key={h.label} className="flex justify-between gap-4">
-                    <dt className="text-white/75">{dayLabel(h.label, locale)}</dt>
-                    <dd className="font-medium tabular-nums">
-                      {h.open} – {h.close}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
-              <p className="mt-6 flex items-start gap-2 border-t border-white/10 pt-5 text-sm text-white/75">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-white/70" aria-hidden /> {addressLine}
-              </p>
-            </div>
-            <div className="relative isolate h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[380px]">
+          {/* Opening hours live in the booking block (#book) – no duplicate here */}
+          <p className="-mt-4 mb-6 flex items-start gap-2 text-white/80">
+            <MapPin className="mt-1 size-4 shrink-0 text-white" aria-hidden /> {addressLine}
+          </p>
+          <div>
+            <div className="relative isolate h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[420px]">
               <ClubMapLazy
                 clubs={[{ id: club.id, slug: club.slug, name: club.name, city: club.city, position: club.position }]}
                 locale={locale}

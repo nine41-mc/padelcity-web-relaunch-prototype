@@ -14,7 +14,7 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
   const a = club.address;
   const c = club.contact;
   const tile =
-    "group flex min-h-[112px] flex-col gap-1.5 rounded-[20px] border border-white/12 bg-ink-700 p-5 transition-colors";
+    "group flex h-full flex-col gap-1.5 rounded-[20px] border border-white/12 bg-ink-700 p-4 transition-colors sm:min-h-[112px] sm:p-5";
   const link = "hover:border-white/40 focus-visible:border-white";
   const label = "flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.12em] text-white/75";
   const value = "font-semibold leading-snug text-white group-hover:text-magenta-300";
@@ -22,7 +22,7 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
 
   return (
     <section id="contact" aria-label={t.label} className="scroll-mt-44">
-      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4">
         <li>
           <a href={googleMapsRoute(club.position)} target="_blank" rel="noopener noreferrer" className={`${tile} ${link}`} data-track="club_route_click">
             <span className={label}>
@@ -62,7 +62,7 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
               <span className={label}>
                 <Phone className="size-4 text-white" aria-hidden /> {t.phone}
               </span>
-              <span className={value}>{c.phoneNumber}</span>
+              <span className={value}>{formatPhone(c.phoneNumber)}</span>
             </a>
           ) : (
             <div className={tile}>
@@ -95,4 +95,16 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
       </ul>
     </section>
   );
+}
+
+/**
+ * "+4915117612294" → "+49 151 17612294". Contentful stores numbers unformatted; mobile prefixes (1xx) are
+ * always 3 digits, landline area codes vary – those only get a space after the country code.
+ */
+function formatPhone(raw: string) {
+  const n = raw.replace(/[^\d+]/g, "");
+  const m = /^\+(49|43|48)(\d+)$/.exec(n);
+  if (!m) return raw;
+  const [, cc, rest] = m;
+  return /^1/.test(rest) && cc === "49" ? `+${cc} ${rest.slice(0, 3)} ${rest.slice(3)}` : `+${cc} ${rest}`;
 }

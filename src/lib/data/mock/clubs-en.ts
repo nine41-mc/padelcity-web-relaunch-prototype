@@ -51,7 +51,7 @@ export function toEnglishMock(club: Club): Club {
     ...club,
     city: cities[club.city] ?? club.city,
     teaser,
-    description: `${teaser} ${n} ${loc} courts, rental rackets on site and a community that welcomes you with open arms. Book your court in the PadelCity app – in just a few taps.`,
+    description: `${teaser} ${loc} courts, rental rackets on site and a community that welcomes you with open arms. Book your court in the PadelCity app – in just a few taps.`,
     facilities: club.facilities.map((f) => ({ ...f, name: facilities[f.type] ?? f.name })),
     tags: club.tags.map((t) => tags[t] ?? t),
     openingHours: club.openingHours.map((h) => ({ ...h, label: days[h.label] ?? h.label })),
