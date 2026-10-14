@@ -5,7 +5,6 @@ import { asset } from "@/lib/asset";
 import type { Locale } from "@/lib/i18n/config";
 import { href, type RouteKey } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { StoreBadges } from "../ui/StoreBadges";
 import { NewsletterSignup } from "../modules/NewsletterSignup";
 import { Accent } from "../ui/Headline";
 import { Marquee } from "../ui/Marquee";
@@ -73,11 +72,8 @@ export function Footer({ locale }: { locale: Locale }) {
               {t.footer.claim1} <Accent>{t.footer.claimAccent}</Accent> {t.footer.claim2}
             </p>
 
-            <div className="mt-10 grid gap-3 sm:grid-cols-2">
-              <div className="rounded-[24px] border border-white/12 bg-white/[0.04] p-5 backdrop-blur">
-                <p className="font-display text-2xl font-extrabold italic uppercase leading-none">{t.footer.appTitle}</p>
-                <StoreBadges locale={locale} className="mt-4" />
-              </div>
+            {/* App-store card removed (PadelCity, 15.10.2026) – the WhatsApp card stays on its own. */}
+            <div className="mt-10 max-w-md">
               <Link
                 href={href(locale, "locations")}
                 data-track="footer_whatsapp_club"
