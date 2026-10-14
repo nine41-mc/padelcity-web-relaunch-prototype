@@ -82,7 +82,7 @@ const coachCard = {
 };
 
 // Store screens v1.32.0 (iPhone 6.9"), exported from Figma "PadelCity – Store Assets" (DE node 6529:6108, EN node 6529:7942) at 2x.
-const P = "/images/app/store";
+const P = "/images/app/store/v1-32"; // versioned path → new URLs bypass old browser caches
 const panelsDe: StorePanel[] = [
   "Willkommen in der Welt von PadelCity – Startseite der App",
   "Entdecke Clubs in deiner Nähe – Court buchen mit Startzeiten und Preisen",

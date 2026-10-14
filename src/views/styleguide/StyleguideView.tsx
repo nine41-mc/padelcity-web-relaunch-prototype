@@ -350,11 +350,11 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <StoreBadges locale={locale} />
         <p className="mt-3 text-sm text-white/70">Offizielle Badges von Apple und Google, nicht nachgebaut. Nur auf der App-Seite – nicht im Footer und nicht auf Clubseiten, dort führt „In der App buchen“ direkt in die App.</p>
 
-        <H3>Club-Poster („Clubs mit Vibe“ auf der Startseite)</H3>
+        <H3>Club-Poster („Clubs mit Vibe“ und Club-Karten)</H3>
         <p className="max-w-3xl text-white/75">
           Look aus den Instagram-Posts zu Neueröffnungen, automatisch für jeden Club: lila, körniger Himmel über dem Club-Foto, Stadt riesig in Poppins Bold (Silbentrennung
           automatisch, letzte Zeile als Outline), der Standort innerhalb der Stadt (z. B. Frankfurter Ring, Tucherpark) kleiner unter der Abrisskante, weiße Abrisskante. Oben links der Öffnungsstatus in PadelCity-Pink. Courts und Sportarten erscheinen erst beim Hover (auf Touch-Geräten
-          immer sichtbar), damit das Poster ruhig bleibt.
+          immer sichtbar), damit das Poster ruhig bleibt. Die Club-Karten (Standorte, Academy, Franchise, Clubs in der Nähe) nutzen denselben Look im Bild – Status oben, Stadt mit Abrisskante, Preis unten rechts im Bild –, darunter statisch Adresse, Courts, Sportarten und Pfeil.
         </p>
 
         <H3>Instagram-Bildwand (Startseite)</H3>

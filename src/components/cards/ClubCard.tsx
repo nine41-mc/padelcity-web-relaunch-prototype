@@ -7,6 +7,8 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { formatPrice } from "@/lib/format";
 import { Media } from "../ui/Media";
 import { OpenStatus, SportChips } from "./ClubMeta";
+import { PosterSky, PosterTitle } from "./Poster";
+import { ArrowUpRight } from "lucide-react";
 import { cn } from "../ui/cn";
 
 export function courtSummary(club: Club, locale: Locale = "de") {
@@ -22,7 +24,8 @@ export function courtSummary(club: Club, locale: Locale = "de") {
 }
 
 /**
- * Club card (Elephant "Courtfinder" pattern, without availability).
+ * Club card (Elephant "Courtfinder" pattern, without availability). Image in the Instagram-poster look
+ * (status, city, torn line, price); below it address, courts, sports and the arrow.
  * PadelCity principle: no booking-system data (free slots/occupancy) on the website.
  */
 export function ClubCard({
@@ -39,6 +42,8 @@ export function ClubCard({
   const t = getDictionary(locale).clubCard;
   const intl = localeTags[locale].intl;
   const url = href(locale, "locations", club.slug);
+  const street = [club.address.streetName, club.address.buildingNumber].filter(Boolean).join(" ");
+  const address = [street, [club.address.postalCode, club.address.localityName].filter(Boolean).join(" ")].filter(Boolean).join(", ");
   return (
     <article
       className={cn(
@@ -46,44 +51,42 @@ export function ClubCard({
         className,
       )}
     >
-      <div className="relative">
+      {/* Image in the poster look of the home showcase: status top-left, city + torn line, price bottom-right */}
+      <div className="relative aspect-[16/10] overflow-hidden [container-type:inline-size]">
         <Media
           src={club.mainImage?.url}
           alt={club.mainImage?.alt ?? club.name}
-          className="aspect-[16/10]"
+          className="absolute inset-0"
           imgClassName="transition-transform duration-700 group-hover:scale-105"
           sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw"
-          overlay
         />
+        <PosterSky bottom="h-2/5" />
+        <span className="absolute left-3 top-3 rounded-full bg-black/55 px-3 py-1.5 backdrop-blur">
+          <OpenStatus club={club} locale={locale} />
+        </span>
+        <PosterTitle club={club} className="top-[22%]" size={{ factor: 110, max: 19, spot: 6 }} />
+        {club.defaultPricePerHour && (
+          <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+            {t.from} {formatPrice(club.defaultPricePerHour, locale, club.currency)}/h
+          </p>
+        )}
       </div>
-      <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="text-lg font-semibold leading-tight">
-              <Link href={url} className="after:absolute after:inset-0 after:content-['']">
-                {club.name}
-              </Link>
-            </h3>
-            <p className="mt-1 truncate text-sm text-white/70">
-              {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
-              {distanceKm !== undefined && ` · ${distanceKm.toLocaleString(intl, { maximumFractionDigits: 1 })} km`}
-            </p>
-          </div>
-        </div>
-        <div className="mt-auto flex items-end justify-between gap-4">
-          <div className="min-w-0 space-y-3">
-            <OpenStatus club={club} locale={locale} />
-            <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
-            <SportChips club={club} locale={locale} />
-          </div>
-          {/* Price bottom-right, entirely in the display face: "AB 38 €/H" */}
-          {club.defaultPricePerHour && (
-            <p className="shrink-0 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white">
-              {t.from} {formatPrice(club.defaultPricePerHour, locale, club.currency)}/h
-            </p>
-          )}
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <h3 className="sr-only">{club.name}</h3>
+        <p className="truncate text-sm text-white/70">
+          {address}
+          {distanceKm !== undefined && ` · ${distanceKm.toLocaleString(intl, { maximumFractionDigits: 1 })} km`}
+        </p>
+        <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
+        <div className="mt-auto flex items-end justify-between gap-4 pt-1">
+          <SportChips club={club} locale={locale} />
+          <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
+            <ArrowUpRight className="size-5" />
+          </span>
         </div>
       </div>
+      {/* Whole card is the link */}
+      <Link href={url} aria-label={club.fullName ?? club.name} className="absolute inset-0 z-10 rounded-[20px]" />
     </article>
   );
 }
