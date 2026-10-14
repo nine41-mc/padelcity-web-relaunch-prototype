@@ -14,7 +14,7 @@ const de = {
   },
   legal: {
     eyebrow: "Rechtliches",
-    notice: "Platzhalter im Prototyp. Der rechtsverbindliche Text wird von der Rechtsabteilung geliefert und in Contentful gepflegt.",
+    notice: "Text übernommen von padelcity.de. Vor dem Go-live prüft und ergänzt die Rechtsabteilung ihn für die neue Website (Tracking, Consent, Newsletter, Formulare, Hosting).",
   },
   people: { photoSoon: "Foto folgt" },
 };
@@ -34,7 +34,7 @@ const en: BrandStrings = {
   },
   legal: {
     eyebrow: "Legal",
-    notice: "Placeholder in the prototype. The legally binding text will be supplied by our legal team and managed in Contentful.",
+    notice: "Text taken over from padelcity.de. Before go-live our legal team reviews and extends it for the new website (tracking, consent, newsletter, forms, hosting).",
   },
   people: { photoSoon: "Photo coming soon" },
 };
