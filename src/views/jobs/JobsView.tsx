@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
-import { getJobs, jobsContent, PERSONIO_URL } from "@/lib/content/jobs";
+import { APPLY_EMAIL, getJobs, jobsContact, jobsContent } from "@/lib/content/jobs";
 import { values } from "@/lib/content/about";
 import { team } from "@/lib/content/people";
 import { PageHero } from "@/components/modules/PageHero";
@@ -15,7 +15,7 @@ import { BrandIcon } from "@/components/brand/BrandIcon";
 import { JobsBoard } from "@/components/brand/JobsBoard";
 import { PeopleGrid } from "@/components/brand/PeopleGrid";
 
-// Contentful page "jobs": pageHero, benefitsGrid, cultureMarquee, peopleGrid (team snapshot), jobsBoard (Personio feed), initiativeCta
+// Contentful page "jobs": pageHero, jobsBoard (open positions + contact), benefitsGrid, cultureMarquee, peopleGrid (team snapshot), initiativeCta
 
 /** Jobs & careers – shared by /jobs (de) and /en/jobs (en). */
 export function JobsView({ locale }: { locale: Locale }) {
@@ -42,6 +42,13 @@ export function JobsView({ locale }: { locale: Locale }) {
       >
         {t.hero.title} <Accent>{t.hero.accent}</Accent>
       </PageHero>
+
+      {/* Open positions directly below the hero */}
+      <Section id="stellen" className="scroll-mt-16">
+        <SectionIntro eyebrow={t.openings.eyebrow} title={t.openings.title} lead={t.openings.lead} />
+        {/* Roles as published on padelcity.de/jobs – applications by e-mail to People & Culture */}
+        <JobsBoard jobs={jobs} t={t.board} contact={{ ...jobsContact, ...t.contact }} />
+      </Section>
 
       <Section>
         <SectionIntro eyebrow={t.benefits.eyebrow} title={t.benefits.title} lead={t.benefits.lead} />
@@ -98,11 +105,6 @@ export function JobsView({ locale }: { locale: Locale }) {
         <PeopleGrid people={faces} locale={locale} compact />
       </Section>
 
-      <Section id="stellen" className="scroll-mt-16">
-        <SectionIntro eyebrow={t.openings.eyebrow} title={t.openings.title} lead={t.openings.lead} />
-        {/* TODO(content): roles are illustrative – connect the Personio feed */}
-        <JobsBoard jobs={jobs} t={t.board} />
-      </Section>
 
       <Section id="initiativ" tone="black" className="scroll-mt-16">
         <Reveal>
@@ -116,8 +118,7 @@ export function JobsView({ locale }: { locale: Locale }) {
                 <p className="mt-5 max-w-lg text-lg text-white/70">{t.initiative.text}</p>
               </div>
               <div className="md:justify-self-end">
-                {/* TODO(content): real Personio initiative application URL */}
-                <Button href={PERSONIO_URL} external variant="gradient" size="lg" data-track="jobs_initiative_cta">
+                <Button href={`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(t.initiative.cta)}`} external variant="gradient" size="lg" data-track="jobs_initiative_cta">
                   {t.initiative.cta}
                 </Button>
               </div>

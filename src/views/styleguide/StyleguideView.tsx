@@ -371,6 +371,12 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Esc schließt. Highlights liefert die Instagram-API nicht – sie werden pro Club in Contentful gepflegt.
         </p>
 
+        <H3>Offene Stellen (Jobs-Seite)</H3>
+        <p className="max-w-3xl text-white/75">
+          Direkt unter dem Hero: Filter nach Bereich und Standort, Stellenliste mit Bereich in Magenta 300, Titel in Söhne Schmal, Standort und Umfang mit Icons. Jede Stelle öffnet
+          eine Bewerbungs-E-Mail mit Stelle und Standort im Betreff. Daneben die Kontakt-Kachel von Astrid Nindl (People &amp; Culture), auf dem Desktop mitlaufend.
+        </p>
+
         <H3>Coming-soon-Seite mit Padel-Pong</H3>
         <p className="max-w-3xl text-white/75">
           Ziel aller Links, die im Prototyp noch ins Leere laufen würden (App-Deeplinks, Event-Anmeldung in der Web-App). Endloses Pong auf einem dunklen Court: Schläger in Purple
