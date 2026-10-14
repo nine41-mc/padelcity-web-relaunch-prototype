@@ -4,6 +4,8 @@ import type { Locale } from "@/lib/i18n/config";
 import { franchiseContent } from "@/lib/content/franchise";
 import { PageHero } from "@/components/modules/PageHero";
 import { Section } from "@/components/ui/Section";
+import { Media } from "@/components/ui/Media";
+import { founders, team } from "@/lib/content/people";
 import { Button } from "@/components/ui/Button";
 import { Accent, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
@@ -19,6 +21,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
   const t = franchiseContent[locale];
   const franchiseClubs = (await getClubs(locale)).filter((c) => c.isFranchise);
   const f = t.form.fields;
+  const contact = team.concat(founders).find((p) => p.id === t.contact.personId);
 
   return (
     <>
@@ -96,6 +99,37 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
             </div>
           </Reveal>
         </div>
+      </Section>
+
+      {/* Services per phase (padelcity.de/franchise) */}
+      <Section>
+        <SectionIntro eyebrow={t.phases.eyebrow} title={t.phases.title} />
+        <ol className="grid gap-4 md:grid-cols-3 md:gap-5">
+          {t.phases.items.map((ph, i) => (
+            <li key={ph.title}>
+              <Reveal delay={i * 0.07} className="h-full">
+                <div className="h-full rounded-[24px] border border-white/10 bg-ink-700 p-6 md:p-8">
+                  <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/60">0{i + 1}</span>
+                  <h3 className="mt-2 font-display text-4xl font-extrabold italic uppercase leading-none">{ph.title}</h3>
+                  <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
+                    {ph.items.map((item) => {
+                      const text = typeof item === "string" ? item : item.text;
+                      return (
+                        <li key={text} className="flex gap-3 text-white/85">
+                          <Check className="mt-1 size-4 shrink-0 text-magenta-300" aria-hidden />
+                          <span>
+                            {text}
+                            {typeof item !== "string" && <span className="text-white/55"> ({t.phases.optional})</span>}
+                          </span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
       </Section>
 
       {/* Process */}
@@ -179,6 +213,18 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
+            {contact && (
+              <figure className="mt-10 flex items-center gap-5 rounded-[24px] border border-white/10 bg-ink-700 p-5">
+                {contact.image && (
+                  <Media src={contact.image} alt={contact.name} className="size-20 shrink-0 rounded-full md:size-24" imgClassName="object-[50%_20%]" sizes="96px" />
+                )}
+                <figcaption>
+                  <span className="block text-[13px] font-semibold uppercase tracking-[0.16em] text-white/60">{t.contact.label}</span>
+                  <span className="mt-1 block font-display text-3xl font-extrabold italic uppercase leading-none">{contact.name}</span>
+                  <span className="mt-1 block text-white/70">{contact.role[locale]}</span>
+                </figcaption>
+              </figure>
+            )}
           </div>
           <LeadForm
             locale={locale}

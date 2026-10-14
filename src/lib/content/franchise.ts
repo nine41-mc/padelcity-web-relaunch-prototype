@@ -6,6 +6,8 @@ import { keyFacts } from "./partners";
  * No invented numbers: investment ranges / minimum sizes are only published once the franchise team confirms them.
  */
 
+type Phase = { title: string; items: (string | { text: string; optional: true })[] };
+
 type BenefitIcon = "sparkles" | "smartphone" | "graduation" | "trophy" | "handshake" | "megaphone";
 
 const de = {
@@ -26,7 +28,7 @@ const de = {
   benefits: {
     eyebrow: "Warum PadelCity",
     title: "Alles, was ein Club braucht. Aus einer Hand.",
-    lead: `Du konzentrierst dich auf deinen Standort und deine Community – wir liefern Marke, Technologie und Know-how aus über ${keyFacts.clubs} Club-Eröffnungen.`,
+    lead: `Du konzentrierst dich auf deinen Standort und deine Community – wir liefern Marke, Technologie und Know-how.`,
     items: [
       { title: "Starke Marke", text: "Deutschlands führende Padel-Marke mit Wiedererkennung vom ersten Tag an.", icon: "sparkles" },
       { title: "App & Buchungsplattform", text: "Buchung, Payment, Matches und CRM über die PadelCity App – ohne eigene IT.", icon: "smartphone" },
@@ -58,6 +60,17 @@ const de = {
       "Team vor Ort für Betrieb & Service",
     ],
   },
+  // Services per phase – from padelcity.de/franchise (2026-10-15)
+  phases: {
+    eyebrow: "Leistungen",
+    title: "Wir begleiten dich in jeder Phase",
+    optional: "optional, gegen Gebühr",
+    items: [
+      { title: "Bauphase", items: ["Anlagen-Bau zum PadelCity Vorzugspreis", "Beratung bei der Konfiguration der Courts und bei der Anlagengestaltung", "Bereitstellung von Angeboten für die Courts und Fundamente", { text: "Planung der Padel-Anlage durch unsere Architekten", optional: true }] },
+      { title: "Aktivierung", items: ["Durchführung eines exklusiven Opening Events", "Beratung bei der Preisgestaltung für Platzmiete, Trainerstunden, Events usw.", "Kostenlose Ausstattung mit Leihschlägern und Bällen", "Einrichtung und Bereitstellung unseres Online-Buchungssystems"] },
+      { title: "Regelbetrieb", items: ["Beratung bei der Ausrichtung von Events und Turnieren", "Abwicklung aller Zahlungen über unser Online-Buchungssystem", "Bereitstellung von Reports und Analysen zur Steuerung der Anlage", { text: "Social-Media-Kampagnen", optional: true }, "Organisation exklusiver Kunden-Events auf Anfrage", "Trainerausbildung und 30 % Preisnachlass in der PadelCity Academy", "Exklusive Rabatte auf alle Padel-Produkte von BABOLAT und auf die PadelCity Kollektion"] },
+    ] as Phase[],
+  },
   steps: {
     eyebrow: "Ablauf",
     title: "In 5 Schritten zum eigenen Club",
@@ -85,6 +98,7 @@ const de = {
     title: "Sie haben es schon gemacht",
     lead: "Unsere Franchise-Partner spielen in der gleichen Liga wie unsere eigenen Clubs – gleiche App, gleiche Events, gleiche Community.",
   },
+  contact: { label: "Dein Ansprechpartner für Franchise", personId: "markus-balzat" },
   form: {
     title: "Lass uns über deinen",
     accent: "Standort",
@@ -127,7 +141,7 @@ const en: FranchiseContent = {
   benefits: {
     eyebrow: "Why PadelCity",
     title: "Everything a club needs. From a single source.",
-    lead: `You focus on your site and your community – we bring the brand, the technology and the know-how from more than ${keyFacts.clubs} club openings.`,
+    lead: `You focus on your site and your community – we bring the brand, the technology and the know-how.`,
     items: [
       { title: "Strong brand", text: "Germany's leading padel brand, recognised from day one.", icon: "sparkles" },
       { title: "App & booking platform", text: "Booking, payments, matches and CRM through the PadelCity app – no IT of your own needed.", icon: "smartphone" },
@@ -159,6 +173,16 @@ const en: FranchiseContent = {
       "An on-site team for operations & service",
     ],
   },
+  phases: {
+    eyebrow: "Services",
+    title: "We're with you in every phase",
+    optional: "optional, for a fee",
+    items: [
+      { title: "Construction", items: ["Facility construction at PadelCity's preferential price", "Advice on court configuration and facility design", "Quotes for the courts and foundations", { text: "Planning of the padel facility by our architects", optional: true }] },
+      { title: "Activation", items: ["An exclusive opening event", "Advice on pricing for court rental, coaching sessions, events etc.", "Free rental rackets and balls", "Set-up and provision of our online booking system"] },
+      { title: "Operations", items: ["Advice on hosting events and tournaments", "All payments processed via our online booking system", "Reports and analyses to manage your facility", { text: "Social media campaigns", optional: true }, "Exclusive customer events on request", "Coach training and a 30 % discount at the PadelCity Academy", "Exclusive discounts on all BABOLAT padel products and the PadelCity collection"] },
+    ] as Phase[],
+  },
   steps: {
     eyebrow: "The process",
     title: "Five steps to your own club",
@@ -185,6 +209,7 @@ const en: FranchiseContent = {
     title: "They've already done it",
     lead: "Our franchise partners play in the same league as our own clubs – same app, same events, same community.",
   },
+  contact: { label: "Your franchise contact", personId: "markus-balzat" },
   form: {
     title: "Let's talk about your",
     accent: "site",
