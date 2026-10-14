@@ -51,6 +51,11 @@ jobs:
           CONTENTFUL_ENVIRONMENT_ID: ${{ vars.CONTENTFUL_ENVIRONMENT_ID || 'master' }}
           CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.CONTENTFUL_DELIVERY_TOKEN }}
         run: npm run build
+      # Pages has no access control → every page is AES-encrypted and asks for the shared password.
+      - name: Password-protect the export
+        env:
+          PROTOTYPE_PASSWORD: ${{ secrets.PROTOTYPE_PASSWORD }}
+        run: node scripts/encrypt-export.mjs out
       - name: Disable Jekyll (keeps the _next/ folder)
         run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v5

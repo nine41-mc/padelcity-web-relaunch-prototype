@@ -20,7 +20,11 @@ Ohne Konfiguration läuft alles mit Mock-Daten. Für Contentful `.env.example` n
 
 ## Deployment
 
-GitLab Pages über `.gitlab-ci.yml`: jeder Push auf `main` (sowie Schedules/manuelle Runs) baut den statischen Export und veröffentlicht ihn. Zugriff nur für Projektmitglieder. Contentful-Zugangsdaten als **masked** CI/CD-Variablen.
+GitHub Pages über `.github/workflows/deploy.yml`: jeder Push auf `main` (oder ein manueller Run) baut den statischen Export und veröffentlicht ihn. Contentful-Zugangsdaten und der Deploy-Key für die lizenzierten Fonts liegen als Repository-Secrets.
+
+**Passwortschutz:** GitHub Pages kennt keine Zugriffskontrolle. Deshalb verschlüsselt [`scripts/encrypt-export.mjs`](scripts/encrypt-export.mjs) nach dem Build jede HTML-Seite (AES-256-GCM, Schlüssel per PBKDF2 aus dem Secret `PROTOTYPE_PASSWORD`) und ersetzt sie durch eine Passwortabfrage. Nach der Eingabe merkt sich der Browser den Schlüssel; bis zu einem Passwortwechsel wird nicht erneut gefragt. Die RSC-Dateien (`*.txt`) werden gelöscht, Seitenwechsel laufen deshalb als normale Seitenaufrufe. Nicht geschützt sind JS-Bundles (UI-Texte), Bilder, Fonts und der Quellcode in diesem öffentlichen Repository. Ohne gesetztes Secret bricht der Deploy ab.
+
+Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu starten.
 
 ## Seiten (DE · EN)
 
