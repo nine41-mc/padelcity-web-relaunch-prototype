@@ -54,6 +54,7 @@ const TOC = [
   ["motion", "Bewegung"],
   ["a11y", "Barrierefreiheit"],
   ["sprache", "Sprache & Inhalte"],
+  ["figma", "Figma-Abgleich"],
 ] as const;
 
 const APP_ICONS = [
@@ -152,11 +153,11 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <div className="space-y-4">
           <Palette name="Purple" steps={[["50", "#f6e8fd"], ["200", "#dda2f6"], ["400", "#ba45ed"], ["500", "#8412b5"], ["700", "#660e8b"], ["900", "#22052e"]]} />
           <Palette name="Magenta" steps={[["50", "#fee6fb"], ["200", "#fd9bf0"], ["300", "#fc69e8"], ["500", "#e005c3"], ["700", "#960382"], ["900", "#32012b"]]} />
-          <Palette name="Ink" steps={[["50", "#d2d3d5"], ["200", "#909197"], ["400", "#36384a"], ["600", "#1b1c26"], ["700", "#15171f"], ["800", "#0b0b0f"]]} />
+          <Palette name="Ink" steps={[["50", "#d2d3d5"], ["200", "#909197"], ["400", "#36384a"], ["600", "#1b1c26"], ["700", "#15171f"], ["800 · Figma 900", "#0b0b0f"]]} />
           <Palette name="Neon" steps={[["300", "#d4f58f"], ["400", "#c4ef6e"], ["500", "#b4e854"], ["600", "#95c93a"]]} />
           <Palette name="Status" steps={[["Erfolg", "#00b894"], ["Fehler", "#ff2e47"], ["Warnung", "#ffd500"], ["Chalk", "#f8f8f8"]]} />
         </div>
-        <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus den gemeinsamen Figma-Foundations von App, Admin-Portal und Website. Neon ist für den Relaunch neu dazugekommen.</p>
+        <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Neon ist für den Relaunch neu und steht noch nicht in der Library.</p>
 
         <H3>Kontraste (WCAG 2.2 AA)</H3>
         <Table
@@ -349,6 +350,19 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <StoreBadges locale={locale} />
         <p className="mt-3 text-sm text-white/70">Offizielle Badges von Apple und Google, nicht nachgebaut. Nur auf der App-Seite – nicht im Footer und nicht auf Clubseiten, dort führt „In der App buchen“ direkt in die App.</p>
 
+        <H3>Clubkarte auf der Startseite</H3>
+        <p className="max-w-3xl text-white/75">
+          Deutschland im Brand-Verlauf mit Punktraster. Österreich und Polen sind grau und gestrichelt angedeutet, damit Innsbruck, Warschau, Krakau und Kielce nicht frei schweben.
+          Beim Hover über das Land oder einen Pin darin färbt es sich ein – dieselbe Logik wie bei den Coach-Kacheln (erst grau, dann farbig). Nach rechts läuft Polen weich aus.
+          Aktiver Pin und Label in Neon; geplante Clubs als gestrichelte Pins.
+        </p>
+
+        <H3>Presse-Logos („Bekannt aus …“)</H3>
+        <p className="max-w-3xl text-white/75">
+          Laufband wie bei den Partnern, nur auf der Magazin-Seite. Original-Logos von padelcity.de, weiß auf Schwarz, 70 % Deckkraft, im Hover voll. Logos werden in der Höhe optisch
+          angeglichen, nicht alle gleich hoch gesetzt.
+        </p>
+
         <H3>WhatsApp-Community-Overlay</H3>
         <div className="flex flex-wrap items-center gap-4 rounded-[24px] border border-white/10 bg-ink-700 p-6">
           <WhatsAppGroups locale={locale} label="Gruppe finden" variant="gradient" track="styleguide_whatsapp_overlay" />
@@ -364,7 +378,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Neon-Ticker", "Übergang von der Seite in den Footer, freigegebene Kennzahlen"],
             ["Claim + Newsletter", "„Make some noise for Padel.“ links, das Newsletter-Modul steht rechts für sich allein"],
             ["WhatsApp-Band", "Volle Breite im Brandbook-Verlauf: „Never play alone.“ mit Button ins Gruppen-Overlay"],
-            ["Drei Spalten", "„Fell in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],
+            ["Drei Spalten", "„Fall in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],
             ["Social-Reihenfolge", "LinkedIn, Facebook, Instagram, YouTube, TikTok – wie auf padelcity.de"],
             ["Copyright-Zeile", "Öffnet diesen Styleguide (Easter Egg, ohne sichtbaren Hinweis)"],
           ].map(([t, d]) => (
@@ -404,6 +418,18 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             </div>
           ))}
         </div>
+        <Note>Die Library kennt radius-sm 4, md 8, lg 16, xl 24. Die Website nutzt 8 für Chips, 16 für Medien und 24 für Karten (deckungsgleich) und zusätzlich 12 und 32 sowie die Pillenform für Buttons – die fehlen in der Library.</Note>
+        <H3>Abstände</H3>
+        <div className="flex flex-wrap items-end gap-4">
+          {[["xxs", 2], ["xs", 4], ["s", 8], ["m", 16], ["l", 24], ["xl", 32], ["xxl", 40], ["3xl", 48]].map(([n, v]) => (
+            <div key={n as string} className="text-center">
+              <div className="bg-brand-gradient" style={{ width: v as number, height: 48 }} />
+              <p className="mt-2 text-sm font-semibold">{v}</p>
+              <p className="font-mono text-[11px] text-white/60">spacing-{n}</p>
+            </div>
+          ))}
+        </div>
+        <p className="mt-3 text-sm text-white/70">Spacing-Skala aus der Library. Die Website hält sich an das 4/8-Raster; Abschnittsabstände (80 / 112 / 128 px) sind Website-spezifisch.</p>
       </Block>
 
       {/* Layout */}
@@ -466,7 +492,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       <Block id="sprache" eyebrow="12" title="Sprache & Inhalte" lead="Wir duzen, wir sind kurz, wir übertreiben nicht.">
         <H3>Claims</H3>
         <div className="flex flex-wrap gap-3">
-          {["Game. Set. Match.", "Drive the Padel Boom!", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fell in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
+          {["Game. Set. Match.", "Drive the Padel Boom!", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fall in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
             <span key={c} className="rounded-full bg-white/5 px-4 py-2 font-display text-xl font-extrabold italic uppercase">
               {c}
             </span>
@@ -490,6 +516,55 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <p className="mt-10 text-sm text-white/60">
           Quelle der Regeln im Code: <code className="font-mono">src/app/globals.css</code> (Farbrollen) und <code className="font-mono">src/components/ui</code>. Diese Seite ist absichtlich nicht verlinkt.
         </p>
+      </Block>
+
+      {/* Figma */}
+      <Block id="figma" eyebrow="13" title="Abgleich mit der Figma-Library" lead="Referenz ist „PadelCity [Master]“ – dieselbe Library nutzen App und Admin-Portal (dort ergänzt um shadcn). Elephants Website-Entwurf hat noch keine eigene Library.">
+        <H3>Was übereinstimmt</H3>
+        <Table
+          head={["Thema", "Website", "Figma-Library"]}
+          rows={[
+            ["Purple / Magenta", "purple-*, magenta-*", "purple/*, magenta/* – identische Werte"],
+            ["Dunkle Flächen", "ink-50 … ink-700", "gray-blue-50 … gray-blue-700 – identisch"],
+            ["Chalk", "#F8F8F8", "gray-25"],
+            ["Status", "Erfolg #00B894, Fehler #FF2E47, Warnung #FFD500", "green-500, red-500, yellow-500"],
+            ["Brandbook-Verlauf", "#AC007D → #791979 → #401B78", "Paint-Style „new_gradient“"],
+            ["Display-Schrift", "Söhne Schmal Fett Kursiv, Versalien", "Headline 1 (44 px), Display 2/3 (32/24 px), Sperrung 0,5"],
+            ["Brush-Schrift", "Good Brush für das Akzentwort", "Display 1 (128 px) und Skill-Level-Styles"],
+            ["Textschrift", "Poppins 400–700", "Body 1/2, Subtitle, Caption, Button – alle Poppins"],
+          ]}
+        />
+        <H3>Bewusste Abweichungen der Website</H3>
+        <Table
+          head={["Thema", "Website", "Library", "Warum"]}
+          rows={[
+            ["Brand-Verlauf", "#DC05A1 → #8512B5", "„gradient“ #E005A4 → #8512B5", "Magenta-Stopp minimal dunkler, damit weiße Button-Texte WCAG AA erreichen"],
+            ["Seitengrund", "Ink 800 (#0B0B0F), Karten Ink 700", "color-background = gray-blue-700, Surface = gray-blue-500", "Website eine Stufe dunkler – Fotos und Neon wirken stärker"],
+            ["Primary Button", "Weiße Pille mit Verlaufs-Pfeil oder Verlaufs-Pille", "Primary = flächig Purple 500, Hover Purple 700", "Elephant-Pitch; der Verlauf ist die Website-Signatur"],
+            ["Secondary Button", "Outline weiß", "Outline Magenta", "Farbrolle Secondary = Weiß auf Ink"],
+            ["Button-Schrift", "Söhne Schmal, Versalien", "Poppins Medium 14–18 px", "Stärkere Markenwirkung auf großen Flächen"],
+            ["Gewählter Chip / Filter", "Brand-Verlauf", "Magenta (color-background-chip-selected)", "Gleiche Logik wie aktive Tabs"],
+            ["Fokus-Ring", "Neon 2 px", "Magenta-Schatten 24 %", "Auf Ink deutlich sichtbarer (≈ 13 : 1)"],
+            ["Labels / Overline", "Poppins 600, 13 px, Sperrung 0,14 em", "Overline 1: Poppins Bold 12/18", "Etwas größer für mobile Lesbarkeit"],
+            ["Highlight-Farbe", "Neon #B4E854", "nicht vorhanden", "Neu für den Relaunch"],
+          ]}
+        />
+        <H3>Vorschlag für die Library</H3>
+        <ul className="grid gap-3 md:grid-cols-2">
+          {[
+            "Neon (300–600) als neue Farbfamilie plus semantisches Token „highlight“ aufnehmen",
+            "Website-Verlauf (#DC05A1) als eigenen Paint-Style „gradient-web“ ergänzen oder den bestehenden angleichen",
+            "Radius 12, 32 und „pill“ ergänzen",
+            "Website-Textstyles (Headline xl/lg/md/sm, Eyebrow, Lead, Label) als eigene Gruppe „Web“ anlegen",
+            "Button-Varianten der Website (primary-white, gradient, outline-white, neon) als Komponenten-Set",
+            "Benennung Ink ↔ Gray-Blue vereinheitlichen (Website ink-800 = gray-blue-900)",
+          ].map((t) => (
+            <li key={t} className="flex gap-3 rounded-[16px] border border-white/10 bg-ink-700 p-4 text-white/85">
+              <ArrowUpRight className="mt-0.5 size-5 shrink-0 text-white" aria-hidden /> {t}
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-sm text-white/60">Stand des Abgleichs: 15.10.2026.</p>
       </Block>
     </>
   );

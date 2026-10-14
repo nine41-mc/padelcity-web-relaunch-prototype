@@ -9,10 +9,11 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
 import { NewsletterSignup } from "@/components/modules/NewsletterSignup";
+import { PressLogos } from "@/components/modules/PressLogos";
 import { ArticleCard } from "@/components/brand/ArticleCard";
 import { MagazinHub } from "@/components/brand/MagazinHub";
 
-// Contentful page "magazine": contentHubs, featuredArticle, articleGrid (filter by hub), newsletterSignup
+// Contentful page "magazine": contentHubs, featuredArticle, articleGrid (filter by hub), pressLogos, newsletterSignup
 
 /** Magazine hub – shared by /magazin (de) and /en/magazine (en). */
 export function MagazineView({ locale }: { locale: Locale }) {
@@ -91,7 +92,9 @@ export function MagazineView({ locale }: { locale: Locale }) {
         <MagazinHub t={t.filter} hubs={hubs[locale]} articles={rest.map(({ slug, hub }) => ({ slug, hub }))} cards={cards} />
       </Section>
 
-      <Section tone="black" className="pt-0 md:pt-0 lg:pt-0">
+      <PressLogos locale={locale} />
+
+      <Section tone="black">
         <NewsletterSignup locale={locale} title={t.newsletter.title} text={t.newsletter.text} />
       </Section>
     </>

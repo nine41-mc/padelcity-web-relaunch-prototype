@@ -17,10 +17,37 @@ const OUTLINE: [number, number][] = [
   [7.0, 53.6], [8.0, 53.7], [8.6, 53.9], [8.9, 54.2], [8.6, 54.5],
 ];
 
+// Neighbour countries with clubs, sketched in grey so Innsbruck and Warsaw/Kraków/Kielce don't float in empty space.
+// Coarse outlines (lon, lat), decorative only; they light up on hover like the coach tiles (grey → colour).
+const NEIGHBOURS: { code: "AT" | "PL"; outline: [number, number][]; label: [number, number] }[] = [
+  {
+    code: "AT",
+    label: [15.1, 47.3],
+    outline: [
+      [9.53, 47.27], [9.6, 47.06], [10.1, 46.85], [10.47, 46.87], [11.0, 46.77], [12.18, 47.08], [12.41, 46.7], [13.7, 46.52],
+      [14.6, 46.44], [15.1, 46.66], [16.0, 46.7], [16.6, 46.95], [16.1, 47.4], [16.9, 47.7], [17.07, 48.0], [16.94, 48.6],
+      [16.0, 48.75], [15.0, 49.0], [14.0, 48.75], [13.8, 48.57], [13.4, 48.37], [12.9, 47.95], [13.0, 47.47], [12.2, 47.7],
+      [11.3, 47.4], [10.5, 47.5], [9.97, 47.54], [9.6, 47.53],
+    ],
+  },
+  {
+    code: "PL",
+    label: [17.3, 53.0],
+    outline: [
+      [14.12, 53.9], [16.0, 54.25], [17.5, 54.8], [18.6, 54.4], [19.6, 54.45], [22.8, 54.36], [23.5, 53.9], [23.9, 53.2],
+      [23.5, 52.6], [23.2, 52.2], [23.6, 51.6], [24.1, 50.8], [23.5, 50.4], [22.7, 49.6], [22.6, 49.1], [21.6, 49.45],
+      [20.9, 49.35], [20.0, 49.2], [19.4, 49.6], [18.8, 49.5], [18.0, 50.0], [17.7, 50.3], [17.0, 50.2], [16.9, 50.45],
+      [16.4, 50.4], [16.3, 50.65], [15.5, 50.8], [15.0, 51.0], [14.8, 50.9], [15.0, 51.2], [14.6, 52.0], [14.7, 52.6],
+      [14.15, 52.8], [14.3, 53.3], [14.6, 53.6],
+    ],
+  },
+];
+const COUNTRY_NAMES = { de: { AT: "Österreich", PL: "Polen" }, en: { AT: "Austria", PL: "Poland" } } as const;
+
 // Map frame: Germany plus room for Innsbruck (AT) and Warsaw/Kraków/Kielce (PL).
 const LON0 = 5.5;
 const LON1 = 21.6;
-const LAT0 = 46.9;
+const LAT0 = 46.3;
 const LAT1 = 55.3;
 const K = 40;
 const COS = 0.63; // ≈ cos(51°)
@@ -48,6 +75,7 @@ export function GermanyMap({
   legend: { live: string; soon: string };
 }) {
   const [active, setActive] = useState<string | null>(null);
+  const [hoverCountry, setHoverCountry] = useState<string | null>(null);
   const [narrow, setNarrow] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 767px)");
@@ -70,6 +98,9 @@ export function GermanyMap({
   const visiblePins = pins.filter((p) => p.x <= viewW);
   const offMap = pins.filter((p) => p.x > viewW);
   const current = visiblePins.find((p) => p.club.id === active);
+  // A neighbour lights up while it is hovered or one of its pins is active.
+  const litCountry = hoverCountry ?? (current && current.club.country !== "DE" ? current.club.country : null);
+  const path = (pts: [number, number][]) => pts.map(([lon, lat], i) => `${i ? "L" : "M"}${project(lon, lat).join(" ")}`).join(" ") + "Z";
 
   return (
     <div className="relative">
@@ -91,7 +122,49 @@ export function GermanyMap({
           <pattern id="dots" width="5" height="5" patternUnits="userSpaceOnUse">
             <circle cx="1" cy="1" r="0.6" fill="rgb(255 255 255 / 0.22)" />
           </pattern>
+          {/* Neighbours fade out at the right edge instead of being cut hard */}
+          <linearGradient id="edgeFade" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0.82" stopColor="#fff" />
+            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+          </linearGradient>
+          <mask id="neighbourMask" maskUnits="userSpaceOnUse" x="0" y="0" width={viewW} height={H}>
+            <rect x="0" y="0" width={viewW} height={H} fill="url(#edgeFade)" />
+          </mask>
         </defs>
+        <g mask="url(#neighbourMask)">
+          {NEIGHBOURS.map(({ code, outline: pts, label: [lon, lat] }) => {
+            const lit = litCountry === code;
+            const [lx, ly] = project(lon, lat);
+            return (
+              <g key={code} onPointerEnter={() => setHoverCountry(code)} onPointerLeave={() => setHoverCountry(null)} aria-hidden>
+                <path
+                  d={path(pts)}
+                  fill={lit ? "url(#landFill)" : "rgb(255 255 255 / 0.06)"}
+                  fillOpacity={lit ? 0.55 : 1}
+                  stroke={lit ? "rgb(255 255 255 / 0.55)" : "rgb(255 255 255 / 0.22)"}
+                  strokeWidth="0.8"
+                  strokeLinejoin="round"
+                  strokeDasharray={lit ? undefined : "3 2"}
+                  className="transition-[fill,stroke] duration-300"
+                />
+                {lx < viewW - 30 && (
+                  <text
+                    x={lx}
+                    y={ly}
+                    textAnchor="middle"
+                    fill={lit ? "rgb(255 255 255 / 0.85)" : "rgb(255 255 255 / 0.4)"}
+                    fontSize="11"
+                    fontWeight="600"
+                    letterSpacing="1.5"
+                    className="pointer-events-none select-none uppercase transition-[fill] duration-300"
+                  >
+                    {COUNTRY_NAMES[locale][code]}
+                  </text>
+                )}
+              </g>
+            );
+          })}
+        </g>
         <path d={outline} fill="url(#landFill)" stroke="rgb(255 255 255 / 0.55)" strokeWidth="0.8" strokeLinejoin="round" />
         <path d={outline} fill="url(#dots)" />
 
