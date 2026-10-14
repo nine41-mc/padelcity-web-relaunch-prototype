@@ -84,7 +84,7 @@ export function AppView({ locale }: { locale: Locale }) {
           <Eyebrow className="mb-4">{t.features.eyebrow}</Eyebrow>
           <Headline size="md">{t.features.title}</Headline>
         </div>
-        <FeatureStory features={t.features.items} screens={t.screens} coachCard={t.coachCard} phonePrefix={t.phoneLabel} locale={locale} />
+        <FeatureStory features={t.features.items} screens={t.screens} callouts={t.callouts} phonePrefix={t.phoneLabel} locale={locale} />
       </Section>
 
       {/* Contentful module: appStoreGallery (official App Store screenshots) */}

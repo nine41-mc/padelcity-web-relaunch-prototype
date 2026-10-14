@@ -14,6 +14,12 @@ export type AcademyLevelStage = {
   bullets: string[];
 };
 
+/** One level of the PadelCity scale – names and texts as in the app (Figma Master "Profil Setup – New Skill Level Intro"). */
+export type AcademyLevel = { level: number; label: string; text: string };
+
+/** Training price per hour (EUR) by format and coach level. */
+export type PriceRow = { title: string; sub: string; coach: number; headCoach: number };
+
 export type Programme = {
   id: string;
   title: string;
@@ -48,8 +54,9 @@ const de = {
     line1: "Dein Weg",
     line2: "auf den Court",
     text: "Die PadelCity-Skala geht von 1 bis 7. Dein Coach stuft dich nach dem ersten Training ein – danach findest du in der App passende Kurse, Events und Open Matches.",
-    scaleLabel: "PadelCity Level-Skala von 1 (Neu dabei) bis 7 (Elite)",
+    scaleLabel: "PadelCity Level-Skala von 1 (Starter) bis 7 (Professional) – Level wählen",
     stage: "Stufe",
+    level: "Level",
   },
   levelStages: [
     {
@@ -76,14 +83,14 @@ const de = {
   ] as AcademyLevelStage[],
   /** PadelCity level scale 1–7 (as used in the app for open matches & events). */
   levelScale: [
-    { level: 1, label: "Neu dabei" },
-    { level: 2, label: "Erste Rallyes" },
-    { level: 3, label: "Hobby" },
-    { level: 4, label: "Solide" },
-    { level: 5, label: "Stark" },
-    { level: 6, label: "Turnier" },
-    { level: 7, label: "Elite" },
-  ],
+    { level: 1, label: "Starter", text: "Neu im Padel? Herzlich Willkommen! Du lernst gerade die Regeln und spielst deine ersten Vorhände, Rückhände und Volleys noch recht wackelig. Super – jeder hat mal klein angefangen." },
+    { level: 2, label: "Starter+", text: "Du beherrschst die grundlegenden Padel-Regeln. Du spielst jetzt längere Ballwechsel, deine Aufschläge und Returns werden sicherer und du tastest dich zaghaft ans Spiel mit der Scheibe und ans Netz heran." },
+    { level: 3, label: "Intermediate", text: "Du hast alle Padel-Regeln im Griff und freust dich auf das nächste Open Match. Du nutzt Lobs, um dir das Netz zu sichern, setzt Überkopfschläge wie Bandeja ein und platzierst deine Volleys immer gezielter und dein Spiel wird taktischer." },
+    { level: 4, label: "Intermediate+", text: "Deine Matches werden immer intensiver. Du setzt gezielt die Scheibe ein, um Zeit im Ballwechsel zu gewinnen. Du positionierst dich taktisch clever und lässt deinen Gegner:innen immer weniger Lücken. Mit deinen Smashes punktest du inzwischen regelmäßig." },
+    { level: 5, label: "Advanced", text: "Es wird langsam ernst und du spielst kleinere DPV-Turniere! Deine Bajadas aus der Scheibe sausen scharf übers Netz. Du probierst dich an Kick Smashes aus und deine Chiquitas landen meistens zu Füßen der Gegner:innen. Hier geht es um ambitionierte Matches, starke Ballwechsel und Gegner:innen, die dich wirklich fordern." },
+    { level: 6, label: "Expert", text: "Du gewinnst zuverlässig kleinere DPV-Turniere und reifst langsam zum Gegner der deutschen Padel-Elite. Deine Viboras springen tief aus der Scheibe, Ganchos und Rulos setzt du gezielt und taktisch klug ein und selbst unter Druck bleibst du konstant." },
+    { level: 7, label: "Professional", text: "Du bist Stammgast bei den größten Padel-Turnieren Deutschlands und kannst mit der deutschen Elite mithalten. Technik und Taktik sind bei dir auf höchstem Niveau. Wer weiß, wie weit die Reise geht, wenn du alles reinlegst!" },
+  ] as AcademyLevel[],
   programmesSection: {
     eyebrow: "Programme",
     title: "Such dir dein Training aus",
@@ -198,6 +205,24 @@ const de = {
     weekdays: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
     mailSubject: "Training mit {name}",
   },
+  pricesSection: {
+    eyebrow: "Preise",
+    title: "Einzel- und",
+    accent: "Gruppentraining",
+    text: "Vereinbare individuell deine Trainingsstunden und bring dein Spiel gemeinsam mit unseren Coaches auf das nächste Level.",
+    unit: "1 Stunde",
+    coach: "Coach",
+    headCoach: "Headcoach",
+    note: "Beinhaltet 60 Minuten Training mit Leih-Schläger und Coaching-Gebühren. Der Platzpreis wird gemäß der Preisliste des Clubs separat berechnet.",
+    cta: "Buche dein Training",
+    // Source: padelcity.de (Academy price list, 2026-10-15). TODO(content): confirm before go-live.
+    rows: [
+      { title: "Einzeltraining", sub: "", coach: 40, headCoach: 50 },
+      { title: "Partner", sub: "2 Personen", coach: 50, headCoach: 60 },
+      { title: "Gruppe", sub: "3–4 Personen", coach: 54, headCoach: 66 },
+      { title: "Classes", sub: "", coach: 30, headCoach: 35 },
+    ] as PriceRow[],
+  },
   locationsSection: { eyebrow: "Academy-Standorte", title: "Training in deiner Nähe", all: "Alle Standorte" },
   videosSection: { eyebrow: "Learn with PadelCity", title: "Tipps zum Mitnehmen", channel: "YouTube-Kanal" },
   // TODO(content): real YouTube IDs from the PadelCity channel ("Learn with PadelCity").
@@ -240,8 +265,9 @@ const en: AcademyContent = {
     line1: "Your road",
     line2: "to the court",
     text: "The PadelCity scale runs from 1 to 7. Your coach rates you after your first session – then the app shows you the right courses, events and open matches.",
-    scaleLabel: "PadelCity level scale from 1 (brand new) to 7 (elite)",
+    scaleLabel: "PadelCity level scale from 1 (Starter) to 7 (Professional) – choose a level",
     stage: "Stage",
+    level: "Level",
   },
   levelStages: [
     {
@@ -267,14 +293,14 @@ const en: AcademyContent = {
     },
   ],
   levelScale: [
-    { level: 1, label: "Brand new" },
-    { level: 2, label: "First rallies" },
-    { level: 3, label: "Casual" },
-    { level: 4, label: "Solid" },
-    { level: 5, label: "Strong" },
-    { level: 6, label: "Tournament" },
-    { level: 7, label: "Elite" },
-  ],
+    { level: 1, label: "Starter", text: "New to padel? Welcome! You're learning the rules and your first forehands, backhands and volleys are still a bit wobbly. Great – everyone starts small." },
+    { level: 2, label: "Starter+", text: "You know the basic padel rules. You're playing longer rallies, your serves and returns are getting more solid and you're carefully starting to play off the glass and move up to the net." },
+    { level: 3, label: "Intermediate", text: "You've got all the padel rules down and look forward to your next open match. You use lobs to take the net, play overheads like the bandeja and place your volleys more and more precisely – your game is getting more tactical." },
+    { level: 4, label: "Intermediate+", text: "Your matches are getting more intense. You use the glass deliberately to buy time in a rally. You position yourself cleverly and leave your opponents fewer and fewer gaps. Your smashes now win points regularly." },
+    { level: 5, label: "Advanced", text: "Things are getting serious and you play smaller DPV tournaments! Your bajadas off the glass whip across the net. You're trying kick smashes and your chiquitas mostly land at your opponents' feet. This is about ambitious matches, strong rallies and opponents who really challenge you." },
+    { level: 6, label: "Expert", text: "You reliably win smaller DPV tournaments and are slowly becoming a match for Germany's padel elite. Your víboras skid low off the glass, you play ganchos and rulos with purpose and tactical sense, and you stay consistent even under pressure." },
+    { level: 7, label: "Professional", text: "You're a regular at Germany's biggest padel tournaments and can keep up with the German elite. Your technique and tactics are top level. Who knows how far you'll go if you give it everything!" },
+  ] as AcademyLevel[],
   programmesSection: {
     eyebrow: "Programmes",
     title: "Pick your training",
@@ -388,6 +414,23 @@ const en: AcademyContent = {
     bookNote: "Booking happens exclusively in the PadelCity app.",
     weekdays: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     mailSubject: "Training with {name}",
+  },
+  pricesSection: {
+    eyebrow: "Prices",
+    title: "Private and",
+    accent: "group training",
+    text: "Arrange your training sessions individually and take your game to the next level with our coaches.",
+    unit: "1 hour",
+    coach: "Coach",
+    headCoach: "Head coach",
+    note: "Includes 60 minutes of training with a rental racket and coaching fees. The court is charged separately according to the club's price list.",
+    cta: "Book your training",
+    rows: [
+      { title: "Private training", sub: "", coach: 40, headCoach: 50 },
+      { title: "Partner", sub: "2 people", coach: 50, headCoach: 60 },
+      { title: "Group", sub: "3–4 people", coach: 54, headCoach: 66 },
+      { title: "Classes", sub: "", coach: 30, headCoach: 35 },
+    ] as PriceRow[],
   },
   locationsSection: { eyebrow: "Academy clubs", title: "Training near you", all: "All locations" },
   videosSection: { eyebrow: "Learn with PadelCity", title: "Tips to take away", channel: "YouTube channel" },

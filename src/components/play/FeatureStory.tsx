@@ -3,8 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check } from "lucide-react";
-import Image from "next/image";
-import type { AppFeature, AppScreenshot, ScreenKey } from "@/lib/content/app";
+import type { AppCallouts, AppFeature, AppScreenshot, ScreenKey } from "@/lib/content/app";
 import { deeplinks } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -15,22 +14,7 @@ import { cn } from "@/components/ui/cn";
 import { PhoneMockup } from "./PhoneMockup";
 import { AppScreenImage } from "./AppScreens";
 import { AppPhone } from "./app/AppPhone";
-
-type CoachCard = { src: string; width: number; height: number; alt: string };
-
-/** Real coach card from the App Store panel, floating over the lower part of the phone. */
-function CoachOverlay({ card, className }: { card: CoachCard; className?: string }) {
-  return (
-    <Image
-      src={card.src}
-      alt={card.alt}
-      width={card.width}
-      height={card.height}
-      sizes="320px"
-      className={cn("absolute left-1/2 h-auto w-[115%] max-w-none -translate-x-1/2 drop-shadow-[0_20px_40px_rgb(0_0_0/0.5)]", className)}
-    />
-  );
-}
+import { FeatureCallout } from "./app/FeatureCallout";
 
 function ctaHref(f: AppFeature, locale: Locale): string {
   switch (f.deeplink) {
@@ -55,13 +39,13 @@ function ctaHref(f: AppFeature, locale: Locale): string {
 export function FeatureStory({
   features,
   screens,
-  coachCard,
+  callouts,
   phonePrefix,
   locale,
 }: {
   features: AppFeature[];
   screens: Record<ScreenKey, AppScreenshot>;
-  coachCard: CoachCard;
+  callouts: AppCallouts;
   phonePrefix: string;
   locale: Locale;
 }) {
@@ -122,10 +106,10 @@ export function FeatureStory({
                   {f.cta}
                 </Button>
               </div>
-              <div className={cn("relative flex justify-center lg:hidden", f.overlay && "pb-10")}>
+              <div className="relative flex justify-center pb-16 lg:hidden">
                 <div className="relative">
                   <AppPhone shot={screens[f.screen]} prefix={phonePrefix} className="w-[240px] md:w-[260px]" sizes="260px" />
-                  {f.overlay === "coach" && <CoachOverlay card={coachCard} className="-bottom-8" />}
+                  <FeatureCallout id={f.id} callouts={callouts} className="absolute -bottom-14 left-1/2 -translate-x-1/2" />
                 </div>
               </div>
             </article>
@@ -157,19 +141,9 @@ export function FeatureStory({
                 <AppScreenImage key={f.id} shot={screens[f.screen]} sizes="320px" eager />
               ))}
             </div>
+            {/* UI element of the active screen, fully visible over the lower part of the phone */}
             <AnimatePresence>
-              {activeFeature.overlay === "coach" && (
-                <motion.div
-                  key="coach"
-                  className="absolute inset-x-0 bottom-16"
-                  initial={reduce ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0 }}
-                  transition={{ duration: 0.35, delay: reduce ? 0 : 0.2 }}
-                >
-                  <CoachOverlay card={coachCard} className="bottom-0" />
-                </motion.div>
-              )}
+              <FeatureCallout key={activeFeature.id} id={activeFeature.id} callouts={callouts} onMount className="absolute -left-24 bottom-20 z-10 !w-[290px]" />
             </AnimatePresence>
           </div>
           <ol className="absolute right-0 top-1/2 flex -translate-y-1/2 flex-col gap-2" aria-hidden>

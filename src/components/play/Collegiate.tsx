@@ -16,7 +16,7 @@ export function CollegiateBadge({ className, top = "PadelCity", main = "Academy"
     >
       <div className="flex flex-col items-center rounded-[12px] border border-white/60 px-5 py-2.5">
         <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">{top}</span>
-        <span className="font-display text-4xl font-extrabold uppercase not-italic leading-none tracking-wide [-webkit-text-stroke:1.5px_currentColor] [color:transparent] md:text-5xl">
+        <span className="font-display text-4xl font-extrabold uppercase not-italic leading-none tracking-wide text-transparent [-webkit-text-stroke:1.5px_white] md:text-5xl">
           {main}
         </span>
         <span className="mt-1 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.3em]">

@@ -16,6 +16,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { ClubCard } from "@/components/cards/ClubCard";
 import { CollegiateBadge, VarsityText } from "@/components/play/Collegiate";
 import { LevelPath } from "@/components/play/LevelPath";
+import { PriceList } from "@/components/play/PriceList";
 import { CoachExplorer } from "@/components/play/coaches/CoachExplorer";
 import { resolveCoachClubsFor } from "@/components/play/coaches/resolve";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
@@ -73,7 +74,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
           </div>
           <p className="text-white/70">{t.path.text}</p>
         </div>
-        <LevelPath stages={t.levelStages} scale={t.levelScale} scaleLabel={t.path.scaleLabel} stageLabel={t.path.stage} />
+        <LevelPath stages={t.levelStages} scale={t.levelScale} scaleLabel={t.path.scaleLabel} levelLabel={t.path.level} />
       </Section>
 
       {/* Contentful module: programmeGrid */}
@@ -120,6 +121,30 @@ export async function AcademyView({ locale }: { locale: Locale }) {
             );
           })}
         </ul>
+      </Section>
+
+      {/* Contentful module: priceTable */}
+      <Section tone="black" id="preise" className="scroll-mt-20 !pt-4 md:!pt-8">
+        <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
+          <div>
+            <Eyebrow className="mb-4">{t.pricesSection.eyebrow}</Eyebrow>
+            <Headline size="md">
+              {t.pricesSection.title} <Accent>{t.pricesSection.accent}</Accent>
+            </Headline>
+            <p className="mt-5 max-w-lg text-lg text-white/70">{t.pricesSection.text}</p>
+            <Button href={href(locale, "app")} variant="primary" size="md" className="mt-8 w-fit" data-track="academy_prices_book">
+              {t.pricesSection.cta}
+            </Button>
+          </div>
+          <div>
+            <PriceList
+              rows={t.pricesSection.rows}
+              locale={locale}
+              labels={{ unit: t.pricesSection.unit, coach: t.pricesSection.coach, headCoach: t.pricesSection.headCoach, caption: `${t.pricesSection.title} ${t.pricesSection.accent}` }}
+            />
+            <p className="mt-4 text-sm text-white/60">{t.pricesSection.note}</p>
+          </div>
+        </div>
       </Section>
 
       {/* Contentful module: coachCarousel – real coaches only (getCoaches: Contentful → people.ts) */}

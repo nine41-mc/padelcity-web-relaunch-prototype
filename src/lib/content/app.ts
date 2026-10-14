@@ -10,7 +10,7 @@ import type { Locale } from "../i18n/config";
  * Screenshots: official App Store screenshots of the PadelCity app (see public/images/SOURCES.md).
  */
 
-/** Real app screens cropped out of the official App Store panels. */
+/** Real app screens (clean screenshots without store overlays). */
 export type ScreenKey = "home" | "booking" | "checkout" | "split" | "match" | "events" | "benefits";
 
 export type AppScreenshot = {
@@ -19,7 +19,7 @@ export type AppScreenshot = {
   height: number;
   /** Description of the screen (used as accessible label of the phone). */
   alt: string;
-  /** true = the crop already contains the iOS status bar; false = the top of the screen is cut off. */
+  /** true = the screenshot already contains the iOS status bar; false = the phone frame draws one. */
   hasStatusBar: boolean;
 };
 
@@ -38,8 +38,19 @@ export type AppFeature = {
   track: string;
   /** Real app screen shown in the phone. */
   screen: ScreenKey;
-  /** Optional real UI card floating over the phone (coach card from the store panel). */
-  overlay?: "coach";
+};
+
+/**
+ * Animated UI element of the respective screen, floating fully visible over the phone
+ * (rebuilt in HTML from the app UI – values as in the store screenshots).
+ */
+export type AppCallouts = {
+  booking: { times: string[]; durations: { value: string; unit: string; price: string }[] };
+  split: { label: string; text: string; slots: string; price: string };
+  matches: { title: string; text: string };
+  events: { name: string; text: string; image: string };
+  vouchers: { label: string; code: string; applied: string };
+  benefits: { title: string; text: string };
 };
 
 export type StorePanel = { src: string; width: number; height: number; alt: string };
@@ -51,34 +62,47 @@ export type StorePanel = { src: string; width: number; height: number; alt: stri
  * TODO(content): refresh before go-live (or fetch at build time).
  */
 
-const S = "/images/app/screens";
+// Raw app screenshots (1284×2778, with status bar) taken from the phones in Figma "PadelCity – Store Assets"
+// (DE 6529:6108, EN 6529:7942) – without the store headlines and overlay cards. Versioned path → no stale caches.
+const S = "/images/app/screens/v1-32";
+const shot = (key: ScreenKey, locale: "de" | "en", alt: string): AppScreenshot => ({ src: `${S}/${key}-${locale}.jpg`, width: 720, height: 1557, hasStatusBar: true, alt });
 
 const screensDe: Record<ScreenKey, AppScreenshot> = {
-  home: { src: `${S}/home-de.jpg`, width: 552, height: 1200, hasStatusBar: true, alt: "Startseite der App: Court buchen, Spiele finden, Training buchen, Events entdecken und Open Matches in deiner Nähe" },
-  booking: { src: `${S}/booking-de.jpg`, width: 598, height: 1200, hasStatusBar: true, alt: "Court buchen: Club, Datum und Uhrzeit wählen, Startzeiten und Preise je Spieldauer" },
-  checkout: { src: `${S}/checkout-de.jpg`, width: 592, height: 1200, hasStatusBar: false, alt: "Buchung abschließen: Buchungsübersicht, Stornierungsbedingungen, Gutschein einlösen und Summe" },
-  split: { src: `${S}/split-de.jpg`, width: 597, height: 1200, hasStatusBar: true, alt: "Anteilige Zahlung im Checkout: Anzahl der Player Slots wählen, die du bezahlst" },
-  match: { src: `${S}/match-de.jpg`, width: 592, height: 1200, hasStatusBar: false, alt: "Match Details: bestätigtes Open Match mit vier Spieler:innen, Level und Chat-Button" },
-  events: { src: `${S}/events-de.jpg`, width: 600, height: 1185, hasStatusBar: true, alt: "Aktuelle Events eines Clubs, z. B. CUPRA One Point Challenge Tour Germany, mit Button „Als Team teilnehmen“" },
-  benefits: { src: `${S}/benefits-de.jpg`, width: 592, height: 1200, hasStatusBar: false, alt: "Profil: EGYM Wellpass Konto verknüpft – der Discount wird automatisch im Checkout angezeigt" },
+  home: shot("home", "de", "Startseite der App: Court buchen, Spiele finden, Training buchen, Events entdecken und Open Matches in deiner Nähe"),
+  booking: shot("booking", "de", "Court buchen: Club, Datum und Uhrzeit wählen, Startzeiten und Preise je Spieldauer"),
+  checkout: shot("checkout", "de", "Buchung abschließen: Buchungsübersicht, anteilige Zahlung, Equipment, Gutschein einlösen und Summe"),
+  split: shot("split", "de", "Buchung abschließen mit dem Schalter „Anteilige Zahlung“ für die Player Slots"),
+  match: shot("match", "de", "Match Details: bestätigtes Open Match mit Spieler:innen und Chat-Button"),
+  events: shot("events", "de", "Aktuelle Events eines Clubs, z. B. CUPRA One Point Challenge Tour Germany, mit Button „Als Team teilnehmen“"),
+  benefits: shot("benefits", "de", "Profil: EGYM Wellpass Konto verknüpft – der Discount wird automatisch im Checkout angezeigt"),
 };
 
-// EN: English UI from the (older, low-res 392×696) English App Store screenshots.
-// No English benefits panel exists → the German screen is reused (TODO(content): current English screenshots in high-res).
 const screensEn: Record<ScreenKey, AppScreenshot> = {
-  // The English home panel (old app version) shows German UI anyway and is only 261 px wide → reuse the current DE crop.
-  home: { ...screensDe.home, alt: "App home screen (German UI): book a court, find matches, book training, discover events and open matches near you" },
-  booking: { src: `${S}/booking-en.jpg`, width: 289, height: 490, hasStatusBar: true, alt: "Book a court: pick club, date and time, start times and prices per duration" },
-  checkout: { src: `${S}/checkout-en.jpg`, width: 289, height: 435, hasStatusBar: false, alt: "Checkout: cancellation policies, add voucher and total" },
-  split: { src: `${S}/split-en.jpg`, width: 289, height: 490, hasStatusBar: true, alt: "Split payment at checkout: choose how many player slots you pay for" },
-  match: { src: `${S}/match-en.jpg`, width: 289, height: 435, hasStatusBar: false, alt: "Match details: confirmed open match with four players, their levels and a chat button" },
-  events: { src: `${S}/events-en.jpg`, width: 289, height: 490, hasStatusBar: true, alt: "Current events at a club, e.g. an Americano, with a “Participate in event” button" },
-  benefits: { ...screensDe.benefits, alt: "Profile (German UI): EGYM Wellpass account linked – the discount is shown automatically at checkout" },
+  home: shot("home", "en", "App home screen: book a match, find matches, book a training, discover events and open matches near you"),
+  booking: shot("booking", "en", "Book a court: pick club, date and time, start times and prices per duration"),
+  checkout: shot("checkout", "en", "Confirm booking: booking summary, split payment, equipment, add voucher and total"),
+  split: shot("split", "en", "Confirm booking with the “Split payment” switch for the player slots"),
+  match: shot("match", "en", "Match details: confirmed open match with its players and a chat button"),
+  events: shot("events", "en", "Current events at a club with a button to participate as a team"),
+  benefits: shot("benefits", "en", "Profile: EGYM Wellpass account linked – the discount is shown automatically at checkout"),
 };
 
-const coachCard = {
-  de: { src: `${S}/coach-card-de.jpg`, width: 720, height: 232, alt: "Coach-Karte in der App: Alvaro Bastarreche, 50 €/h für 1er Training" },
-  en: { src: `${S}/coach-card-en.jpg`, width: 347, height: 112, alt: "Coach card in the app: Alvaro Bastarreche, €35/h for personal training" },
+const coachImage = "/images/academy/real-coaches/alvaro-bastarreche.jpg";
+const calloutsDe: AppCallouts = {
+  booking: { times: ["16:00", "17:30", "21:00"], durations: [{ value: "60", unit: "Minuten", price: "36 €" }, { value: "90", unit: "Minuten", price: "54 €" }] },
+  split: { label: "Anteilige Zahlung", text: "Platzmiete auf mehrere Spieler:innen aufteilen", slots: "2 von 4 Player Slots", price: "17 €" },
+  matches: { title: "Match bestätigt", text: "Genug Spieler:innen dabei – der Court ist verbindlich reserviert." },
+  events: { name: "Alvaro Bastarreche", text: "50 €/h für 1er Training", image: coachImage },
+  vouchers: { label: "Gutschein einlösen", code: "PADEL-LOVE", applied: "Gutschein eingelöst" },
+  benefits: { title: "Nutze deine exklusiven Discounts!", text: "Die persönlichen Rabatte für deinen Player Slot werden dir automatisch im Checkout angezeigt." },
+};
+const calloutsEn: AppCallouts = {
+  booking: { times: ["16:00", "17:00", "18:00"], durations: [{ value: "60", unit: "Minutes", price: "€36" }, { value: "90", unit: "Minutes", price: "€54" }] },
+  split: { label: "Split payment", text: "Split the court price between several players", slots: "2 of 4 player slots", price: "€17" },
+  matches: { title: "Match confirmed", text: "Enough players have joined – the court is now booked bindingly." },
+  events: { name: "Alvaro Bastarreche", text: "€50/h for personal training", image: coachImage },
+  vouchers: { label: "Add voucher", code: "PADEL-LOVE", applied: "Voucher applied" },
+  benefits: { title: "Use your exclusive discounts!", text: "Your applicable discounts for your player slot will be applied at checkout." },
 };
 
 // Store screens v1.32.0 (iPhone 6.9"), exported from Figma "PadelCity – Store Assets" (DE node 6529:6108, EN node 6529:7942) at 2x.
@@ -122,7 +146,7 @@ const de = {
   qr: { title: "QR zum App-Download", text: "Mit der Handy-Kamera scannen – iOS & Android.", aria: "QR zum App-Download (Platzhalter)" },
   phoneLabel: "Screenshot der PadelCity App",
   screens: screensDe,
-  coachCard: coachCard.de,
+  callouts: calloutsDe,
   features: {
     eyebrow: "Alles in einer App",
     title: "Weniger organisieren. Mehr spielen.",
@@ -178,7 +202,6 @@ const de = {
         cta: "Events in der App",
         track: "app_feature_events",
         screen: "events",
-        overlay: "coach",
       },
       {
         id: "vouchers",
@@ -280,7 +303,7 @@ const en: AppContent = {
   qr: { title: "Scan to download", text: "Point your phone camera here – iOS & Android.", aria: "QR code to download the app (placeholder)" },
   phoneLabel: "PadelCity app screenshot",
   screens: screensEn,
-  coachCard: coachCard.en,
+  callouts: calloutsEn,
   features: {
     eyebrow: "All in one app",
     title: "Less organising. More playing.",
@@ -336,7 +359,6 @@ const en: AppContent = {
         cta: "Events in the app",
         track: "app_feature_events",
         screen: "events",
-        overlay: "coach",
       },
       {
         id: "vouchers",

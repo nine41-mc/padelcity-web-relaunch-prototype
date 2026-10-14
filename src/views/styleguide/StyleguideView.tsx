@@ -423,6 +423,20 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           ))}
         </ul>
 
+        <H3>Academy: Level-Skala</H3>
+        <p className="max-w-3xl text-white/75">
+          Sieben Level mit den Namen aus der App (Figma Master „New Skill Level Intro“): Starter, Starter+, Intermediate, Intermediate+, Advanced, Expert, Professional.
+          Die Timeline ist die Steuerung: Ein Klick auf ein Level färbt die Kachel im Verlauf und holt die passende Kachel darunter in die Mitte; inaktive Kacheln treten zurück.
+          Pro Level eine Kachel mit dem App-Text; das Etikett oben rechts nennt die Stufe (Einsteiger · Fortgeschritten · Competition), die Bullets kommen aus der Stufe.
+        </p>
+
+        <H3>App-Seite: Screens & Overlays</H3>
+        <p className="max-w-3xl text-white/75">
+          In den Handy-Rahmen stehen nur vollständige App-Screenshots (Originale aus der Figma-Datei „Store Assets“, mit Statusleiste, ohne Store-Headlines).
+          Darüber schwebt pro Feature ein Element des jeweiligen Screens – in HTML nachgebaut, immer vollständig sichtbar und nie abgeschnitten – mit einer kleinen Schleife:
+          Startzeit wählen, „Anteilige Zahlung“ einschalten, Spieler:innen treten bei, Gutscheincode tippen, Coach-Karte, Discount-Hinweis.
+        </p>
+
         <H3>Standortfinder: Filter</H3>
         <p className="max-w-3xl text-white/75">
           Eine Zeile: Länder als Segment-Schalter (ab Tablet), Anzahl, Filter-Icon, Liste/Karte. Alle weiteren Kriterien liegen hinter dem Filter-Icon: Sortierung (Empfohlen,
@@ -489,6 +503,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Bilder zoomen leicht", "Auf Karten, 700 ms"],
             ["Einblenden beim Scrollen", "Abschnitte erscheinen weich, sind aber nie unsichtbar, falls JavaScript fehlt"],
             ["Ticker", "Endlos, hält bei Hover und Fokus"],
+            ["App-Overlays", "Kurze Schleifen, die eine Interaktion des Screens zeigen (z. B. Schalter an, Code tippen)"],
             ["Reduzierte Bewegung", "Systemeinstellung wird respektiert: alle Animationen aus"],
           ].map(([t, d]) => (
             <li key={t} className="rounded-[16px] border border-white/10 bg-ink-700 p-5">
