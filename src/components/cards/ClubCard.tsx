@@ -69,20 +69,19 @@ export function ClubCard({
               {distanceKm !== undefined && ` · ${distanceKm.toLocaleString(intl, { maximumFractionDigits: 1 })} km`}
             </p>
           </div>
+        </div>
+        <div className="mt-auto flex items-end justify-between gap-4">
+          <div className="min-w-0 space-y-3">
+            <OpenStatus club={club} locale={locale} />
+            <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
+            <SportChips club={club} locale={locale} />
+          </div>
+          {/* Price bottom-right, entirely in the display face: "AB 38 €/H" */}
           {club.defaultPricePerHour && (
-            <p className="shrink-0 text-right leading-none text-white/70">
-              <span className="text-[13px]">{t.from} </span>
-              <span className="font-display text-3xl font-extrabold italic text-white">
-                {formatPrice(club.defaultPricePerHour, locale, club.currency)}
-              </span>
-              <span className="mt-1 block text-[13px]">{t.perHour}</span>
+            <p className="shrink-0 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white">
+              {t.from} {formatPrice(club.defaultPricePerHour, locale, club.currency)}/h
             </p>
           )}
-        </div>
-        <div className="mt-auto space-y-3">
-          <OpenStatus club={club} locale={locale} />
-          <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
-          <SportChips club={club} locale={locale} />
         </div>
       </div>
     </article>

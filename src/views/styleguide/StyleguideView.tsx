@@ -538,7 +538,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             "Freigegebene Kennzahlen: 30+ Clubs, 200+ Courts, 25+ Städte, 3 Länder",
             "Echte Fotos aus den Clubs, echte Menschen: Gründer, Team, Coaches",
             "Clubnamen ohne „PadelCity“-Präfix in der Oberfläche",
-            "Preise als Einstieg („ab 24 € / Std.“), wie in der App",
+            "Preise als Einstieg („ab 24 €/h“, auf Club-Karten unten rechts in der Headline-Schrift)",
           ]}
           donts={[
             "Buchungsdaten: freie Slots, Auslastung, „noch X Plätze“",

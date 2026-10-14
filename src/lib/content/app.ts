@@ -81,6 +81,7 @@ const coachCard = {
   en: { src: `${S}/coach-card-en.jpg`, width: 347, height: 112, alt: "Coach card in the app: Alvaro Bastarreche, €35/h for personal training" },
 };
 
+// Store screens v1.32.0 (iPhone 6.9"), exported from Figma "PadelCity – Store Assets" (DE node 6529:6108, EN node 6529:7942) at 2x.
 const P = "/images/app/store";
 const panelsDe: StorePanel[] = [
   "Willkommen in der Welt von PadelCity – Startseite der App",
@@ -91,7 +92,7 @@ const panelsDe: StorePanel[] = [
   "Trainiere mit unseren Top Coaches – Coach-Karte mit Preis pro Training",
   "Erlebe coole Padel Events in deinem Club – Eventliste mit CUPRA One Point Challenge",
   "Nutze deine Vorteile mit EGYM Wellpass und Hansefit – verknüpftes Benefit-Konto",
-].map((alt, i) => ({ src: `${P}/de/${i + 1}.jpg`, width: 560, height: 1214, alt: `App-Store-Screenshot ${i + 1}: ${alt}` }));
+].map((alt, i) => ({ src: `${P}/de/${i + 1}.jpg`, width: 860, height: 1864, alt: `App-Store-Screenshot ${i + 1}: ${alt}` }));
 
 const panelsEn: StorePanel[] = [
   "Welcome to the world of PadelCity – app home screen",
@@ -101,7 +102,8 @@ const panelsEn: StorePanel[] = [
   "Find fellow players for open matches – match details with four players",
   "Train with our top coaches – coach card with price per session",
   "Experience cool padel events in your club – club event list",
-].map((alt, i) => ({ src: `${P}/en/${i + 1}.jpg`, width: 392, height: 696, alt: `App Store screenshot ${i + 1}: ${alt}` }));
+  "Benefit with EGYM Wellpass and Hansefit membership – linked benefit account",
+].map((alt, i) => ({ src: `${P}/en/${i + 1}.jpg`, width: 860, height: 1864, alt: `App Store screenshot ${i + 1}: ${alt}` }));
 
 const de = {
   meta: {
