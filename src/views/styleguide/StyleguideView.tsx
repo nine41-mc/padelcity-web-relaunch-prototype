@@ -3,6 +3,10 @@ import {
   CalendarDays,
   Check,
   ChevronDown,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
   Clock,
   LayoutGrid,
   LocateFixed,
@@ -26,6 +30,7 @@ import { Chip } from "@/components/ui/Chip";
 import { AppIcon } from "@/components/ui/Icon";
 import { Marquee } from "@/components/ui/Marquee";
 import { StoreBadges } from "@/components/ui/StoreBadges";
+import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import { ClubCard } from "@/components/cards/ClubCard";
 import { EventCard } from "@/components/cards/EventCard";
 import { cn } from "@/components/ui/cn";
@@ -278,6 +283,19 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             </li>
           ))}
         </ul>
+        <H3>Social</H3>
+        <ul className="flex flex-wrap gap-2">
+          {[[Linkedin, "LinkedIn"], [Facebook, "Facebook"], [Instagram, "Instagram"], [Youtube, "YouTube"]].map(([Icon, name]) => {
+            const I = Icon as typeof Linkedin;
+            return (
+              <li key={name as string} className="grid size-12 place-items-center rounded-full border border-white/25" title={name as string}>
+                <I className="size-5" aria-hidden />
+              </li>
+            );
+          })}
+          <li className="grid size-12 place-items-center rounded-full border border-white/25 text-[11px] font-semibold" title="TikTok">TikTok</li>
+        </ul>
+        <p className="mt-3 text-sm text-white/70">Runde Outline-Buttons, im Hover weiß gefüllt. TikTok kommt als eigenes SVG (nicht in Lucide).</p>
         <Note>Icon-only-Buttons (Filter, Liste/Karte auf dem Handy) bekommen immer ein unsichtbares Label für Screenreader und eine Fläche von mindestens 44 × 44 px.</Note>
       </Block>
 
@@ -329,7 +347,39 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <p className="mt-3 text-sm text-white/70">Nur freigegebene Kennzahlen. Der Ticker hält bei Hover und Fokus an.</p>
         <H3>Store-Badges</H3>
         <StoreBadges locale={locale} />
-        <p className="mt-3 text-sm text-white/70">Offizielle Badges von Apple und Google, nicht nachgebaut. Auf Clubseiten keine Badges – dort führt „In der App buchen“ direkt in die App.</p>
+        <p className="mt-3 text-sm text-white/70">Offizielle Badges von Apple und Google, nicht nachgebaut. Nur auf der App-Seite – nicht im Footer und nicht auf Clubseiten, dort führt „In der App buchen“ direkt in die App.</p>
+
+        <H3>WhatsApp-Community-Overlay</H3>
+        <div className="flex flex-wrap items-center gap-4 rounded-[24px] border border-white/10 bg-ink-700 p-6">
+          <WhatsAppGroups locale={locale} label="Gruppe finden" variant="gradient" track="styleguide_whatsapp_overlay" />
+          <p className="max-w-xl text-sm text-white/75">
+            Es gibt keinen zentralen Community-Link. Jeder Einstieg (Startseite, Footer-Band) öffnet dieses Overlay mit der direkten Gruppe pro Standort, mit Suche.
+            Geteilte Gruppen und Kanäle sind gekennzeichnet. Auf der Clubseite führt die Kachel direkt in die Gruppe des Clubs.
+          </p>
+        </div>
+
+        <H3>Footer</H3>
+        <ul className="grid gap-3 md:grid-cols-2">
+          {[
+            ["Neon-Ticker", "Übergang von der Seite in den Footer, freigegebene Kennzahlen"],
+            ["Claim + Newsletter", "„Make some noise for Padel.“ links, das Newsletter-Modul steht rechts für sich allein"],
+            ["WhatsApp-Band", "Volle Breite im Brandbook-Verlauf: „Never play alone.“ mit Button ins Gruppen-Overlay"],
+            ["Drei Spalten", "„Fell in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],
+            ["Social-Reihenfolge", "LinkedIn, Facebook, Instagram, YouTube, TikTok – wie auf padelcity.de"],
+            ["Copyright-Zeile", "Öffnet diesen Styleguide (Easter Egg, ohne sichtbaren Hinweis)"],
+          ].map(([t, d]) => (
+            <li key={t} className="rounded-[16px] border border-white/10 bg-ink-700 p-5">
+              <p className="font-semibold">{t}</p>
+              <p className="mt-1 text-sm text-white/70">{d}</p>
+            </li>
+          ))}
+        </ul>
+
+        <H3>Filter auf dem Handy</H3>
+        <p className="max-w-3xl text-white/75">
+          Auf dem Standortfinder liegen Länder und Ausstattung auf dem Handy hinter einem einzigen Filter-Icon und öffnen ein Bottom Sheet. Aktive Filter zeigt das Icon als
+          Verlauf mit Zähler. Liste und Karte werden auf dem Handy nur als Icons umgeschaltet. Ab Tablet bleiben Chips und Beschriftungen sichtbar.
+        </p>
       </Block>
 
       {/* Flächen */}
@@ -416,7 +466,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       <Block id="sprache" eyebrow="12" title="Sprache & Inhalte" lead="Wir duzen, wir sind kurz, wir übertreiben nicht.">
         <H3>Claims</H3>
         <div className="flex flex-wrap gap-3">
-          {["Game. Set. Match.", "Drive the Padel Boom!", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
+          {["Game. Set. Match.", "Drive the Padel Boom!", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fell in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
             <span key={c} className="rounded-full bg-white/5 px-4 py-2 font-display text-xl font-extrabold italic uppercase">
               {c}
             </span>
