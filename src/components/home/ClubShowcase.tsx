@@ -3,15 +3,17 @@
 // Contentful module: clubShowcase (selected clubs, headline)
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
-import { courtSummary } from "../cards/ClubCard";
-import { OpenStatus, SportChips } from "../cards/ClubMeta";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 
-/** Big, swipeable club cards – "every location as a hero moment". */
+/**
+ * Big, swipeable club posters – "every location as a hero moment".
+ * Look taken from PadelCity's Instagram opening posts: purple grainy sky, huge city name (second line outlined),
+ * torn paper line, court counts as "0006 Double Courts". Built from data, so it works for every club.
+ */
 export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale: Locale; labels: { prev: string; next: string } }) {
   const ref = useRef<HTMLDivElement>(null);
   const trackId = useId();
@@ -49,34 +51,110 @@ export function ClubShowcase({ clubs, locale, labels }: { clubs: Club[]; locale:
         className="scrollbar-none flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-4 md:gap-6 md:scroll-px-8 md:px-8 lg:scroll-px-16 lg:px-16"
       >
         {clubs.map((club) => (
-          <Link
-            key={club.id}
-            href={href(locale, "locations", club.slug)}
-            className="group relative aspect-[3/4] w-[78vw] shrink-0 snap-start overflow-hidden rounded-[28px] md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]"
-          >
-            <Media
-              src={club.mainImage?.url}
-              alt={club.mainImage?.alt ?? club.name}
-              className="absolute inset-0"
-              imgClassName="transition-transform duration-[1.2s] ease-out group-hover:scale-110"
-              sizes="(min-width:1200px) 420px, (min-width:768px) 42vw, 78vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent transition-opacity group-hover:from-purple-900" />
-            <div className="absolute inset-x-5 bottom-5">
-              <p className="truncate text-sm text-white/80">
-                {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
-              </p>
-              {/* Fixed slot (2-line title) so every tile in the strip has the same rhythm */}
-              <h3 className="mt-1 line-clamp-2 min-h-[2lh] font-display text-4xl leading-none font-extrabold italic uppercase md:text-5xl">{club.name}</h3>
-              <div className="mt-4 space-y-2.5">
-                <OpenStatus club={club} locale={locale} />
-                <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
-                <SportChips club={club} locale={locale} />
-              </div>
-            </div>
-          </Link>
+          <ClubPoster key={club.id} club={club} locale={locale} />
         ))}
       </div>
     </div>
+  );
+}
+
+/* ---------- Poster tile ---------- */
+
+const VOWELS = "aeiouäöüy";
+const ONSETS = ["bl", "br", "dr", "fl", "fr", "gl", "gr", "kl", "kr", "pf", "pl", "pr", "sp", "st", "tr", "zw"];
+/** Splits a long single word for the poster ("Radolfzell" → Radolf | zell): prefer a break between two consonants near the middle. */
+function splitWord(word: string): string[] {
+  if (word.length <= 7) return [word];
+  const lower = word.toLowerCase();
+  let best = Math.ceil(word.length / 2);
+  let bestScore = Infinity;
+  for (let i = 3; i <= word.length - 3; i++) {
+    const before = VOWELS.includes(lower[i - 1]), after = VOWELS.includes(lower[i]);
+    let penalty = !before && !after ? 0 : before && !after ? 1.5 : 4;
+    // A new line should not start with a consonant pair that can't open a German syllable ("Fran|kfurt" → "Frank|furt").
+    const onset = lower.slice(i, i + 2);
+    if (!VOWELS.includes(lower[i + 1] ?? "a") && !ONSETS.includes(onset) && !lower.startsWith("sch", i)) penalty += 2;
+    if (["sc", "ch", "ck", "ph"].includes(lower.slice(i - 1, i + 1))) penalty += 6; // never split inside "sch", "ch", "ck", "ph"
+    const hasVowel = (part: string) => [...part].some((ch) => VOWELS.includes(ch));
+    if (!hasVowel(lower.slice(0, i)) || !hasVowel(lower.slice(i))) penalty += 10; // both halves need a vowel ("Sch|wabach")
+    const score = Math.abs(i - word.length / 2) + penalty;
+    if (score < bestScore) { bestScore = score; best = i; }
+  }
+  return [word.slice(0, best), word.slice(best)];
+}
+function posterLines(name: string): string[] {
+  const words = name.split(/\s+/).filter(Boolean);
+  return (words.length === 1 ? splitWord(words[0]) : words).slice(0, 3);
+}
+const pad = (n: number) => String(n).padStart(4, "0");
+
+// Grain for the purple sky (inline SVG noise – no extra asset)
+const NOISE = "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")";
+
+function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
+  const lines = posterLines(club.name);
+  const longest = Math.max(...lines.map((l) => l.length));
+  const doubles = club.courts.filter((c) => c.courtType === "double").length;
+  const singles = club.courts.length - doubles;
+  const stats = [
+    doubles > 0 && { n: doubles, label: "Double Courts" },
+    singles > 0 && { n: singles, label: "Single Courts" },
+  ].filter(Boolean) as { n: number; label: string }[];
+  return (
+    <Link
+      href={href(locale, "locations", club.slug)}
+      aria-label={club.fullName ?? club.name}
+      className="group relative aspect-[3/4] w-[78vw] shrink-0 snap-start overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size] md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]"
+    >
+      <Media
+        src={club.mainImage?.url}
+        alt=""
+        className="absolute inset-0"
+        imgClassName="transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+        sizes="(min-width:1200px) 420px, (min-width:768px) 42vw, 78vw"
+      />
+      {/* Purple sky + grain (top), darkening for the stats (bottom) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(132_18_181/0.9),rgb(132_18_181/0.6)_42%,rgb(132_18_181/0)_68%)] mix-blend-multiply" aria-hidden />
+      <div className="absolute inset-x-0 top-0 h-[70%] opacity-35 mix-blend-overlay [mask-image:linear-gradient(to_bottom,black_55%,transparent)]" style={{ backgroundImage: NOISE }} aria-hidden />
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/75 to-transparent transition-colors" aria-hidden />
+
+      {/* Region chip (brush, as on Instagram) */}
+      {(club.region || club.city) && (
+        <span className="absolute left-4 top-4 rounded-lg bg-purple-500 px-2.5 py-1 font-brush text-[15px] leading-none text-white shadow-elevated">
+          {club.region ?? club.city}
+        </span>
+      )}
+
+      {/* City name: huge Poppins Bold, last line outlined */}
+      <div className="absolute inset-x-0 top-[12%]" aria-hidden>
+        <p className="px-3 font-sans font-bold leading-[0.8] tracking-[-0.05em] text-white" style={{ fontSize: `min(${(150 / longest).toFixed(1)}cqw, 30cqw)` }}>
+          {lines.map((l, i) => (
+            <span key={i} className={i > 0 && i === lines.length - 1 ? "block text-transparent [-webkit-text-stroke:1.5px_white]" : "block"}>
+              {l}
+            </span>
+          ))}
+        </p>
+        {/* Torn paper line */}
+        <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="mt-3 h-2.5 w-full text-white" aria-hidden>
+          <path d="M0 5 L22 3 L38 6 L61 2 L80 5 L104 4 L131 7 L150 3 L178 5 L203 2 L229 6 L251 4 L276 6 L300 2 L323 5 L349 3 L372 6 L400 4 L400 9 L377 8 L351 10 L330 7 L305 9 L280 8 L252 10 L230 8 L206 10 L181 7 L158 9 L131 8 L109 10 L84 8 L60 9 L39 7 L18 10 L0 8 Z" fill="currentColor" />
+        </svg>
+      </div>
+
+      {/* Court counts, Insta style */}
+      <div className="absolute bottom-5 left-5 text-[13px] font-light leading-[1.05] text-white">
+        {stats.map((st, i) => (
+          <p key={st.label} className={i > 0 ? "mt-2 border-t border-white/80 pt-2" : undefined}>
+            <span className="block tabular-nums">{pad(st.n)}</span>
+            {st.label.split(" ").map((w) => (
+              <span key={w} className="block">{w}</span>
+            ))}
+          </p>
+        ))}
+      </div>
+      <h3 className="sr-only">{club.name}</h3>
+      <span className="absolute bottom-5 right-5 grid size-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
+        <ArrowUpRight className="size-5" />
+      </span>
+    </Link>
   );
 }
