@@ -3,20 +3,21 @@
 //   PROTOTYPE_PASSWORD=… node scripts/encrypt-export.mjs out
 //
 // Every HTML page is replaced by a small lock page that carries the original document
-// AES-256-GCM-encrypted (key from PBKDF2-SHA256 over the password, one salt per build).
-// After the password is entered, the page decrypts in the browser and replaces itself
-// with the original document; the derived key is kept in localStorage so further pages
-// open without asking again.
+// AES-256-GCM-encrypted (key from PBKDF2-SHA256 over the password, fixed per-site salt).
+// The RSC payload files (*.txt) are encrypted as JSON ({"pcenc":1,…}).
 //
-// The RSC payload files (*.txt) contain the page data in plain text and are deleted.
-// Client-side navigation then falls back to full page loads, which decrypt the same way.
+// After the password is entered, the lock page stores the derived key in IndexedDB and registers
+// public/sw.js: the service worker decrypts pages and payloads before the browser sees them, so the
+// site behaves exactly like an unprotected build (scripts, video, client-side navigation).
+// Fallback without service workers: the lock page decrypts itself via document.write.
 // NOT protected: JS chunks (UI strings of client components), images, fonts – and the
 // source code in a public repository.
-import { readdirSync, readFileSync, statSync, unlinkSync, writeFileSync } from "node:fs";
+import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { webcrypto as crypto } from "node:crypto";
 
 const dir = process.argv[2] ?? "out";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const password = process.env.PROTOTYPE_PASSWORD;
 if (!password) {
   console.error("PROTOTYPE_PASSWORD is not set – refusing to publish an unprotected build.");
@@ -68,17 +69,42 @@ button:disabled{opacity:.6}.err{color:var(--err);font-size:14px;min-height:1.3em
 (async () => {
   const P = JSON.parse(document.getElementById("p").textContent);
   const d = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
-  const STORE = "pc-proto-key";
-  const read = () => { try { return localStorage.getItem(STORE); } catch { return null; } };
-  const write = (v) => { try { v ? localStorage.setItem(STORE, v) : localStorage.removeItem(STORE); } catch {} };
-  async function open(raw) {
+  const enc = (u) => btoa(String.fromCharCode(...u));
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+  const swOK = "serviceWorker" in navigator && window.isSecureContext;
+  if (swOK) navigator.serviceWorker.register(P.base + "/sw.js", { scope: P.base + "/" }).catch(() => {});
+
+  // Key storage: IndexedDB (read by the service worker) + localStorage (fallback path)
+  const idb = () => new Promise((res, rej) => { const r = indexedDB.open("pc-proto", 1); r.onupgradeneeded = () => r.result.createObjectStore("kv"); r.onsuccess = () => res(r.result); r.onerror = () => rej(r.error); });
+  const idbSet = async (v) => { const db = await idb(); await new Promise((res) => { const tx = db.transaction("kv", "readwrite"); tx.objectStore("kv").put(v, "key"); tx.oncomplete = res; tx.onerror = res; }); };
+  const idbGet = async () => { try { const db = await idb(); return await new Promise((res) => { const r = db.transaction("kv").objectStore("kv").get("key"); r.onsuccess = () => res(r.result); r.onerror = () => res(undefined); }); } catch { return undefined; } };
+  const lsGet = () => { try { return JSON.parse(localStorage.getItem("pc-proto-key") || "null"); } catch { return null; } };
+  const store = async (raw) => { const v = { salt: P.salt, raw: enc(raw) }; try { await idbSet(v); } catch {} try { localStorage.setItem("pc-proto-key", JSON.stringify(v)); } catch {} };
+
+  async function decrypt(raw) {
     const key = await crypto.subtle.importKey("raw", raw, "AES-GCM", false, ["decrypt"]);
-    const html = new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: d(P.iv) }, key, d(P.ct)));
-    document.open(); document.write(html); document.close();
+    return new TextDecoder().decode(await crypto.subtle.decrypt({ name: "AES-GCM", iv: d(P.iv) }, key, d(P.ct)));
   }
-  const saved = read();
-  if (saved && saved.startsWith(P.salt + ":")) {
-    try { await open(d(saved.slice(P.salt.length + 1))); return; } catch { write(null); }
+  function writeDoc(html) { document.open(); document.write(html); document.close(); }
+  // Hand over to the service worker: once it controls the page, a reload returns the decrypted document.
+  async function viaWorker() {
+    if (!swOK) return false;
+    const last = Number(sessionStorage.getItem("pc-sw-reload") || 0);
+    if (Date.now() - last < 10000) return false; // reloaded a moment ago and still locked → don't loop
+    await Promise.race([navigator.serviceWorker.ready, sleep(4000)]);
+    sessionStorage.setItem("pc-sw-reload", String(Date.now()));
+    location.reload();
+    return true;
+  }
+
+  const saved = (await idbGet()) || lsGet();
+  if (saved && saved.salt === P.salt) {
+    try {
+      const html = await decrypt(d(saved.raw));
+      if (await viaWorker()) return;
+      writeDoc(html);
+      return;
+    } catch {}
   }
   const f = document.getElementById("f"); f.hidden = false; document.getElementById("pw").focus();
   f.addEventListener("submit", async (e) => {
@@ -88,24 +114,30 @@ button:disabled{opacity:.6}.err{color:var(--err);font-size:14px;min-height:1.3em
     try {
       const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(document.getElementById("pw").value), "PBKDF2", false, ["deriveBits"]);
       const raw = new Uint8Array(await crypto.subtle.deriveBits({ name: "PBKDF2", salt: d(P.salt), iterations: P.iter, hash: "SHA-256" }, base, 256));
-      await open(raw);
-      write(P.salt + ":" + btoa(String.fromCharCode(...raw)));
+      const html = await decrypt(raw); // throws on a wrong password
+      await store(raw);
+      if (await viaWorker()) return;
+      writeDoc(html);
     } catch { err.textContent = "Das Passwort stimmt nicht."; go.disabled = false; }
   });
 })();
 </script></body></html>`;
 
-let pages = 0, removed = 0;
+async function seal(text) {
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(text)));
+  return { salt: b64(salt), iv: b64(iv), ct: b64(ct) };
+}
+
+let pages = 0, payloads = 0;
 for (const file of walk(dir)) {
   if (file.endsWith(".txt")) {
-    unlinkSync(file);
-    removed++;
+    writeFileSync(file, JSON.stringify({ pcenc: 1, ...(await seal(readFileSync(file, "utf8"))) }));
+    payloads++;
   } else if (file.endsWith(".html")) {
-    const iv = crypto.getRandomValues(new Uint8Array(12));
-    const ct = new Uint8Array(await crypto.subtle.encrypt({ name: "AES-GCM", iv }, key, new TextEncoder().encode(readFileSync(file, "utf8"))));
-    const payload = JSON.stringify({ v: 1, iter: ITERATIONS, salt: b64(salt), iv: b64(iv), ct: b64(ct) });
+    const payload = JSON.stringify({ v: 2, iter: ITERATIONS, base: basePath, ...(await seal(readFileSync(file, "utf8"))) });
     writeFileSync(file, lockPage(payload));
     pages++;
   }
 }
-console.log(`encrypted ${pages} HTML pages, removed ${removed} RSC payload files`);
+console.log(`encrypted ${pages} HTML pages and ${payloads} RSC payloads`);

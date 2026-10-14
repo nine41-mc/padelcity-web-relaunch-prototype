@@ -55,6 +55,7 @@ jobs:
       - name: Password-protect the export
         env:
           PROTOTYPE_PASSWORD: ${{ secrets.PROTOTYPE_PASSWORD }}
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: node scripts/encrypt-export.mjs out
       - name: Disable Jekyll (keeps the _next/ folder)
         run: touch out/.nojekyll
