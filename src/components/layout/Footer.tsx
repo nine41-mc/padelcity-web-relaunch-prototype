@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Facebook, Instagram, Linkedin, MessageCircle, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, MessageCircle, Youtube } from "lucide-react";
 import { legalNav, mainNav, secondaryNav, site } from "@/lib/site";
 import { asset } from "@/lib/asset";
 import type { Locale } from "@/lib/i18n/config";
@@ -100,10 +100,13 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         {/* Link columns */}
-        <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-white/12 pt-12 md:grid-cols-4">
+        <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-white/12 pt-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="col-span-2 md:col-span-1">
-            <p className="max-w-xs text-sm leading-relaxed text-white/80">{t.footer.about}</p>
-            <ul className="mt-6 flex gap-2" aria-label={t.footer.follow}>
+            <p className="font-display text-4xl font-extrabold italic uppercase leading-[0.95] md:text-5xl">
+              &ldquo;Fell in love with <Accent>padel.</Accent>&rdquo;
+            </p>
+            <h2 className="mt-6 font-display text-xl font-extrabold italic uppercase tracking-wide text-white/85">{t.footer.follow}</h2>
+            <ul className="mt-3 flex flex-wrap gap-2" aria-label={t.footer.follow}>
               {socials.map(({ href: url, icon: I, label }) => (
                 <li key={label}>
                   <a
@@ -121,18 +124,6 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
           <FooterCol title={t.footer.play} keys={mainNav} locale={locale} />
           <FooterCol title={t.footer.company} keys={[...secondaryNav, "sitemap"]} locale={locale} />
-          <div>
-            <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/75">{t.footer.findClub}</h2>
-            <Link
-              href={href(locale, "locations")}
-              className="group mt-4 inline-flex items-center gap-3 font-display text-3xl font-extrabold italic uppercase leading-none hover:text-magenta-300"
-            >
-              {t.nav.locations}
-              <span className="grid size-9 place-items-center rounded-full bg-brand-gradient text-white transition-transform group-hover:rotate-45">
-                <ArrowUpRight className="size-4" aria-hidden />
-              </span>
-            </Link>
-          </div>
         </div>
       </div>
 
