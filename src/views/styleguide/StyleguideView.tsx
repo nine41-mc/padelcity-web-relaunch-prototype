@@ -321,6 +321,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["dark", "Auf Fotos, z. B. Bildanzahl in der Galerie"],
             ["level", "Spielstärke – die einzige Chip-Variante in Neon"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
+            ["Preis auf Karten", "Club- und Event-Karten: Preis unten rechts auf dem Bild, Söhne Schmal groß, mit Abdunklung"],
             ["Courts & Sportarten", "Auf Kacheln zwei bündige Textzeilen: „13 Courts · Indoor & Outdoor“ (weiß), darunter „Padel · Tennis“ (gedämpft) – ohne Pillen und Icons; Aufschlüsselung nur auf der Clubseite"],
           ]}
         />
@@ -403,7 +404,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <WhatsAppGroups locale={locale} label="Gruppe finden" variant="gradient" track="styleguide_whatsapp_overlay" />
           <p className="max-w-xl text-sm text-white/75">
             Es gibt keinen zentralen Community-Link. Jeder Einstieg (Startseite, Footer-Band) öffnet dieses Overlay mit der direkten Gruppe pro Standort, mit Suche.
-            Geteilte Gruppen und Kanäle sind gekennzeichnet. Auf der Clubseite führt die Kachel direkt in die Gruppe des Clubs.
+            Geteilte Gruppen stehen als ein Eintrag zusammen („Andernach & Mülheim-Kärlich“), Kanäle sind gekennzeichnet. Auf der Clubseite führt die Kachel direkt in die Gruppe des Clubs.
           </p>
         </div>
 

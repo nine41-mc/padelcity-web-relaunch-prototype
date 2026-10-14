@@ -16,7 +16,6 @@ const copy = {
     channel: "Kanal",
     close: "Schließen",
     empty: "Für diese Stadt gibt es noch keine Gruppe.",
-    shared: "gemeinsame Gruppe mit",
   },
   en: {
     title: "WhatsApp community",
@@ -26,22 +25,17 @@ const copy = {
     channel: "Channel",
     close: "Close",
     empty: "There's no group for this city yet.",
-    shared: "shared group with",
   },
 };
 
-type Group = { city: string; url: string; channel: boolean; sharedWith: string[] };
+type Group = { city: string; url: string; channel: boolean };
 
-/** All location groups, alphabetical; cities that share one invite link point to each other. */
+/** One entry per invite link, alphabetical; cities sharing a group appear together ("Andernach & Mülheim-Kärlich"). */
 function groups(locale: Locale): Group[] {
-  const entries = Object.entries(whatsappByCity);
-  return entries
-    .map(([city, url]) => ({
-      city,
-      url,
-      channel: url.includes("/channel/"),
-      sharedWith: entries.filter(([c, u]) => u === url && c !== city).map(([c]) => c),
-    }))
+  const byUrl = new Map<string, string[]>();
+  for (const [city, url] of Object.entries(whatsappByCity)) byUrl.set(url, [...(byUrl.get(url) ?? []), city]);
+  return [...byUrl]
+    .map(([url, cities]) => ({ city: cities.sort((x, y) => x.localeCompare(y, locale)).join(" & "), url, channel: url.includes("/channel/") }))
     .sort((a, b) => a.city.localeCompare(b.city, locale));
 }
 
@@ -134,15 +128,10 @@ export function WhatsAppGroups({
                   className="group flex min-h-14 items-center gap-3 rounded-[16px] border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors hover:border-white/40 hover:bg-white/[0.06]"
                 >
                   <span className="min-w-0 flex-1">
-                    <span className="flex items-center gap-2 font-semibold">
+                    <span className="flex flex-wrap items-center gap-x-2 gap-y-1 font-semibold">
                       {g.city}
                       {g.channel && <span className="rounded-md border border-white/35 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/80">{t.channel}</span>}
                     </span>
-                    {g.sharedWith.length > 0 && (
-                      <span className="block truncate text-[13px] text-white/60">
-                        {t.shared} {g.sharedWith.join(", ")}
-                      </span>
-                    )}
                   </span>
                   <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-magenta-300">
                     {t.join}

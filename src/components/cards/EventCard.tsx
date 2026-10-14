@@ -34,6 +34,9 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
         <div className="absolute inset-x-3 top-3 flex justify-between">
           {event.recurrence ? <Chip tone="gradient">{event.recurrence}</Chip> : <Chip tone="dark">{event.type === "tournament" ? t.tournament : event.type === "training" ? t.training : t.event}</Chip>}
         </div>
+        {/* Price bottom-right on the image – same placement as on the club cards */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" aria-hidden />
+        <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">{price}</p>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex items-start justify-between gap-3">
@@ -54,9 +57,8 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
             </li>
           )}
         </ul>
-        {/* Price + equal sign-up options (web / app). No capacity/places left. */}
-        <div className="relative z-10 mt-auto space-y-3 border-t border-white/10 pt-4">
-          <p className="font-display text-3xl font-extrabold italic leading-none">{price}</p>
+        {/* Equal sign-up options (web / app). No capacity/places left. */}
+        <div className="relative z-10 mt-auto border-t border-white/10 pt-4">
           <EventSignup eventId={event.id} locale={locale} size="sm" tone="glass" />
         </div>
       </div>
