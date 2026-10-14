@@ -74,9 +74,9 @@ const de = {
     text: "Alle Courts, Matches und Events buchst du in der PadelCity App – in wenigen Klicks, mit Sofortbestätigung.",
     open: "App öffnen",
   },
-  clubCard: { from: "ab", courts: "Courts", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", opensAt: "Öffnet heute um {t}", closed: "Heute geschlossen", sportsLabel: "Sportarten" },
+  clubCard: { from: "ab", courts: "Courts", court: "Court", indoor: "Indoor", outdoor: "Outdoor", indoorOutdoor: "Indoor & Outdoor", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", opensAt: "Öffnet heute um {t}", closed: "Heute geschlossen", sportsLabel: "Sportarten" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
-  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der PadelCity App anmelden", free: "Free", time: "Uhr" },
+  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", signupLead: "Anmelden und buchen:", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der PadelCity App anmelden", free: "Free", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
 };
 
@@ -154,9 +154,9 @@ const en: Dictionary = {
     text: "Book every court, match and event in the PadelCity app – in a few taps, instantly confirmed.",
     open: "Open the app",
   },
-  clubCard: { from: "from", courts: "courts", parking: "Parking", view: "view", perHour: "/ hr", openUntil: "Open until {t}", opensAt: "Opens today at {t}", closed: "Closed today", sportsLabel: "Sports" },
+  clubCard: { from: "from", courts: "courts", court: "court", indoor: "Indoor", outdoor: "Outdoor", indoorOutdoor: "Indoor & outdoor", parking: "Parking", view: "view", perHour: "/ hr", openUntil: "Open until {t}", opensAt: "Opens today at {t}", closed: "Closed today", sportsLabel: "Sports" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Football", multisport: "Multisport" },
-  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", signupLabel: "Sign up", web: "On the web", app: "In the app", webAria: "Sign up on the web (opens new tab)", appAria: "Sign up in the PadelCity app", free: "Free", time: "" },
+  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", signupLabel: "Sign up", signupLead: "Sign up and book:", web: "On the web", app: "In the app", webAria: "Sign up on the web (opens new tab)", appAria: "Sign up in the PadelCity app", free: "Free", time: "" },
   media: { placeholder: "Image coming soon" },
 };
 

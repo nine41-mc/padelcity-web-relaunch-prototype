@@ -6,21 +6,18 @@ import { href } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { formatPrice } from "@/lib/format";
 import { Media } from "../ui/Media";
-import { OpenStatus, SportChips } from "./ClubMeta";
+import { OpenStatus, SportList } from "./ClubMeta";
 import { PosterSky, PosterTitle } from "./Poster";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "../ui/cn";
 
 export function courtSummary(club: Club, locale: Locale = "de") {
-  // "9 Outdoor Courts · 2 Indoor Courts" – all sports, larger group first
+  // Tiles: total + kind ("13 Courts · Indoor & Outdoor"); the club page keeps the full breakdown
+  const t = getDictionary(locale).clubCard;
+  const n = club.courts.length;
   const indoor = club.courts.filter((c) => c.locationType === "indoor").length;
-  const outdoor = club.courts.length - indoor;
-  const courts = getDictionary(locale).clubCard.courts;
-  const parts = [
-    { n: indoor, label: `${indoor} Indoor ${courts}` },
-    { n: outdoor, label: `${outdoor} Outdoor ${courts}` },
-  ].filter((p) => p.n > 0);
-  return parts.sort((a, b) => b.n - a.n).map((p) => p.label).join(" · ");
+  const kind = indoor === 0 ? t.outdoor : indoor === n ? t.indoor : t.indoorOutdoor;
+  return `${n} ${n === 1 ? t.court : t.courts} · ${kind}`;
 }
 
 /**
@@ -77,9 +74,11 @@ export function ClubCard({
           {address}
           {distanceKm !== undefined && ` · ${distanceKm.toLocaleString(intl, { maximumFractionDigits: 1 })} km`}
         </p>
-        <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
         <div className="mt-auto flex items-end justify-between gap-4 pt-1">
-          <SportChips club={club} locale={locale} />
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
+            <SportList club={club} locale={locale} className="mt-1 text-white/70" />
+          </div>
           <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
             <ArrowUpRight className="size-5" />
           </span>

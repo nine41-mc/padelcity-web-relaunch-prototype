@@ -14,6 +14,7 @@ import { CountUp } from "@/components/home/CountUp";
 import { GermanyMap } from "@/components/home/GermanyMap";
 import { ClubShowcase } from "@/components/home/ClubShowcase";
 import { EventSignup } from "@/components/events/EventSignup";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import { EventCard } from "@/components/cards/EventCard";
 import { AppCta } from "@/components/modules/AppCta";
 import { Testimonials } from "@/components/modules/Testimonials";
@@ -203,9 +204,13 @@ export async function HomeView({ locale }: { locale: Locale }) {
                     {keepTogether(heroEvent.title)}
                   </Link>
                 </h3>
-                {heroEvent.subtitle && <p className="mt-4 text-lg text-white/80">{heroEvent.subtitle}</p>}
+                {/* The text ends with the lead-in to the buttons ("Anmelden und buchen:") instead of a separate label */}
+                <p className="mt-4 text-lg text-white/80">
+                  {heroEvent.subtitle && <>{heroEvent.subtitle} </>}
+                  <span className="whitespace-nowrap font-semibold text-white">{getDictionary(locale).eventCard.signupLead}</span>
+                </p>
                 {/* Equal sign-up options; the whole teaser links to the detail page */}
-                <EventSignup eventId={heroEvent.id} locale={locale} size="md" showLabel className="mt-6 max-w-md" />
+                <EventSignup eventId={heroEvent.id} locale={locale} size="md" className="mt-5 max-w-md" />
               </div>
             </div>
           </Reveal>

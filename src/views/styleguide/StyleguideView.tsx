@@ -261,7 +261,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       {/* Icons */}
       <Block id="icons" eyebrow="05" title="Icons" lead="Zwei Familien, eine Regel: Icons sind weiß und stehen nie allein, wenn ihre Bedeutung nicht eindeutig ist.">
         <H3>App-Icons · Sportarten und Ausstattung</H3>
-        <p className="mb-5 max-w-3xl text-white/75">Direkt aus der PadelCity App übernommen, damit Website und App dieselbe Bildsprache sprechen. Eingefärbt über currentColor.</p>
+        <p className="mb-5 max-w-3xl text-white/75">Direkt aus der PadelCity App übernommen, damit Website und App dieselbe Bildsprache sprechen. Eingefärbt über currentColor. Einsatz: Clubseite und Filter – auf Club-Kacheln stehen Sportarten nur als Text.</p>
         <ul className="grid grid-cols-3 gap-2 sm:grid-cols-4 md:grid-cols-7">
           {APP_ICONS.map((name) => (
             <li key={name} className="flex flex-col items-center gap-2 rounded-[12px] border border-white/10 bg-ink-700 px-2 py-4 text-center">
@@ -321,6 +321,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["dark", "Auf Fotos, z. B. Bildanzahl in der Galerie"],
             ["level", "Spielstärke – die einzige Chip-Variante in Neon"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
+            ["Courts & Sportarten", "Auf Kacheln zwei bündige Textzeilen: „13 Courts · Indoor & Outdoor“ (weiß), darunter „Padel · Tennis“ (gedämpft) – ohne Pillen und Icons; Aufschlüsselung nur auf der Clubseite"],
           ]}
         />
       </Block>
@@ -354,7 +355,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <p className="max-w-3xl text-white/75">
           Look aus den Instagram-Posts zu Neueröffnungen, automatisch für jeden Club: lila, körniger Himmel über dem Club-Foto, Stadt in Poppins Bold mit fester Schriftgröße je Kachel-Typ. Regel: bis 7 Buchstaben
           einzeilig (Berlin, München), längere Namen an einer Silbe geteilt (Frank|furt), zweite Zeile als Outline – damit sitzt die Abrisskante immer auf einer von zwei festen Höhen, der Standort innerhalb der Stadt (z. B. Frankfurter Ring, Tucherpark) kleiner unter der Abrisskante, weiße Abrisskante. Oben links der Öffnungsstatus in PadelCity-Pink. Courts und Sportarten erscheinen erst beim Hover (auf Touch-Geräten
-          immer sichtbar), damit das Poster ruhig bleibt. Die Club-Karten (Standorte, Academy, Franchise, Clubs in der Nähe) nutzen denselben Look im Bild – Status oben, Stadt mit Abrisskante, Preis unten rechts im Bild –, darunter statisch Adresse, Courts, Sportarten und Pfeil.
+          immer sichtbar), damit das Poster ruhig bleibt. Die Club-Karten (Standorte, Academy, Franchise, Clubs in der Nähe) nutzen denselben Look im Bild – Status oben, Stadt mit Abrisskante, Preis unten rechts im Bild –, darunter statisch Adresse, Courts („13 Courts · Indoor & Outdoor“), Sportarten als reiner Text und Pfeil.
         </p>
 
         <H3>Instagram-Bildwand (Startseite)</H3>

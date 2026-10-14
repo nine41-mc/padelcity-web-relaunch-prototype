@@ -8,7 +8,7 @@ import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
 import { PosterSky, PosterTitle } from "../cards/Poster";
 import { courtSummary } from "../cards/ClubCard";
-import { OpenStatus, SportChips } from "../cards/ClubMeta";
+import { OpenStatus, SportList } from "../cards/ClubMeta";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 
@@ -102,7 +102,7 @@ function ClubPoster({ club, locale }: { club: Club; locale: Locale }) {
       {/* Courts + sports: revealed on hover/focus; always visible on touch devices (no hover) */}
       <div className="absolute inset-x-5 bottom-5 pr-14 transition-all duration-300 [@media(hover:hover)]:translate-y-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
         <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
-        <SportChips club={club} locale={locale} className="mt-2.5" />
+        <SportList club={club} locale={locale} className="mt-1 text-white/80" />
       </div>
       <h3 className="sr-only">{club.name}</h3>
       <span className="absolute bottom-5 right-5 grid size-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>

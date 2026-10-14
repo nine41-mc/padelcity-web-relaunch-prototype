@@ -6,7 +6,6 @@ import type { Club, Sport } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { todaysHours } from "@/components/locations/geo";
-import { AppIcon } from "../ui/Icon";
 import { cn } from "../ui/cn";
 
 /** Sports offered at a club (from its courts), padel first. */
@@ -37,16 +36,13 @@ export function OpenStatus({ club, locale, className }: { club: Club; locale: Lo
   );
 }
 
-export function SportChips({ club, locale, className }: { club: Club; locale: Locale; className?: string }) {
+/** Sports as plain text ("Padel · Tennis") – flush left with the court line; icons only on the club page and in the filter. */
+export function SportList({ club, locale, className }: { club: Club; locale: Locale; className?: string }) {
   const d = getDictionary(locale);
   return (
-    <ul className={cn("flex flex-wrap gap-1.5", className)} aria-label={d.clubCard.sportsLabel}>
-      {clubSports(club).map((s) => (
-        <li key={s} className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[13px] font-semibold text-white">
-          <AppIcon name={s} className="size-3.5 text-white" />
-          {d.sports[s]}
-        </li>
-      ))}
-    </ul>
+    <p className={cn("text-sm", className ?? "text-white/70")}>
+      <span className="sr-only">{d.clubCard.sportsLabel}: </span>
+      {clubSports(club).map((s) => d.sports[s]).join(" · ")}
+    </p>
   );
 }
