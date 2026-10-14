@@ -15,6 +15,8 @@
  * SECONDARY = white on ink. Body text, ALL icons (facility, sport, contact, clock, map pin, social,
  *             filter, select), outline buttons, borders, hover states (→ white, or magenta-300 for
  *             text links), carousel arrows, rating stars. Never neon on hover.
+ *             Exception: the opening status line on club cards ("Geöffnet bis 22:00" + clock icon)
+ *             is magenta-300 – PadelCity pink for live club info.
  * HIGHLIGHT = neon #B4E854 (`neon-*`). ONLY these uses – nothing else:
  *             1. <Accent> brush word in headlines          6. keyboard focus ring / skip link (a11y)
  *             2. neon marquee / ticker bands (home+footer)  7. active pin + pin label on the HOME map

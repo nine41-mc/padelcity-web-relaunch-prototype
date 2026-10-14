@@ -28,8 +28,9 @@ export function OpenStatus({ club, locale, className }: { club: Club; locale: Lo
     setText(!h ? t.closed : h.state === "before" ? t.opensAt.replace("{t}", h.open) : h.state === "open" ? t.openUntil.replace("{t}", h.close) : t.closed);
   }, [club.openingHours, t]);
   return (
-    <p className={cn("flex min-h-5 items-center gap-1.5 text-sm text-white/85", className)}>
-      <Clock className="size-4 shrink-0 text-white/80" aria-hidden />
+    // Opening status is the one meta line in PadelCity pink (colour roles: SECONDARY exception, see globals.css)
+    <p className={cn("flex min-h-5 items-center gap-1.5 text-sm font-semibold text-magenta-300", className)}>
+      <Clock className="size-4 shrink-0" aria-hidden />
       {/* Reserve the line before hydration so nothing jumps */}
       <span>{text ?? " "}</span>
     </p>
