@@ -5,7 +5,10 @@
 import { Suspense, useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { LayoutGrid, LocateFixed, Loader2, Map as MapIcon, Search, SlidersHorizontal, X } from "lucide-react";
-import type { Club, ClubCountry } from "@/lib/data/types";
+import { SPORTS, type Club, type ClubCountry, type Sport } from "@/lib/data/types";
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import { clubSports } from "@/components/cards/ClubMeta";
+import { AppIcon } from "@/components/ui/Icon";
 import type { Locale } from "@/lib/i18n/config";
 import { COUNTRY_ORDER, locationsContent } from "@/lib/content/locations";
 import { ClubCard } from "@/components/cards/ClubCard";
@@ -13,9 +16,11 @@ import { cn } from "@/components/ui/cn";
 import { ClubMapLazy } from "./ClubMapLazy";
 import { CountryFlag } from "./CountryFlag";
 import { FilterSheet, SheetGroup, sheetChip } from "./FilterSheet";
-import { distanceKm, type LatLng } from "./geo";
+import { distanceKm, todaysHours, type LatLng } from "./geo";
 
 type FilterKey = "indoor" | "outdoor" | "panorama" | "franchise";
+type SortKey = "default" | "distance" | "az" | "za";
+const SORT_KEYS: SortKey[] = ["default", "distance", "az", "za"];
 const FILTER_KEYS: FilterKey[] = ["indoor", "outdoor", "panorama", "franchise"];
 
 const matchesQuery = (c: Club, q: string) =>
@@ -45,11 +50,23 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
   const [user, setUser] = useState<LatLng | null>(null);
   const [geo, setGeo] = useState<GeoState>("idle");
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [sports, setSports] = useState<Set<Sport>>(new Set());
+  const [openNow, setOpenNow] = useState(false);
+  const [sort, setSort] = useState<SortKey>("default");
   const [sheetOpen, setSheetOpen] = useState(false);
+  const sportNames = getDictionary(locale).sports;
   const closeSheet = useCallback(() => setSheetOpen(false), []);
 
   const toggle = (k: FilterKey) =>
     setFilters((prev) => {
+      const next = new Set(prev);
+      if (next.has(k)) next.delete(k);
+      else next.add(k);
+      return next;
+    });
+
+  const toggleSport = (k: Sport) =>
+    setSports((prev) => {
       const next = new Set(prev);
       if (next.has(k)) next.delete(k);
       else next.add(k);
@@ -83,6 +100,19 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
     return COUNTRY_ORDER.filter((cc) => counts.has(cc)).map((cc) => ({ code: cc, count: counts.get(cc) ?? 0 }));
   }, [clubs]);
 
+  // Sports offered anywhere in the network (filter options), in the app's order
+  const availableSports = useMemo(() => {
+    const set = new Set(clubs.flatMap((c) => clubSports(c)));
+    return SPORTS.filter((sp) => set.has(sp));
+  }, [clubs]);
+
+  // Sorting by distance needs the visitor's location; "In meiner Nähe" switches it on automatically.
+  const effectiveSort: SortKey = sort === "default" && user ? "distance" : sort === "distance" && !user ? "default" : sort;
+  const chooseSort = (k: SortKey) => {
+    setSort(k);
+    if (k === "distance" && !user && geo !== "loading") locate();
+  };
+
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     const list = clubs
@@ -93,19 +123,24 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         if (filters.has("outdoor") && !c.courts.some((x) => x.locationType === "outdoor")) return false;
         if (filters.has("panorama") && !c.courts.some((x) => x.isPremium)) return false;
         if (filters.has("franchise") && !c.isFranchise) return false;
+        if (sports.size > 0 && !clubSports(c).some((sp) => sports.has(sp))) return false;
+        if (openNow && todaysHours(c.openingHours)?.state !== "open") return false;
         return true;
       })
       .map((c) => ({ club: c, km: user ? distanceKm(user, c.position) : undefined }));
-    if (user) list.sort((a, b) => (a.km ?? 0) - (b.km ?? 0));
+    if (effectiveSort === "distance") list.sort((a, b) => (a.km ?? 0) - (b.km ?? 0));
+    if (effectiveSort === "az" || effectiveSort === "za") {
+      list.sort((a, b) => a.club.name.localeCompare(b.club.name, locale) * (effectiveSort === "za" ? -1 : 1));
+    }
     return list;
-  }, [clubs, query, filters, user, country]);
+  }, [clubs, query, filters, user, country, sports, openNow, effectiveSort, locale]);
 
   // Planned clubs appear on the map only (outline pins); court-type filters don't apply – they have no courts yet.
   const plannedOnMap = useMemo(() => {
-    if (filters.size > 0) return [];
+    if (filters.size > 0 || sports.size > 0 || openNow) return [];
     const q = query.trim().toLowerCase();
     return planned.filter((c) => (country === "all" || c.country === country) && matchesQuery(c, q));
-  }, [planned, query, filters, country]);
+  }, [planned, query, filters, country, sports, openNow]);
 
   const mapClubs = useMemo(
     () => [
@@ -130,19 +165,20 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
     [results, plannedOnMap],
   );
 
-  const activeCount = filters.size + (country !== "all" ? 1 : 0);
+  // Badge on the filter button: everything that lives only inside the filter panel
+  const activeCount = filters.size + sports.size + (openNow ? 1 : 0) + (sort !== "default" ? 1 : 0);
 
+  const resetFilters = () => {
+    setFilters(new Set());
+    setSports(new Set());
+    setOpenNow(false);
+    setSort("default");
+  };
   const reset = () => {
     setQuery("");
-    setFilters(new Set());
     setCountry("all");
+    resetFilters();
   };
-
-  const chip = (active: boolean) =>
-    cn(
-      "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 text-sm font-medium transition-colors",
-      active ? "border-transparent bg-brand-gradient text-white" : "border-white/40 bg-white/5 text-white/85 hover:border-white/70 hover:text-white",
-    );
 
   return (
     <div>
@@ -200,15 +236,11 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         </p>
       )}
 
-      {/* Country segmented control (DE · AT · PL …) – combines with search + filters below */}
-      {countries.length > 1 && (
-        <div
-          className="mt-10 hidden md:flex"
-          role="group"
-          aria-label={t.countryLabel}
-          data-testid="country-filter"
-        >
-          <div className="flex shrink-0 gap-1 rounded-full border border-white/15 bg-white/[0.03] p-1">
+      {/* Toolbar – one line: countries (tablet/desktop) · count · filter · list/map */}
+      <h2 className="sr-only">{t.resultsHeading}</h2>
+      <div id="results" className="mt-8 flex scroll-mt-32 items-center gap-4 md:mt-10">
+        {countries.length > 1 && (
+          <div className="hidden shrink-0 gap-1 rounded-full border border-white/15 bg-white/[0.03] p-1 md:flex" role="group" aria-label={t.countryLabel} data-testid="country-filter">
             {[{ code: "all" as const, count: clubs.length }, ...countries].map(({ code, count }) => {
               const active = country === code;
               return (
@@ -229,67 +261,55 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
               );
             })}
           </div>
-        </div>
-      )}
-
-      {/* Toolbar */}
-      <h2 className="sr-only">{t.resultsHeading}</h2>
-      <div id="results" className={cn("mt-8 flex scroll-mt-32 flex-col gap-4 md:flex-row md:items-center md:justify-between", countries.length > 1 ? "md:mt-4" : "md:mt-10")}>
-        <div className="hidden flex-wrap gap-2 md:flex" role="group" aria-label={t.filterLabel}>
-          {FILTER_KEYS.map((key) => (
-            <button key={key} type="button" aria-pressed={filters.has(key)} onClick={() => toggle(key)} className={chip(filters.has(key))}>
-              {t.filters[key]}
-            </button>
-          ))}
-        </div>
-        <div className="flex items-center justify-between gap-4">
-          <p className="whitespace-nowrap text-sm text-white/70" aria-live="polite">
+        )}
+        <div className="flex w-full items-center justify-between gap-4 md:ml-auto md:w-auto md:justify-end">
+          <p className="whitespace-nowrap text-sm text-white/70 md:hidden lg:block" aria-live="polite">
             <span className="font-semibold text-white">{results.length}</span> {results.length === 1 ? t.club : t.clubs}
-            {user && t.byDistance}
+            {effectiveSort === "distance" && t.byDistance}
           </p>
           <div className="flex items-center gap-2">
-          {/* Phone: country + features collapse into one filter button → bottom sheet */}
-          <button
-            type="button"
-            onClick={() => setSheetOpen(true)}
-            aria-haspopup="dialog"
-            aria-expanded={sheetOpen}
-            aria-label={activeCount ? `${t.filterLabel} (${activeCount})` : t.filterLabel}
-            className={cn(
-              "relative grid size-12 place-items-center rounded-full border transition-colors md:hidden",
-              activeCount ? "border-transparent bg-brand-gradient text-white" : "border-white/40 bg-white/5 text-white",
-            )}
-          >
-            <SlidersHorizontal className="size-5" aria-hidden />
-            {activeCount > 0 && (
-              <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-white text-[11px] font-bold tabular-nums text-ink-800" aria-hidden>
-                {activeCount}
-              </span>
-            )}
-          </button>
-          <div className="flex rounded-full border border-white/15 p-1" role="group" aria-label={t.viewLabel}>
-            {(
-              [
-                ["list", t.list, LayoutGrid],
-                ["map", t.map, MapIcon],
-              ] as const
-            ).map(([key, label, Icon]) => (
-              <button
-                key={key}
-                type="button"
-                aria-pressed={view === key}
-                onClick={() => setView(key)}
-                aria-label={label}
-                className={cn(
-                  "flex min-h-10 min-w-10 items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors md:px-4",
-                  view === key ? "bg-brand-gradient text-white" : "text-white/70 hover:text-white",
-                )}
-              >
-                {/* Phone: icon only (label stays the accessible name) */}
-                <Icon className="size-4" aria-hidden /> <span className="hidden md:inline">{label}</span>
-              </button>
-            ))}
-          </div>
+            {/* All further criteria (sports, features, open now, sorting – and countries on phones) live in the filter panel */}
+            <button
+              type="button"
+              onClick={() => setSheetOpen(true)}
+              aria-haspopup="dialog"
+              aria-expanded={sheetOpen}
+              aria-label={activeCount ? `${t.filterLabel} (${activeCount})` : t.filterLabel}
+              className={cn(
+                "relative grid size-12 place-items-center rounded-full border transition-colors",
+                activeCount ? "border-transparent bg-brand-gradient text-white" : "border-white/40 bg-white/5 text-white hover:border-white/70",
+              )}
+            >
+              <SlidersHorizontal className="size-5" aria-hidden />
+              {activeCount > 0 && (
+                <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-white text-[11px] font-bold tabular-nums text-ink-800" aria-hidden>
+                  {activeCount}
+                </span>
+              )}
+            </button>
+            <div className="flex rounded-full border border-white/15 p-1" role="group" aria-label={t.viewLabel}>
+              {(
+                [
+                  ["list", t.list, LayoutGrid],
+                  ["map", t.map, MapIcon],
+                ] as const
+              ).map(([key, label, Icon]) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={view === key}
+                  onClick={() => setView(key)}
+                  aria-label={label}
+                  className={cn(
+                    "flex min-h-10 min-w-10 items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors lg:px-4",
+                    view === key ? "bg-brand-gradient text-white" : "text-white/70 hover:text-white",
+                  )}
+                >
+                  {/* Icon only below desktop (label stays the accessible name) */}
+                  <Icon className="size-4" aria-hidden /> <span className="hidden lg:inline">{label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -302,17 +322,30 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         resetLabel={t.resetShort}
         showLabel={t.show(results.length)}
         onReset={() => {
-          setFilters(new Set());
+          resetFilters();
           setCountry("all");
         }}
       >
-        {countries.length > 1 && (
-          <SheetGroup label={t.countryLabel}>
-            {[{ code: "all" as const, count: clubs.length }, ...countries].map(({ code, count }) => (
-              <button key={code} type="button" aria-pressed={country === code} onClick={() => setCountry(code)} className={sheetChip(country === code)}>
-                {code !== "all" && <CountryFlag country={code} />}
-                {t.countries[code]}
-                <span className={cn("tabular-nums text-[13px]", country === code ? "text-white/80" : "text-white/70")}>{count}</span>
+        <SheetGroup label={t.sortLabel}>
+          {SORT_KEYS.map((key) => (
+            <button key={key} type="button" aria-pressed={sort === key} onClick={() => chooseSort(key)} className={sheetChip(sort === key)}>
+              {key === "distance" && <LocateFixed className="size-4" aria-hidden />}
+              {t.sort[key]}
+            </button>
+          ))}
+        </SheetGroup>
+        <SheetGroup label={t.availabilityLabel}>
+          <button type="button" aria-pressed={openNow} onClick={() => setOpenNow((v) => !v)} className={sheetChip(openNow)}>
+            <span className={cn("size-2 rounded-full", openNow ? "bg-white" : "bg-success")} aria-hidden />
+            {t.openNow}
+          </button>
+        </SheetGroup>
+        {availableSports.length > 1 && (
+          <SheetGroup label={t.sportsLabel}>
+            {availableSports.map((sp) => (
+              <button key={sp} type="button" aria-pressed={sports.has(sp)} onClick={() => toggleSport(sp)} className={sheetChip(sports.has(sp))}>
+                <AppIcon name={sp} className="size-4" />
+                {sportNames[sp]}
               </button>
             ))}
           </SheetGroup>
@@ -324,6 +357,17 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
             </button>
           ))}
         </SheetGroup>
+        {countries.length > 1 && (
+          <SheetGroup label={t.countryLabel} className="md:hidden">
+            {[{ code: "all" as const, count: clubs.length }, ...countries].map(({ code, count }) => (
+              <button key={code} type="button" aria-pressed={country === code} onClick={() => setCountry(code)} className={sheetChip(country === code)}>
+                {code !== "all" && <CountryFlag country={code} />}
+                {t.countries[code]}
+                <span className={cn("tabular-nums text-[13px]", country === code ? "text-white/80" : "text-white/70")}>{count}</span>
+              </button>
+            ))}
+          </SheetGroup>
+        )}
       </FilterSheet>
 
       {/* Results */}

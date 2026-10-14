@@ -423,10 +423,11 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           ))}
         </ul>
 
-        <H3>Filter auf dem Handy</H3>
+        <H3>Standortfinder: Filter</H3>
         <p className="max-w-3xl text-white/75">
-          Auf dem Standortfinder liegen Länder und Ausstattung auf dem Handy hinter einem einzigen Filter-Icon und öffnen ein Bottom Sheet. Aktive Filter zeigt das Icon als
-          Verlauf mit Zähler. Liste und Karte werden auf dem Handy nur als Icons umgeschaltet. Ab Tablet bleiben Chips und Beschriftungen sichtbar.
+          Eine Zeile: Länder als Segment-Schalter (ab Tablet), Anzahl, Filter-Icon, Liste/Karte. Alle weiteren Kriterien liegen hinter dem Filter-Icon: Sortierung (Empfohlen,
+          Entfernung, A–Z, Z–A), „Gerade geöffnet“, Sportarten, Ausstattung (Indoor, Outdoor, Panorama Court, Franchise) und auf dem Handy auch die Länder. Auf dem Handy als Bottom
+          Sheet, ab Tablet als Panel von rechts. Aktive Kriterien färben das Icon im Verlauf und zeigen einen Zähler. Filter wirken sofort; der Button zeigt die Trefferzahl.
         </p>
       </Block>
 
