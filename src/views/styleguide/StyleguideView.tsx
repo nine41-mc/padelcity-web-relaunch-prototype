@@ -357,6 +357,20 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           außerhalb einer Headline vorkommt – bewusst, weil er das Instagram-Original zitiert.
         </p>
 
+        <H3>Instagram-Bildwand (Startseite)</H3>
+        <p className="max-w-3xl text-white/75">
+          Dichtes Raster wie das Instagram-Profil: 3 Spalten auf dem Handy, 6 ab Tablet, Format 4 : 5, 4 px Abstand, Reels mit Play-Icon, im Hover lila Fläche mit Instagram-Icon.
+          Jede Kachel öffnet @padelcity.de. Live werden die Posts serverseitig beim Build geladen (Instagram Graph API oder ein Feed-Tool mit JSON-Schnittstelle) – kein
+          Fremd-Skript im Browser, damit kein zusätzlicher Consent nötig ist.
+        </p>
+
+        <H3>Club-Highlights (Clubseite)</H3>
+        <p className="max-w-3xl text-white/75">
+          Kreise wie Instagram-Story-Highlights unter dem Clubnamen: Verlaufsring = noch nicht angesehen, grauer Ring = angesehen. Der erste Kreis ist „Welcome to PadelCity
+          &lt;Stadt&gt;“ im Magenta-Look der Instagram-Cover. Klick öffnet eine Story-Ansicht im Format 9 : 16 mit Fortschrittsbalken, Tippen links/rechts, Halten pausiert,
+          Esc schließt. Highlights liefert die Instagram-API nicht – sie werden pro Club in Contentful gepflegt.
+        </p>
+
         <H3>Clubkarte auf der Startseite</H3>
         <p className="max-w-3xl text-white/75">
           Deutschland im Brand-Verlauf mit Punktraster. Österreich und Polen sind grau und gestrichelt angedeutet, damit Innsbruck, Warschau, Krakau und Kielce nicht frei schweben.

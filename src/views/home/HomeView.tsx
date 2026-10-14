@@ -1,4 +1,5 @@
 import { keepTogether } from "@/lib/typography";
+import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy } from "lucide-react";
@@ -265,6 +266,9 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <Section tone="black" className="overflow-hidden">
         <Testimonials locale={locale} />
       </Section>
+
+      {/* Instagram image wall */}
+      <SocialWall locale={locale} />
 
       {/* Shop teaser (phase 2) */}
       <Section tone="black" className="py-12 md:py-16">

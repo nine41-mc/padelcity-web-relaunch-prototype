@@ -27,6 +27,7 @@ import { AppBookingBlock, courtGroups, formatPrice } from "@/components/location
 import { AppBookingBar } from "@/components/locations/AppBookingBar";
 import { ClubDistance } from "@/components/locations/ClubDistance";
 import { ClubGallery } from "@/components/locations/ClubGallery";
+import { ClubHighlights } from "@/components/locations/ClubHighlights";
 import { ClubMapLazy } from "@/components/locations/ClubMapLazy";
 import { ClubReviews } from "@/components/locations/ClubReviews";
 import { ClubContactBar } from "@/components/locations/ClubContactBar";
@@ -190,6 +191,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                   </li>
                 ))}
               </ul>
+              {gallery.length >= 2 && <ClubHighlights images={gallery} city={club.city} locale={locale} />}
             </div>
             <p className="text-lg leading-relaxed text-white/75 lg:pt-2">{club.description}</p>
           </div>
