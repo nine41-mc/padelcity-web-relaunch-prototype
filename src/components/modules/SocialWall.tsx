@@ -28,8 +28,8 @@ const POSTS: { src: string; reel?: boolean }[] = [
 ];
 
 const copy = {
-  de: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Auf Instagram folgen", alt: "Instagram-Post von PadelCity", note: "Prototyp: Beispielbilder. Live kommen hier die neuesten Posts von @padelcity.de." },
-  en: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Follow on Instagram", alt: "PadelCity Instagram post", note: "Prototype: sample images. The live site shows the latest posts from @padelcity.de." },
+  de: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Auf Instagram folgen", alt: "Instagram-Post von PadelCity" },
+  en: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Follow on Instagram", alt: "PadelCity Instagram post" },
 };
 
 /** Instagram image wall for the home page: dense 3/6-column grid like the profile view, every tile opens Instagram. */
@@ -63,7 +63,7 @@ export function SocialWall({ locale }: { locale: Locale }) {
           </li>
         ))}
       </ul>
-      <p className="container-site mt-4 text-[13px] text-white/50">{t.note}</p>
+      {/* TODO(content): live = latest posts from @padelcity.de (Instagram API); the prototype shows sample images */}
     </section>
   );
 }
