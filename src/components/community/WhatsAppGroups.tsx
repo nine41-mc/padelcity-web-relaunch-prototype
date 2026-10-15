@@ -30,12 +30,15 @@ const copy = {
 
 type Group = { city: string; url: string; channel: boolean };
 
-/** One entry per invite link, alphabetical; cities sharing a group appear together ("Andernach & Mülheim-Kärlich"). */
+/** One entry per city, alphabetical; a shared group names the city first, then its partners ("Mülheim-Kärlich & Andernach"). */
 function groups(locale: Locale): Group[] {
-  const byUrl = new Map<string, string[]>();
-  for (const [city, url] of Object.entries(whatsappByCity)) byUrl.set(url, [...(byUrl.get(url) ?? []), city]);
-  return [...byUrl]
-    .map(([url, cities]) => ({ city: cities.sort((x, y) => x.localeCompare(y, locale)).join(" & "), url, channel: url.includes("/channel/") }))
+  const entries = Object.entries(whatsappByCity);
+  return entries
+    .map(([city, url]) => ({
+      city: [city, ...entries.filter(([c, u]) => u === url && c !== city).map(([c]) => c)].join(" & "),
+      url,
+      channel: url.includes("/channel/"),
+    }))
     .sort((a, b) => a.city.localeCompare(b.city, locale));
 }
 

@@ -407,7 +407,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <WhatsAppGroups locale={locale} label="Gruppe finden" variant="gradient" track="styleguide_whatsapp_overlay" />
           <p className="max-w-xl text-sm text-white/75">
             Es gibt keinen zentralen Community-Link. Jeder Einstieg (Startseite, Footer-Band) öffnet dieses Overlay mit der direkten Gruppe pro Standort, mit Suche.
-            Geteilte Gruppen stehen als ein Eintrag zusammen („Andernach & Mülheim-Kärlich“), Kanäle sind gekennzeichnet. Auf der Clubseite führt die Kachel direkt in die Gruppe des Clubs.
+            Geteilte Gruppen stehen bei jeder Stadt, die eigene Stadt zuerst („Andernach & Mülheim-Kärlich“, „Mülheim-Kärlich & Andernach“), Kanäle sind gekennzeichnet. Auf der Clubseite führt die Kachel direkt in die Gruppe des Clubs.
           </p>
         </div>
 
