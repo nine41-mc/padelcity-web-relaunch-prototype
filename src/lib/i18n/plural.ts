@@ -7,7 +7,6 @@ import { localeTags, type Locale } from "./config";
  */
 const PL_FEW: Record<string, string> = {
   "kortów": "korty",
-  "ofert pracy": "oferty pracy",
   "wydarzeń": "wydarzenia",
 };
 

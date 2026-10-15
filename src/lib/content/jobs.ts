@@ -1,13 +1,9 @@
 import type { Locale } from "../i18n/config";
-import type { Job } from "../data/types";
 import { keyFacts } from "./partners";
 
-// Open positions as published on padelcity.de/jobs (taken over 15.10.2026). Applications go by e-mail to
-// People & Culture (Astrid Nindl) – no Personio. Contentful: jobPosting entries (or a feed once an ATS is used).
-export const JOBS_SOURCE = "https://padelcity.de/jobs/";
+// Jobs page: static content from Contentful (page "jobs"); the open positions come straight from Personio
+// (embedded career page, see components/brand/PersonioJobs.tsx). Initiative applications by e-mail to People & Culture.
 export const APPLY_EMAIL = "personal@padelcity.de";
-/** @deprecated PadelCity doesn't use Personio – kept only so old imports don't break. */
-export const PERSONIO_URL = JOBS_SOURCE;
 
 /** Contact for applications (as on padelcity.de/jobs). */
 export const jobsContact = {
@@ -17,44 +13,6 @@ export const jobsContact = {
   phone: "+49 151 65163146",
   image: "/images/team/astrid-nindl.jpg",
 };
-
-type L = Record<Locale, string>;
-type JobSeed = { id: string; title: L; department: L; location: L; employmentType: L };
-
-const dep = {
-  finance: { de: "Finance", en: "Finance", pl: "Finanse" },
-  academy: { de: "Academy", en: "Academy", pl: "Akademia" },
-  people: { de: "People & Culture", en: "People & Culture", pl: "People & Culture" },
-  clubs: { de: "Clubs & Operations", en: "Clubs & Operations", pl: "Kluby i operacje" },
-} satisfies Record<string, L>;
-
-const fullTime: L = { de: "Vollzeit", en: "Full-time", pl: "Pełny etat" };
-const munich: L = { de: "München", en: "Munich", pl: "Monachium" };
-const same = (v: string): L => ({ de: v, en: v, pl: v });
-
-const seeds: JobSeed[] = [
-  { id: "fpa-manager-muenchen", title: { de: "FP&A Manager:in (m/w/d) – Financial Planning, Analytics & Automation", en: "FP&A Manager (m/f/d) – Financial Planning, Analytics & Automation", pl: "FP&A Manager (k/m/n) – planowanie finansowe, analityka i automatyzacja" }, department: dep.finance, location: munich, employmentType: fullTime },
-  { id: "padel-coach-ulm", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)", pl: "Trener padla (k/m/n)" }, department: dep.academy, location: same("Ulm"), employmentType: fullTime },
-  { id: "padel-coach-karlsruhe", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)", pl: "Trener padla (k/m/n)" }, department: dep.academy, location: same("Karlsruhe"), employmentType: fullTime },
-  { id: "coach-head-coach-berlin", title: { de: "Coach / Head Coach", en: "Coach / Head Coach", pl: "Trener / Head Coach" }, department: dep.academy, location: same("Berlin"), employmentType: { de: "Teilzeit, Minijob oder Werkstudent:in (20 h)", en: "Part-time, mini-job or working student (20 h)", pl: "Część etatu, minijob lub praca studencka (20 h)" } },
-  { id: "werkstudent-hr-muenchen", title: { de: "Werkstudent:in HR", en: "Working Student HR", pl: "Student/ka w dziale HR" }, department: dep.people, location: munich, employmentType: { de: "Werkstudent:in (20 h)", en: "Working student (20 h)", pl: "Praca studencka (20 h)" } },
-  { id: "club-manager-chemnitz", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)", pl: "Kierownik klubu (k/m/n)" }, department: dep.clubs, location: same("Chemnitz"), employmentType: fullTime },
-  { id: "club-manager-radolfzell", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)", pl: "Kierownik klubu (k/m/n)" }, department: dep.clubs, location: same("Radolfzell"), employmentType: fullTime },
-  { id: "minijob-werkstudent", title: { de: "Minijobber:in und Werkstudent:in (m/w/d)", en: "Mini-jobber and Working Student (m/f/d)", pl: "Pracownik na minijob i student/ka (k/m/n)" }, department: dep.clubs, location: { de: "Verschiedene Standorte", en: "Various locations", pl: "Różne lokalizacje" }, employmentType: { de: "Minijob", en: "Mini-job", pl: "Minijob" } },
-];
-
-/** Each role opens an e-mail to People & Culture with the role in the subject. */
-export function getJobs(locale: Locale): Job[] {
-  const prefix = locale === "de" ? "Bewerbung" : locale === "pl" ? "Aplikacja" : "Application";
-  return seeds.map((s) => ({
-    id: s.id,
-    title: s.title[locale],
-    department: s.department[locale],
-    location: s.location[locale],
-    employmentType: s.employmentType[locale],
-    url: `mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(`${prefix}: ${s.title[locale]} – ${s.location[locale]}`)}`,
-  }));
-}
 
 type BenefitIcon = "padel" | "graduation" | "laptop" | "party" | "rocket" | "gift";
 
@@ -102,17 +60,13 @@ const de = {
   openings: {
     eyebrow: "Offene Stellen",
     title: "Finde deine Rolle",
-    lead: "Schick uns deinen Lebenslauf und ein paar Sätze, warum dich die Rolle reizt – kein Anschreiben-Template, wir wollen dich kennenlernen.",
+    lead: "Alle offenen Stellen kommen direkt aus unserem Bewerbermanagement. Rolle aussuchen, Lebenslauf hochladen – kein Anschreiben-Template, wir wollen dich kennenlernen.",
   },
-  board: {
-    all: "Alle",
-    department: "Bereich",
-    location: "Standort",
-    one: "offene Stelle",
-    many: "offene Stellen",
-    open: "Jetzt per E-Mail bewerben",
-    empty: "Gerade nichts dabei – bewirb dich initiativ!",
+  personio: {
+    title: "Offene Stellen bei PadelCity (Personio)",
+    placeholder: { title: "Hier laufen die Stellen aus Personio ein", text: "Im Live-Betrieb erscheint an dieser Stelle die Personio-Karriereseite von PadelCity mit allen offenen Stellen und dem Bewerbungsformular." },
   },
+
   contact: { eyebrow: "Deine Ansprechpartnerin", text: "Fragen zu einer Stelle oder zur Bewerbung? Melde dich direkt bei Astrid.", mail: "E-Mail", phone: "Telefon" },
   initiative: {
     title: "Nichts dabei? Bewirb dich",
@@ -166,17 +120,13 @@ const en: JobsContent = {
   openings: {
     eyebrow: "Open positions",
     title: "Find your role",
-    lead: "Send us your CV and a few lines on why the role excites you – no cover-letter template, we want to get to know you.",
+    lead: "All open positions come straight from our applicant management. Pick a role, upload your CV – no cover-letter template, we want to get to know you.",
   },
-  board: {
-    all: "All",
-    department: "Team",
-    location: "Location",
-    one: "open position",
-    many: "open positions",
-    open: "Apply by e-mail",
-    empty: "Nothing for you right now? Send us a speculative application!",
+  personio: {
+    title: "Open positions at PadelCity (Personio)",
+    placeholder: { title: "Personio jobs appear here", text: "On the live site this is where PadelCity's Personio career page appears, with all open positions and the application form." },
   },
+
   contact: { eyebrow: "Your contact", text: "Questions about a role or your application? Get in touch with Astrid directly.", mail: "E-mail", phone: "Phone" },
   initiative: {
     title: "Nothing that fits? Apply",
@@ -228,17 +178,13 @@ const pl: JobsContent = {
   openings: {
     eyebrow: "Oferty pracy",
     title: "Znajdź swoją rolę",
-    lead: "Wyślij nam CV i kilka zdań o tym, co cię w tej roli kręci – bez szablonowego listu motywacyjnego, chcemy poznać ciebie.",
+    lead: "Wszystkie oferty pochodzą bezpośrednio z naszego systemu rekrutacyjnego. Wybierz rolę, wgraj CV – bez szablonowego listu motywacyjnego, chcemy poznać ciebie.",
   },
-  board: {
-    all: "Wszystkie",
-    department: "Dział",
-    location: "Lokalizacja",
-    one: "oferta pracy",
-    many: "ofert pracy",
-    open: "Aplikuj przez e-mail",
-    empty: "Teraz nic dla ciebie? Zgłoś się spontanicznie!",
+  personio: {
+    title: "Oferty pracy w PadelCity (Personio)",
+    placeholder: { title: "Tu pojawią się oferty z Personio", text: "Na stronie produkcyjnej w tym miejscu pojawi się strona kariery PadelCity z Personio – ze wszystkimi ofertami i formularzem aplikacyjnym." },
   },
+
   contact: { eyebrow: "Twoja osoba kontaktowa", text: "Masz pytania o ofertę lub rekrutację? Napisz albo zadzwoń bezpośrednio do Astrid.", mail: "E-mail", phone: "Telefon" },
   initiative: {
     title: "Nic dla ciebie? Aplikuj",

@@ -322,6 +322,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["level", "Spielstärke – die einzige Chip-Variante in Neon"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
             ["Gutschein-Modul", "Startseite: „Verschenk Spielzeit.“ mit drei Schritten (Text von padelcity.de) und Gutschein als Karte im Kreditkartenformat – Verlauf, Logo, Chip, Betrag in Söhne Schmal; Merch-Shop nur als Hinweis"],
+            ["Jobs: Personio-Embed", "Seite statisch aus Contentful; nur „Offene Stellen“ ist die eingebettete Personio-Karriereseite (iframe, Höhe per postMessage), als helle Karte mit Ansprechpartnerin daneben"],
             ["Franchise: Leistungen & Kontakt", "Drei Phasen-Karten (Bauphase, Aktivierung, Regelbetrieb) mit den Leistungen von padelcity.de, optionale Leistungen gedämpft markiert; Ansprechpartner mit Foto neben dem Formular"],
             ["Poster-Kacheln", "Auch für die Franchise-Clubs – im Raster in voller Zellbreite"],
             ["Preis auf Karten", "Club- und Event-Karten: Preis unten rechts auf dem Bild, Söhne Schmal groß, mit Abdunklung"],

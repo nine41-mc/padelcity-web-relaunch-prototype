@@ -1,6 +1,6 @@
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
-import { APPLY_EMAIL, getJobs, jobsContact, jobsContent } from "@/lib/content/jobs";
+import { APPLY_EMAIL, jobsContact, jobsContent } from "@/lib/content/jobs";
 import { values } from "@/lib/content/about";
 import { team } from "@/lib/content/people";
 import { PageHero } from "@/components/modules/PageHero";
@@ -12,15 +12,16 @@ import { Marquee } from "@/components/ui/Marquee";
 import { Media } from "@/components/ui/Media";
 import { SectionIntro } from "@/components/brand/SectionIntro";
 import { BrandIcon } from "@/components/brand/BrandIcon";
-import { JobsBoard } from "@/components/brand/JobsBoard";
+import { PersonioJobs } from "@/components/brand/PersonioJobs";
+import { JobsContact } from "@/components/brand/JobsContact";
 import { PeopleGrid } from "@/components/brand/PeopleGrid";
 
-// Contentful page "jobs": pageHero, jobsBoard (open positions + contact), benefitsGrid, cultureMarquee, peopleGrid (team snapshot), initiativeCta
+// Contentful page "jobs" (static): pageHero, openings intro + contact, benefitsGrid, cultureMarquee, peopleGrid, initiativeCta.
+// Only the open positions are dynamic: Personio career page embedded (PersonioJobs).
 
 /** Jobs & careers – shared by /jobs (de) and /en/jobs (en). */
 export function JobsView({ locale }: { locale: Locale }) {
   const t = jobsContent[locale];
-  const jobs = getJobs(locale);
   const faces = team.slice(0, 12);
 
   return (
@@ -46,8 +47,11 @@ export function JobsView({ locale }: { locale: Locale }) {
       {/* Open positions directly below the hero */}
       <Section id="stellen" className="scroll-mt-16">
         <SectionIntro eyebrow={t.openings.eyebrow} title={t.openings.title} lead={t.openings.lead} />
-        {/* Roles as published on padelcity.de/jobs – applications by e-mail to People & Culture */}
-        <JobsBoard jobs={jobs} t={t.board} contact={{ ...jobsContact, ...t.contact }} locale={locale} />
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
+          {/* Personio embed (like apploft.de/karriere/#jobs) – list, job ads and application form come from Personio */}
+          <PersonioJobs locale={locale} title={t.personio.title} placeholder={t.personio.placeholder} />
+          <JobsContact contact={{ ...t.contact, ...jobsContact }} />
+        </div>
       </Section>
 
       <Section>
