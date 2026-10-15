@@ -165,4 +165,82 @@ const en: HomeContent = {
   partners: { eyebrow: "Our partners", title: "Better", accent: "together.", cta: "Become a partner" },
 };
 
-export const homeContent: Record<Locale, HomeContent> = { de, en };
+const pl: HomeContent = {
+  meta: { title: "PadelCity – Let's play Padel!", description: "Wiodący operator padla w Niemczech: 30+ klubów, 200+ kortów, jedna społeczność." },
+  hero: {
+    badge: "30+ klubów · 200+ kortów · 25+ miast",
+    line1: "Twoje miasto",
+    line2: "gra w",
+    accent: "padla.",
+    line3: "A ty?",
+    text: "Rakiety, ekipa, szklane ściany. Ponad 30 klubów w Niemczech, Austrii i Polsce – twoje nowe ulubione miejsce jest tylko jedno kliknięcie stąd.",
+    searchLabel: "Miasto lub klub",
+    searchPlaceholder: "Gdzie grasz? Miasto lub klub",
+    searchSubmit: "Szukaj klubów",
+    videoPause: "Zatrzymaj wideo w tle",
+    videoPlay: "Odtwórz wideo w tle",
+    ctaApp: "Zarezerwuj kort w aplikacji",
+    ctaLocations: "Wszystkie lokalizacje",
+  },
+  ticker: ["Let's play Padel", "30+ klubów", "200+ kortów", "25+ miast", "Game. Set. Match.", "#bettertogether", "Drive the Padel Boom!", "Make some noise for Padel", "Nr 1 w padlu w Niemczech"],
+  leader: {
+    eyebrow: "Na korcie od 2022",
+    title: "W Niemczech",
+    accent: "Nr 1",
+    titleEnd: "w padlu.",
+    text: "To, co zaczęło się w 2022 roku od pierwszego klubu w Ingolstadt, jest dziś największą społecznością padlową w kraju. Budujemy korty, łączymy ludzi i sprawiamy, że padel staje się sportem dla wszystkich.",
+    facts: { clubs: "Kluby", courts: "Korty", cities: "Miasta", countries: "Kraje" },
+    mapHint: "Kliknij pinezkę",
+    legend: { live: "Live", soon: "Wkrótce" },
+    mapLabel: "Mapa: kluby PadelCity w Niemczech, Austrii i Polsce",
+  },
+  showcase: { eyebrow: "Nasze kluby", title: "Kluby z", accent: "klimatem.", all: "Wszystkie lokalizacje", prev: "Wstecz", next: "Dalej", slugs: showcaseSlugs },
+  paths: {
+    title: "Jak chcesz",
+    accent: "grać z nami?",
+    items: [
+      { key: "locations", title: "Graj", text: "Znajdź klub, zaproś znajomych i wchodź na kort. Na każdym poziomie." },
+      { key: "partners", title: "Zostań partnerem", text: "Sponsoring, eventy i padel firmowy z największą społecznością." },
+      { key: "investors", title: "Inwestuj", text: "Series A zamknięta. Skalujemy padla poza Niemcy." },
+      { key: "franchise", title: "Franczyza", text: "Chcesz, żeby twoje miasto stało się PadelCity? Porozmawiajmy." },
+    ],
+  },
+  momentum: {
+    eyebrow: "Momentum 2026",
+    title: "Series A.",
+    title2: "Next",
+    accent: "level.",
+    text: "Ze świeżym kapitałem i silnymi partnerami u boku wprowadzamy padla do nowych miast i nowych krajów. Więcej klubów, więcej eventów, więcej społeczności.",
+    ir: "Relacje inwestorskie",
+    jobs: "Dołącz do zespołu",
+  },
+  events: { eyebrow: "Eventy towarzyskie i turnieje", title: "Więcej niż", accent: "mecz.", all: "Wszystkie eventy", hero: "Hero Event", more: "Dowiedz się więcej" },
+  split: [
+    { key: "academy", eyebrow: "PadelCity Academy", title: "Od pierwszej piłki do pierwszego turnieju.", cta: "Znajdź trening", img: "/images/hero/academy.jpg" },
+    { key: "magazine", eyebrow: "Magazyn", title: "Technika, historie i kultura.", cta: "Czytaj teraz", img: "/images/hero/magazin.jpg" },
+  ],
+  community: {
+    eyebrow: "#bettertogether",
+    title: "Everybody's",
+    accent: "welcome.",
+    text: "Student, zawodowiec czy ktoś pomiędzy – u nas jesteś VIP-em. Znajdź partnerów do gry w aplikacji, wpadnij na nasze eventy towarzyskie albo dołącz do społeczności WhatsApp w swoim mieście.",
+    whatsapp: "Społeczność WhatsApp",
+    matches: "Otwarte mecze w aplikacji",
+    imgAlt: "Społeczność PadelCity",
+  },
+  shop: {
+    eyebrow: "Vouchery",
+    title: "Podaruj",
+    accent: "czas na grę.",
+    subline: "Zamiast kolejnego gadżetu.",
+    text: "Z voucherem PadelCity dajesz w prezencie mnóstwo meczowych emocji.",
+    steps: ["Kup w aplikacji", "Odbierz kod e-mailem", "Zrealizuj przy następnej rezerwacji kortu"],
+    closing: "Trzy kroki. Prezent, który na pewno zostanie wykorzystany na korcie.",
+    cta: "Podaruj voucher",
+    merch: "Sklep z merchem: Wear the movement – już wkrótce.",
+    card: { label: "Voucher", amount: "20 €", aria: "Voucher PadelCity o wartości 20 €" },
+  },
+  partners: { eyebrow: "Nasi partnerzy", title: "Better", accent: "together.", cta: "Zostań partnerem" },
+};
+
+export const homeContent: Record<Locale, HomeContent> = { de, en, pl };

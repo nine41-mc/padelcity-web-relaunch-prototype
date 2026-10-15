@@ -28,13 +28,22 @@ const copy = {
     otherLocale: "de" as Locale,
     popular: "Popular pages",
   },
+  pl: {
+    title: "Piłka w",
+    accent: "aucie!",
+    text: "Ta strona nie istnieje (już). Nic się nie stało – kolejny punkt, nowa szansa.",
+    home: "Na stronę główną",
+    other: "English site",
+    otherLocale: "en" as Locale,
+    popular: "Popularne strony",
+  },
 } satisfies Record<Locale, unknown>;
 
 const popular: RouteKey[] = ["locations", "events", "magazine", "app"];
 
 /**
  * 404 content for the single global-not-found document (static export serves one 404.html for every locale).
- * Renders German first and switches to English on the client when the requested URL is under /en.
+ * Renders German first and switches to English/Polish on the client when the requested URL is under /en or /pl.
  */
 export function NotFoundContent() {
   const [locale, setLocale] = useState<Locale>("de");

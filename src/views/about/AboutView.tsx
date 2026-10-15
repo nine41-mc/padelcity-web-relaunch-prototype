@@ -26,7 +26,7 @@ import { Testimonials } from "@/components/modules/Testimonials";
 export function AboutView({ locale }: { locale: Locale }) {
   const t = aboutContent[locale];
   const quoteAuthor = founders.find((f) => f.quote);
-  const [open, close] = locale === "de" ? ["„", "“"] : ["“", "”"];
+  const [open, close] = locale === "de" ? ["„", "“"] : locale === "pl" ? ["„", "”"] : ["“", "”"];
 
   const jsonLd = {
     "@context": "https://schema.org",

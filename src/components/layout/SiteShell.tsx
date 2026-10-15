@@ -10,10 +10,12 @@ import { basePath } from "@/lib/asset";
 export const siteViewport: Viewport = { themeColor: "#0b0b0f" };
 
 export function siteMetadata(locale: Locale): Metadata {
-  const description =
-    locale === "de"
-      ? "PadelCity ist Deutschlands führender Padel-Betreiber: 30+ Clubs, Academy, Events und eine Community, die Padel zum Breitensport macht. Courts buchst du in der PadelCity App."
-      : "PadelCity is Germany's leading padel operator: 30+ clubs, academy, events and a community making padel a sport for everyone. Book your court in the PadelCity app.";
+  const descriptions: Record<Locale, string> = {
+    de: "PadelCity ist Deutschlands führender Padel-Betreiber: 30+ Clubs, Academy, Events und eine Community, die Padel zum Breitensport macht. Courts buchst du in der PadelCity App.",
+    en: "PadelCity is Germany's leading padel operator: 30+ clubs, academy, events and a community making padel a sport for everyone. Book your court in the PadelCity app.",
+    pl: "PadelCity to wiodący operator padla w Niemczech: 30+ klubów, akademia, eventy i społeczność, która sprawia, że padel staje się sportem dla wszystkich. Korty zarezerwujesz w aplikacji PadelCity.",
+  };
+  const description = descriptions[locale];
   return {
     metadataBase: new URL("https://www.padelcity.de"),
     title: { default: "PadelCity – Let's play Padel!", template: "%s | PadelCity" },
@@ -27,14 +29,15 @@ const skipCls =
   "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-neon-500 focus:px-4 focus:py-2 focus:text-ink-800";
 
 /**
- * The single 404 document (static export: one 404.html for every URL) detects /en/... before paint:
- * sets <html lang="en" data-locale="en">, which swaps skip link + footer to English via the variants below.
+ * The single 404 document (static export: one 404.html for every URL) detects /en/... and /pl/... before paint:
+ * sets <html lang="en|pl" data-locale="en|pl">, which swaps skip link + footer via the variants below.
  */
-const detectLocaleScript = `(function(){var p=location.pathname.slice(${JSON.stringify(basePath)}.length);if(p==="/en"||p.indexOf("/en/")===0){var h=document.documentElement;h.lang="en";h.setAttribute("data-locale","en");}})();`;
-const onlyDe = "[html[data-locale=en]_&]:hidden";
+const detectLocaleScript = `(function(){var p=location.pathname.slice(${JSON.stringify(basePath)}.length);var l=["en","pl"];for(var i=0;i<l.length;i++){if(p==="/"+l[i]||p.indexOf("/"+l[i]+"/")===0){var h=document.documentElement;h.lang=l[i];h.setAttribute("data-locale",l[i]);break;}}})();`;
+const onlyDe = "[html[data-locale=en]_&]:hidden [html[data-locale=pl]_&]:hidden";
 const onlyEn = "hidden [html[data-locale=en]_&]:block";
+const onlyPl = "hidden [html[data-locale=pl]_&]:block";
 
-/** Root document for one locale (DE and EN each have their own root layout). `bilingual`: 404 document for both locales. */
+/** Root document for one locale (DE, EN and PL each have their own root layout). `bilingual`: 404 document for all locales. */
 export function SiteShell({ locale, children, bilingual = false }: { locale: Locale; children: React.ReactNode; bilingual?: boolean }) {
   const t = getDictionary(locale);
   return (
@@ -52,6 +55,9 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
             </a>
             <a href="#main" lang="en" className={`${skipCls} ${onlyEn}`}>
               {getDictionary("en").header.skip}
+            </a>
+            <a href="#main" lang="pl" className={`${skipCls} ${onlyPl}`}>
+              {getDictionary("pl").header.skip}
             </a>
           </>
         ) : (
@@ -71,6 +77,9 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
             </div>
             <div className={onlyEn}>
               <Footer locale="en" />
+            </div>
+            <div className={onlyPl} lang="pl">
+              <Footer locale="pl" />
             </div>
           </>
         ) : (

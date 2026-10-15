@@ -53,7 +53,7 @@ export function Header() {
     <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-5 md:pt-4">
       <div
         className={cn(
-          "mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-4 rounded-full border pl-5 pr-2 transition-all duration-500 md:h-[72px] md:pl-7",
+          "mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-3 xl:gap-4 rounded-full border pl-5 pr-2 transition-all duration-500 md:h-[72px] md:pl-7",
           scrolled || open
             ? "border-white/10 bg-ink-800/80 shadow-elevated backdrop-blur-xl"
             : "border-white/15 bg-white/[0.04] backdrop-blur-md",
@@ -62,7 +62,7 @@ export function Header() {
         <Logo className="h-6 md:h-7 lg:h-8" locale={locale} />
 
         <nav aria-label={t.header.mainNav} className="hidden lg:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5 xl:gap-1">
             {mainNav.map((key) => {
               const target = href(locale, key);
               const active = pathname.startsWith(target);
@@ -72,7 +72,7 @@ export function Header() {
                     href={target}
                     aria-current={active ? "page" : undefined}
                     className={cn(
-                      "relative rounded-full px-3 py-2 text-[15px] font-semibold uppercase tracking-[0.06em] transition-colors xl:px-4 xl:text-base",
+                      "relative rounded-full px-2.5 py-2 text-[15px] font-semibold uppercase tracking-[0.06em] transition-colors xl:px-4 xl:text-base",
                       active ? "text-white" : "text-white/85 hover:text-white",
                     )}
                   >
@@ -167,7 +167,7 @@ function LanguageSwitch({ pathname, current, label, className }: { pathname: str
           aria-current={l === current ? "true" : undefined}
           aria-label={localeTags[l].label}
           className={cn(
-            "flex h-11 min-w-11 items-center justify-center rounded-full px-3 pt-px transition-colors",
+            "flex h-11 min-w-11 items-center justify-center rounded-full px-2.5 pt-px transition-colors",
             l === current ? "bg-brand-gradient text-white" : "text-white/85 hover:text-white",
           )}
         >

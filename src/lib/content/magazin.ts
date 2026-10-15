@@ -3,7 +3,7 @@ import { localeTags } from "../i18n/config";
 import type { Article, ImageAsset } from "../data/types";
 
 /**
- * PadelCity Magazin – illustrative articles for the prototype (DE + EN).
+ * PadelCity Magazin – illustrative articles for the prototype (DE + EN + PL).
  * Later: Contentful content type `article` (localised fields: title, excerpt, body rich text, pullQuote, alt texts),
  * served through `@/lib/data` (getArticles / getArticle). Slugs are shared across locales.
  */
@@ -20,6 +20,11 @@ export const hubs: Record<Locale, { id: Hub; label: string; text: string }[]> = 
     { id: "lernen", label: "Learn Padel", text: "Rules, technique, tactics – everything for your next step." },
     { id: "spielen", label: "Play Padel", text: "Matches, tournaments, community – get out on court." },
     { id: "erleben", label: "Live Padel", text: "Events, culture, behind the scenes – the world of PadelCity." },
+  ],
+  pl: [
+    { id: "lernen", label: "Ucz się padla", text: "Zasady, technika, taktyka – wszystko, czego potrzebujesz na kolejny krok." },
+    { id: "spielen", label: "Graj w padla", text: "Mecze, turnieje, społeczność – wychodź na kort." },
+    { id: "erleben", label: "Przeżyj padla", text: "Eventy, kultura, behind the scenes – świat PadelCity." },
   ],
 };
 
@@ -89,6 +94,21 @@ const seeds: ArticleSeed[] = [
       ],
       pullQuote: "Your first rally almost always works – and then you never want to stop.",
     },
+    pl: {
+      title: "Dlaczego padel to najszybciej rosnący sport w Niemczech",
+      excerpt: "Łatwy do nauczenia, towarzyski, uzależniający: co stoi za boomem na padla – i dlaczego to dopiero początek.",
+      category: "Kultura",
+      author: "Redakcja PadelCity",
+      imageAlt: "Widok z lotu ptaka na klub PadelCity z kilkoma kortami",
+      body: [
+        "Kto pierwszy raz wchodzi na kort do padla, po dziesięciu minutach już wie: to coś innego. Piłka zostaje w grze, ściany grają razem z tobą, a czwórka ludzi, którzy przed chwilą się nie znali, nagle śmieje się razem.",
+        "I właśnie w tym tkwi sekret. Padel jest dostępny jak mało który sport rakietowy. Żadnych lat treningu techniki, zanim zacznie sprawiać frajdę – pierwsza wymiana prawie zawsze się udaje.",
+        "Jednocześnie padel to sport towarzyski. Gra się w deblu, na małym korcie, przy ciągłej komunikacji. Po meczu idzie się do baru, a nie do szatni.",
+        "W Hiszpanii, we Włoszech i w Szwecji padel od dawna jest sportem masowym. Niemcy właśnie nadrabiają zaległości – a w wielu miejscach popyt na korty przewyższa podaż.",
+        "Dlatego budujemy: kluby w dużych miastach i regionach, aplikację, która łączy graczy, i społeczność, która rośnie każdego dnia.",
+      ],
+      pullQuote: "Pierwsza wymiana prawie zawsze się udaje – a potem nie chcesz już przestać.",
+    },
   },
   {
     slug: "padel-regeln-in-5-minuten",
@@ -125,6 +145,21 @@ const seeds: ArticleSeed[] = [
       ],
       pullQuote: "The wall isn't your opponent. It's your best teammate.",
     },
+    pl: {
+      title: "Zasady padla w 5 minut",
+      excerpt: "Serwis, ściany, liczenie punktów: wszystko, co musisz wiedzieć przed pierwszym meczem – w pigułce.",
+      category: "Podstawy",
+      author: "PadelCity Academy",
+      imageAlt: "Siatka z logo PadelCity na korcie",
+      body: [
+        "W padla gra się prawie zawsze w deblu, na korcie o wymiarach 20 × 10 metrów, otoczonym szklanymi ścianami i siatką. Punkty liczy się jak w tenisie: 15, 30, 40, gem.",
+        "Serwuje się od dołu, po przekątnej, w pole serwisowe przeciwnika. Piłka musi najpierw raz odbić się za linią i jest uderzana poniżej wysokości bioder.",
+        "Po odbiciu na twojej połowie piłka może dotknąć ścian – a ty nadal możesz ją potem zagrać. To właśnie dzięki temu wymiany są tak długie.",
+        "Zagranie piłki bezpośrednio w ścianę lub siatkę przeciwnika to natomiast błąd. Piłka zawsze musi najpierw odbić się na połowie przeciwnika.",
+        "To w zasadzie wszystko. Resztę najlepiej poznasz na korcie – na przykład na kursie dla początkujących w PadelCity Academy.",
+      ],
+      pullQuote: "Ściana nie jest twoim przeciwnikiem. To twój najlepszy partner.",
+    },
   },
   {
     slug: "die-bandeja-erklaert",
@@ -160,6 +195,20 @@ const seeds: ArticleSeed[] = [
       ],
       pullQuote: "Control beats power – nearly every time.",
     },
+    pl: {
+      title: "Bandeja w pigułce",
+      excerpt: "Najważniejsze uderzenie w padlu to nie smecz. Jak zagrać bandeję – i kiedy jej używać.",
+      category: "Technika",
+      author: "PadelCity Academy",
+      imageAlt: "Scena z gry na korcie PadelCity",
+      body: [
+        "Bandeja to uderzenie nad głową, które nie ma na celu bezpośredniego zdobycia punktu, tylko kontrolę. Dzięki niej utrzymujesz pozycję przy siatce, gdy przeciwnik lobem próbuje zepchnąć cię do tyłu.",
+        "Rakieta pozostaje przed ciałem, a jej powierzchnia jest lekko otwarta. Zamiast pełnej siły nadajesz piłce slajs – odbija się nisko i zostaje w grze.",
+        "Celem jest zwykle narożnik albo strefa przed tylną ścianą przeciwnika. Tak zyskujesz czas, żeby wrócić do siatki.",
+        "Typowy błąd: chcieć za dużo. Bandeja to nie smecz. Kto próbuje zabić każdy lob, traci pozycję przy siatce szybciej, niżby chciał.",
+      ],
+      pullQuote: "Kontrola wygrywa z siłą – prawie zawsze.",
+    },
   },
   {
     slug: "one-point-challenge",
@@ -194,6 +243,20 @@ const seeds: ArticleSeed[] = [
         "Anyone with a PadelCity account can take part. You'll find all the dates and sign-up in the app.",
       ],
       pullQuote: "One point. No safety net, no second chance.",
+    },
+    pl: {
+      title: "One Point Challenge: jeden punkt, 100 000 €",
+      excerpt: "Decyduje jedna wymiana. One Point Challenge powered by CUPRA to najbardziej spektakularny format w niemieckim padlu.",
+      category: "Eventy",
+      author: "Redakcja PadelCity",
+      imageAlt: "Smecz podczas eventu PadelCity z brandingiem CUPRA",
+      body: [
+        "Wyobraź sobie, że o wszystkim decyduje jeden punkt. Żadnego seta, żadnego tie-breaka – tylko jedna wymiana. To właśnie One Point Challenge powered by CUPRA.",
+        "Format jest tak prosty, jak bezlitosny: kto wygra punkt, przechodzi dalej. Kto przegra, odpada. Na końcu do zgarnięcia jest do 100 000 € nagrody.",
+        "Właśnie dlatego atmosfera jest wyjątkowa. Każda wymiana to finał – na korcie i na trybunach.",
+        "Wziąć udział może każdy, kto ma konto PadelCity. Wszystkie terminy i zapisy znajdziesz w aplikacji.",
+      ],
+      pullQuote: "Jeden punkt. Bez siatki asekuracyjnej, bez drugiej szansy.",
     },
   },
   {
@@ -232,6 +295,21 @@ const seeds: ArticleSeed[] = [
       ],
       pullQuote: "One of the few sports parents and children can genuinely play together.",
     },
+    pl: {
+      title: "Padel z dziećmi: jak sprawić, by początki były frajdą",
+      excerpt: "Mały kort, duży efekt: dlaczego padel to idealny sport rodzinny i jak dzieciaki najlepiej mogą zacząć.",
+      category: "Rodzina",
+      author: "PadelCity Academy",
+      imageAlt: "Scena z gry podczas otwarcia klubu PadelCity",
+      body: [
+        "Dzieci kochają padla, bo szybko odnoszą sukcesy. Kort jest mniejszy niż w tenisie, rakieta krótsza, a piłka często wraca jeszcze raz od ściany.",
+        "Na początek wystarczy wygodny strój sportowy, buty halowe i lekka rakieta dla dzieci. Rakiety można wypożyczyć w klubach.",
+        "Najlepiej zacznijcie od zabawy: podawanie piłki, gry ze ścianą, małe wyzwania. Zasady przyjdą później niemal same.",
+        "W PadelCity Academy są osobne kursy dla dzieci, na których trenerzy pracują z ćwiczeniami dopasowanymi do wieku.",
+        "A najlepsze jest to, że padel to jeden z niewielu sportów, w które rodzice i dzieci naprawdę mogą grać razem.",
+      ],
+      pullQuote: "Jeden z niewielu sportów, w które rodzice i dzieci naprawdę mogą grać razem.",
+    },
   },
   {
     slug: "behind-the-scenes-neuer-club",
@@ -268,6 +346,21 @@ const seeds: ArticleSeed[] = [
         "And then it's here: opening night. Music, lights, packed courts. Make some noise for Padel.",
       ],
       pullQuote: "Our playbook makes sure every club feels like PadelCity.",
+    },
+    pl: {
+      title: "Behind the scenes: tak powstaje nowy klub",
+      excerpt: "Od pustej hali do wieczoru otwarcia: pokazujemy, jak powstaje klub PadelCity.",
+      category: "Behind the Scenes",
+      author: "Redakcja PadelCity",
+      imageAlt: "Nowy klub PadelCity w Wetzlar ze świeżo zbudowanymi kortami",
+      body: [
+        "Na początku prawie zawsze jest pusta hala. Nasz zespół ds. ekspansji sprawdza wysokość sufitu, podłoże, lokalizację i dojazd – i liczy, ile kortów się zmieści.",
+        "Potem wszystko dzieje się szybko: dostarczane są korty, montowane szklane ściany, układana sztuczna trawa, kalibrowane oświetlenie. Równolegle powstają lounge, recepcja i szatnie.",
+        "Kiedy na budowie trwają prace, startuje marketing: eventy przed otwarciem, kampanie w social mediach i pierwsze rezerwacje w aplikacji.",
+        "Zespół na miejscu przechodzi wdrożenie – od recepcji po trenerów Akademii. Nasz playbook dba o to, żeby każdy klub był w stu procentach PadelCity.",
+        "I wreszcie nadchodzi: wieczór otwarcia. Muzyka, światła, pełne korty. Make some noise for Padel.",
+      ],
+      pullQuote: "Nasz playbook dba o to, żeby każdy klub był w stu procentach PadelCity.",
     },
   },
 ];
@@ -377,4 +470,32 @@ const en: MagazinContent = {
   },
 };
 
-export const magazinContent: Record<Locale, MagazinContent> = { de, en };
+const pl: MagazinContent = {
+  meta: {
+    title: "Magazyn – ucz się padla, graj, przeżywaj",
+    description: "Magazyn PadelCity: zasady, technika, eventy, kultura i behind the scenes ze świata PadelCity.",
+  },
+  hero: { eyebrow: "Magazyn PadelCity", title: "Historie prosto z", accent: "kortu" },
+  featured: "Polecane",
+  minutes: "min",
+  readingTime: "min czytania",
+  filter: { aria: "Filtruj magazyn", all: "Wszystkie historie", count: "Historie ze świata PadelCity: {n}" },
+  newsletter: { title: "Newsletter magazynu", text: "Najlepsze historie, porady techniczne i wieści o eventach – raz w miesiącu w twojej skrzynce." },
+  article: {
+    back: "Magazyn",
+    share: "Udostępnij historię",
+    related: "Czytaj dalej",
+    more: { title: "Chcesz więcej historii?", text: "Najlepsze artykuły z magazynu i wieści o eventach – raz w miesiącu w twojej skrzynce." },
+    video: "PadelCity TV",
+  },
+  shareUi: { aria: "Udostępnij artykuł", share: "Udostępnij", copy: "Kopiuj link", copied: "Skopiowano!" },
+  videoUi: {
+    play: "Odtwórz wideo",
+    soon: "Wideo wkrótce",
+    poster: "Miniatura",
+    placeholder: "Placeholder – ID wideo pojawi się z Contentful",
+    consent: "Podczas odtwarzania dane są przesyłane do YouTube.",
+  },
+};
+
+export const magazinContent: Record<Locale, MagazinContent> = { de, en, pl };

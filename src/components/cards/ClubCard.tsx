@@ -5,6 +5,7 @@ import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { formatPrice } from "@/lib/format";
+import { plural } from "@/lib/i18n/plural";
 import { Media } from "../ui/Media";
 import { OpenStatus, SportList } from "./ClubMeta";
 import { PosterSky, PosterTitle } from "./Poster";
@@ -17,7 +18,7 @@ export function courtSummary(club: Club, locale: Locale = "de") {
   const n = club.courts.length;
   const indoor = club.courts.filter((c) => c.locationType === "indoor").length;
   const kind = indoor === 0 ? t.outdoor : indoor === n ? t.indoor : t.indoorOutdoor;
-  return `${n} ${n === 1 ? t.court : t.courts} · ${kind}`;
+  return `${n} ${plural(locale, n, t.court, t.courts)} · ${kind}`;
 }
 
 /**

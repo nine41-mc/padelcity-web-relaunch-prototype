@@ -27,7 +27,7 @@ function QuoteText({ text, highlight }: { text: string; highlight: string }) {
 
 function Card({ t, locale, index, total }: { t: Testimonial; locale: Locale; index: number; total: number }) {
   const c = testimonialsContent[locale];
-  const [open, close] = locale === "de" ? ["„", "“"] : ["“", "”"];
+  const [open, close] = locale === "de" ? ["„", "“"] : locale === "pl" ? ["„", "”"] : ["“", "”"];
   return (
     <figure
       role="group"

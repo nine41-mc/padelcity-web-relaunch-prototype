@@ -1,5 +1,7 @@
 // Contentful module: cityIndex (auto-generated from club entries, grouped by country → region)
 
+import { plural } from "@/lib/i18n/plural";
+import { getDictionary } from "@/lib/i18n/dictionaries";
 import Link from "next/link";
 import type { Club, ClubCountry } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
@@ -17,6 +19,7 @@ type Groups = Map<ClubCountry, Map<string, Map<string, Club[]>>>; // country →
  */
 export function CityIndex({ clubs, planned = [], locale = "de" }: { clubs: Club[]; planned?: Club[]; locale?: Locale }) {
   const t = locationsContent[locale].cities;
+  const dict = getDictionary(locale).clubCard;
   const countryNames = locationsContent[locale].finder.countries;
   const intl = localeTags[locale].intl;
 
@@ -70,7 +73,7 @@ export function CityIndex({ clubs, planned = [], locale = "de" }: { clubs: Club[
                               <Link href={href(locale, "locations", club.slug)} className="group flex min-h-11 items-center justify-between gap-3 py-1.5 text-white/85 hover:text-white">
                                 {label}
                                 <span className="text-sm text-white/70 transition-colors group-hover:text-white">
-                                  {club.courts.length > 0 ? `${club.courts.length} ${t.courts} →` : "→"}
+                                  {club.courts.length > 0 ? `${club.courts.length} ${plural(locale, club.courts.length, dict.court, dict.courts)} →` : "→"}
                                 </span>
                               </Link>
                             </li>

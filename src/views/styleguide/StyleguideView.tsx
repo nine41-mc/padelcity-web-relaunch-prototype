@@ -545,6 +545,13 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
       {/* Sprache */}
       <Block id="sprache" eyebrow="12" title="Sprache & Inhalte" lead="Wir duzen, wir sind kurz, wir übertreiben nicht.">
+        <H3>Drei Sprachen</H3>
+        <p className="max-w-3xl text-white/75">
+          Deutsch unter /, Englisch unter /en, Polnisch unter /pl (lokalisierte Pfade, z. B. /pl/lokalizacje) – Sprachumschalter DE · EN · PL, hreflang für alle drei.
+          Polnisch duzt wie Deutsch („ty“), Begriffe wie in der polnischen App (kort, trener, otwarte mecze, poziom), Anführungszeichen „…”, Preise in €.
+          Zahlen mit Polnisch-Plural (1 kort · 2–4 korty · 5+ kortów). Englische Claims bleiben in allen Sprachen englisch.
+        </p>
+
         <H3>Claims</H3>
         <div className="flex flex-wrap gap-3">
           {["Game. Set. Match.", "Drive the Padel Boom!", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fall in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (

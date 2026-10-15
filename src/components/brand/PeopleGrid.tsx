@@ -53,7 +53,7 @@ export function PeopleGrid({
   className?: string;
 }) {
   const t = brandStrings[locale].people;
-  const [open, close] = locale === "de" ? ["„", "“"] : ["“", "”"];
+  const [open, close] = locale === "de" ? ["„", "“"] : locale === "pl" ? ["„", "”"] : ["“", "”"];
   return (
     <ul
       className={cn(

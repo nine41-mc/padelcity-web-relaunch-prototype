@@ -33,11 +33,15 @@ export function parseDayLabel(label: string): number[] {
 }
 
 const EN_DAYS: Record<string, string> = { Mo: "Mon", Di: "Tue", Mi: "Wed", Do: "Thu", Fr: "Fri", Sa: "Sat", So: "Sun" };
+// Polish short forms (pn, wt, śr, cz, pt, sb, nd) – capitalised like the DE/EN labels
+const PL_DAYS: Record<string, string> = { Mo: "Pn", Di: "Wt", Mi: "Śr", Do: "Cz", Fr: "Pt", Sa: "Sb", So: "Nd" };
 
-/** Opening-hours labels come in German ("Mo – Fr"); translates the day abbreviations for EN. */
-export function dayLabel(label: string, locale: "de" | "en") {
+/** Opening-hours labels come in German ("Mo – Fr"); translates the day abbreviations for EN and PL. */
+export function dayLabel(label: string, locale: "de" | "en" | "pl") {
   if (locale === "de") return label;
-  return label.replace(/\b(Mo|Di|Mi|Do|Fr|Sa|So)\b/g, (d) => EN_DAYS[d] ?? d);
+  const days = locale === "pl" ? PL_DAYS : EN_DAYS;
+  const out = label.replace(/\b(Mo|Di|Mi|Do|Fr|Sa|So)\b/g, (d) => days[d] ?? d);
+  return locale === "pl" ? out.replace(/täglich/i, "Codziennie") : out;
 }
 
 export function schemaDays(label: string) {

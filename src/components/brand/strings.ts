@@ -39,4 +39,22 @@ const en: BrandStrings = {
   people: { photoSoon: "Photo coming soon" },
 };
 
-export const brandStrings: Record<Locale, BrandStrings> = { de, en };
+const pl: BrandStrings = {
+  timeline: { aria: "Kamienie milowe", swipe: "← Przesuń, aby zobaczyć więcej →" },
+  leadForm: {
+    choose: "Wybierz",
+    consent: "Wyrażam zgodę na przetwarzanie moich danych przez PadelCity w celu obsługi mojego zapytania. Szczegóły w",
+    privacy: "polityce prywatności",
+    required: "* Pole obowiązkowe",
+    successTitle: "Dzięki! Odezwiemy się.",
+    successText: "Twoja osoba kontaktowa odezwie się do ciebie w ciągu dwóch dni roboczych.",
+    prototype: "Prototyp: żadne dane nie zostały przesłane.",
+  },
+  legal: {
+    eyebrow: "Informacje prawne",
+    notice: "Tekst przejęty z padelcity.de. Przed startem nasz dział prawny sprawdzi go i uzupełni pod kątem nowej strony (tracking, zgody, newsletter, formularze, hosting).",
+  },
+  people: { photoSoon: "Zdjęcie wkrótce" },
+};
+
+export const brandStrings: Record<Locale, BrandStrings> = { de, en, pl };

@@ -30,6 +30,7 @@ const POSTS: { src: string; reel?: boolean }[] = [
 const copy = {
   de: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Auf Instagram folgen", alt: "Instagram-Post von PadelCity" },
   en: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Follow on Instagram", alt: "PadelCity Instagram post" },
+  pl: { eyebrow: "@padelcity.de", title: "Follow the", accent: "vibe.", cta: "Obserwuj na Instagramie", alt: "Post PadelCity na Instagramie" },
 };
 
 /** Instagram image wall for the home page: dense 3/6-column grid like the profile view, every tile opens Instagram. */

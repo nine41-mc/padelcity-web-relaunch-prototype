@@ -7,7 +7,7 @@ import { flattenLocales, getEntries, type CfLocale } from "./contentful";
  *
  * Content type `coach`, field names as synced by api-platform
  * (api/src/Service/ContentfulSynchronizationService/Handler/CoachHandler.php):
- *   title        Symbol           professional title, e.g. "Head Coach"   → Person.role (de + en)
+ *   title        Symbol           professional title, e.g. "Head Coach"   → Person.role (de + en + pl)
  *   firstName    Symbol                                                   → Person.name
  *   lastName     Symbol                                                   → Person.name
  *   ProfileImage Link → Asset     portrait                                → Person.image
@@ -137,7 +137,7 @@ export async function fetchContentfulCoaches(locale: CfLocale = "de"): Promise<P
       {
         id: `cf-${e.sys.id}`,
         name,
-        role: { de: title, en: title },
+        role: { de: title, en: title, pl: title },
         image,
         club: clubNames.length ? clubNames.join(" & ") : undefined,
         // Personal contact data – only rendered because the coach entry is published for the website (consent, see README).

@@ -31,7 +31,9 @@ export function courtGroups(club: Pick<Club, "courts">, locale: Locale) {
     return {
       key,
       courtType: (isPadel ? kind : "double") as "double" | "single",
-      label: isPadel
+      label: locale === "pl"
+        ? `${n} × ${t.court} ${t[loc]} ${isPadel ? t[kind as "double" | "single"] : (sports[kind as keyof typeof sports] ?? kind)}`
+        : isPadel
         ? `${n} ${t[loc]} ${t[kind as "double" | "single"]} ${n > 1 ? t.courtsPlural : t.court}`
         : `${n} ${t[loc]} ${sports[kind as keyof typeof sports] ?? kind} ${n > 1 ? t.courtsPlural : t.court}`,
     };

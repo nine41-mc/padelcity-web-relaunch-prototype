@@ -403,7 +403,215 @@ const en: LocationsContent = {
   },
 };
 
-export const locationsContent: Record<Locale, LocationsContent> = { de, en };
+/** Polish plural: 1 klub · 2–4 kluby · 5+ klubów (12–14 → klubów). */
+function plClubs(n: number) {
+  if (n === 1) return "klub";
+  const d = n % 10;
+  const dd = n % 100;
+  return d >= 2 && d <= 4 && (dd < 12 || dd > 14) ? "kluby" : "klubów";
+}
+
+const pl: LocationsContent = {
+  meta: {
+    title: "Lokalizacje – znajdź swój kort",
+    description: "Wszystkie 30+ klubów PadelCity w Niemczech, Austrii i Polsce: korty, udogodnienia, godziny otwarcia i dojazd. Rezerwuj w aplikacji PadelCity.",
+    clubTitle: "{club} – graj w padla ({city})",
+    clubDescription: "{n} kortów, godziny otwarcia, udogodnienia i dojazd. Zarezerwuj kort w aplikacji PadelCity.",
+  },
+  hero: {
+    eyebrow: "{clubs}+ klubów · {cities}+ miast · {countries} kraje",
+    imageAlt: "Gracz padla uderza piłkę na korcie PadelCity",
+    lead: "Zła wiadomość dla twoich wymówek: najbliższy kort jest bliżej, niż myślisz.",
+    title: "Znajdź swój kort. Zacznij swoją",
+    accent: "grę.",
+  },
+  finder: {
+    where: "Gdzie",
+    placeholder: "Miasto, klub lub kod pocztowy",
+    searchLabel: "Szukaj miasta, klubu lub kodu pocztowego",
+    clear: "Wyczyść wyszukiwanie",
+    near: "W pobliżu",
+    nearActive: "W twojej okolicy ✓",
+    submit: "Znajdź kluby",
+    geoError: "Lokalizacja niedostępna – po prostu wpisz swoje miasto.",
+    filters: { indoor: "Kryte", outdoor: "Odkryte", panorama: "Kort panoramiczny", franchise: "Franczyza" },
+    filterLabel: "Filtry",
+    resultsHeading: "Wszystkie kluby",
+    club: "klub",
+    clubs: "kluby",
+    byDistance: " · według odległości",
+    viewLabel: "Widok",
+    list: "Lista",
+    map: "Mapa",
+    emptyTitle: "Tu (jeszcze) nie ma klubu PadelCity.",
+    emptyText: "Spróbuj innego miasta – albo sprowadź tu PadelCity na własną rękę.",
+    reset: "Resetuj filtry",
+    resetShort: "Resetuj",
+    close: "Zamknij",
+    featuresLabel: "Wyposażenie",
+    sortLabel: "Sortowanie",
+    sort: { default: "Polecane", distance: "Odległość", az: "A–Z", za: "Z–A" },
+    sportsLabel: "Dyscypliny",
+    availabilityLabel: "Dostępność",
+    openNow: "Teraz otwarte",
+    show: (n: number) => `Pokaż ${n} ${plClubs(n)}`,
+    countryLabel: "Kraj",
+    countries: { all: "Wszystkie", DE: "Niemcy", AT: "Austria", PL: "Polska", ES: "Hiszpania", PH: "Filipiny" },
+    mapLegendPlanned: "Wkrótce otwarcie",
+  },
+  map: {
+    soon: "Wkrótce otwarcie",
+    loading: "Ładowanie mapy …",
+    you: "Twoja lokalizacja",
+    from: "od",
+    view: "Zobacz klub →",
+    osm: "Współtwórcy OpenStreetMap",
+  },
+  cities: { eyebrow: "Wszystkie miasta", title: "Od Ingolstadt po Warszawę.", other: "Inne", courts: "korty", soon: "wkrótce" },
+  planned: {
+    eyebrow: "Coming soon",
+    title: "Wkrótce",
+    accent: "otwarcie.",
+    lead: "Już niedługo polecą tu piłki. Zapisz się, a damy ci znać, gdy tylko twój klub zostanie otwarty.",
+    chip: "SOON",
+    opening: "Otwarcie {date}",
+    openingTbd: "Termin otwarcia wkrótce",
+    notifyCta: "Powiadom mnie",
+    notifyAria: "Powiadom mnie, gdy {name} zostanie otwarty",
+    listLabel: "Planowane kluby PadelCity",
+    notifyTitle: "Bądź na otwarciu",
+    notifyText: "Otwarcia, przedsprzedaże i eventy otwarcia – prosto do twojej skrzynki.",
+  },
+  franchise: {
+    title: "Chcesz, żeby twoje miasto stało się",
+    accent: "PadelCity",
+    titleEnd: "?",
+    text: "Sprowadź padla do swojego miasta i dołącz do sieci PadelCity. {clubs}+ klubów, {courts}+ kortów – a następny może być twój.",
+    cta: "Zostań partnerem",
+  },
+  club: {
+    breadcrumb: "Lokalizacje",
+    breadcrumbLabel: "Ścieżka nawigacji",
+    claim: "Experience for the win.",
+    reviews: {
+      title: "Co gracze mówią o",
+      accent: "tym klubie.",
+      placeholderBadge: "Symbol zastępczy – prawdziwe opinie z Google wkrótce",
+      placeholderNote: "Wkrótce pojawią się tu prawdziwe opinie z Google. Do tego czasu wszystkie opinie znajdziesz bezpośrednio w Mapach Google.",
+      average: "Średnia",
+      count: "Opinie: {n}",
+      countUnknown: "– opinii",
+      all: "Wszystkie opinie w Google",
+      via: "przez Google",
+      source: "Opinie z Google",
+      stars: "{n} na 5 gwiazdek",
+      newTab: "(otwiera się w nowej karcie)",
+    },
+    courtsLabel: "Korty",
+    panorama: "Kort panoramiczny",
+    // Polish: AppBooking renders "{n} × kort {indoor} {double}" (singular adjectives – no case agreement needed)
+    indoor: "kryty",
+    outdoor: "odkryty",
+    double: "podwójny",
+    single: "pojedynczy",
+    court: "kort",
+    courtsPlural: "korty",
+    distance: "stąd",
+    tabsLabel: "Sekcje klubu",
+    tabs: { book: "Rezerwuj w aplikacji", facilities: "Udogodnienia", coaching: "Trenerzy", events: "Wydarzenia", directions: "Dojazd", contact: "Kontakt", reviews: "Opinie" },
+    gallery: {
+      extra: ["Korty z góry", "Lounge", "Szatnie", "Społeczność po meczu", "Bar i bistro", "Detale kortu"],
+      photos: "zdjęcia",
+      photo: "zdjęcie",
+      photosOf: "Zdjęcia – {club}",
+      galleryOf: "Galeria zdjęć – {club}",
+      enlarge: "Powiększ zdjęcie {i} z {n}",
+      close: "Zamknij galerię",
+      prev: "Poprzednie zdjęcie",
+      next: "Następne zdjęcie",
+    },
+    book: {
+      eyebrow: "Rezerwacja kortów tylko w aplikacji",
+      title: "Zarezerwuj kort",
+      accent: "w aplikacji.",
+      text: "Rezerwujesz i płacisz wyłącznie w aplikacji PadelCity – z natychmiastowym potwierdzeniem. Współgraczy zaprosisz od razu.",
+      priceFrom: "od",
+      perHour: "/ godz.",
+      perCourt: "za kort i godzinę",
+      priceOnRequest: "Ceny w aplikacji",
+      cta: "Rezerwuj w aplikacji",
+      ctaShort: "Rezerwuj w aplikacji",
+      hours: "Godziny otwarcia",
+      courts: "Przegląd kortów",
+      stepsTitle: "Jak zarezerwować",
+      steps: [
+        { title: "Otwórz aplikację", text: "Pobierz aplikację PadelCity albo stuknij „Rezerwuj w aplikacji” – przeniesiemy cię prosto do klubu {club}." },
+        { title: "Wybierz termin i kort", text: "Wybierz datę, godzinę i kort. Od razu zaproś znajomych." },
+        { title: "Graj", text: "Zapłać, potwierdzenie przyjdzie od razu. Łap rakietę – let's play Padel!" },
+      ],
+      barNote: "Rezerwacja i płatność w aplikacji",
+      barLabel: "Rezerwacja w aplikacji",
+    },
+    facilities: { title: "Udogodnienia" },
+    coaching: {
+      imageAlt: "Trener tłumaczy grupie forhend na korcie",
+      eyebrow: "PadelCity Academy",
+      title: "Graj lepiej.",
+      accent: "Razem.",
+      text: "Lekcja próbna, trening techniki czy obóz dla dzieci: nasi trenerzy w mieście {city} dopasują się do twojego poziomu.",
+      cta: "Do Akademii",
+      eyebrowCount: "PadelCity Academy · {count}",
+      titleClub: "Twoi trenerzy",
+      accentClub: "w klubie.",
+      textClub: "Znają każdy kort w klubie {club}. Stuknij trenera, aby zobaczyć kontakt, godziny treningów i ceny.",
+      titleNearby: "Trenerzy – {city}",
+      textNearby: "Ci trenerzy działają dla PadelCity w mieście {city}. Zapytaj w klubie, kto trenuje u ciebie – albo stuknij trenera, aby zobaczyć kontakt i ceny.",
+      listLabel: "Trenerzy klubu {club}",
+      allAcademy: "Wszyscy trenerzy i programy Akademii",
+      emptyEyebrow: "Treningi",
+      emptyTitle: "Treningi",
+      emptyAccent: "na zapytanie.",
+      emptyText: "Dla klubu {club} nie ma tu jeszcze żadnych trenerów. Napisz do klubu – zespół połączy cię z odpowiednim trenerem.",
+      emptyMail: "Napisz do klubu",
+      emptyMailSubject: "Treningi – PadelCity {club}",
+      prev: "Poprzedni trenerzy",
+      next: "Następni trenerzy",
+    },
+    events: {
+      title: "Wydarzenia i turnieje",
+      all: "Wszystkie wydarzenia →",
+      allButton: "Wszystkie wydarzenia",
+      emptyTitle: "{city}: obecnie brak zaplanowanych wydarzeń.",
+      emptyText: "Otwarte mecze znajdziesz codziennie w aplikacji – albo sprawdź, co dzieje się w innych klubach.",
+    },
+    directions: { title: "Dojazd", hours: "Godziny otwarcia", route: "Wyznacz trasę" },
+    faqLink: { text: "Pytania o rezerwację, anulowanie albo Hansefit i Wellpass?", cta: "Do FAQ" },
+    contactBar: {
+      label: "Kontakt z klubem",
+      address: "Adres",
+      route: "Zaplanuj trasę",
+      manager: "Manager klubu",
+      phone: "Telefon",
+      whatsapp: "Grupa WhatsApp",
+      whatsappJoin: "Dołącz do grupy",
+      whatsappText: "Znajdź współgraczy, newsy z klubu",
+      pending: "wkrótce",
+    },
+    contact: {
+      title: "Kontakt",
+      club: "Klub",
+      email: "E-mail",
+      phone: "Telefon",
+      community: "Społeczność",
+      instagram: "@padelcity.de na Instagramie",
+      instagramText: "Newsy, wydarzenia i highlighty",
+    },
+    nearby: "Inne kluby w pobliżu",
+    jsonLdPrice: "od {price} / kort i godzinę",
+  },
+};
+
+export const locationsContent: Record<Locale, LocationsContent> = { de, en, pl };
 
 /** Replaces {key} placeholders. */
 export function fill(template: string, vars: Record<string, string | number>): string {
@@ -432,8 +640,35 @@ const REGIONS_EN: Record<string, string> = {
   Heiligkreuz: "Holy Cross",
 };
 
+/** Polish names for German/Austrian states; Polish voivodeships use their Polish names. */
+const REGIONS_PL: Record<string, string> = {
+  Bayern: "Bawaria",
+  "Baden-Württemberg": "Badenia-Wirtembergia",
+  Berlin: "Berlin",
+  "Nordrhein-Westfalen": "Nadrenia Północna-Westfalia",
+  Niedersachsen: "Dolna Saksonia",
+  Hessen: "Hesja",
+  Sachsen: "Saksonia",
+  "Sachsen-Anhalt": "Saksonia-Anhalt",
+  Thüringen: "Turyngia",
+  "Rheinland-Pfalz": "Nadrenia-Palatynat",
+  "Mecklenburg-Vorpommern": "Meklemburgia-Pomorze Przednie",
+  "Schleswig-Holstein": "Szlezwik-Holsztyn",
+  Tirol: "Tyrol",
+  Kärnten: "Karyntia",
+  Niederösterreich: "Dolna Austria",
+  Oberösterreich: "Górna Austria",
+  Steiermark: "Styria",
+  Wien: "Wiedeń",
+  Masowien: "Mazowieckie",
+  Kleinpolen: "Małopolskie",
+  Heiligkreuz: "Świętokrzyskie",
+};
+
 export function regionLabel(region: string, locale: Locale): string {
-  return locale === "en" ? (REGIONS_EN[region] ?? region) : region;
+  if (locale === "en") return REGIONS_EN[region] ?? region;
+  if (locale === "pl") return REGIONS_PL[region] ?? region;
+  return region;
 }
 
 /** Display order of countries (home market first). */

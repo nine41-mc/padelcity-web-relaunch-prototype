@@ -1,5 +1,6 @@
 "use client";
 
+import { plural } from "@/lib/i18n/plural";
 import { useMemo, useState } from "react";
 import { CalendarSearch, MapPin, RotateCcw } from "lucide-react";
 import type { ClubEvent } from "@/lib/data/types";
@@ -118,7 +119,7 @@ export function EventsExplorer({
       </div>
 
       <p className="mb-6 text-sm text-white/70" aria-live="polite">
-        {filtered.length} {filtered.length === 1 ? t.one : t.many}
+        {filtered.length} {plural(locale, filtered.length, t.one, t.many)}
         {city !== "all" && ` ${t.inCity} ${city}`}
       </p>
 

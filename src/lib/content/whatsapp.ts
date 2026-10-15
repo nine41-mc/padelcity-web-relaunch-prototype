@@ -49,6 +49,9 @@ const lookup = new Map(Object.entries(whatsappByCity).map(([city, url]) => [norm
 // English city names used in the EN mock overrides
 lookup.set(norm("Munich"), whatsappByCity["München"]);
 lookup.set(norm("Fuerth"), whatsappByCity["Fürth"]);
+// Polish city names used in the PL mock overrides (clubs-pl.ts)
+lookup.set(norm("Monachium"), whatsappByCity["München"]);
+if (whatsappByCity["Leipzig"]) lookup.set(norm("Lipsk"), whatsappByCity["Leipzig"]);
 
 /** WhatsApp link for a club, matched on its city or the city part of its name ("PadelCity Bielefeld Dornberg"). */
 export function whatsappForClub(club: { city: string; name: string }): string | undefined {

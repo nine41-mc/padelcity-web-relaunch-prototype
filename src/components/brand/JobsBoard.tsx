@@ -1,5 +1,7 @@
 "use client";
 
+import { plural } from "@/lib/i18n/plural";
+import type { Locale } from "@/lib/i18n/config";
 import { useMemo, useState } from "react";
 import { ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { asset } from "@/lib/asset";
@@ -38,7 +40,7 @@ function FilterRow({ label, allLabel, options, value, onChange }: { label: strin
 type Contact = { name: string; role: string; email: string; phone: string; image: string; eyebrow: string; text: string };
 
 /** Open positions with department / location filters. Each role opens an application e-mail; the People & Culture contact sits beside the list. */
-export function JobsBoard({ jobs, t, contact }: { jobs: Job[]; t: JobsContent["board"]; contact?: Contact }) {
+export function JobsBoard({ jobs, t, contact, locale = "de" }: { jobs: Job[]; t: JobsContent["board"]; contact?: Contact; locale?: Locale }) {
   const [dep, setDep] = useState(ALL);
   const [loc, setLoc] = useState(ALL);
   const departments = useMemo(() => Array.from(new Set(jobs.map((j) => j.department))), [jobs]);
@@ -53,7 +55,7 @@ export function JobsBoard({ jobs, t, contact }: { jobs: Job[]; t: JobsContent["b
         <FilterRow label={t.location} allLabel={t.all} options={locations} value={loc} onChange={setLoc} />
       </div>
       <p className="mt-6 text-sm text-white/70" aria-live="polite">
-        {filtered.length} {filtered.length === 1 ? t.one : t.many}
+        {filtered.length} {plural(locale, filtered.length, t.one, t.many)}
       </p>
       <ul className="mt-3 divide-y divide-white/10 border-y border-white/10">
         {filtered.map((j) => (

@@ -26,7 +26,7 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
   const url = `${site.url}${href(locale, "magazine", article.slug)}/`;
   const body = article.body ?? [];
   const related = getRelated(article, locale);
-  const [open, close] = locale === "de" ? ["„", "“"] : ["“", "”"];
+  const [open, close] = locale === "de" ? ["„", "“"] : locale === "pl" ? ["„", "”"] : ["“", "”"];
 
   const jsonLd = {
     "@context": "https://schema.org",

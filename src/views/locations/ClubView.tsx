@@ -108,7 +108,7 @@ function jsonLd(club: Club, locale: Locale) {
   };
 }
 
-/** Club detail – shared by /standorte/[slug] (de) and /en/locations/[slug] (en). */
+/** Club detail – shared by /standorte/[slug] (de), /en/locations/[slug] (en) and /pl/lokalizacje/[slug] (pl). */
 export async function ClubView({ slug, locale }: { slug: string; locale: Locale }) {
   const club = await getClub(slug, locale);
   if (!club) notFound();

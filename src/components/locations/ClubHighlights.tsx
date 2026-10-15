@@ -15,6 +15,7 @@ import { cn } from "@/components/ui/cn";
 const copy = {
   de: { title: "Highlights des Clubs", groups: ["Welcome", "Courts", "Community", "Events"], close: "Schließen", prev: "Vorherige", next: "Nächste", welcome: "Welcome to" },
   en: { title: "Club highlights", groups: ["Welcome", "Courts", "Community", "Events"], close: "Close", prev: "Previous", next: "Next", welcome: "Welcome to" },
+  pl: { title: "Highlights klubu", groups: ["Welcome", "Courts", "Community", "Events"], close: "Zamknij", prev: "Poprzednie", next: "Następne", welcome: "Welcome to" },
 };
 const FRAME_MS = 5000;
 const src = (url: string) => (url.startsWith("/") ? asset(url) : url);

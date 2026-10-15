@@ -18,7 +18,7 @@ export type Testimonial = {
   id: string;
   name: string;
   photo: string;
-  /** Full quote. `de` = original (verbatim), `en` = translation. */
+  /** Full quote. `de` = original (verbatim), `en`/`pl` = translation. */
   quote: Record<Locale, string>;
   /** One complete sentence of `quote` that is visually emphasised (must be an exact substring). */
   highlight: Record<Locale, string>;
@@ -32,8 +32,9 @@ export const testimonials: Testimonial[] = [
     quote: {
       de: "Ich bin in meinem Leben von Sportart zu Sportart gehüpft und jede einzelne davon war großartig, von Beachvolleyball bis Skateboarding. Padel toppt sie einfach alle. Seit zwei Jahren bin ich verliebt in die irren Ballwechsel, das Spielerische, den Fokuswechsel in einer vollen Arbeitswoche, die Weiterentwicklung im eigenen Spiel – und in die Menschen auf dem Court sowieso.",
       en: "All my life I've hopped from one sport to the next, and every single one of them was great, from beach volleyball to skateboarding. Padel simply tops them all. For two years now I've been in love with the crazy rallies, the playfulness, the change of focus in a packed working week, the progress in my own game – and with the people on court, of course.",
+      pl: "Przez całe życie skakałam od jednego sportu do drugiego i każdy z nich był świetny – od siatkówki plażowej po skateboarding. Padel po prostu bije je wszystkie na głowę. Od dwóch lat jestem zakochana w szalonych wymianach, w tej zabawie, w przełączeniu głowy w środku zawalonego tygodnia pracy, w rozwoju własnej gry – no i oczywiście w ludziach na korcie.",
     },
-    highlight: { de: "Padel toppt sie einfach alle.", en: "Padel simply tops them all." },
+    highlight: { de: "Padel toppt sie einfach alle.", en: "Padel simply tops them all.", pl: "Padel po prostu bije je wszystkie na głowę." },
   },
   {
     id: "silke",
@@ -42,10 +43,12 @@ export const testimonials: Testimonial[] = [
     quote: {
       de: "Als kompetitive Person begeistert mich der steile Lernprozess und die schnellen Erfolge beim Padel, einem kommunikativen Sport, der alters- und geschlechtsübergreifend ausgeglichene Matches ermöglicht. Das Spielen hat mein Netzwerk signifikant erweitert, und ein gemeinsames Kaltgetränk nach dem Match ist Standard. Und nach dem Auspowern braucht es das!",
       en: "As a competitive person, I love the steep learning curve and the quick wins in padel – a sociable sport that makes for evenly matched games across ages and genders. Playing has grown my network significantly, and a cold drink together after the match is standard. And after giving it everything, you need one!",
+      pl: "Jako osobę nastawioną na rywalizację kręci mnie w padlu stroma krzywa nauki i szybkie sukcesy – to towarzyski sport, który pozwala na wyrównane mecze niezależnie od wieku i płci. Gra znacząco poszerzyła moją sieć kontaktów, a wspólny zimny napój po meczu to standard. A po takim wycisku po prostu się należy!",
     },
     highlight: {
       de: "Das Spielen hat mein Netzwerk signifikant erweitert, und ein gemeinsames Kaltgetränk nach dem Match ist Standard.",
       en: "Playing has grown my network significantly, and a cold drink together after the match is standard.",
+      pl: "Gra znacząco poszerzyła moją sieć kontaktów, a wspólny zimny napój po meczu to standard.",
     },
   },
   {
@@ -55,8 +58,9 @@ export const testimonials: Testimonial[] = [
     quote: {
       de: "Fun, Fun, FUN!! Egal wen ich mitbringe, alle feiern es. Wir sind keine Pros, aber es kommt in jeder Runde ein Spiel zustande, auch wenn man das vorher manchmal nicht denkt. Perfektion sieht wahrscheinlich anders aus als bei uns, aber der Ball kommt regelmäßig übers Netz und darauf kommt es an. Wir werden die Zeit nutzen und besser werden, zieht euch Ende des Sommers warm an 😉",
       en: "Fun, fun, FUN!! No matter who I bring along, everyone loves it. We're no pros, but every round turns into a proper game, even when you sometimes wouldn't think so beforehand. Perfection probably looks different from what we do, but the ball regularly makes it over the net, and that's what counts. We'll use the time to get better – so by the end of the summer, you'd better watch out 😉",
+      pl: "Fun, fun, FUN!! Kogokolwiek przyprowadzę, wszyscy są zachwyceni. Nie jesteśmy zawodowcami, ale w każdej rundzie wychodzi z tego prawdziwy mecz, nawet jeśli czasem wcześniej się w to nie wierzy. Perfekcja pewnie wygląda inaczej niż u nas, ale piłka regularnie przelatuje nad siatką i o to właśnie chodzi. Wykorzystamy ten czas, żeby się poprawić – więc pod koniec lata lepiej się strzeżcie 😉",
     },
-    highlight: { de: "Fun, Fun, FUN!!", en: "Fun, fun, FUN!!" },
+    highlight: { de: "Fun, Fun, FUN!!", en: "Fun, fun, FUN!!", pl: "Fun, fun, FUN!!" },
   },
   {
     id: "giersi",
@@ -65,8 +69,9 @@ export const testimonials: Testimonial[] = [
     quote: {
       de: "Kurz und knapp: Ich liebe Padel und bin süchtig! Neben meiner Familie und der Arbeit versuche ich die meiste Zeit auf dem Court zu verbringen und bin daher dankbar mit PadelCity nun auch endlich eine coole Halle in München für den Winter zu haben. Meine Frau und Kinder sehen mich dadurch weniger, aber ich glaube die freuen sich, dass ich so glücklich nach Hause komme.",
       en: "In short: I love padel and I'm addicted! Besides my family and work, I try to spend most of my time on court, so I'm grateful that with PadelCity there's finally a cool indoor venue in Munich for the winter, too. My wife and kids see less of me because of it, but I think they're glad I come home so happy.",
+      pl: "Krótko i na temat: kocham padla i jestem uzależniony! Poza rodziną i pracą staram się spędzać jak najwięcej czasu na korcie, dlatego cieszę się, że dzięki PadelCity mam wreszcie w Monachium fajną halę na zimę. Żona i dzieci widzą mnie przez to rzadziej, ale chyba cieszą się, że wracam do domu taki szczęśliwy.",
     },
-    highlight: { de: "Kurz und knapp: Ich liebe Padel und bin süchtig!", en: "In short: I love padel and I'm addicted!" },
+    highlight: { de: "Kurz und knapp: Ich liebe Padel und bin süchtig!", en: "In short: I love padel and I'm addicted!", pl: "Krótko i na temat: kocham padla i jestem uzależniony!" },
   },
 ];
 
@@ -97,6 +102,19 @@ export const testimonialsContent = {
     next: "Next voice",
     goTo: "Go to voice {i}: {name}",
     photoAlt: "Portrait of {name}",
+  },
+  pl: {
+    eyebrow: "Community",
+    title: "Let the players",
+    accent: "talk.",
+    lead: "Czas i miejsce dla głównych bohaterów.",
+    translated: "Przetłumaczono z niemieckiego",
+    regionLabel: "Głosy społeczności PadelCity",
+    slide: "Głos {i} z {n}",
+    prev: "Poprzedni głos",
+    next: "Następny głos",
+    goTo: "Przejdź do głosu {i}: {name}",
+    photoAlt: "Portret: {name}",
   },
 } satisfies Record<Locale, Record<string, string | null>>;
 

@@ -42,7 +42,7 @@ const NEIGHBOURS: { code: "AT" | "PL"; outline: [number, number][]; label: [numb
     ],
   },
 ];
-const COUNTRY_NAMES = { de: { AT: "Österreich", PL: "Polen" }, en: { AT: "Austria", PL: "Poland" } } as const;
+const COUNTRY_NAMES = { de: { AT: "Österreich", PL: "Polen" }, en: { AT: "Austria", PL: "Poland" }, pl: { AT: "Austria", PL: "Polska" } } as const;
 
 // Map frame: Germany plus room for Innsbruck (AT) and Warsaw/Kraków/Kielce (PL).
 const LON0 = 5.5;

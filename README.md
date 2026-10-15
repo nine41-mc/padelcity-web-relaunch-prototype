@@ -1,6 +1,6 @@
 # PadelCity Website – Relaunch-Prototyp
 
-Klickbarer, responsiver Prototyp (Phone < 768 px · Tablet ≥ 768 px · Desktop ≥ 1200 px), zweisprachig (DE unter `/`, EN unter `/en`), als Vorarbeit für den technischen Workshop mit der Elephant Agency. Kein Produktivcode – aber bewusst auf dem Ziel-Stack gebaut (Next.js App Router + Contentful), damit die Architekturfragen konkret werden.
+Klickbarer, responsiver Prototyp (Phone < 768 px · Tablet ≥ 768 px · Desktop ≥ 1200 px), dreisprachig (DE unter `/`, EN unter `/en`, PL unter `/pl`), als Vorarbeit für den technischen Workshop mit der Elephant Agency. Kein Produktivcode – aber bewusst auf dem Ziel-Stack gebaut (Next.js App Router + Contentful), damit die Architekturfragen konkret werden.
 
 ## Grundsätze
 

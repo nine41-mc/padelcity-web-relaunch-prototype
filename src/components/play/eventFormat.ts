@@ -5,6 +5,7 @@ import { eventsContent } from "@/lib/content/events";
 /**
  * DE: "14.–16. Nov. 2026" / "Fr., 14. Nov. 2026 · 12:00 Uhr"
  * EN: "14–16 Nov 2026" / "Fri 14 Nov 2026 · 12:00"
+ * PL: "14–16 lis 2026" / "pt., 14 lis 2026 · 12:00" (pl-PL, no dot after the day)
  * ISO strings are local times (no TZ).
  */
 export function formatDateRange(start: string, end: string | undefined, locale: Locale) {

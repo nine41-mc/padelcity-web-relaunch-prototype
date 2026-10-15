@@ -310,4 +310,139 @@ const en: FaqContent = {
   ],
 };
 
-export const faqContent: Record<Locale, FaqContent> = { de, en };
+const pl: FaqContent = {
+  meta: {
+    title: "FAQ – pytania i odpowiedzi o PadelCity",
+    description: "Rezerwacja i płatność w aplikacji, anulowanie, rakiety do wypożyczenia, Hansefit i EGYM Wellpass, Akademia i twoje konto: odpowiedzi na najczęstsze pytania.",
+  },
+  hero: {
+    eyebrow: "FAQ",
+    title: "Pytania?",
+    accent: "Odpowiedzi.",
+    lead: "Rezerwacja, płatność, anulowanie, benefity i Akademia – tu szybko znajdziesz to, co musisz wiedzieć. Let's play Padel!",
+    imageAlt: "Grupa z rakietami do padla na korcie PadelCity przed ścianą „Better Together”",
+  },
+  explorer: {
+    searchLabel: "Przeszukaj FAQ",
+    searchPlaceholder: "np. anulowanie, rakiety, Hansefit …",
+    clear: "Wyczyść wyszukiwanie",
+    categoriesLabel: "Tematy",
+    all: "Wszystkie tematy",
+    countOne: "1 pytanie",
+    countMany: "Pytania: {n}",
+    resultsOne: "1 wynik dla „{q}”",
+    resultsMany: "Wyniki dla „{q}”: {n}",
+    emptyTitle: "Na to nie mamy jeszcze odpowiedzi.",
+    emptyText: "Spróbuj innego słowa – albo napisz do nas, chętnie pomożemy.",
+    reset: "Resetuj wyszukiwanie",
+    sourceApi: "Odpowiedzi pochodzą z sekcji pomocy w aplikacji PadelCity.",
+  },
+  contact: {
+    eyebrow: "Masz jeszcze pytania?",
+    title: "Napisz",
+    accent: "do nas.",
+    text: "Nie ma tu twojego tematu? Nasz zespół odpowie ci mailowo. Na pytania o konkretny klub odpowie zespół klubu – kontakt znajdziesz na stronie każdego klubu.",
+    mail: "Napisz e-mail",
+    mailSubject: "Pytanie do PadelCity",
+    locations: "Do klubów",
+  },
+  categories: [
+    {
+      id: "buchen-bezahlen",
+      title: "Rezerwacja i płatność",
+      icon: "calendar",
+      items: [
+        {
+          id: "court-buchen",
+          q: "Jak zarezerwować kort?",
+          a: "Wyłącznie w aplikacji PadelCity: wybierz klub, termin i kort, zapłać – gotowe. Potwierdzenie przychodzi od razu. Na stronie znajdziesz wszystkie kluby z informacjami i cenami; jedno stuknięcie przeniesie cię prosto do klubu w aplikacji.",
+        },
+        {
+          id: "website-buchen",
+          q: "Czy mogę zarezerwować kort na stronie?",
+          a: "Nie, rezerwacja i płatność odbywają się wyłącznie w aplikacji. Dzięki temu zawsze widzisz aktualny stan i masz wszystkie rezerwacje w jednym miejscu.",
+        },
+        {
+          id: "kosten-teilen",
+          q: "Czy mogę podzielić koszty ze współgraczami?",
+          a: "Tak. Przy rezerwacji włącz płatność dzieloną – wtedy płacisz tylko za swoje miejsce gracza albo wybierasz, ile miejsc pokrywasz.",
+        },
+        {
+          id: "stornieren",
+          q: "Czy mogę anulować rezerwację?",
+          a: "Tak – zasady anulowania zobaczysz w aplikacji przed rezerwacją. Tam też zarządzasz rezerwacją i bezpośrednio ją anulujesz.",
+        },
+      ],
+    },
+    {
+      id: "vor-ort",
+      title: "Na miejscu",
+      icon: "markerPin",
+      items: [
+        {
+          id: "leihschlaeger",
+          q: "Czy mogę wypożyczyć rakiety i piłki?",
+          a: "Jasne. W naszych klubach wypożyczysz rakiety na miejscu, a piłki kupisz w automacie lub przy barze. Po prostu przyjdź i graj.",
+        },
+        {
+          id: "anfahrt",
+          q: "Jak dojechać – czy jest parking?",
+          a: "Na stronie każdego klubu znajdziesz adres, mapę i przycisk „Wyznacz trasę”. Czy przy klubie jest parking, sprawdzisz tam w sekcji udogodnień. Zaplanuj kilka minut na rozgrzewkę.",
+        },
+        {
+          id: "oeffnungszeiten",
+          q: "Kiedy kluby są otwarte?",
+          a: "Godziny otwarcia znajdziesz na stronie każdego klubu w sekcji „Dojazd i godziny otwarcia” oraz w aplikacji.",
+        },
+      ],
+    },
+    {
+      id: "benefits",
+      title: "Benefity",
+      icon: "wellPass",
+      items: [
+        {
+          id: "firmenfitness",
+          q: "Czy mogę grać z Hansefit lub EGYM Wellpass?",
+          a: "Tak, współpracujemy z dostawcami benefitów sportowych, takimi jak Hansefit i EGYM Wellpass. Połącz swoje członkostwo w aplikacji – zniżka zostanie automatycznie uwzględniona przy rezerwacji.",
+        },
+      ],
+    },
+    {
+      id: "academy-events",
+      title: "Akademia i wydarzenia",
+      icon: "muscle",
+      items: [
+        {
+          id: "kids",
+          q: "Czy dzieci też mogą grać?",
+          a: "Oczywiście! Dzieci są mile widziane na naszych kortach – na początek polecamy kursy dla dzieci w PadelCity Academy.",
+        },
+        {
+          id: "training",
+          q: "Jak zapisać się na trening lub kurs?",
+          a: "Na stronie Akademii i na stronie każdego klubu znajdziesz trenerów z danymi kontaktowymi. Kursy, treningi i wydarzenia rezerwujesz w aplikacji.",
+        },
+      ],
+    },
+    {
+      id: "konto-app",
+      title: "Konto i aplikacja",
+      icon: "userCircle",
+      items: [
+        {
+          id: "app-kosten",
+          q: "Ile kosztuje aplikacja?",
+          a: "Pobranie i konto są bezpłatne. Płacisz tylko za to, co rezerwujesz – korty, wydarzenia lub treningi.",
+        },
+        {
+          id: "app-download",
+          q: "Gdzie mogę pobrać aplikację?",
+          a: "Aplikacja PadelCity jest dostępna bezpłatnie w App Store (iOS) i w Google Play (Android).",
+        },
+      ],
+    },
+  ],
+};
+
+export const faqContent: Record<Locale, FaqContent> = { de, en, pl };

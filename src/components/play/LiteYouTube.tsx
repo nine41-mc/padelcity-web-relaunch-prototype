@@ -9,6 +9,7 @@ import type { Locale } from "@/lib/i18n/config";
 const labels = {
   de: { play: "Video abspielen", soon: "Video folgt bald.", privacy: "Beim Abspielen wird ein Video von YouTube (youtube-nocookie.com) geladen." },
   en: { play: "Play video", soon: "Video coming soon.", privacy: "Playing this loads a video from YouTube (youtube-nocookie.com)." },
+  pl: { play: "Odtwórz wideo", soon: "Wideo już wkrótce.", privacy: "Odtworzenie spowoduje załadowanie wideo z YouTube (youtube-nocookie.com)." },
 } satisfies Record<Locale, Record<string, string>>;
 
 // Contentful module: videoEmbed (youtubeId, title, thumbnail)

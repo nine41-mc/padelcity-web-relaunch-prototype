@@ -251,7 +251,116 @@ const en: InvestorsContent = {
   },
 };
 
-export const investorsContent: Record<Locale, InvestorsContent> = { de, en };
+const pl: InvestorsContent = {
+  meta: {
+    title: "Investor Relations",
+    description:
+      "PadelCity to wiodący operator padla w Niemczech. Series A closed: equity story, kluczowe wskaźniki, kamienie milowe, założyciele i materiały prasowe.",
+  },
+  hero: {
+    eyebrow: "Series A closed",
+    imageAlt: "Spotkanie biznesowe w PadelCity",
+    title: "Series A. Next",
+    accent: "Level",
+    titleEnd: "dla padla.",
+    lead: "PadelCity to wiodący operator padla w Niemczech. Dzięki Series A budujemy platformę, która zrobi z padla sport masowy – w Niemczech i w nowych krajach.",
+    ctaStory: "Equity story",
+    ctaContact: "Kontakt IR",
+  },
+  marquee: [
+    "Wiodący operator padla w Niemczech",
+    `${keyFacts.clubs}+ klubów`,
+    `${keyFacts.courts}+ kortów`,
+    `${keyFacts.cities}+ miast`,
+    "Własna aplikacja",
+    "Academy",
+    "Wydarzenia",
+    "Franczyza",
+    "Nowe kraje",
+  ],
+  equity: {
+    eyebrow: "Equity story",
+    title: "Cztery powody, dla których PadelCity wygrywa",
+    lead: "Rynek, platforma, skalowanie, zespół – nasza teza inwestycyjna w skrócie.",
+    aria: "Rozdziały equity story",
+    chapters: [
+      {
+        id: "markt",
+        kicker: "01 · Rynek",
+        label: "Rynek",
+        title: "Najszybciej rozwijająca się dyscyplina sportu",
+        text: "Padla łatwo się nauczyć, jest towarzyski i daje frajdę od pierwszej wymiany. W wielu niemieckich miastach popyt na korty przewyższa podaż.",
+        bullets: [
+          "Start bez długiej nauki – dla każdej grupy wiekowej",
+          "Sport deblowy: każda rezerwacja przyprowadza do klubu cztery osoby",
+          "W Hiszpanii, we Włoszech i w Szwecji od dawna sport masowy – Niemcy nadrabiają zaległości",
+        ],
+      },
+      {
+        id: "plattform",
+        kicker: "02 · Platforma",
+        label: "Platforma",
+        title: "Kluby + aplikacja + społeczność",
+        text: "PadelCity łączy fizyczną infrastrukturę z własną platformą cyfrową. Aplikacja to jednocześnie system rezerwacji, matchmaker i centrum społeczności.",
+        bullets: [
+          `${keyFacts.clubs}+ klubów, ${keyFacts.courts}+ kortów w ${keyFacts.cities}+ miastach`,
+          "Własna aplikacja do rezerwacji, płatności i otwartych meczów",
+          "Academy, wydarzenia i ekosystem partnerów jako dźwignie przychodów",
+        ],
+      },
+      {
+        id: "skalierung",
+        kicker: "03 · Skalowanie",
+        label: "Skalowanie",
+        title: "Spółki krajowe + franczyza",
+        text: "Wzrost przede wszystkim dzięki nowym krajom – w każdym kraju osobna spółka – uzupełniony o franczyzę w miastach, w których lokalni partnerzy działają szybciej.",
+        bullets: ["Jeden playbook na budowę, otwarcie i działalność", "Osobna spółka PadelCity w każdym kraju", "Franczyza jako kapitałowo efektywna dodatkowa dźwignia"],
+      },
+      {
+        id: "team",
+        kicker: "04 · Zespół",
+        label: "Zespół",
+        title: "Przedsiębiorczość, sport i operacje",
+        text: "Zespół założycieli łączący przedsiębiorczość i sport wyczynowy – wzmocniony przez zespół, dla którego otwieranie klubów to rutyna.",
+        bullets: ["Założyciele: Jonathan Sierck, dr Marcus Englert, dr Sebastian Weil, Hansi Flick", "Własny zespół ds. budowy, działalności i ekspansji", "Własna organizacja produktowa i technologiczna"],
+      },
+    ],
+  },
+  kpis: {
+    eyebrow: "Kluczowe wskaźniki",
+    title: "PadelCity w liczbach",
+    lead: "Stan: październik 2026.",
+    items: kpis({ clubs: "Kluby", courts: "Korty", cities: "Miasta", founded: "Rok założenia", firstClub: `Pierwszy klub: ${keyFacts.firstClub}` }),
+  },
+  milestones: { eyebrow: "Kamienie milowe", title: "Od Ingolstadt do Series A" },
+  leadership: {
+    eyebrow: "Założyciele i kierownictwo",
+    title: "Zespół stojący za PadelCity",
+    lead: "Przedsiębiorczość i sport wyczynowy – połączone jedną misją: zrobić z padla sport masowy.",
+    management: "Zarząd",
+  },
+  press: {
+    eyebrow: "Prasa i materiały do pobrania",
+    title: "Press kit",
+    note: "Na zapytanie",
+    requestLabel: "– wyślij zapytanie",
+    items: [
+      { title: "Factsheet PadelCity", meta: "PDF" },
+      { title: "Pakiet logotypów", meta: "ZIP · SVG / PNG" },
+      { title: "Zdjęcia klubów i wydarzeń", meta: "ZIP · JPG" },
+      { title: "Portrety założycieli", meta: "ZIP · JPG" },
+    ],
+  },
+  contact: {
+    eyebrow: "Investor Relations",
+    title: "Porozmawiajmy.",
+    text: "Masz pytania o PadelCity, Series A albo koinwestycje? Napisz do nas – odezwiemy się.",
+    mailLabel: "Napisz e-mail",
+    subject: "Investor Relations",
+  },
+};
+
+export const investorsContent: Record<Locale, InvestorsContent> = { de, en, pl };
 
 // TODO(content): dedicated IR mailbox (e.g. ir@padelcity.de) once set up – until then the general address.
 export const irMailto = (subject: string) => `mailto:${site.email}?subject=${encodeURIComponent(subject)}`;

@@ -215,4 +215,107 @@ const en: SponsoringContent = {
   },
 };
 
-export const sponsoringContent: Record<Locale, SponsoringContent> = { de, en };
+const pl: SponsoringContent = {
+  meta: {
+    title: "Partnerzy i sponsoring",
+    description: `Zostań partnerem PadelCity: branding klubów, sponsoring tytularny wydarzeń, odzież, aplikacja i digital, PadelCity TV oraz eventy firmowe w ${keyFacts.clubs}+ klubach.`,
+  },
+  hero: {
+    eyebrow: "Partnerzy i sponsoring",
+    imageAlt: "Gracze w koszulkach partnerów podczas otwarcia klubu PadelCity",
+    title: "Twoja marka. Nasz",
+    accent: "kort.",
+    lead: `Padel to sport młodej, miejskiej społeczności. Dzięki ${keyFacts.clubs}+ klubom, własnej aplikacji i topowym wydarzeniom wprowadzamy twoją markę w sam środek gry.`,
+    ctaPrimary: "Zostań partnerem",
+    ctaSecondary: "Eventy firmowe",
+  },
+  stats: { clubs: "Kluby", courts: "Korty", cities: "Miasta", founded: "Od" },
+  formats: {
+    eyebrow: "Formaty",
+    title: "Jak stać się częścią PadelCity",
+    lead: "Od nazwy kortu po własny turniej: przygotujemy pakiet dopasowany do twoich celów.",
+    items: [
+      { title: "Branding klubów", text: `Nazwy kortów, bandy, siatki i strefy lounge w ${keyFacts.clubs}+ klubach.`, icon: "building" },
+      { title: "Sponsoring tytularny wydarzeń", text: "Zostań sponsorem prezentującym – tak jak CUPRA przy One Point Challenge.", icon: "trophy" },
+      { title: "Koszulki i odzież", text: "Na koszulkach naszych drużyn i trenerów – jak Haier i Natural Elements.", icon: "shirt" },
+      { title: "Aplikacja i digital", text: "Natywne placementy, wyzwania i nagrody w aplikacji PadelCity.", icon: "smartphone" },
+      { title: "Content i PadelCity TV", text: "Formaty w PadelCity TV, w magazynie i w social mediach.", icon: "clapperboard" },
+      { title: "Eventy firmowe i B2B", text: "Turnieje firmowe, eventy zespołowe i oferty dla pracowników.", icon: "briefcase" },
+    ],
+    other: "Inne",
+  },
+  personas: {
+    eyebrow: "Loyalty hits reach.",
+    title: "Do kogo docierasz z nami",
+    lead: "Sześć person z naszego brand booka – od zawodniczki turniejowej po gracza Kids Academy.",
+    items: [
+      { name: "Leo", age: "27", text: "Miejski, nastawiony na rywalizację, gra 3 razy w tygodniu i zna każdą nową rakietę." },
+      { name: "Nina", age: "32", text: "Szuka frajdy i ludzi – padel to jej klub towarzyski po pracy." },
+      { name: "Steffen", age: "45", text: "Gracz biznesowy, rezerwuje korty na eventy dla klientów i wieczory zespołowe." },
+      { name: "Valeria", age: "24", text: "Zawodniczka turniejowa z ambicjami rankingowymi i dużym zasięgiem." },
+      { name: "Kathrin", age: "39", text: "Stawia na fitness i zdrowie, gra z przyjaciółkami przed południem." },
+      { name: "Tim", age: "11", text: "Gracz Kids Academy – następne pokolenie padla." },
+    ],
+  },
+  logos: {
+    title: "W dobrym towarzystwie",
+    text: "Marki, które razem z nami rozwijają padla.",
+    tiers: {
+      premium: { title: "Premium Partner", text: "Sponsorzy prezentujący i partnerzy strategiczni" },
+      official: { title: "Official Partner", text: "Koszulki, odzież i partnerzy kategorii" },
+      supplier: { title: "Supplier", text: "Jedzenie i napoje, usługi, benefity" },
+    },
+    descriptions: {
+      CUPRA: "Mobility Partner i sponsor prezentujący One Point Challenge",
+      Babolat: "Official Racket & Ball Partner, PadelCity Series",
+      Haier: "Sponsor koszulek",
+      "Natural Elements": "Sponsor koszulek",
+    },
+  },
+  cases: {
+    eyebrow: "Case studies",
+    title: "Partnerstwa, które widać i czuć",
+    items: [
+      {
+        partner: "CUPRA",
+        title: "CUPRA × One Point Challenge",
+        text: "Jeden punkt decyduje – o nawet 100 000 € nagrody. CUPRA prezentuje najbardziej spektakularny format w niemieckim padlu i jako Mobility Partner jest obecna w klubach.",
+        tags: ["Sponsoring tytularny", "Wydarzenie", "Branding klubów"],
+        image: { url: "/images/partner/cupra-one-point-challenge.jpg", alt: "Kort z brandingiem CUPRA w klubie PadelCity" },
+      },
+      {
+        partner: "Babolat",
+        title: "Babolat × PadelCity Series",
+        text: "PadelCity Series powered by Babolat wnosi turniejową atmosferę do każdego klubu – ze sprzętem, treningami i contentem wokół cyklu.",
+        tags: ["Cykl turniejowy", "Sprzęt", "Content"],
+        image: { url: "/images/partner/babolat-series.jpg", alt: "Piłki Babolat w automacie w klubie PadelCity" },
+      },
+    ],
+  },
+  corporate: {
+    eyebrow: "Eventy firmowe i B2B",
+    title: "Zarezerwuj event firmowy",
+    text: "Teambuilding, który naprawdę łączy: padla nauczysz się w dziesięć minut, a tematów do rozmów wystarczy do następnego spotkania. Organizujemy wszystko – korty, trenerów, catering.",
+    cta: "Zapytaj o event",
+    formats: ["Turniej firmowy z dekoracją zwycięzców", "Event zespołowy z trenerem i lekcją próbną", "Event dla klientów w klubowym lounge", "Padel dla pracowników jako benefit"],
+  },
+  form: {
+    title: "Let's play",
+    accent: "together",
+    text: "Opowiedz nam o swojej marce i swoich celach. Nasz zespół ds. partnerstw odezwie się z pierwszym pomysłem.",
+    submit: "Wyślij zapytanie",
+    successTitle: "Dziękujemy! Odezwiemy się.",
+    successText: "Nasz zespół ds. partnerstw odezwie się w ciągu dwóch dni roboczych z pierwszym pomysłem.",
+    fields: {
+      name: "Imię i nazwisko",
+      company: "Firma",
+      email: "E-mail",
+      phone: "Telefon",
+      interest: "Zainteresowanie",
+      message: "Wiadomość",
+      messagePlaceholder: "Cele, termin, budżet – wszystko, co nam pomoże.",
+    },
+  },
+};
+
+export const sponsoringContent: Record<Locale, SponsoringContent> = { de, en, pl };

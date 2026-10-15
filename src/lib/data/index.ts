@@ -6,9 +6,11 @@ import type { Club, ClubEvent, DataSource } from "./types";
 import type { Locale } from "../i18n/config";
 import { mockClubs } from "./mock/clubs";
 import { toEnglishMock } from "./mock/clubs-en";
+import { toPolishMock } from "./mock/clubs-pl";
 import { mockEvents } from "./mock/events";
 import { supplementClubs } from "./mock/supplement";
 import { toEnglishSupplement } from "./mock/supplement-en";
+import { toPolishSupplement } from "./mock/supplement-pl";
 import { fetchContentfulClubs, isContentfulConfigured } from "./contentful";
 import { fetchContentfulCoaches } from "./contentful-coaches";
 import { coaches as peopleCoaches, type Person } from "../content/people";
@@ -44,6 +46,10 @@ function isTestClub(c: Pick<Club, "name" | "slug">) {
   return /\btest\b/i.test(c.name) || /(^|-)test(-|$)/.test(c.slug);
 }
 
+/** Mock data is German; other locales get translated copies (Contentful would deliver per locale). */
+const MOCK_CLUB_LOCALIZERS: Partial<Record<Locale, (c: Club) => Club>> = { en: toEnglishMock, pl: toPolishMock };
+const SUPPLEMENT_LOCALIZERS: Partial<Record<Locale, (c: Club) => Club>> = { en: toEnglishSupplement, pl: toPolishSupplement };
+
 const resolveBaseClubs = cache(async (locale: Locale): Promise<Club[]> => {
   if (isContentfulConfigured()) {
     try {
@@ -56,20 +62,21 @@ const resolveBaseClubs = cache(async (locale: Locale): Promise<Club[]> => {
       warnOnce("contentful", err);
     }
   }
-  return locale === "en" ? mockClubs.map(toEnglishMock) : mockClubs;
+  const localize = MOCK_CLUB_LOCALIZERS[locale];
+  return localize ? mockClubs.map(localize) : mockClubs;
 });
 
 /**
  * Base clubs (Contentful or mock) + supplement, de-duplicated: a supplement club is dropped as soon as
  * the base has a club with the same slug or the same name (base/Contentful wins). Keys are taken from
- * the German supplement entry so that translated EN names still match.
+ * the German supplement entry so that translated EN/PL names still match.
  */
 const resolveAllClubs = cache(async (locale: Locale): Promise<Club[]> => {
   const base = (await resolveBaseClubs(locale)).map((c) => ({ ...c, status: c.status ?? "open" }) satisfies Club);
   const taken = new Set(base.flatMap((c) => [c.slug, nameKey(c.name)]));
   const extra = supplementClubs
     .filter((s) => !taken.has(s.slug) && !taken.has(nameKey(s.name)))
-    .map((s) => (locale === "en" ? toEnglishSupplement(s) : s));
+    .map((s) => SUPPLEMENT_LOCALIZERS[locale]?.(s) ?? s);
   // WhatsApp community links (padelcity.de) – only for open clubs, Contentful value wins.
   return [...base, ...extra]
     .map((c) =>
@@ -96,7 +103,7 @@ export async function getClub(slug: string, locale: Locale = "de"): Promise<Club
 }
 
 export async function getEvents(opts: { clubId?: string; locale?: Locale } = {}): Promise<ClubEvent[]> {
-  // Mock events are German; EN fields (subtitle, level, recurrence, alt texts) come from content/events.ts.
+  // Mock events are German; EN/PL fields (subtitle, level, recurrence, alt texts) come from content/events.ts.
   const events = mockEvents.map((e) => localizeEvent(e.clubName ? { ...e, clubName: stripBrand(e.clubName) } : e, opts.locale ?? "de"));
   if (!opts.clubId) return events;
   const club = (await getClubs(opts.locale)).find((c) => c.id === opts.clubId);

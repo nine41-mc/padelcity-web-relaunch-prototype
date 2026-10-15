@@ -86,6 +86,17 @@ const screensEn: Record<ScreenKey, AppScreenshot> = {
   benefits: shot("benefits", "en", "Profile: EGYM Wellpass account linked – the discount is shown automatically at checkout"),
 };
 
+// PL: no Polish store assets yet → reuse the EN screenshots with Polish descriptions.
+const screensPl: Record<ScreenKey, AppScreenshot> = {
+  home: shot("home", "en", "Ekran główny aplikacji: rezerwacja kortu, wyszukiwanie meczów, rezerwacja treningu, eventy i otwarte mecze w pobliżu", "home-top"),
+  booking: shot("booking", "en", "Rezerwacja kortu: wybór klubu, daty i godziny, godziny rozpoczęcia i ceny w zależności od czasu gry"),
+  checkout: shot("checkout", "en", "Potwierdzenie rezerwacji: podsumowanie, dzielenie płatności, sprzęt, realizacja vouchera i suma"),
+  split: shot("split", "en", "Potwierdzenie rezerwacji z przełącznikiem „Dzielenie płatności” dla miejsc graczy"),
+  match: shot("match", "en", "Szczegóły meczu: potwierdzony otwarty mecz z graczami i przyciskiem czatu"),
+  events: shot("events", "en", "Aktualne eventy w klubie z przyciskiem udziału jako zespół"),
+  benefits: shot("benefits", "en", "Profil: połączone konto EGYM Wellpass – zniżka wyświetla się automatycznie przy płatności"),
+};
+
 const calloutsDe: AppCallouts = {
   booking: { times: ["16:00", "17:30", "21:00"], durations: [{ value: "60", unit: "Minuten", price: "36 €" }, { value: "90", unit: "Minuten", price: "54 €" }] },
   split: { label: "Anteilige Zahlung", text: "Platzmiete auf mehrere Spieler:innen aufteilen", slots: "2 von 4 Player Slots", price: "17 €" },
@@ -99,6 +110,14 @@ const calloutsEn: AppCallouts = {
   matches: { title: "Match confirmed", text: "Enough players have joined – the court is now booked bindingly." },
   vouchers: { label: "Add voucher", code: "PADEL-LOVE", applied: "Voucher applied" },
   benefits: { title: "Use your exclusive discounts!", text: "Your applicable discounts for your player slot will be applied at checkout." },
+};
+
+const calloutsPl: AppCallouts = {
+  booking: { times: ["16:00", "17:00", "18:00"], durations: [{ value: "60", unit: "minut", price: "36 €" }, { value: "90", unit: "minut", price: "54 €" }] },
+  split: { label: "Dzielenie płatności", text: "Podziel cenę kortu między kilku graczy", slots: "2 z 4 miejsc graczy", price: "17 €" },
+  matches: { title: "Mecz potwierdzony", text: "Dołączyło wystarczająco dużo graczy – kort jest teraz wiążąco zarezerwowany." },
+  vouchers: { label: "Zrealizuj voucher", code: "PADEL-LOVE", applied: "Voucher zrealizowany" },
+  benefits: { title: "Korzystaj ze swoich ekskluzywnych zniżek!", text: "Twoje osobiste zniżki na miejsce gracza wyświetlą się automatycznie przy płatności." },
 };
 
 // Store screens v1.32.0 (iPhone 6.9"), exported from Figma "PadelCity – Store Assets" (DE node 6529:6108, EN node 6529:7942) at 2x.
@@ -124,6 +143,17 @@ const panelsEn: StorePanel[] = [
   "Experience cool padel events in your club – club event list",
   "Benefit with EGYM Wellpass and Hansefit membership – linked benefit account",
 ].map((alt, i) => ({ src: `${P}/en/${i + 1}.jpg`, width: 860, height: 1864, alt: `App Store screenshot ${i + 1}: ${alt}` }));
+
+const panelsPl: StorePanel[] = [
+  "Witaj w świecie PadelCity – ekran główny aplikacji",
+  "Odkryj kluby w pobliżu – rezerwacja kortu z godzinami rozpoczęcia i cenami",
+  "Wygodnie zarezerwuj kort – potwierdzenie rezerwacji z sumą i polem na voucher",
+  "Podziel opłatę za kort – wybór miejsc graczy",
+  "Znajdź partnerów do otwartych meczów – szczegóły meczu z czterema graczami",
+  "Trenuj z naszymi najlepszymi trenerami – karta trenera z ceną za trening",
+  "Przeżyj świetne eventy padlowe w swoim klubie – lista eventów klubu",
+  "Korzystaj z benefitów EGYM Wellpass i Hansefit – połączone konto benefitowe",
+].map((alt, i) => ({ src: `${P}/en/${i + 1}.jpg`, width: 860, height: 1864, alt: `Zrzut ekranu z App Store ${i + 1}: ${alt}` }));
 
 const de = {
   meta: {
@@ -424,4 +454,152 @@ const en: AppContent = {
   },
 };
 
-export const appContent: Record<Locale, AppContent> = { de, en };
+const pl: AppContent = {
+  meta: {
+    title: "Aplikacja PadelCity",
+    description: "Rezerwacja kortów, dzielenie płatności, otwarte mecze, eventy i treningi, vouchery i benefity firmowe – wszystko w aplikacji PadelCity na iOS i Androida.",
+  },
+  hero: {
+    eyebrow: "iOS i Android · za darmo",
+    title: "Twój kort. Twój mecz. Twoja",
+    accent: "aplikacja.",
+    lead: "Rezerwuj korty, znajdź partnerów do gry, zgarnij miejsce na eventach i treningach – aplikacja PadelCity to twój bilet do społeczności.",
+    note: "Korty rezerwujesz wyłącznie w aplikacji – na stronie znajdziesz wszystkie kluby, informacje i ceny.",
+    phoneBack: "booking",
+    phoneFront: "home",
+  },
+  qr: { title: "Zeskanuj i pobierz", text: "Zeskanuj aparatem w telefonie – iOS i Android.", aria: "Kod QR do pobrania aplikacji (placeholder)" },
+  phoneLabel: "Zrzut ekranu aplikacji PadelCity",
+  screens: screensPl,
+  callouts: calloutsPl,
+  features: {
+    eyebrow: "Wszystko w jednej aplikacji",
+    title: "Mniej organizowania. Więcej grania.",
+    items: [
+      {
+        id: "booking",
+        eyebrow: "Rezerwacja kortu",
+        title: "Zarezerwuj kort w 3",
+        accent: "kliknięciach",
+        text: "Wybierz klub, kliknij godzinę, zapłać. Natychmiastowe potwierdzenie i wpis do kalendarza w pakiecie.",
+        bullets: ["Wszystkie 30+ klubów w jednej aplikacji", "Wolne korty w czasie rzeczywistym – w aplikacji", "Ulubione kluby zawsze pod ręką"],
+        icon: "double_court",
+        deeplink: "locations",
+        cta: "Zobacz kluby",
+        track: "app_feature_booking",
+        screen: "booking",
+      },
+      {
+        id: "split",
+        eyebrow: "Dzielenie płatności",
+        title: "Dziel koszty",
+        accent: "uczciwie",
+        text: "Włącz dzielenie płatności przy potwierdzaniu rezerwacji: każdy płaci za swoje miejsce gracza – albo ty bierzesz na siebie kilka.",
+        bullets: ["Podział ceny kortu na miejsca graczy", "Płatność za kilka miejsc naraz", "Wszystko od razu przy płatności"],
+        icon: "single_court",
+        deeplink: "download",
+        cta: "Pobierz aplikację",
+        track: "app_feature_split",
+        screen: "split",
+      },
+      {
+        id: "matches",
+        eyebrow: "Otwarte mecze",
+        title: "Nigdy więcej bez",
+        accent: "partnera",
+        text: "Brakuje ci czwartej osoby? Utwórz otwarty mecz albo dołącz do istniejącego. Gdy zbierze się wystarczająco dużo graczy, kort jest wiążąco zarezerwowany.",
+        bullets: ["Zakres poziomów dla każdego meczu", "Wszyscy gracze na pierwszy rzut oka", "Czat z uczestnikami meczu"],
+        icon: "users",
+        deeplink: "openMatches",
+        cta: "Otwórz otwarte mecze",
+        track: "app_feature_matches",
+        screen: "match",
+      },
+      {
+        id: "events",
+        eyebrow: "Eventy i treningi",
+        title: "Eventy i treningi jednym",
+        accent: "kliknięciem",
+        text: "Turnieje takie jak CUPRA One Point Challenge, eventy w twoim klubie i treningi z naszymi trenerami – zapisz się, zapłać, gotowe. Na eventy zapiszesz się też online.",
+        bullets: ["Wszystkie eventy twojego klubu", "Zapisy jako zespół", "Rezerwacja treningów z najlepszymi trenerami"],
+        icon: "trophy",
+        deeplink: "events",
+        cta: "Eventy w aplikacji",
+        track: "app_feature_events",
+        screen: "events",
+      },
+      {
+        id: "vouchers",
+        eyebrow: "Vouchery",
+        title: "Podaruj",
+        accent: "padla",
+        text: "Wybierz wartość vouchera, a kod przyjdzie e-mailem – zrealizujesz go od razu przy płatności za rezerwację kortu lub trenera.",
+        bullets: ["Wybór wartości vouchera", "Kod e-mailem", "Do realizacji na korty i treningi z trenerem"],
+        icon: "reception",
+        deeplink: "vouchers",
+        cta: "Kup voucher",
+        track: "app_feature_vouchers",
+        screen: "checkout",
+      },
+      {
+        id: "benefits",
+        eyebrow: "Benefity firmowe",
+        title: "Graj z benefitem",
+        accent: "firmowym",
+        text: "EGYM Wellpass albo Hansefit? Połącz konto w profilu – zniżka wyświetli się automatycznie przy płatności.",
+        bullets: ["EGYM Wellpass", "Hansefit", "Zniżka automatycznie przy płatności"],
+        icon: "summer",
+        deeplink: "download",
+        cta: "Pobierz aplikację",
+        track: "app_feature_benefits",
+        screen: "benefits",
+      },
+    ],
+  },
+  gallery: {
+    eyebrow: "Z App Store",
+    title: "Tak to wygląda w aplikacji",
+    text: "Oficjalne zrzuty ekranu z App Store – przesuń, aby zobaczyć więcej.",
+    label: "Zrzuty ekranu aplikacji PadelCity z App Store",
+    prev: "Poprzedni zrzut ekranu",
+    next: "Następny zrzut ekranu",
+    cta: "Zobacz w App Store",
+    panels: panelsPl,
+  },
+  socialProof: {
+    eyebrow: "Community love",
+    title: "Grana. Kochana.",
+    ratings: [
+      { store: "App Store", value: "4,7", count: "4500+ ocen", track: "app_rating_ios" },
+      { store: "Google Play", value: "4,3", count: "750+ ocen", track: "app_rating_android" },
+    ],
+    ratingsLabel: (value: string, store: string, count: string) => `${value} na 5 gwiazdek w ${store}, ${count}`,
+    asOf: "Stan na październik 2026",
+  },
+  how: {
+    eyebrow: "Jak to działa",
+    title: "Na korcie w 3 krokach",
+    steps: [
+      { step: "01", title: "Pobierz aplikację", text: "Za darmo na iOS i Androida. Konto założysz w minutę." },
+      { step: "02", title: "Wybierz klub i godzinę", text: "W aplikacji zobaczysz wolne korty w pobliżu – albo dołączysz do otwartego meczu." },
+      { step: "03", title: "Let's play Padel!", text: "Zapłać, zaproś znajomych i wchodź na kort. #bettertogether" },
+    ],
+  },
+  faqSection: { eyebrow: "FAQ", title: "Dobrze wiedzieć", all: "Wszystkie pytania i odpowiedzi" },
+  faq: [
+    { q: "Ile kosztuje aplikacja?", a: "Pobranie i założenie konta są bezpłatne. Płacisz tylko za to, co rezerwujesz – korty, eventy lub treningi." },
+    { q: "Czy mogę rezerwować korty na stronie internetowej?", a: "Nie, rezerwacje odbywają się wyłącznie w aplikacji. Na stronie znajdziesz wszystkie kluby z informacjami i cenami – jedno kliknięcie przeniesie cię prosto do klubu w aplikacji." },
+    { q: "Jak podzielić koszty z partnerami do gry?", a: "Włącz dzielenie płatności przy potwierdzaniu rezerwacji. Wtedy płacisz tylko za swoje miejsce gracza – albo wybierasz, za ile miejsc płacisz." },
+    { q: "Jak korzystać z EGYM Wellpass lub Hansefit?", a: "Połącz konto w profilu. Przy uprawnionych rezerwacjach kortów zniżka wyświetli się automatycznie przy płatności." },
+    { q: "Jakie są metody płatności?", a: "Karta kredytowa, Apple Pay, Google Pay i PayPal – bezpiecznie obsługiwane przez naszego operatora płatności." },
+  ],
+  final: {
+    title: "Let's play",
+    accent: "Padel!",
+    text: "Pobierz aplikację, zarezerwuj kort, zaproś znajomych. Do zobaczenia na korcie. #bettertogether",
+    clubs: "Najpierw zobacz kluby",
+    phone: "events",
+  },
+};
+
+export const appContent: Record<Locale, AppContent> = { de, en, pl };

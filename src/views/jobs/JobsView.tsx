@@ -47,7 +47,7 @@ export function JobsView({ locale }: { locale: Locale }) {
       <Section id="stellen" className="scroll-mt-16">
         <SectionIntro eyebrow={t.openings.eyebrow} title={t.openings.title} lead={t.openings.lead} />
         {/* Roles as published on padelcity.de/jobs – applications by e-mail to People & Culture */}
-        <JobsBoard jobs={jobs} t={t.board} contact={{ ...jobsContact, ...t.contact }} />
+        <JobsBoard jobs={jobs} t={t.board} contact={{ ...jobsContact, ...t.contact }} locale={locale} />
       </Section>
 
       <Section>

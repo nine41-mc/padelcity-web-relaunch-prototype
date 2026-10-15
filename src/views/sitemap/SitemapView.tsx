@@ -36,6 +36,18 @@ const copy = {
     legal: "Legal",
     count: (n: number) => `${n} clubs`,
   },
+  pl: {
+    eyebrow: "Wszystkie strony",
+    title: "Mapa strony",
+    lead: "Wszystko w jednym miejscu: strony, kluby, eventy i artykuły z magazynu.",
+    pages: "Strony",
+    clubs: "Kluby",
+    soon: "wkrótce",
+    events: "Eventy",
+    magazine: "Magazyn",
+    legal: "Informacje prawne",
+    count: (n: number) => `${n} ${n === 1 ? "klub" : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? "kluby" : "klubów"}`,
+  },
 };
 
 // Contentful: none – generated from routes + club/event/article data at build time.

@@ -24,7 +24,7 @@ import { Faq } from "@/components/play/Faq";
 import { cn } from "@/components/ui/cn";
 
 // Contentful: page "academy" (modules: pageHero, levelPath, programmeGrid, coachCarousel, academyLocations, videoTeaserGrid, faq, appCta)
-/** Academy page – shared by /academy (de) and /en/academy (en). */
+/** Academy page – shared by /academy (de), /en/academy (en) and /pl/akademia (pl). */
 export async function AcademyView({ locale }: { locale: Locale }) {
   const t = academyContent[locale];
   const allClubs = await getClubs(locale);

@@ -55,7 +55,7 @@ type CfResponse = {
   total: number;
 };
 
-export type CfLocale = "de" | "en";
+export type CfLocale = import("../i18n/config").Locale;
 /** Contentful default locale of the PadelCity space. api-platform reads clubs with locale EN
  *  (ClubHandler.php `$entry->setLocale(LocaleService::LOCALE__EN)`), so non-text fields
  *  (mainImage, images, location, openingTimes, prices, court types …) are maintained in "en" only. */

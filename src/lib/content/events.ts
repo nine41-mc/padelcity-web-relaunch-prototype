@@ -171,7 +171,88 @@ const en: EventsContent = {
   date: { time: "" },
 };
 
-export const eventsContent: Record<Locale, EventsContent> = { de, en };
+const pl: EventsContent = {
+  meta: {
+    title: "Wydarzenia i turnieje",
+    description: "Social eventy, turnieje i treningi we wszystkich klubach PadelCity – plus highlighty takie jak One Point Challenge i PadelCity Series Finals.",
+  },
+  hero: {
+    eyebrow: "Game. Set. Match.",
+    imageAlt: "Pełne trybuny podczas turnieju PadelCity",
+    lead: "Od Americano po pracy po challenge za 100 000 €: tu gra społeczność. Wpadnij, dołącz do gry, #bettertogether.",
+    title: "Social",
+    accent: "eventy",
+    titleEnd: "i turnieje",
+    ctaFind: "Znajdź wydarzenia",
+    ctaApp: "Otwórz w aplikacji",
+  },
+  highlights: {
+    eyebrow: "Highlights",
+    title: "Wielkie sceny",
+    text: "Nasze flagowe wydarzenia: zawodowcy, znane twarze i cała społeczność PadelCity w jednym miejscu.",
+  },
+  local: {
+    eyebrow: "W twoim klubie",
+    title: "Graj, śmiej się, wracaj",
+    note: "Zapiszesz się i zapłacisz w przeglądarce albo w aplikacji PadelCity – jedno stuknięcie w „Zapisz się online” przeniesie cię prosto tam.",
+  },
+  explorer: {
+    filterLabel: "Filtruj wydarzenia",
+    typeLabel: "Typ wydarzenia",
+    all: "Wszystkie",
+    cityLabel: "Miasto",
+    allCities: "Wszystkie miasta",
+    thisWeek: "W tym tygodniu",
+    one: "wydarzenie",
+    many: "wydarzeń", // 2–4 → "wydarzenia" via lib/i18n/plural
+    inCity: "–",
+    emptyTitle: "Obecnie nic nie pasuje do twojego filtra",
+    emptyText: "Spróbuj innego miasta albo zajrzyj do aplikacji – znajdziesz tam też otwarte mecze w pobliżu.",
+    reset: "Resetuj filtry",
+  },
+  types: { social: "Social", tournament: "Turniej", training: "Trening", hero: "Highlight" },
+  countdown: { days: "Dni", hours: "Godz.", minutes: "Min", seconds: "Sek", live: "Live!", aria: "Odliczanie do startu wydarzenia" },
+  card: { more: "Dowiedz się więcej" },
+  detail: {
+    back: "Wszystkie wydarzenia",
+    signup: "Zapisz się online",
+    signupApp: "Zapisz się w aplikacji",
+    formatCta: "Format i harmonogram",
+    date: "Data",
+    place: "Miejsce",
+    tba: "TBA",
+    formatEyebrow: "Format i przebieg",
+    formatTitle: "Jak to działa",
+    scheduleEyebrow: "Harmonogram",
+    scheduleTitle: "Save the date",
+    scheduleNote: "Wstępny harmonogram – zmiany zastrzeżone. Aktualizacje dostaniesz jako powiadomienia push w aplikacji.",
+    videoEyebrow: "Watch",
+    videoTitle: "Feel the vibe",
+    videoNote: "Film załaduje się dopiero po twoim kliknięciu – wcześniej żadne dane nie są przesyłane do YouTube.",
+    partners: "Partnerzy i sponsorzy",
+    partnerCta: "Twoja marka na korcie centralnym?",
+    partnerLink: "Zostań partnerem",
+    bannerTitle: "Bądź",
+    bannerAccent: "z nami.",
+    bannerText: (title: string) => `Na ${title} zapiszesz się i zapłacisz w przeglądarce albo w aplikacji PadelCity – wszystkie aktualizacje dostaniesz jako powiadomienia push w aplikacji.`,
+    fallbackDescription: (type: string, where: string) =>
+      `${type} w klubie ${where}: przyjdź solo albo ze znajomymi – dobieramy drużyny według poziomu, żeby każdy mecz był emocjonujący.`,
+    metaTitle: (title: string, city: string) => `${title} – wydarzenie padlowe (${city})`,
+    metaDescription: (title: string, type: string, where: string) => `${title} – ${type} w klubie ${where}. Zapisz się teraz online albo w aplikacji PadelCity.`,
+    steps: [
+      { title: "Przyjdź", text: "Bądź 15 minut wcześniej – w razie potrzeby rakietę dostaniesz w recepcji." },
+      { title: "Graj", text: "Zmieniający się partnerzy, krótkie mecze, mnóstwo zabawy." },
+      { title: "Zostań dłużej", text: "Potem drinki i społeczność. #bettertogether" },
+    ],
+    perPerson: "za osobę",
+    free: "Free",
+    appOnly: "Zapisy i płatność online albo w aplikacji PadelCity.",
+    moreIn: "Więcej:",
+  },
+  date: { time: "" },
+};
+
+export const eventsContent: Record<Locale, EventsContent> = { de, en, pl };
 
 /* ---------- Localized event fields (mock data is German; Contentful would deliver per locale) ---------- */
 
@@ -188,10 +269,23 @@ const eventOverridesEn: Record<string, EventOverride> = {
   "kids-camp-dortmund": { subtitle: "For kids aged 6–14", level: "Beginners", imageAlt: "Boy and girl hitting padel shots" },
 };
 
+const eventOverridesPl: Record<string, EventOverride> = {
+  "opc-vol3": { subtitle: "Jeden punkt. Wszystko albo nic. 100 000 € puli nagród.", city: "Monachium", imageAlt: "Mecz na korcie centralnym One Point Challenge w otoczeniu widzów" },
+  "series-finals": { subtitle: "Najlepsze drużyny ze wszystkich klubów. Jeden weekend.", imageAlt: "Pełna hala podczas turnieju PadelCity z meczami na kilku kortach" },
+  "beginner-girls-tucherpark": { level: "Poziom 1–3", recurrence: "W każdy piątek", city: "Monachium", imageAlt: "Zawodniczka uderza piłkę na korcie" },
+  "intermediate-mix-tucherpark": { level: "Poziom 3–5", recurrence: "Co drugą sobotę", city: "Monachium", imageAlt: "Zawodniczka odbiera piłkę w meczu mikstowym, widzowie przy korcie" },
+  "advanced-mix-frankfurter-ring": { level: "Poziom 5–7", recurrence: "W każdą niedzielę", city: "Monachium", imageAlt: "Zawodnik wykonuje uderzenie nad głową, partner przy siatce" },
+  "afterwork-berlin": { level: "Wszystkie poziomy", recurrence: "W każdą środę", imageAlt: "Grupa zawodniczek i zawodników z napojami przy siatce" },
+  "king-of-the-court-frankfurt": { level: "Poziom 4+", city: "Frankfurt nad Menem", imageAlt: "Mecz turniejowy z widzami przy korcie" },
+  "kids-camp-dortmund": { subtitle: "Dla dzieci w wieku 6–14 lat", level: "Początkujący", imageAlt: "Chłopiec i dziewczynka uderzają piłkę w padlu" },
+};
+
+const eventOverrides: Partial<Record<Locale, Record<string, EventOverride>>> = { en: eventOverridesEn, pl: eventOverridesPl };
+
 /** Applies per-locale overrides to mock events (DE is the source language). */
 export function localizeEvent(event: ClubEvent, locale: Locale): ClubEvent {
   if (locale === "de") return event;
-  const o = eventOverridesEn[event.id];
+  const o = eventOverrides[locale]?.[event.id];
   if (!o) return event;
   const { imageAlt, ...fields } = o;
   return { ...event, ...fields, image: event.image ? { ...event.image, alt: imageAlt ?? event.image.alt } : undefined };
@@ -264,6 +358,31 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       partnerNames: ["CUPRA", "Babolat", "Haier", "Veltins", "Coca-Cola"],
       video: { title: "One Point Challenge Vol. 2 aftermovie", thumbnail: "/images/events/opc-video.jpg" },
     },
+    pl: {
+      claim: "Jeden punkt. Wszystko albo",
+      claimAccent: "nic.",
+      intro:
+        "Najbardziej szalony format turniejowy w padlu wraca: każda wymiana to mecz o wszystko. Zawodowcy, znane twarze i kwalifikanci ze wszystkich klubów PadelCity walczą o pulę nagród do 100 000 €.",
+      presenter: "powered by CUPRA",
+      facts: [
+        { label: "Pula nagród", value: "do 100 000 €" },
+        { label: "Format", value: "One Point · system pucharowy" },
+        { label: "Kwalifikacje", value: "W klubach PadelCity" },
+        { label: "Bilety", value: "Wstęp dla widzów wolny" }, // TODO(content): confirm ticketing
+      ],
+      format: [
+        { title: "Kwalifikacje", text: "Zakwalifikuj się w jednym z klubowych turniejów kwalifikacyjnych – zapisy w aplikacji." },
+        { title: "One Point Rounds", text: "Każdy pojedynek rozstrzyga dokładnie jeden punkt. Kto przegra, odpada." },
+        { title: "Finał", text: "Dwie ostatnie drużyny grają o jackpot na korcie centralnym – z transmisją na żywo." },
+      ],
+      schedule: [
+        { day: "Dzień 1", items: [{ time: "12:00", title: "Check-in i rozgrzewka" }, { time: "14:00", title: "Rundy kwalifikacyjne" }, { time: "20:00", title: "Players Night" }] },
+        { day: "Dzień 2", items: [{ time: "11:00", title: "Turniej główny" }, { time: "17:00", title: "Pokazowy mecz gwiazd" }] },
+        { day: "Dzień 3", items: [{ time: "14:00", title: "Półfinały" }, { time: "18:00", title: "Finał i dekoracja zwycięzców" }] },
+      ],
+      partnerNames: ["CUPRA", "Babolat", "Haier", "Veltins", "Coca-Cola"],
+      video: { title: "Aftermovie One Point Challenge Vol. 2", thumbnail: "/images/events/opc-video.jpg" },
+    },
   },
   "series-finals": {
     de: {
@@ -313,6 +432,30 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       ],
       partnerNames: ["Babolat", "CUPRA", "FALKE", "HanseMerkur", "Natural Elements"],
       video: { title: "PadelCity Series 2025 highlights", thumbnail: "/images/events/series-video.jpg" },
+    },
+    pl: {
+      claim: "Najlepsze drużyny. Jeden",
+      claimAccent: "finał.",
+      intro:
+        "Jeden sezon, wszystkie kluby, jeden finał: PadelCity Series powered by Babolat koronuje swoich mistrzów. Dwa dni padla na najwyższym poziomie, muzyka i społeczność.",
+      presenter: "powered by Babolat",
+      facts: [
+        { label: "Pula nagród", value: "[XX XXX] €" }, // TODO(content): prize money from Events team
+        { label: "Format", value: "Grupy + system pucharowy" },
+        { label: "Kategorie", value: "Mężczyźni · Kobiety · Mikst" },
+        { label: "Kwalifikacja", value: "Najlepsze drużyny sezonu" },
+      ],
+      format: [
+        { title: "Faza grupowa", text: "Najlepsze drużyny ze wszystkich regionów grają w grupach po cztery zespoły – do dwóch wygranych setów." },
+        { title: "Faza pucharowa", text: "Od ćwierćfinałów liczy się każdy punkt. Kort centralny z trybuną." },
+        { title: "Champions Night", text: "Dekoracja zwycięzców, nagrody i impreza z całą społecznością PadelCity." },
+      ],
+      schedule: [
+        { day: "Sobota", items: [{ time: "10:00", title: "Faza grupowa" }, { time: "16:00", title: "Pokazowy kort dla dzieci" }, { time: "19:00", title: "Players Dinner" }] },
+        { day: "Niedziela", items: [{ time: "10:00", title: "Ćwierćfinały i półfinały" }, { time: "16:00", title: "Finały" }, { time: "18:30", title: "Champions Night" }] },
+      ],
+      partnerNames: ["Babolat", "CUPRA", "FALKE", "HanseMerkur", "Natural Elements"],
+      video: { title: "Highlights PadelCity Series 2025", thumbnail: "/images/events/series-video.jpg" },
     },
   },
 };

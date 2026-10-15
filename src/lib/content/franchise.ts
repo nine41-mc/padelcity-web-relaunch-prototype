@@ -232,4 +232,113 @@ const en: FranchiseContent = {
   },
 };
 
-export const franchiseContent: Record<Locale, FranchiseContent> = { de, en };
+const pl: FranchiseContent = {
+  meta: {
+    title: "Franczyza – Przenieś PadelCity do swojego miasta",
+    description:
+      "Zostań partnerem franczyzowym PadelCity: silna marka, własna aplikacja i platforma rezerwacyjna, Academy, wydarzenia i sieć partnerów. Zapytaj o swoją lokalizację.",
+  },
+  hero: {
+    eyebrow: "Franczyza · Drive the Padel Boom!",
+    imageAlt: "Widok z lotu ptaka na klub PadelCity z kortami zewnętrznymi",
+    title: "Przenieś PadelCity do swojego",
+    accent: "miasta",
+    lead: `Ty masz halę, my mamy playbook. Z wiodącą marką padla w Niemczech, doświadczeniem z ${keyFacts.clubs}+ klubów i własną aplikacją otworzysz swój klub – szybciej i bezpieczniej.`,
+    ctaPrimary: "Zapytaj o lokalizację",
+    ctaSecondary: "Jak to działa",
+  },
+  benefits: {
+    eyebrow: "Dlaczego PadelCity",
+    title: "Wszystko, czego potrzebuje klub. Z jednego źródła.",
+    lead: `Ty skupiasz się na swojej lokalizacji i swojej społeczności – my dostarczamy markę, technologię i know-how.`,
+    items: [
+      { title: "Silna marka", text: "Wiodąca marka padla w Niemczech, rozpoznawalna od pierwszego dnia.", icon: "sparkles" },
+      { title: "Aplikacja i platforma rezerwacyjna", text: "Rezerwacje, płatności, mecze i CRM w aplikacji PadelCity – bez własnego działu IT.", icon: "smartphone" },
+      { title: "Academy", text: "Koncepcja treningowa, szkolenie trenerów i formaty kursów na każdy poziom.", icon: "graduation" },
+      { title: "Wydarzenia", text: "Cykle turniejowe, wydarzenia towarzyskie i formaty, które wypełniają twój klub.", icon: "trophy" },
+      { title: "Zakupy i sieć partnerów", text: "Preferencyjne warunki u producentów kortów, dostawców sprzętu i partnerów takich jak Babolat.", icon: "handshake" },
+      { title: "Marketing", text: "Kampania otwarcia, social media, content i budowanie społeczności z jednego źródła.", icon: "megaphone" },
+    ],
+  },
+  partnership: {
+    eyebrow: "Partnerstwo",
+    title: "Co dostarczamy my. Co wnosisz ty.",
+    weProvideLabel: "PadelCity dostarcza",
+    youBringLabel: "Ty wnosisz",
+    weProvide: [
+      "Prawa do marki i identyfikację wizualną dla twojego klubu",
+      "Aplikację PadelCity z systemem rezerwacji i płatności",
+      "Analizę lokalizacji i business case",
+      "Know-how budowlane, planowanie kortów i sieć dostawców",
+      "Koncepcję Academy i onboarding trenerów",
+      "Marketing na otwarcie i bieżące kampanie",
+      "Dostęp do wydarzeń, lig i ofert partnerów",
+    ],
+    youBring: [
+      "Halę lub teren (własność lub dzierżawa)",
+      "Gotowość do inwestycji i finansowanie",
+      "Ducha przedsiębiorczości i chęć budowania społeczności",
+      "Lokalną sieć kontaktów w swoim mieście",
+      "Zespół na miejscu do obsługi i serwisu",
+    ],
+  },
+  phases: {
+    eyebrow: "Usługi",
+    title: "Wspieramy cię na każdym etapie",
+    optional: "opcjonalnie, za opłatą",
+    items: [
+      { title: "Etap budowy", items: ["Budowa obiektu w preferencyjnej cenie PadelCity", "Doradztwo w zakresie konfiguracji kortów i aranżacji obiektu", "Przygotowanie ofert na korty i fundamenty", { text: "Projekt obiektu padlowego przygotowany przez naszych architektów", optional: true }] },
+      { title: "Aktywacja", items: ["Organizacja ekskluzywnego wydarzenia otwarcia", "Doradztwo w zakresie cen wynajmu kortów, godzin z trenerem, wydarzeń itp.", "Bezpłatne wyposażenie w rakiety do wypożyczenia i piłki", "Konfiguracja i udostępnienie naszego systemu rezerwacji online"] },
+      { title: "Bieżąca działalność", items: ["Doradztwo przy organizacji wydarzeń i turniejów", "Obsługa wszystkich płatności przez nasz system rezerwacji online", "Raporty i analizy do zarządzania obiektem", { text: "Kampanie w social mediach", optional: true }, "Organizacja ekskluzywnych wydarzeń dla klientów na życzenie", "Szkolenie trenerów i 30 % zniżki w PadelCity Academy", "Ekskluzywne rabaty na wszystkie produkty padlowe BABOLAT i kolekcję PadelCity"] },
+    ] as Phase[],
+  },
+  steps: {
+    eyebrow: "Przebieg",
+    title: "5 kroków do własnego klubu",
+    lead: "Od pierwszej rozmowy aż po wieczór otwarcia towarzyszy ci stały zespół ds. ekspansji.",
+    items: [
+      { title: "Poznajmy się", text: "Pierwsza rozmowa: kim jesteś, dokąd zmierzasz i czy PadelCity do ciebie pasuje?" },
+      { title: "Analiza lokalizacji", text: "Razem z tobą analizujemy teren, obszar oddziaływania i konkurencję." },
+      { title: "Business case i umowa", text: "Plan inwestycji, rentowność i umowa franczyzowa – przejrzyście i jasno." },
+      { title: "Budowa i setup", text: "Korty, wyposażenie, konfiguracja aplikacji i onboarding zespołu według naszego playbooka." },
+      { title: "Otwarcie i działalność", text: "Wielkie otwarcie – a potem wspieramy cię marketingiem, wydarzeniami i benchmarkami." },
+    ],
+  },
+  requirements: {
+    eyebrow: "Wymagania",
+    title: "To powinieneś mieć",
+    items: [
+      { title: "Hala / teren", value: "20 × 10 m", text: "Tyle mierzy jeden kort do padla. Idealnie: hala z odpowiednią wysokością lub łatwo dostępny teren na zewnątrz." },
+      { title: "Inwestycja", value: "Indywidualnie", text: "Całkowita inwestycja zależy od wielkości, standardu wykończenia i istniejącego obiektu. Liczby przeliczymy razem w business case." },
+      { title: "Lokalizacja", value: "Topowa lokalizacja", text: "Dobry dojazd, parking i obszar oddziaływania z grupą docelową, która kocha sport." },
+    ],
+  },
+  clubs: {
+    eyebrowSuffix: "– tyle klubów franczyzowych już działa",
+    title: "Oni już to zrobili",
+    lead: "Nasi partnerzy franczyzowi grają w tej samej lidze co nasze własne kluby – ta sama aplikacja, te same wydarzenia, ta sama społeczność.",
+  },
+  contact: { label: "Twoja osoba kontaktowa ds. franczyzy", personId: "markus-balzat" },
+  form: {
+    title: "Porozmawiajmy o twojej",
+    accent: "lokalizacji",
+    titleEnd: "",
+    text: "Opowiedz nam krótko o sobie i swoim terenie. Nasz zespół ds. ekspansji odezwie się w ciągu dwóch dni roboczych.",
+    checks: ["Niezobowiązująca pierwsza rozmowa", "Bezpłatna analiza lokalizacji", "Poufne traktowanie twoich danych"],
+    submit: "Wyślij zapytanie",
+    successTitle: "Dziękujemy – odezwiemy się!",
+    successText: "Nasz zespół ds. ekspansji sprawdzi twoje dane i odezwie się w ciągu dwóch dni roboczych, aby umówić pierwszą rozmowę.",
+    fields: {
+      name: "Imię i nazwisko",
+      email: "E-mail",
+      phone: "Telefon",
+      city: "Miasto / region",
+      space: "Masz już teren?",
+      spaceOptions: ["Tak, mam halę", "Tak, mam teren na zewnątrz", "W planach / w negocjacjach", "Nie, jeszcze szukam"],
+      message: "Wiadomość",
+      messagePlaceholder: "Opowiedz nam o sobie, swojej lokalizacji i harmonogramie.",
+    },
+  },
+};
+
+export const franchiseContent: Record<Locale, FranchiseContent> = { de, en, pl };

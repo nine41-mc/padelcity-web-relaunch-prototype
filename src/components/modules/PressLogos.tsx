@@ -21,6 +21,7 @@ const PRESS = [
 const copy = {
   de: { title: "Bekannt aus …", text: "Danke an alle Medien, die bereits über uns berichtet haben." },
   en: { title: "As seen in …", text: "Thanks to all the media who have already covered us." },
+  pl: { title: "Pisali o nas …", text: "Dziękujemy wszystkim mediom, które już o nas pisały." },
 };
 
 /** Press logos as a running band – same pattern as the partner logos, used on the magazine page. */

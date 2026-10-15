@@ -58,7 +58,28 @@ const milestonesEn: Milestone[] = [
   },
 ];
 
-export const milestones: Record<Locale, Milestone[]> = { de: milestonesDe, en: milestonesEn };
+const milestonesPl: Milestone[] = [
+  { year: "2022", title: "Start i pierwszy klub", text: `Czterech założycieli, jeden pomysł: padel dla wszystkich. W ${keyFacts.firstClub} rusza pierwszy klub PadelCity.` },
+  { year: "2023", title: "Aplikacja i CUPRA na pokładzie", text: "Aplikacja PadelCity przenosi rezerwacje, mecze i społeczność do twojego telefonu. CUPRA zostaje partnerem mobilności." },
+  {
+    year: "2024",
+    title: "Akademia, eventy i franczyza",
+    text: "Akademia PadelCity, One Point Challenge powered by CUPRA z pulą nagród do 100 000 € i pierwsze kluby franczyzowe.",
+  },
+  {
+    year: "2025",
+    title: "Padel na wielkiej scenie",
+    text: "European Padel Championship, PRO7 Promi Padel WM (mistrzostwa świata celebrytów w padlu), PadelCity Series powered by Babolat i tytuły mistrzów Niemiec.",
+  },
+  {
+    year: "2026",
+    title: "Series A i nowe kraje",
+    text: `${keyFacts.clubs}+ klubów, ${keyFacts.courts}+ kortów – i runda Series A jako start PadelCity poza Niemcami.`,
+    highlight: true,
+  },
+];
+
+export const milestones: Record<Locale, Milestone[]> = { de: milestonesDe, en: milestonesEn, pl: milestonesPl };
 
 export type Value = { name: string; claim: string; text: string };
 
@@ -81,6 +102,15 @@ export const values: Record<Locale, Value[]> = {
     { name: "Consistency", claim: "PadelCity everywhere", text: "Same quality, same feeling – whichever club you play at." },
     { name: "Welcoming", claim: "Come as you are", text: "First swing or tournament pro: everyone is welcome here." },
     { name: "Energy", claim: "Make some noise", text: "Music, lights, vibes. We bring the energy to every court." },
+  ],
+  pl: [
+    { name: "Community", claim: "#bettertogether", text: "W padla gra się we czwórkę. U nas znajdziesz swoją ekipę – na korcie i poza nim." },
+    { name: "Fun", claim: "Śmiech obowiązkowy", text: "Sport traktujemy poważnie, siebie – już nie. Najlepszy punkt to ten, z którego wszyscy się śmieją." },
+    { name: "Commitment", claim: "All in", text: "Doprowadzamy sprawy do końca – dla naszych graczy, klubów i partnerów. Każdego dnia." },
+    { name: "Trust", claim: "Słowo to słowo", text: "Uczciwie, rzetelnie, przejrzyście. Wobec społeczności, zespołu i partnerów." },
+    { name: "Consistency", claim: "Wszędzie PadelCity", text: "Ta sama jakość, ten sam klimat – niezależnie od tego, w którym klubie grasz." },
+    { name: "Welcoming", claim: "Przyjdź, jaki jesteś", text: "Pierwsze uderzenie czy turniejowy wyjadacz: u nas każdy jest mile widziany." },
+    { name: "Energy", claim: "Make some noise", text: "Muzyka, światła, vibe. Wnosimy energię na każdy kort." },
   ],
 };
 
@@ -105,6 +135,15 @@ export const pillars: Record<Locale, Pillar[]> = {
     { name: "Social media", text: "PadelCity TV, the magazine and socials: padel culture you can see.", route: "magazine", icon: "instagram" },
     { name: "Courts", text: `${keyFacts.courts}+ courts at ${keyFacts.clubs}+ clubs – indoor, outdoor, panorama.`, route: "locations", icon: "court" },
     { name: "Events", text: "From social mixers to the One Point Challenge and Premier Padel.", route: "events", icon: "trophy" },
+  ],
+  pl: [
+    { name: "Community", text: "Grupy na WhatsAppie, otwarte mecze, spotkania – największa społeczność padlowa w Niemczech.", icon: "users" },
+    { name: "Akademia", text: "Treningi i kursy na każdym poziomie – od pierwszej lekcji po turniej.", route: "academy", icon: "graduation" },
+    { name: "Franczyza", text: "Razem z partnerami przenosimy PadelCity do nowych miast.", route: "franchise", icon: "store" },
+    { name: "Aplikacja", text: "Rezerwuj korty, znajduj mecze, sprawdzaj ranking – wszystko w jednej aplikacji.", route: "app", icon: "smartphone" },
+    { name: "Social media", text: "PadelCity TV, magazyn i social media: kultura padla, którą widać.", route: "magazine", icon: "instagram" },
+    { name: "Korty", text: `${keyFacts.courts}+ kortów w ${keyFacts.clubs}+ klubach – indoor, outdoor, panorama.`, route: "locations", icon: "court" },
+    { name: "Eventy", text: "Od Social Mixed po One Point Challenge i Premier Padel.", route: "events", icon: "trophy" },
   ],
 };
 
@@ -199,4 +238,48 @@ const en: AboutContent = {
   },
 };
 
-export const aboutContent: Record<Locale, AboutContent> = { de, en };
+const pl: AboutContent = {
+  meta: {
+    title: "O nas",
+    description:
+      "Chcieliśmy więcej grać w padla – więc założyliśmy PadelCity. Historia, misja, wartości i ludzie stojący za wiodącym operatorem padla w Niemczech.",
+  },
+  hero: {
+    eyebrow: `Od ${keyFacts.foundedYear}`,
+    imageAlt: "Społeczność PadelCity świętuje po turnieju",
+    title: "Chcieliśmy po prostu więcej",
+    accent: "grać",
+    lead: "Jesteśmy PadelCity: wiodący operator padla w Niemczech, społeczność i ruch. Nasz cel? Zrobić z padla sport dla każdego.",
+    cta: "Nasza historia",
+  },
+  story: {
+    eyebrow: "Historia",
+    paragraphs: [
+      "Wszystko zaczęło się od prostego problemu: chcieliśmy więcej grać w padla – i nie mogliśmy znaleźć kortów. Te nieliczne, które istniały, były zarezerwowane na tygodnie do przodu.",
+      `Więc w ${keyFacts.foundedYear} roku sami zaczęliśmy budować. Pierwszy klub powstał w ${keyFacts.firstClub}. Dziś nasza społeczność gra w ponad ${keyFacts.clubs} klubach PadelCity na ponad ${keyFacts.courts} kortach w ponad ${keyFacts.cities} miastach.`,
+      "I to dopiero początek.",
+    ],
+  },
+  vision: [
+    { k: "Wizja", t: "Padel dla wszystkich.", d: "Każdy w Niemczech – i nie tylko – powinien mieć kort PadelCity w pobliżu." },
+    { k: "Misja", t: "Infrastruktura + społeczność.", d: "Budujemy kluby, aplikację i społeczność, dzięki którym padel staje się sportem dla każdego. #bettertogether" },
+  ],
+  values: { eyebrow: "Nasze wartości", title: "Siedem wartości. Jeden zespół.", lead: "Co nas napędza – na korcie, w klubie i w biurze.", aria: "Nasze wartości" },
+  pillars: { eyebrow: "Co wyróżnia PadelCity", title: "7 filarów PadelCity" },
+  founders: { eyebrow: "Założyciele", title: "Ludzie stojący za PadelCity" },
+  faces: {
+    eyebrow: "Faces of PadelCity",
+    title: "Zespół, który stoi za klubami",
+    lead: "Zespoły klubowe, eventy, operacje, marka: to oni każdego dnia tworzą PadelCity.",
+  },
+  milestones: { eyebrow: "Kamienie milowe", title: "Nasza dotychczasowa droga" },
+  jobs: {
+    title: "Dołącz do",
+    accent: "zespołu",
+    text: "Kluby, akademia, tech czy marketing – szukamy ludzi, którzy kochają padla tak samo jak my.",
+    cta: "Zobacz oferty pracy",
+    imageAlt: "Zespół PadelCity na otwarciu klubu",
+  },
+};
+
+export const aboutContent: Record<Locale, AboutContent> = { de, en, pl };

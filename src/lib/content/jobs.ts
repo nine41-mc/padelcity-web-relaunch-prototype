@@ -22,30 +22,30 @@ type L = Record<Locale, string>;
 type JobSeed = { id: string; title: L; department: L; location: L; employmentType: L };
 
 const dep = {
-  finance: { de: "Finance", en: "Finance" },
-  academy: { de: "Academy", en: "Academy" },
-  people: { de: "People & Culture", en: "People & Culture" },
-  clubs: { de: "Clubs & Operations", en: "Clubs & Operations" },
+  finance: { de: "Finance", en: "Finance", pl: "Finanse" },
+  academy: { de: "Academy", en: "Academy", pl: "Akademia" },
+  people: { de: "People & Culture", en: "People & Culture", pl: "People & Culture" },
+  clubs: { de: "Clubs & Operations", en: "Clubs & Operations", pl: "Kluby i operacje" },
 } satisfies Record<string, L>;
 
-const fullTime: L = { de: "Vollzeit", en: "Full-time" };
-const munich: L = { de: "München", en: "Munich" };
-const same = (v: string): L => ({ de: v, en: v });
+const fullTime: L = { de: "Vollzeit", en: "Full-time", pl: "Pełny etat" };
+const munich: L = { de: "München", en: "Munich", pl: "Monachium" };
+const same = (v: string): L => ({ de: v, en: v, pl: v });
 
 const seeds: JobSeed[] = [
-  { id: "fpa-manager-muenchen", title: { de: "FP&A Manager:in (m/w/d) – Financial Planning, Analytics & Automation", en: "FP&A Manager (m/f/d) – Financial Planning, Analytics & Automation" }, department: dep.finance, location: munich, employmentType: fullTime },
-  { id: "padel-coach-ulm", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)" }, department: dep.academy, location: same("Ulm"), employmentType: fullTime },
-  { id: "padel-coach-karlsruhe", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)" }, department: dep.academy, location: same("Karlsruhe"), employmentType: fullTime },
-  { id: "coach-head-coach-berlin", title: { de: "Coach / Head Coach", en: "Coach / Head Coach" }, department: dep.academy, location: same("Berlin"), employmentType: { de: "Teilzeit, Minijob oder Werkstudent:in (20 h)", en: "Part-time, mini-job or working student (20 h)" } },
-  { id: "werkstudent-hr-muenchen", title: { de: "Werkstudent:in HR", en: "Working Student HR" }, department: dep.people, location: munich, employmentType: { de: "Werkstudent:in (20 h)", en: "Working student (20 h)" } },
-  { id: "club-manager-chemnitz", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)" }, department: dep.clubs, location: same("Chemnitz"), employmentType: fullTime },
-  { id: "club-manager-radolfzell", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)" }, department: dep.clubs, location: same("Radolfzell"), employmentType: fullTime },
-  { id: "minijob-werkstudent", title: { de: "Minijobber:in und Werkstudent:in (m/w/d)", en: "Mini-jobber and Working Student (m/f/d)" }, department: dep.clubs, location: { de: "Verschiedene Standorte", en: "Various locations" }, employmentType: { de: "Minijob", en: "Mini-job" } },
+  { id: "fpa-manager-muenchen", title: { de: "FP&A Manager:in (m/w/d) – Financial Planning, Analytics & Automation", en: "FP&A Manager (m/f/d) – Financial Planning, Analytics & Automation", pl: "FP&A Manager (k/m/n) – planowanie finansowe, analityka i automatyzacja" }, department: dep.finance, location: munich, employmentType: fullTime },
+  { id: "padel-coach-ulm", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)", pl: "Trener padla (k/m/n)" }, department: dep.academy, location: same("Ulm"), employmentType: fullTime },
+  { id: "padel-coach-karlsruhe", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)", pl: "Trener padla (k/m/n)" }, department: dep.academy, location: same("Karlsruhe"), employmentType: fullTime },
+  { id: "coach-head-coach-berlin", title: { de: "Coach / Head Coach", en: "Coach / Head Coach", pl: "Trener / Head Coach" }, department: dep.academy, location: same("Berlin"), employmentType: { de: "Teilzeit, Minijob oder Werkstudent:in (20 h)", en: "Part-time, mini-job or working student (20 h)", pl: "Część etatu, minijob lub praca studencka (20 h)" } },
+  { id: "werkstudent-hr-muenchen", title: { de: "Werkstudent:in HR", en: "Working Student HR", pl: "Student/ka w dziale HR" }, department: dep.people, location: munich, employmentType: { de: "Werkstudent:in (20 h)", en: "Working student (20 h)", pl: "Praca studencka (20 h)" } },
+  { id: "club-manager-chemnitz", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)", pl: "Kierownik klubu (k/m/n)" }, department: dep.clubs, location: same("Chemnitz"), employmentType: fullTime },
+  { id: "club-manager-radolfzell", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)", pl: "Kierownik klubu (k/m/n)" }, department: dep.clubs, location: same("Radolfzell"), employmentType: fullTime },
+  { id: "minijob-werkstudent", title: { de: "Minijobber:in und Werkstudent:in (m/w/d)", en: "Mini-jobber and Working Student (m/f/d)", pl: "Pracownik na minijob i student/ka (k/m/n)" }, department: dep.clubs, location: { de: "Verschiedene Standorte", en: "Various locations", pl: "Różne lokalizacje" }, employmentType: { de: "Minijob", en: "Mini-job", pl: "Minijob" } },
 ];
 
 /** Each role opens an e-mail to People & Culture with the role in the subject. */
 export function getJobs(locale: Locale): Job[] {
-  const prefix = locale === "de" ? "Bewerbung" : "Application";
+  const prefix = locale === "de" ? "Bewerbung" : locale === "pl" ? "Aplikacja" : "Application";
   return seeds.map((s) => ({
     id: s.id,
     title: s.title[locale],
@@ -186,4 +186,66 @@ const en: JobsContent = {
   },
 };
 
-export const jobsContent: Record<Locale, JobsContent> = { de, en };
+const pl: JobsContent = {
+  meta: {
+    title: "Praca i kariera",
+    description: "Pracuj w PadelCity: oferty pracy w naszych klubach, w Akademii i w centrali w Monachium.",
+  },
+  hero: {
+    eyebrow: "Praca i kariera",
+    imageAlt: "Recepcja i sklep w klubie PadelCity",
+    title: "Zrób z padla swoją",
+    accent: "pracę",
+    lead: `Otwieranie klubów, budowanie społeczności, rozwijanie aplikacji dla tysięcy graczy: w PadelCity sprawiasz, że padel staje się sportem dla każdego – w ${keyFacts.clubs}+ klubach, a wkrótce w nowych krajach.`,
+    ctaPrimary: "Oferty pracy",
+    ctaSecondary: "Aplikuj spontanicznie",
+  },
+  benefits: {
+    eyebrow: "Benefity",
+    title: "Więcej niż praca",
+    lead: "Ciężko pracujemy, dużo gramy i rośniemy razem.",
+    items: [
+      { title: "Darmowy padel", text: "Graj bezpłatnie we wszystkich klubach PadelCity.", icon: "padel" },
+      { title: "Treningi w Akademii", text: "Treningi z naszymi trenerami – od pierwszego uderzenia po turniej.", icon: "graduation" },
+      { title: "Elastyczna praca", text: "Hybrydowo i zdalnie, tam gdzie pozwala na to stanowisko.", icon: "laptop" },
+      { title: "Eventy zespołowe", text: "Turnieje, wyjazdy integracyjne i imprezy, których się nie zapomina.", icon: "party" },
+      { title: "Rozwój", text: "Nowe kraje, nowe kluby – i przestrzeń, by rosnąć razem z nami.", icon: "rocket" },
+      { title: "Zniżki partnerskie", text: "Rabaty u partnerów ze świata sportu, mody i lifestyle'u.", icon: "gift" },
+    ],
+  },
+  culture: {
+    eyebrow: "Kultura",
+    title: "Siedem wartości, które czujesz u nas każdego dnia",
+    imageAlt: "Zdjęcie grupowe społeczności PadelCity na otwarciu klubu",
+    text: "Liczy się to, co ruszasz z miejsca – a nie to, jak długo siedzisz w biurze. Jesteśmy zespołem zapaleńców sportu, budowniczych i gospodarzy, który otwiera każdy klub tak, jakby był pierwszy.",
+  },
+  faces: {
+    eyebrow: "Faces of PadelCity",
+    title: "Z tymi ludźmi będziesz pracować",
+    lead: "Zespoły klubowe, eventy, operacje, marka – wycinek naszego zespołu.",
+    all: "Poznaj cały zespół",
+  },
+  openings: {
+    eyebrow: "Oferty pracy",
+    title: "Znajdź swoją rolę",
+    lead: "Wyślij nam CV i kilka zdań o tym, co cię w tej roli kręci – bez szablonowego listu motywacyjnego, chcemy poznać ciebie.",
+  },
+  board: {
+    all: "Wszystkie",
+    department: "Dział",
+    location: "Lokalizacja",
+    one: "oferta pracy",
+    many: "ofert pracy",
+    open: "Aplikuj przez e-mail",
+    empty: "Teraz nic dla ciebie? Zgłoś się spontanicznie!",
+  },
+  contact: { eyebrow: "Twoja osoba kontaktowa", text: "Masz pytania o ofertę lub rekrutację? Napisz albo zadzwoń bezpośrednio do Astrid.", mail: "E-mail", phone: "Telefon" },
+  initiative: {
+    title: "Nic dla ciebie? Aplikuj",
+    accent: "spontanicznie",
+    text: "Wchodzimy do nowych miast i krajów. Jeśli masz zajawkę na padla, może znajdziemy dla ciebie dokładnie właściwą rolę.",
+    cta: "Aplikuj spontanicznie",
+  },
+};
+
+export const jobsContent: Record<Locale, JobsContent> = { de, en, pl };

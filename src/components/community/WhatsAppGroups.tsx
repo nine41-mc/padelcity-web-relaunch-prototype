@@ -26,6 +26,15 @@ const copy = {
     close: "Close",
     empty: "There's no group for this city yet.",
   },
+  pl: {
+    title: "Społeczność WhatsApp",
+    text: "Każda lokalizacja ma własną grupę: znajdź partnerów do gry, spontaniczne mecze i newsy z klubu.",
+    search: "Szukaj miasta",
+    join: "Dołącz",
+    channel: "Kanał",
+    close: "Zamknij",
+    empty: "Dla tego miasta nie ma jeszcze grupy.",
+  },
 };
 
 type Group = { city: string; url: string; channel: boolean };
