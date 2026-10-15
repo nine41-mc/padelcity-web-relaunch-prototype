@@ -12,8 +12,8 @@ const VOWELS = "aeiouäöüy";
 const ONSETS = ["bl", "br", "dr", "fl", "fr", "gl", "gr", "kl", "kr", "pf", "pl", "pr", "sp", "st", "tr", "zw"];
 
 /** Splits a long single word for the poster ("Radolfzell" → Radolf | zell): prefer a break between two consonants near the middle. */
-function splitWord(word: string): string[] {
-  if (word.length <= 7) return [word];
+function splitWord(word: string, maxOneLine = 7): string[] {
+  if (word.length <= maxOneLine) return [word];
   const lower = word.toLowerCase();
   let best = Math.ceil(word.length / 2);
   let bestScore = Infinity;
@@ -51,9 +51,9 @@ export function posterName(club: Pick<Club, "name" | "city">): { city: string; s
   return { city, spot: name };
 }
 
-function posterLines(name: string): string[] {
+function posterLines(name: string, maxOneLine?: number): string[] {
   const words = name.split(/\s+/).filter(Boolean);
-  return (words.length === 1 ? splitWord(words[0]) : words).slice(0, 3);
+  return (words.length === 1 ? splitWord(words[0], maxOneLine) : words).slice(0, 3);
 }
 
 // Grain for the purple sky (inline SVG noise – no extra asset)
@@ -83,13 +83,16 @@ export function PosterTitle({
   club,
   className,
   size = { font: 19, spot: 7 },
+  maxOneLine = 7,
 }: {
   club: Pick<Club, "name" | "city">;
   className?: string;
   size?: { font: number; spot: number };
+  /** Names up to this many letters stay on one line (small cards: 11 – only really long names split). */
+  maxOneLine?: number;
 }) {
   const { city, spot } = posterName(club);
-  const lines = posterLines(city);
+  const lines = posterLines(city, maxOneLine);
   return (
     <div className={cn("absolute inset-x-0", className)} aria-hidden>
       <p className="px-4 font-sans font-bold leading-[0.82] tracking-[-0.05em] text-white" style={{ fontSize: `${size.font}cqw` }}>

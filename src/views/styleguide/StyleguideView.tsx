@@ -359,7 +359,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <p className="max-w-3xl text-white/75">
           Look aus den Instagram-Posts zu Neueröffnungen, automatisch für jeden Club: lila, körniger Himmel über dem Club-Foto, Stadt in Poppins Bold mit fester Schriftgröße je Kachel-Typ. Regel: bis 7 Buchstaben
           einzeilig (Berlin, München), längere Namen an einer Silbe geteilt (Frank|furt), zweite Zeile als Outline – damit sitzt die Abrisskante immer auf einer von zwei festen Höhen, der Standort innerhalb der Stadt (z. B. Frankfurter Ring, Tucherpark) kleiner unter der Abrisskante, weiße Abrisskante. Oben links der Öffnungsstatus in PadelCity-Pink. Courts und Sportarten erscheinen erst beim Hover (auf Touch-Geräten
-          immer sichtbar), damit das Poster ruhig bleibt. Die Club-Karten (Standorte, Academy, Franchise, Clubs in der Nähe) nutzen denselben Look im Bild – Status oben, Stadt mit Abrisskante, Preis unten rechts im Bild –, darunter statisch Adresse, Courts („13 Courts · Indoor & Outdoor“), Sportarten als reiner Text und Pfeil.
+          immer sichtbar), damit das Poster ruhig bleibt. Die Club-Karten (Standorte, Academy, Franchise, Clubs in der Nähe) nutzen denselben Look im Bild – Status oben, Stadt mit Abrisskante, Preis unten rechts im Bild –, auf den kleineren Kacheln bleiben Städte bis 11 Buchstaben einzeilig, nur wirklich lange Namen werden geteilt (Reckling|hausen); darunter statisch Adresse, Courts („13 Courts · Indoor & Outdoor“), Sportarten als reiner Text und Pfeil.
         </p>
 
         <H3>Instagram-Bildwand (Startseite)</H3>
@@ -507,7 +507,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Karten heben sich", "4 px nach oben plus Glow im Hover"],
             ["Bilder zoomen leicht", "Auf Karten, 700 ms"],
             ["Einblenden beim Scrollen", "Abschnitte erscheinen weich, sind aber nie unsichtbar, falls JavaScript fehlt"],
-            ["Ticker", "Endlos, hält bei Hover und Fokus"],
+            ["Ticker", "Endlos, hält bei Hover und Fokus; Inhalt wird so oft wiederholt, dass auch sehr breite Bildschirme lückenlos gefüllt sind"],
             ["App-Overlays", "Kurze Schleifen, die eine Interaktion des Screens zeigen (z. B. Schalter an, Code tippen)"],
             ["Reduzierte Bewegung", "Systemeinstellung wird respektiert: alle Animationen aus"],
           ].map(([t, d]) => (
