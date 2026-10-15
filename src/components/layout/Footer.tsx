@@ -124,7 +124,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </ul>
           </div>
           <FooterCol title={t.footer.play} keys={mainNav} locale={locale} />
-          <FooterCol title={t.footer.company} keys={[...secondaryNav, "sitemap"]} locale={locale} />
+          <FooterCol title={t.footer.company} keys={[...secondaryNav, "sitemap", "contentModel"]} locale={locale} />
         </div>
       </div>
 

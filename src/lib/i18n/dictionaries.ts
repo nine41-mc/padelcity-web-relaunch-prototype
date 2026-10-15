@@ -20,6 +20,7 @@ const de = {
     privacy: "Datenschutz",
     terms: "AGB",
     sitemap: "Sitemap",
+    contentModel: "Content-Modell",
     styleguide: "Styleguide",
   } satisfies Record<RouteKey, string>,
   navDescriptions: {
@@ -100,6 +101,7 @@ const en: Dictionary = {
     privacy: "Privacy",
     terms: "Terms",
     sitemap: "Sitemap",
+    contentModel: "Content model",
     styleguide: "Styleguide",
   },
   navDescriptions: {
@@ -178,6 +180,7 @@ const pl: Dictionary = {
     privacy: "Prywatność",
     terms: "Regulamin",
     sitemap: "Mapa strony",
+    contentModel: "Model treści",
     styleguide: "Styleguide",
   },
   navDescriptions: {

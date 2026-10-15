@@ -23,6 +23,8 @@ export const routes = {
   privacy: { de: "/datenschutz", en: "/en/privacy", pl: "/pl/polityka-prywatnosci" },
   terms: { de: "/agb", en: "/en/terms", pl: "/pl/regulamin" },
   sitemap: { de: "/sitemap", en: "/en/sitemap", pl: "/pl/mapa-strony" },
+  // Internal overview for the relaunch team: page types, modules and the source of every field (footer link).
+  contentModel: { de: "/content-modell", en: "/en/content-model", pl: "/pl/model-tresci" },
   // Hidden: not in any navigation or the sitemap, reached by clicking the © line in the footer.
   styleguide: { de: "/styleguide", en: "/en/styleguide", pl: "/pl/styleguide" },
 } as const satisfies Record<string, Record<Locale, string>>;
