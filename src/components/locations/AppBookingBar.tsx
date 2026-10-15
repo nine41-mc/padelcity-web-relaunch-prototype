@@ -37,6 +37,7 @@ export function AppBookingBar({ href, price, locale }: { href: string; price?: s
       role="region"
       aria-label={t.barLabel}
       inert={hidden}
+      data-booking-bar={hidden ? "hidden" : "visible"}
       className={cn("fixed inset-x-0 bottom-0 z-40 transition-transform duration-300 lg:hidden", hidden && "pointer-events-none translate-y-[120%]")}
     >
       <div className="mx-2 mb-2 flex items-center gap-3 rounded-[24px] border border-white/10 bg-ink-700/95 p-3 shadow-elevated backdrop-blur-xl md:mx-auto md:max-w-xl">

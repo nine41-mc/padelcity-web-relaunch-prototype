@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { claimLang } from "@/lib/i18n/claims";
 import { Facebook, Instagram, Linkedin, MessageCircle, Youtube } from "lucide-react";
 import { legalNav, mainNav, secondaryNav, site } from "@/lib/site";
 import { asset } from "@/lib/asset";
@@ -53,7 +54,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <div className="relative z-10 flex h-14 items-center overflow-hidden bg-neon-500 text-ink-800 md:h-16" lang={locale}>
         <Marquee>
           {[...t.footer.facts, "#bettertogether", "Let's play Padel"].map((item) => (
-            <span key={item} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">
+            <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">
               {item} <span className="text-purple-600" aria-hidden>●</span>
             </span>
           ))}
@@ -90,7 +91,7 @@ export function Footer({ locale }: { locale: Locale }) {
               <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85">
                 <MessageCircle className="size-4 text-white" aria-hidden /> {t.footer.community.eyebrow(whatsappGroupCount)}
               </p>
-              <p className="mt-4 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-6xl lg:text-7xl">
+              <p lang={claimLang(t.footer.community.title)} className="mt-4 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-6xl lg:text-7xl">
                 {t.footer.community.title} <Accent>{t.footer.community.accent}</Accent>
               </p>
               <p className="mt-4 max-w-xl text-white/85 md:text-lg">{t.footer.community.text}</p>
@@ -102,10 +103,10 @@ export function Footer({ locale }: { locale: Locale }) {
         {/* Link columns */}
         <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-white/12 pt-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="col-span-2 md:col-span-1">
-            <p className="font-display text-4xl font-extrabold italic uppercase leading-[0.95] md:text-5xl">
+            <p lang="en" className="font-display text-4xl font-extrabold italic uppercase leading-[0.95] md:text-5xl">
               Fall in love with <Accent>padel.</Accent>
             </p>
-            <h2 className="mt-6 font-display text-xl font-extrabold italic uppercase tracking-wide text-white/85">{t.footer.follow}</h2>
+            <h2 lang={claimLang(t.footer.follow)} className="mt-6 font-display text-xl font-extrabold italic uppercase tracking-wide text-white/85">{t.footer.follow}</h2>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label={t.footer.follow}>
               {socials.map(({ href: url, icon: I, label }) => (
                 <li key={label}>

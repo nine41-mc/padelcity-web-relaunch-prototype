@@ -1,4 +1,5 @@
 import { keepTogether } from "@/lib/typography";
+import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
@@ -50,7 +51,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <div className="relative z-10 -rotate-1 bg-neon-500 py-3 text-ink-800 shadow-neon md:py-4">
         <Marquee>
           {t.ticker.map((item) => (
-            <span key={item} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">
+            <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">
               {item} <span className="text-purple-500">●</span>
             </span>
           ))}

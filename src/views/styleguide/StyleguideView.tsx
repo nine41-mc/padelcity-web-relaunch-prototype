@@ -541,6 +541,27 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             Mit Tab hierher springen
           </button>
         </p>
+              <H3>Darstellungs-Panel</H3>
+        <p className="max-w-3xl text-white/75">
+          Runder Button unten links (auf Clubseiten am Handy über der Buchungsleiste) öffnet „Darstellung“: Schriftgröße (100–150 %), Abstände (Stufe „Weit“ = WCAG-1.4.12-Werte),
+          gut lesbare Schrift (Poppins aufrecht statt kursiver Display- und Brush-Schrift), Bewegung aus (Video, Ticker, Animationen) und hoher Kontrast mit unterstrichenen Links.
+          Eigenes Panel ohne Drittanbieter und ohne Tracking: setzt nur data-a11y-* auf &lt;html&gt; (vor dem ersten Rendern) und merkt sich die Wahl im Browser.
+          Es ergänzt eine barrierefreie Seite, ersetzt sie nicht – die WCAG-Konformität liegt im Code.
+        </p>
+        <H3>Regeln aus dem WCAG-Check</H3>
+        <ul className="grid gap-3 md:grid-cols-2">
+          {[
+            ["Name enthält sichtbaren Text", "Sprachumschalter „de – Deutsch“, Level „Level 1 Starter“: Zusatz nur per sr-only, kein abweichendes aria-label (2.5.3)"],
+            ["Listen sauber verschachteln", "Animation (Reveal) im <li>, nie um das <li> herum (1.3.1)"],
+            ["Bewegung > 5 s pausierbar", "Ticker mit Pause-Button, App-Overlays laufen max. 5 s, Hero-Video mit Pause (2.2.2)"],
+            ["Englische Claims auszeichnen", "lang=\"en\" auf DE/PL-Seiten (claimLang), damit Screenreader richtig aussprechen (3.1.2)"],
+          ].map(([t, d]) => (
+            <li key={t} className="rounded-[16px] border border-white/10 bg-ink-700 p-5">
+              <p className="font-semibold">{t}</p>
+              <p className="mt-1 text-sm text-white/70">{d}</p>
+            </li>
+          ))}
+        </ul>
       </Block>
 
       {/* Sprache */}

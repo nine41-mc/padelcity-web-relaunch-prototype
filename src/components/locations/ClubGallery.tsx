@@ -70,7 +70,8 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
               shown.length === 2 && i === 1 && "col-span-2 row-span-2",
               shown.length === 3 && i > 0 && "col-span-2",
             )}
-            aria-label={fill(t.enlarge, { i: i + 1, n: images.length })}
+            // visible "+3 Fotos" on the last tile → the accessible name starts with it (WCAG 2.5.3)
+            aria-label={i === shown.length - 1 && more > 0 ? `+${more} ${t.photos}: ${fill(t.enlarge, { i: i + 1, n: images.length })}` : fill(t.enlarge, { i: i + 1, n: images.length })}
           >
             <Media
               src={img.url}

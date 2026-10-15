@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import { A11yPanel } from "@/components/a11y/A11yPanel";
+import { a11yPrePaintScript } from "@/lib/a11y-prepaint";
 import { goodBrush, poppins, soehneSchmal } from "@/app/fonts";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -44,9 +46,12 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
     <html
       lang={localeTags[locale].lang}
       className={`${poppins.variable} ${soehneSchmal.variable} ${goodBrush.variable}`}
-      suppressHydrationWarning={bilingual}
+      // the pre-paint scripts set lang/data-a11y-* on <html> before React hydrates
+      suppressHydrationWarning
     >
       <body className="antialiased">
+        {/* display preferences of the accessibility panel (data-a11y-* on <html>), applied before paint */}
+        <script dangerouslySetInnerHTML={{ __html: a11yPrePaintScript }} />
         {bilingual ? (
           <>
             <script dangerouslySetInnerHTML={{ __html: detectLocaleScript }} />
@@ -85,6 +90,7 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
         ) : (
           <Footer locale={locale} />
         )}
+        <A11yPanel />
       </body>
     </html>
   );

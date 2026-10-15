@@ -65,11 +65,12 @@ export function AppView({ locale }: { locale: Locale }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-track={r.track}
-                    aria-label={t.socialProof.ratingsLabel(r.value, r.store, r.count)}
                     className="flex items-center gap-3 rounded-full border border-white/20 bg-black/30 py-2 pl-4 pr-5 backdrop-blur transition-colors hover:border-white/50"
                   >
                     <span className="flex items-center gap-1.5 font-display text-2xl font-extrabold italic leading-none">
                       {r.value} <Star className="size-4 fill-white text-white" aria-hidden />
+                      {/* name = visible text + "von 5 Sternen" (WCAG 2.5.3) */}
+                      <span className="sr-only"> {t.socialProof.outOf} </span>
                     </span>
                     <span className="text-sm leading-tight text-white/80">
                       {r.store}
@@ -134,16 +135,18 @@ export function AppView({ locale }: { locale: Locale }) {
         </Headline>
         <ol className="grid gap-5 md:grid-cols-3">
           {t.how.steps.map((s, i) => (
-            <Reveal key={s.step} delay={i * 0.08} className="h-full">
-              <li className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
+            <li key={s.step} className="h-full">
+              <Reveal delay={i * 0.08} className="h-full">
+              <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
                 <span className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-white/[0.04]" aria-hidden>
                   {s.step}
                 </span>
                 <span className="font-display text-5xl font-extrabold italic text-brand-gradient">{s.step}</span>
                 <h3 className="mt-4 text-xl font-semibold md:min-h-[2lh]">{s.title}</h3>
                 <p className="mt-2 text-white/70">{s.text}</p>
-              </li>
-            </Reveal>
+              </div>
+              </Reveal>
+            </li>
           ))}
         </ol>
       </Section>

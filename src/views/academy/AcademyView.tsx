@@ -90,8 +90,9 @@ export async function AcademyView({ locale }: { locale: Locale }) {
           {t.programmes.map((p, i) => {
             const corporate = p.id === "corporate";
             return (
-              <Reveal key={p.id} delay={(i % 3) * 0.06} className="h-full">
-                <li
+              <li key={p.id} className="h-full">
+                <Reveal delay={(i % 3) * 0.06} className="h-full">
+                <div
                   className={cn(
                     "group relative flex h-full flex-col overflow-hidden rounded-[20px] border bg-ink-700 transition-all duration-300 hover:-translate-y-1",
                     p.highlight ? "border-magenta-500/60 hover:shadow-glow" : "border-white/10 hover:border-magenta-500/50",
@@ -116,8 +117,9 @@ export async function AcademyView({ locale }: { locale: Locale }) {
                       </a>
                     </div>
                   </div>
-                </li>
-              </Reveal>
+                </div>
+                </Reveal>
+              </li>
             );
           })}
         </ul>

@@ -22,7 +22,7 @@ const de = {
     ctaApp: "Court buchen in der App",
     ctaLocations: "Alle Standorte",
   },
-  ticker: ["Let's play Padel", "30+ Clubs", "200+ Courts", "25+ Cities", "Game. Set. Match.", "#bettertogether", "Drive the Padel Boom!", "Make some noise for Padel", "Deutschlands Nr. 1 im Padel"],
+  ticker: ["Let's play Padel", "30+ Clubs", "200+ Courts", "25+ Städte", "Game. Set. Match.", "#bettertogether", "Drive the Padel Boom!", "Make some noise for Padel", "Deutschlands Nr. 1 im Padel"],
   leader: {
     eyebrow: "Seit 2022 on court",
     title: "Deutschlands",

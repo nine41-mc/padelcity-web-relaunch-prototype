@@ -51,14 +51,16 @@ export function LiteYouTube({
           onClick={() => setState(youtubeId ? "playing" : "missing")}
           data-track="video_play"
           className="absolute inset-0 block size-full text-left"
-          aria-label={`${t.play}: ${title}`}
         >
           <Media src={thumbnail} alt="" className="!absolute inset-0" imgClassName="transition-transform duration-700 group-hover:scale-105" overlay sizes="(min-width:1200px) 50vw, 100vw" />
           <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-brand-gradient shadow-glow transition-transform duration-300 group-hover:scale-110 md:size-20">
             <Play className="ml-1 size-7 fill-white text-white md:size-8" aria-hidden />
           </span>
           <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
-            <span className="font-semibold leading-tight">{title}</span>
+            <span className="font-semibold leading-tight">
+              <span className="sr-only">{t.play}: </span>
+              {title}
+            </span>
             {duration && <span className="shrink-0 rounded-md bg-black/60 px-2 py-0.5 text-[13px] font-semibold">{duration}</span>}
           </span>
           {state === "missing" && (

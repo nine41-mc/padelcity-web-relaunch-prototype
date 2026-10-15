@@ -242,3 +242,54 @@
     }
   }
 }
+
+/*
+ * Accessibility panel ("Darstellung", src/components/a11y/A11yPanel.tsx) – visitor preferences as
+ * data attributes on <html>, set before paint (SiteShell) and stored per browser. Pure CSS, no third party.
+ */
+/* Text size: all type is in rem, so scaling the root scales the whole page */
+html[data-a11y-size="1"] { font-size: 112.5%; }
+html[data-a11y-size="2"] { font-size: 125%; }
+html[data-a11y-size="3"] { font-size: 150%; }
+
+/* Spacing – level 2 = WCAG 1.4.12 values (line 1.5, paragraphs 2×, letters 0.12em, words 0.16em) */
+html[data-a11y-spacing="1"] body :where(p, li, dd, dt, td, th, label, a, button, span, blockquote, figcaption) {
+  line-height: 1.7 !important;
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.08em !important;
+}
+html[data-a11y-spacing="2"] body :where(p, li, dd, dt, td, th, label, a, button, span, blockquote, figcaption, h1, h2, h3, h4) {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+html[data-a11y-spacing="2"] body p { margin-block-end: 2em; }
+
+/* Readable font: upright Poppins instead of the italic condensed display font and the brush accent */
+html[data-a11y-font="readable"] {
+  --font-display: var(--font-sans);
+  --font-brush: var(--font-sans);
+}
+html[data-a11y-font="readable"] .italic { font-style: normal !important; }
+html[data-a11y-font="readable"] .font-display,
+html[data-a11y-font="readable"] .font-brush { text-transform: none !important; letter-spacing: 0 !important; }
+
+/* Motion off: stop CSS animations/transitions (JS motion checks useMotionOff) */
+html[data-a11y-motion="off"] *,
+html[data-a11y-motion="off"] *::before,
+html[data-a11y-motion="off"] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* High contrast: full-white text, clearer borders, darker image overlays, underlined text links */
+html[data-a11y-contrast="high"] [class*="text-white/"] { color: #fff !important; }
+html[data-a11y-contrast="high"] [class*="border-white/"] { border-color: rgb(255 255 255 / 0.7) !important; }
+html[data-a11y-contrast="high"] [class*="from-black/"] { --tw-gradient-from: rgb(0 0 0 / 0.9) !important; }
+html[data-a11y-contrast="high"] :is(p, li, dd, td, figcaption) a,
+html[data-a11y-contrast="high"] footer a:not([class*="rounded-full"]) {
+  text-decoration: underline !important;
+  text-underline-offset: 0.2em;
+}

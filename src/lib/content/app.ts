@@ -275,6 +275,7 @@ const de = {
       { store: "Google Play", value: "4,3", count: "750+ Bewertungen", track: "app_rating_android" },
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} von 5 Sternen im ${store}, ${count}`,
+    outOf: "von 5 Sternen,",
     asOf: "Stand: Oktober 2026",
   },
   how: {
@@ -426,6 +427,7 @@ const en: AppContent = {
       { store: "Google Play", value: "4.3", count: "750+ ratings", track: "app_rating_android" },
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} out of 5 stars on ${store}, ${count}`,
+    outOf: "out of 5 stars,",
     asOf: "As of October 2026",
   },
   how: {
@@ -574,6 +576,7 @@ const pl: AppContent = {
       { store: "Google Play", value: "4,3", count: "750+ ocen", track: "app_rating_android" },
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} na 5 gwiazdek w ${store}, ${count}`,
+    outOf: "na 5 gwiazdek,",
     asOf: "Stan na październik 2026",
   },
   how: {

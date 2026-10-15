@@ -1,6 +1,7 @@
 "use client";
 
 // Contentful module: heroHome (headline, accent word, sublines, media, CTAs)
+import { useMotionOff } from "@/lib/a11y";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
@@ -15,7 +16,9 @@ import type { HomeContent } from "@/lib/content/home";
 export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"] }) {
   const router = useRouter();
   const [q, setQ] = useState("");
-  const reduce = useReducedMotion();
+  const motionOff = useMotionOff();
+  // system "reduce motion" or "Bewegung aus" in the accessibility panel → video starts paused
+  const reduce = useReducedMotion() || motionOff;
   const [wide, setWide] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");

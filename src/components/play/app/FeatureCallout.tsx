@@ -1,5 +1,6 @@
 "use client";
 
+import { useMotionOff } from "@/lib/a11y";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { Check, Minus, Plus, Ticket, User } from "lucide-react";
@@ -15,15 +16,29 @@ import { cn } from "@/components/ui/cn";
 const card = "rounded-2xl border border-white/10 bg-[#23242b]/95 p-4 font-sans text-white shadow-[0_24px_60px_-12px_rgb(0_0_0/0.7)] backdrop-blur";
 
 /** Steps 0…n-1 in a loop while mounted (static last step with reduced motion). */
+/** WCAG 2.2.2: the demo loop runs at most this long, then rests on its final state. */
+const LOOP_MAX_MS = 5000;
+
+/** Steps 0…n-1 in a loop for up to 5 s (static last step with reduced motion or "Bewegung aus"). */
 function useLoop(steps: number, ms: number) {
-  const reduce = useReducedMotion();
+  const systemReduce = useReducedMotion();
+  const motionOff = useMotionOff();
+  const reduce = systemReduce || motionOff;
   const [step, setStep] = useState(reduce ? steps - 1 : 0);
+  const [done, setDone] = useState(false);
   useEffect(() => {
     if (reduce) return;
     const id = window.setInterval(() => setStep((s) => (s + 1) % steps), ms);
-    return () => window.clearInterval(id);
+    const stop = window.setTimeout(() => {
+      window.clearInterval(id);
+      setDone(true);
+    }, LOOP_MAX_MS);
+    return () => {
+      window.clearInterval(id);
+      window.clearTimeout(stop);
+    };
   }, [reduce, steps, ms]);
-  return reduce ? steps - 1 : step;
+  return reduce || done ? steps - 1 : step;
 }
 
 function Booking({ c }: { c: AppCallouts["booking"] }) {

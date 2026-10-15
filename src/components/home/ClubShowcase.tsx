@@ -80,12 +80,12 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
   return (
     <Link
       href={href(locale, "locations", club.slug)}
-      aria-label={club.fullName ?? club.name}
       className={cn(
         "group relative block overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size]",
         fill ? "aspect-[4/5] w-full" : "aspect-[3/4] w-[78vw] shrink-0 snap-start md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]",
       )}
     >
+      <h3 className="sr-only">{club.fullName ?? club.name}</h3>
       <Media
         src={club.mainImage?.url}
         alt=""
@@ -109,7 +109,6 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
         <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
         <SportList club={club} locale={locale} className="mt-1 text-white/80" />
       </div>
-      <h3 className="sr-only">{club.name}</h3>
       <span className="absolute bottom-5 right-5 grid size-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
         <ArrowUpRight className="size-5" />
       </span>

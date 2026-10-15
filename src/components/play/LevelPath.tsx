@@ -58,7 +58,6 @@ export function LevelPath({
                   onClick={() => select(l.level)}
                   aria-pressed={on}
                   aria-controls={`level-card-${l.level}`}
-                  aria-label={`${levelLabel} ${l.level}: ${l.label}`}
                   className="group flex flex-col items-center"
                 >
                   <span
@@ -69,9 +68,11 @@ export function LevelPath({
                         : cn("bg-ink-800 group-hover:scale-105", l.level <= 2 ? "border-purple-400" : l.level <= 5 ? "border-magenta-400" : "border-white"),
                     )}
                   >
+                    <span className="sr-only">{levelLabel} </span>
                     {l.level}
                   </span>
-                  <span className={cn("mt-2 hidden text-sm transition-colors md:block", on ? "font-semibold text-white" : "text-white/70 group-hover:text-white")}>{l.label}</span>
+                  {/* name visible from tablet up; on phones only for screen readers ("Level 1 Starter") */}
+                  <span className={cn("mt-2 text-sm transition-colors max-md:sr-only md:block", on ? "font-semibold text-white" : "text-white/70 group-hover:text-white")}>{l.label}</span>
                 </button>
               </li>
             );

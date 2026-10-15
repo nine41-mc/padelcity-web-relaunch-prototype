@@ -165,13 +165,14 @@ function LanguageSwitch({ pathname, current, label, className }: { pathname: str
           hrefLang={localeTags[l].lang}
           lang={localeTags[l].lang}
           aria-current={l === current ? "true" : undefined}
-          aria-label={localeTags[l].label}
           className={cn(
             "flex h-11 min-w-11 items-center justify-center rounded-full px-2.5 pt-px transition-colors",
             l === current ? "bg-brand-gradient text-white" : "text-white/85 hover:text-white",
           )}
         >
           {l}
+          {/* WCAG 2.5.3: the accessible name contains the visible text ("de – Deutsch") */}
+          <span className="sr-only"> – {localeTags[l].label}</span>
         </Link>
       ))}
     </div>

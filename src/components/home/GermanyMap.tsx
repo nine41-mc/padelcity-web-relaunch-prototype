@@ -104,7 +104,7 @@ export function GermanyMap({
 
   return (
     <div className="relative">
-      <svg viewBox={`0 0 ${viewW} ${H}`} className={narrow ? "h-auto w-full overflow-hidden" : "h-auto w-full overflow-visible"} role="img" aria-label={`${label} (${clubs.length})`}
+      <svg viewBox={`0 0 ${viewW} ${H}`} className={narrow ? "h-auto w-full overflow-hidden" : "h-auto w-full overflow-visible"} role="group" aria-label={`${label} (${clubs.length})`}
         onPointerDown={(e) => {
           // Touch: tapping the map background hides the label again
           if (!(e.target as Element).closest("a, [role=button]")) setActive(null);

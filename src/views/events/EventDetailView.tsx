@@ -185,13 +185,15 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
         </Headline>
         <ol className="grid gap-5 md:grid-cols-3">
           {content.format.map((f, i) => (
-            <Reveal key={f.title} delay={i * 0.08}>
-              <li className="h-full rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
+            <li key={f.title} className="h-full">
+              <Reveal delay={i * 0.08} className="h-full">
+              <div className="h-full rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
                 <span className="font-display text-6xl font-extrabold italic text-brand-gradient">0{i + 1}</span>
                 <h3 className="mt-4 text-xl font-semibold">{f.title}</h3>
                 <p className="mt-2 text-white/70">{f.text}</p>
-              </li>
-            </Reveal>
+              </div>
+              </Reveal>
+            </li>
           ))}
         </ol>
 
