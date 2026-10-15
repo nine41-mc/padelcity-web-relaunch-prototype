@@ -128,7 +128,10 @@ export const plannedImageAlt: Record<string, string> = {
   krakau: "Illustration: Tuchhallen und Marienkirche in Krakau",
 };
 
-const plannedClubs: Club[] = plannedSeeds.map((s) => ({
+// TODO(content): placeholder opening months for the prototype (Nov / Dec / Jan in turn) – replace with real dates.
+const PLACEHOLDER_OPENING = ["2026-11", "2026-12", "2027-01"];
+
+const plannedClubs: Club[] = plannedSeeds.map((s, i) => ({
   id: `planned-${s.slug}`,
   slug: s.slug,
   name: s.name,
@@ -136,6 +139,7 @@ const plannedClubs: Club[] = plannedSeeds.map((s) => ({
   region: s.region,
   country: s.country,
   status: "planned",
+  openingDate: PLACEHOLDER_OPENING[i % PLACEHOLDER_OPENING.length],
   teaser: "Bald eröffnet.",
   description: `${s.name} ist in Planung. Den Eröffnungstermin geben wir bekannt, sobald er feststeht.`,
   address: NO_ADDRESS(s.city),
