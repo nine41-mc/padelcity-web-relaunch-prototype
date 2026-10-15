@@ -14,6 +14,40 @@ export const jobsContact = {
   image: "/images/team/astrid-nindl.jpg",
 };
 
+/*
+ * Preview of the Personio career page until PadelCity's Personio URL is set: the 8 roles published on
+ * padelcity.de/jobs (15.10.2026). Personio shows its page in German or English – Polish visitors get English.
+ * TODO(content): remove once NEXT_PUBLIC_PERSONIO_URL is configured (the embed then shows the live roles).
+ */
+export type PersonioLang = "de" | "en";
+export type PersonioPreviewJob = { id: string; title: string; department: string; office: string; employmentType: string; schedule: string };
+type P = Record<PersonioLang, string>;
+const pDep = {
+  finance: { de: "Finance", en: "Finance" },
+  academy: { de: "Academy", en: "Academy" },
+  people: { de: "People & Culture", en: "People & Culture" },
+  clubs: { de: "Clubs & Operations", en: "Clubs & Operations" },
+} satisfies Record<string, P>;
+const perm: P = { de: "Festanstellung", en: "Permanent employee" };
+const fullTime: P = { de: "Vollzeit", en: "Full-time" };
+const partTime: P = { de: "Teilzeit", en: "Part-time" };
+const student: P = { de: "Werkstudent", en: "Working student" };
+const mini: P = { de: "Minijob", en: "Mini-job" };
+const munich: P = { de: "München", en: "Munich" };
+const one = (v: string): P => ({ de: v, en: v });
+const previewSeeds: { id: string; title: P; department: P; office: P; employmentType: P; schedule: P }[] = [
+  { id: "fpa-manager-muenchen", title: { de: "FP&A Manager:in (m/w/d) – Financial Planning, Analytics & Automation", en: "FP&A Manager (m/f/d) – Financial Planning, Analytics & Automation" }, department: pDep.finance, office: munich, employmentType: perm, schedule: fullTime },
+  { id: "padel-coach-ulm", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)" }, department: pDep.academy, office: one("Ulm"), employmentType: perm, schedule: fullTime },
+  { id: "padel-coach-karlsruhe", title: { de: "Padel Coach (m/w/d)", en: "Padel Coach (m/f/d)" }, department: pDep.academy, office: one("Karlsruhe"), employmentType: perm, schedule: fullTime },
+  { id: "coach-head-coach-berlin", title: one("Coach / Head Coach"), department: pDep.academy, office: one("Berlin"), employmentType: { de: "Teilzeit, Minijob oder Werkstudent", en: "Part-time, mini-job or working student" }, schedule: partTime },
+  { id: "werkstudent-hr-muenchen", title: { de: "Werkstudent:in HR", en: "Working Student HR" }, department: pDep.people, office: munich, employmentType: student, schedule: partTime },
+  { id: "club-manager-chemnitz", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)" }, department: pDep.clubs, office: one("Chemnitz"), employmentType: perm, schedule: fullTime },
+  { id: "club-manager-radolfzell", title: { de: "Club Manager:in (m/w/d)", en: "Club Manager (m/f/d)" }, department: pDep.clubs, office: one("Radolfzell"), employmentType: perm, schedule: fullTime },
+  { id: "minijob-werkstudent", title: { de: "Minijobber:in und Werkstudent:in (m/w/d)", en: "Mini-jobber and Working Student (m/f/d)" }, department: pDep.clubs, office: { de: "Verschiedene Standorte", en: "Various locations" }, employmentType: mini, schedule: partTime },
+];
+export const personioPreviewJobs = (lang: PersonioLang): PersonioPreviewJob[] =>
+  previewSeeds.map((s) => ({ id: s.id, title: s.title[lang], department: s.department[lang], office: s.office[lang], employmentType: s.employmentType[lang], schedule: s.schedule[lang] }));
+
 type BenefitIcon = "padel" | "graduation" | "laptop" | "party" | "rocket" | "gift";
 
 // Contentful: page "jobs" (modules listed in src/views/jobs/JobsView.tsx)
@@ -64,7 +98,7 @@ const de = {
   },
   personio: {
     title: "Offene Stellen bei PadelCity (Personio)",
-    placeholder: { title: "Hier laufen die Stellen aus Personio ein", text: "Im Live-Betrieb erscheint an dieser Stelle die Personio-Karriereseite von PadelCity mit allen offenen Stellen und dem Bewerbungsformular." },
+    placeholder: { title: "Hier laufen die Stellen aus Personio ein", text: "Vorschau im Personio-Look mit den Stellen von padelcity.de/jobs. Live erscheint hier die Personio-Karriereseite von PadelCity mit Stellenanzeigen und Bewerbungsformular." },
   },
 
   contact: { eyebrow: "Deine Ansprechpartnerin", text: "Fragen zu einer Stelle oder zur Bewerbung? Melde dich direkt bei Astrid.", mail: "E-Mail", phone: "Telefon" },
@@ -124,7 +158,7 @@ const en: JobsContent = {
   },
   personio: {
     title: "Open positions at PadelCity (Personio)",
-    placeholder: { title: "Personio jobs appear here", text: "On the live site this is where PadelCity's Personio career page appears, with all open positions and the application form." },
+    placeholder: { title: "Personio jobs appear here", text: "Preview in the Personio look with the roles from padelcity.de/jobs. On the live site PadelCity's Personio career page appears here, with job ads and the application form." },
   },
 
   contact: { eyebrow: "Your contact", text: "Questions about a role or your application? Get in touch with Astrid directly.", mail: "E-mail", phone: "Phone" },
@@ -182,7 +216,7 @@ const pl: JobsContent = {
   },
   personio: {
     title: "Oferty pracy w PadelCity (Personio)",
-    placeholder: { title: "Tu pojawią się oferty z Personio", text: "Na stronie produkcyjnej w tym miejscu pojawi się strona kariery PadelCity z Personio – ze wszystkimi ofertami i formularzem aplikacyjnym." },
+    placeholder: { title: "Tu pojawią się oferty z Personio", text: "Podgląd w stylu Personio z ofertami z padelcity.de/jobs. Na stronie produkcyjnej pojawi się tu strona kariery PadelCity z Personio – z ogłoszeniami i formularzem aplikacyjnym." },
   },
 
   contact: { eyebrow: "Twoja osoba kontaktowa", text: "Masz pytania o ofertę lub rekrutację? Napisz albo zadzwoń bezpośrednio do Astrid.", mail: "E-mail", phone: "Telefon" },

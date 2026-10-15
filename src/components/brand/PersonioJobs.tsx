@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Briefcase } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
+import type { PersonioLang } from "@/lib/content/jobs";
+import { PersonioPreview } from "./PersonioPreview";
 
 /**
  * Open positions straight from Personio (decision 2026-10: the jobs page itself is static Contentful content,
@@ -45,13 +47,16 @@ export function PersonioJobs({
   }, []);
 
   if (!PERSONIO_URL) {
+    // Until PadelCity's Personio URL is set: the published roles in the Personio look (PersonioPreview)
     return (
-      <div className="grid place-items-center gap-4 rounded-[24px] border border-dashed border-white/25 bg-ink-700/60 px-6 py-16 text-center">
-        <span className="grid size-14 place-items-center rounded-full bg-brand-gradient" aria-hidden>
-          <Briefcase className="size-6" />
-        </span>
-        <p className="font-display text-3xl font-extrabold italic uppercase leading-none">{placeholder.title}</p>
-        <p className="max-w-xl text-white/70">{placeholder.text}</p>
+      <div>
+        <PersonioPreview initialLang={PERSONIO_LANGUAGE[locale] as PersonioLang} />
+        <p className="mt-3 flex items-start gap-2 text-sm text-white/60">
+          <Briefcase className="mt-0.5 size-4 shrink-0" aria-hidden />
+          <span>
+            <span className="font-semibold text-white/80">{placeholder.title}.</span> {placeholder.text}
+          </span>
+        </p>
       </div>
     );
   }
