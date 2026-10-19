@@ -67,7 +67,7 @@ function PlannedClubCard({ club, locale, country }: { club: Club; locale: Locale
           imgClassName="transition-transform duration-700 group-hover:scale-105"
           sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 85vw"
         />
-        {/* Chips stay top-left so the neon ball (top-right in every illustration) remains visible. */}
+        {/* Chips stay top-left so the Optic Yellow ball (top-right in every illustration) remains visible. */}
         <div className="absolute inset-x-3 top-3 flex flex-wrap items-start gap-2">
           <Chip tone="gradient">{t.chip}</Chip>
           <Chip tone="dark">

@@ -63,7 +63,7 @@
   background: #f8f8f8;
 }
 .pc-pin--active .pc-pin__body {
-  /* Active pin = SECONDARY (white) – neon is reserved for the home map (see globals.css colour roles). */
+  /* Active pin = SECONDARY (white) – Optic Yellow is reserved for the home map (see globals.css colour roles). */
   background: #f8f8f8;
   box-shadow: 0 0 0 2px #0b0b0f, 0 0 0 5px rgb(224 5 195 / 0.55), 0 8px 22px rgb(224 5 195 / 0.5);
   transform: rotate(-45deg) scale(1.2);

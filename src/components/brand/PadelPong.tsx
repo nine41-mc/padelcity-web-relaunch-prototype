@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Endless padel pong for the "Coming soon" page: a neon ball rallies between two paddles.
+ * Endless padel pong for the "Coming soon" page: an Optic Yellow ball rallies between two paddles.
  * Move the pointer (or finger) over the court to take over the left paddle.
  * Pauses when off-screen or in a background tab; shows a still frame with reduced motion.
  */
@@ -60,7 +60,7 @@ export function PadelPong({ label }: { label: string }) {
       roundRect(40, s.ly - PAD_H / 2, PAD_W, PAD_H, 7);
       ctx.fillStyle = "#e005c3";
       roundRect(W - 40 - PAD_W, s.ry - PAD_H / 2, PAD_W, PAD_H, 7);
-      // Ball trail + ball (neon)
+      // Ball trail + ball (Optic Yellow)
       s.trail.forEach((p, i) => {
         ctx.fillStyle = `rgba(223,255,79,${(i / s.trail.length) * 0.35})`;
         ctx.beginPath();
@@ -141,7 +141,7 @@ export function PadelPong({ label }: { label: string }) {
   return (
     <div className="relative">
       <canvas ref={canvas} role="img" aria-label={label} className="aspect-[16/9] w-full touch-none rounded-[24px] border border-white/10" />
-      <p className="pointer-events-none absolute right-5 top-4 font-display text-xl font-extrabold italic uppercase tabular-nums text-neon-500 md:text-2xl" aria-hidden>
+      <p className="pointer-events-none absolute right-5 top-4 font-display text-xl font-extrabold italic uppercase tabular-nums text-optic-500 md:text-2xl" aria-hidden>
         Rally {rally}
       </p>
     </div>

@@ -50,7 +50,7 @@ export function CoachStat({
         )}
       >
         {has ? (
-          <span className="text-neon-500">
+          <span className="text-optic-500">
             {formatted}
             {suffix}
           </span>
@@ -95,7 +95,7 @@ export function CoachCard({
       className={cn(
         "group relative isolate h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 md:rounded-[28px]",
         "hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow motion-reduce:hover:translate-y-0",
-        "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-neon-500 has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-ink-800",
+        "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-optic-500 has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-ink-800",
         feature ? "aspect-[4/5] md:aspect-[16/11] lg:aspect-[16/10]" : "aspect-[3/4]",
       )}
     >

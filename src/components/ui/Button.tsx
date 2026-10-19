@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "./cn";
 
-type Variant = "primary" | "gradient" | "neon" | "outline" | "ghost";
+type Variant = "primary" | "gradient" | "optic" | "outline" | "ghost";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
   primary: "bg-white text-ink-800 hover:shadow-glow",
   gradient: "bg-brand-gradient text-white hover:shadow-glow hover:brightness-110",
   // HIGHLIGHT role – reserved for the newsletter module only (see globals.css colour roles)
-  neon: "bg-neon-500 text-ink-800 hover:bg-neon-400 hover:shadow-neon",
+  optic: "bg-optic-500 text-ink-800 hover:bg-optic-400 hover:shadow-optic",
   outline: "border-2 border-white/60 text-white hover:border-white hover:bg-white/5",
   ghost: "text-white hover:text-magenta-300",
 };
@@ -36,7 +36,7 @@ const arrowSizes: Record<Size, string> = { sm: "size-8", md: "size-10", lg: "siz
 const arrowStyles: Record<Variant, string> = {
   primary: "bg-brand-gradient text-white",
   gradient: "bg-white/15 text-white",
-  neon: "bg-ink-800 text-neon-500",
+  optic: "bg-ink-800 text-optic-500",
   outline: "bg-white/10 text-white",
   ghost: "bg-white/10 text-white",
 };

@@ -142,7 +142,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <RoleCard
             role="Highlight"
             name="Optic Yellow („Tennisball“)"
-            swatch={<div className="h-28 rounded-[16px] bg-neon-500" />}
+            swatch={<div className="h-28 rounded-[16px] bg-optic-500" />}
             values="#DFFF4F · RGB 223 255 79"
             uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer"]}
           />
@@ -175,7 +175,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Palette name="Optic Yellow" steps={[["300", "#eaff8f"], ["400", "#e5ff70"], ["500", "#DFFF4F"], ["600", "#c1e425"]]} />
           <Palette name="Status" steps={[["Erfolg", "#00b894"], ["Fehler", "#ff2e47"], ["Warnung", "#ffd500"], ["Chalk", "#f8f8f8"]]} />
         </div>
-        <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Optic Yellow ist für den Relaunch neu und steht noch nicht in der Library (Token-Name im Code: neon-*).</p>
+        <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Optic Yellow ist für den Relaunch neu und steht noch nicht in der Library (Token-Name im Code: optic-*).</p>
 
         <H3>Kontraste (WCAG 2.2 AA)</H3>
         <Table
@@ -197,7 +197,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <TypeCard name="Söhne Schmal Fett Kursiv" role="Display" sample={<span className="font-display text-6xl font-extrabold italic uppercase leading-none">Game. Set. Match.</span>}>
             Headlines, Buttons, Zahlen, Ticker. Immer in Versalien und kursiv. Schmal geschnitten, deshalb eine Stufe größer setzen als Poppins.
           </TypeCard>
-          <TypeCard name="Good Brush" role="Akzent" sample={<span className="font-brush text-6xl leading-none text-neon-500">noise</span>}>
+          <TypeCard name="Good Brush" role="Akzent" sample={<span className="font-brush text-6xl leading-none text-optic-500">noise</span>}>
             Genau ein Wort pro Headline über die Accent-Komponente: leicht gedreht, in Optic Yellow. Nie für ganze Sätze und nie für Fließtext.
           </TypeCard>
           <TypeCard name="Poppins" role="Text" sample={<span className="text-3xl font-semibold leading-tight">Let&apos;s play Padel.</span>}>
@@ -257,8 +257,8 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Demo label="ghost · leise Aktion im Fließtext">
             <Button href="#buttons" variant="ghost" arrow={false}>Alle Events</Button>
           </Demo>
-          <Demo label="neon (Optic Yellow) · nur im Newsletter-Modul" className="bg-ink-800">
-            <Button variant="neon" type="button">Anmelden</Button>
+          <Demo label="optic · nur im Newsletter-Modul" className="bg-ink-800">
+            <Button variant="optic" type="button">Anmelden</Button>
           </Demo>
           <Demo label="Größen sm · md · lg">
             <div className="flex flex-wrap items-center gap-3">
@@ -362,7 +362,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           </Demo>
         </div>
         <H3>Ticker</H3>
-        <div className="flex h-14 items-center overflow-hidden rounded-[16px] bg-neon-500 text-ink-800">
+        <div className="flex h-14 items-center overflow-hidden rounded-[16px] bg-optic-500 text-ink-800">
           <Marquee>
             {["30+ Clubs", "200+ Courts", "25+ Städte", "3 Länder", "#bettertogether"].map((item) => (
               <span key={item} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase">
@@ -660,7 +660,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             "Website-Verlauf (#DC05A1) als eigenen Paint-Style „gradient-web“ ergänzen oder den bestehenden angleichen",
             "Radius 12, 32 und „pill“ ergänzen",
             "Website-Textstyles (Headline xl/lg/md/sm, Eyebrow, Lead, Label) als eigene Gruppe „Web“ anlegen",
-            "Button-Varianten der Website (primary-white, gradient, outline-white, neon/Optic Yellow) als Komponenten-Set",
+            "Button-Varianten der Website (primary-white, gradient, outline-white, optic) als Komponenten-Set",
             "Benennung Ink ↔ Gray-Blue vereinheitlichen (Website ink-800 = gray-blue-900)",
           ].map((t) => (
             <li key={t} className="flex gap-3 rounded-[16px] border border-white/10 bg-ink-700 p-4 text-white/85">

@@ -10,7 +10,7 @@ const sizes = {
 
 /**
  * Big italic display headline (Söhne Schmal Fett Kursiv, as in the app's headline1).
- * Wrap single words in <Accent> to get the Good Brush + neon treatment from Elephant's pitch.
+ * Wrap single words in <Accent> to get the Good Brush + Optic Yellow treatment from Elephant's pitch.
  */
 export function Headline({
   as: Comp = "h2",
@@ -32,18 +32,18 @@ export function Headline({
 
 export function Accent({
   children,
-  tone = "neon",
+  tone = "optic",
   className,
 }: {
   children: React.ReactNode;
-  tone?: "neon" | "magenta" | "gradient";
+  tone?: "optic" | "magenta" | "gradient";
   className?: string;
 }) {
   return (
     <span
       className={cn(
         "font-brush not-italic font-normal normal-case relative -top-[0.06em] inline-block -rotate-2 px-[0.04em] text-[1.08em] leading-[0.8] align-baseline",
-        tone === "neon" && "text-neon-500",
+        tone === "optic" && "text-optic-500",
         tone === "magenta" && "text-magenta-500",
         tone === "gradient" && "text-brand-gradient",
         className,

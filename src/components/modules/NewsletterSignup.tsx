@@ -36,8 +36,8 @@ export function NewsletterSignup({
         </>
       )}
       {done ? (
-        <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-neon-500 outline-none" role="status">
-          <span className="grid size-8 place-items-center rounded-full bg-neon-500 text-ink-800">
+        <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-optic-500 outline-none" role="status">
+          <span className="grid size-8 place-items-center rounded-full bg-optic-500 text-ink-800">
             <Check className="size-4" />
           </span>
           {t.success}
@@ -58,9 +58,9 @@ export function NewsletterSignup({
             type="email"
             required
             placeholder={t.placeholder}
-            className="h-12 shrink-0 rounded-full border border-white/45 bg-black/40 px-5 sm:flex-1 text-white placeholder:text-white/60 focus:border-neon-500 focus:outline-none focus:ring-2 focus:ring-neon-500/50"
+            className="h-12 shrink-0 rounded-full border border-white/45 bg-black/40 px-5 sm:flex-1 text-white placeholder:text-white/60 focus:border-optic-500 focus:outline-none focus:ring-2 focus:ring-optic-500/50"
           />
-          <Button type="submit" variant="neon" data-track="newsletter_submit">
+          <Button type="submit" variant="optic" data-track="newsletter_submit">
             {t.submit}
           </Button>
         </form>

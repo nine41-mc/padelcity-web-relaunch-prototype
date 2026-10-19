@@ -45,7 +45,7 @@ export function LeadForm({
   const [done, setDone] = useState(false);
 
   const inputCls =
-    "w-full rounded-2xl border border-white/45 bg-black/40 px-4 text-white placeholder:text-white/60 transition-colors focus:border-neon-500 focus:outline-none focus:ring-2 focus:ring-neon-500/50";
+    "w-full rounded-2xl border border-white/45 bg-black/40 px-4 text-white placeholder:text-white/60 transition-colors focus:border-optic-500 focus:outline-none focus:ring-2 focus:ring-optic-500/50";
 
   if (done) {
     return (

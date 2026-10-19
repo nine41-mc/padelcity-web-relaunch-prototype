@@ -5,7 +5,7 @@
  * Base palettes mirror the shared Figma "Foundations" and
  * web-app-flutter/packages/padel_city_ui/lib/src/theme/padel_colors.dart,
  * so APL / ADM / App and the website speak the same colour language.
- * NEW for the relaunch: `neon` (tennis-ball accent from Elephant's pitch).
+ * NEW for the relaunch: `optic` = Optic Yellow (tennis-ball accent, idea from Elephant's pitch).
  *
  * ───────────── COLOUR ROLES (strict – check every new colour use against this) ─────────────
  * PRIMARY   = brand gradient purple #8412B5 → magenta #E005C3 (`bg-brand-gradient`, purple-* and magenta-* tokens).
@@ -15,18 +15,18 @@
  *             eyebrows (magenta-400, PadelCity, 15.10.2026).
  * SECONDARY = white on ink. Body text, ALL icons (facility, sport, contact, clock, map pin, social,
  *             filter, select), outline buttons, borders, hover states (→ white, or magenta-300 for
- *             text links), carousel arrows, rating stars. Never neon on hover.
+ *             text links), carousel arrows, rating stars. Never Optic Yellow on hover.
  *             Exception: the opening status line on club cards ("Geöffnet bis 22:00" + clock icon)
  *             is magenta-300 – PadelCity pink for live club info.
- * HIGHLIGHT = neon "Optic Yellow" #dfff4f (`neon-*`, tennis-ball colour, ITF name; changed from #b4e854 on 19.10.2026). ONLY these uses:
+ * HIGHLIGHT = Optic Yellow #dfff4f (`optic-*`, tennis-ball colour, ITF name; replaced the earlier neon #b4e854 on 19.10.2026). ONLY these uses:
  *             1. <Accent> brush word in headlines          6. keyboard focus ring / skip link (a11y)
- *             2. neon marquee / ticker bands (home+footer)  7. active pin + pin label on the HOME map
+ *             2. Optic Yellow marquee / ticker bands (home+footer)  7. active pin + pin label on the HOME map
  *             3. level labels (Chip tone="level")          8. the footer padel ball
  *             4. coach stats numbers (hours / students)
- *             5. the newsletter module (neon button + success state, Button variant "neon")
+ *             5. the newsletter module (Optic Yellow button + success state, Button variant "optic")
  * STATUS    = success / danger / warning – unchanged, only for system feedback.
  * Contrast (WCAG AA): white on gradient ≥ 4.5:1 (4.6:1 at the #DC05A1 end); magenta-300 on ink-800 ≈ 7:1;
- * neon on ink-800 ≈ 17:1 (focus ring); never neon text on white/chalk (1.1:1).
+ * optic on ink-800 ≈ 17:1 (focus ring); never Optic Yellow text on white/chalk (1.1:1).
  */
 /* Metric-matched fallback for Söhne Schmal (see src/app/fonts.ts): Arial scaled so UPPERCASE italic lines
    wrap like the real condensed font; ascent/descent keep the original line box. Prevents CLS on font swap. */
@@ -82,11 +82,11 @@
   --color-stone: #b8b8be;
   --color-graphite: #646464;
 
-  /* NEW: neon accent "Optic Yellow" (tennis ball) = HIGHLIGHT role. Print/club values: colour passport in the styleguide (to be proofed). */
-  --color-neon-300: #eaff8f;
-  --color-neon-400: #e5ff70;
-  --color-neon-500: #dfff4f;
-  --color-neon-600: #c1e425;
+  /* NEW: Optic Yellow accent (tennis ball) = HIGHLIGHT role. Print/club values: colour passport in the styleguide (to be proofed). */
+  --color-optic-300: #eaff8f;
+  --color-optic-400: #e5ff70;
+  --color-optic-500: #dfff4f;
+  --color-optic-600: #c1e425;
 
   /* Status (shared with the app) */
   --color-success: #00b894;
@@ -114,7 +114,7 @@
 
   --shadow-elevated: 0 16px 16px rgb(21 23 31 / 0.75);
   --shadow-glow: 0 0 0 1px rgb(224 5 195 / 0.25), 0 20px 60px -20px rgb(224 5 195 / 0.45);
-  --shadow-neon: 0 0 0 1px rgb(223 255 79 / 0.35), 0 18px 50px -18px rgb(223 255 79 / 0.55);
+  --shadow-optic: 0 0 0 1px rgb(223 255 79 / 0.35), 0 18px 50px -18px rgb(223 255 79 / 0.55);
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-pulse-dot: pulse-dot 1.8s ease-in-out infinite;
@@ -225,12 +225,12 @@
     color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--color-neon-500);
+    outline: 2px solid var(--color-optic-500);
     outline-offset: 3px;
     border-radius: 6px;
   }
-  /* Neon ring disappears on light / neon surfaces (1.35:1 on chalk) → switch to ink there. */
-  :where(.bg-chalk, .bg-white, .bg-neon-500, .bg-neon-400) :focus-visible {
+  /* Optic Yellow ring disappears on light / Optic Yellow surfaces (1.1:1 on chalk) → switch to ink there. */
+  :where(.bg-chalk, .bg-white, .bg-optic-500, .bg-optic-400) :focus-visible {
     outline-color: var(--color-ink-800);
   }
   @media (prefers-reduced-motion: reduce) {

@@ -20,7 +20,7 @@ function TikTok({ className }: { className?: string }) {
   );
 }
 
-/** Neon padel ball – the brand's single accent object. */
+/** Optic Yellow padel ball – the brand's single accent object. */
 function PadelBall({ className, id = "ballShade" }: { className?: string; id?: string }) {
   return (
     <svg viewBox="0 0 100 100" className={className} aria-hidden>
@@ -50,8 +50,8 @@ export function Footer({ locale }: { locale: Locale }) {
 
   return (
     <footer className="relative isolate overflow-hidden bg-black">
-      {/* Facts ticker – neon band as the hand-over from page to footer */}
-      <div className="relative z-10 flex h-14 items-center overflow-hidden bg-neon-500 text-ink-800 md:h-16" lang={locale}>
+      {/* Facts ticker – Optic Yellow band as the hand-over from page to footer */}
+      <div className="relative z-10 flex h-14 items-center overflow-hidden bg-optic-500 text-ink-800 md:h-16" lang={locale}>
         <Marquee>
           {[...t.footer.facts, "#bettertogether", "Let's play Padel"].map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">

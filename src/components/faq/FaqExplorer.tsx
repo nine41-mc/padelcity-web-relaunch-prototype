@@ -82,7 +82,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
               onChange={(e) => setQuery(e.target.value)}
               placeholder={labels.searchPlaceholder}
               autoComplete="off"
-              className="h-14 w-full rounded-full border border-white/20 bg-ink-700 pl-12 pr-14 text-base text-chalk placeholder:text-white/45 transition hover:border-white/50 focus-visible:border-neon-500 focus-visible:outline-none [&::-webkit-search-cancel-button]:hidden"
+              className="h-14 w-full rounded-full border border-white/20 bg-ink-700 pl-12 pr-14 text-base text-chalk placeholder:text-white/45 transition hover:border-white/50 focus-visible:border-optic-500 focus-visible:outline-none [&::-webkit-search-cancel-button]:hidden"
             />
             {query && (
               <button
@@ -155,7 +155,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                     <div className="divide-y divide-white/10 rounded-[20px] border border-white/10 bg-ink-700">
                       {c.items.map((i) => (
                         <details key={i.id} id={`faq-q-${i.id}`} className="group scroll-mt-28" open={Boolean(q) && total <= 3}>
-                          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-[20px] px-5 py-4 font-semibold transition hover:text-white md:px-6 md:text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-neon-500">
+                          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-[20px] px-5 py-4 font-semibold transition hover:text-white md:px-6 md:text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-optic-500">
                             {i.q}
                             <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 transition-transform duration-300 group-open:rotate-45 group-open:border-transparent group-open:bg-brand-gradient group-open:text-white motion-reduce:transition-none">
                               <Plus className="size-4" aria-hidden />

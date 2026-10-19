@@ -50,7 +50,7 @@ export function StoreGallery({
         role="region"
         aria-label={labels.label}
         tabIndex={0}
-        className="-mx-4 snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neon-500 md:-mx-0 md:scroll-px-0 md:px-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
+        className="-mx-4 snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-optic-500 md:-mx-0 md:scroll-px-0 md:px-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none]"
       >
         <ul className="flex w-max gap-4">
         {panels.map((p) => (
@@ -73,7 +73,7 @@ export function StoreGallery({
           onClick={() => scroll(-1)}
           disabled={edges.start}
           aria-label={labels.prev}
-          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-neon-500"
+          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-optic-500"
         >
           <ArrowLeft className="size-5" aria-hidden />
         </button>
@@ -82,7 +82,7 @@ export function StoreGallery({
           onClick={() => scroll(1)}
           disabled={edges.end}
           aria-label={labels.next}
-          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-neon-500"
+          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-optic-500"
         >
           <ArrowRight className="size-5" aria-hidden />
         </button>

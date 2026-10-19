@@ -30,7 +30,7 @@ export default function Page() {
           </div>
         </div>
         <div>
-          <PadelPong label="Animiertes Padel-Pong: ein neongelber Ball fliegt zwischen zwei Schlägern hin und her" />
+          <PadelPong label="Animiertes Padel-Pong: ein gelbgrüner Ball fliegt zwischen zwei Schlägern hin und her" />
           <p className="mt-3 text-sm text-white/60">Maus oder Finger über das Feld bewegen und links mitspielen · Move your pointer over the court to play.</p>
         </div>
       </div>

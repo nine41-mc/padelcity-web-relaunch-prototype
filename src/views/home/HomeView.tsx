@@ -48,7 +48,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <HomeHero locale={locale} t={t.hero} />
 
       {/* Momentum ticker */}
-      <div className="relative z-10 -rotate-1 bg-neon-500 py-3 text-ink-800 shadow-neon md:py-4">
+      <div className="relative z-10 -rotate-1 bg-optic-500 py-3 text-ink-800 shadow-optic md:py-4">
         <Marquee>
           {t.ticker.map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">

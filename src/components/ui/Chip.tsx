@@ -17,8 +17,8 @@ export function Chip({
         tone === "gradient" && "bg-brand-gradient text-white",
         tone === "solid" && "bg-white text-ink-800",
         tone === "dark" && "bg-black/60 text-white backdrop-blur",
-        // Skill level ("Level 1–3") – HIGHLIGHT role: the only chip allowed in neon
-        tone === "level" && "border border-neon-500/70 text-neon-500",
+        // Skill level ("Level 1–3") – HIGHLIGHT role: the only chip allowed in Optic Yellow
+        tone === "level" && "border border-optic-500/70 text-optic-500",
         className,
       )}
     >

@@ -175,7 +175,7 @@ export function Select({
           "flex w-full items-center gap-2.5 rounded-full border bg-ink-700 pr-3 text-left font-medium text-white transition-colors",
           size === "lg" ? "h-12 pl-5 text-base" : "h-11 pl-4 text-sm",
           open ? "border-white" : "border-white/45 hover:border-white/75",
-          "focus-visible:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neon-500/40",
+          "focus-visible:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-optic-500/40",
         )}
       >
         {icon && <span className="shrink-0 text-white [&>svg]:size-4" aria-hidden>{icon}</span>}
