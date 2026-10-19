@@ -23,12 +23,12 @@ function TikTok({ className }: { className?: string }) {
 /** Optic Yellow padel ball – the brand's single accent object. */
 function PadelBall({ className, id = "ballShade" }: { className?: string; id?: string }) {
   return (
-    <svg viewBox="0 0 100 100" className={className} aria-hidden>
+    <svg viewBox="0 0 100 100" className={className} aria-hidden data-highlight-target>
       <defs>
         <radialGradient id={id} cx="35%" cy="30%" r="75%">
-          <stop offset="0" stopColor="#e3fb9c" />
-          <stop offset="0.55" stopColor="#dfff4f" />
-          <stop offset="1" stopColor="#6f9a24" />
+          <stop offset="0" style={{ stopColor: "var(--color-optic-300)" }} />
+          <stop offset="0.55" style={{ stopColor: "var(--color-optic-500)" }} />
+          <stop offset="1" style={{ stopColor: "var(--color-optic-600)" }} />
         </radialGradient>
       </defs>
       <circle cx="50" cy="50" r="48" fill={`url(#${id})`} />
@@ -51,7 +51,7 @@ export function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className="relative isolate overflow-hidden bg-black">
       {/* Facts ticker – Optic Yellow band as the hand-over from page to footer */}
-      <div className="relative z-10 flex h-14 items-center overflow-hidden bg-optic-500 text-ink-800 md:h-16" lang={locale}>
+      <div className="relative z-10 flex h-14 items-center overflow-hidden bg-optic-500 text-on-optic md:h-16" lang={locale}>
         <Marquee>
           {[...t.footer.facts, "#bettertogether", "Let's play Padel"].map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">
@@ -72,7 +72,7 @@ export function Footer({ locale }: { locale: Locale }) {
         {/* Hero row: claim + ball | newsletter */}
         <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
           <div className="relative">
-            <PadelBall id={`ballShade-${locale}`} className="absolute -top-6 right-0 size-20 rotate-12 drop-shadow-[0_12px_30px_rgba(223,255,79,0.45)] motion-safe:animate-[ball-bob_3.2s_ease-in-out_infinite] md:-top-10 md:size-28 lg:right-6" />
+            <PadelBall id={`ballShade-${locale}`} className="absolute -top-6 right-0 size-20 rotate-12 drop-shadow-[0_12px_30px_color-mix(in_srgb,var(--color-optic-500)_45%,transparent)] motion-safe:animate-[ball-bob_3.2s_ease-in-out_infinite] md:-top-10 md:size-28 lg:right-6" />
             <p className="max-w-[12ch] font-display text-6xl leading-[0.86] font-extrabold italic uppercase text-balance md:text-8xl lg:text-[7.5rem]">
               {t.footer.claim1} <Accent>{t.footer.claimAccent}</Accent> {t.footer.claim2}
             </p>

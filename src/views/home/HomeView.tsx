@@ -1,4 +1,5 @@
 import { keepTogether } from "@/lib/typography";
+import { HighlightDemo } from "@/components/home/HighlightDemo";
 import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
@@ -45,10 +46,12 @@ export async function HomeView({ locale }: { locale: Locale }) {
 
   return (
     <>
+      {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis) */}
+      <HighlightDemo locale={locale} />
       <HomeHero locale={locale} t={t.hero} />
 
       {/* Momentum ticker */}
-      <div className="relative z-10 -rotate-1 bg-optic-500 py-3 text-ink-800 shadow-optic md:py-4">
+      <div className="relative z-10 -rotate-1 bg-optic-500 py-3 text-on-optic shadow-optic md:py-4">
         <Marquee>
           {t.ticker.map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">

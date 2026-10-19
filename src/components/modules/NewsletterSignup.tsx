@@ -37,7 +37,7 @@ export function NewsletterSignup({
       )}
       {done ? (
         <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-optic-500 outline-none" role="status">
-          <span className="grid size-8 place-items-center rounded-full bg-optic-500 text-ink-800">
+          <span className="grid size-8 place-items-center rounded-full bg-optic-500 text-on-optic">
             <Check className="size-4" />
           </span>
           {t.success}

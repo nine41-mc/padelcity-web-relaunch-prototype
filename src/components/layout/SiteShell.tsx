@@ -28,7 +28,7 @@ export function siteMetadata(locale: Locale): Metadata {
 }
 
 const skipCls =
-  "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-optic-500 focus:px-4 focus:py-2 focus:text-ink-800";
+  "sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-optic-500 focus:px-4 focus:py-2 focus:text-on-optic";
 
 /**
  * The single 404 document (static export: one 404.html for every URL) detects /en/... and /pl/... before paint:

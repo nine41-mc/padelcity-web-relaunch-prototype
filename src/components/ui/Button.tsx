@@ -13,7 +13,7 @@ const variants: Record<Variant, string> = {
   primary: "bg-white text-ink-800 hover:shadow-glow",
   gradient: "bg-brand-gradient text-white hover:shadow-glow hover:brightness-110",
   // HIGHLIGHT role – reserved for the newsletter module only (see globals.css colour roles)
-  optic: "bg-optic-500 text-ink-800 hover:bg-optic-400 hover:shadow-optic",
+  optic: "bg-optic-500 text-on-optic hover:bg-optic-400 hover:shadow-optic",
   outline: "border-2 border-white/60 text-white hover:border-white hover:bg-white/5",
   ghost: "text-white hover:text-magenta-300",
 };

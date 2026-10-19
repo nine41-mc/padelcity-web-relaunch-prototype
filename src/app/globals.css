@@ -87,6 +87,8 @@
   --color-optic-400: #e5ff70;
   --color-optic-500: #dfff4f;
   --color-optic-600: #c1e425;
+  /* text/icon colour on highlight surfaces (ticker, newsletter button) – switches with the highlight demo */
+  --color-on-optic: #0b0b0f;
 
   /* Status (shared with the app) */
   --color-success: #00b894;
@@ -114,7 +116,7 @@
 
   --shadow-elevated: 0 16px 16px rgb(21 23 31 / 0.75);
   --shadow-glow: 0 0 0 1px rgb(224 5 195 / 0.25), 0 20px 60px -20px rgb(224 5 195 / 0.45);
-  --shadow-optic: 0 0 0 1px rgb(223 255 79 / 0.35), 0 18px 50px -18px rgb(223 255 79 / 0.55);
+  --shadow-optic: 0 0 0 1px color-mix(in srgb, var(--color-optic-500) 35%, transparent), 0 18px 50px -18px color-mix(in srgb, var(--color-optic-500) 55%, transparent);
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-pulse-dot: pulse-dot 1.8s ease-in-out infinite;
@@ -293,3 +295,12 @@ html[data-a11y-contrast="high"] footer a:not([class*="rounded-full"]) {
   text-decoration: underline !important;
   text-underline-offset: 0.2em;
 }
+
+/*
+ * Highlight comparison (home page, HighlightDemo): clicking a highlight element cycles the highlight colour.
+ * Optic Yellow is the default; the others are candidates for comparison only.
+ */
+html[data-highlight="purple"] { --color-optic-300: #cc74f1; --color-optic-400: #ba45ed; --color-optic-500: #8412b5; --color-optic-600: #660e8b; --color-on-optic: #ffffff; }
+html[data-highlight="magenta"] { --color-optic-300: #fc69e8; --color-optic-400: #fb37e1; --color-optic-500: #e005c3; --color-optic-600: #c804ae; --color-on-optic: #ffffff; }
+html[data-highlight="turquoise"] { --color-optic-300: #86e8f3; --color-optic-400: #45dced; --color-optic-500: #15c0d3; --color-optic-600: #1198a7; --color-on-optic: #0b0b0f; }
+html[data-highlight-demo] :is(.text-optic-500, .bg-optic-500, [data-highlight-target]) { cursor: pointer; }

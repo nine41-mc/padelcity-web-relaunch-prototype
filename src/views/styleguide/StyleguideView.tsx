@@ -341,6 +341,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["level", "Spielstärke – die einzige Chip-Variante in Optic Yellow"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
             ["Gutschein-Modul", "Startseite: „Verschenk Spielzeit.“ mit drei Schritten (Text von padelcity.de) und Gutschein als Karte im Kreditkartenformat – Verlauf, Logo, Chip, Betrag in Söhne Schmal; Merch-Shop nur als Hinweis"],
+            ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Ticker, Karten-Label, Footer-Ball) oder auf den Button unten rechts wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
             ["Content-Modell", "Footer-Link „Content-Modell“: alle Seitentypen und Module mit der Herkunft jedes Felds (API vorhanden, API erweitern, neuer Contentful-Space, extern, unklar) – Daten in src/lib/content/contentModel.ts"],
             ["Jobs: Personio-Embed", "Seite statisch aus Contentful; nur „Offene Stellen“ ist die eingebettete Personio-Karriereseite (iframe, Höhe per postMessage), als helle Karte mit Ansprechpartnerin daneben; bis die Personio-URL steht, zeigt eine Vorschau im Personio-Look die 8 Stellen von padelcity.de/jobs"],
             ["Franchise: Leistungen & Kontakt", "Drei Phasen-Karten (Bauphase, Aktivierung, Regelbetrieb) mit den Leistungen von padelcity.de, optionale Leistungen gedämpft markiert; Ansprechpartner mit Foto neben dem Formular"],
@@ -362,7 +363,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           </Demo>
         </div>
         <H3>Ticker</H3>
-        <div className="flex h-14 items-center overflow-hidden rounded-[16px] bg-optic-500 text-ink-800">
+        <div className="flex h-14 items-center overflow-hidden rounded-[16px] bg-optic-500 text-on-optic">
           <Marquee>
             {["30+ Clubs", "200+ Courts", "25+ Städte", "3 Länder", "#bettertogether"].map((item) => (
               <span key={item} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase">
