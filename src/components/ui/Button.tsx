@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "./cn";
 
-type Variant = "primary" | "gradient" | "optic" | "outline" | "ghost";
+type Variant = "primary" | "gradient" | "optic" | "outline";
 type Size = "sm" | "md" | "lg";
 
 const base =
@@ -15,7 +15,6 @@ const variants: Record<Variant, string> = {
   // HIGHLIGHT role – reserved for the newsletter module only (see globals.css colour roles)
   optic: "bg-optic-500 text-on-optic hover:bg-optic-400 hover:shadow-optic",
   outline: "border-2 border-white/60 text-white hover:border-white hover:bg-white/5",
-  ghost: "text-white hover:text-magenta-300",
 };
 
 // Söhne Schmal is condensed – it needs a larger size than Poppins to read well.
@@ -38,7 +37,6 @@ const arrowStyles: Record<Variant, string> = {
   gradient: "bg-white/15 text-white",
   optic: "bg-ink-800 text-optic-500",
   outline: "bg-white/10 text-white",
-  ghost: "bg-white/10 text-white",
 };
 
 type Props = {

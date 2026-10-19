@@ -284,8 +284,8 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Demo label="outline · zweite Aktion neben primary">
             <Button href="#buttons" variant="outline" arrow={false}>Format & Zeitplan</Button>
           </Demo>
-          <Demo label="ghost · leise Aktion im Fließtext">
-            <Button href="#buttons" variant="ghost" arrow={false}>Alle Events</Button>
+          <Demo label="outline · Link zur Übersichtsseite, unter dem Inhalt">
+            <Button href="#buttons" variant="outline" className="w-fit">Alle Events</Button>
           </Demo>
           <Demo label="optic · nur im Newsletter-Modul" className="bg-ink-800">
             <Button variant="optic" type="button">Anmelden</Button>
@@ -304,6 +304,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             dos={["Verb plus Ziel: „In der App buchen“, „Club finden“, „Route öffnen“", "Den Ort der Aktion nennen: „Im Web“ und „In der App“ bei der Event-Anmeldung", "Höchstens drei Wörter", "Du-Ansprache, aktiv: „Jetzt Padel spielen“"]}
             donts={["„Mehr erfahren“, „Hier klicken“, „Weiter“ ohne Ziel", "Zwei gleich laute Buttons, die dasselbe tun", "Optic-Yellow-Buttons außerhalb des Newsletters", "Versprechen, die die Website nicht hält (z. B. freie Slots)"]}
           />
+        <Note>Links zu Übersichtsseiten („Alle Events“, „Alle Coaches“, „Alle FAQ“, „Alle Standorte“) sind immer Outline-Buttons mit Pfeil. Sie stehen unter dem Inhalt, auf den sie sich beziehen, nicht klein neben der Headline. Kleine Textlinks mit „→“ gibt es dafür nicht. Breadcrumbs und Zurück-Links oben entfallen; die Navigation und der Browser übernehmen das.</Note>
         <Note>Pro Bildschirm gibt es höchstens eine primäre Aktion. Auf Mobilgeräten übernimmt sie die Buchungsleiste unten, die ausblendet, sobald der Buchungsblock selbst sichtbar ist.</Note>
       </Block>
 
