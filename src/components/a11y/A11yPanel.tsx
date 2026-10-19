@@ -88,7 +88,7 @@ export function A11yPanel() {
 
   return (
     <>
-      {/* Floating trigger, bottom left; lifts above the club booking bar on phones */}
+      {/* Floating trigger, bottom right (usual place for accessibility tools); lifts above the club booking bar on phones */}
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -96,7 +96,7 @@ export function A11yPanel() {
         aria-haspopup="dialog"
         data-a11y-fab
         className={cn(
-          "fixed bottom-4 left-4 z-50 grid size-12 place-items-center rounded-full border border-white/25 bg-ink-700/90 text-white shadow-elevated backdrop-blur transition-colors hover:border-white hover:bg-ink-600",
+          "fixed bottom-4 right-4 z-50 grid size-12 place-items-center rounded-full border border-white/25 bg-ink-700/90 text-white shadow-elevated backdrop-blur transition-colors hover:border-white hover:bg-ink-600",
           "[body:has([data-booking-bar=visible])_&]:max-lg:bottom-24",
         )}
       >

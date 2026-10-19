@@ -55,7 +55,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         <Marquee>
           {t.ticker.map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">
-              {item} <span className="text-purple-500">●</span>
+              {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-purple-500" aria-hidden />
             </span>
           ))}
         </Marquee>

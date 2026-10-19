@@ -55,7 +55,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <Marquee>
           {[...t.footer.facts, "#bettertogether", "Let's play Padel"].map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">
-              {item} <span className="text-purple-600" aria-hidden>●</span>
+              {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-purple-600" aria-hidden />
             </span>
           ))}
         </Marquee>

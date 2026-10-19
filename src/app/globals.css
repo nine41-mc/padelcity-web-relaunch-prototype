@@ -303,4 +303,5 @@ html[data-a11y-contrast="high"] footer a:not([class*="rounded-full"]) {
 html[data-highlight="purple"] { --color-optic-300: #cc74f1; --color-optic-400: #ba45ed; --color-optic-500: #8412b5; --color-optic-600: #660e8b; --color-on-optic: #ffffff; }
 html[data-highlight="magenta"] { --color-optic-300: #fc69e8; --color-optic-400: #fb37e1; --color-optic-500: #e005c3; --color-optic-600: #c804ae; --color-on-optic: #ffffff; }
 html[data-highlight="turquoise"] { --color-optic-300: #86e8f3; --color-optic-400: #45dced; --color-optic-500: #15c0d3; --color-optic-600: #1198a7; --color-on-optic: #0b0b0f; }
-html[data-highlight-demo] :is(.text-optic-500, .bg-optic-500, [data-highlight-target]) { cursor: pointer; }
+/* clickable for the comparison – no text selection on (double) clicks */
+html[data-highlight-demo] :is(.text-optic-500, .bg-optic-500, [data-highlight-target]) { cursor: pointer; -webkit-user-select: none; user-select: none; }

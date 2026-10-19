@@ -59,7 +59,7 @@ export function HighlightDemo({ locale }: { locale: Locale }) {
     <button
       type="button"
       onClick={next}
-      className="fixed bottom-4 right-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-3 rounded-full border border-white/25 bg-ink-700/90 py-2 pl-2 pr-4 text-left text-white shadow-elevated backdrop-blur transition-colors hover:border-white"
+      className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-3 rounded-full border border-white/25 bg-ink-700/90 py-2 pl-2 pr-4 text-left text-white shadow-elevated backdrop-blur transition-colors hover:border-white"
     >
       <span className="size-8 shrink-0 rounded-full ring-2 ring-white/30" style={{ background: c.hex }} aria-hidden />
       <span className="min-w-0 leading-tight">

@@ -169,12 +169,34 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
         <H3>Paletten</H3>
         <div className="space-y-4">
-          <Palette name="Purple" steps={[["50", "#f6e8fd"], ["200", "#dda2f6"], ["400", "#ba45ed"], ["500", "#8412b5"], ["700", "#660e8b"], ["900", "#22052e"]]} />
+          <Palette name="Purple" steps={[["50", "#f6e8fd"], ["200", "#dda2f6"], ["400", "#ba45ed"], ["500", "#8412b5"], ["700", "#660e8b"], ["800", "#44095d"], ["900", "#22052e"]]} />
           <Palette name="Magenta" steps={[["50", "#fee6fb"], ["200", "#fd9bf0"], ["300", "#fc69e8"], ["500", "#e005c3"], ["700", "#960382"], ["900", "#32012b"]]} />
-          <Palette name="Ink" steps={[["50", "#d2d3d5"], ["200", "#909197"], ["400", "#36384a"], ["600", "#1b1c26"], ["700", "#15171f"], ["800 · Figma 900", "#0b0b0f"]]} />
+          <Palette name="Ink" steps={[["50", "#d2d3d5"], ["100", "#b5b5b9"], ["200", "#909197"], ["300", "#6a6c74"], ["400", "#36384a"], ["600", "#1b1c26"], ["700", "#15171f"], ["800 · Figma 900", "#0b0b0f"]]} />
           <Palette name="Optic Yellow" steps={[["300", "#eaff8f"], ["400", "#e5ff70"], ["500", "#DFFF4F"], ["600", "#c1e425"]]} />
           <Palette name="Status" steps={[["Erfolg", "#00b894"], ["Fehler", "#ff2e47"], ["Warnung", "#ffd500"], ["Chalk", "#f8f8f8"]]} />
         </div>
+        <p className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-white/70">
+          <span>Abgleich mit dem Brandbook (Maus drüber oder antippen für den Quicktipp):</span>
+          <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full bg-white text-[10px] font-bold text-ink-800">●</span> trifft</span>
+          <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-white text-[10px] font-bold">≈</span> nah dran</span>
+          <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-dashed border-white/70 text-[10px] font-bold">≠</span> bewusst abweichend</span>
+        </p>
+
+        <H3>Brandbook-Farben und ihr nächster Website-Ton</H3>
+        <Table
+          head={["Brandbook", "Nächster Website-Ton", "Abstand", "Bewertung"]}
+          rows={[
+            ["PC Verlauf Purple #401B78", "Purple 800 #44095D", "ΔE 6,1", "nah – Brandbook etwas bläulicher"],
+            ["PC Verlauf Mitte #791979 (Pantone 2592 C)", "Magenta 700 #960382", "ΔE 5,3", "nah"],
+            ["PC Verlauf Magenta #AC007D", "Magenta 700 #960382", "ΔE 5,4", "nah – kein Hauptton trifft es (Magenta 500: ΔE 14)"],
+            ["PC Schwarz #000000", "Ink 800 #0B0B0F", "ΔE 2,7", "nah – bewusst minimal angehoben"],
+            ["PC Hellgrau #B8B8BE", "Ink 100 #B5B5B9", "ΔE 1,3", "trifft"],
+            ["PC Dunkelgrau #646464", "Ink 300 #6A6C74", "ΔE 5,4", "nah – Website kühler"],
+            ["PC Weiß #FFFFFF", "Weiß (Text)", "ΔE 0", "trifft"],
+            ["Brandbook-Verlauf #401B78 → #791979 → #AC007D", "bg-brandbook-gradient", "identisch", "trifft – für große Flächen; Buttons nutzen den helleren App-Verlauf"],
+          ]}
+        />
+        <Note>ΔE ist der wahrgenommene Farbabstand (CIEDE2000): bis 2 kaum sichtbar, bis etwa 7 nah, darüber klar unterschiedlich. Die Haupttöne Purple 500 und Magenta 500 weichen bewusst ab – sie kommen aus App und Figma-Library und sind fürs Display optimiert; ob das so bleibt, ist Teil der offenen Brand-Abstimmung.</Note>
         <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Optic Yellow ist für den Relaunch neu und steht noch nicht in der Library (Token-Name im Code: optic-*).</p>
 
         <H3>Kontraste (WCAG 2.2 AA)</H3>
@@ -341,7 +363,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["level", "Spielstärke – die einzige Chip-Variante in Optic Yellow"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
             ["Gutschein-Modul", "Startseite: „Verschenk Spielzeit.“ mit drei Schritten (Text von padelcity.de) und Gutschein als Karte im Kreditkartenformat – Verlauf, Logo, Chip, Betrag in Söhne Schmal; Merch-Shop nur als Hinweis"],
-            ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Ticker, Karten-Label, Footer-Ball) oder auf den Button unten rechts wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
+            ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Ticker, Karten-Label, Footer-Ball) oder auf den Button unten links wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
             ["Content-Modell", "Footer-Link „Content-Modell“: alle Seitentypen und Module mit der Herkunft jedes Felds (API vorhanden, API erweitern, neuer Contentful-Space, extern, unklar) – Daten in src/lib/content/contentModel.ts"],
             ["Jobs: Personio-Embed", "Seite statisch aus Contentful; nur „Offene Stellen“ ist die eingebettete Personio-Karriereseite (iframe, Höhe per postMessage), als helle Karte mit Ansprechpartnerin daneben; bis die Personio-URL steht, zeigt eine Vorschau im Personio-Look die 8 Stellen von padelcity.de/jobs"],
             ["Franchise: Leistungen & Kontakt", "Drei Phasen-Karten (Bauphase, Aktivierung, Regelbetrieb) mit den Leistungen von padelcity.de, optionale Leistungen gedämpft markiert; Ansprechpartner mit Foto neben dem Formular"],
@@ -367,7 +389,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Marquee>
             {["30+ Clubs", "200+ Courts", "25+ Städte", "3 Länder", "#bettertogether"].map((item) => (
               <span key={item} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase">
-                {item} <span className="text-purple-600" aria-hidden>●</span>
+                {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-purple-600" aria-hidden />
               </span>
             ))}
           </Marquee>
@@ -565,7 +587,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         </p>
               <H3>Darstellungs-Panel</H3>
         <p className="max-w-3xl text-white/75">
-          Runder Button unten links (auf Clubseiten am Handy über der Buchungsleiste) öffnet „Darstellung“: Schriftgröße (100–150 %), Abstände (Stufe „Weit“ = WCAG-1.4.12-Werte),
+          Runder Button unten rechts, wie bei Barrierefreiheits-Tools üblich (auf Clubseiten am Handy über der Buchungsleiste) öffnet „Darstellung“: Schriftgröße (100–150 %), Abstände (Stufe „Weit“ = WCAG-1.4.12-Werte),
           gut lesbare Schrift (Poppins aufrecht statt kursiver Display- und Brush-Schrift), Bewegung aus (Video, Ticker, Animationen) und hoher Kontrast mit unterstrichenen Links.
           Eigenes Panel ohne Drittanbieter und ohne Tracking: setzt nur data-a11y-* auf &lt;html&gt; (vor dem ersten Rendern) und merkt sich die Wahl im Browser.
           Es ergänzt eine barrierefreie Seite, ersetzt sie nicht – die WCAG-Konformität liegt im Code.
@@ -729,18 +751,74 @@ function RoleCard({ role, name, swatch, values, uses }: { role: string; name: st
   );
 }
 
+type BrandbookNote = { status: "match" | "near" | "differs"; target: string; de: string; tip: string };
+
+/*
+ * Brandbook comparison per swatch (ΔE 2000 against the brandbook colours PC Verlauf #401B78 / #791979 / #AC007D,
+ * PC Schwarz, Hellgrau, Dunkelgrau, Weiß). ≤ 2 = matches (difference barely visible), ≤ 7 = close, otherwise a
+ * deliberate digital variant. Only notable steps are annotated.
+ */
+const BRANDBOOK: Record<string, BrandbookNote> = {
+  "Purple 500": { status: "differs", target: "PC Verlauf Mitte #791979 / Purple #401B78", de: "ΔE 10 / 14", tip: "Digitaler Hauptton aus App und Figma-Library: heller und gesättigter, damit Purple auf dunklen Screens leuchtet (weiße Schrift 7,7 : 1). Das Brandbook-Purple #401B78 ist auf Druck ausgelegt und wirkt am Bildschirm fast schwarz-violett." },
+  "Purple 700": { status: "near", target: "PC Verlauf Mitte #791979", de: "ΔE 6,7", tip: "Kommt dem Brandbook-Mittelton nahe – nutzbar, wenn eine Fläche den Druck-Look tragen soll." },
+  "Purple 800": { status: "near", target: "PC Verlauf Purple #401B78", de: "ΔE 6,1", tip: "Nächster Ton zum Brandbook-Purple; das Brandbook-Purple ist etwas bläulicher." },
+  "Magenta 500": { status: "differs", target: "PC Verlauf Magenta #AC007D", de: "ΔE 14", tip: "Digital deutlich leuchtender als das Druck-Magenta (CMYK M100). Nachteil: weiße Schrift nur 4,2 : 1 – deshalb endet der Button-Verlauf bei #DC05A1." },
+  "Magenta 700": { status: "near", target: "PC Verlauf Mitte #791979 / Magenta #AC007D", de: "ΔE 5,3 / 5,4", tip: "Liegt zwischen Brandbook-Mitte und -Magenta – der beste Brückenton zwischen Website und Brandbook." },
+  "Ink 100": { status: "match", target: "PC Hellgrau #B8B8BE", de: "ΔE 1,3", tip: "Trifft das Brandbook-Hellgrau praktisch genau." },
+  "Ink 300": { status: "near", target: "PC Dunkelgrau #646464", de: "ΔE 5,4", tip: "Etwas kühler als das neutrale Brandbook-Dunkelgrau – die Ink-Skala ist durchgehend leicht blaugrau wie in der App." },
+  "Ink 800 · Figma 900": { status: "near", target: "PC Schwarz #000000", de: "ΔE 2,7", tip: "Fast Schwarz, minimal angehoben und bläulich: wirkt auf OLED-Displays ruhiger (kein Nachziehen beim Scrollen) und entspricht der App." },
+  "Optic Yellow 500": { status: "differs", target: "nicht im Brandbook", de: "–", tip: "Neu für den Relaunch (Tennisball-Farbe). Farbpass im Entwurf, Druckwerte als Empfehlung." },
+};
+
+const BB_MARK: Record<BrandbookNote["status"], { label: string; cls: string }> = {
+  match: { label: "trifft das Brandbook", cls: "bg-white text-ink-800" },
+  near: { label: "nah am Brandbook", cls: "border border-white bg-ink-800/80 text-white" },
+  differs: { label: "bewusst abweichend", cls: "border border-dashed border-white/70 bg-ink-800/80 text-white" },
+};
+
 function Palette({ name, steps }: { name: string; steps: [string, string][] }) {
   return (
     <div className="grid items-center gap-3 sm:grid-cols-[110px_minmax(0,1fr)]">
       <p className="text-sm font-semibold">{name}</p>
-      <ul className="grid grid-cols-3 gap-2 sm:grid-cols-6">
-        {steps.map(([step, hex]) => (
-          <li key={step}>
-            <div className="h-12 rounded-[10px] border border-white/10" style={{ background: hex }} />
-            <p className="mt-1 text-[12px] font-semibold">{step}</p>
-            <p className="font-mono text-[11px] uppercase text-white/60">{hex}</p>
-          </li>
-        ))}
+      {/* tooltips are anchored to the row (ul is relative) so they never leave the frame on small screens */}
+      <ul className="relative grid grid-cols-3 gap-2 sm:grid-cols-[repeat(auto-fill,minmax(88px,1fr))]">
+        {steps.map(([step, hex]) => {
+          const key = `${name} ${step}`;
+          const bb = BRANDBOOK[key];
+          const tipId = `bb-${key.replace(/[^a-z0-9]+/gi, "-").toLowerCase()}`;
+          return (
+            <li key={step} className="group">
+              {bb ? (
+                // focusable so the quick tip also works by keyboard; tooltip linked via aria-describedby
+                <button type="button" aria-describedby={tipId} className="relative block h-12 w-full rounded-[10px] border border-white/10" style={{ background: hex }}>
+                  <span className={`absolute right-1.5 top-1.5 grid size-5 place-items-center rounded-full text-[10px] font-bold ${BB_MARK[bb.status].cls}`} aria-hidden>
+                    {bb.status === "match" ? "●" : bb.status === "near" ? "≈" : "≠"}
+                  </span>
+                  <span className="sr-only">
+                    {key}: {BB_MARK[bb.status].label}
+                  </span>
+                </button>
+              ) : (
+                <div className="h-12 rounded-[10px] border border-white/10" style={{ background: hex }} />
+              )}
+              <p className="mt-1 text-[12px] font-semibold">{step}</p>
+              <p className="font-mono text-[11px] uppercase text-white/60">{hex}</p>
+              {bb && (
+                <div
+                  id={tipId}
+                  role="tooltip"
+                  className="pointer-events-none invisible absolute left-0 top-full z-40 mt-2 w-full max-w-md rounded-[14px] border border-white/15 bg-ink-600 p-4 text-left opacity-0 shadow-elevated transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
+                >
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">Quicktipp · {BB_MARK[bb.status].label}</p>
+                  <p className="mt-1 text-sm font-semibold">
+                    {bb.target} <span className="font-normal text-white/60">({bb.de})</span>
+                  </p>
+                  <p className="mt-2 text-sm text-white/80">{bb.tip}</p>
+                </div>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
