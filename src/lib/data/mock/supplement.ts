@@ -103,7 +103,7 @@ const plannedSeeds: PlannedSeed[] = [
 
 /**
  * Card visuals for planned clubs: one landmark illustration per city (PadelCity series: ink bg,
- * purple→magenta glow, white line work, neon padel ball). Files: public/images/cities/<slug>.jpg,
+ * purple→magenta glow, white line work, Optic Yellow padel ball). Files: public/images/cities/v2/<slug>.jpg (v2 = ball recoloured to Optic Yellow),
  * provenance in public/images/SOURCES.md. Alt texts DE here, EN in supplement-en.ts.
  */
 export const plannedImageAlt: Record<string, string> = {
@@ -147,7 +147,7 @@ const plannedClubs: Club[] = plannedSeeds.map((s, i) => ({
   courts: [],
   facilities: [],
   openingHours: [],
-  mainImage: { url: `/images/cities/${s.slug}.jpg`, alt: plannedImageAlt[s.slug] ?? s.name, width: 1600, height: 1000 },
+  mainImage: { url: `/images/cities/v2/${s.slug}.jpg`, alt: plannedImageAlt[s.slug] ?? s.name, width: 1600, height: 1000 },
   images: [] as ImageAsset[],
   tags: [],
   source: "mock",

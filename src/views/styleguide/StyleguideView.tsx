@@ -116,7 +116,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       {/* Haltung */}
       <Block id="haltung" eyebrow="01" title="Haltung" lead="PadelCity ist Deutschlands Nummer 1 im Padel. Die Website soll sich anfühlen wie ein Abend im Club: laut, schnell, gemeinsam.">
         <div className="grid gap-4 md:grid-cols-3">
-          <Principle title="Dunkel ist die Bühne">Ink-Schwarz trägt die Seite. Fotos, das Verlaufs-Pink und ein einziger Neon-Akzent leuchten davor – wie Flutlicht auf dem Court.</Principle>
+          <Principle title="Dunkel ist die Bühne">Ink-Schwarz trägt die Seite. Fotos, das Verlaufs-Pink und ein einziger Optic-Yellow-Akzent leuchten davor – wie Flutlicht auf dem Court.</Principle>
           <Principle title="Eine laute Stimme pro Fläche">Pro Abschnitt gibt es genau einen Hingucker: eine Headline mit Brush-Wort, ein Bild oder einen Call-to-Action. Alles andere tritt zurück.</Principle>
           <Principle title="Buchen passiert in der App">Die Website inspiriert und informiert, gebucht wird in der App. Darum führt jeder primäre Button genau dorthin – oder zur Event-Anmeldung im Web.</Principle>
         </div>
@@ -141,26 +141,26 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           />
           <RoleCard
             role="Highlight"
-            name="Neon „Optic Yellow“"
+            name="Optic Yellow („Tennisball“)"
             swatch={<div className="h-28 rounded-[16px] bg-neon-500" />}
             values="#DFFF4F · RGB 223 255 79"
             uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer"]}
           />
         </div>
-        <Note>Neon ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,1 : 1).</Note>
+        <Note>Optic Yellow ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,1 : 1).</Note>
 
         <H3>Farbpass Optic Yellow (Entwurf)</H3>
         <p className="mb-4 max-w-3xl text-white/75">
           „Optic Yellow“ ist der Name der Tennisball-Farbe beim Tennis-Weltverband ITF – einen offiziellen Farbwert gibt es nicht (die Regeln verlangen nur „weiß oder gelb“).
           Seit 19.10.2026 ersetzt #DFFF4F das bisherige #B4E854: frischer, näher am echten Ball, mit Grünstich klar vom Schwarz-Gelb des BVB getrennt.
-          Druck- und Materialwerte sind Startpunkte und werden erst nach Proofs festgelegt.
+          Druck- und Materialwerte sind Empfehlungen und werden erst nach Proofs final festgelegt.
         </p>
         <Table
           head={["Medium", "Wert", "Status"]}
           rows={[
             ["Digital (sRGB)", "#DFFF4F · RGB 223 255 79", "festgelegt"],
-            ["Print Volltonfarbe", "Pantone 388 C / 388 U", "Startpunkt – Tennis Canada nutzt 388 C für „Tennis Ball Yellow“ (#E0FF2D); am Fächer gegen einen echten Ball prüfen"],
-            ["Print CMYK", "C20 M0 Y100 K0 (gestrichen und ungestrichen)", "Startpunkt aus derselben Quelle; CMYK wirkt matter als der Bildschirm"],
+            ["Print Volltonfarbe", "Pantone 388 C / 388 U", "Empfehlung, final zu prüfen – Tennis Canada nutzt 388 C für „Tennis Ball Yellow“ (#E0FF2D); am Fächer gegen einen echten Ball prüfen"],
+            ["Print CMYK", "C20 M0 Y100 K0 (gestrichen und ungestrichen)", "Empfehlung, final zu prüfen – aus derselben Quelle; CMYK wirkt matter als der Bildschirm"],
             ["Leuchtfarbe (Merch, Club)", "offen", "Pantone 803 C ist reines Neongelb (≈ #FFE900) – zu nah am BVB; passende Leuchtfarbe per Proof suchen"],
             ["Textil", "Pantone TCX offen", "per Proof auf Stoff"],
             ["Wand, Folie, Schilder", "RAL/NCS bzw. Folienfarbe offen", "mit Schilder- und Folienhersteller, im Hallenlicht prüfen"],
@@ -172,10 +172,10 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Palette name="Purple" steps={[["50", "#f6e8fd"], ["200", "#dda2f6"], ["400", "#ba45ed"], ["500", "#8412b5"], ["700", "#660e8b"], ["900", "#22052e"]]} />
           <Palette name="Magenta" steps={[["50", "#fee6fb"], ["200", "#fd9bf0"], ["300", "#fc69e8"], ["500", "#e005c3"], ["700", "#960382"], ["900", "#32012b"]]} />
           <Palette name="Ink" steps={[["50", "#d2d3d5"], ["200", "#909197"], ["400", "#36384a"], ["600", "#1b1c26"], ["700", "#15171f"], ["800 · Figma 900", "#0b0b0f"]]} />
-          <Palette name="Neon" steps={[["300", "#eaff8f"], ["400", "#e5ff70"], ["500", "#DFFF4F"], ["600", "#c1e425"]]} />
+          <Palette name="Optic Yellow" steps={[["300", "#eaff8f"], ["400", "#e5ff70"], ["500", "#DFFF4F"], ["600", "#c1e425"]]} />
           <Palette name="Status" steps={[["Erfolg", "#00b894"], ["Fehler", "#ff2e47"], ["Warnung", "#ffd500"], ["Chalk", "#f8f8f8"]]} />
         </div>
-        <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Neon ist für den Relaunch neu und steht noch nicht in der Library.</p>
+        <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Optic Yellow ist für den Relaunch neu und steht noch nicht in der Library (Token-Name im Code: neon-*).</p>
 
         <H3>Kontraste (WCAG 2.2 AA)</H3>
         <Table
@@ -184,9 +184,9 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Weiß auf Brand-Verlauf", "≥ 4,6 : 1", "Button-Labels – dafür wurde der Magenta-Stopp auf #DC05A1 justiert"],
             ["Weiß auf Ink 800", "19,8 : 1", "Fließtext"],
             ["Magenta 300 auf Ink 800", "≈ 7 : 1", "Textlinks im Hover, Öffnungsstatus"],
-            ["Neon auf Ink 800", "≈ 17 : 1", "Fokus-Ring, Level-Labels, Akzente"],
-            ["Neon auf Purple 500", "≈ 6,8 : 1", "Akzente auf Purple-Flächen"],
-            ["Neon auf Chalk", "1,1 : 1", "Verboten"],
+            ["Optic Yellow auf Ink 800", "≈ 17 : 1", "Fokus-Ring, Level-Labels, Akzente"],
+            ["Optic Yellow auf Purple 500", "≈ 6,8 : 1", "Akzente auf Purple-Flächen"],
+            ["Optic Yellow auf Chalk", "1,1 : 1", "Verboten"],
           ]}
         />
       </Block>
@@ -198,7 +198,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             Headlines, Buttons, Zahlen, Ticker. Immer in Versalien und kursiv. Schmal geschnitten, deshalb eine Stufe größer setzen als Poppins.
           </TypeCard>
           <TypeCard name="Good Brush" role="Akzent" sample={<span className="font-brush text-6xl leading-none text-neon-500">noise</span>}>
-            Genau ein Wort pro Headline über die Accent-Komponente: leicht gedreht, in Neon. Nie für ganze Sätze und nie für Fließtext.
+            Genau ein Wort pro Headline über die Accent-Komponente: leicht gedreht, in Optic Yellow. Nie für ganze Sätze und nie für Fließtext.
           </TypeCard>
           <TypeCard name="Poppins" role="Text" sample={<span className="text-3xl font-semibold leading-tight">Let&apos;s play Padel.</span>}>
             Fließtext, Labels, Formulare, Navigation. Schnitte 400, 500, 600 und 700. Zeilenlänge maximal etwa 70 Zeichen.
@@ -257,7 +257,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Demo label="ghost · leise Aktion im Fließtext">
             <Button href="#buttons" variant="ghost" arrow={false}>Alle Events</Button>
           </Demo>
-          <Demo label="neon · nur im Newsletter-Modul" className="bg-ink-800">
+          <Demo label="neon (Optic Yellow) · nur im Newsletter-Modul" className="bg-ink-800">
             <Button variant="neon" type="button">Anmelden</Button>
           </Demo>
           <Demo label="Größen sm · md · lg">
@@ -272,7 +272,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>So schreiben wir Buttons</H3>
         <DoDont
             dos={["Verb plus Ziel: „In der App buchen“, „Club finden“, „Route öffnen“", "Den Ort der Aktion nennen: „Im Web“ und „In der App“ bei der Event-Anmeldung", "Höchstens drei Wörter", "Du-Ansprache, aktiv: „Jetzt Padel spielen“"]}
-            donts={["„Mehr erfahren“, „Hier klicken“, „Weiter“ ohne Ziel", "Zwei gleich laute Buttons, die dasselbe tun", "Neon-Buttons außerhalb des Newsletters", "Versprechen, die die Website nicht hält (z. B. freie Slots)"]}
+            donts={["„Mehr erfahren“, „Hier klicken“, „Weiter“ ohne Ziel", "Zwei gleich laute Buttons, die dasselbe tun", "Optic-Yellow-Buttons außerhalb des Newsletters", "Versprechen, die die Website nicht hält (z. B. freie Slots)"]}
           />
         <Note>Pro Bildschirm gibt es höchstens eine primäre Aktion. Auf Mobilgeräten übernimmt sie die Buchungsleiste unten, die ausblendet, sobald der Buchungsblock selbst sichtbar ist.</Note>
       </Block>
@@ -338,7 +338,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["gradient", "Event-Typ: Turnier, Training, Event"],
             ["solid", "Seltene Hervorhebung auf Bildern"],
             ["dark", "Auf Fotos, z. B. Bildanzahl in der Galerie"],
-            ["level", "Spielstärke – die einzige Chip-Variante in Neon"],
+            ["level", "Spielstärke – die einzige Chip-Variante in Optic Yellow"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
             ["Gutschein-Modul", "Startseite: „Verschenk Spielzeit.“ mit drei Schritten (Text von padelcity.de) und Gutschein als Karte im Kreditkartenformat – Verlauf, Logo, Chip, Betrag in Söhne Schmal; Merch-Shop nur als Hinweis"],
             ["Content-Modell", "Footer-Link „Content-Modell“: alle Seitentypen und Module mit der Herkunft jedes Felds (API vorhanden, API erweitern, neuer Contentful-Space, extern, unklar) – Daten in src/lib/content/contentModel.ts"],
@@ -406,7 +406,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>Coming-soon-Seite mit Padel-Pong</H3>
         <p className="max-w-3xl text-white/75">
           Ziel aller Links, die im Prototyp noch ins Leere laufen würden (App-Deeplinks, Event-Anmeldung in der Web-App). Endloses Pong auf einem dunklen Court: Schläger in Purple
-          und Magenta, Ball in Neon mit Leuchtspur, Rally-Zähler in Neon. Wer die Maus oder den Finger über das Feld bewegt, übernimmt den linken Schläger. Bei reduzierter Bewegung
+          und Magenta, Ball in Optic Yellow mit Leuchtspur, Rally-Zähler in Optic Yellow. Wer die Maus oder den Finger über das Feld bewegt, übernimmt den linken Schläger. Bei reduzierter Bewegung
           steht das Bild still. Zweisprachig, weil Links von DE- und EN-Seiten hier landen.
         </p>
 
@@ -414,7 +414,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <p className="max-w-3xl text-white/75">
           Deutschland im Brand-Verlauf mit Punktraster. Österreich und Polen sind grau und gestrichelt angedeutet, damit Innsbruck, Warschau, Krakau und Kielce nicht frei schweben.
           Beim Hover über das Land oder einen Pin darin färbt es sich ein – dieselbe Logik wie bei den Coach-Kacheln (erst grau, dann farbig). Nach rechts läuft Polen weich aus.
-          Aktiver Pin und Label in Neon; geplante Clubs als gestrichelte Pins.
+          Aktiver Pin und Label in Optic Yellow; geplante Clubs als gestrichelte Pins.
         </p>
 
         <H3>Presse-Logos („Bekannt aus …“)</H3>
@@ -435,7 +435,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>Footer</H3>
         <ul className="grid gap-3 md:grid-cols-2">
           {[
-            ["Neon-Ticker", "Übergang von der Seite in den Footer, freigegebene Kennzahlen"],
+            ["Ticker in Optic Yellow", "Übergang von der Seite in den Footer, freigegebene Kennzahlen"],
             ["Claim + Newsletter", "„Make some noise for Padel.“ links, das Newsletter-Modul steht rechts für sich allein"],
             ["WhatsApp-Band", "Volle Breite im Brandbook-Verlauf: „Never play alone.“ mit Button ins Gruppen-Overlay"],
             ["Drei Spalten", "„Fall in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],
@@ -544,7 +544,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       <Block id="a11y" eyebrow="11" title="Barrierefreiheit" lead="Ziel ist WCAG 2.2 AA – nicht als Abhaken am Ende, sondern als Designregel.">
         <ul className="grid gap-3 md:grid-cols-2">
           {[
-            "Fokus-Ring in Neon, auf hellen Flächen automatisch in Ink",
+            "Fokus-Ring in Optic Yellow, auf hellen Flächen automatisch in Ink",
             "Klickflächen mindestens 44 × 44 px",
             "Eigene Auswahllisten (Select) mit voller Tastatursteuerung",
             "Karten und Bottom Sheets lassen sich mit Esc schließen",
@@ -643,24 +643,24 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           head={["Thema", "Website", "Library", "Warum"]}
           rows={[
             ["Brand-Verlauf", "#DC05A1 → #8512B5", "„gradient“ #E005A4 → #8512B5", "Magenta-Stopp minimal dunkler, damit weiße Button-Texte WCAG AA erreichen"],
-            ["Seitengrund", "Ink 800 (#0B0B0F), Karten Ink 700", "color-background = gray-blue-700, Surface = gray-blue-500", "Website eine Stufe dunkler – Fotos und Neon wirken stärker"],
+            ["Seitengrund", "Ink 800 (#0B0B0F), Karten Ink 700", "color-background = gray-blue-700, Surface = gray-blue-500", "Website eine Stufe dunkler – Fotos und Optic Yellow wirken stärker"],
             ["Primary Button", "Weiße Pille mit Verlaufs-Pfeil oder Verlaufs-Pille", "Primary = flächig Purple 500, Hover Purple 700", "Elephant-Pitch; der Verlauf ist die Website-Signatur"],
             ["Secondary Button", "Outline weiß", "Outline Magenta", "Farbrolle Secondary = Weiß auf Ink"],
             ["Button-Schrift", "Söhne Schmal, Versalien", "Poppins Medium 14–18 px", "Stärkere Markenwirkung auf großen Flächen"],
             ["Gewählter Chip / Filter", "Brand-Verlauf", "Magenta (color-background-chip-selected)", "Gleiche Logik wie aktive Tabs"],
-            ["Fokus-Ring", "Neon 2 px", "Magenta-Schatten 24 %", "Auf Ink deutlich sichtbarer (≈ 13 : 1)"],
+            ["Fokus-Ring", "Optic Yellow 2 px", "Magenta-Schatten 24 %", "Auf Ink deutlich sichtbarer (≈ 17 : 1)"],
             ["Labels / Overline", "Poppins 600, 13 px, Sperrung 0,14 em", "Overline 1: Poppins Bold 12/18", "Etwas größer für mobile Lesbarkeit"],
-            ["Highlight-Farbe", "Neon #DFFF4F", "nicht vorhanden", "Neu für den Relaunch"],
+            ["Highlight-Farbe", "Optic Yellow #DFFF4F", "nicht vorhanden", "Neu für den Relaunch"],
           ]}
         />
         <H3>Vorschlag für die Library</H3>
         <ul className="grid gap-3 md:grid-cols-2">
           {[
-            "Neon (300–600) als neue Farbfamilie plus semantisches Token „highlight“ aufnehmen",
+            "Optic Yellow (300–600) als neue Farbfamilie plus semantisches Token „highlight“ aufnehmen",
             "Website-Verlauf (#DC05A1) als eigenen Paint-Style „gradient-web“ ergänzen oder den bestehenden angleichen",
             "Radius 12, 32 und „pill“ ergänzen",
             "Website-Textstyles (Headline xl/lg/md/sm, Eyebrow, Lead, Label) als eigene Gruppe „Web“ anlegen",
-            "Button-Varianten der Website (primary-white, gradient, outline-white, neon) als Komponenten-Set",
+            "Button-Varianten der Website (primary-white, gradient, outline-white, neon/Optic Yellow) als Komponenten-Set",
             "Benennung Ink ↔ Gray-Blue vereinheitlichen (Website ink-800 = gray-blue-900)",
           ].map((t) => (
             <li key={t} className="flex gap-3 rounded-[16px] border border-white/10 bg-ink-700 p-4 text-white/85">

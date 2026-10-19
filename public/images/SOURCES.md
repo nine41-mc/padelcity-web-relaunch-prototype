@@ -194,33 +194,33 @@ Von https://padelcity.de/ (Startseite, Abschnitt „Let the players talk“): Fo
 | `images/testimonials/emal.jpg` | https://padelcity.de/wp-content/uploads/2023/04/emal.jpg | Emal – 400×400 px |
 | `images/testimonials/giersi.jpg` | https://padelcity.de/wp-content/uploads/2023/04/giersi.png | Giersi – PNG 728×700 → JPG; Foto passt evtl. nicht zur Person (s. o.) |
 
-## Städte-Illustrationen „Bald eröffnet“ (`images/cities/`)
+## Städte-Illustrationen „Bald eröffnet“ (`images/cities/v2/`)
 
-Eigene Illustrationsserie für die geplanten Clubs (Stand 2026-10-13), keine Fremdfotos, keine Lizenzangabe nötig. Stil: Ink-Hintergrund #0b0b0f, Glow #401b78→#e005c3, weiße Linien, ein neonfarbener Padelball (#b4e854 – noch das alte Neon; seit 19.10.2026 ist der Highlight-Ton Optic Yellow #dfff4f, TODO: Bälle neu einfärben oder Bilder neu generieren). Zeigen ein Wahrzeichen der Stadt, NICHT den Club-Standort.
+Eigene Illustrationsserie für die geplanten Clubs (Stand 2026-10-13), keine Fremdfotos, keine Lizenzangabe nötig. Stil: Ink-Hintergrund #0b0b0f, Glow #401b78→#e005c3, weiße Linien, ein Padelball in Optic Yellow (#dfff4f; ursprünglich mit #b4e854 erzeugt, am 19.10.2026 per Farbton-Verschiebung nur des Balls umgefärbt → images/cities/v2/). Zeigen ein Wahrzeichen der Stadt, NICHT den Club-Standort.
 **KI** = generiert mit Figma MCP `generate_image` (Modell gemini-3.1-flash-image, Plan „MC“), einheitlicher Prompt: „Full-bleed flat vector illustration … of <Wahrzeichen>. Clean white line work only … deep near-black ink (#0b0b0f) background with a smooth dark purple (#401b78) to magenta (#e005c3) sky glow … exactly one small neon lime-green (#b4e854) accent: a single padel ball glowing in the sky like a moon … No text, no letters, no words, no logos, no people.“ Ausgabe 1264×848 PNG → JPG.
 **SVG** = von Hand als SVG gezeichnet im selben Stil (Figma-AI-Kontingent erschöpft), mit Headless Chrome auf 1600×1000 gerendert → JPG. Vor Go-live ggf. durch KI-/Agentur-Illustrationen ersetzen.
 
 | Datei | Motiv | Herkunft |
 |---|---|---|
-| `images/cities/bamberg.jpg` | Altes Rathaus über der Regnitz | KI |
-| `images/cities/bayreuth.jpg` | Festspielhaus auf dem Grünen Hügel (frei interpretiert, Turm nicht originalgetreu) | KI |
-| `images/cities/bielefeld-zentrum.jpg` | Sparrenburg über der Stadt | KI |
-| `images/cities/bocholt.jpg` | Historisches Rathaus (Renaissance-Giebel, Arkaden) | KI |
-| `images/cities/chemnitz.jpg` | Karl-Marx-Monument | KI |
-| `images/cities/emsbueren.jpg` | Windmühle, Dorfkirche, Felder an der Ems (generische Emsland-Szene) | KI |
-| `images/cities/koeln.jpg` | Kölner Dom + Hohenzollernbrücke | KI |
-| `images/cities/frankfurt-palmengarten.jpg` | Palmenhaus im Palmengarten, Skyline | SVG |
-| `images/cities/freiburg.jpg` | Freiburger Münster, Altstadt, Schwarzwald | SVG |
-| `images/cities/hannover.jpg` | Neues Rathaus am Maschteich | SVG |
-| `images/cities/kiel.jpg` | Leuchtturm, Segelboote, Fähre auf der Förde | SVG |
-| `images/cities/mannheim.jpg` | Wasserturm mit Brunnen | SVG |
-| `images/cities/muenchen-langwied.jpg` | Olympiaturm + Zeltdach Olympiapark | SVG |
-| `images/cities/rheine.jpg` | St. Dionysius an der Ems, Wehr, Brücke | SVG |
-| `images/cities/rostock.jpg` | Stadthafen mit Großsegler, Kränen, Marienkirche | SVG |
-| `images/cities/stuttgart.jpg` | Fernsehturm über Wald und Weinbergen | SVG |
-| `images/cities/waiblingen.jpg` | Hochwachtturm + Fachwerkhäuser an der Rems | SVG |
-| `images/cities/kielce.jpg` | Bischofspalast | SVG |
-| `images/cities/krakau.jpg` | Tuchhallen + Marienkirche | SVG |
+| `images/cities/v2/bamberg.jpg` | Altes Rathaus über der Regnitz | KI |
+| `images/cities/v2/bayreuth.jpg` | Festspielhaus auf dem Grünen Hügel (frei interpretiert, Turm nicht originalgetreu) | KI |
+| `images/cities/v2/bielefeld-zentrum.jpg` | Sparrenburg über der Stadt | KI |
+| `images/cities/v2/bocholt.jpg` | Historisches Rathaus (Renaissance-Giebel, Arkaden) | KI |
+| `images/cities/v2/chemnitz.jpg` | Karl-Marx-Monument | KI |
+| `images/cities/v2/emsbueren.jpg` | Windmühle, Dorfkirche, Felder an der Ems (generische Emsland-Szene) | KI |
+| `images/cities/v2/koeln.jpg` | Kölner Dom + Hohenzollernbrücke | KI |
+| `images/cities/v2/frankfurt-palmengarten.jpg` | Palmenhaus im Palmengarten, Skyline | SVG |
+| `images/cities/v2/freiburg.jpg` | Freiburger Münster, Altstadt, Schwarzwald | SVG |
+| `images/cities/v2/hannover.jpg` | Neues Rathaus am Maschteich | SVG |
+| `images/cities/v2/kiel.jpg` | Leuchtturm, Segelboote, Fähre auf der Förde | SVG |
+| `images/cities/v2/mannheim.jpg` | Wasserturm mit Brunnen | SVG |
+| `images/cities/v2/muenchen-langwied.jpg` | Olympiaturm + Zeltdach Olympiapark | SVG |
+| `images/cities/v2/rheine.jpg` | St. Dionysius an der Ems, Wehr, Brücke | SVG |
+| `images/cities/v2/rostock.jpg` | Stadthafen mit Großsegler, Kränen, Marienkirche | SVG |
+| `images/cities/v2/stuttgart.jpg` | Fernsehturm über Wald und Weinbergen | SVG |
+| `images/cities/v2/waiblingen.jpg` | Hochwachtturm + Fachwerkhäuser an der Rems | SVG |
+| `images/cities/v2/kielce.jpg` | Bischofspalast | SVG |
+| `images/cities/v2/krakau.jpg` | Tuchhallen + Marienkirche | SVG |
 
 ## App-Screenshots (App-Landingpage /app, /en/app)
 
