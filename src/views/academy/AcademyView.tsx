@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { getClubs, getCoaches } from "@/lib/data";
 import { deeplinks, site } from "@/lib/site";
@@ -178,9 +177,9 @@ export async function AcademyView({ locale }: { locale: Locale }) {
             <Eyebrow className="mb-4">{t.locationsSection.eyebrow}</Eyebrow>
             <Headline size="md">{t.locationsSection.title}</Headline>
           </div>
-          <Link href={href(locale, "locations")} className="group inline-flex items-center gap-2 text-white/80 hover:text-white">
-            {t.locationsSection.all} <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
-          </Link>
+          <Button href={href(locale, "locations")} variant="outline" className="w-fit">
+            {t.locationsSection.all}
+          </Button>
         </div>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {clubs.map((c, i) => (

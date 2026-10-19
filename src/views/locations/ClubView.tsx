@@ -283,22 +283,25 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
 
         {/* Events */}
         <Section id="events" tone="black" className={sectionCls}>
-          <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-            <Headline size="sm">{t.events.title}</Headline>
-            <Link href={href(locale, "events")} className="min-h-11 content-center text-sm font-medium text-white/70 hover:text-white">
-              {t.events.all}
-            </Link>
-          </div>
+          <Headline size="sm" className="mb-8 md:mb-10">
+            {t.events.title}
+          </Headline>
           {events.length ? (
-            <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {events.map((e, i) => (
-                <li key={e.id} className="flex">
-                  <Reveal delay={i * 0.06} className="flex w-full">
-                    <EventCard event={e} locale={locale} className="w-full" />
-                  </Reveal>
-                </li>
-              ))}
-            </ul>
+            <>
+              <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {events.map((e, i) => (
+                  <li key={e.id} className="flex">
+                    <Reveal delay={i * 0.06} className="flex w-full">
+                      <EventCard event={e} locale={locale} className="w-full" />
+                    </Reveal>
+                  </li>
+                ))}
+              </ul>
+              {/* CTA below the event tiles (same pattern as the coaches) */}
+              <Button href={href(locale, "events")} variant="outline" className="mt-8 w-fit md:mt-10" data-track="club_events_all_cta">
+                {t.events.allButton}
+              </Button>
+            </>
           ) : (
             <div className="rounded-[20px] border border-dashed border-white/15 p-8 text-center md:p-12">
               <p className="text-lg font-semibold">{fill(t.events.emptyTitle, { city: club.city })}</p>

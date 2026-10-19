@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Clock } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";

@@ -164,7 +164,6 @@ const de = {
     },
     events: {
       title: "Events & Turniere",
-      all: "Alle Events →",
       allButton: "Alle Events",
       emptyTitle: "Gerade keine Events in {city} geplant.",
       emptyText: "Offene Matches findest du jeden Tag in der App – oder schau, was in anderen Clubs los ist.",
@@ -359,7 +358,6 @@ const en: LocationsContent = {
     },
     events: {
       title: "Events & tournaments",
-      all: "All events →",
       allButton: "All events",
       emptyTitle: "No events planned in {city} right now.",
       emptyText: "You'll find open matches every day in the app – or see what's on at other clubs.",
@@ -561,7 +559,6 @@ const pl: LocationsContent = {
     },
     events: {
       title: "Wydarzenia i turnieje",
-      all: "Wszystkie wydarzenia →",
       allButton: "Wszystkie wydarzenia",
       emptyTitle: "{city}: obecnie brak zaplanowanych wydarzeń.",
       emptyText: "Otwarte mecze znajdziesz codziennie w aplikacji – albo sprawdź, co dzieje się w innych klubach.",

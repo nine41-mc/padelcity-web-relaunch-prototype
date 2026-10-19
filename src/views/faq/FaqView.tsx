@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { Mail } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -64,10 +64,9 @@ export async function FaqView({ locale }: { locale: Locale }) {
                 <span className="block break-all">{site.email}</span>
               </span>
             </a>
-            <Link href={href(locale, "locations")} className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white/80 hover:text-white">
+            <Button href={href(locale, "locations")} variant="outline" className="w-fit">
               {t.contact.locations}
-              <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
-            </Link>
+            </Button>
           </div>
         </div>
       </Section>
