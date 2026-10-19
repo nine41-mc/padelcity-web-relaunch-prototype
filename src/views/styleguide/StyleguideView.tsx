@@ -130,6 +130,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             name="Brand-Verlauf"
             swatch={<div className="h-28 rounded-[16px] bg-brand-gradient" />}
             values="#8412B5 → #DC05A1"
+            bb={ROLE_BRANDBOOK.primary}
             uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows", "Pulsierender Punkt im Eyebrow (Pink)"]}
           />
           <RoleCard
@@ -137,6 +138,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             name="Weiß auf Ink"
             swatch={<div className="grid h-28 place-items-center rounded-[16px] border border-white/15 bg-ink-800 text-2xl font-semibold text-white">Aa</div>}
             values="#FFFFFF auf #0B0B0F"
+            bb={ROLE_BRANDBOOK.secondary}
             uses={["Fließtext und alle Icons", "Outline-Buttons, Rahmen, Hover", "Textlinks im Hover: Magenta 300", "Ausnahme: Öffnungsstatus auf Club-Karten in Magenta 300"]}
           />
           <RoleCard
@@ -144,6 +146,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             name="Optic Yellow („Tennisball“)"
             swatch={<div className="h-28 rounded-[16px] bg-optic-500" />}
             values="#DFFF4F · RGB 223 255 79"
+            bb={ROLE_BRANDBOOK.highlight}
             uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer"]}
           />
         </div>
@@ -736,10 +739,23 @@ function Principle({ title, children }: { title: string; children: React.ReactNo
   );
 }
 
-function RoleCard({ role, name, swatch, values, uses }: { role: string; name: string; swatch: React.ReactNode; values: string; uses: string[] }) {
+function RoleCard({ role, name, swatch, values, uses, bb }: { role: string; name: string; swatch: React.ReactNode; values: string; uses: string[]; bb?: BrandbookNote }) {
+  const tipId = `bb-role-${role.toLowerCase()}`;
   return (
-    <div className="flex flex-col gap-4 rounded-[24px] border border-white/10 bg-ink-700 p-5">
-      {swatch}
+    <div className="group relative flex flex-col gap-4 rounded-[24px] border border-white/10 bg-ink-700 p-5 focus-within:z-40 hover:z-40">
+      <div className="relative">
+        {swatch}
+        {bb && (
+          // focusable marker: quick tip by mouse, keyboard or tap (tooltip linked via aria-describedby)
+          <button type="button" aria-describedby={tipId} className={`absolute right-2 top-2 grid size-7 place-items-center rounded-full text-xs font-bold ${BB_MARK[bb.status].cls}`}>
+            <span aria-hidden>{bb.status === "match" ? "●" : bb.status === "near" ? "≈" : "≠"}</span>
+            <span className="sr-only">
+              {name}: {BB_MARK[bb.status].label}
+            </span>
+          </button>
+        )}
+        {bb && <BrandbookTip id={tipId} note={bb} className="top-full mt-2" />}
+      </div>
       <div>
         <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{role}</p>
         <p className="mt-1 font-display text-3xl font-extrabold italic uppercase leading-none">{name}</p>
@@ -755,6 +771,44 @@ function RoleCard({ role, name, swatch, values, uses }: { role: string; name: st
     </div>
   );
 }
+
+/** Quick-tip box for brandbook notes (hidden until the parent .group is hovered or focused). */
+function BrandbookTip({ id, note, className }: { id: string; note: BrandbookNote; className?: string }) {
+  return (
+    <div
+      id={id}
+      role="tooltip"
+      className={`pointer-events-none invisible absolute left-0 z-40 w-full max-w-md rounded-[14px] border border-white/15 bg-ink-600 p-4 text-left opacity-0 shadow-elevated transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100 ${className ?? ""}`}
+    >
+      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">Quicktipp · {BB_MARK[note.status].label}</p>
+      <p className="mt-1 text-sm font-semibold">
+        {note.target} <span className="font-normal text-white/60">({note.de})</span>
+      </p>
+      <p className="mt-2 text-sm text-white/80">{note.tip}</p>
+    </div>
+  );
+}
+
+const ROLE_BRANDBOOK: Record<"primary" | "secondary" | "highlight", BrandbookNote> = {
+  primary: {
+    status: "differs",
+    target: "Brandbook-Verlauf #401B78 → #791979 → #AC007D",
+    de: "ΔE 14 / 11 an den Enden",
+    tip: "Der Button-Verlauf ist die App-Variante: heller (#8512B5 → #DC05A1), damit weiße Schrift mindestens 4,5 : 1 erreicht und der Verlauf auf dunklem Grund leuchtet. Der Brandbook-Verlauf ist 1:1 als „bg-brandbook-gradient“ vorhanden und wird für große Flächen genutzt (z. B. Partnerschafts-Karte, Kultur-Band, Club-Showcase).",
+  },
+  secondary: {
+    status: "near",
+    target: "PC Weiß #FFFFFF / PC Schwarz #000000",
+    de: "Weiß ΔE 0 · Grund ΔE 2,7",
+    tip: "Weiß trifft PC Weiß genau. Der Grund ist nicht reines PC Schwarz, sondern Ink 800 #0B0B0F – minimal angehoben und leicht bläulich: wirkt auf OLED-Displays ruhiger (kein Nachziehen beim Scrollen) und ist identisch mit der App.",
+  },
+  highlight: {
+    status: "differs",
+    target: "nicht im Brandbook",
+    de: "neu",
+    tip: "Neu für den Relaunch (Tennisball-Farbe „Optic Yellow“). Das Brandbook kennt keine Highlight-Farbe; Farbpass im Entwurf, Druckwerte als Empfehlung (Pantone 388 C, final zu prüfen).",
+  },
+};
 
 type BrandbookNote = { status: "match" | "near" | "differs"; target: string; de: string; tip: string };
 
@@ -808,19 +862,7 @@ function Palette({ name, steps }: { name: string; steps: [string, string][] }) {
               )}
               <p className="mt-1 text-[12px] font-semibold">{step}</p>
               <p className="font-mono text-[11px] uppercase text-white/60">{hex}</p>
-              {bb && (
-                <div
-                  id={tipId}
-                  role="tooltip"
-                  className="pointer-events-none invisible absolute left-0 top-full z-40 mt-2 w-full max-w-md rounded-[14px] border border-white/15 bg-ink-600 p-4 text-left opacity-0 shadow-elevated transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">Quicktipp · {BB_MARK[bb.status].label}</p>
-                  <p className="mt-1 text-sm font-semibold">
-                    {bb.target} <span className="font-normal text-white/60">({bb.de})</span>
-                  </p>
-                  <p className="mt-2 text-sm text-white/80">{bb.tip}</p>
-                </div>
-              )}
+              {bb && <BrandbookTip id={tipId} note={bb} className="top-full mt-2" />}
             </li>
           );
         })}
