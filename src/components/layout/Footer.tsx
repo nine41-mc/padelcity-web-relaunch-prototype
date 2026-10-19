@@ -27,7 +27,7 @@ function PadelBall({ className, id = "ballShade" }: { className?: string; id?: s
       <defs>
         <radialGradient id={id} cx="35%" cy="30%" r="75%">
           <stop offset="0" stopColor="#e3fb9c" />
-          <stop offset="0.55" stopColor="#b4e854" />
+          <stop offset="0.55" stopColor="#dfff4f" />
           <stop offset="1" stopColor="#6f9a24" />
         </radialGradient>
       </defs>
@@ -72,7 +72,7 @@ export function Footer({ locale }: { locale: Locale }) {
         {/* Hero row: claim + ball | newsletter */}
         <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
           <div className="relative">
-            <PadelBall id={`ballShade-${locale}`} className="absolute -top-6 right-0 size-20 rotate-12 drop-shadow-[0_12px_30px_rgba(180,232,84,0.45)] motion-safe:animate-[ball-bob_3.2s_ease-in-out_infinite] md:-top-10 md:size-28 lg:right-6" />
+            <PadelBall id={`ballShade-${locale}`} className="absolute -top-6 right-0 size-20 rotate-12 drop-shadow-[0_12px_30px_rgba(223,255,79,0.45)] motion-safe:animate-[ball-bob_3.2s_ease-in-out_infinite] md:-top-10 md:size-28 lg:right-6" />
             <p className="max-w-[12ch] font-display text-6xl leading-[0.86] font-extrabold italic uppercase text-balance md:text-8xl lg:text-[7.5rem]">
               {t.footer.claim1} <Accent>{t.footer.claimAccent}</Accent> {t.footer.claim2}
             </p>

@@ -62,14 +62,14 @@ export function PadelPong({ label }: { label: string }) {
       roundRect(W - 40 - PAD_W, s.ry - PAD_H / 2, PAD_W, PAD_H, 7);
       // Ball trail + ball (neon)
       s.trail.forEach((p, i) => {
-        ctx.fillStyle = `rgba(180,232,84,${(i / s.trail.length) * 0.35})`;
+        ctx.fillStyle = `rgba(223,255,79,${(i / s.trail.length) * 0.35})`;
         ctx.beginPath();
         ctx.arc(p.x, p.y, (BALL / 2) * (i / s.trail.length), 0, Math.PI * 2);
         ctx.fill();
       });
-      ctx.shadowColor = "rgba(180,232,84,0.8)";
+      ctx.shadowColor = "rgba(223,255,79,0.8)";
       ctx.shadowBlur = 24;
-      ctx.fillStyle = "#b4e854";
+      ctx.fillStyle = "#dfff4f";
       ctx.beginPath();
       ctx.arc(s.bx, s.by, BALL / 2 + 2, 0, Math.PI * 2);
       ctx.fill();

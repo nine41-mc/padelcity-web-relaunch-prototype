@@ -141,20 +141,38 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           />
           <RoleCard
             role="Highlight"
-            name="Neon „Tennisball“"
+            name="Neon „Optic Yellow“"
             swatch={<div className="h-28 rounded-[16px] bg-neon-500" />}
-            values="#B4E854"
+            values="#DFFF4F · RGB 223 255 79"
             uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer"]}
           />
         </div>
-        <Note>Neon ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,35 : 1).</Note>
+        <Note>Neon ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,1 : 1).</Note>
+
+        <H3>Farbpass Optic Yellow (Entwurf)</H3>
+        <p className="mb-4 max-w-3xl text-white/75">
+          „Optic Yellow“ ist der Name der Tennisball-Farbe beim Tennis-Weltverband ITF – einen offiziellen Farbwert gibt es nicht (die Regeln verlangen nur „weiß oder gelb“).
+          Seit 19.10.2026 ersetzt #DFFF4F das bisherige #B4E854: frischer, näher am echten Ball, mit Grünstich klar vom Schwarz-Gelb des BVB getrennt.
+          Druck- und Materialwerte sind Startpunkte und werden erst nach Proofs festgelegt.
+        </p>
+        <Table
+          head={["Medium", "Wert", "Status"]}
+          rows={[
+            ["Digital (sRGB)", "#DFFF4F · RGB 223 255 79", "festgelegt"],
+            ["Print Volltonfarbe", "Pantone 388 C / 388 U", "Startpunkt – Tennis Canada nutzt 388 C für „Tennis Ball Yellow“ (#E0FF2D); am Fächer gegen einen echten Ball prüfen"],
+            ["Print CMYK", "C20 M0 Y100 K0 (gestrichen und ungestrichen)", "Startpunkt aus derselben Quelle; CMYK wirkt matter als der Bildschirm"],
+            ["Leuchtfarbe (Merch, Club)", "offen", "Pantone 803 C ist reines Neongelb (≈ #FFE900) – zu nah am BVB; passende Leuchtfarbe per Proof suchen"],
+            ["Textil", "Pantone TCX offen", "per Proof auf Stoff"],
+            ["Wand, Folie, Schilder", "RAL/NCS bzw. Folienfarbe offen", "mit Schilder- und Folienhersteller, im Hallenlicht prüfen"],
+          ]}
+        />
 
         <H3>Paletten</H3>
         <div className="space-y-4">
           <Palette name="Purple" steps={[["50", "#f6e8fd"], ["200", "#dda2f6"], ["400", "#ba45ed"], ["500", "#8412b5"], ["700", "#660e8b"], ["900", "#22052e"]]} />
           <Palette name="Magenta" steps={[["50", "#fee6fb"], ["200", "#fd9bf0"], ["300", "#fc69e8"], ["500", "#e005c3"], ["700", "#960382"], ["900", "#32012b"]]} />
           <Palette name="Ink" steps={[["50", "#d2d3d5"], ["200", "#909197"], ["400", "#36384a"], ["600", "#1b1c26"], ["700", "#15171f"], ["800 · Figma 900", "#0b0b0f"]]} />
-          <Palette name="Neon" steps={[["300", "#d4f58f"], ["400", "#c4ef6e"], ["500", "#b4e854"], ["600", "#95c93a"]]} />
+          <Palette name="Neon" steps={[["300", "#eaff8f"], ["400", "#e5ff70"], ["500", "#DFFF4F"], ["600", "#c1e425"]]} />
           <Palette name="Status" steps={[["Erfolg", "#00b894"], ["Fehler", "#ff2e47"], ["Warnung", "#ffd500"], ["Chalk", "#f8f8f8"]]} />
         </div>
         <p className="mt-4 text-sm text-white/70">Purple, Magenta und Ink stammen aus der Figma-Library „PadelCity [Master]“ (dort „Gray-Blue“), die auch App und Admin-Portal nutzen. Achtung Benennung: Website ink-800 #0B0B0F entspricht Figma gray-blue-900; Figma gray-blue-800 #101117 nutzt die Website nicht. Neon ist für den Relaunch neu und steht noch nicht in der Library.</p>
@@ -166,8 +184,9 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Weiß auf Brand-Verlauf", "≥ 4,6 : 1", "Button-Labels – dafür wurde der Magenta-Stopp auf #DC05A1 justiert"],
             ["Weiß auf Ink 800", "19,8 : 1", "Fließtext"],
             ["Magenta 300 auf Ink 800", "≈ 7 : 1", "Textlinks im Hover, Öffnungsstatus"],
-            ["Neon auf Ink 800", "≈ 13 : 1", "Fokus-Ring, Level-Labels, Akzente"],
-            ["Neon auf Chalk", "1,35 : 1", "Verboten"],
+            ["Neon auf Ink 800", "≈ 17 : 1", "Fokus-Ring, Level-Labels, Akzente"],
+            ["Neon auf Purple 500", "≈ 6,8 : 1", "Akzente auf Purple-Flächen"],
+            ["Neon auf Chalk", "1,1 : 1", "Verboten"],
           ]}
         />
       </Block>
@@ -631,7 +650,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Gewählter Chip / Filter", "Brand-Verlauf", "Magenta (color-background-chip-selected)", "Gleiche Logik wie aktive Tabs"],
             ["Fokus-Ring", "Neon 2 px", "Magenta-Schatten 24 %", "Auf Ink deutlich sichtbarer (≈ 13 : 1)"],
             ["Labels / Overline", "Poppins 600, 13 px, Sperrung 0,14 em", "Overline 1: Poppins Bold 12/18", "Etwas größer für mobile Lesbarkeit"],
-            ["Highlight-Farbe", "Neon #B4E854", "nicht vorhanden", "Neu für den Relaunch"],
+            ["Highlight-Farbe", "Neon #DFFF4F", "nicht vorhanden", "Neu für den Relaunch"],
           ]}
         />
         <H3>Vorschlag für die Library</H3>

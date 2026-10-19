@@ -112,8 +112,8 @@ export function GermanyMap({
       >
         <defs>
           <radialGradient id="pinGlow" r="0.5">
-            <stop offset="0" stopColor="#b4e854" stopOpacity="0.9" />
-            <stop offset="1" stopColor="#b4e854" stopOpacity="0" />
+            <stop offset="0" stopColor="#dfff4f" stopOpacity="0.9" />
+            <stop offset="1" stopColor="#dfff4f" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="landFill" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0" stopColor="#e005c3" stopOpacity="0.55" />
@@ -190,7 +190,7 @@ export function GermanyMap({
               {p ? (
                 <circle r={isActive ? 5.5 : 4.2} fill="#0b0b0f" stroke="#ffffff" strokeWidth="1.5" strokeDasharray="2 1.4" />
               ) : (
-                <circle r={isActive ? 6.5 : 4.6} fill={isActive ? "#b4e854" : "#ffffff"} stroke="#0b0b0f" strokeWidth="1.5" />
+                <circle r={isActive ? 6.5 : 4.6} fill={isActive ? "#dfff4f" : "#ffffff"} stroke="#0b0b0f" strokeWidth="1.5" />
               )}
               {/* Larger invisible hit target (touch) */}
               <circle r="10" fill="transparent" />
@@ -272,8 +272,8 @@ function PinLabel({ pin, soon, width }: { pin: Pin; soon: string; width: number 
   const ly = pin.y - h / 2;
   return (
     <g pointerEvents="none" className="animate-[label-in_180ms_ease-out]">
-      <line x1={pin.x} y1={pin.y} x2={right ? lx : lx + w} y2={pin.y} stroke="#b4e854" strokeWidth="1.2" />
-      <rect x={lx} y={ly} width={w} height={h} rx="4" fill={pin.planned ? "#ffffff" : "#b4e854"} />
+      <line x1={pin.x} y1={pin.y} x2={right ? lx : lx + w} y2={pin.y} stroke="#dfff4f" strokeWidth="1.2" />
+      <rect x={lx} y={ly} width={w} height={h} rx="4" fill={pin.planned ? "#ffffff" : "#dfff4f"} />
       <text
         x={lx + w / 2}
         y={pin.y + 0.5}

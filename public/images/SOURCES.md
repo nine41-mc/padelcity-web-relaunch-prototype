@@ -196,7 +196,7 @@ Von https://padelcity.de/ (Startseite, Abschnitt „Let the players talk“): Fo
 
 ## Städte-Illustrationen „Bald eröffnet“ (`images/cities/`)
 
-Eigene Illustrationsserie für die geplanten Clubs (Stand 2026-10-13), keine Fremdfotos, keine Lizenzangabe nötig. Stil: Ink-Hintergrund #0b0b0f, Glow #401b78→#e005c3, weiße Linien, ein neonfarbener Padelball (#b4e854). Zeigen ein Wahrzeichen der Stadt, NICHT den Club-Standort.
+Eigene Illustrationsserie für die geplanten Clubs (Stand 2026-10-13), keine Fremdfotos, keine Lizenzangabe nötig. Stil: Ink-Hintergrund #0b0b0f, Glow #401b78→#e005c3, weiße Linien, ein neonfarbener Padelball (#b4e854 – noch das alte Neon; seit 19.10.2026 ist der Highlight-Ton Optic Yellow #dfff4f, TODO: Bälle neu einfärben oder Bilder neu generieren). Zeigen ein Wahrzeichen der Stadt, NICHT den Club-Standort.
 **KI** = generiert mit Figma MCP `generate_image` (Modell gemini-3.1-flash-image, Plan „MC“), einheitlicher Prompt: „Full-bleed flat vector illustration … of <Wahrzeichen>. Clean white line work only … deep near-black ink (#0b0b0f) background with a smooth dark purple (#401b78) to magenta (#e005c3) sky glow … exactly one small neon lime-green (#b4e854) accent: a single padel ball glowing in the sky like a moon … No text, no letters, no words, no logos, no people.“ Ausgabe 1264×848 PNG → JPG.
 **SVG** = von Hand als SVG gezeichnet im selben Stil (Figma-AI-Kontingent erschöpft), mit Headless Chrome auf 1600×1000 gerendert → JPG. Vor Go-live ggf. durch KI-/Agentur-Illustrationen ersetzen.
 
