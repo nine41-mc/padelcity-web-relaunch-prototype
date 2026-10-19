@@ -134,12 +134,12 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
   const reviews = reviewModuleClubs.has(club.slug) ? await getClubReviews(club, locale) : undefined;
 
   const tabs = [
-    { id: "book", label: t.tabs.book },
     { id: "facilities", label: t.tabs.facilities },
     ...(reviews ? [{ id: "reviews", label: t.tabs.reviews }] : []),
     { id: "coaching", label: t.tabs.coaching },
     { id: "events", label: t.tabs.events },
     { id: "directions", label: t.tabs.directions },
+    { id: "book", label: t.tabs.book },
   ];
 
   return (
@@ -195,21 +195,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
 
       <div className="relative bg-ink-800">
         <SectionTabs items={tabs} label={t.tabsLabel} className="pt-6" />
-
-        {/* Booking happens exclusively in the app */}
-        <Section id="book" className={sectionCls}>
-          {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
-          <AppBookingBlock club={club} locale={locale} />
-          <div className="mt-6 flex items-start gap-2 text-sm text-white/70">
-            <MessageCircleQuestionMark className="mt-3 size-4 shrink-0 text-white" aria-hidden />
-            <p className="flex flex-wrap items-center gap-x-2">
-              <span className="py-2.5">{t.faqLink.text}</span>
-              <Link href={href(locale, "faq")} className="inline-flex min-h-11 items-center gap-1 font-semibold text-white underline-offset-4 hover:underline">
-                {t.faqLink.cta} <ArrowUpRight className="size-4" aria-hidden />
-              </Link>
-            </p>
-          </div>
-        </Section>
 
         {/* Facilities */}
         <Section id="facilities" tone="black" className={sectionCls}>
@@ -370,8 +355,23 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           </div>
         </Section>
 
+        {/* Booking happens exclusively in the app – last tab after directions (sticky booking bar on phones stays) */}
+        <Section id="book" tone="black" className={sectionCls}>
+          {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
+          <AppBookingBlock club={club} locale={locale} />
+          <div className="mt-6 flex items-start gap-2 text-sm text-white/70">
+            <MessageCircleQuestionMark className="mt-3 size-4 shrink-0 text-white" aria-hidden />
+            <p className="flex flex-wrap items-center gap-x-2">
+              <span className="py-2.5">{t.faqLink.text}</span>
+              <Link href={href(locale, "faq")} className="inline-flex min-h-11 items-center gap-1 font-semibold text-white underline-offset-4 hover:underline">
+                {t.faqLink.cta} <ArrowUpRight className="size-4" aria-hidden />
+              </Link>
+            </p>
+          </div>
+        </Section>
+
         {/* Nearby */}
-        <Section tone="black" className="!py-14 md:!py-20">
+        <Section tone="ink" className="!py-14 md:!py-20">
           <Headline size="sm" className="mb-8">
             {t.nearby}
           </Headline>
