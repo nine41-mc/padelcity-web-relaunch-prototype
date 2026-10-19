@@ -149,13 +149,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
       {/* Gallery + title */}
       <section className="bg-black pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="container-site">
-          <nav aria-label={t.breadcrumbLabel} className="mb-2 text-sm text-white/75">
-            <Link href={href(locale, "locations")} className="inline-block py-2.5 hover:text-white">
-              {t.breadcrumb}
-            </Link>
-            <span aria-hidden> / </span>
-            <span className="text-white/80">{club.city}</span>
-          </nav>
           {gallery.length > 0 ? (
             <ClubGallery images={gallery} name={club.name} locale={locale} />
           ) : (
@@ -165,9 +158,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
 
           <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
             <div>
-              <Eyebrow className="mb-5">
-                <span lang="en">{t.claim}</span>
-              </Eyebrow>
               <Headline as="h1" size="md">
                 {club.name}
               </Headline>

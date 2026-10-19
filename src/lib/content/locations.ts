@@ -82,9 +82,6 @@ const de = {
     cta: "Partner werden",
   },
   club: {
-    breadcrumb: "Standorte",
-    breadcrumbLabel: "Breadcrumb",
-    claim: "Experience for the win.",
     reviews: {
       title: "Das sagen Spieler:innen über",
       accent: "diesen Club.",
@@ -283,9 +280,6 @@ const en: LocationsContent = {
     cta: "Become a partner",
   },
   club: {
-    breadcrumb: "Locations",
-    breadcrumbLabel: "Breadcrumb",
-    claim: "Experience for the win.",
     reviews: {
       title: "What players say about",
       accent: "this club.",
@@ -490,9 +484,6 @@ const pl: LocationsContent = {
     cta: "Zostań partnerem",
   },
   club: {
-    breadcrumb: "Lokalizacje",
-    breadcrumbLabel: "Ścieżka nawigacji",
-    claim: "Experience for the win.",
     reviews: {
       title: "Co gracze mówią o",
       accent: "tym klubie.",

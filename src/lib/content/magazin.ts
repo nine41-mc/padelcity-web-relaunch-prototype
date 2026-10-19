@@ -424,7 +424,6 @@ const de = {
   filter: { aria: "Magazin filtern", all: "Alle Stories", count: "{n} Stories aus der Welt von PadelCity" },
   newsletter: { title: "Der Magazin-Newsletter", text: "Die besten Stories, Technik-Tipps und Event-News – einmal im Monat in deinem Postfach." },
   article: {
-    back: "Magazin",
     share: "Teile die Story",
     related: "Weiterlesen",
     more: { title: "Mehr Stories?", text: "Die besten Magazin-Artikel und Event-News – einmal im Monat in deinem Postfach." },
@@ -454,7 +453,6 @@ const en: MagazinContent = {
   filter: { aria: "Filter the magazine", all: "All stories", count: "{n} stories from the world of PadelCity" },
   newsletter: { title: "The magazine newsletter", text: "The best stories, technique tips and event news – once a month, straight to your inbox." },
   article: {
-    back: "Magazine",
     share: "Share the story",
     related: "Read on",
     more: { title: "Want more stories?", text: "The best magazine articles and event news – once a month, straight to your inbox." },
@@ -482,7 +480,6 @@ const pl: MagazinContent = {
   filter: { aria: "Filtruj magazyn", all: "Wszystkie historie", count: "Historie ze świata PadelCity: {n}" },
   newsletter: { title: "Newsletter magazynu", text: "Najlepsze historie, porady techniczne i wieści o eventach – raz w miesiącu w twojej skrzynce." },
   article: {
-    back: "Magazyn",
     share: "Udostępnij historię",
     related: "Czytaj dalej",
     more: { title: "Chcesz więcej historii?", text: "Najlepsze artykuły z magazynu i wieści o eventach – raz w miesiącu w twojej skrzynce." },

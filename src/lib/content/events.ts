@@ -50,7 +50,6 @@ const de = {
   countdown: { days: "Tage", hours: "Std", minutes: "Min", seconds: "Sek", live: "Live!", aria: "Countdown bis Eventstart" },
   card: { more: "Mehr erfahren" },
   detail: {
-    back: "Alle Events",
     signup: "Im Web anmelden",
     signupApp: "In der App anmelden",
     formatCta: "Format & Zeitplan",
@@ -133,7 +132,6 @@ const en: EventsContent = {
   countdown: { days: "Days", hours: "Hrs", minutes: "Min", seconds: "Sec", live: "Live!", aria: "Countdown to the start of the event" },
   card: { more: "Find out more" },
   detail: {
-    back: "All events",
     signup: "Sign up on the web",
     signupApp: "Sign up in the app",
     formatCta: "Format & schedule",
@@ -214,7 +212,6 @@ const pl: EventsContent = {
   countdown: { days: "Dni", hours: "Godz.", minutes: "Min", seconds: "Sek", live: "Live!", aria: "Odliczanie do startu wydarzenia" },
   card: { more: "Dowiedz się więcej" },
   detail: {
-    back: "Wszystkie wydarzenia",
     signup: "Zapisz się online",
     signupApp: "Zapisz się w aplikacji",
     formatCta: "Format i harmonogram",

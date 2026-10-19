@@ -13,9 +13,9 @@ import { cn } from "@/components/ui/cn";
  * stories are uploaded to Contentful. Prototype: frames come from the club gallery.
  */
 const copy = {
-  de: { title: "Highlights des Clubs", groups: ["Welcome", "Courts", "Community", "Events"], close: "Schließen", prev: "Vorherige", next: "Nächste", welcome: "Welcome to" },
-  en: { title: "Club highlights", groups: ["Welcome", "Courts", "Community", "Events"], close: "Close", prev: "Previous", next: "Next", welcome: "Welcome to" },
-  pl: { title: "Highlights klubu", groups: ["Welcome", "Courts", "Community", "Events"], close: "Zamknij", prev: "Poprzednie", next: "Następne", welcome: "Welcome to" },
+  de: { title: "Stories des Clubs", groups: ["Welcome", "Courts", "Community", "Events"], close: "Schließen", prev: "Vorherige", next: "Nächste", welcome: "Welcome to" },
+  en: { title: "Club stories", groups: ["Welcome", "Courts", "Community", "Events"], close: "Close", prev: "Previous", next: "Next", welcome: "Welcome to" },
+  pl: { title: "Stories klubu", groups: ["Welcome", "Courts", "Community", "Events"], close: "Zamknij", prev: "Poprzednie", next: "Następne", welcome: "Welcome to" },
 };
 const FRAME_MS = 5000;
 const src = (url: string) => (url.startsWith("/") ? asset(url) : url);
@@ -90,10 +90,10 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
   return (
     <div className="mt-7">
       <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.title}</p>
-      <ul className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-1 scrollbar-none md:mx-0 md:px-0">
+      <ul className="-mx-4 flex gap-5 overflow-x-auto px-4 pb-1 scrollbar-none md:mx-0 md:gap-6 md:px-0">
         {highlights.map((h, i) => (
           <li key={h.label} className="shrink-0">
-            <button type="button" onClick={() => start(i)} className="group flex w-[76px] flex-col items-center gap-1.5 text-center" data-track="club_highlight_open">
+            <button type="button" onClick={() => start(i)} className="group flex min-w-[76px] flex-col items-center gap-1.5 text-center" data-track="club_highlight_open">
               <span className={cn("grid size-[76px] place-items-center rounded-full p-[3px] transition-transform group-hover:scale-105", seen.has(i) ? "bg-white/25" : "bg-brand-gradient")}>
                 <span className="relative grid size-full place-items-center overflow-hidden rounded-full border-2 border-ink-800 bg-magenta-700">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -111,7 +111,7 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
                   )}
                 </span>
               </span>
-              <span className="w-full truncate text-[12px] font-semibold uppercase tracking-wide text-white/85">{i === 0 ? city : h.label}</span>
+              <span className="whitespace-nowrap text-[12px] font-semibold uppercase tracking-wide text-white/85">{i === 0 ? city : h.label}</span>
             </button>
           </li>
         ))}

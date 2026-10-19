@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { keepTogether } from "@/lib/typography";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, CalendarDays, Clock, MapPin, Trophy, Users } from "lucide-react";
+import { CalendarDays, Clock, MapPin, Trophy, Users } from "lucide-react";
 import { getClubs, getEvent, getEvents } from "@/lib/data";
 import type { Club, ClubEvent } from "@/lib/data/types";
 import { site, webApp } from "@/lib/site";
@@ -134,9 +134,6 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="absolute inset-0 bg-grain" />
         </div>
         <div className="container-site">
-          <Link href={href(locale, "events")} className="mb-8 inline-flex min-h-11 items-center gap-2 text-sm text-white/75 hover:text-white">
-            <ArrowLeft className="size-4" aria-hidden /> {t.detail.back}
-          </Link>
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <Eyebrow>{dateRange}</Eyebrow>
             {content.presenter && <Chip tone="dark">{content.presenter}</Chip>}
@@ -318,9 +315,6 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
     <>
       <section className="relative pt-32 md:pt-40">
         <div className="container-site">
-          <Link href={href(locale, "events")} className="mb-6 inline-flex min-h-11 items-center gap-2 text-sm text-white/75 hover:text-white">
-            <ArrowLeft className="size-4" aria-hidden /> {t.detail.back}
-          </Link>
           <div className="grid gap-8 lg:grid-cols-[1.5fr_1fr] lg:gap-12">
             <div>
               <Media

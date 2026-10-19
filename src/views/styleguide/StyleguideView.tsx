@@ -421,11 +421,11 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Fremd-Skript im Browser, damit kein zusätzlicher Consent nötig ist.
         </p>
 
-        <H3>Club-Highlights (Clubseite)</H3>
+        <H3>Stories des Clubs (Clubseite)</H3>
         <p className="max-w-3xl text-white/75">
           Kreise wie Instagram-Story-Highlights unter dem Clubnamen: Verlaufsring = noch nicht angesehen, grauer Ring = angesehen. Der erste Kreis ist „Welcome to PadelCity
           &lt;Stadt&gt;“ im Magenta-Look der Instagram-Cover. Klick öffnet eine Story-Ansicht im Format 9 : 16 mit Fortschrittsbalken, Tippen links/rechts, Halten pausiert,
-          Esc schließt. Highlights liefert die Instagram-API nicht – sie werden pro Club in Contentful gepflegt.
+          Esc schließt. Beschriftungen werden nie gekürzt – jeder Kreis bekommt die Breite seines Labels. Story-Highlights liefert die Instagram-API nicht – sie werden pro Club in Contentful gepflegt.
         </p>
 
         <H3>Offene Stellen (Jobs-Seite)</H3>

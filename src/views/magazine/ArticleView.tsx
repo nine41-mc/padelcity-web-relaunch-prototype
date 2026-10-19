@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { formatDate, getArticle, getRelated, hubLabel, magazinContent } from "@/lib/content/magazin";
@@ -49,10 +49,7 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
       <article lang={locale}>
         <header className="relative isolate overflow-hidden pt-32 md:pt-40">
           <div className="container-site">
-            <Link href={href(locale, "magazine")} className="inline-flex min-h-11 items-center gap-2 text-sm text-white/75 transition-colors hover:text-white">
-              <ArrowLeft className="size-4" aria-hidden /> {t.article.back}
-            </Link>
-            <div className="mt-6 flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Chip tone="gradient">{hubLabel(article.hub, locale)}</Chip>
               <Chip>{article.category}</Chip>
             </div>

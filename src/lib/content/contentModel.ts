@@ -119,7 +119,7 @@ export const contentModel: PageType[] = [
     path: "/standorte/[club]",
     modules: [
       { id: "clubHero", name: "Kopf & Galerie", fields: [clubSlug(), ...clubCore(), f("Claim", "cms", undefined, "optional, Website-Text")] },
-      { id: "clubHighlights", name: "Highlights (Stories)", fields: [f("Story-Kreise, Bilder", "cms")] },
+      { id: "clubHighlights", name: "Stories des Clubs", fields: [f("Story-Kreise, Bilder", "cms")] },
       {
         id: "appBooking",
         name: "In der App buchen",
