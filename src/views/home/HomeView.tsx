@@ -294,8 +294,10 @@ export async function HomeView({ locale }: { locale: Locale }) {
           <div className="absolute -left-24 -top-24 size-80 rounded-full bg-purple-600/30 blur-[110px]" aria-hidden />
           <div className="relative">
             <Eyebrow className="mb-4">{t.shop.eyebrow}</Eyebrow>
-            <Headline size="lg">
-              {t.shop.title} <Accent>{t.shop.accent}</Accent>
+            <Headline size="md">
+              {t.shop.title}
+              <br />
+              <Accent>{t.shop.accent}</Accent>
             </Headline>
             <p className="mt-4 text-xl font-semibold">{t.shop.subline}</p>
             <p className="mt-3 max-w-lg text-lg text-white/70">{t.shop.text}</p>

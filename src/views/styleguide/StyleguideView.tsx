@@ -181,6 +181,11 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-white text-[10px] font-bold">≈</span> nah dran</span>
           <span className="inline-flex items-center gap-2"><span className="grid size-5 place-items-center rounded-full border border-dashed border-white/70 text-[10px] font-bold">≠</span> bewusst abweichend</span>
         </p>
+        <p className="mt-2 max-w-3xl text-sm text-white/60">
+          Ohne Markierung = Abstufung aus der PadelCity-Farbbibliothek ohne direkten Brandbook-Bezug – nicht für die Website erfunden: Purple, Magenta, Ink und
+          die Statusfarben sind dieselben Werte wie in App und Web-App (padel_city_color_scheme.dart, padel_colors.dart) bzw. der Figma-Library „PadelCity [Master]“.
+          Nur die Optic-Yellow-Stufen 300/400/600 sind für die Website aus #DFFF4F abgeleitet.
+        </p>
 
         <H3>Brandbook-Farben und ihr nächster Website-Ton</H3>
         <Table
@@ -362,7 +367,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["dark", "Auf Fotos, z. B. Bildanzahl in der Galerie"],
             ["level", "Spielstärke – die einzige Chip-Variante in Optic Yellow"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
-            ["Gutschein-Modul", "Startseite: „Verschenk Spielzeit.“ mit drei Schritten (Text von padelcity.de) und Gutschein als Karte im Kreditkartenformat – Verlauf, Logo, Chip, Betrag in Söhne Schmal; Merch-Shop nur als Hinweis"],
+            ["Gutschein-Modul", "Startseite: „Verschenke eine Padel Session“ mit drei Schritten (Text von padelcity.de) und dem Gutschein im Look des physischen Gutscheins – heller Beton-Grund, Chevrons im Verlauf, PadelCity-Symbol im Verlauf, „Gutschein“ und „ab 10 € Geschenkwert“; kein Chip, keine Kreditkarten-Optik; Merch-Shop nur als Hinweis"],
             ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Ticker, Karten-Label, Footer-Ball) oder auf den Button unten links wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
             ["Content-Modell", "Footer-Link „Content-Modell“: alle Seitentypen und Module mit der Herkunft jedes Felds (API vorhanden, API erweitern, neuer Contentful-Space, extern, unklar) – Daten in src/lib/content/contentModel.ts"],
             ["Jobs: Personio-Embed", "Seite statisch aus Contentful; nur „Offene Stellen“ ist die eingebettete Personio-Karriereseite (iframe, Höhe per postMessage), als helle Karte mit Ansprechpartnerin daneben; bis die Personio-URL steht, zeigt eine Vorschau im Personio-Look die 8 Stellen von padelcity.de/jobs"],
