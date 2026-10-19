@@ -12,7 +12,6 @@ import { deeplinks, site } from "@/lib/site";
 import { fill, locationsContent } from "@/lib/content/locations";
 import { academyContent } from "@/lib/content/academy";
 import { coachesForClub, resolveCoachClubsFor } from "@/components/play/coaches/resolve";
-import { fill as fillCount } from "@/components/play/coaches/clubs";
 import { ClubCoaches } from "@/components/locations/ClubCoaches";
 import { ClubCard } from "@/components/cards/ClubCard";
 import { EventCard } from "@/components/cards/EventCard";
@@ -226,33 +225,14 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         <Section id="coaching" className={sectionCls}>
           {shownCoaches.length > 0 ? (
             <>
-              <div className="mb-8 grid gap-5 md:mb-10 md:grid-cols-[1.3fr_1fr] md:items-end md:gap-10">
-                <div>
-                  <Eyebrow className="mb-4">
-                    {fill(t.coaching.eyebrowCount, {
-                      count: shownCoaches.length === 1 ? coachLabels.countOne : fillCount(coachLabels.countMany, { n: shownCoaches.length }),
-                    })}
-                  </Eyebrow>
-                  {clubCoaches.length > 0 ? (
-                    <Headline size="sm">
-                      {t.coaching.titleClub} <Accent>{t.coaching.accentClub}</Accent>
-                    </Headline>
-                  ) : (
-                    <Headline size="sm">{fill(t.coaching.titleNearby, { city: club.city })}</Headline>
-                  )}
-                </div>
-                <div className="flex flex-col gap-4 md:items-end md:text-right">
-                  <p className="max-w-md text-white/70">
-                    {clubCoaches.length > 0 ? fill(t.coaching.textClub, { club: club.name }) : fill(t.coaching.textNearby, { city: club.city })}
-                  </p>
-                  <Link
-                    href={href(locale, "academy")}
-                    className="group inline-flex min-h-11 items-center gap-2 text-sm font-medium text-white/80 hover:text-white"
-                  >
-                    {t.coaching.allAcademy}
-                    <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
-                  </Link>
-                </div>
+              <div className="mb-8 md:mb-10">
+                {clubCoaches.length > 0 ? (
+                  <Headline size="sm">
+                    {t.coaching.titleClub} <Accent>{t.coaching.accentClub}</Accent>
+                  </Headline>
+                ) : (
+                  <Headline size="sm">{fill(t.coaching.titleNearby, { city: club.city })}</Headline>
+                )}
               </div>
               <ClubCoaches
                 coaches={shownCoaches}
@@ -265,6 +245,10 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                 prevLabel={t.coaching.prev}
                 nextLabel={t.coaching.next}
               />
+              {/* CTA below the coach tiles */}
+              <Button href={href(locale, "academy")} variant="outline" className="mt-8 w-fit md:mt-10" data-track="club_coaching_academy_cta">
+                {t.coaching.allAcademy}
+              </Button>
             </>
           ) : (
             // Contentful module: academyTeaser (empty state – no coach matched to this club)
