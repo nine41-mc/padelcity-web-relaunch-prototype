@@ -72,3 +72,17 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 6. **Tracking/Consent** – CTAs tragen `data-track`-Attribute; GA4 Server-Side + CMP noch nicht eingebaut.
 7. **Inhalte** – `TODO(content)`-Stellen (Jobs/Personio, Franchise-Konditionen, Rechtstexte, YouTube-IDs); einige Clubs mit generischen Fotos (`public/images/SOURCES.md`).
 8. **Abhängigkeiten** – `npm audit` meldet transitive Findings (u. a. sharp/libvips, postcss in Next) – im Projekt sauber aufsetzen.
+
+## Figma Code Connect
+
+`figma/` holds Code Connect templates (`*.figma.ts`) that link the web library in the Figma file
+„PadelCity Website Relaunch“ to the React components here (24 components, 83 icons). Dev Mode then shows
+the matching code snippet for a selected component.
+
+- Config: `figma.config.json` (label „React“, language tsx). The templates are excluded from the app's
+  `tsconfig`/ESLint and checked separately: `npm run figma:check`.
+- Publish (needs the Figma library to be published and an Organization/Enterprise plan):
+  `FIGMA_ACCESS_TOKEN=… npm run figma:publish` (token with Code Connect write scope).
+- Not mapped (no standalone code component, markup lives inside other components): Icon Button, Input/Search
+  (FaqExplorer), FAQ Item (FaqExplorer), Tab (part of SectionTabs), Language Switch (Header-internal),
+  Mobile Menu (part of Header), Carousel Arrow (inline in carousels), Testimonial Card (Testimonials-internal).

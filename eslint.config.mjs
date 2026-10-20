@@ -18,6 +18,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Code Connect templates run in Figma's template runtime (import from "figma"), checked via figma/tsconfig.json
+      "figma/**",
     ],
   },
 ];
