@@ -76,7 +76,7 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 ## Figma Code Connect
 
 `figma/` holds Code Connect templates (`*.figma.ts`) that link the web library in the Figma file
-„PadelCity Website Relaunch“ to the React components here (24 components, 83 icons). Dev Mode then shows
+„PadelCity Website Relaunch“ to the React components here (24 components, 83 icons, 5 logos). Dev Mode then shows
 the matching code snippet for a selected component.
 
 - Config: `figma.config.json` (label „React“, language tsx). The templates are excluded from the app's
