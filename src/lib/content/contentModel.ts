@@ -77,6 +77,7 @@ export const contentModel: PageType[] = [
       },
       { id: "academyMagazineTeaser", name: "Academy- & Magazin-Teaser", fields: [f("Texte, Bilder, Artikel-Auswahl", "cms")] },
       { id: "community", name: "Community / WhatsApp", fields: [...sectionHead(), f("Gruppen-Links je Stadt", "apiExtend", undefined, "WhatsApp-Link fehlt in der API")] },
+      { id: "testimonials", name: "Stimmen", fields: [f("Zitate", "cms", undefined, "im Prototyp Platzhalter – echte Stimmen nur mit Einwilligung")] },
       { id: "socialWall", name: "Instagram-Wand", fields: [f("Neueste Posts @padelcity.de", "external", "Instagram API")] },
       { id: "voucherTeaser", name: "Gutschein-Modul", fields: [f("Text, Schritte, Karten-Visual, Betrag", "cms"), f("Gutschein kaufen", "external", "App-Deeplink /gift-vouchers", "Kauf braucht Login – bleibt in der App")] },
       { id: "partnerLogos", name: "Partner-Logos", fields: [f("Logos, Links", "cms")] },
@@ -111,6 +112,7 @@ export const contentModel: PageType[] = [
         name: "Bald eröffnet",
         fields: [f("Geplante Clubs mit Stadt", "apiExtend", undefined, "Status „geplant“ + Eröffnungszeitraum fehlen; inaktive Clubs werden gefiltert"), f("Stadt-Illustrationen", "cms"), f("„Benachrichtige mich“", "unknown", undefined, "Newsletter-Tool offen")],
       },
+      { id: "franchiseTeaser", name: "Franchise-Teaser", fields: [...sectionHead(), f("Kennzahlen im Text (Clubs, Courts)", "cms", undefined, "nur freigegebene Zahlen"), ctas()] },
     ],
   },
   {
@@ -136,6 +138,7 @@ export const contentModel: PageType[] = [
         name: "Kontakt",
         fields: [f("Kontakt: Name, E-Mail, Telefon, Website", "api", "GET /clubs → contact.*", "ein Kontakt pro Club; ob Name/E-Mail öffentlich gezeigt werden, ist offen"), f("WhatsApp-Gruppe", "apiExtend", undefined, "fehlt")],
       },
+      { id: "nearbyClubs", name: "Clubs in der Nähe", fields: [...clubCore(), f("Entfernung", "api", "GET /clubs → position", "wird auf der Website aus den Positionen berechnet")] },
       { id: "clubReviews", name: "Google-Bewertungen", fields: [f("Sterne, Anzahl, Auszüge", "external", "Google Places API")] },
       { id: "faq", name: "FAQ", fields: [f("Fragen & Antworten", "api", "GET /faq/sections, /faq/topics", "heute schon öffentlich")] },
     ],
@@ -181,6 +184,7 @@ export const contentModel: PageType[] = [
       { id: "appStoreGallery", name: "Store-Screenshots", fields: [f("Bilder DE/EN", "cms")] },
       { id: "howItWorks", name: "So funktioniert's", fields: [f("Schritte", "cms")] },
       { id: "faq", name: "FAQ", fields: [f("Fragen & Antworten", "cms")] },
+      { id: "appFinalCta", name: "Schluss-CTA", fields: [...sectionHead(), f("Store-Badges, Handy-Screen", "cms"), ctas()] },
     ],
   },
   {
@@ -207,8 +211,10 @@ export const contentModel: PageType[] = [
     name: "Magazin & Artikel",
     path: "/magazin, /magazin/[artikel]",
     modules: [
+      { id: "pageHero", name: "Hero", fields: sectionHead() },
       { id: "contentHubs", name: "Rubriken", fields: [f("Rubriken (Hubs)", "cms")] },
       { id: "article", name: "Artikel", fields: [f("Titel, Teaser, Text, Bilder, Autor, Datum, Lesezeit", "cms")] },
+      { id: "relatedArticles", name: "Weiterlesen", fields: [f("Weitere Artikel", "cms", "article.relatedArticles", "im Prototyp automatisch: gleiche Rubrik zuerst")] },
       { id: "pressLogos", name: "Presse", fields: [f("Logos, Links", "cms")] },
       { id: "newsletterSignup", name: "Newsletter", fields: [f("Anmeldung", "unknown", undefined, "Newsletter-Tool offen")] },
     ],
@@ -267,7 +273,11 @@ export const contentModel: PageType[] = [
     id: "faqPage",
     name: "FAQ",
     path: "/faq",
-    modules: [{ id: "faqExplorer", name: "FAQ-Übersicht", fields: [f("Kategorien, Fragen, Antworten", "api", "GET /faq/sections, /faq/sections/{id}/topics, /faq/topics/{id}", "heute schon öffentlich, live aus Contentful")] }],
+    modules: [
+      { id: "pageHero", name: "Hero", fields: sectionHead() },
+      { id: "faqExplorer", name: "FAQ-Übersicht", fields: [f("Kategorien, Fragen, Antworten", "api", "GET /faq/sections, /faq/sections/{id}/topics, /faq/topics/{id}", "heute schon öffentlich, live aus Contentful")] },
+      { id: "contactTeaser", name: "Kontakt", fields: [...sectionHead(), f("E-Mail-Adresse, Buttons", "cms")] },
+    ],
   },
   {
     id: "legal",
