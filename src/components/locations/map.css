@@ -51,7 +51,7 @@
   height: 34px;
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
-  background: linear-gradient(313deg, #e005a4 0%, #8512b5 100%);
+  background: var(--gradient-brand);
   box-shadow: 0 0 0 2px #0b0b0f, 0 8px 18px rgb(224 5 195 / 0.45);
   transition: transform 0.2s ease;
 }
@@ -90,7 +90,7 @@
   height: 26px;
   margin: 4px;
   background: rgb(11 11 15 / 0.85);
-  box-shadow: 0 0 0 2px #e005a4, 0 6px 14px rgb(0 0 0 / 0.5);
+  box-shadow: 0 0 0 2px #dc05a1, 0 6px 14px rgb(0 0 0 / 0.5);
 }
 .pc-pin--planned .pc-pin__body::after {
   inset: 8px;
