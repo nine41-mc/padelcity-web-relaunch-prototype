@@ -86,3 +86,5 @@ the matching code snippet for a selected component.
 - Not mapped (no standalone code component, markup lives inside other components): Icon Button, Input/Search
   (FaqExplorer), FAQ Item (FaqExplorer), Tab (part of SectionTabs), Language Switch (Header-internal),
   Mobile Menu (part of Header), Carousel Arrow (inline in carousels), Testimonial Card (Testimonials-internal).
+- Library quality audit: `figma/audit/library-audit.js` (run via the Figma MCP tool `use_figma`, see
+  `figma/audit/README.md`). Run it after every library change and before every publish.
