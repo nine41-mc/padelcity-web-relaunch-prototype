@@ -23,7 +23,7 @@ pages are recreated.
 | Components | description, no duplicate property names, no default layer names, no binding to 01 Base (paints and node properties, including the component root and the variant-set frame), no fixed colours, stroke weights / radii / padding / gaps bound, text with a text style, brand fonts only |
 | Contrast | every text segment in every variant against its real background (opacity and gradient stops included), WCAG 2.2 AA: 4.5:1, 3:1 for large text |
 | Styles | descriptions on text and effect styles, grid styles Desktop/Tablet/Mobile present |
-| Content model | 122 annotations on the content-model page (separate run) |
+| Content model | 158 annotations on the content-model page (separate run; see `figma/content-model/README.md`) |
 
 Variable usage is collected from aliases, text styles and every layer on the Foundations, Components, Icons and
 „Start hier“ pages, including layers inside instances. The script opens each page with `setCurrentPageAsync` first:

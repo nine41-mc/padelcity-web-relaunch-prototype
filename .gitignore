@@ -43,3 +43,4 @@ next-env.d.ts
 
 # Licensed brand fonts – fetched from the private repo nine41-mc/padelcity-brand-fonts (never commit)
 /src/app/fonts/licensed/
+figma/content-model/annotations.json
