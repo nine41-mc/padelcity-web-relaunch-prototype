@@ -60,7 +60,6 @@ export function toPolishSupplement(club: Club): Club {
       description:
         "PadelCity Innsbruck: 4 korty kryte (2 podwójne, 2 pojedyncze), otwarte codziennie, także w święta, od 7:00 do 22:00. Rakiety do wypożyczenia dodasz po prostu do rezerwacji w aplikacji PadelCity.",
       tags: club.tags.map((t) => (t === "Neu" ? "Nowość" : t)),
-      openingHours: club.openingHours.map((h) => ({ ...h, label: h.label === "Mo – So" ? "pon. – niedz." : h.label })),
     };
   }
   if (club.slug === "warschau") {
@@ -70,7 +69,6 @@ export function toPolishSupplement(club: Club): Club {
       description:
         "PadelCity Warszawa przy Westfield Arkadia: 3 korty odkryte (2 podwójne, 1 pojedynczy), otwarte codziennie od 8:00 do 23:00. Rezerwacja w aplikacji PadelCity.",
       tags: club.tags.map((t) => (t === "Neu" ? "Nowość" : t)),
-      openingHours: club.openingHours.map((h) => ({ ...h, label: h.label === "Mo – So" ? "pon. – niedz." : h.label })),
       address: { ...club.address, localityName: city },
     };
   }

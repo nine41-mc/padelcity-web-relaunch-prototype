@@ -41,7 +41,7 @@ const innsbruck: Club = {
     { id: "innsbruck-c4", name: "Court 4", courtType: "single", locationType: "indoor" },
   ],
   facilities: [],
-  openingHours: [{ label: "Mo – So", open: "07:00", close: "22:00" }],
+  openingHours: [{ label: "Mo – So", open: "07:00", close: "22:00" }, { label: "Feiertage", open: "07:00", close: "22:00" }],
   defaultPricePerHour: 34, // double court, Mon–Fri until 16:00 (padelcity.de)
   images: [],
   tags: ["Indoor", "Neu"],

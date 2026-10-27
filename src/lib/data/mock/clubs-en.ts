@@ -41,7 +41,6 @@ const facilities: Record<string, string> = {
 
 const cities: Record<string, string> = { München: "Munich", "Frankfurt am Main": "Frankfurt", Fürth: "Fuerth" };
 const tags: Record<string, string> = { Neu: "New", "Der Erste": "The first", "Deutscher Meister": "German champions" };
-const days: Record<string, string> = { "Mo – Fr": "Mon – Fri", "Sa & So": "Sat – Sun" };
 
 export function toEnglishMock(club: Club): Club {
   const teaser = teasers[club.slug] ?? club.teaser;
@@ -54,7 +53,6 @@ export function toEnglishMock(club: Club): Club {
     description: `${teaser} ${loc} courts, rental rackets on site and a community that welcomes you with open arms. Book your court in the PadelCity app – in just a few taps.`,
     facilities: club.facilities.map((f) => ({ ...f, name: facilities[f.type] ?? f.name })),
     tags: club.tags.map((t) => tags[t] ?? t),
-    openingHours: club.openingHours.map((h) => ({ ...h, label: days[h.label] ?? h.label })),
     address: { ...club.address, localityName: cities[club.address.localityName] ?? club.address.localityName },
   };
 }

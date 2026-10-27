@@ -67,6 +67,9 @@ function toHHmm(value: unknown, timeZone: string): string | undefined {
   return /T\d{2}:\d{2}$/.test(local) ? local.slice(11) : undefined;
 }
 
+/** Label of the public-holiday entry in OpeningHours. */
+export const HOLIDAY_LABEL = "Feiertage";
+
 const WEEKDAYS = [
   ["monday", "Mo"],
   ["tuesday", "Di"],
@@ -81,7 +84,8 @@ const WEEKDAYS = [
  * Opening times as stored in Contentful (club.openingTimes JSON) and returned by
  * api-platform (club.openingTimes, deprecated but still serialized):
  *   { monday: { opensAt, closesAt } | null, …, sunday, holiday }
- * Consecutive days with identical hours are grouped: [{ label: "Mo – Fr", open, close }], two days as "Sa & So".
+ * Consecutive days with identical hours are grouped: [{ label: "Mo – Fr", open, close }], two days as "Sa & So";
+ * public holidays follow as { label: "Feiertage", … } when set.
  */
 export function mapOpeningTimes(raw: unknown, timeZone = DEFAULT_TIMEZONE): OpeningHours {
   if (!raw || typeof raw !== "object") return [];
@@ -106,6 +110,11 @@ export function mapOpeningTimes(raw: unknown, timeZone = DEFAULT_TIMEZONE): Open
     }
     i = j + 1;
   }
+  // Public holidays as their own entry (label "Feiertage"); weekday logic ignores it, the club page shows it
+  const holiday = obj.holiday as { opensAt?: unknown; closesAt?: unknown } | null | undefined;
+  const hOpen = holiday ? toHHmm(holiday.opensAt, timeZone) : undefined;
+  const hClose = holiday ? toHHmm(holiday.closesAt, timeZone) : undefined;
+  if (hOpen && hClose) result.push({ label: HOLIDAY_LABEL, open: hOpen, close: hClose });
   return result;
 }
 

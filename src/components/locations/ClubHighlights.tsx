@@ -30,7 +30,7 @@ function groupFrames(images: ImageAsset[], labels: string[]): Highlight[] {
 }
 
 /** Instagram-style highlight circles + a story viewer (progress bars, tap left/right, Esc, auto-advance). */
-export function ClubHighlights({ images, city, locale }: { images: ImageAsset[]; city: string; locale: Locale }) {
+export function ClubHighlights({ images, city, locale, showTitle = true, className }: { images: ImageAsset[]; city: string; locale: Locale; showTitle?: boolean; className?: string }) {
   const t = copy[locale];
   const highlights = groupFrames(images, t.groups);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -98,8 +98,8 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
   const frame = current && open ? current.frames[open.f] : null;
 
   return (
-    <div className="mt-7">
-      <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.title}</p>
+    <div className={className}>
+      {showTitle && <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.title}</p>}
       <ul className="-mx-4 flex gap-5 overflow-x-auto px-4 pb-1 scrollbar-none md:mx-0 md:gap-6 md:px-0">
         {highlights.map((h, i) => (
           <li key={h.label} className="shrink-0">

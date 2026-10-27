@@ -105,8 +105,6 @@ const de = {
     court: "Court",
     courtsPlural: "Courts",
     distance: "entfernt",
-    tabsLabel: "Club-Bereiche",
-    tabs: { book: "In der App buchen", facilities: "Facilities", coaching: "Coaches", events: "Events", directions: "Anfahrt", contact: "Kontakt", reviews: "Bewertungen" },
     gallery: {
       extra: ["Courts von oben", "Lounge", "Umkleiden", "Community nach dem Match", "Bar & Bistro", "Court-Details"],
       photos: "Fotos",
@@ -132,6 +130,7 @@ const de = {
       hours: "Öffnungszeiten",
       courts: "Court-Überblick",
       stepsTitle: "So buchst du",
+      exclusive: "Nur in der App",
       steps: [
         { title: "App öffnen", text: "Lade die PadelCity App oder tipp auf „In der App buchen“ – wir bringen dich direkt zu {club}." },
         { title: "Zeit & Court wählen", text: "Datum, Uhrzeit und Court aussuchen. Freunde direkt mit einladen." },
@@ -168,7 +167,10 @@ const de = {
       emptyTitle: "Gerade keine Events in {city} geplant.",
       emptyText: "Offene Matches findest du jeden Tag in der App – oder schau, was in anderen Clubs los ist.",
     },
-    directions: { title: "Anfahrt", hours: "Öffnungszeiten", route: "Route öffnen" },
+    // Section headers under the club intro
+    sections: { highlights: "Highlights & News", reach: "So erreichst du uns", hours: "Öffnungszeiten", pricing: "Preise & Ausstattung", closed: "Geschlossen", holidays: "Feiertage" },
+    priceList: { show: "Alle Preise anzeigen", hide: "Preise ausblenden", duration: "{n} Minuten", time: "Zeit", weekdays: "Mo – Fr", weekendHolidays: "Sa, So & Feiertage", until: "bis {t} Uhr", from: "ab {t} Uhr", allDay: "ganztägig" },
+    directions: { route: "Route öffnen" },
     faqLink: { text: "Fragen zu Buchung, Storno oder Hansefit & Wellpass?", cta: "Zu den FAQ" },
     contactBar: {
       label: "Kontakt zum Club",
@@ -299,8 +301,6 @@ const en: LocationsContent = {
     court: "court",
     courtsPlural: "courts",
     distance: "away",
-    tabsLabel: "Club sections",
-    tabs: { book: "Book in the app", facilities: "Facilities", coaching: "Coaches", events: "Events", directions: "Getting here", contact: "Contact", reviews: "Reviews" },
     gallery: {
       extra: ["Courts from above", "Lounge", "Changing rooms", "Community after the match", "Bar & bistro", "Court details"],
       photos: "photos",
@@ -326,6 +326,7 @@ const en: LocationsContent = {
       hours: "Opening hours",
       courts: "Courts at a glance",
       stepsTitle: "How it works",
+      exclusive: "Only in the app",
       steps: [
         { title: "Open the app", text: "Get the PadelCity app or tap “Book in the app” – we'll take you straight to {club}." },
         { title: "Pick a time & court", text: "Choose your date, time and court. Invite your mates while you're at it." },
@@ -362,7 +363,9 @@ const en: LocationsContent = {
       emptyTitle: "No events planned in {city} right now.",
       emptyText: "You'll find open matches every day in the app – or see what's on at other clubs.",
     },
-    directions: { title: "Getting here", hours: "Opening hours", route: "Get directions" },
+    sections: { highlights: "Highlights & news", reach: "How to reach us", hours: "Opening hours", pricing: "Prices & facilities", closed: "Closed", holidays: "Public holidays" },
+    priceList: { show: "Show all prices", hide: "Hide prices", duration: "{n} minutes", time: "Time", weekdays: "Mon – Fri", weekendHolidays: "Sat, Sun & public holidays", until: "until {t}", from: "from {t}", allDay: "all day" },
+    directions: { route: "Get directions" },
     faqLink: { text: "Questions about booking, cancelling or Hansefit & Wellpass?", cta: "Read the FAQ" },
     contactBar: {
       label: "Club contact",
@@ -500,8 +503,6 @@ const pl: LocationsContent = {
     court: "kort",
     courtsPlural: "korty",
     distance: "stąd",
-    tabsLabel: "Sekcje klubu",
-    tabs: { book: "Rezerwuj w aplikacji", facilities: "Udogodnienia", coaching: "Trenerzy", events: "Wydarzenia", directions: "Dojazd", contact: "Kontakt", reviews: "Opinie" },
     gallery: {
       extra: ["Korty z góry", "Lounge", "Szatnie", "Społeczność po meczu", "Bar i bistro", "Detale kortu"],
       photos: "zdjęcia",
@@ -527,6 +528,7 @@ const pl: LocationsContent = {
       hours: "Godziny otwarcia",
       courts: "Przegląd kortów",
       stepsTitle: "Jak zarezerwować",
+      exclusive: "Tylko w aplikacji",
       steps: [
         { title: "Otwórz aplikację", text: "Pobierz aplikację PadelCity albo stuknij „Rezerwuj w aplikacji” – przeniesiemy cię prosto do klubu {club}." },
         { title: "Wybierz termin i kort", text: "Wybierz datę, godzinę i kort. Od razu zaproś znajomych." },
@@ -563,7 +565,9 @@ const pl: LocationsContent = {
       emptyTitle: "{city}: obecnie brak zaplanowanych wydarzeń.",
       emptyText: "Otwarte mecze znajdziesz codziennie w aplikacji – albo sprawdź, co dzieje się w innych klubach.",
     },
-    directions: { title: "Dojazd", hours: "Godziny otwarcia", route: "Wyznacz trasę" },
+    sections: { highlights: "Highlighty i aktualności", reach: "Jak do nas dotrzeć", hours: "Godziny otwarcia", pricing: "Ceny i wyposażenie", closed: "Zamknięte", holidays: "Święta" },
+    priceList: { show: "Pokaż wszystkie ceny", hide: "Ukryj ceny", duration: "{n} minut", time: "Godziny", weekdays: "pon. – pt.", weekendHolidays: "sob., niedz. i święta", until: "do {t}", from: "od {t}", allDay: "cały dzień" },
+    directions: { route: "Wyznacz trasę" },
     faqLink: { text: "Pytania o rezerwację, anulowanie albo Hansefit i Wellpass?", cta: "Do FAQ" },
     contactBar: {
       label: "Kontakt z klubem",

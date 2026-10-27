@@ -32,24 +32,28 @@ export function parseDayLabel(label: string): number[] {
   return out;
 }
 
-const EN_DAYS: Record<string, string> = { Mo: "Mon", Di: "Tue", Mi: "Wed", Do: "Thu", Fr: "Fri", Sa: "Sat", So: "Sun" };
-// Polish short forms (pn, wt, śr, cz, pt, sb, nd) – capitalised like the DE/EN labels
-const PL_DAYS: Record<string, string> = { Mo: "Pn", Di: "Wt", Mi: "Śr", Do: "Cz", Fr: "Pt", Sa: "Sb", So: "Nd" };
-
-/** Opening-hours labels come in German ("Mo – Fr"); translates the day abbreviations for EN and PL. */
-export function dayLabel(label: string, locale: "de" | "en" | "pl") {
-  if (locale === "de") return label;
-  const days = locale === "pl" ? PL_DAYS : EN_DAYS;
-  const out = label.replace(/\b(Mo|Di|Mi|Do|Fr|Sa|So)\b/g, (d) => days[d] ?? d);
-  return locale === "pl" ? out.replace(/täglich/i, "Codziennie") : out;
-}
-
 export function schemaDays(label: string) {
   return parseDayLabel(label).map((i) => SCHEMA_DAYS[i]);
 }
 
 export function googleMapsRoute(p: LatLng) {
   return `https://www.google.com/maps/dir/?api=1&destination=${p.latitude},${p.longitude}`;
+}
+
+/** One entry per weekday (0 = Monday … 6 = Sunday) from grouped labels; undefined = closed that day. */
+export function weekHours(hours: { label: string; open: string; close: string }[]) {
+  const week: ({ open: string; close: string } | undefined)[] = Array(7).fill(undefined);
+  for (const h of hours) {
+    const days = /täglich|daily/i.test(h.label) ? [0, 1, 2, 3, 4, 5, 6] : parseDayLabel(h.label);
+    for (const d of days) week[d] = { open: h.open, close: h.close };
+  }
+  return week;
+}
+
+/** Today's weekday (0 = Monday) in the club's time zone. */
+export function todayIndex(now: Date = new Date(), timeZone = "Europe/Berlin") {
+  const wd = new Intl.DateTimeFormat("en-GB", { timeZone, weekday: "short" }).format(now);
+  return ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].indexOf(wd);
 }
 
 /** Today's opening hours in the club's time zone, from labels like "Mo – Fr" / "Mon – Fri". */

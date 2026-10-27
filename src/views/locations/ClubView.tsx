@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Mail, MapPin, MessageCircleQuestionMark, Navigation } from "lucide-react";
+import { ArrowUpRight, Mail, MessageCircleQuestionMark, Navigation } from "lucide-react";
 import { getClub, getClubs, getCoaches, getEvents } from "@/lib/data";
 import { getClubReviews, reviewModuleClubs } from "@/lib/data/google-reviews";
 import type { Club, ImageAsset } from "@/lib/data/types";
@@ -16,13 +16,12 @@ import { ClubCoaches } from "@/components/locations/ClubCoaches";
 import { ClubCard } from "@/components/cards/ClubCard";
 import { EventCard } from "@/components/cards/EventCard";
 import { Button } from "@/components/ui/Button";
-import { Chip } from "@/components/ui/Chip";
 import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
-import { AppIcon } from "@/components/ui/Icon";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { AppBookingBlock, courtGroups, formatPrice } from "@/components/locations/AppBooking";
+import { AppBookingBlock, ClubPricing, formatPrice } from "@/components/locations/AppBooking";
+import { ClubHours } from "@/components/locations/ClubHours";
 import { AppBookingBar } from "@/components/locations/AppBookingBar";
 import { ClubDistance } from "@/components/locations/ClubDistance";
 import { ClubGallery } from "@/components/locations/ClubGallery";
@@ -30,8 +29,8 @@ import { ClubHighlights } from "@/components/locations/ClubHighlights";
 import { ClubMapLazy } from "@/components/locations/ClubMapLazy";
 import { ClubReviews } from "@/components/locations/ClubReviews";
 import { ClubContactBar } from "@/components/locations/ClubContactBar";
-import { SectionTabs } from "@/components/locations/SectionTabs";
 import { distanceKm, googleMapsRoute, schemaDays } from "@/components/locations/geo";
+import { HOLIDAY_LABEL } from "@/lib/data/mappers";
 
 export type ClubParams = { slug: string };
 
@@ -98,7 +97,7 @@ function jsonLd(club: Club, locale: Locale) {
     geo: { "@type": "GeoCoordinates", latitude: club.position.latitude, longitude: club.position.longitude },
     openingHoursSpecification: club.openingHours.map((h) => ({
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: schemaDays(h.label),
+      dayOfWeek: h.label === HOLIDAY_LABEL ? ["PublicHolidays"] : schemaDays(h.label),
       opens: h.open,
       closes: h.close,
     })),
@@ -127,19 +126,9 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
     .slice(0, 3);
   const a = club.address;
   const addressLine = `${a.streetName} ${a.buildingNumber}, ${a.postalCode} ${a.localityName}`;
-  const hasPremium = club.courts.some((c) => c.isPremium);
   const bookHref = deeplinks.club(club.id);
   const gallery = galleryImages(club, locale);
   const reviews = reviewModuleClubs.has(club.slug) ? await getClubReviews(club, locale) : undefined;
-
-  const tabs = [
-    { id: "facilities", label: t.tabs.facilities },
-    ...(reviews ? [{ id: "reviews", label: t.tabs.reviews }] : []),
-    { id: "coaching", label: t.tabs.coaching },
-    { id: "events", label: t.tabs.events },
-    { id: "directions", label: t.tabs.directions },
-    { id: "book", label: t.tabs.book },
-  ];
 
   return (
     <div>
@@ -164,56 +153,53 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                 <span>{addressLine}</span>
                 <ClubDistance position={club.position} locale={locale} />
               </p>
-              <ul className="mt-5 flex flex-wrap gap-2" aria-label={t.courtsLabel}>
-                {hasPremium && (
-                  <li>
-                    <Chip tone="gradient" className="py-1.5 text-sm">
-                      {t.panorama}
-                    </Chip>
-                  </li>
-                )}
-                {courtGroups(club, locale).map((g) => (
-                  <li key={g.key}>
-                    <Chip className="py-1.5 text-sm">
-                      {g.label}
-                    </Chip>
-                  </li>
-                ))}
-              </ul>
-              {gallery.length >= 2 && <ClubHighlights images={gallery} city={club.city} locale={locale} />}
             </div>
             <p className="text-lg leading-relaxed text-white/75 lg:pt-2">{club.description}</p>
           </div>
 
-          {/* Contact at a glance – above the section tabs */}
-          <div className="mt-10">
-            <ClubContactBar club={club} locale={locale} />
+          {/* Club details as clear sections: highlights · hours | prices & facilities · how to reach us (contact + map) */}
+          <div className="mt-16 space-y-14 md:mt-20 md:space-y-16">
+            {gallery.length >= 2 && (
+              <div>
+                <Headline size="sm" className="mb-6">{t.sections.highlights}</Headline>
+                <ClubHighlights images={gallery} city={club.city} locale={locale} showTitle={false} />
+              </div>
+            )}
+            <div className="grid gap-14 lg:grid-cols-[1fr_2fr] lg:gap-6">
+              <div>
+                <Headline size="sm" className="mb-6">{t.sections.hours}</Headline>
+                <ClubHours club={club} locale={locale} />
+              </div>
+              <div>
+                <Headline size="sm" className="mb-6">{t.sections.pricing}</Headline>
+                <ClubPricing club={club} locale={locale} />
+              </div>
+            </div>
+            <div id="directions" className="scroll-mt-28">
+              <Headline size="sm" className="mb-6">{t.sections.reach}</Headline>
+              <ClubContactBar club={club} locale={locale} />
+              <div className="relative isolate mt-3 h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[420px]">
+                <ClubMapLazy
+                  clubs={[{ id: club.id, slug: club.slug, name: club.name, city: club.city, position: club.position }]}
+                  locale={locale}
+                  activeId={club.id}
+                  showPopups={false}
+                />
+                <a
+                  href={googleMapsRoute(club.position)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:shadow-glow"
+                >
+                  <Navigation className="size-4" aria-hidden /> {t.directions.route}
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <div className="relative bg-ink-800">
-        <SectionTabs items={tabs} label={t.tabsLabel} className="pt-6" />
-
-        {/* Facilities */}
-        <Section id="facilities" tone="black" className={sectionCls}>
-          {/* Contentful module: facilityGrid */}
-          <Headline size="sm" className="mb-8">
-            {t.facilities.title}
-          </Headline>
-          <ul className="grid grid-cols-2 gap-3 md:grid-cols-4">
-            {club.facilities.map((f) => (
-              <li key={f.type} className="flex items-center gap-3 rounded-[20px] border border-white/10 bg-ink-700 p-4 md:p-5">
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
-                  <AppIcon name={f.icon ?? f.type} className="size-5 text-white" />
-                </span>
-                {/* TODO(content): facility names come from Contentful in the requested locale */}
-                <span className="text-sm font-medium leading-tight">{f.name}</span>
-              </li>
-            ))}
-          </ul>
-        </Section>
-
         {/* Reviews (Google) – only on clubs in reviewModuleClubs */}
         {reviews && (
           <Section id="reviews" className={sectionCls}>
@@ -313,36 +299,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           )}
         </Section>
 
-        {/* Directions: address + map (opening hours are in the booking block) */}
-        <Section id="directions" className={sectionCls}>
-          <Headline size="sm" className="mb-8">
-            {t.directions.title}
-          </Headline>
-          {/* Opening hours live in the booking block (#book) – no duplicate here */}
-          <p className="-mt-4 mb-6 flex items-start gap-2 text-white/80">
-            <MapPin className="mt-1 size-4 shrink-0 text-white" aria-hidden /> {addressLine}
-          </p>
-          <div>
-            <div className="relative isolate h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[420px]">
-              <ClubMapLazy
-                clubs={[{ id: club.id, slug: club.slug, name: club.name, city: club.city, position: club.position }]}
-                locale={locale}
-                activeId={club.id}
-                showPopups={false}
-              />
-              <a
-                href={googleMapsRoute(club.position)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:shadow-glow"
-              >
-                <Navigation className="size-4" aria-hidden /> {t.directions.route}
-              </a>
-            </div>
-          </div>
-        </Section>
-
-        {/* Booking happens exclusively in the app – last tab after directions (sticky booking bar on phones stays) */}
+        {/* Booking happens exclusively in the app – at the end of the page (sticky booking bar on phones stays) */}
         <Section id="book" tone="black" className={sectionCls}>
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />

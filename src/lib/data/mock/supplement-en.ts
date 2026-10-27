@@ -53,7 +53,6 @@ export function toEnglishSupplement(club: Club): Club {
       description:
         "PadelCity Innsbruck: 4 indoor courts (2 doubles, 2 singles), open daily including public holidays from 7 am to 10 pm. Add rental rackets to your booking in the PadelCity app.",
       tags: club.tags.map((t) => (t === "Neu" ? "New" : t)),
-      openingHours: club.openingHours.map((h) => ({ ...h, label: h.label === "Mo – So" ? "Mon – Sun" : h.label })),
     };
   }
   if (club.slug === "warschau") {
