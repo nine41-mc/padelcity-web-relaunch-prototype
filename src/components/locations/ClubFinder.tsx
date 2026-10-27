@@ -192,9 +192,9 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           e.preventDefault();
           document.getElementById("results")?.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
-        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
+        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
       >
-        <label className="flex min-h-14 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5 focus-within:ring-2 focus-within:ring-white/70">
+        <label className="flex min-h-14 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5">
           <Search className="size-5 shrink-0 text-white/70" aria-hidden />
           <span className="flex flex-1 flex-col">
             <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.where}</span>
@@ -397,15 +397,16 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
               </p>
             )}
           </div>
-          <ul className="grid gap-5 md:grid-cols-2 lg:order-1">
+          {/* content-start: with few results the rows keep their natural height instead of stretching to the map's height */}
+          <ul className="grid content-start gap-5 md:grid-cols-2 lg:order-1">
             {results.map(({ club, km }) => (
               <li
                 key={club.id}
-                className={cn("flex min-w-0 rounded-[22px] transition-shadow", activeId === club.id && "ring-2 ring-magenta-400")}
+                className="flex min-w-0"
                 onMouseEnter={() => setActiveId(club.id)}
                 onFocus={() => setActiveId(club.id)}
               >
-                <ClubCard club={club} distanceKm={km} locale={locale} className="w-full" />
+                <ClubCard club={club} distanceKm={km} locale={locale} active={activeId === club.id} lift={false} className="w-full" />
               </li>
             ))}
           </ul>

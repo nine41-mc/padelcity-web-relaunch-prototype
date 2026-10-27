@@ -41,7 +41,7 @@ const facilities: Record<string, string> = {
 
 const cities: Record<string, string> = { München: "Monachium", "Frankfurt am Main": "Frankfurt nad Menem", Leipzig: "Lipsk" };
 const tags: Record<string, string> = { Neu: "Nowość", "Der Erste": "Pierwszy", "Deutscher Meister": "Mistrz Niemiec", Franchise: "Franczyza" };
-const days: Record<string, string> = { "Mo – Fr": "pon. – pt.", "Sa – So": "sob. – niedz." };
+const days: Record<string, string> = { "Mo – Fr": "pon. – pt.", "Sa & So": "sob. – niedz." };
 
 export function toPolishMock(club: Club): Club {
   const teaser = teasers[club.slug] ?? club.teaser;

@@ -111,7 +111,7 @@ export const mockClubs: Club[] = seeds.map((s, i) => {
     facilities: s.facilities ?? (s.doubles >= 8 ? facilitySets.full : facilitySets.base),
     openingHours: [
       { label: "Mo – Fr", open: "07:00", close: "23:00" },
-      { label: "Sa – So", open: "08:00", close: "22:00" },
+      { label: "Sa & So", open: "08:00", close: "22:00" },
     ],
     defaultPricePerHour: s.price,
     mainImage: image,

@@ -30,11 +30,17 @@ export function ClubCard({
   club,
   distanceKm,
   locale = "de",
+  active = false,
+  lift = true,
   className,
 }: {
   club: Club;
   distanceKm?: number;
   locale?: Locale;
+  /** Highlighted from outside (map view: the club whose pin is selected) – same look as hover. */
+  active?: boolean;
+  /** Hover lift; off next to the map, where the list should stay put. */
+  lift?: boolean;
   className?: string;
 }) {
   const t = getDictionary(locale).clubCard;
@@ -45,16 +51,19 @@ export function ClubCard({
   return (
     <article
       className={cn(
-        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow",
+        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border bg-ink-700 transition-all duration-300 hover:border-magenta-500/50 hover:shadow-glow",
+        active ? "border-magenta-500/50 shadow-glow" : "border-white/10",
+        lift && "hover:-translate-y-1",
         className,
       )}
     >
-      {/* Image in the poster look of the home showcase: status top-left, city + torn line, price bottom-right */}
-      <div className="relative aspect-[16/10] overflow-hidden [container-type:inline-size]">
+      {/* Image in the poster look of the home showcase: status top-left, city + torn line, price bottom-right.
+          Own compositing layer + 1px bleed: during the lift and zoom the image edge rounds to sub-pixels and let a light seam flash. */}
+      <div className="relative aspect-[16/10] transform-gpu overflow-hidden [container-type:inline-size]">
         <Media
           src={club.mainImage?.url}
           alt={club.mainImage?.alt ?? club.name}
-          className="absolute inset-0"
+          className="absolute -inset-px"
           imgClassName="transition-transform duration-700 group-hover:scale-105"
           sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw"
         />

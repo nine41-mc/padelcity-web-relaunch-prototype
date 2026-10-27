@@ -116,7 +116,7 @@ export function WhatsAppGroups({
           </div>
 
           <div className="px-5 pt-4 md:px-7">
-            <label className="flex min-h-12 items-center gap-3 rounded-full border border-white/40 bg-ink-800 px-4 focus-within:border-white">
+            <label className="flex min-h-12 items-center gap-3 rounded-full border border-white/40 bg-ink-800 px-4 has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white">
               <Search className="size-5 shrink-0 text-white/70" aria-hidden />
               <input
                 type="search"

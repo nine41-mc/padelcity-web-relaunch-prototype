@@ -21,9 +21,9 @@ const DAY_KEYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] as const;
 const EN_ALIAS: Record<string, string> = { Tu: "Di", We: "Mi", Th: "Do", Su: "So" };
 const SCHEMA_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
-/** Parses labels like "Mo – Fr", "Sa – So", "Mo" into weekday indices (0 = Mo). */
+/** Parses labels like "Mo – Fr", "Sa & So", "Mo" into weekday indices (0 = Mo). */
 export function parseDayLabel(label: string): number[] {
-  const parts = label.split(/[–-]/).map((p) => EN_ALIAS[p.trim().slice(0, 2)] ?? p.trim().slice(0, 2));
+  const parts = label.split(/[–&-]/).map((p) => EN_ALIAS[p.trim().slice(0, 2)] ?? p.trim().slice(0, 2));
   const from = DAY_KEYS.indexOf(parts[0] as (typeof DAY_KEYS)[number]);
   const to = parts[1] ? DAY_KEYS.indexOf(parts[1] as (typeof DAY_KEYS)[number]) : from;
   if (from < 0 || to < 0) return [];

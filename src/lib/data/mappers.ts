@@ -81,7 +81,7 @@ const WEEKDAYS = [
  * Opening times as stored in Contentful (club.openingTimes JSON) and returned by
  * api-platform (club.openingTimes, deprecated but still serialized):
  *   { monday: { opensAt, closesAt } | null, …, sunday, holiday }
- * Consecutive days with identical hours are grouped: [{ label: "Mo – Fr", open, close }].
+ * Consecutive days with identical hours are grouped: [{ label: "Mo – Fr", open, close }], two days as "Sa & So".
  */
 export function mapOpeningTimes(raw: unknown, timeZone = DEFAULT_TIMEZONE): OpeningHours {
   if (!raw || typeof raw !== "object") return [];
@@ -100,7 +100,9 @@ export function mapOpeningTimes(raw: unknown, timeZone = DEFAULT_TIMEZONE): Open
     while (j + 1 < days.length && days[j + 1].open === days[i].open && days[j + 1].close === days[i].close) j++;
     const { open, close } = days[i];
     if (open && close) {
-      result.push({ label: i === j ? days[i].label : `${days[i].label} – ${days[j].label}`, open, close });
+      // Two days read better as a pair ("Mo & Di"); the dash is for spans of three or more ("Mo – Fr")
+      const label = i === j ? days[i].label : `${days[i].label} ${j === i + 1 ? "&" : "–"} ${days[j].label}`;
+      result.push({ label, open, close });
     }
     i = j + 1;
   }
