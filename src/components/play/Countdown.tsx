@@ -38,19 +38,20 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
     [labels.seconds, t?.s],
   ];
 
-  // One pill, the units separated by thin dividers (Design QA: four bubbles read as four elements)
+  // One pill, the units separated by thin dividers (Design QA: four bubbles read as four elements);
+  // four equal cells, wide enough for the longest unit ("Sekunden"), so the pill never changes width
   return (
     <div
-      className={cn("inline-flex w-fit divide-x divide-white/15 rounded-2xl border border-white/15 bg-black/40 backdrop-blur", className)}
+      className={cn("grid w-fit grid-cols-4 divide-x divide-white/15 rounded-2xl border border-white/15 bg-black/40 backdrop-blur", className)}
       role="timer"
       aria-label={labels.aria}
     >
       {units.map(([label, v]) => (
-        <div key={label} className={cn("flex flex-col items-center", size === "md" ? "min-w-16 px-3 py-2 md:min-w-20" : "min-w-12 px-2.5 py-1.5")}>
+        <div key={label} className={cn("flex flex-col items-center", size === "md" ? "w-[4.75rem] py-2 md:w-24" : "w-16 py-1.5")}>
           <span className={cn("font-display font-extrabold italic tabular-nums leading-none", size === "md" ? "text-3xl md:text-4xl" : "text-xl")}>
             {v === undefined ? "--" : String(v).padStart(2, "0")}
           </span>
-          <span className="mt-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{label}</span>
+          <span className={cn("mt-1 font-semibold uppercase text-white/70", size === "md" ? "text-[11px] tracking-[0.06em] md:text-[13px] md:tracking-[0.08em]" : "text-[10px] tracking-[0.04em]")}>{label}</span>
         </div>
       ))}
     </div>

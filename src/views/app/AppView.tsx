@@ -80,7 +80,6 @@ export function AppView({ locale }: { locale: Locale }) {
             <div id="download" className="mt-10 scroll-mt-28">
               <StoreBadges locale={locale} />
             </div>
-            <p className="mt-6 text-sm text-white/70">{t.hero.note}</p>
           </div>
           <div className="relative flex justify-center md:-translate-x-16 lg:-translate-x-10">
             <div className="absolute top-1/2 size-[360px] -translate-y-1/2 rounded-full bg-magenta-500/40 blur-[110px] md:size-[480px]" aria-hidden />

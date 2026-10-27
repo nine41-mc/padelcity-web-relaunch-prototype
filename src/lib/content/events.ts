@@ -25,12 +25,10 @@ const de = {
   highlights: {
     eyebrow: "Highlights",
     title: "Die großen Bühnen",
-    text: "Unsere Leuchtturm-Events: Profis, Promis und die ganze PadelCity Community an einem Ort.",
   },
   local: {
     eyebrow: "In deinem Club",
     title: "Spielen, lachen, wiederkommen",
-    note: "Anmelden & bezahlen kannst du im Web oder in der PadelCity App – ein Tap auf „Im Web anmelden“ bringt dich direkt hin.",
   },
   explorer: {
     filterLabel: "Events filtern",
@@ -47,7 +45,7 @@ const de = {
     reset: "Filter zurücksetzen",
   },
   types: { social: "Social", tournament: "Turnier", training: "Training", hero: "Highlight" } satisfies Record<ClubEvent["type"], string>,
-  countdown: { days: "Tage", hours: "Std", minutes: "Min", seconds: "Sek", live: "Live!", aria: "Countdown bis Eventstart" },
+  countdown: { days: "Tage", hours: "Stunden", minutes: "Minuten", seconds: "Sekunden", live: "Live!", aria: "Countdown bis Eventstart" },
   card: { more: "Mehr erfahren" },
   detail: {
     signup: "Im Web anmelden",
@@ -107,12 +105,10 @@ const en: EventsContent = {
   highlights: {
     eyebrow: "Highlights",
     title: "The big stages",
-    text: "Our flagship events: pros, famous faces and the whole PadelCity community in one place.",
   },
   local: {
     eyebrow: "At your club",
     title: "Play, laugh, come back",
-    note: "Sign up and pay on the web or in the PadelCity app – one tap on “Sign up on the web” takes you straight there.",
   },
   explorer: {
     filterLabel: "Filter events",
@@ -129,7 +125,7 @@ const en: EventsContent = {
     reset: "Reset filters",
   },
   types: { social: "Social", tournament: "Tournament", training: "Training", hero: "Highlight" },
-  countdown: { days: "Days", hours: "Hrs", minutes: "Min", seconds: "Sec", live: "Live!", aria: "Countdown to the start of the event" },
+  countdown: { days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds", live: "Live!", aria: "Countdown to the start of the event" },
   card: { more: "Find out more" },
   detail: {
     signup: "Sign up on the web",
@@ -187,12 +183,10 @@ const pl: EventsContent = {
   highlights: {
     eyebrow: "Highlights",
     title: "Wielkie sceny",
-    text: "Nasze flagowe wydarzenia: zawodowcy, znane twarze i cała społeczność PadelCity w jednym miejscu.",
   },
   local: {
     eyebrow: "W twoim klubie",
     title: "Graj, śmiej się, wracaj",
-    note: "Zapiszesz się i zapłacisz w przeglądarce albo w aplikacji PadelCity – jedno stuknięcie w „Zapisz się online” przeniesie cię prosto tam.",
   },
   explorer: {
     filterLabel: "Filtruj wydarzenia",
@@ -209,7 +203,7 @@ const pl: EventsContent = {
     reset: "Resetuj filtry",
   },
   types: { social: "Social", tournament: "Turniej", training: "Trening", hero: "Highlight" },
-  countdown: { days: "Dni", hours: "Godz.", minutes: "Min", seconds: "Sek", live: "Live!", aria: "Odliczanie do startu wydarzenia" },
+  countdown: { days: "Dni", hours: "Godziny", minutes: "Minuty", seconds: "Sekundy", live: "Live!", aria: "Odliczanie do startu wydarzenia" },
   card: { more: "Dowiedz się więcej" },
   detail: {
     signup: "Zapisz się online",

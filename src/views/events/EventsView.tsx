@@ -1,4 +1,3 @@
-import { Smartphone } from "lucide-react";
 import { getEvents } from "@/lib/data";
 import { deeplinks } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
@@ -28,10 +27,10 @@ export async function EventsView({ locale }: { locale: Locale }) {
         lead={t.hero.lead}
         actions={
           <>
-            <Button href="#events" size="lg" variant="primary" arrow>
+            <Button href="#events" size="md" variant="primary" arrow>
               {t.hero.ctaFind}
             </Button>
-            <Button href={deeplinks.events()} size="lg" variant="outline" data-track="app_open_click">
+            <Button href={deeplinks.events()} size="md" variant="outline" data-track="app_open_click">
               {t.hero.ctaApp}
             </Button>
           </>
@@ -42,12 +41,9 @@ export async function EventsView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: featuredEvents */}
       <Section tone="ink" className="!pt-8 md:!pt-12">
-        <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Eyebrow className="mb-4">{t.highlights.eyebrow}</Eyebrow>
-            <Headline size="md">{t.highlights.title}</Headline>
-          </div>
-          <p className="max-w-sm text-white/70">{t.highlights.text}</p>
+        <div className="mb-10">
+          <Eyebrow className="mb-4">{t.highlights.eyebrow}</Eyebrow>
+          <Headline size="md">{t.highlights.title}</Headline>
         </div>
         <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
           {heroEvents.map((e, i) => (
@@ -59,15 +55,9 @@ export async function EventsView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section tone="black" id="events" className="scroll-mt-20">
-        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Eyebrow className="mb-4">{t.local.eyebrow}</Eyebrow>
-            <Headline size="md">{t.local.title}</Headline>
-          </div>
-          <p className="flex max-w-sm items-start gap-3 text-sm text-white/70">
-            <Smartphone className="mt-0.5 size-5 shrink-0 text-white" aria-hidden />
-            {t.local.note}
-          </p>
+        <div className="mb-8">
+          <Eyebrow className="mb-4">{t.local.eyebrow}</Eyebrow>
+          <Headline size="md">{t.local.title}</Headline>
         </div>
         <EventsExplorer events={localEvents} locale={locale} labels={t.explorer} typeLabels={t.types} />
       </Section>

@@ -79,6 +79,7 @@ const de = {
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
   eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", signupLead: "Anmelden und buchen:", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der App anmelden (PadelCity App)", free: "Free", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
+  share: { label: "Teilen", copied: "Link kopiert" },
 };
 
 export type Dictionary = typeof de;
@@ -160,6 +161,7 @@ const en: Dictionary = {
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Football", multisport: "Multisport" },
   eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", signupLabel: "Sign up", signupLead: "Sign up and book:", web: "On the web", app: "In the app", webAria: "Sign up on the web (opens new tab)", appAria: "Sign up in the app (PadelCity app)", free: "Free", time: "" },
   media: { placeholder: "Image coming soon" },
+  share: { label: "Share", copied: "Link copied" },
 };
 
 const pl: Dictionary = {
@@ -239,6 +241,7 @@ const pl: Dictionary = {
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tenis", squash: "Squash", badminton: "Badminton", soccer: "Piłka nożna", multisport: "Multisport" },
   eventCard: { tournament: "Turniej", training: "Trening", event: "Event", signup: "Zapisz się online", signupApp: "W aplikacji", signupLabel: "Zapisz się", signupLead: "Zapisz się i zarezerwuj:", web: "Online", app: "W aplikacji", webAria: "Zapisz się online (otwiera nową kartę)", appAria: "Zapisz się w aplikacji (PadelCity)", free: "Free", time: "" },
   media: { placeholder: "Zdjęcie wkrótce" },
+  share: { label: "Udostępnij", copied: "Link skopiowany" },
 };
 
 export const dictionaries: Record<Locale, Dictionary> = { de, en, pl };

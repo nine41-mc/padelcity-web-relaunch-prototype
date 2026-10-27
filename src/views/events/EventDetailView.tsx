@@ -16,6 +16,7 @@ import { Section } from "@/components/ui/Section";
 import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
 import { EventSignup } from "@/components/events/EventSignup";
 import { Button } from "@/components/ui/Button";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { Chip } from "@/components/ui/Chip";
 import { Media } from "@/components/ui/Media";
 import { PartnerLogo } from "@/components/ui/PartnerLogo";
@@ -137,6 +138,7 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="mb-6 flex flex-wrap items-center gap-3">
             <Eyebrow>{dateRange}</Eyebrow>
             {content.presenter && <Chip tone="dark">{content.presenter}</Chip>}
+            <ShareButton title={event.title} locale={locale} track="share_event" className="ml-auto" />
           </div>
           <Headline as="h1" size="xl" className="max-w-6xl">
             {keepTogether(event.title)}
@@ -147,8 +149,8 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
           <div className="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <Countdown start={event.start} labels={t.countdown} />
             <div className="flex flex-wrap gap-3">
-              <EventSignup eventId={event.id} locale={locale} size="lg" className="w-full sm:w-auto" />
-              <Button href="#format" variant="outline" size="lg" arrow={false}>
+              <EventSignup eventId={event.id} locale={locale} size="md" className="w-full sm:w-auto" />
+              <Button href="#format" variant="outline" size="md" arrow={false}>
                 {t.detail.formatCta}
               </Button>
             </div>
@@ -291,7 +293,7 @@ function SignupBanner({ event, locale, t }: { event: ClubEvent; locale: Locale; 
           <p className="mt-4 max-w-lg text-white/80">{t.detail.bannerText(event.title)}</p>
         </div>
         <div className="flex flex-col gap-4 md:items-end">
-          <EventSignup eventId={event.id} locale={locale} size="lg" className="w-full md:w-auto" />
+          <EventSignup eventId={event.id} locale={locale} size="md" className="w-full md:w-auto" />
           <StoreBadges locale={locale} />
         </div>
       </div>
@@ -328,6 +330,7 @@ async function LocalEventLayout({ event, club, locale, t }: { event: ClubEvent; 
                 <Chip tone="gradient">{t.types[event.type]}</Chip>
                 {event.level && <Chip tone="level">{event.level}</Chip>}
                 {event.recurrence && <Chip>{event.recurrence}</Chip>}
+                <ShareButton title={event.title} locale={locale} track="share_event" className="ml-auto" />
               </div>
               <Headline as="h1" size="lg" className="mt-5">
                 {keepTogether(event.title)}

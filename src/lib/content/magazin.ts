@@ -429,7 +429,6 @@ const de = {
     more: { title: "Mehr Stories?", text: "Die besten Magazin-Artikel und Event-News – einmal im Monat in deinem Postfach." },
     video: "PadelCity TV",
   },
-  shareUi: { aria: "Artikel teilen", share: "Teilen", copy: "Link kopieren", copied: "Kopiert!" },
   videoUi: {
     play: "Video abspielen",
     soon: "Video folgt",
@@ -458,7 +457,6 @@ const en: MagazinContent = {
     more: { title: "Want more stories?", text: "The best magazine articles and event news – once a month, straight to your inbox." },
     video: "PadelCity TV",
   },
-  shareUi: { aria: "Share article", share: "Share", copy: "Copy link", copied: "Copied!" },
   videoUi: {
     play: "Play video",
     soon: "Video coming soon",
@@ -485,7 +483,6 @@ const pl: MagazinContent = {
     more: { title: "Chcesz więcej historii?", text: "Najlepsze artykuły z magazynu i wieści o eventach – raz w miesiącu w twojej skrzynce." },
     video: "PadelCity TV",
   },
-  shareUi: { aria: "Udostępnij artykuł", share: "Udostępnij", copy: "Kopiuj link", copied: "Skopiowano!" },
   videoUi: {
     play: "Odtwórz wideo",
     soon: "Wideo wkrótce",

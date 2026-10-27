@@ -10,7 +10,7 @@ import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
 import { NewsletterSignup } from "@/components/modules/NewsletterSignup";
 import { ArticleCard } from "@/components/brand/ArticleCard";
-import { ShareButtons } from "@/components/brand/ShareButtons";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { YouTubeLite } from "@/components/brand/YouTubeLite";
 
 // Contentful content type: article (title, slug, hub, category, author, publishedAt, heroImage, body rich text,
@@ -133,7 +133,7 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
 
             <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/70">{t.article.share}</p>
-              <ShareButtons url={url} title={article.title} t={t.shareUi} />
+              <ShareButton title={article.title} locale={locale} track="share_article" />
             </div>
           </div>
         </div>
