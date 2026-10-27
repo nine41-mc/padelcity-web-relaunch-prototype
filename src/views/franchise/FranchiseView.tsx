@@ -147,8 +147,9 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
                   {i + 1}
                 </span>
                 <div className="pb-2">
-                  <h3 className="font-display text-2xl font-extrabold italic uppercase leading-none md:min-h-[2lh] md:text-xl lg:text-2xl">{s.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/70">{s.text}</p>
+                  {/* Two reserved title lines only on tablet, where titles wrap; on desktop they fit one line */}
+                  <h3 className="font-display text-2xl font-extrabold italic uppercase leading-none md:min-h-[2lh] md:text-xl lg:min-h-0 lg:text-2xl">{s.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-white/70">{s.text}</p>
                 </div>
               </Reveal>
             </li>

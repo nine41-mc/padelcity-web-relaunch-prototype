@@ -59,7 +59,7 @@ export function EquityStory({ chapters, ariaLabel }: { chapters: EquityChapter[]
       </div>
 
       {/* Chapters */}
-      <div className="space-y-5 lg:space-y-[18vh] lg:py-[8vh]">
+      <div className="space-y-5 lg:space-y-[18vh] lg:pb-[8vh]">
         {chapters.map((c, i) => (
           <article
             key={c.id}
