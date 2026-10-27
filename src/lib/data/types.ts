@@ -60,11 +60,15 @@ export type Club = {
   facilities: Facility[];
   openingHours: OpeningHours;
   defaultPricePerHour?: number; // major units (e.g. 24 = 24 €), per court & hour
+  /** Court price list in force (Contentful clubPriceList, synced to the APL as ClubPriceList.pricing). */
+  priceList?: ClubPriceList;
+  /** Second poster line when the site lies outside the named city ("Karlsruhe" + "Rheinstetten"). */
+  district?: string;
   currency?: "EUR" | "PLN"; // club country currency (default EUR)
   mainImage?: ImageAsset;
   images: ImageAsset[];
   /** Club manager contact (Contentful contact entry). whatsappGroupUrl = proposed new Contentful field on club. */
-  contact?: { name?: string; phoneNumber?: string; emailAddress?: string; whatsappGroupUrl?: string };
+  contact?: { name?: string; phoneNumber?: string; emailAddress?: string; profileImageUrl?: string; whatsappGroupUrl?: string };
   // No `rating` on purpose: ratings are never mocked. Real Google ratings come from lib/data/google-reviews.ts (module clubReviews).
   tags: string[]; // "Indoor", "Outdoor", "Panorama Court", "Franchise", "Neu"
   isFranchise?: boolean;
@@ -140,3 +144,9 @@ export type Partner = {
   since?: string;
   description?: string;
 };
+
+/** Price columns of one time period, per court & hour in major units (34 = 34 €). Premium = panorama court. */
+export type PriceKind = "indoorDouble" | "indoorSingle" | "indoorPremium" | "outdoorDouble" | "outdoorSingle" | "outdoorPremium";
+export type PricePeriod = { from: string; until: string; prices: Partial<Record<PriceKind, number>> };
+/** days[0..6] = Monday … Sunday, days[7] = public holidays; each a list of time periods (off-peak, peak …). */
+export type ClubPriceList = { title?: string; validFrom: string; sports: Partial<Record<Sport, PricePeriod[][]>> };

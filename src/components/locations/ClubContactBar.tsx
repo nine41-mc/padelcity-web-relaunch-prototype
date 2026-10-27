@@ -1,15 +1,15 @@
 // Contentful module: clubContact (club → contact entry: club manager name, email, phone; + proposed field whatsappGroupUrl)
 import { Mail, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
+import { Media } from "@/components/ui/Media";
 import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { locationsContent } from "@/lib/content/locations";
-import { googleMapsRoute } from "./geo";
 
 /**
- * Club contact at a glance – address, club manager (email), phone and the club's WhatsApp group.
- * Sits above the section tabs. Missing values are shown as "folgt"/"tbc", never invented.
+ * Club contact at a glance right under the club name – address (jumps to the map section), club manager with
+ * photo, phone and the club's WhatsApp group. Missing values are shown as "folgt"/"tbc", never invented.
  */
-export function ClubContactBar({ club, locale }: { club: Club; locale: Locale }) {
+export function ClubContactBar({ club, locale, managerImage }: { club: Club; locale: Locale; managerImage?: string }) {
   const t = locationsContent[locale].club.contactBar;
   const a = club.address;
   const c = club.contact;
@@ -24,7 +24,7 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
     <section id="contact" aria-label={t.label} className="scroll-mt-44">
       <ul className="grid gap-2 sm:grid-cols-2 sm:gap-3 lg:grid-cols-4">
         <li>
-          <a href={googleMapsRoute(club.position)} target="_blank" rel="noopener noreferrer" className={`${tile} ${link}`} data-track="club_route_click">
+          <a href="#directions" className={`${tile} ${link}`} data-track="club_route_click">
             <span className={label}>
               <MapPin className="size-4 text-white" aria-hidden /> {t.address}
             </span>
@@ -44,8 +44,13 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
               <span className={label}>
                 <Mail className="size-4 text-white" aria-hidden /> {t.manager}
               </span>
-              {c.name && <span className="text-white/85">{c.name}</span>}
-              <span className={`${value} break-all`}>{c.emailAddress}</span>
+              <span className="flex items-center gap-3">
+                {c.name && <ManagerAvatar name={c.name} image={managerImage} />}
+                <span className="min-w-0">
+                  {c.name && <span className="block text-white/85">{c.name}</span>}
+                  <span className={`${value} block break-all`}>{c.emailAddress}</span>
+                </span>
+              </span>
             </a>
           ) : (
             <div className={tile}>
@@ -94,6 +99,17 @@ export function ClubContactBar({ club, locale }: { club: Club; locale: Locale })
         </li>
       </ul>
     </section>
+  );
+}
+
+/** Club manager photo (team photos from padelcity.de, matched by name); initials when there is none. */
+function ManagerAvatar({ name, image }: { name: string; image?: string }) {
+  if (image) return <Media src={image} alt="" className="size-11 shrink-0 rounded-full" imgClassName="object-[50%_20%]" sizes="44px" />;
+  const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
+  return (
+    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient text-sm font-bold" aria-hidden>
+      {initials}
+    </span>
   );
 }
 

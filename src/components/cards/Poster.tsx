@@ -37,16 +37,16 @@ function splitWord(word: string, maxOneLine = 7): string[] {
 
 /**
  * Poster title = the city, big; the location inside the city goes small below it.
- * "München Frankfurter Ring" → München + Frankfurter Ring · "Tucherpark" (city München) → München + Tucherpark ·
- * "Frankfurt" (city Frankfurt am Main) → Frankfurt.
+ * "München Frankfurter Ring" → München + Frankfurter Ring · "Frankfurt" (city Frankfurt am Main) → Frankfurt ·
+ * "Karlsruhe" with district Rheinstetten → Karlsruhe + Rheinstetten.
  */
-export function posterName(club: Pick<Club, "name" | "city">): { city: string; spot: string } {
+export function posterName(club: Pick<Club, "name" | "city" | "district">): { city: string; spot: string } {
   const name = club.name.trim();
   const cityFull = club.city.trim();
   const city = cityFull.length > 12 ? cityFull.split(/\s+/)[0] : cityFull;
   for (const prefix of [cityFull, city]) {
     if (name.toLowerCase().startsWith(prefix.toLowerCase()))
-      return { city: prefix.length > 12 ? city : prefix, spot: name.slice(prefix.length).replace(/^[\s–-]+/, "").trim() };
+      return { city: prefix.length > 12 ? city : prefix, spot: name.slice(prefix.length).replace(/^[\s–-]+/, "").trim() || (club.district ?? "") };
   }
   return { city, spot: name };
 }

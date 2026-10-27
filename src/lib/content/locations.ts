@@ -168,8 +168,8 @@ const de = {
       emptyText: "Offene Matches findest du jeden Tag in der App – oder schau, was in anderen Clubs los ist.",
     },
     // Section headers under the club intro
-    sections: { highlights: "Highlights & News", reach: "So erreichst du uns", hours: "Öffnungszeiten", pricing: "Preise & Ausstattung", closed: "Geschlossen", holidays: "Feiertage" },
-    priceList: { show: "Alle Preise anzeigen", hide: "Preise ausblenden", duration: "{n} Minuten", time: "Zeit", weekdays: "Mo – Fr", weekendHolidays: "Sa, So & Feiertage", until: "bis {t} Uhr", from: "ab {t} Uhr", allDay: "ganztägig" },
+    sections: { hoursPrices: "Öffnungszeiten & Preise", facilities: "Ausstattung", courts: "Sportarten & Courts", highlights: "Highlights & News", find: "So findest du uns", closed: "Geschlossen", holidays: "Feiertage", more: "mehr anzeigen", less: "weniger anzeigen" },
+    priceList: { sport: "Sportart", time: "Zeit", offPeak: "Off-Peak", peak: "Peak", allDay: "ganztägig", panorama: "Panorama", note: "Preise pro Court & Stunde, gültig ab {date}." },
     directions: { route: "Route öffnen" },
     faqLink: { text: "Fragen zu Buchung, Storno oder Hansefit & Wellpass?", cta: "Zu den FAQ" },
     contactBar: {
@@ -363,8 +363,8 @@ const en: LocationsContent = {
       emptyTitle: "No events planned in {city} right now.",
       emptyText: "You'll find open matches every day in the app – or see what's on at other clubs.",
     },
-    sections: { highlights: "Highlights & news", reach: "How to reach us", hours: "Opening hours", pricing: "Prices & facilities", closed: "Closed", holidays: "Public holidays" },
-    priceList: { show: "Show all prices", hide: "Hide prices", duration: "{n} minutes", time: "Time", weekdays: "Mon – Fri", weekendHolidays: "Sat, Sun & public holidays", until: "until {t}", from: "from {t}", allDay: "all day" },
+    sections: { hoursPrices: "Opening hours & prices", facilities: "Facilities", courts: "Sports & courts", highlights: "Highlights & news", find: "How to find us", closed: "Closed", holidays: "Public holidays", more: "show more", less: "show less" },
+    priceList: { sport: "Sport", time: "Time", offPeak: "Off-peak", peak: "Peak", allDay: "all day", panorama: "Panorama", note: "Prices per court & hour, valid from {date}." },
     directions: { route: "Get directions" },
     faqLink: { text: "Questions about booking, cancelling or Hansefit & Wellpass?", cta: "Read the FAQ" },
     contactBar: {
@@ -565,8 +565,8 @@ const pl: LocationsContent = {
       emptyTitle: "{city}: obecnie brak zaplanowanych wydarzeń.",
       emptyText: "Otwarte mecze znajdziesz codziennie w aplikacji – albo sprawdź, co dzieje się w innych klubach.",
     },
-    sections: { highlights: "Highlighty i aktualności", reach: "Jak do nas dotrzeć", hours: "Godziny otwarcia", pricing: "Ceny i wyposażenie", closed: "Zamknięte", holidays: "Święta" },
-    priceList: { show: "Pokaż wszystkie ceny", hide: "Ukryj ceny", duration: "{n} minut", time: "Godziny", weekdays: "pon. – pt.", weekendHolidays: "sob., niedz. i święta", until: "do {t}", from: "od {t}", allDay: "cały dzień" },
+    sections: { hoursPrices: "Godziny otwarcia i ceny", facilities: "Wyposażenie", courts: "Dyscypliny i korty", highlights: "Highlighty i aktualności", find: "Jak nas znaleźć", closed: "Zamknięte", holidays: "Święta", more: "pokaż więcej", less: "pokaż mniej" },
+    priceList: { sport: "Dyscyplina", time: "Godziny", offPeak: "Poza szczytem", peak: "Szczyt", allDay: "cały dzień", panorama: "Panorama", note: "Ceny za kort i godzinę, obowiązują od {date}." },
     directions: { route: "Wyznacz trasę" },
     faqLink: { text: "Pytania o rezerwację, anulowanie albo Hansefit i Wellpass?", cta: "Do FAQ" },
     contactBar: {

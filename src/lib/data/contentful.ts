@@ -1,5 +1,5 @@
 import "server-only";
-import type { Club, CourtSummary, Facility, ImageAsset, Sport } from "./types";
+import type { Club, ClubPriceList, CourtSummary, Facility, ImageAsset, PriceKind, Sport } from "./types";
 import { SPORTS } from "./types";
 import {
   DEFAULT_TIMEZONE,
@@ -223,12 +223,71 @@ function mapContact(r: LinkResolver, raw: unknown): Club["contact"] {
     name: str(fields.name),
     phoneNumber: str(fields.phoneNumber),
     emailAddress: str(fields.email) ?? str(fields.emailAddress),
+    // Same Contentful field the APL serves as GET /clubs → contact.profileImageUrl
+    profileImageUrl: r.image(fields.profileImage, str(fields.name) ?? "")?.url.replace("w=1600", "w=160"),
   };
+}
+
+/**
+ * Optional second poster line when the club's site is outside the city it is named after (proposed field
+ * "district" on the club). Curated by PadelCity – not derivable: Rheinstetten is shown, Obertraubling is not.
+ */
+const DISTRICTS: Record<string, string> = { jena: "Göschwitz", karlsruhe: "Rheinstetten" };
+
+const PRICE_SPORTS: Record<string, Sport> = { padel: "padel", tennis: "tennis", squash: "squash", badminton: "badminton", pickleball: "pickleball", soccer: "soccer", multi: "multisport" };
+const PRICE_DAYS = ["mondays", "tuesdays", "wednesdays", "thursdays", "fridays", "saturdays", "sundays", "holidays"];
+const PRICE_FIELDS: Record<string, PriceKind> = {
+  applicableIndoorPricePerHour: "indoorDouble",
+  applicableIndoorPricePerHourSingle: "indoorSingle",
+  applicableIndoorPricePerHourPremium: "indoorPremium",
+  applicableOutdoorPricePerHour: "outdoorDouble",
+  applicableOutdoorPricePerHourSingle: "outdoorSingle",
+  applicableOutdoorPricePerHourPremium: "outdoorPremium",
+};
+
+/**
+ * clubPriceList entries (the source the APL syncs into ClubPriceList.pricing): per club the list with the latest
+ * validFrom that has started. pricing = { <sport>: { mondays … sundays, holidays: [{ startsAt, endsAt, applicable…PerHour (cents) }] } }.
+ */
+function currentPriceLists(res: CfResponse | undefined, today = new Date().toISOString().slice(0, 10)): Map<string, ClubPriceList> {
+  const out = new Map<string, ClubPriceList>();
+  for (const e of res?.items ?? []) {
+    const clubId = (pickLocale(e.fields.assignedClub, "de") as Link | undefined)?.sys?.id;
+    const validFrom = str(pickLocale(e.fields.validFrom, "de"))?.slice(0, 10);
+    const pricing = pickLocale(e.fields.pricing, "de") as Record<string, Record<string, Record<string, unknown>[]>> | undefined;
+    if (!clubId || !validFrom || validFrom > today || !pricing) continue;
+    const prev = out.get(clubId);
+    if (prev && prev.validFrom >= validFrom) continue;
+    const sports: ClubPriceList["sports"] = {};
+    for (const [key, days] of Object.entries(pricing)) {
+      const sport = PRICE_SPORTS[key];
+      if (!sport || !days || typeof days !== "object") continue;
+      sports[sport] = PRICE_DAYS.map((d) =>
+        (days[d] ?? []).map((p) => ({
+          from: String(p.startsAt ?? ""),
+          until: String(p.endsAt ?? ""),
+          prices: Object.fromEntries(
+            Object.entries(PRICE_FIELDS)
+              .filter(([field]) => typeof p[field] === "number")
+              .map(([field, kind]) => [kind, (p[field] as number) / 100]),
+          ),
+        })),
+      );
+    }
+    out.set(clubId, { title: str(pickLocale(e.fields.name, "de")), validFrom, sports });
+  }
+  return out;
 }
 
 export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de"): Promise<Club[]> {
   // locale=* + flattenLocales: text in the page locale, media/JSON/number fields fall back to EN (see DEFAULT_CF_LOCALE).
-  const [rawClubs, rawCourts] = await Promise.all([getEntries("club", 2, "*"), getEntries("court", 1, "*")]);
+  const [rawClubs, rawCourts, rawPrices] = await Promise.all([
+    getEntries("club", 2, "*"),
+    getEntries("court", 1, "*"),
+    // price lists are optional – a missing content type must not break the clubs
+    getEntries("clubPriceList", 0, "*").catch(() => undefined),
+  ]);
+  const priceLists = currentPriceLists(rawPrices);
   const [clubsRes, courtsRes] = [rawClubs, rawCourts].map((res) => flattenLocales(res, locale));
   // URL slugs are shared across locales (/standorte/x ↔ /en/locations/x) → always derived from the German name,
   // otherwise "München Tucherpark" / "Munich Tucherpark" would get different slugs and break hreflang + language switch.
@@ -253,7 +312,10 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
     const name = str(f.name);
     if (!name) continue;
 
-    const city = str(f.localityName) ?? "";
+    // The city PadelCity names the club after ("PadelCity Regensburg" → Regensburg). localityName is the address
+    // (Obertraubling, Rheinstetten, Warszawa …) and stays in the address only.
+    const locality = str(f.localityName) ?? "";
+    const city = name.replace(/^padel\s*city\s+/i, "").split(/\s+/)[0] || locality;
     const slug = slugify(slugNames.get(e.sys.id) ?? name);
     const timezone = str(f.timezone) ?? DEFAULT_TIMEZONE;
     const subdivision = str(f.subdivisionCode);
@@ -295,13 +357,15 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
         streetName: str(f.streetName) ?? "",
         buildingNumber: str(f.buildingNumber) ?? "",
         postalCode: str(f.postalCode) ?? "",
-        localityName: city,
+        localityName: locality,
       },
+      district: str(f.district) ?? DISTRICTS[mock?.slug ?? slug],
       position: { latitude: Number(loc?.lat ?? mock?.position.latitude ?? 0), longitude: Number(loc?.lon ?? mock?.position.longitude ?? 0) },
       courts,
       facilities,
       openingHours: mapOpeningTimes(f.openingTimes, timezone),
       defaultPricePerHour: Number.isFinite(price) && price > 0 ? price : undefined,
+      priceList: priceLists.get(e.sys.id),
       currency: country === "PL" ? "PLN" : "EUR",
       mainImage: mainImage ?? gallery[0] ?? mock?.mainImage,
       // Gallery = main image + all `images` (deduplicated by URL).

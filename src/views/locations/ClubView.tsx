@@ -11,6 +11,7 @@ import { alternates, href } from "@/lib/i18n/routes";
 import { deeplinks, site } from "@/lib/site";
 import { fill, locationsContent } from "@/lib/content/locations";
 import { academyContent } from "@/lib/content/academy";
+import { coaches, team } from "@/lib/content/people";
 import { coachesForClub, resolveCoachClubsFor } from "@/components/play/coaches/resolve";
 import { ClubCoaches } from "@/components/locations/ClubCoaches";
 import { ClubCard } from "@/components/cards/ClubCard";
@@ -20,10 +21,11 @@ import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { AppBookingBlock, ClubPricing, formatPrice } from "@/components/locations/AppBooking";
+import { AppBookingBlock, ClubFacilities, formatPrice } from "@/components/locations/AppBooking";
+import { ClubCourtsCard, ClubPriceCard } from "@/components/locations/SportCards";
+import { ClampText } from "@/components/locations/ClampText";
 import { ClubHours } from "@/components/locations/ClubHours";
 import { AppBookingBar } from "@/components/locations/AppBookingBar";
-import { ClubDistance } from "@/components/locations/ClubDistance";
 import { ClubGallery } from "@/components/locations/ClubGallery";
 import { ClubHighlights } from "@/components/locations/ClubHighlights";
 import { ClubMapLazy } from "@/components/locations/ClubMapLazy";
@@ -124,17 +126,18 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
     .map((c) => ({ club: c, km: distanceKm(club.position, c.position) }))
     .sort((x, y) => x.km - y.km)
     .slice(0, 3);
-  const a = club.address;
-  const addressLine = `${a.streetName} ${a.buildingNumber}, ${a.postalCode} ${a.localityName}`;
   const bookHref = deeplinks.club(club.id);
   const gallery = galleryImages(club, locale);
+  // Club manager photo: contact.profileImage (Contentful; the APL serves it as contact.profileImageUrl), else the team
+  // photo from padelcity.de matched by name
+  const managerImage = club.contact?.profileImageUrl ?? [...team, ...coaches].find((p) => p.name === club.contact?.name)?.image;
   const reviews = reviewModuleClubs.has(club.slug) ? await getClubReviews(club, locale) : undefined;
 
   return (
     <div>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(club, locale)).replace(/</g, "\\u003c") }} />
 
-      {/* Gallery + title */}
+      {/* Gallery, full club name, description, contact tiles */}
       <section className="bg-black pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="container-site">
           {gallery.length > 0 ? (
@@ -147,65 +150,81 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
             <div>
               <Headline as="h1" size="md">
-                {club.name}
+                {club.fullName ?? club.name}
               </Headline>
-              <p className="mt-5 flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-white/75">
-                <span>{addressLine}</span>
-                <ClubDistance position={club.position} locale={locale} />
-              </p>
             </div>
-            <p className="text-lg leading-relaxed text-white/75 lg:pt-2">{club.description}</p>
+            <ClampText text={club.description} more={t.sections.more} less={t.sections.less} className="lg:pt-2" />
           </div>
 
-          {/* Club details as clear sections: highlights · hours | prices & facilities · how to reach us (contact + map) */}
-          <div className="mt-16 space-y-14 md:mt-20 md:space-y-16">
-            {gallery.length >= 2 && (
-              <div>
-                <Headline size="sm" className="mb-6">{t.sections.highlights}</Headline>
-                <ClubHighlights images={gallery} city={club.city} locale={locale} showTitle={false} />
-              </div>
-            )}
-            <div className="grid gap-14 lg:grid-cols-[1fr_2fr] lg:gap-6">
-              <div>
-                <Headline size="sm" className="mb-6">{t.sections.hours}</Headline>
-                <ClubHours club={club} locale={locale} />
-              </div>
-              <div>
-                <Headline size="sm" className="mb-6">{t.sections.pricing}</Headline>
-                <ClubPricing club={club} locale={locale} />
-              </div>
-            </div>
-            <div id="directions" className="scroll-mt-28">
-              <Headline size="sm" className="mb-6">{t.sections.reach}</Headline>
-              <ClubContactBar club={club} locale={locale} />
-              <div className="relative isolate mt-3 h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[420px]">
-                <ClubMapLazy
-                  clubs={[{ id: club.id, slug: club.slug, name: club.name, city: club.city, position: club.position }]}
-                  locale={locale}
-                  activeId={club.id}
-                  showPopups={false}
-                />
-                <a
-                  href={googleMapsRoute(club.position)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:shadow-glow"
-                >
-                  <Navigation className="size-4" aria-hidden /> {t.directions.route}
-                </a>
-              </div>
-            </div>
+          {/* Address (→ "So findest du uns"), club manager, phone, WhatsApp group */}
+          <div className="mt-10">
+            <ClubContactBar club={club} locale={locale} managerImage={managerImage} />
           </div>
         </div>
       </section>
 
       <div className="relative bg-ink-800">
-        {/* Reviews (Google) – only on clubs in reviewModuleClubs */}
-        {reviews && (
-          <Section id="reviews" className={sectionCls}>
-            <ClubReviews data={reviews} locale={locale} />
+        {/* Opening hours (one line per weekday) | price from + full price list */}
+        <Section id="hours" className={sectionCls}>
+          <Headline size="sm" className="mb-8">{t.sections.hoursPrices}</Headline>
+          {/* minmax(0,…): the wide price table scrolls inside its card instead of widening the column on phones */}
+          <div className="grid grid-cols-[minmax(0,1fr)] gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start">
+            <ClubHours club={club} locale={locale} />
+            <ClubPriceCard club={club} locale={locale} />
+          </div>
+        </Section>
+
+        {club.facilities.length > 0 && (
+          <Section id="facilities" tone="black" className={sectionCls}>
+            <Headline size="sm" className="mb-8">{t.sections.facilities}</Headline>
+            <ClubFacilities club={club} />
           </Section>
         )}
+
+        {/* One card, filtered by sport */}
+        <Section id="courts" className={sectionCls}>
+          <Headline size="sm" className="mb-8">{t.sections.courts}</Headline>
+          <ClubCourtsCard club={club} locale={locale} />
+        </Section>
+
+        {gallery.length >= 2 && (
+          <Section id="highlights" className={sectionCls}>
+            <Headline size="sm" className="mb-8">{t.sections.highlights}</Headline>
+            <ClubHighlights images={gallery} city={club.city} locale={locale} showTitle={false} />
+          </Section>
+        )}
+
+        {/* Events */}
+        <Section id="events" tone="black" className={sectionCls}>
+          <Headline size="sm" className="mb-8 md:mb-10">
+            {t.events.title}
+          </Headline>
+          {events.length ? (
+            <>
+              <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+                {events.map((e, i) => (
+                  <li key={e.id} className="flex">
+                    <Reveal delay={i * 0.06} className="flex w-full">
+                      <EventCard event={e} locale={locale} className="w-full" />
+                    </Reveal>
+                  </li>
+                ))}
+              </ul>
+              {/* CTA below the event tiles (same pattern as the coaches) */}
+              <Button href={href(locale, "events")} variant="outline" className="mt-8 w-fit md:mt-10" data-track="club_events_all_cta">
+                {t.events.allButton}
+              </Button>
+            </>
+          ) : (
+            <div className="rounded-[20px] border border-dashed border-white/15 p-8 text-center md:p-12">
+              <p className="text-lg font-semibold">{fill(t.events.emptyTitle, { city: club.city })}</p>
+              <p className="mt-2 text-white/70">{t.events.emptyText}</p>
+              <Button href={href(locale, "events")} variant="outline" className="mt-6">
+                {t.events.allButton}
+              </Button>
+            </div>
+          )}
+        </Section>
 
         {/* Coaching: real coaches of this club (getCoaches → matched via coach club keys) */}
         <Section id="coaching" className={sectionCls}>
@@ -267,40 +286,15 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
           )}
         </Section>
 
-        {/* Events */}
-        <Section id="events" tone="black" className={sectionCls}>
-          <Headline size="sm" className="mb-8 md:mb-10">
-            {t.events.title}
-          </Headline>
-          {events.length ? (
-            <>
-              <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {events.map((e, i) => (
-                  <li key={e.id} className="flex">
-                    <Reveal delay={i * 0.06} className="flex w-full">
-                      <EventCard event={e} locale={locale} className="w-full" />
-                    </Reveal>
-                  </li>
-                ))}
-              </ul>
-              {/* CTA below the event tiles (same pattern as the coaches) */}
-              <Button href={href(locale, "events")} variant="outline" className="mt-8 w-fit md:mt-10" data-track="club_events_all_cta">
-                {t.events.allButton}
-              </Button>
-            </>
-          ) : (
-            <div className="rounded-[20px] border border-dashed border-white/15 p-8 text-center md:p-12">
-              <p className="text-lg font-semibold">{fill(t.events.emptyTitle, { city: club.city })}</p>
-              <p className="mt-2 text-white/70">{t.events.emptyText}</p>
-              <Button href={href(locale, "events")} variant="outline" className="mt-6">
-                {t.events.allButton}
-              </Button>
-            </div>
-          )}
-        </Section>
+        {/* Reviews (Google) – only on clubs in reviewModuleClubs */}
+        {reviews && (
+          <Section id="reviews" tone="black" className={sectionCls}>
+            <ClubReviews data={reviews} locale={locale} />
+          </Section>
+        )}
 
         {/* Booking happens exclusively in the app – at the end of the page (sticky booking bar on phones stays) */}
-        <Section id="book" tone="black" className={sectionCls}>
+        <Section id="book" className={sectionCls}>
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />
           <div className="mt-6 flex items-start gap-2 text-sm text-white/70">
@@ -311,6 +305,27 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
                 {t.faqLink.cta} <ArrowUpRight className="size-4" aria-hidden />
               </Link>
             </p>
+          </div>
+        </Section>
+
+        {/* Map: target of "Route planen" on the address tile */}
+        <Section id="directions" tone="black" className={sectionCls}>
+          <Headline size="sm" className="mb-8">{t.sections.find}</Headline>
+          <div className="relative isolate h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[420px]">
+            <ClubMapLazy
+              clubs={[{ id: club.id, slug: club.slug, name: club.name, city: club.city, position: club.position }]}
+              locale={locale}
+              activeId={club.id}
+              showPopups={false}
+            />
+            <a
+              href={googleMapsRoute(club.position)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:shadow-glow"
+            >
+              <Navigation className="size-4" aria-hidden /> {t.directions.route}
+            </a>
           </div>
         </Section>
 
