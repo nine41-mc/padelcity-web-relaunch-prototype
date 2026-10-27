@@ -154,7 +154,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                     </h2>
                     <div className="divide-y divide-white/10 rounded-[20px] border border-white/10 bg-ink-700">
                       {c.items.map((i) => (
-                        <details key={i.id} id={`faq-q-${i.id}`} className="group scroll-mt-28" open={Boolean(q) && total <= 3}>
+                        <details key={i.id} id={`faq-q-${i.id}`} className="faq-item group scroll-mt-28" open={Boolean(q) && total <= 3}>
                           <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-[20px] px-5 py-4 font-semibold transition hover:text-white md:px-6 md:text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-optic-500">
                             {i.q}
                             <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 transition-transform duration-300 group-open:rotate-45 group-open:border-transparent group-open:bg-brand-gradient group-open:text-white motion-reduce:transition-none">

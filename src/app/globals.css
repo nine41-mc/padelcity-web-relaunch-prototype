@@ -175,6 +175,10 @@
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  /* The gradient only paints inside the box – italic display glyphs lean past it and were cut off ("02").
+     Extra paint room on the right, cancelled by the negative margin so the layout stays the same. */
+  padding-inline-end: 0.15em;
+  margin-inline-end: -0.15em;
 }
 /* Subtle film grain used on dark sections */
 @utility bg-grain {
@@ -280,6 +284,21 @@ html[data-a11y-font="readable"] {
 html[data-a11y-font="readable"] .italic { font-style: normal !important; }
 html[data-a11y-font="readable"] .font-display,
 html[data-a11y-font="readable"] .font-brush { text-transform: none !important; letter-spacing: 0 !important; }
+
+/*
+ * FAQ accordions (<details class="faq-item">): answers slide open and closed. Needs ::details-content and
+ * interpolate-size (Chromium; Safari 18.4+ opens without the slide) – everywhere else they simply snap, as before.
+ * Reduced motion / "Bewegung aus" → no slide.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  :root { interpolate-size: allow-keywords; }
+  details.faq-item::details-content {
+    block-size: 0;
+    overflow: clip;
+    transition: block-size 0.3s cubic-bezier(0.22, 1, 0.36, 1), content-visibility 0.3s allow-discrete;
+  }
+  details.faq-item[open]::details-content { block-size: auto; }
+}
 
 /* Motion off: stop CSS animations/transitions (JS motion checks useMotionOff) */
 html[data-a11y-motion="off"] *,

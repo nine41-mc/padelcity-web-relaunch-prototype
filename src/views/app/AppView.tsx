@@ -49,7 +49,6 @@ export function AppView({ locale }: { locale: Locale }) {
         <div className="absolute inset-0 -z-10 bg-grain" />
         <div className="container-site grid items-center gap-14 lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <Eyebrow className="mb-6">{t.hero.eyebrow}</Eyebrow>
             <Headline as="h1" size="lg">
               {t.hero.title} <Accent>{t.hero.accent}</Accent>
             </Headline>

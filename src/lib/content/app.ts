@@ -161,7 +161,6 @@ const de = {
     description: "Courts buchen, Kosten anteilig zahlen, Open Matches, Events & Training, Gutscheine und Corporate Benefits – alles in der PadelCity App für iOS und Android.",
   },
   hero: {
-    eyebrow: "iOS & Android · kostenlos",
     title: "Dein Court. Dein Match. Deine",
     accent: "App.",
     lead: "Courts buchen, Mitspieler:innen finden, Events & Trainings sichern – die PadelCity App ist dein Ticket in die Community.",
@@ -311,7 +310,6 @@ const en: AppContent = {
     description: "Book courts, split the cost, open matches, events & training, gift vouchers and corporate benefits – all in the PadelCity app for iOS and Android.",
   },
   hero: {
-    eyebrow: "iOS & Android · free",
     title: "Your court. Your match. Your",
     accent: "app.",
     lead: "Book courts, find players, grab your spot at events and training sessions – the PadelCity app is your ticket into the community.",
@@ -458,7 +456,6 @@ const pl: AppContent = {
     description: "Rezerwacja kortów, dzielenie płatności, otwarte mecze, eventy i treningi, vouchery i benefity firmowe – wszystko w aplikacji PadelCity na iOS i Androida.",
   },
   hero: {
-    eyebrow: "iOS i Android · za darmo",
     title: "Twój kort. Twój mecz. Twoja",
     accent: "aplikacja.",
     lead: "Rezerwuj korty, znajdź partnerów do gry, zgarnij miejsce na eventach i treningach – aplikacja PadelCity to twój bilet do społeczności.",
