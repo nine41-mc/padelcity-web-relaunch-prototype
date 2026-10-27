@@ -97,13 +97,10 @@ const de = {
       newTab: "(öffnet in neuem Tab)",
     },
     courtsLabel: "Courts",
-    centerCourt: "Center Court",
     indoor: "Indoor",
     outdoor: "Outdoor",
     double: "Double",
     single: "Single",
-    court: "Court",
-    courtsPlural: "Courts",
     distance: "entfernt",
     gallery: {
       extra: ["Courts von oben", "Lounge", "Umkleiden", "Community nach dem Match", "Bar & Bistro", "Court-Details"],
@@ -165,7 +162,8 @@ const de = {
       emptyText: "Offene Matches findest du jeden Tag in der App – oder schau, was in anderen Clubs los ist.",
     },
     // Section headers under the club intro
-    sections: { pricesCourts: "Preise & Courts", hours: "Öffnungszeiten", facilities: "Ausstattung", highlights: "Highlights & News", find: "So findest du uns", closed: "Geschlossen", holidays: "Feiertage", more: "mehr anzeigen", less: "weniger anzeigen" },
+    sections: { pricesCourts: "Preise & Courts", hours: "Öffnungszeiten", facilities: "Ausstattung", highlights: "Highlights & News", find: "So findest du uns", closed: "Geschlossen", holidays: "Feiertage" },
+    info: { label: "Info", close: "Schließen" },
     priceList: { sport: "Sportart", time: "Zeit", offPeak: "Off-Peak", peak: "Peak", allDay: "ganztägig", centerCourt: "Center Court", note: "Preise pro Court & Stunde, gültig ab {date}." },
     directions: { route: "Route öffnen" },
     contactBar: {
@@ -295,13 +293,10 @@ const en: LocationsContent = {
       newTab: "(opens in a new tab)",
     },
     courtsLabel: "Courts",
-    centerCourt: "Center Court",
     indoor: "indoor",
     outdoor: "outdoor",
     double: "doubles",
     single: "singles",
-    court: "court",
-    courtsPlural: "courts",
     distance: "away",
     gallery: {
       extra: ["Courts from above", "Lounge", "Changing rooms", "Community after the match", "Bar & bistro", "Court details"],
@@ -362,7 +357,8 @@ const en: LocationsContent = {
       emptyTitle: "No events planned in {city} right now.",
       emptyText: "You'll find open matches every day in the app – or see what's on at other clubs.",
     },
-    sections: { pricesCourts: "Prices & courts", hours: "Opening hours", facilities: "Facilities", highlights: "Highlights & news", find: "How to find us", closed: "Closed", holidays: "Public holidays", more: "show more", less: "show less" },
+    sections: { pricesCourts: "Prices & courts", hours: "Opening hours", facilities: "Facilities", highlights: "Highlights & news", find: "How to find us", closed: "Closed", holidays: "Public holidays" },
+    info: { label: "Info", close: "Close" },
     priceList: { sport: "Sport", time: "Time", offPeak: "Off-peak", peak: "Peak", allDay: "all day", centerCourt: "Center Court", note: "Prices per court & hour, valid from {date}." },
     directions: { route: "Get directions" },
     contactBar: {
@@ -498,14 +494,11 @@ const pl: LocationsContent = {
       newTab: "(otwiera się w nowej karcie)",
     },
     courtsLabel: "Korty",
-    centerCourt: "Center Court",
     // Polish: AppBooking renders "{n} × kort {indoor} {double}" (singular adjectives – no case agreement needed)
     indoor: "kryty",
     outdoor: "odkryty",
     double: "podwójny",
     single: "pojedynczy",
-    court: "kort",
-    courtsPlural: "korty",
     distance: "stąd",
     gallery: {
       extra: ["Korty z góry", "Lounge", "Szatnie", "Społeczność po meczu", "Bar i bistro", "Detale kortu"],
@@ -566,7 +559,8 @@ const pl: LocationsContent = {
       emptyTitle: "{city}: obecnie brak zaplanowanych wydarzeń.",
       emptyText: "Otwarte mecze znajdziesz codziennie w aplikacji – albo sprawdź, co dzieje się w innych klubach.",
     },
-    sections: { pricesCourts: "Ceny i korty", hours: "Godziny otwarcia", facilities: "Wyposażenie", highlights: "Highlighty i aktualności", find: "Jak nas znaleźć", closed: "Zamknięte", holidays: "Święta", more: "pokaż więcej", less: "pokaż mniej" },
+    sections: { pricesCourts: "Ceny i korty", hours: "Godziny otwarcia", facilities: "Wyposażenie", highlights: "Highlighty i aktualności", find: "Jak nas znaleźć", closed: "Zamknięte", holidays: "Święta" },
+    info: { label: "Info", close: "Zamknij" },
     priceList: { sport: "Dyscyplina", time: "Godziny", offPeak: "Poza szczytem", peak: "Szczyt", allDay: "cały dzień", centerCourt: "Center Court", note: "Ceny za kort i godzinę, obowiązują od {date}." },
     directions: { route: "Wyznacz trasę" },
     contactBar: {

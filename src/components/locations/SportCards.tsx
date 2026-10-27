@@ -1,8 +1,7 @@
 "use client";
 
-// Contentful modules: clubPricing (clubPriceList per club) and courtOverview (courts per sport) – one section "Preise & Courts"
+// Contentful module: clubPricing ("Preise & Courts": clubPriceList per club + courts per sport, one sport filter)
 import { useLayoutEffect, useRef, useState } from "react";
-import { LayoutGrid } from "lucide-react";
 import type { Club, PriceKind, PricePeriod, Sport } from "@/lib/data/types";
 import { SPORTS } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
@@ -46,7 +45,7 @@ export function ClubPricesCourts({ club, locale }: { club: Club; locale: Locale 
   const sports = [...new Set([...(Object.keys(club.priceList?.sports ?? {}) as Sport[]), ...courtGroups.map((g) => g.sport)])].sort(bySportOrder);
   const [sport, setSport] = useState<Sport>(sports[0] ?? "padel");
   const courts = courtGroups.find((g) => g.sport === sport);
-  const premium = club.courts.filter((c) => (c.sport ?? "padel") === sport && c.isPremium).length;
+  const courtCount = club.courts.filter((c) => (c.sport ?? "padel") === sport).length;
 
   return (
     <div>
@@ -56,7 +55,7 @@ export function ClubPricesCourts({ club, locale }: { club: Club; locale: Locale 
         {courts && (
           <div className="mt-6 border-t border-white/10 pt-6">
             <p className={label}>
-              <LayoutGrid className="size-4" aria-hidden /> {t.courtsLabel}
+              {t.courtsLabel} ({courtCount})
             </p>
             <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label={t.courtsLabel}>
               {courts.lines.map((l) => (
@@ -65,16 +64,6 @@ export function ClubPricesCourts({ club, locale }: { club: Club; locale: Locale 
                   <span className="font-medium leading-tight">{l.label}</span>
                 </li>
               ))}
-              {premium > 0 && (
-                <li className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 p-4">
-                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand-gradient text-[11px] font-bold" aria-hidden>
-                    ★
-                  </span>
-                  <span className="font-medium">
-                    {premium}× {t.centerCourt}
-                  </span>
-                </li>
-              )}
             </ul>
           </div>
         )}
@@ -252,7 +241,7 @@ export function courtsBySport(club: Pick<Club, "courts">, locale: Locale) {
       lines: [...groups.entries()].map(([key, n]) => {
         const [loc, kind] = key.split("|") as ["indoor" | "outdoor", "double" | "single" | undefined];
         const label = kind ? `${t[loc]} ${t[kind]}` : t[loc];
-        return { key, courtType: kind ?? "double", label: locale === "pl" ? `${n} × ${t.court} ${label}` : `${n} ${label} ${n > 1 ? t.courtsPlural : t.court}` };
+        return { key, courtType: kind ?? "double", label: locale === "pl" ? `${n} × ${label}` : `${n} ${label}` }; // "7 Indoor Double" – the heading already says Courts
       }),
     }));
 }

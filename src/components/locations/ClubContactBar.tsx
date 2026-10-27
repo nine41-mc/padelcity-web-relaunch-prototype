@@ -59,7 +59,11 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
       value: c?.emailAddress ? (
         <>
           {c.name && <span className="block font-normal text-white/80">{c.name}</span>}
-          <span className="block break-all">{c.emailAddress}</span>
+          {/* break only after the @, never inside the domain */}
+          <span className="block">
+            {c.emailAddress.split("@")[0]}@<wbr />
+            {c.emailAddress.split("@").slice(1).join("@")}
+          </span>
         </>
       ) : (
         pending
@@ -78,25 +82,26 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
 
   return (
     <section id="contact" aria-label={t.label} className="scroll-mt-44">
-      <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
         {tiles.map((tile) => (
-          <li key={tile.key} className="flex flex-col rounded-[20px] border border-white/12 bg-ink-700 p-5">
-            <div className="flex items-center gap-3">
-              <span className="grid size-11 shrink-0 place-items-center overflow-hidden rounded-full bg-white/[0.06]">{tile.media}</span>
-              <span className="text-[13px] font-semibold uppercase tracking-[0.12em] text-white/70">{tile.label}</span>
+          <li key={tile.key} className="flex min-w-0 flex-col rounded-[20px] border border-white/12 bg-ink-700 p-3.5 sm:p-5">
+            {/* phones: two columns, so the icon sits above the label */}
+            <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
+              <span className="grid size-10 shrink-0 sm:size-11 place-items-center overflow-hidden rounded-full bg-white/[0.06]">{tile.media}</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/70 sm:text-[13px] sm:tracking-[0.12em]">{tile.label}</span>
             </div>
-            <p className="mt-4 font-semibold leading-snug">{tile.value}</p>
+            <p className="mt-3 text-sm font-semibold leading-snug sm:mt-4 sm:text-base">{tile.value}</p>
             {/* every tile ends on the same line: one action, copy on the right */}
             {(tile.action || tile.copy) && (
-              <div className="mt-auto flex items-center justify-between gap-2 pt-5">
+              <div className="mt-auto flex items-center justify-between gap-1.5 pt-4 sm:gap-2 sm:pt-5">
                 {tile.action ? (
                   <a
                     href={tile.action.href}
                     {...(tile.action.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     data-track={tile.action.track}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 px-4 text-sm font-semibold transition hover:border-transparent hover:bg-brand-gradient"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 px-3 text-[13px] font-semibold transition hover:border-transparent hover:bg-brand-gradient sm:px-4 sm:text-sm"
                   >
-                    <tile.action.icon className="size-4" aria-hidden /> {tile.action.label}
+                    <tile.action.icon className="hidden size-4 sm:block" aria-hidden /> {tile.action.label}
                   </a>
                 ) : (
                   <span />
@@ -113,10 +118,10 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
 
 /** Club manager photo in the icon slot (team photos from padelcity.de, matched by name); initials when there is none. */
 function ManagerAvatar({ name, image }: { name: string; image?: string }) {
-  if (image) return <Media src={image} alt="" className="size-11 shrink-0 rounded-full" imgClassName="object-[50%_20%]" sizes="44px" />;
+  if (image) return <Media src={image} alt="" className="size-10 shrink-0 rounded-full sm:size-11" imgClassName="object-[50%_20%]" sizes="44px" />;
   const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
   return (
-    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient text-sm font-bold" aria-hidden>
+    <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-gradient text-sm font-bold sm:size-11" aria-hidden>
       {initials}
     </span>
   );

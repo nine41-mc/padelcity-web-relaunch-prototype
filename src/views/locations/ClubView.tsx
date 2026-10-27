@@ -13,7 +13,8 @@ import { academyContent } from "@/lib/content/academy";
 import { coaches, team } from "@/lib/content/people";
 import { coachesForClub, resolveCoachClubsFor } from "@/components/play/coaches/resolve";
 import { ClubCoaches } from "@/components/locations/ClubCoaches";
-import { ClubCard } from "@/components/cards/ClubCard";
+import { ClubCard, courtSummary } from "@/components/cards/ClubCard";
+import { SportList } from "@/components/cards/ClubMeta";
 import { EventCard } from "@/components/cards/EventCard";
 import { Button } from "@/components/ui/Button";
 import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
@@ -22,7 +23,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { AppBookingBlock, ClubFacilities, formatPrice } from "@/components/locations/AppBooking";
 import { ClubPricesCourts } from "@/components/locations/SportCards";
-import { ClampText } from "@/components/locations/ClampText";
+import { ClubInfo } from "@/components/locations/ClubInfo";
 import { ClubHours } from "@/components/locations/ClubHours";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { AppBookingBar } from "@/components/locations/AppBookingBar";
@@ -147,18 +148,22 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
             <Media alt={club.name} className="aspect-[16/9] rounded-[28px] md:aspect-auto md:h-[320px]" />
           )}
 
-          <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
-            <div>
-              <div className="flex items-start justify-between gap-4">
-                <Headline as="h1" size="md">
-                  {club.fullName ?? club.name}
-                </Headline>
-                <ShareButton title={club.fullName ?? club.name} locale={locale} track="share_club" className="mt-1" />
-              </div>
+          {/* Title + opening hours left; Info (description) and Teilen right */}
+          <div className="mt-10 flex flex-col gap-5 lg:mt-14 lg:flex-row lg:items-start lg:justify-between">
+            <div className="min-w-0">
+              <Headline as="h1" size="md">
+                {club.fullName ?? club.name}
+              </Headline>
+              {/* Courts and sports, as on the club card */}
+              <p className="mt-3 font-semibold md:text-lg">{courtSummary(club, locale)}</p>
+              <SportList club={club} locale={locale} className="mt-1 text-white/70 md:text-base" />
               {/* Opening hours as on Google: status line, unfolds into the week */}
-              <ClubHours club={club} locale={locale} className="mt-4" />
+              <ClubHours club={club} locale={locale} className="mt-3" />
             </div>
-            <ClampText text={club.description} more={t.sections.more} less={t.sections.less} className="lg:pt-2" />
+            <div className="flex shrink-0 gap-2 lg:pt-2">
+              <ClubInfo title={club.fullName ?? club.name} text={club.description} label={t.info.label} closeLabel={t.info.close} />
+              <ShareButton title={club.fullName ?? club.name} locale={locale} track="share_club" />
+            </div>
           </div>
 
           {/* Address (→ "So findest du uns"), club manager, phone, WhatsApp group */}
