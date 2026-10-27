@@ -46,10 +46,10 @@ export async function AcademyView({ locale }: { locale: Locale }) {
           lead={t.hero.lead}
           actions={
             <>
-              <Button href={deeplinks.events()} size="lg" variant="gradient" data-track="academy_signup_click">
+              <Button href={deeplinks.events()} size="md" variant="gradient" data-track="academy_signup_click">
                 {t.hero.ctaApp}
               </Button>
-              <Button href="#programme" size="lg" variant="outline" arrow={false}>
+              <Button href="#programme" size="md" variant="outline" arrow={false}>
                 {t.hero.ctaProgrammes}
               </Button>
             </>
@@ -62,28 +62,22 @@ export async function AcademyView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: levelPath */}
       <Section tone="ink" className="!pt-8 md:!pt-12">
-        <div className="mb-12 grid gap-6 md:grid-cols-[1.3fr_1fr] md:items-end">
-          <div>
-            <Eyebrow className="mb-4">{t.path.eyebrow}</Eyebrow>
-            <h2 className="text-[2.6rem] leading-[0.95] md:text-7xl">
-              <VarsityText>{t.path.line1}</VarsityText>
-              <br />
-              <VarsityText className="text-white/90">{t.path.line2}</VarsityText>
-            </h2>
-          </div>
-          <p className="text-white/70">{t.path.text}</p>
+        <div className="mb-12">
+          <Eyebrow className="mb-4">{t.path.eyebrow}</Eyebrow>
+          <h2 className="text-[2.6rem] leading-[0.95] md:text-7xl">
+            <VarsityText>{t.path.line1}</VarsityText>
+            <br />
+            <VarsityText className="text-white/90">{t.path.line2}</VarsityText>
+          </h2>
         </div>
         <LevelPath stages={t.levelStages} scale={t.levelScale} scaleLabel={t.path.scaleLabel} levelLabel={t.path.level} />
       </Section>
 
       {/* Contentful module: programmeGrid */}
       <Section tone="black" id="programme" className="scroll-mt-20">
-        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-          <div>
-            <Eyebrow className="mb-4">{t.programmesSection.eyebrow}</Eyebrow>
-            <Headline size="md">{t.programmesSection.title}</Headline>
-          </div>
-          <p className="max-w-sm text-white/70">{t.programmesSection.text}</p>
+        <div className="mb-12">
+          <Eyebrow className="mb-4">{t.programmesSection.eyebrow}</Eyebrow>
+          <Headline size="md">{t.programmesSection.title}</Headline>
         </div>
         <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {t.programmes.map((p, i) => {
@@ -159,12 +153,9 @@ export async function AcademyView({ locale }: { locale: Locale }) {
             fallbackEmail={site.email}
             fallbackAppHref={deeplinks.events()}
             heading={
-              <div className="grid gap-4 md:grid-cols-[1.4fr_1fr] md:items-end md:gap-10">
-                <Headline size="md">
-                  {t.coachesSection.title} <Accent>{t.coachesSection.accent}</Accent>
-                </Headline>
-                <p className="max-w-md text-white/70">{t.coachesSection.text}</p>
-              </div>
+              <Headline size="md">
+                {t.coachesSection.title} <Accent>{t.coachesSection.accent}</Accent>
+              </Headline>
             }
           />
         </Section>

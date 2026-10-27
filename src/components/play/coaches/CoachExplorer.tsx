@@ -232,15 +232,6 @@ export function CoachExplorer({
         )}
       </div>
 
-      {/* Footer rule: "Let's play Padel! ——— 19 Coaches · 16 Clubs" */}
-      <div className="mt-10 flex items-center gap-4 md:mt-14">
-        <p className="whitespace-nowrap font-display text-xl font-extrabold uppercase italic leading-none md:text-2xl">{labels.footer}</p>
-        <span className="h-px flex-1 bg-gradient-to-r from-white/30 via-white/15 to-white/5" aria-hidden />
-        <p className="hidden whitespace-nowrap text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60 sm:block">
-          {coaches.length === 1 ? labels.countOne : fill(labels.countMany, { n: coaches.length })} · {fill(labels.clubsCount, { n: clubOptions.length })}
-        </p>
-      </div>
-
       <CoachDialog
         coach={active}
         locale={locale}

@@ -89,6 +89,22 @@ export function CoachCard({
   const [first, ...rest] = coach.name.split(" ");
   const feature = variant === "feature";
 
+  const openButton = (
+    <button
+      type="button"
+      onClick={(e) => onOpen(coach, e.currentTarget)}
+      aria-haspopup="dialog"
+      aria-label={fill(labels.openFor, { name: coach.name })}
+      className={cn(
+        "z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-white/25 bg-black/55 font-display uppercase italic tracking-wide backdrop-blur transition",
+        "hover:border-white hover:bg-white/10 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
+        feature ? "relative mt-4 h-11 px-4 text-base md:mt-0 md:text-lg" : "absolute right-3 top-3 size-11",
+      )}
+    >
+      {feature && <span className="leading-none">{labels.open}</span>}
+      <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:rotate-45" aria-hidden />
+    </button>
+  );
   return (
     <article
       className={cn(
@@ -126,31 +142,27 @@ export function CoachCard({
         </span>
       </div>
 
-      {/* Top-right: open contact & offer dialog. The ::after stretches the hit area over the whole card. */}
-      <button
-        type="button"
-        onClick={(e) => onOpen(coach, e.currentTarget)}
-        aria-haspopup="dialog"
-        aria-label={fill(labels.openFor, { name: coach.name })}
-        className={cn(
-          "absolute z-10 inline-flex items-center justify-center gap-2 rounded-full border border-white/25 bg-black/55 font-display uppercase italic tracking-wide backdrop-blur transition",
-          "hover:border-white hover:bg-white/10 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
-          feature ? "right-4 top-4 h-11 px-4 text-base md:right-6 md:top-6 md:text-lg" : "right-3 top-3 size-11",
-        )}
-      >
-        {feature && <span className="hidden leading-none sm:inline">{labels.open}</span>}
-        <ArrowUpRight className="size-5 transition-transform duration-300 group-hover:rotate-45" aria-hidden />
-      </button>
+      {/* Top-right: the club(s) on the feature card (same pill as the role badge) */}
+      {feature && clubLabel && (
+        <span className="absolute right-4 top-4 inline-flex h-8 max-w-[45%] items-center gap-1.5 rounded-full border border-white/15 bg-black/55 px-3 text-sm text-white/85 backdrop-blur md:right-6 md:top-6">
+          <MapPin className="size-3.5 shrink-0" aria-hidden />
+          <span className="truncate">{clubLabel}</span>
+        </span>
+      )}
+
+      {/* Open contact & offer dialog – top-right on small tiles, bottom-right on the feature card.
+          The ::after stretches the hit area over the whole card. */}
+      {!feature && openButton}
 
       {/* Right side (md+ feature): big stats */}
       {feature && (
-        <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 flex-col gap-5 md:flex lg:right-8">
+        <div className="absolute right-6 top-[45%] hidden -translate-y-1/2 flex-col gap-3 md:flex lg:right-8">
           <CoachStat value={coach.hoursOnCourt} label={labels.hours} pending={labels.pending} locale={locale} align="right" />
           <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} align="right" />
         </div>
       )}
 
-      {/* Bottom: (phone stats) name, bio, club */}
+      {/* Bottom: (phone stats) name, club */}
       <div className={cn("absolute inset-x-0 bottom-0", feature ? "p-5 md:p-6 lg:p-8" : "p-3 md:p-4")}>
         {feature && (
           <div className="mb-4 grid grid-cols-2 gap-3 md:hidden">
@@ -169,8 +181,6 @@ export function CoachCard({
               <span className="block">{first}</span>
               {rest.length > 0 && <span className="block">{rest.join(" ")}</span>}
             </h3>
-            {/* Bio line is always reserved so names sit at the same height on every carousel tile */}
-            {feature && <p className="mt-2 line-clamp-1 min-h-[1lh] text-sm text-white/70">{coach.bio?.[locale]}</p>}
             {!feature && clubLabel && (
               <p className="mt-1.5 flex items-center gap-1 truncate text-xs text-white/70 md:text-sm">
                 <MapPin className="size-3 shrink-0" aria-hidden />
@@ -178,12 +188,7 @@ export function CoachCard({
               </p>
             )}
           </div>
-          {feature && clubLabel && (
-            <p className="mt-2 flex items-start gap-1.5 text-sm text-white/80 md:mt-0 md:max-w-[36%] md:shrink-0 md:justify-end md:text-right">
-              <MapPin className="mt-0.5 size-3.5 shrink-0" aria-hidden />
-              <span className="line-clamp-2">{clubLabel}</span>
-            </p>
-          )}
+          {feature && openButton}
         </div>
         {!feature && (
           <div className="mt-3 hidden grid-cols-2 gap-2 border-t border-white/15 pt-3 md:grid">

@@ -129,7 +129,6 @@ export function CoachDialog({
             <h2 id={titleId} className="pr-14 font-display text-4xl font-extrabold uppercase italic leading-[0.9] tracking-tight md:text-5xl">
               {coach.name}
             </h2>
-            {coach.bio && <p className="mt-2 text-sm text-white/70">{coach.bio[locale]}</p>}
             {refs.length > 0 && (
               <p className="mt-2 flex items-center gap-1.5 text-sm text-white/80">
                 <MapPin className="size-3.5 shrink-0" aria-hidden /> {refs.map((r) => r.label).join(" & ")}

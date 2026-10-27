@@ -35,7 +35,7 @@ export function PriceList({
         </thead>
         <tbody>
           {rows.map((r) => (
-            <tr key={r.title} className="border-b border-white/10 last:border-b-0 transition-colors hover:bg-white/[0.03]">
+            <tr key={`${r.title}-${r.sub}`} className="border-b border-white/10 last:border-b-0 transition-colors hover:bg-white/[0.03]">
               <th scope="row" className="py-5 pl-4 pr-2 text-left md:pl-6">
                 <span className="block font-display text-xl font-extrabold uppercase italic leading-none md:text-2xl">{r.title}</span>
                 {r.sub && <span className="mt-1 block text-sm font-normal text-white/60">{r.sub}</span>}

@@ -3,7 +3,6 @@ export type CoachLabels = {
   listLabel: string;
   prev: string;
   next: string;
-  footer: string;
   filterLabel: string;
   clubLabel: string;
   allClubs: string;
@@ -20,7 +19,6 @@ export type CoachLabels = {
   hours: string;
   students: string;
   pending: string;
-  clubsCount: string;
   open: string;
   openFor: string;
   close: string;
