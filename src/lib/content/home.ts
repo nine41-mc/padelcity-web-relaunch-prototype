@@ -77,7 +77,6 @@ const de = {
     cta: "Gutschein verschenken",
     card: { label: "Gutschein", amount: "ab 10 € Geschenkwert", aria: "PadelCity Gutschein, ab 10 € Geschenkwert" },
   },
-  partners: { eyebrow: "Unsere Partner", title: "Better", accent: "together.", cta: "Partner werden" },
 };
 
 export type HomeContent = typeof de;
@@ -152,7 +151,6 @@ const en: HomeContent = {
     cta: "Give a voucher",
     card: { label: "Gift voucher", amount: "from €10 gift value", aria: "PadelCity gift voucher, from €10 gift value" },
   },
-  partners: { eyebrow: "Our partners", title: "Better", accent: "together.", cta: "Become a partner" },
 };
 
 const pl: HomeContent = {
@@ -225,7 +223,6 @@ const pl: HomeContent = {
     cta: "Podaruj voucher",
     card: { label: "Voucher", amount: "wartość od 10 €", aria: "Voucher PadelCity o wartości od 10 €" },
   },
-  partners: { eyebrow: "Nasi partnerzy", title: "Better", accent: "together.", cta: "Zostań partnerem" },
 };
 
 export const homeContent: Record<Locale, HomeContent> = { de, en, pl };

@@ -161,7 +161,14 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               <ClubHours club={club} locale={locale} className="mt-3" />
             </div>
             <div className="flex shrink-0 gap-2 lg:pt-2">
-              <ClubInfo title={club.fullName ?? club.name} text={club.description} label={t.info.label} closeLabel={t.info.close} />
+              <ClubInfo
+                title={club.fullName ?? club.name}
+                text={club.description}
+                address={`${club.address.streetName} ${club.address.buildingNumber}, ${club.address.postalCode} ${club.address.localityName}`}
+                image={gallery[0]?.url}
+                label={t.info.label}
+                closeLabel={t.info.close}
+              />
               <ShareButton title={club.fullName ?? club.name} locale={locale} track="share_club" />
             </div>
           </div>

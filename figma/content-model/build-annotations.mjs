@@ -19,7 +19,7 @@ const A = {
   club: ['club', [['clubHero','15708:8','15708:22'],['clubHours','15708:44'],['clubDescription','15708:46'],['clubContact','15708:64'],['clubPricing','15708:155'],['facilityGrid','15708:365'],['clubHighlights','15708:475'],['clubEvents','15708:529'],['clubCoaches','15708:550'],['appBooking','15708:630'],['clubDirections','15708:729'],['nearbyClubs','15708:787']]],
   events: ['events', [['pageHero','15736:5'],['heroEvents','15736:47'],['eventList','15736:203'],['home:appCta','15736:579']]],
   event: ['event', [['eventHero','15744:8'],['eventSignupCard','15744:39'],['richText','15744:38'],['formatSteps','15744:100'],['home:appCta','15744:121']]],
-  heroEvent: ['event', [['eventHero','15713:5'],['heroEventIntro','15713:5'],['factGrid','15713:91'],['formatSteps','15713:175'],['videoEmbed','15713:294'],['eventPartners','15713:320'],['eventSignupCard','15713:341']]],
+  heroEvent: ['event', [['eventHero','15713:5'],['eventIntro','15713:5'],['factGrid','15713:91'],['formatSteps','15713:175'],['videoEmbed','15713:294'],['eventPartners','15713:320'],['eventSignupCard','15713:341']]],
   app: ['app', [['appHero','15727:5'],['featureStory','15727:73'],['appStoreGallery','15727:498'],['howItWorks','15727:548'],['faq','15727:603'],['appFinalCta','15727:667']]],
   academy: ['academy', [['pageHero','15722:5'],['levelPath','15722:58'],['programmeGrid','15722:372'],['priceTable','15722:530'],['coachCarousel','15722:623'],['academyLocations','15722:1766'],['videoTeaserGrid','15722:2016'],['faq','15722:2080'],['home:appCta','15722:2137']]],
   magazine: ['magazine', [['pageHero','15729:5'],['article','15729:51'],['contentHubs','15729:87'],['pressLogos','15729:281']]],
@@ -58,15 +58,15 @@ for (const [key, [pt, list]] of Object.entries(A)) {
     });
   }
   if (key === 'magazine') for (const [r] of A.article[1]) used.add(r);
-  // the event detail has two layouts (local event, hero event) – each frame points to the other instead of listing its modules
+  // one event detail page, shown twice (base only / with every optional module) – each frame points to the other instead of listing its modules
   const sibling = { event: 'heroEvent', heroEvent: 'event' }[key];
   if (sibling) for (const [r] of A[sibling][1]) used.add(r);
   const page = P[pt];
   const missing = key === 'article' ? [] : page.modules.filter((m) => !used.has(m.id));
   const lines = [`**${page.name}** · \`${page.path}\``, ...(page.text ? [page.text] : [])];
   if (key === 'magazine') lines.push('Artikel-Detail: siehe nächster Frame.');
-  if (key === 'event') lines.push('Layout für lokale Events. Hero-Events (z. B. One Point Challenge): siehe Frame „Event-Detail (Hero-Event)“.');
-  if (key === 'heroEvent') lines.push('Layout für Hero-Events. Lokale Events: siehe Frame „Event-Detail“.');
+  if (key === 'event') lines.push('Eine Seite für alle Events; optionale Module erscheinen nur, wenn gepflegt. Mit allen optionalen Modulen: siehe Frame „Event-Detail (Hero-Event)“.');
+  if (key === 'heroEvent') lines.push('Dieselbe Seite mit allen optionalen Modulen (One Point Challenge). Nur die Basis: siehe Frame „Event-Detail“.');
   const listModule = (m) => [`- **${m.name}** · \`${m.id}\``, ...m.fields.map((f) => '  ' + line(f, true))];
   if (missing.length) { lines.push('', '**Im Modell, aber nicht in diesem Design sichtbar:**'); for (const m of missing) lines.push(...listModule(m)); }
   if (key === 'home') { lines.push('', '**Global (alle Seiten, nicht als eigene Sektion sichtbar):**'); for (const id of ['seo', 'consent', 'deeplinks']) lines.push(...listModule(mod('global', id))); }

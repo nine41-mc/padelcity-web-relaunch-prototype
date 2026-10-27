@@ -80,7 +80,7 @@ export const contentModel: PageType[] = [
       { id: "testimonials", name: "Stimmen", fields: [f("Zitate", "cms", undefined, "im Prototyp Platzhalter – echte Stimmen nur mit Einwilligung")] },
       { id: "socialWall", name: "Instagram-Wand", fields: [f("Neueste Posts @padelcity.de", "external", "Instagram API")] },
       { id: "voucherTeaser", name: "Gutschein-Modul", fields: [f("Text, Schritte, Karten-Visual, Betrag", "cms"), f("Gutschein kaufen", "external", "App-Deeplink /gift-vouchers", "Kauf braucht Login – bleibt in der App")] },
-      { id: "partnerLogos", name: "Partner-Logos", fields: [f("Logos, Links", "cms")] },
+      { id: "partnerLogos", name: "Partner („Better together.“)", fields: [f("Logos, Links", "cms", undefined, "ein Partner-Modul für die ganze Website")] },
       { id: "appCta", name: "App-CTA", fields: [f("Text, CTA, Store-Badges", "cms")] },
     ],
   },
@@ -198,15 +198,26 @@ export const contentModel: PageType[] = [
     name: "Event-Detail",
     path: "/events/[event]",
     modules: [
-      { id: "eventHero", name: "Kopf", fields: [f("Titel, Untertitel, Datum, Club", "api", "GET /club-events/{id} → title, subtitle, eventPeriod, club"), f("Bild", "api", "teaserImage", "aus der Event-Vorlage; Hero-Events optional mit eigenem Bild im neuen Space")] },
-      { id: "eventSignupCard", name: "Anmeldung", fields: [f("Preis pro Person", "api", "GET /club-events/{id} → pricePerPerson, isFreeEvent"), f("Im Web anmelden", "external", "Events-Web-App /events/{id}", "Event-ID aus der API"), f("In der App anmelden", "external", "Link-Service")] },
+      { id: "eventHero", name: "Kopf", fields: [f("Titel, Untertitel, Datum, Club", "api", "GET /club-events/{id} → title, subtitle, eventPeriod, club"), f("Bild", "api", "teaserImage", "aus der Event-Vorlage"), f("Öffentlich ohne Login", "apiExtend", undefined, "/club-events/{id} braucht heute ein Spieler-Login")] },
+      {
+        id: "eventSignupCard",
+        name: "Eckdaten & Anmeldung",
+        fields: [
+          f("Datum, Ort, Preis pro Person", "api", "GET /club-events/{id} → eventPeriod, club, pricePerPerson, isFreeEvent"),
+          f("Format (Einzelanmeldung / Team)", "api", "type, personsPerTeam", "TEAM mit Teamgröße, sonst Einzelanmeldung"),
+          f("Anmeldefrist", "api", "registrationClosesAt", "leer = bis Event-Start"),
+          f("Kostenlose Stornierung", "api", "freeCancellationStrategy", "24 Std. vor Beginn (Standard), 60 Min. oder 14 Tage nach der Anmeldung; Gebühren-Fenster stehen zusätzlich in terms"),
+          f("Im Web anmelden", "external", "Events-Web-App /events/{id}", "Event-ID aus der API"),
+          f("In der App anmelden", "external", "Link-Service"),
+        ],
+      },
       { id: "richText", name: "Beschreibung", fields: [f("Text", "api", "GET /club-events/{id} → description", "Event-Text überschreibt Vorlagen-Text; übersetzbar")] },
-      { id: "formatSteps", name: "Ablauf / Format", fields: [f("Schritte, Zeitplan", "cms")] },
-      // hero events (One Point Challenge & co.) – the local events use only the modules above
-      { id: "heroEventIntro", name: "Hero-Event: Claim & Countdown", fields: [f("Claim mit Akzentwort, Präsentator (z. B. powered by CUPRA)", "cms"), f("Countdown", "api", "GET /club-events/{id} → eventPeriod", "wird auf der Website aus dem Startdatum berechnet")] },
-      { id: "factGrid", name: "Hero-Event: Eckdaten", fields: [f("Datum, Ort", "api", "GET /club-events/{id} → eventPeriod, club"), f("Weitere Eckdaten (Preisgeld, Teilnehmende …), Intro-Text", "cms")] },
-      { id: "videoEmbed", name: "Hero-Event: Video", fields: [f("Titel, Vorschaubild", "cms"), f("Video", "external", "YouTube")] },
-      { id: "eventPartners", name: "Hero-Event: Partner", fields: [f("Partner-Logos", "cms", "Referenz auf Partner-Einträge")] },
+      // optional modules – same page for every event; they show only when filled. Event template = default, entry with the event id = override
+      { id: "formatSteps", name: "Ablauf", fields: [f("Schritte", "cms", undefined, "ohne Eintrag: Standard-Schritte „Ankommen, Spielen, Hängenbleiben“"), f("Zeitplan", "cms")] },
+      { id: "eventIntro", name: "Claim & Countdown", fields: [f("Claim mit Akzentwort, Präsentator (z. B. powered by CUPRA)", "cms"), f("Countdown", "api", "GET /club-events/{id} → eventPeriod", "wird auf der Website aus dem Startdatum berechnet")] },
+      { id: "factGrid", name: "Intro & weitere Eckdaten", fields: [f("Intro-Text, Eckdaten (Preisgeld, Teilnehmende …)", "cms")] },
+      { id: "videoEmbed", name: "Video", fields: [f("Titel, Vorschaubild", "cms"), f("Video", "external", "YouTube")] },
+      { id: "eventPartners", name: "Partner", fields: [f("Partner-Auswahl", "cms", "Referenz auf Partner-Einträge", "im Partner-Modul („Better together.“) statt aller Partner")] },
     ],
   },
   {

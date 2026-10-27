@@ -48,26 +48,14 @@ const de = {
   countdown: { days: "Tage", hours: "Stunden", minutes: "Minuten", seconds: "Sekunden", live: "Live!", aria: "Countdown bis Eventstart" },
   card: { more: "Mehr erfahren" },
   detail: {
-    signup: "Im Web anmelden",
-    signupApp: "In der App anmelden",
-    formatCta: "Format & Zeitplan",
     date: "Datum",
     place: "Ort",
-    tba: "TBA",
-    formatEyebrow: "Format & Ablauf",
-    formatTitle: "So läuft's",
     scheduleEyebrow: "Zeitplan",
     scheduleTitle: "Save the date",
     scheduleNote: "Vorläufiger Zeitplan – Änderungen vorbehalten. Updates bekommst du per Push in der App.",
     videoEyebrow: "Watch",
     videoTitle: "Feel the vibe",
     videoNote: "Das Video lädt erst nach deinem Klick – vorher werden keine Daten an YouTube übertragen.",
-    partners: "Partner & Sponsoren",
-    partnerCta: "Dein Brand auf dem Center Court?",
-    partnerLink: "Partner werden",
-    bannerTitle: "Sei",
-    bannerAccent: "dabei.",
-    bannerText: (title: string) => `Anmelden und bezahlen kannst du für ${title} im Web oder in der PadelCity App – alle Updates bekommst du per Push in der App.`,
     fallbackDescription: (type: string, where: string) =>
       `${type} im Club ${where}: Komm allein oder mit Freund:innen – wir mischen die Teams nach Level, damit jedes Match spannend bleibt.`,
     metaTitle: (title: string, city: string) => `${title} – Padel-Event in ${city}`,
@@ -81,6 +69,17 @@ const de = {
     free: "Free",
     appOnly: "Anmeldung & Bezahlung im Web oder in der PadelCity App.",
     moreIn: "Mehr in",
+    format: "Format",
+    single: "Einzelanmeldung",
+    team: (n: number) => `${n}er-Team`,
+    deadline: "Anmeldung bis",
+    untilStart: "Event-Start",
+    cancellation: "Stornierung",
+    freeCancellation: {
+      UNTIL_24H_BEFORE_EVENT: "Kostenlos bis 24 Std. vor Beginn",
+      WITHIN_60MIN_FROM_BOOKING: "Kostenlos bis 60 Min. nach der Anmeldung",
+      WITHIN_14DAYS_FROM_BOOKING: "Kostenlos bis 14 Tage nach der Anmeldung",
+    },
   },
   date: { time: "Uhr" },
 };
@@ -128,26 +127,14 @@ const en: EventsContent = {
   countdown: { days: "Days", hours: "Hours", minutes: "Minutes", seconds: "Seconds", live: "Live!", aria: "Countdown to the start of the event" },
   card: { more: "Find out more" },
   detail: {
-    signup: "Sign up on the web",
-    signupApp: "Sign up in the app",
-    formatCta: "Format & schedule",
     date: "Date",
     place: "Venue",
-    tba: "TBA",
-    formatEyebrow: "Format & flow",
-    formatTitle: "How it works",
     scheduleEyebrow: "Schedule",
     scheduleTitle: "Save the date",
     scheduleNote: "Provisional schedule – subject to change. You'll get updates via push notification in the app.",
     videoEyebrow: "Watch",
     videoTitle: "Feel the vibe",
     videoNote: "The video only loads once you click – no data is sent to YouTube before that.",
-    partners: "Partners & sponsors",
-    partnerCta: "Your brand on centre court?",
-    partnerLink: "Become a partner",
-    bannerTitle: "Be",
-    bannerAccent: "there.",
-    bannerText: (title: string) => `Sign up and pay for ${title} on the web or in the PadelCity app – you'll get every update via push notification in the app.`,
     fallbackDescription: (type: string, where: string) =>
       `${type} at our ${where} club: come on your own or bring friends – we mix the teams by level so every match stays exciting.`,
     metaTitle: (title: string, city: string) => `${title} – padel event in ${city}`,
@@ -161,6 +148,17 @@ const en: EventsContent = {
     free: "Free",
     appOnly: "Sign-up and payment on the web or in the PadelCity app.",
     moreIn: "More at",
+    format: "Format",
+    single: "Individual sign-up",
+    team: (n: number) => `Team of ${n}`,
+    deadline: "Sign up by",
+    untilStart: "event start",
+    cancellation: "Cancellation",
+    freeCancellation: {
+      UNTIL_24H_BEFORE_EVENT: "Free until 24 h before the start",
+      WITHIN_60MIN_FROM_BOOKING: "Free within 60 min of signing up",
+      WITHIN_14DAYS_FROM_BOOKING: "Free within 14 days of signing up",
+    },
   },
   date: { time: "" },
 };
@@ -206,26 +204,14 @@ const pl: EventsContent = {
   countdown: { days: "Dni", hours: "Godziny", minutes: "Minuty", seconds: "Sekundy", live: "Live!", aria: "Odliczanie do startu wydarzenia" },
   card: { more: "Dowiedz się więcej" },
   detail: {
-    signup: "Zapisz się online",
-    signupApp: "Zapisz się w aplikacji",
-    formatCta: "Format i harmonogram",
     date: "Data",
     place: "Miejsce",
-    tba: "TBA",
-    formatEyebrow: "Format i przebieg",
-    formatTitle: "Jak to działa",
     scheduleEyebrow: "Harmonogram",
     scheduleTitle: "Save the date",
     scheduleNote: "Wstępny harmonogram – zmiany zastrzeżone. Aktualizacje dostaniesz jako powiadomienia push w aplikacji.",
     videoEyebrow: "Watch",
     videoTitle: "Feel the vibe",
     videoNote: "Film załaduje się dopiero po twoim kliknięciu – wcześniej żadne dane nie są przesyłane do YouTube.",
-    partners: "Partnerzy i sponsorzy",
-    partnerCta: "Twoja marka na korcie centralnym?",
-    partnerLink: "Zostań partnerem",
-    bannerTitle: "Bądź",
-    bannerAccent: "z nami.",
-    bannerText: (title: string) => `Na ${title} zapiszesz się i zapłacisz w przeglądarce albo w aplikacji PadelCity – wszystkie aktualizacje dostaniesz jako powiadomienia push w aplikacji.`,
     fallbackDescription: (type: string, where: string) =>
       `${type} w klubie ${where}: przyjdź solo albo ze znajomymi – dobieramy drużyny według poziomu, żeby każdy mecz był emocjonujący.`,
     metaTitle: (title: string, city: string) => `${title} – wydarzenie padlowe (${city})`,
@@ -239,6 +225,17 @@ const pl: EventsContent = {
     free: "Free",
     appOnly: "Zapisy i płatność online albo w aplikacji PadelCity.",
     moreIn: "Więcej:",
+    format: "Format",
+    single: "Zapis indywidualny",
+    team: (n: number) => `Drużyna ${n}-osobowa`,
+    deadline: "Zapisy do",
+    untilStart: "startu wydarzenia",
+    cancellation: "Rezygnacja",
+    freeCancellation: {
+      UNTIL_24H_BEFORE_EVENT: "Bezpłatnie do 24 godz. przed startem",
+      WITHIN_60MIN_FROM_BOOKING: "Bezpłatnie do 60 min po zapisie",
+      WITHIN_14DAYS_FROM_BOOKING: "Bezpłatnie do 14 dni po zapisie",
+    },
   },
   date: { time: "" },
 };
@@ -282,26 +279,27 @@ export function localizeEvent(event: ClubEvent, locale: Locale): ClubEvent {
   return { ...event, ...fields, image: event.image ? { ...event.image, alt: imageAlt ?? event.image.alt } : undefined };
 }
 
-/* ---------- Hero events (Contentful: "heroEvent" entries referencing the event by id) ---------- */
+/* ---------- Optional event modules (Contentful) ----------
+ * Every event detail page has the same base from the APL (head, key facts incl. sign-up deadline, free cancellation
+ * and format, sign-up). These modules come on top and only show when filled. Contentful: the event template carries
+ * the default, an entry referencing the event by id overrides it (e.g. One Point Challenge). The prototype keys by id. */
 
-export type HeroEventContent = {
-  claim: string; // text before the accent word
-  claimAccent: string; // one word of the claim, rendered as <Accent>
-  intro: string;
-  facts: { label: string; value: string }[];
-  format: { title: string; text: string }[];
-  schedule: { day: string; items: { time: string; title: string }[] }[];
-  partnerNames: string[]; // names from src/lib/content/partners.ts
-  presenter?: string;
-  video: { title: string; youtubeId?: string; thumbnail: string };
+export type EventContent = {
+  claim?: { text: string; accent: string }; // claim with one accent word; shows the countdown next to it
+  presenter?: string; // "powered by CUPRA"
+  intro?: string;
+  facts?: { label: string; value: string }[]; // extra key facts (prize money, participants …)
+  format?: { title: string; text: string }[]; // replaces the default "So läuft's" steps
+  schedule?: { day: string; items: { time: string; title: string }[] }[];
+  video?: { title: string; youtubeId?: string; thumbnail: string };
+  partnerNames?: string[]; // names from src/lib/content/partners.ts
 };
 
 // TODO(content): final copy, schedule & partners from Events team.
-export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> = {
+export const eventContent: Record<string, Record<Locale, EventContent>> = {
   "opc-vol3": {
     de: {
-      claim: "Ein Punkt. Alles oder",
-      claimAccent: "nichts.",
+      claim: { text: "Ein Punkt. Alles oder", accent: "nichts." },
       intro:
         "Die verrückteste Turnierform im Padel kommt zurück: Jeder Ballwechsel ist ein K.‑o.-Spiel. Profis, Promis und Qualifikanten aus allen PadelCity Clubs kämpfen um bis zu 100.000 € Preisgeld.",
       presenter: "powered by CUPRA",
@@ -325,8 +323,7 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       video: { title: "Aftermovie One Point Challenge Vol. 2", thumbnail: "/images/events/opc-video.jpg" },
     },
     en: {
-      claim: "One point. All or",
-      claimAccent: "nothing.",
+      claim: { text: "One point. All or", accent: "nothing." },
       intro:
         "Padel's wildest tournament format is back: every rally is a knockout. Pros, famous faces and qualifiers from every PadelCity club battle it out for up to €100,000 in prize money.",
       presenter: "powered by CUPRA",
@@ -350,8 +347,7 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       video: { title: "One Point Challenge Vol. 2 aftermovie", thumbnail: "/images/events/opc-video.jpg" },
     },
     pl: {
-      claim: "Jeden punkt. Wszystko albo",
-      claimAccent: "nic.",
+      claim: { text: "Jeden punkt. Wszystko albo", accent: "nic." },
       intro:
         "Najbardziej szalony format turniejowy w padlu wraca: każda wymiana to mecz o wszystko. Zawodowcy, znane twarze i kwalifikanci ze wszystkich klubów PadelCity walczą o pulę nagród do 100 000 €.",
       presenter: "powered by CUPRA",
@@ -377,8 +373,7 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
   },
   "series-finals": {
     de: {
-      claim: "Die besten Teams. Ein",
-      claimAccent: "Finale.",
+      claim: { text: "Die besten Teams. Ein", accent: "Finale." },
       intro:
         "Eine Saison, alle Clubs, ein Finale: Die PadelCity Series powered by Babolat krönt ihre Champions. Zwei Tage Top-Padel, Musik und Community.",
       presenter: "powered by Babolat",
@@ -401,8 +396,7 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       video: { title: "Highlights PadelCity Series 2025", thumbnail: "/images/events/series-video.jpg" },
     },
     en: {
-      claim: "The best teams. One",
-      claimAccent: "final.",
+      claim: { text: "The best teams. One", accent: "final." },
       intro:
         "One season, every club, one final: the PadelCity Series powered by Babolat crowns its champions. Two days of top-level padel, music and community.",
       presenter: "powered by Babolat",
@@ -425,8 +419,7 @@ export const heroEventContent: Record<string, Record<Locale, HeroEventContent>> 
       video: { title: "PadelCity Series 2025 highlights", thumbnail: "/images/events/series-video.jpg" },
     },
     pl: {
-      claim: "Najlepsze drużyny. Jeden",
-      claimAccent: "finał.",
+      claim: { text: "Najlepsze drużyny. Jeden", accent: "finał." },
       intro:
         "Jeden sezon, wszystkie kluby, jeden finał: PadelCity Series powered by Babolat koronuje swoich mistrzów. Dwa dni padla na najwyższym poziomie, muzyka i społeczność.",
       presenter: "powered by Babolat",

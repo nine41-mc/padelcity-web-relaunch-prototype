@@ -96,8 +96,16 @@ export type ClubEvent = {
   image?: ImageAsset;
   isHighlighted?: boolean;
   recurrence?: string; // "Jeden Freitag"
+  /** APL registrationClosesAt (ISO); undefined = sign-up open until the event starts. */
+  registrationClosesAt?: string;
+  /** APL freeCancellationStrategy (default UNTIL_24H_BEFORE_EVENT). */
+  freeCancellation?: FreeCancellation;
+  /** APL personsPerTeam for TEAM events; undefined = individual sign-up. */
+  personsPerTeam?: number;
   source: DataSource;
 };
+
+export type FreeCancellation = "UNTIL_24H_BEFORE_EVENT" | "WITHIN_60MIN_FROM_BOOKING" | "WITHIN_14DAYS_FROM_BOOKING";
 
 export type Coach = {
   id: string;

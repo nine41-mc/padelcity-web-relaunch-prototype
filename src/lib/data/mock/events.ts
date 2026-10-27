@@ -1,6 +1,10 @@
 import type { ClubEvent } from "../types";
 
-/** Illustrative events (source: "mock"). Dates are relative to "today" so the prototype never looks stale. */
+/**
+ * Illustrative events (source: "mock"). Dates are relative to "today" so the prototype never looks stale.
+ * Sign-up deadline, free cancellation and team size mirror the APL fields (registrationClosesAt,
+ * freeCancellationStrategy, personsPerTeam); omitted = APL default (until start / 24 h before / individual).
+ */
 
 function inDays(days: number, time = "18:00") {
   const d = new Date();
@@ -20,6 +24,8 @@ export const mockEvents: ClubEvent[] = [
     end: inDays(40, "20:00"),
     image: { url: "/images/events/opc.jpg", alt: "Match auf dem Center Court der One Point Challenge, umringt von Zuschauern" },
     isHighlighted: true,
+    registrationClosesAt: inDays(30, "23:59"),
+    personsPerTeam: 2,
     source: "mock",
   },
   {
@@ -35,6 +41,8 @@ export const mockEvents: ClubEvent[] = [
     end: inDays(53, "19:00"),
     image: { url: "/images/events/series.jpg", alt: "Volle Halle bei einem PadelCity Turnier mit Matches auf mehreren Courts" },
     isHighlighted: true,
+    registrationClosesAt: inDays(45, "23:59"),
+    personsPerTeam: 2,
     source: "mock",
   },
   {
@@ -109,6 +117,8 @@ export const mockEvents: ClubEvent[] = [
     start: inDays(12, "10:00"),
     pricePerPerson: 39,
     image: { url: "/images/events/king-of-the-court.jpg", alt: "Turnier-Match mit Zuschauern am Court" },
+    registrationClosesAt: inDays(10, "18:00"),
+    personsPerTeam: 2,
     source: "mock",
   },
   {
@@ -124,6 +134,8 @@ export const mockEvents: ClubEvent[] = [
     start: inDays(16, "09:30"),
     pricePerPerson: 89,
     image: { url: "/images/events/kids-camp.jpg", alt: "Junge und Mädchen beim Padel-Schlag" },
+    registrationClosesAt: inDays(9, "23:59"),
+    freeCancellation: "WITHIN_14DAYS_FROM_BOOKING",
     source: "mock",
   },
 ];

@@ -6,7 +6,7 @@ import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
 import { ArrowUpRight, Building2, Handshake, LineChart, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
-import { keyFacts, partners } from "@/lib/content/partners";
+import { keyFacts } from "@/lib/content/partners";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href, type RouteKey } from "@/lib/i18n/routes";
@@ -23,12 +23,12 @@ import { EventCard } from "@/components/cards/EventCard";
 import { ArticleCard } from "@/components/brand/ArticleCard";
 import { getArticles } from "@/lib/content/magazin";
 import { AppCta } from "@/components/modules/AppCta";
+import { PartnerBand } from "@/components/modules/PartnerBand";
 import { Testimonials } from "@/components/modules/Testimonials";
 import { Button } from "@/components/ui/Button";
 import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
 import { Marquee } from "@/components/ui/Marquee";
 import { Media } from "@/components/ui/Media";
-import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 
@@ -333,27 +333,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         <AppCta locale={locale} />
       </Section>
 
-      {/* Partners */}
-      <Section tone="black" bleed className="border-t border-white/10">
-        <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <Reveal>
-            <Eyebrow>{t.partners.eyebrow}</Eyebrow>
-            <Headline className="mt-6">
-              {t.partners.title} <Accent>{t.partners.accent}</Accent>
-            </Headline>
-          </Reveal>
-          <Button href={href(locale, "partners")} variant="outline">
-            {t.partners.cta}
-          </Button>
-        </div>
-        <Marquee>
-          {partners.map((p) => (
-            <div key={p.name} className="flex h-16 items-center px-7 opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 md:px-10">
-              <PartnerLogo partner={p} className="h-9 max-w-none md:h-10" />
-            </div>
-          ))}
-        </Marquee>
-      </Section>
+      <PartnerBand locale={locale} />
     </>
   );
 }
