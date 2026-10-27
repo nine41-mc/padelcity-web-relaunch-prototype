@@ -4,7 +4,7 @@ import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
-import { ArrowUpRight, Building2, Handshake, LineChart, ShoppingBag, Trophy } from "lucide-react";
+import { ArrowUpRight, Building2, Handshake, LineChart, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts, partners } from "@/lib/content/partners";
 import type { Locale } from "@/lib/i18n/config";
@@ -288,7 +288,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       {/* Instagram image wall */}
       <SocialWall locale={locale} />
 
-      {/* Contentful module: voucherTeaser (copy from padelcity.de) – merch shop is phase 2 */}
+      {/* Contentful module: voucherTeaser (copy from padelcity.de) */}
       <Section tone="black">
         <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-white/10 bg-ink-800 p-6 md:p-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:p-16">
           <div className="absolute -left-24 -top-24 size-80 rounded-full bg-purple-600/30 blur-[110px]" aria-hidden />
@@ -313,9 +313,6 @@ export async function HomeView({ locale }: { locale: Locale }) {
             <Button href={deeplinks.vouchers()} variant="primary" className="mt-8" data-track="home_voucher_cta">
               {t.shop.cta}
             </Button>
-            <p className="mt-6 flex items-center gap-2 text-sm text-white/60">
-              <ShoppingBag className="size-4" aria-hidden /> {t.shop.merch}
-            </p>
           </div>
           <div className="relative mx-auto w-full max-w-[460px] py-6 [perspective:1200px]">
             {/* second card peeking out behind */}

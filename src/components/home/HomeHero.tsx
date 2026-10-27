@@ -108,15 +108,6 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
       </svg>
 
       <div className="container-site">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/30 px-3.5 py-1.5 text-[13px] font-semibold tracking-wide text-white/90 backdrop-blur md:text-sm"
-        >
-          <span className="size-2 rounded-full bg-magenta-400 animate-pulse-dot" aria-hidden />
-          {t.badge}
-        </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -130,13 +121,14 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
           <span className="text-white/90">{t.line3}</span>
         </motion.h1>
 
+        {/* Desktop: search on one line with the CTA row; phone: text → search → CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.35 }}
-          className="mt-8 flex flex-col gap-6 md:mt-12 lg:flex-row lg:items-end lg:justify-between"
+          className="mt-8 flex flex-col gap-6 md:mt-12 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,36rem)] lg:items-center lg:gap-x-10"
         >
-          <p className="max-w-md text-lg text-white/90 md:text-xl">
+          <p className="max-w-md text-lg text-white/90 md:text-xl lg:col-start-1 lg:row-start-1">
             {t.text}
           </p>
           <form
@@ -145,7 +137,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
               e.preventDefault();
               router.push(`${href(locale, "locations")}${q ? `?q=${encodeURIComponent(q)}` : ""}`);
             }}
-            className="flex w-full max-w-xl items-center gap-2 rounded-full border border-white/45 bg-black/40 p-1.5 pl-5 backdrop-blur-xl focus-within:border-white"
+            className="flex w-full max-w-xl items-center gap-2 rounded-full border border-white/45 bg-black/40 p-1.5 pl-5 backdrop-blur-xl has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white lg:col-start-2 lg:row-start-2"
           >
             <MapPin className="size-5 shrink-0 text-white" aria-hidden />
             <label htmlFor="hero-q" className="sr-only">
@@ -162,18 +154,18 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
               <Search className="size-5" />
             </button>
           </form>
-        </motion.div>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Button href={href(locale, "app")} size="md" data-track="hero_app_cta">
-            {t.ctaApp}
-          </Button>
-          {/* Phone: the search above already leads to the locations – one CTA less keeps the hero calm */}
-          <div className="hidden md:block">
-            <Button href={href(locale, "locations")} variant="outline" size="md">
-              {t.ctaLocations}
+          <div className="flex flex-wrap gap-3 lg:col-start-1 lg:row-start-2">
+            <Button href={href(locale, "app")} size="md" data-track="hero_app_cta">
+              {t.ctaApp}
             </Button>
+            {/* Phone: the search above already leads to the locations – one CTA less keeps the hero calm */}
+            <div className="hidden md:block">
+              <Button href={href(locale, "locations")} variant="outline" size="md">
+                {t.ctaLocations}
+              </Button>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -8,7 +8,6 @@ const showcaseSlugs = ["muenchen-tucherpark", "muenchen-frankfurter-ring", "berl
 const de = {
   meta: { title: "PadelCity – Let's play Padel!", description: "Deutschlands führender Padel-Betreiber: 30+ Clubs, 200+ Courts, eine Community." },
   hero: {
-    badge: "30+ Clubs · 200+ Courts · 25+ Städte",
     line1: "Deine City",
     line2: "spielt",
     accent: "Padel.",
@@ -79,7 +78,6 @@ const de = {
     steps: ["In der App kaufen", "Code per E-Mail erhalten", "Bei der nächsten Courtbuchung einlösen"],
     closing: "Drei Schritte. Ein Geschenk, das garantiert gespielt wird.",
     cta: "Gutschein verschenken",
-    merch: "Merch-Shop: Wear the movement – kommt bald.",
     card: { label: "Gutschein", amount: "ab 10 € Geschenkwert", aria: "PadelCity Gutschein, ab 10 € Geschenkwert" },
   },
   partners: { eyebrow: "Unsere Partner", title: "Better", accent: "together.", cta: "Partner werden" },
@@ -90,7 +88,6 @@ export type HomeContent = typeof de;
 const en: HomeContent = {
   meta: { title: "PadelCity – Let's play Padel!", description: "Germany's leading padel operator: 30+ clubs, 200+ courts, one community." },
   hero: {
-    badge: "30+ clubs · 200+ courts · 25+ cities",
     line1: "Your city",
     line2: "plays",
     accent: "Padel.",
@@ -159,7 +156,6 @@ const en: HomeContent = {
     steps: ["Buy it in the app", "Get the code by email", "Redeem it on the next court booking"],
     closing: "Three steps. A gift that's guaranteed to get played.",
     cta: "Give a voucher",
-    merch: "Merch shop: wear the movement – coming soon.",
     card: { label: "Gift voucher", amount: "from €10 gift value", aria: "PadelCity gift voucher, from €10 gift value" },
   },
   partners: { eyebrow: "Our partners", title: "Better", accent: "together.", cta: "Become a partner" },
@@ -168,7 +164,6 @@ const en: HomeContent = {
 const pl: HomeContent = {
   meta: { title: "PadelCity – Let's play Padel!", description: "Wiodący operator padla w Niemczech: 30+ klubów, 200+ kortów, jedna społeczność." },
   hero: {
-    badge: "30+ klubów · 200+ kortów · 25+ miast",
     line1: "Twoje miasto",
     line2: "gra w",
     accent: "padla.",
@@ -237,7 +232,6 @@ const pl: HomeContent = {
     steps: ["Kup w aplikacji", "Odbierz kod e-mailem", "Zrealizuj przy następnej rezerwacji kortu"],
     closing: "Trzy kroki. Prezent, który na pewno zostanie wykorzystany na korcie.",
     cta: "Podaruj voucher",
-    merch: "Sklep z merchem: Wear the movement – już wkrótce.",
     card: { label: "Voucher", amount: "wartość od 10 €", aria: "Voucher PadelCity o wartości od 10 €" },
   },
   partners: { eyebrow: "Nasi partnerzy", title: "Better", accent: "together.", cta: "Zostań partnerem" },

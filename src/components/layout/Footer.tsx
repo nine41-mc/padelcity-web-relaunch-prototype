@@ -68,7 +68,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="absolute inset-0 bg-court-lines opacity-40 [mask-image:linear-gradient(to_bottom,transparent,black_30%,black_70%,transparent)]" />
       </div>
 
-      <div className="container-site relative pt-20 md:pt-28">
+      <div className="container-site relative pt-24 md:pt-36">
         {/* Hero row: claim + ball | newsletter */}
         <div className="grid items-start gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
           <div className="relative">
@@ -84,7 +84,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         {/* WhatsApp community – full-width band, opens the overlay with every location's group */}
-        <div className="relative mt-16 overflow-hidden rounded-[32px] bg-brandbook-gradient p-6 md:mt-20 md:p-10 lg:p-12">
+        <div className="relative mt-20 overflow-hidden rounded-[32px] bg-brandbook-gradient p-6 md:mt-28 md:p-10 lg:p-12">
           <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
           <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto]">
             <div>
@@ -129,7 +129,7 @@ export function Footer({ locale }: { locale: Locale }) {
       </div>
 
       {/* Giant logotype – cropped by the bottom edge */}
-      <div className="pointer-events-none relative mt-16 select-none md:mt-20" aria-hidden>
+      <div className="pointer-events-none relative mt-2 select-none md:-mt-8" aria-hidden>
         <div className="container-site">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
