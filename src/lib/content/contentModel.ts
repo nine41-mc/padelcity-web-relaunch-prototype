@@ -157,7 +157,7 @@ export const contentModel: PageType[] = [
         id: "appBooking",
         name: "In der App buchen",
         text: "Keine freien Slots, keine Auslastung auf der Website.",
-        fields: [f("Headline, Text, „Nur in der App“, 3 Schritte", "cms"), f("Deeplink zum Club", "external", "Link-Service mit Club-ID", "API baut heute nur Match-Deeplinks")],
+        fields: [f("Headline, Text, 3 Schritte", "cms"), f("Deeplink zum Club", "external", "Link-Service mit Club-ID", "API baut heute nur Match-Deeplinks")],
       },
       { id: "clubDirections", name: "So findest du uns", fields: [f("Position", "api", "GET /clubs → position"), f("Karte", "external", undefined, "Karten-Anbieter offen")] },
       { id: "nearbyClubs", name: "Clubs in der Nähe", fields: [...clubCore(), f("Entfernung", "api", "GET /clubs → position", "wird auf der Website aus den Positionen berechnet")] },

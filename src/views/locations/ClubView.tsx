@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Mail, MessageCircleQuestionMark, Navigation } from "lucide-react";
+import { Mail, Navigation } from "lucide-react";
 import { getClub, getClubs, getCoaches, getEvents } from "@/lib/data";
 import { getClubReviews, reviewModuleClubs } from "@/lib/data/google-reviews";
 import type { Club, ImageAsset } from "@/lib/data/types";
@@ -22,9 +21,10 @@ import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { AppBookingBlock, ClubFacilities, formatPrice } from "@/components/locations/AppBooking";
-import { ClubCourtsCard, ClubPriceCard } from "@/components/locations/SportCards";
+import { ClubPricesCourts } from "@/components/locations/SportCards";
 import { ClampText } from "@/components/locations/ClampText";
 import { ClubHours } from "@/components/locations/ClubHours";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { AppBookingBar } from "@/components/locations/AppBookingBar";
 import { ClubGallery } from "@/components/locations/ClubGallery";
 import { ClubHighlights } from "@/components/locations/ClubHighlights";
@@ -149,9 +149,14 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
 
           <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1.4fr_1fr] lg:items-start">
             <div>
-              <Headline as="h1" size="md">
-                {club.fullName ?? club.name}
-              </Headline>
+              <div className="flex items-start justify-between gap-4">
+                <Headline as="h1" size="md">
+                  {club.fullName ?? club.name}
+                </Headline>
+                <ShareButton title={club.fullName ?? club.name} locale={locale} track="share_club" className="mt-1" />
+              </div>
+              {/* Opening hours as on Google: status line, unfolds into the week */}
+              <ClubHours club={club} locale={locale} className="mt-4" />
             </div>
             <ClampText text={club.description} more={t.sections.more} less={t.sections.less} className="lg:pt-2" />
           </div>
@@ -164,13 +169,12 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
       </section>
 
       <div className="relative bg-ink-800">
-        {/* Opening hours (one line per weekday) | price from + full price list */}
-        <Section id="hours" className={sectionCls}>
-          <Headline size="sm" className="mb-8">{t.sections.hoursPrices}</Headline>
+        {/* One sport filter for the price list and the courts of that sport */}
+        <Section id="prices" className={sectionCls}>
+          <Headline size="sm" className="mb-8">{t.sections.pricesCourts}</Headline>
           {/* minmax(0,…): the wide price table scrolls inside its card instead of widening the column on phones */}
-          <div className="grid grid-cols-[minmax(0,1fr)] gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-start">
-            <ClubHours club={club} locale={locale} />
-            <ClubPriceCard club={club} locale={locale} />
+          <div className="grid grid-cols-[minmax(0,1fr)]">
+            <ClubPricesCourts club={club} locale={locale} />
           </div>
         </Section>
 
@@ -180,12 +184,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
             <ClubFacilities club={club} />
           </Section>
         )}
-
-        {/* One card, filtered by sport */}
-        <Section id="courts" className={sectionCls}>
-          <Headline size="sm" className="mb-8">{t.sections.courts}</Headline>
-          <ClubCourtsCard club={club} locale={locale} />
-        </Section>
 
         {gallery.length >= 2 && (
           <Section id="highlights" className={sectionCls}>
@@ -297,15 +295,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         <Section id="book" className={sectionCls}>
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />
-          <div className="mt-6 flex items-start gap-2 text-sm text-white/70">
-            <MessageCircleQuestionMark className="mt-3 size-4 shrink-0 text-white" aria-hidden />
-            <p className="flex flex-wrap items-center gap-x-2">
-              <span className="py-2.5">{t.faqLink.text}</span>
-              <Link href={href(locale, "faq")} className="inline-flex min-h-11 items-center gap-1 font-semibold text-white underline-offset-4 hover:underline">
-                {t.faqLink.cta} <ArrowUpRight className="size-4" aria-hidden />
-              </Link>
-            </p>
-          </div>
         </Section>
 
         {/* Map: target of "Route planen" on the address tile */}

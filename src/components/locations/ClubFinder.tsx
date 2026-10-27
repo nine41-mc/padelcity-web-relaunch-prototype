@@ -192,9 +192,9 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           e.preventDefault();
           document.getElementById("results")?.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
-        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated md:p-[3px] has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
+        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated md:p-[5px] has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
       >
-        <label className="flex min-h-14 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5">
+        <label className="flex min-h-13 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5">
           <Search className="size-5 shrink-0 text-white/70" aria-hidden />
           <span className="flex flex-1 flex-col">
             <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.where}</span>
@@ -219,14 +219,14 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           onClick={locate}
           aria-pressed={!!user}
           className={cn(
-            "flex min-h-14 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors",
+            "flex min-h-13 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors",
             user ? "bg-brand-gradient text-white" : "text-white/85 hover:bg-white/5",
           )}
         >
           {geo === "loading" ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <LocateFixed className="size-5" aria-hidden />}
           {user ? t.nearActive : t.near}
         </button>
-        <button type="submit" className="flex min-h-14 items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 font-display text-lg italic uppercase tracking-wide text-white transition hover:brightness-110">
+        <button type="submit" className="flex min-h-13 items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 font-display text-lg italic md:text-xl uppercase tracking-wide text-white transition hover:brightness-110">
           {t.submit}
         </button>
       </form>

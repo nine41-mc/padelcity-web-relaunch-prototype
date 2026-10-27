@@ -7,7 +7,7 @@ import { deeplinks } from "@/lib/site";
 import { fill, locationsContent } from "@/lib/content/locations";
 import { appContent } from "@/lib/content/app";
 import { Button } from "@/components/ui/Button";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { AppIcon } from "@/components/ui/Icon";
 
 export { formatPrice } from "@/lib/format";
@@ -47,23 +47,19 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
       <div className="relative grid gap-10 p-6 md:p-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:p-14">
         {/* Pitch + CTA */}
         <div className="flex flex-col">
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <Headline size="md" className="mt-5">
+          <Headline size="md">
             {t.title} <Accent>{t.accent}</Accent>
           </Headline>
           <p className="mt-5 max-w-lg text-white/75 md:text-lg">{t.text}</p>
           <div className="mt-8 flex flex-col gap-5">
-            <Button href={deeplinks.club(club.id)} variant="primary" size="lg" className="w-full sm:w-fit" data-track="club_book_in_app">
+            <Button href={deeplinks.club(club.id)} variant="primary" size="md" className="w-full sm:w-fit" data-track="club_book_in_app">
               {t.cta}
             </Button>
           </div>
         </div>
 
-        {/* Only in the app */}
+        {/* App features you only get in the app */}
         <div>
-          <h3 className="mb-4 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
-            <Smartphone className="size-4" aria-hidden /> {t.exclusive}
-          </h3>
           <ul className="grid gap-3">
             {exclusive.map((f) => (
               <li key={f.id} className="flex gap-4 rounded-[20px] border border-white/10 bg-ink-800/70 p-5 backdrop-blur">

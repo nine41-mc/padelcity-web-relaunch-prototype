@@ -1,8 +1,8 @@
 "use client";
 
-// Contentful modules: clubPricing (clubPriceList per club) and courtOverview (courts per sport)
-import { useState } from "react";
-import { Euro, LayoutGrid } from "lucide-react";
+// Contentful modules: clubPricing (clubPriceList per club) and courtOverview (courts per sport) – one section "Preise & Courts"
+import { useLayoutEffect, useRef, useState } from "react";
+import { LayoutGrid } from "lucide-react";
 import type { Club, PriceKind, PricePeriod, Sport } from "@/lib/data/types";
 import { SPORTS } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
@@ -12,25 +12,21 @@ import { fill, locationsContent } from "@/lib/content/locations";
 import { formatPrice } from "@/lib/format";
 import { AppIcon } from "@/components/ui/Icon";
 import { cn } from "@/components/ui/cn";
+import { sheetChip } from "./FilterSheet";
 
 const card = "rounded-[20px] border border-white/10 bg-ink-700 p-5 md:p-6";
 const label = "flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70";
 const bySportOrder = (a: Sport, b: Sport) => SPORTS.indexOf(a) - SPORTS.indexOf(b);
 
-/** Pill group to switch the sport – only shown when the club offers more than one. */
+/** Sport chips as in the club finder filter (icon + name, one active) – only shown when the club offers more than one. */
 function SportFilter({ sports, value, onChange, locale, aria }: { sports: Sport[]; value: Sport; onChange: (s: Sport) => void; locale: Locale; aria: string }) {
   const names = getDictionary(locale).sports;
   if (sports.length < 2) return null;
   return (
-    <div role="group" aria-label={aria} className="flex flex-wrap gap-1 rounded-[22px] border border-white/15 bg-white/[0.03] p-1 sm:w-fit sm:rounded-full">
+    <div role="group" aria-label={aria} className="mb-4 flex flex-wrap gap-2">
       {sports.map((s) => (
-        <button
-          key={s}
-          type="button"
-          aria-pressed={s === value}
-          onClick={() => onChange(s)}
-          className={cn("flex min-h-10 items-center rounded-full px-4 text-sm font-medium transition-colors", s === value ? "bg-brand-gradient text-white" : "text-white/75 hover:text-white")}
-        >
+        <button key={s} type="button" aria-pressed={s === value} onClick={() => onChange(s)} className={cn(sheetChip(s === value), s !== value && "hover:border-white")}>
+          <AppIcon name={s} className="size-4" />
           {names[s]}
         </button>
       ))}
@@ -41,59 +37,129 @@ function SportFilter({ sports, value, onChange, locale, aria }: { sports: Sport[
 const KINDS: PriceKind[] = ["indoorDouble", "indoorSingle", "indoorPremium", "outdoorDouble", "outdoorSingle", "outdoorPremium"];
 
 /**
+ * "Preise & Courts": one sport filter for both the price list and the courts of that sport, in one card.
+ * Sports = those with a price list or courts, in the fixed sport order.
+ */
+export function ClubPricesCourts({ club, locale }: { club: Club; locale: Locale }) {
+  const t = locationsContent[locale].club;
+  const courtGroups = courtsBySport(club, locale);
+  const sports = [...new Set([...(Object.keys(club.priceList?.sports ?? {}) as Sport[]), ...courtGroups.map((g) => g.sport)])].sort(bySportOrder);
+  const [sport, setSport] = useState<Sport>(sports[0] ?? "padel");
+  const courts = courtGroups.find((g) => g.sport === sport);
+  const premium = club.courts.filter((c) => (c.sport ?? "padel") === sport && c.isPremium).length;
+
+  return (
+    <div>
+      <SportFilter sports={sports} value={sport} onChange={setSport} locale={locale} aria={t.priceList.sport} />
+      <div className={card}>
+        <PriceList club={club} locale={locale} sport={sport} />
+        {courts && (
+          <div className="mt-6 border-t border-white/10 pt-6">
+            <p className={label}>
+              <LayoutGrid className="size-4" aria-hidden /> {t.courtsLabel}
+            </p>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label={t.courtsLabel}>
+              {courts.lines.map((l) => (
+                <li key={l.key} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 p-4">
+                  <AppIcon name={`${l.courtType}_court`} className="size-6 shrink-0 text-white" />
+                  <span className="font-medium leading-tight">{l.label}</span>
+                </li>
+              ))}
+              {premium > 0 && (
+                <li className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 p-4">
+                  <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand-gradient text-[11px] font-bold" aria-hidden>
+                    ★
+                  </span>
+                  <span className="font-medium">
+                    {premium}× {t.centerCourt}
+                  </span>
+                </li>
+              )}
+            </ul>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/**
  * Prices of the list in force for one sport: day groups (consecutive days with the same periods; holidays join
  * Sunday when identical), off-peak/peak rows, one column per court type. The "ab" price is the lowest of that sport.
+ * Without a price list only the club's default price is known – it is the padel price.
  */
-export function ClubPriceCard({ club, locale }: { club: Club; locale: Locale }) {
+function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport: Sport }) {
   const t = locationsContent[locale].club;
   const list = club.priceList;
-  const sports = (Object.keys(list?.sports ?? {}) as Sport[]).sort(bySportOrder);
-  const [sport, setSport] = useState<Sport | undefined>(sports[0]);
-  const days = sport ? list?.sports[sport] : undefined;
+  const priceSports = (Object.keys(list?.sports ?? {}) as Sport[]).sort(bySportOrder);
+  const days = list?.sports[sport];
+  const hasTable = !!days;
   const all = days?.flat().flatMap((p) => Object.values(p.prices)) ?? [];
-  const from = all.length ? Math.min(...all) : club.defaultPricePerHour;
-  const columns = KINDS.filter((k) => days?.some((d) => d.some((p) => p.prices[k] !== undefined)));
+  const from = all.length ? Math.min(...all) : !list && sport === "padel" ? club.defaultPricePerHour : undefined;
+  const columnsOf = (s: Sport) => KINDS.filter((k) => list?.sports[s]?.some((d) => d.some((p) => p.prices[k] !== undefined)));
+  const columns = columnsOf(sport);
   // a single price column sits next to the times instead of at the far right
-  const align = columns.length === 1 ? "text-left" : "text-right";
+  const alignOf = (cols: PriceKind[]) => (cols.length === 1 ? "text-left" : "text-right");
+  const align = alignOf(columns);
+  // the header row takes the height of the tallest sport header (e.g. "Indoor Center Court" on three lines),
+  // so the rows below do not jump when switching sports – measured from hidden copies, refreshed on resize
+  const measureRef = useRef<HTMLDivElement>(null);
+  const [headHeight, setHeadHeight] = useState<number>();
+  useLayoutEffect(() => {
+    const box = measureRef.current;
+    if (!box) return;
+    const measure = () => setHeadHeight(Math.max(...[...box.querySelectorAll("thead")].map((h) => h.getBoundingClientRect().height)));
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(box);
+    return () => ro.disconnect();
+  }, [list, hasTable]);
+  const headRow = (s: Sport, cols: PriceKind[]) => (
+    <tr className="text-[13px] uppercase tracking-[0.14em] text-white/60">
+      <th scope="col" className="py-2 pr-4 font-semibold">{t.priceList.time}</th>
+      {cols.map((k) => (
+        <th key={k} scope="col" className={cn("py-2 pl-4 font-semibold", alignOf(cols))}>{columnLabel(k, s, cols, locale)}</th>
+      ))}
+    </tr>
+  );
+  const tableCls = "w-full min-w-[440px] table-fixed text-left";
+  // fixed time column – the table must not jump when switching sports with fewer price columns
+  const colgroup = (
+    <colgroup>
+      <col className="w-36 sm:w-44" />
+    </colgroup>
+  );
   const intl = localeTags[locale].intl;
   const weekday = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(intl, { weekday: "short" }).replace(".", "");
 
   return (
-    <div className={card}>
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-        <div>
-          <p className={label}>
-            <Euro className="size-4" aria-hidden /> {t.book.perCourt}
-          </p>
-          {from ? (
-            <p className="mt-2 font-display text-5xl font-extrabold italic uppercase">
-              <span className="text-2xl text-white/70">{t.book.priceFrom} </span>
-              {formatPrice(from, locale, club.currency)}
-              <span className="text-2xl text-white/70"> {t.book.perHour}</span>
-            </p>
-          ) : (
-            <p className="mt-2 text-lg font-semibold">{t.book.priceOnRequest}</p>
-          )}
-        </div>
-        {sport && <SportFilter sports={sports} value={sport} onChange={setSport} locale={locale} aria={t.priceList.sport} />}
-      </div>
+    <>
+      {from ? (
+        <p className="font-display text-5xl font-extrabold italic uppercase">
+          <span className="text-2xl text-white/70">{t.book.priceFrom} </span>
+          {formatPrice(from, locale, club.currency)}
+          <span className="text-2xl text-white/70"> {t.book.perHour}</span>
+        </p>
+      ) : (
+        <p className="text-lg font-semibold">{t.book.priceOnRequest}</p>
+      )}
 
       {days && (
-        <div className="mt-6 overflow-x-auto">
-          <table className="w-full min-w-[440px] table-fixed text-left">
-            <caption className="sr-only">{getDictionary(locale).sports[sport!]}</caption>
-            {/* fixed time column – the table must not jump when switching sports with fewer price columns */}
-            <colgroup>
-              <col className="w-36 sm:w-44" />
-            </colgroup>
-            <thead>
-              <tr className="text-[13px] uppercase tracking-[0.14em] text-white/60">
-                <th scope="col" className="py-2 pr-4 font-semibold">{t.priceList.time}</th>
-                {columns.map((k) => (
-                  <th key={k} scope="col" className={cn("py-2 pl-4 font-semibold", align)}>{columnLabel(k, sport!, columns, locale)}</th>
-                ))}
-              </tr>
-            </thead>
+        <div className="relative mt-6 overflow-x-auto">
+          {priceSports.length > 1 && (
+            <div ref={measureRef} aria-hidden className="pointer-events-none invisible absolute inset-x-0 top-0">
+              {priceSports.map((s) => (
+                <table key={s} className={cn(tableCls, "absolute inset-x-0 top-0")}>
+                  {colgroup}
+                  <thead>{headRow(s, columnsOf(s))}</thead>
+                </table>
+              ))}
+            </div>
+          )}
+          <table className={tableCls}>
+            <caption className="sr-only">{getDictionary(locale).sports[sport]}</caption>
+            {colgroup}
+            <thead style={{ height: headHeight }}>{headRow(sport, columns)}</thead>
             {dayGroups(days).map((g) => (
               <tbody key={g.days.join()} className="border-t border-white/10">
                 <tr>
@@ -120,7 +186,7 @@ export function ClubPriceCard({ club, locale }: { club: Club; locale: Locale }) 
           <p className="mt-4 text-sm text-white/60">{fill(t.priceList.note, { date: new Date(list!.validFrom).toLocaleDateString(intl, { day: "numeric", month: "long", year: "numeric" }) })}</p>
         </div>
       )}
-    </div>
+    </>
   );
 }
 
@@ -189,43 +255,4 @@ export function courtsBySport(club: Pick<Club, "courts">, locale: Locale) {
         return { key, courtType: kind ?? "double", label: locale === "pl" ? `${n} × ${t.court} ${label}` : `${n} ${label} ${n > 1 ? t.courtsPlural : t.court}` };
       }),
     }));
-}
-
-/** "Sportarten & Courts": one card, the court types of the selected sport. */
-export function ClubCourtsCard({ club, locale }: { club: Club; locale: Locale }) {
-  const t = locationsContent[locale].club;
-  const groups = courtsBySport(club, locale);
-  const [sport, setSport] = useState<Sport | undefined>(groups[0]?.sport);
-  const current = groups.find((g) => g.sport === sport);
-  const premium = club.courts.filter((c) => (c.sport ?? "padel") === sport && c.isPremium).length;
-  if (!current) return null;
-  return (
-    <div className={card}>
-      <SportFilter sports={groups.map((g) => g.sport)} value={current.sport} onChange={setSport} locale={locale} aria={t.priceList.sport} />
-      {/* the filter already names the sport; the label is only needed when there is no filter */}
-      {groups.length < 2 && (
-        <p className={label}>
-          <LayoutGrid className="size-4" aria-hidden /> {getDictionary(locale).sports[current.sport]}
-        </p>
-      )}
-      <ul className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-4", groups.length < 2 ? "mt-4" : "mt-6")} aria-label={t.courtsLabel}>
-        {current.lines.map((l) => (
-          <li key={l.key} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 p-4">
-            <AppIcon name={`${l.courtType}_court`} className="size-6 shrink-0 text-white" />
-            <span className="font-medium leading-tight">{l.label}</span>
-          </li>
-        ))}
-        {premium > 0 && (
-          <li className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 p-4">
-            <span className="grid size-6 shrink-0 place-items-center rounded-full bg-brand-gradient text-[11px] font-bold" aria-hidden>
-              ★
-            </span>
-            <span className="font-medium">
-              {premium}× {t.centerCourt}
-            </span>
-          </li>
-        )}
-      </ul>
-    </div>
-  );
 }

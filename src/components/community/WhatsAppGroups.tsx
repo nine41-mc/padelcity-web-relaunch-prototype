@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { ArrowUpRight, MessageCircle, Search, X } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { whatsappByCity } from "@/lib/content/whatsapp";
@@ -49,6 +49,38 @@ function groups(locale: Locale): Group[] {
       channel: url.includes("/channel/"),
     }))
     .sort((a, b) => a.city.localeCompare(b.city, locale));
+}
+
+/**
+ * City name on one line: long names ("Andernach & Mülheim-Kärlich") step down from 16 to 13 px
+ * instead of wrapping, so every tile keeps the same height. Below 13 px it wraps after all.
+ */
+function CityName({ name }: { name: string }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [fit, setFit] = useState({ px: 16, wrap: false });
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => {
+      if (!el.clientWidth) return; // dialog still closed – measure once it opens
+      let px = 16;
+      el.style.whiteSpace = "nowrap";
+      el.style.fontSize = `${px}px`;
+      while (px > 13 && el.scrollWidth > el.clientWidth) el.style.fontSize = `${--px}px`;
+      const fits = el.scrollWidth <= el.clientWidth;
+      el.style.whiteSpace = "";
+      setFit((f) => (f.px === px && f.wrap === !fits ? f : { px, wrap: !fits }));
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el.parentElement ?? el); // the row's width, not the name's – that one changes with the font
+    return () => ro.disconnect();
+  }, [name]);
+  return (
+    <span ref={ref} style={{ fontSize: fit.px }} className={cn("min-w-0 font-semibold", fit.wrap ? "whitespace-normal" : "whitespace-nowrap")}>
+      {name}
+    </span>
+  );
 }
 
 /**
@@ -139,13 +171,11 @@ export function WhatsAppGroups({
                   data-track="whatsapp_group_join"
                   className="group flex min-h-14 items-center gap-3 rounded-[16px] border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors hover:border-white/40 hover:bg-white/[0.06]"
                 >
-                  <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-center gap-x-2 gap-y-1 font-semibold">
-                      {g.city}
-                      {g.channel && <span className="rounded-md border border-white/35 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/80">{t.channel}</span>}
-                    </span>
+                  <span className="flex min-w-0 flex-1 items-center gap-2">
+                    <CityName name={g.city} />
+                    {g.channel && <span className="shrink-0 rounded-md border border-white/35 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/80">{t.channel}</span>}
                   </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-white group-hover:text-magenta-300">
+                  <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-white group-hover:text-magenta-300">
                     {t.join}
                     <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
                   </span>

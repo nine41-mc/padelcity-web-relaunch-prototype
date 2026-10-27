@@ -18,12 +18,12 @@ export function ClampText({ text, more, less, className }: { text: string; more:
   }, [text]);
   return (
     <div className={className}>
-      <p ref={ref} className={cn("whitespace-pre-line text-lg leading-relaxed text-white/75", !open && "line-clamp-3")}>
+      <p ref={ref} className={cn("whitespace-pre-line text-[15px] leading-relaxed text-white/75 md:text-base", !open && "line-clamp-3")}>
         {text}
       </p>
       {(overflows || open) && (
         <div className="flex justify-end">
-          <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="mt-2 inline-flex min-h-11 items-center font-semibold text-white underline-offset-4 hover:underline">
+          <button type="button" onClick={() => setOpen((o) => !o)} aria-expanded={open} className="mt-1 inline-flex min-h-11 items-center text-[15px] font-semibold text-white md:text-base underline-offset-4 hover:underline">
             {open ? less : more}
           </button>
         </div>
