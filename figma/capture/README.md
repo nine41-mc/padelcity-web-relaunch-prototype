@@ -22,3 +22,8 @@ Capture mode (CSS injected by the script):
 The script waits up to 240 s for the upload and then closes the browser. Long pages (/standorte, /faq) need most of
 that; with a shorter wait their capture stayed „processing“ in Figma and had to be redone with a new capture ID.
 Poll `generate_figma_design` with the capture ID until it reports the new node.
+
+Do not edit code while captures run: every change makes the dev server reload the open pages, and a capture that is
+interrupted that way either fails („Execution context was destroyed“, the capture ID can be reused) or arrives in Figma as
+an empty white frame named „Document“ (the ID is used up – delete the frame and capture with a new ID). Deleting a source
+file the dev server had already compiled breaks the affected pages until the server is restarted with a clean `.next`.

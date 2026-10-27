@@ -44,7 +44,6 @@ const tags: Record<string, string> = { Neu: "New", "Der Erste": "The first", "De
 
 export function toEnglishMock(club: Club): Club {
   const teaser = teasers[club.slug] ?? club.teaser;
-  const n = club.courts.length;
   const loc = club.courts[0]?.locationType === "outdoor" ? "outdoor" : "indoor";
   return {
     ...club,

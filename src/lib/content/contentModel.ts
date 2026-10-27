@@ -28,6 +28,7 @@ const clubCore = (): Field[] => [
 ];
 const clubSlug = () => f("Sprechende URL (Slug)", "apiExtend", undefined, "fehlt komplett – SEO, Redirects; Pflege im operativen Contentful oder Backend klären");
 const priceFrom = () => f("Preis „ab … €/h“", "apiExtend", "Club.defaultPricePerHour", "gespeichert, aber nicht ausgegeben; nur indirekt als minimumCourtFee über /club-schedules/clubs");
+const coachStats = () => f("Kennzahlen „Std. on Court“, „Trainierende“", "unknown", undefined, "keine Felder in der API; redaktionell pflegen oder weglassen");
 const sectionHead = (): Field[] => [f("Eyebrow, Headline, Akzentwort, Text", "cms")];
 const ctas = () => f("Buttons (Label, Ziel)", "cms");
 
@@ -49,7 +50,7 @@ export const contentModel: PageType[] = [
           f("Rechtliche Links, Sitemap, Content-Modell", "cms"),
         ],
       },
-      { id: "seo", name: "SEO & Teilen", fields: [f("Titel, Beschreibung, Social-Bild je Seite", "cms"), f("hreflang, Sitemap.xml", "cms", undefined, "aus Seiten-Einträgen generiert")] },
+      { id: "seo", name: "SEO & Teilen", fields: [f("Titel, Beschreibung, Social-Bild je Seite", "cms", undefined, "auch Vorschau beim Teilen-Button (Club, Event, Artikel)"), f("hreflang, Sitemap.xml", "cms", undefined, "aus Seiten-Einträgen generiert")] },
       { id: "consent", name: "Cookie-Consent", fields: [f("Consent-Banner und Kategorien", "unknown", undefined, "CMP-Anbieter noch offen")] },
       { id: "deeplinks", name: "App-Deeplinks", fields: [f("Links in die App (Club, Event, Open Matches, Gutscheine)", "external", "link.padelcity.de", "neuer Link-Service, IDs aus der API")] },
     ],
@@ -129,30 +130,37 @@ export const contentModel: PageType[] = [
           f("Claim", "cms", undefined, "optional, Website-Text"),
         ],
       },
-      { id: "clubDescription", name: "Beschreibung", fields: [f("Text DE/EN/PL", "api", "GET /clubs → description (?_locale=)", "als gerendertes Rich Text, nach drei Zeilen gekürzt; ob PL gepflegt ist, prüfen"), f("Kurz-Teaser", "apiExtend", undefined, "kein eigenes Teaser-Feld")] },
+      {
+        id: "clubHours",
+        name: "Öffnungszeiten",
+        text: "Unter dem Clubnamen: Status „Geöffnet bis …“, aufklappbar zur Woche (wie bei Google).",
+        fields: [f("Öffnungszeiten je Wochentag inkl. Feiertage", "api", "GET /clubs → openingTimes, openingSchedule", "Sondertage nur für die nächsten 7 Tage")],
+      },
+      { id: "clubDescription", name: "Beschreibung", fields: [f("Text DE/EN/PL", "api", "GET /clubs → description (?_locale=)", "als gerendertes Rich Text hinter „Info“ im Kopf (Dialog); ob PL gepflegt ist, prüfen"), f("Kurz-Teaser", "apiExtend", undefined, "kein eigenes Teaser-Feld")] },
       {
         id: "clubContact",
         name: "Kontakt-Kacheln",
+        text: "Je Kachel eine Aktion (Route, Anrufen, E-Mail, Beitreten) und Kopieren – keine eigenen Inhalte.",
         fields: [
           f("Adresse", "api", "GET /clubs → address"),
           f("Club Manager: Name, E-Mail, Telefon, Profilbild", "api", "GET /clubs → contact.name, emailAddress, phoneNumber, profileImageUrl", "ein Kontakt pro Club; ob Name/E-Mail öffentlich gezeigt werden, ist offen"),
           f("WhatsApp-Gruppe", "apiExtend", undefined, "fehlt"),
         ],
       },
-      { id: "clubHours", name: "Öffnungszeiten", fields: [f("Öffnungszeiten je Wochentag inkl. Feiertage", "api", "GET /clubs → openingTimes, openingSchedule", "Sondertage nur für die nächsten 7 Tage")] },
       {
         id: "clubPricing",
-        name: "Preise",
+        name: "Preise & Courts",
+        text: "Ein Sportarten-Filter für Preisliste und Courts.",
         fields: [
           f("Preisliste je Sportart: Wochentage & Feiertage, Off-Peak/Peak-Zeitfenster, Indoor/Outdoor, Double/Single, Center Court", "apiExtend", "ClubPriceList.pricing", "liegt pro Club und Sportart in der APL, aus dem operativen Contentful (clubPriceList) synchronisiert, aber ohne öffentlichen Endpunkt; gültig ist die Liste mit dem jüngsten validFrom. Der Prototyp liest sie direkt aus Contentful"),
           priceFrom(),
+          f("Courts je Sportart (Indoor/Outdoor, Double/Single, Center Court)", "api", "GET /clubs → courts[].sportType, locationType, courtType, isPremium"),
         ],
       },
       { id: "facilityGrid", name: "Ausstattung", fields: [f("Ausstattungs-Liste", "api", "GET /clubs → facilities[].type, name, iconUrl")] },
-      { id: "courtOverview", name: "Sportarten & Courts", fields: [f("Courts je Sportart (Indoor/Outdoor, Double/Single, Center Court)", "api", "GET /clubs → courts[].sportType, locationType, courtType, isPremium")] },
       { id: "clubHighlights", name: "Highlights & News", fields: [f("Story-Kreise, Bilder", "cms")] },
       { id: "clubEvents", name: "Events im Club", fields: [f("Events des Clubs", "api", "GET /v2/club-events", "Filter nach Club und Seitenweise 3 Events – für die Website anpassen")] },
-      { id: "clubCoaches", name: "Coaches im Club", fields: [f("Name, Bild, Rolle", "api", "GET /clubs/{id}/coaches → firstName, lastName, profileImage, title", "nur aktive Coaches mit verknüpftem Nutzerkonto"), f("Bio, Sprachen", "apiExtend", undefined, "fehlen (evtl. im operativen Contentful, aber nicht synchronisiert)")] },
+      { id: "clubCoaches", name: "Coaches im Club", fields: [f("Name, Bild, Rolle", "api", "GET /clubs/{id}/coaches → firstName, lastName, profileImage, title", "nur aktive Coaches mit verknüpftem Nutzerkonto"), coachStats()] },
       {
         id: "appBooking",
         name: "In der App buchen",
@@ -217,11 +225,11 @@ export const contentModel: PageType[] = [
       { id: "pageHero", name: "Hero", fields: sectionHead() },
       { id: "levelPath", name: "Level-Skala", fields: [f("7 Level: Name, Text", "unknown", undefined, "dieselben Texte wie in der App – zentrale Quelle klären"), f("Stufen, Bullets", "cms")] },
       { id: "programmeGrid", name: "Programme", fields: [f("Kurse/Formate: Titel, Text, Bild, Level", "unknown", undefined, "keine Kurs-/Programm-Entität in der API – redaktionell im neuen Space oder neue API-Entität?")] },
-      { id: "priceTable", name: "Preisliste Training", fields: [f("Formate, Preise Coach / Headcoach", "unknown", undefined, "API hat Preise nur pro Coach und Club (trainingPrices), keine Club-Preisliste")] },
+      { id: "priceTable", name: "Preisliste Training", fields: [f("Formate (1er–4er Training), Preise pro Person für 60 Min, Coach / Head Coach, Hinweis", "unknown", undefined, "API hat Preise nur pro Coach und Club (trainingPrices), keine Club-Preisliste")] },
       {
         id: "coachCarousel",
         name: "Coaches",
-        fields: [f("Name, Bild, Rolle, Clubs", "api", "GET /clubs/{id}/coaches → firstName, lastName, profileImage, title, clubs"), f("Sprachen, Bio", "apiExtend", undefined, "fehlen"), f("Trainingszeiten, Preise", "api", "trainingSchedules, trainingPrices", "pro Club; öffentlich zeigen nur mit Einwilligung"), f("E-Mail, Telefon", "apiExtend", "emailAddress", "E-Mail vorhanden, Telefon nur für Staff; Freigabe offen")],
+        fields: [f("Name, Bild, Rolle, Clubs", "api", "GET /clubs/{id}/coaches → firstName, lastName, profileImage, title, clubs"), coachStats(), f("Trainingszeiten, Preise", "api", "trainingSchedules, trainingPrices", "pro Club; öffentlich zeigen nur mit Einwilligung"), f("E-Mail, Telefon", "apiExtend", "emailAddress", "E-Mail vorhanden, Telefon nur für Staff; Freigabe offen")],
       },
       { id: "academyLocations", name: "Academy-Standorte", fields: [f("Clubs mit Academy", "apiExtend", undefined, "Kennzeichen fehlt (ableitbar aus Clubs mit Coaches?)")] },
       { id: "videoTeaserGrid", name: "Videos", fields: [f("Titel, Vorschaubild", "cms"), f("Video", "external", "YouTube")] },
