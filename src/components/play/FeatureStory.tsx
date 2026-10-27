@@ -67,7 +67,8 @@ export function FeatureStory({
   }, []);
 
   return (
-    <div className="lg:grid lg:grid-cols-[1fr_minmax(380px,0.8fr)] lg:gap-16">
+    // data-story*: the Figma capture (figma/capture) lays the story out statically – one phone per feature
+    <div data-story className="lg:grid lg:grid-cols-[1fr_minmax(380px,0.8fr)] lg:gap-16">
       <div>
         {features.map((f, i) => {
           return (
@@ -106,7 +107,7 @@ export function FeatureStory({
                   {f.cta}
                 </Button>
               </div>
-              <div className="relative flex justify-center pb-16 lg:hidden">
+              <div data-story-inline className="relative flex justify-center pb-16 lg:hidden">
                 <div className="relative">
                   <AppPhone shot={screens[f.screen]} prefix={phonePrefix} className="w-[240px] md:w-[260px]" sizes="260px" />
                   <FeatureCallout id={f.id} callouts={callouts} className="absolute -bottom-14 left-1/2 -translate-x-1/2" />
@@ -117,7 +118,7 @@ export function FeatureStory({
         })}
       </div>
 
-      <div className="hidden lg:block">
+      <div data-story-sticky className="hidden lg:block">
         <div className="sticky top-0 flex h-screen items-center justify-center">
           <div className="absolute size-[460px] rounded-full bg-magenta-500/25 blur-[120px]" aria-hidden />
           <div className="relative">
