@@ -18,10 +18,10 @@ import { CountryFlag } from "./CountryFlag";
 import { FilterSheet, SheetGroup, sheetChip } from "./FilterSheet";
 import { distanceKm, todaysHours, type LatLng } from "./geo";
 
-type FilterKey = "indoor" | "outdoor" | "panorama" | "franchise";
+type FilterKey = "indoor" | "outdoor" | "centerCourt" | "franchise";
 type SortKey = "default" | "distance" | "az" | "za";
 const SORT_KEYS: SortKey[] = ["default", "distance", "az", "za"];
-const FILTER_KEYS: FilterKey[] = ["indoor", "outdoor", "panorama", "franchise"];
+const FILTER_KEYS: FilterKey[] = ["indoor", "outdoor", "centerCourt", "franchise"];
 
 const matchesQuery = (c: Club, q: string) =>
   !q || [c.name, c.city, c.region ?? "", c.address.postalCode].some((v) => v.toLowerCase().includes(q));
@@ -121,7 +121,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         if (!matchesQuery(c, q)) return false;
         if (filters.has("indoor") && !c.courts.some((x) => x.locationType === "indoor")) return false;
         if (filters.has("outdoor") && !c.courts.some((x) => x.locationType === "outdoor")) return false;
-        if (filters.has("panorama") && !c.courts.some((x) => x.isPremium)) return false;
+        if (filters.has("centerCourt") && !c.courts.some((x) => x.isPremium)) return false;
         if (filters.has("franchise") && !c.isFranchise) return false;
         if (sports.size > 0 && !clubSports(c).some((sp) => sports.has(sp))) return false;
         if (openNow && todaysHours(c.openingHours)?.state !== "open") return false;

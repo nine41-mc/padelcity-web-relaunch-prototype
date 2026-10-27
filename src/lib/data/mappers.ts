@@ -244,7 +244,7 @@ export function deriveTags(courts: CourtSummary[]): string[] {
   const tags: string[] = [];
   if (courts.some((c) => c.locationType === "indoor")) tags.push("Indoor");
   if (courts.some((c) => c.locationType === "outdoor")) tags.push("Outdoor");
-  if (courts.some((c) => c.isPremium)) tags.push("Panorama Court");
+  if (courts.some((c) => c.isPremium)) tags.push("Center Court");
   return tags;
 }
 

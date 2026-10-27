@@ -53,6 +53,8 @@ export function ClubPriceCard({ club, locale }: { club: Club; locale: Locale }) 
   const all = days?.flat().flatMap((p) => Object.values(p.prices)) ?? [];
   const from = all.length ? Math.min(...all) : club.defaultPricePerHour;
   const columns = KINDS.filter((k) => days?.some((d) => d.some((p) => p.prices[k] !== undefined)));
+  // a single price column sits next to the times instead of at the far right
+  const align = columns.length === 1 ? "text-left" : "text-right";
   const intl = localeTags[locale].intl;
   const weekday = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(intl, { weekday: "short" }).replace(".", "");
 
@@ -78,13 +80,17 @@ export function ClubPriceCard({ club, locale }: { club: Club; locale: Locale }) 
 
       {days && (
         <div className="mt-6 overflow-x-auto">
-          <table className="w-full min-w-[440px] text-left">
+          <table className="w-full min-w-[440px] table-fixed text-left">
             <caption className="sr-only">{getDictionary(locale).sports[sport!]}</caption>
+            {/* fixed time column – the table must not jump when switching sports with fewer price columns */}
+            <colgroup>
+              <col className="w-36 sm:w-44" />
+            </colgroup>
             <thead>
               <tr className="text-[13px] uppercase tracking-[0.14em] text-white/60">
                 <th scope="col" className="py-2 pr-4 font-semibold">{t.priceList.time}</th>
                 {columns.map((k) => (
-                  <th key={k} scope="col" className="py-2 pl-4 text-right font-semibold">{columnLabel(k, sport!, columns, locale)}</th>
+                  <th key={k} scope="col" className={cn("py-2 pl-4 font-semibold", align)}>{columnLabel(k, sport!, columns, locale)}</th>
                 ))}
               </tr>
             </thead>
@@ -102,7 +108,7 @@ export function ClubPriceCard({ club, locale }: { club: Club; locale: Locale }) 
                       <span className="block whitespace-nowrap text-sm text-white/50">{p.from} – {p.until}</span>
                     </th>
                     {columns.map((k) => (
-                      <td key={k} className="py-1.5 pl-4 text-right font-display text-2xl font-extrabold italic tabular-nums">
+                      <td key={k} className={cn("py-1.5 pl-4 font-display text-2xl font-extrabold italic tabular-nums", align)}>
                         {p.prices[k] !== undefined ? formatPrice(p.prices[k]!, locale, club.currency) : "–"}
                       </td>
                     ))}
@@ -152,12 +158,12 @@ function periodLabel(periods: PricePeriod[], i: number, t: { offPeak: string; pe
   return top(periods[i]) === max ? t.peak : t.offPeak;
 }
 
-/** Padel: "Indoor Double", "Indoor Single", "Indoor Panorama"; other sports: "Indoor"/"Outdoor" (type only if both exist). */
+/** Padel: "Indoor Double", "Indoor Single", "Indoor Center Court"; other sports: "Indoor"/"Outdoor" (type only if both exist). */
 function columnLabel(k: PriceKind, sport: Sport, columns: PriceKind[], locale: Locale) {
   const t = locationsContent[locale].club;
   const loc = k.startsWith("indoor") ? "indoor" : "outdoor";
   const kind = k.endsWith("Premium") ? "premium" : k.endsWith("Single") ? "single" : "double";
-  if (kind === "premium") return `${t[loc]} ${t.priceList.panorama}`;
+  if (kind === "premium") return `${t[loc]} ${t.priceList.centerCourt}`;
   const sameLoc = columns.filter((c) => c.startsWith(loc) && !c.endsWith("Premium"));
   return sport === "padel" || sameLoc.length > 1 ? `${t[loc]} ${t[kind]}` : t[loc];
 }
@@ -196,10 +202,13 @@ export function ClubCourtsCard({ club, locale }: { club: Club; locale: Locale })
   return (
     <div className={card}>
       <SportFilter sports={groups.map((g) => g.sport)} value={current.sport} onChange={setSport} locale={locale} aria={t.priceList.sport} />
-      <p className={cn(label, "mt-6")}>
-        <LayoutGrid className="size-4" aria-hidden /> {getDictionary(locale).sports[current.sport]}
-      </p>
-      <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-label={t.courtsLabel}>
+      {/* the filter already names the sport; the label is only needed when there is no filter */}
+      {groups.length < 2 && (
+        <p className={label}>
+          <LayoutGrid className="size-4" aria-hidden /> {getDictionary(locale).sports[current.sport]}
+        </p>
+      )}
+      <ul className={cn("grid gap-3 sm:grid-cols-2 lg:grid-cols-4", groups.length < 2 ? "mt-4" : "mt-6")} aria-label={t.courtsLabel}>
         {current.lines.map((l) => (
           <li key={l.key} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 p-4">
             <AppIcon name={`${l.courtType}_court`} className="size-6 shrink-0 text-white" />
@@ -212,7 +221,7 @@ export function ClubCourtsCard({ club, locale }: { club: Club; locale: Locale })
               ★
             </span>
             <span className="font-medium">
-              {premium}× {t.panorama}
+              {premium}× {t.centerCourt}
             </span>
           </li>
         )}

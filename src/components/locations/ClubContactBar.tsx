@@ -48,7 +48,11 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
                 {c.name && <ManagerAvatar name={c.name} image={managerImage} />}
                 <span className="min-w-0">
                   {c.name && <span className="block text-white/85">{c.name}</span>}
-                  <span className={`${value} block break-all`}>{c.emailAddress}</span>
+                  {/* break only after the @, never inside the domain */}
+                  <span className={`${value} block`}>
+                    {c.emailAddress.split("@")[0]}@<wbr />
+                    {c.emailAddress.split("@").slice(1).join("@")}
+                  </span>
                 </span>
               </span>
             </a>
@@ -102,12 +106,12 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
   );
 }
 
-/** Club manager photo (team photos from padelcity.de, matched by name); initials when there is none. */
+/** Club manager photo (team photos from padelcity.de, matched by name), same size as the contact card on /franchise (80/96 px); initials when there is none. */
 function ManagerAvatar({ name, image }: { name: string; image?: string }) {
-  if (image) return <Media src={image} alt="" className="size-11 shrink-0 rounded-full" imgClassName="object-[50%_20%]" sizes="44px" />;
+  if (image) return <Media src={image} alt="" className="size-20 shrink-0 rounded-full md:size-24" imgClassName="object-[50%_20%]" sizes="96px" />;
   const initials = name.split(/\s+/).map((w) => w[0]).slice(0, 2).join("");
   return (
-    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient text-sm font-bold" aria-hidden>
+    <span className="grid size-20 shrink-0 place-items-center rounded-full bg-brand-gradient text-2xl font-bold md:size-24" aria-hidden>
       {initials}
     </span>
   );

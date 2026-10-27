@@ -158,14 +158,15 @@ class LinkResolver {
   }
 }
 
-/** Rich text document → plain paragraphs joined by blank lines. */
+/** Rich text document → plain text, one line per paragraph and list item ("• "); render with whitespace-pre-line. */
 function richTextToPlain(node: unknown): string {
   if (node == null) return "";
   if (typeof node === "string") return node;
   const n = node as { nodeType?: string; value?: string; content?: unknown[] };
   if (n.nodeType === "text") return n.value ?? "";
   const children = (n.content ?? []).map(richTextToPlain);
-  if (n.nodeType === "document") return children.filter(Boolean).join("\n\n");
+  if (n.nodeType === "document" || n.nodeType === "unordered-list" || n.nodeType === "ordered-list") return children.map((c) => c.trim()).filter(Boolean).join("\n");
+  if (n.nodeType === "list-item") return `• ${children.join(" ").trim()}`;
   return children.join("");
 }
 

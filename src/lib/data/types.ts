@@ -27,7 +27,7 @@ export type CourtSummary = {
   name: string;
   locationType: "indoor" | "outdoor";
   courtType: "double" | "single";
-  isPremium?: boolean; // e.g. "Panorama Court"
+  isPremium?: boolean; // "Center Court"
   sport?: Sport; // default "padel"
 };
 
@@ -70,7 +70,7 @@ export type Club = {
   /** Club manager contact (Contentful contact entry). whatsappGroupUrl = proposed new Contentful field on club. */
   contact?: { name?: string; phoneNumber?: string; emailAddress?: string; profileImageUrl?: string; whatsappGroupUrl?: string };
   // No `rating` on purpose: ratings are never mocked. Real Google ratings come from lib/data/google-reviews.ts (module clubReviews).
-  tags: string[]; // "Indoor", "Outdoor", "Panorama Court", "Franchise", "Neu"
+  tags: string[]; // "Indoor", "Outdoor", "Center Court", "Franchise", "Neu"
   isFranchise?: boolean;
   /** "planned" = announced on padelcity.de as "soon" – no detail page, no booking, no price. Default: open. */
   status?: ClubStatus;
@@ -145,7 +145,7 @@ export type Partner = {
   description?: string;
 };
 
-/** Price columns of one time period, per court & hour in major units (34 = 34 €). Premium = panorama court. */
+/** Price columns of one time period, per court & hour in major units (34 = 34 €). Premium = Center Court. */
 export type PriceKind = "indoorDouble" | "indoorSingle" | "indoorPremium" | "outdoorDouble" | "outdoorSingle" | "outdoorPremium";
 export type PricePeriod = { from: string; until: string; prices: Partial<Record<PriceKind, number>> };
 /** days[0..6] = Monday … Sunday, days[7] = public holidays; each a list of time periods (off-peak, peak …). */

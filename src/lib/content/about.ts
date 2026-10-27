@@ -124,7 +124,7 @@ export const pillars: Record<Locale, Pillar[]> = {
     { name: "Franchise", text: "Mit Partnern bringen wir PadelCity in neue Städte.", route: "franchise", icon: "store" },
     { name: "App", text: "Courts buchen, Matches finden, Ranking checken – alles in einer App.", route: "app", icon: "smartphone" },
     { name: "Social Media", text: "PadelCity TV, Magazin und Social: Padel-Culture, die man sieht.", route: "magazine", icon: "instagram" },
-    { name: "Courts", text: `${keyFacts.courts}+ Courts in ${keyFacts.clubs}+ Clubs – indoor, outdoor, Panorama.`, route: "locations", icon: "court" },
+    { name: "Courts", text: `${keyFacts.courts}+ Courts in ${keyFacts.clubs}+ Clubs – indoor, outdoor, Center Court.`, route: "locations", icon: "court" },
     { name: "Events", text: "Von Social Mixed bis One Point Challenge und Premier Padel.", route: "events", icon: "trophy" },
   ],
   en: [
@@ -133,7 +133,7 @@ export const pillars: Record<Locale, Pillar[]> = {
     { name: "Franchise", text: "Together with partners we're taking PadelCity to new cities.", route: "franchise", icon: "store" },
     { name: "App", text: "Book courts, find matches, check your ranking – all in one app.", route: "app", icon: "smartphone" },
     { name: "Social media", text: "PadelCity TV, the magazine and socials: padel culture you can see.", route: "magazine", icon: "instagram" },
-    { name: "Courts", text: `${keyFacts.courts}+ courts at ${keyFacts.clubs}+ clubs – indoor, outdoor, panorama.`, route: "locations", icon: "court" },
+    { name: "Courts", text: `${keyFacts.courts}+ courts at ${keyFacts.clubs}+ clubs – indoor, outdoor, Center Court.`, route: "locations", icon: "court" },
     { name: "Events", text: "From social mixers to the One Point Challenge and Premier Padel.", route: "events", icon: "trophy" },
   ],
   pl: [
@@ -142,7 +142,7 @@ export const pillars: Record<Locale, Pillar[]> = {
     { name: "Franczyza", text: "Razem z partnerami przenosimy PadelCity do nowych miast.", route: "franchise", icon: "store" },
     { name: "Aplikacja", text: "Rezerwuj korty, znajduj mecze, sprawdzaj ranking – wszystko w jednej aplikacji.", route: "app", icon: "smartphone" },
     { name: "Social media", text: "PadelCity TV, magazyn i social media: kultura padla, którą widać.", route: "magazine", icon: "instagram" },
-    { name: "Korty", text: `${keyFacts.courts}+ kortów w ${keyFacts.clubs}+ klubach – indoor, outdoor, panorama.`, route: "locations", icon: "court" },
+    { name: "Korty", text: `${keyFacts.courts}+ kortów w ${keyFacts.clubs}+ klubach – indoor, outdoor, Center Court.`, route: "locations", icon: "court" },
     { name: "Eventy", text: "Od Social Mixed po One Point Challenge i Premier Padel.", route: "events", icon: "trophy" },
   ],
 };

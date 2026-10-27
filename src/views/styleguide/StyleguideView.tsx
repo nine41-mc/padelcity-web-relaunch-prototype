@@ -498,7 +498,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>Standortfinder: Filter</H3>
         <p className="max-w-3xl text-white/75">
           Eine Zeile: Länder als Segment-Schalter (ab Tablet), Anzahl, Filter-Icon, Liste/Karte. Alle weiteren Kriterien liegen hinter dem Filter-Icon: Sortierung (Empfohlen,
-          Entfernung, A–Z, Z–A), „Gerade geöffnet“, Sportarten, Ausstattung (Indoor, Outdoor, Panorama Court, Franchise) und auf dem Handy auch die Länder. Auf dem Handy als Bottom
+          Entfernung, A–Z, Z–A), „Gerade geöffnet“, Sportarten, Ausstattung (Indoor, Outdoor, Center Court, Franchise) und auf dem Handy auch die Länder. Auf dem Handy als Bottom
           Sheet, ab Tablet als Panel von rechts. Aktive Kriterien färben das Icon im Verlauf und zeigen einen Zähler. Filter wirken sofort; der Button zeigt die Trefferzahl.
         </p>
       </Block>

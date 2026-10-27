@@ -69,7 +69,7 @@ type Seed = {
 };
 
 const seeds: Seed[] = [
-  { slug: "muenchen-tucherpark", name: "PadelCity Tucherpark", city: "München", region: "Bayern", lat: 48.1522, lng: 11.5986, doubles: 6, singles: 3, loc: "outdoor", premium: 1, price: 32, teaser: "Padel unter Bäumen, direkt am Eisbach.", street: ["Am Eisbach", "5", "80538"], facilities: facilitySets.outdoor, tags: ["Outdoor", "Panorama Court"] },
+  { slug: "muenchen-tucherpark", name: "PadelCity Tucherpark", city: "München", region: "Bayern", lat: 48.1522, lng: 11.5986, doubles: 6, singles: 3, loc: "outdoor", premium: 1, price: 32, teaser: "Padel unter Bäumen, direkt am Eisbach.", street: ["Am Eisbach", "5", "80538"], facilities: facilitySets.outdoor, tags: ["Outdoor", "Center Court"] },
   { slug: "muenchen-frankfurter-ring", name: "PadelCity Frankfurter Ring", city: "München", region: "Bayern", lat: 48.1823, lng: 11.5869, doubles: 10, singles: 2, loc: "indoor", premium: 2, price: 36, teaser: "Indoor-Padel am Frankfurter Ring.", tags: ["Indoor"] },
   { slug: "muenchen", name: "PadelCity München Freimann", city: "München", region: "Bayern", lat: 48.1937, lng: 11.6133, doubles: 6, singles: 1, loc: "indoor", price: 34, teaser: "Der Klassiker im Münchner Norden.", tags: ["Indoor"] },
   { slug: "berlin", name: "PadelCity Berlin", city: "Berlin", region: "Berlin", lat: 52.5011, lng: 13.4180, doubles: 8, singles: 2, loc: "indoor", premium: 1, price: 34, teaser: "Hauptstadt-Padel.", tags: ["Indoor", "Neu"] },
