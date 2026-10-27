@@ -300,7 +300,9 @@ export async function HomeView({ locale }: { locale: Locale }) {
               <Accent>{t.shop.accent}</Accent>
             </Headline>
             <p className="mt-4 text-xl font-semibold">{t.shop.subline}</p>
-            <p className="mt-3 max-w-lg text-lg text-white/70">{t.shop.text}</p>
+            <p className="mt-3 max-w-lg text-lg text-white/70">
+              {t.shop.text} {t.shop.closing}
+            </p>
             <ol className="mt-6 space-y-3">
               {t.shop.steps.map((step, i) => (
                 <li key={step} className="flex items-center gap-3">
@@ -309,7 +311,6 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
-            <p className="mt-6 text-white/70">{t.shop.closing}</p>
             <Button href={deeplinks.vouchers()} variant="primary" className="mt-8" data-track="home_voucher_cta">
               {t.shop.cta}
             </Button>
