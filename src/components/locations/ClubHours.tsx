@@ -9,7 +9,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 import { locationsContent } from "@/lib/content/locations";
 import { cn } from "@/components/ui/cn";
 import { HOLIDAY_LABEL } from "@/lib/data/mappers";
-import { todayIndex, todaysHours, weekHours } from "./geo";
+import { openStatusText, todayIndex, weekHours } from "./geo";
 
 /**
  * Opening hours as on Google, under the club name: one status line ("Geöffnet bis 23:00") that unfolds into
@@ -27,9 +27,8 @@ export function ClubHours({ club, locale, className }: { club: Club; locale: Loc
   const [text, setText] = useState<string | null>(null);
   useEffect(() => {
     setToday(todayIndex());
-    const h = todaysHours(club.openingHours);
-    setText(!h ? status.closed : h.state === "before" ? status.opensAt.replace("{t}", h.open) : h.state === "open" ? status.openUntil.replace("{t}", h.close) : status.closed);
-  }, [club.openingHours, status]);
+    setText(openStatusText(club.openingHours, status, localeTags[locale].intl));
+  }, [club.openingHours, status, locale]);
   // 1 Jan 2024 was a Monday → weekday names in the page language
   const day = (i: number) => new Date(2024, 0, 1 + i).toLocaleDateString(localeTags[locale].intl, { weekday: "long" });
   const holiday = club.openingHours.find((h) => h.label === HOLIDAY_LABEL);

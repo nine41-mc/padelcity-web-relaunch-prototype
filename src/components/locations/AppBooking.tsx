@@ -18,7 +18,7 @@ export function ClubFacilities({ club }: { club: Club }) {
   return (
     <ul className="grid grid-cols-2 gap-3 md:grid-cols-4">
       {club.facilities.map((f) => (
-        <li key={f.type} className="flex items-center gap-3 rounded-[20px] border border-white/10 bg-ink-700 p-4 md:p-5">
+        <li key={f.type} className="flex items-center gap-3 rounded-[20px] border border-white/10 bg-ink-700 pad-card">
           <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
             <AppIcon name={f.icon ?? f.type} className="size-5 text-white" />
           </span>
@@ -62,7 +62,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
         <div>
           <ul className="grid gap-3">
             {exclusive.map((f) => (
-              <li key={f.id} className="flex gap-4 rounded-[20px] border border-white/10 bg-ink-800/70 p-5 backdrop-blur">
+              <li key={f.id} className="flex gap-4 rounded-[20px] border border-white/10 bg-ink-800/70 pad-card backdrop-blur">
                 <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
                   <AppIcon name={f.icon} className="size-5 text-white" />
                 </span>

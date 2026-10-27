@@ -95,7 +95,7 @@ export function LevelPath({
                 onClick={() => select(l.level)}
                 aria-pressed={on}
                 className={cn(
-                  "flex h-full w-full flex-col rounded-[20px] border bg-gradient-to-br p-6 text-left transition-all duration-300 md:p-7",
+                  "flex h-full w-full flex-col rounded-[20px] border bg-gradient-to-br pad-panel text-left transition-all duration-300",
                   on ? cn("border-magenta-400/70 opacity-100 shadow-glow", stageTone[stage.key]) : "border-white/10 from-ink-700 to-ink-700 opacity-60 hover:opacity-90",
                 )}
               >

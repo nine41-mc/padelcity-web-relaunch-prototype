@@ -15,7 +15,7 @@ export function FranchiseTeaser({ locale = "de" }: { locale?: Locale }) {
     <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-ink-700">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgb(132_18_181/0.55),transparent_60%),radial-gradient(ellipse_at_90%_100%,rgb(224_5_195/0.35),transparent_55%)]" aria-hidden />
       <div className="absolute inset-0 bg-court-lines opacity-50" aria-hidden />
-      <div className="relative grid gap-8 p-8 md:p-14 lg:grid-cols-[auto_1fr] lg:items-center lg:gap-14">
+      <div className="relative grid gap-8 pad-banner lg:grid-cols-[auto_1fr] lg:items-center lg:gap-14">
         <div className="grid size-20 place-items-center rounded-full bg-brand-gradient shadow-glow md:size-28" aria-hidden>
           <MapPin className="size-9 text-white md:size-12" />
         </div>

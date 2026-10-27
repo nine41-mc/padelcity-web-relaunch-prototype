@@ -171,8 +171,6 @@ const de = {
   screens: screensDe,
   callouts: calloutsDe,
   features: {
-    eyebrow: "Alles in einer App",
-    title: "Weniger organisieren. Mehr spielen.",
     items: [
       {
         id: "booking",
@@ -319,8 +317,6 @@ const en: AppContent = {
   screens: screensEn,
   callouts: calloutsEn,
   features: {
-    eyebrow: "All in one app",
-    title: "Less organising. More playing.",
     items: [
       {
         id: "booking",
@@ -464,8 +460,6 @@ const pl: AppContent = {
   screens: screensPl,
   callouts: calloutsPl,
   features: {
-    eyebrow: "Wszystko w jednej aplikacji",
-    title: "Mniej organizowania. Więcej grania.",
     items: [
       {
         id: "booking",

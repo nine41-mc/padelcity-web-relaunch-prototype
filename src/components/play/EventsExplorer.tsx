@@ -132,7 +132,7 @@ export function EventsExplorer({
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center gap-4 rounded-[28px] border border-dashed border-white/15 px-6 py-16 text-center">
+        <div className="flex flex-col items-center gap-4 rounded-[28px] border border-dashed border-white/15 pad-banner text-center">
           <span className="grid size-14 place-items-center rounded-full bg-white/5">
             <CalendarSearch className="size-6 text-white/70" aria-hidden />
           </span>

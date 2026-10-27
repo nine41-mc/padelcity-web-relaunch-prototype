@@ -372,7 +372,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
 
       {/* Results */}
       {results.length === 0 ? (
-        <div className="mt-10 rounded-[20px] border border-dashed border-white/15 p-10 text-center">
+        <div className="mt-10 rounded-[20px] border border-dashed border-white/15 pad-banner text-center">
           <p className="text-lg font-semibold">{t.emptyTitle}</p>
           <p className="mt-2 text-white/70">{t.emptyText}</p>
           <button type="button" onClick={reset} className="mt-6 min-h-11 rounded-full border border-white/30 px-5 text-sm font-medium hover:bg-white/5">

@@ -563,6 +563,19 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           ))}
         </div>
         <p className="mt-3 text-sm text-white/70">Spacing-Skala aus der Library. Die Website hält sich an das 4/8-Raster; Abschnittsabstände (80 / 112 / 128 px) sind Website-spezifisch.</p>
+        <H3>Innenabstände von Karten & Panels</H3>
+        <Table
+          head={["Stufe", "Innenabstand (Handy / Tablet / Desktop)", "Wofür"]}
+          rows={[
+            ["pad-card", "20 px", "Kacheln im Raster: Schritte, Kennzahlen, Bewertungen, Benefits, Team-Links, Sport-Kacheln"],
+            ["pad-panel", "24 / 32 px", "Einzelne Boxen: Info, Formulare, Testimonials, Overlays, Anmelde-Karte, mobiles Menü"],
+            ["pad-banner", "24 / 40 / 56 px", "Volle Breite: CTA-Banner, Teaser, Newsletter, Lead-Formulare, leere Zustände"],
+          ]}
+        />
+        <p className="mt-3 text-sm text-white/70">
+          Keine Einzelwerte: Jede Karte nutzt eine der drei Stufen. Gestapelte Panels haben 24 px Abstand (Raster-Abstand). Ausnahmen sind kompakte Zeilen und Pillen (FAQ-Zeilen,
+          WhatsApp-Gruppen, Kontakt-Kacheln 2 × 2 auf dem Handy, Buchungsleiste).
+        </p>
       </Block>
 
       {/* Layout */}

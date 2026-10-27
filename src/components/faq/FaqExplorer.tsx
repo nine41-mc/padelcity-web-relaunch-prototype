@@ -129,7 +129,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
         {/* Questions */}
         <div className="min-w-0">
           {filtered.length === 0 ? (
-            <div className="grid place-items-center gap-4 rounded-[28px] border border-dashed border-white/20 px-6 py-16 text-center">
+            <div className="grid place-items-center gap-4 rounded-[28px] border border-dashed border-white/20 pad-banner text-center">
               <p className="font-display text-3xl font-extrabold uppercase italic leading-none md:text-4xl">{labels.emptyTitle}</p>
               <p className="max-w-md text-white/70">{labels.emptyText}</p>
               <button

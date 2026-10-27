@@ -6,7 +6,7 @@ type Contact = { name: string; role: string; email: string; phone: string; image
 /** People & Culture contact next to the open positions (Contentful: jobs page). */
 export function JobsContact({ contact }: { contact: Contact }) {
   return (
-    <aside className="h-fit rounded-[24px] border border-white/10 bg-ink-700 p-6 lg:sticky lg:top-28">
+    <aside className="h-fit rounded-[24px] border border-white/10 bg-ink-700 pad-panel lg:sticky lg:top-28">
       <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{contact.eyebrow}</p>
       <div className="mt-4 flex items-center gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}

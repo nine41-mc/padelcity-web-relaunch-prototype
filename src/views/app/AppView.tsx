@@ -98,10 +98,6 @@ export function AppView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: featureStory */}
       <Section tone="ink">
-        <div className="mb-14 max-w-2xl lg:mb-0">
-          <Eyebrow className="mb-4">{t.features.eyebrow}</Eyebrow>
-          <Headline size="md">{t.features.title}</Headline>
-        </div>
         <FeatureStory features={t.features.items} screens={t.screens} callouts={t.callouts} phonePrefix={t.phoneLabel} locale={locale} />
       </Section>
 
@@ -130,7 +126,7 @@ export function AppView({ locale }: { locale: Locale }) {
           {t.how.steps.map((s, i) => (
             <li key={s.step} className="h-full">
               <Reveal delay={i * 0.08} className="h-full">
-              <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
+              <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 pad-card">
                 <span className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-white/[0.04]" aria-hidden>
                   {s.step}
                 </span>

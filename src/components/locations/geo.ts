@@ -71,3 +71,29 @@ export function todaysHours(
   const state = hm < entry.open ? "before" : hm < entry.close || entry.close === "00:00" ? "open" : "after";
   return { open: entry.open, close: entry.close, state };
 }
+
+/**
+ * Opening status line as on Google: "Geöffnet bis 23:00" while open; when closed, the next opening –
+ * "Geschlossen · Öffnet um 07:30" (later today) or "Geschlossen · Öffnet Mi um 07:30" (next day with hours).
+ */
+export function openStatusText(
+  hours: { label: string; open: string; close: string }[],
+  t: { openUntil: string; closedOpensToday: string; closedOpensOn: string; closed: string },
+  intl: string,
+  now: Date = new Date(),
+): string {
+  const h = todaysHours(hours, now);
+  if (h?.state === "open") return t.openUntil.replace("{t}", h.close);
+  if (h?.state === "before") return t.closedOpensToday.replace("{t}", h.open);
+  const week = weekHours(hours);
+  const today = todayIndex(now);
+  for (let k = 1; k <= 7; k++) {
+    const i = (today + k) % 7;
+    const next = week[i];
+    if (!next) continue;
+    // 1 Jan 2024 was a Monday → short weekday name in the page language, without the trailing dot ("Mi")
+    const day = new Date(2024, 0, 1 + i).toLocaleDateString(intl, { weekday: "short" }).replace(/\.$/, "");
+    return t.closedOpensOn.replace("{d}", day).replace("{t}", next.open);
+  }
+  return t.closed;
+}

@@ -52,7 +52,7 @@ export function LeadForm({
       <div
         ref={(el) => el?.focus()}
         tabIndex={-1}
-        className={cn("rounded-[28px] border border-magenta-500/40 bg-magenta-500/[0.06] p-8 outline-none md:p-12", className)}
+        className={cn("rounded-[28px] border border-magenta-500/40 bg-magenta-500/[0.06] pad-banner outline-none", className)}
         role="status"
       >
         <span className="grid size-14 place-items-center rounded-full bg-brand-gradient text-white">
@@ -67,7 +67,7 @@ export function LeadForm({
 
   return (
     <form
-      className={cn("rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-10", className)}
+      className={cn("rounded-[28px] border border-white/10 bg-ink-700 pad-banner", className)}
       onSubmit={(e) => {
         e.preventDefault();
         setDone(true);

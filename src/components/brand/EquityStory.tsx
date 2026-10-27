@@ -69,7 +69,7 @@ export function EquityStory({ chapters, ariaLabel }: { chapters: EquityChapter[]
               refs.current[i] = el;
             }}
             className={cn(
-              "scroll-mt-32 rounded-[28px] border p-6 transition-all duration-500 md:p-10",
+              "scroll-mt-32 rounded-[28px] border pad-banner transition-all duration-500",
               active === i ? "border-magenta-500/40 bg-ink-700 lg:shadow-glow" : "border-white/10 bg-ink-700/60",
             )}
           >

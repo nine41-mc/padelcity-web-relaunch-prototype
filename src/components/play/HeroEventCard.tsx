@@ -37,7 +37,8 @@ export function HeroEventCard({ event, locale, className, priority }: { event: C
 
       {/* Date badge carries the whole period; city and type as pills next to it */}
       <div className="absolute left-5 right-5 top-5 flex items-start gap-3 md:left-8 md:right-8 md:top-8">
-        <div className="grid min-w-16 place-items-center rounded-2xl bg-white px-3 py-2 text-ink-800">
+        {/* Fixed width, so every badge is the same size whatever the date ("05", "04–06", "30–02") */}
+        <div className="grid w-24 shrink-0 place-items-center rounded-2xl bg-white py-2 text-ink-800">
           <span className="font-display text-3xl font-extrabold italic leading-none whitespace-nowrap">{date.day}</span>
           <span className="text-[13px] font-semibold uppercase">{date.month}</span>
           {date.year && <span className="text-[11px] font-semibold">{date.year}</span>}

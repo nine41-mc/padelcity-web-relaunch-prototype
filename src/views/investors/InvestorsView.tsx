@@ -116,7 +116,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
           </div>
           <Reveal className="lg:pt-24">
             {/* Contentful module: contactCard */}
-            <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient p-8 md:p-10">
+            <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
               <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
               <div className="relative">
                 <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.contact.eyebrow}</p>

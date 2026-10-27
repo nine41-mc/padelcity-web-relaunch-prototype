@@ -26,7 +26,7 @@ function SkeletonLine({ w }: { w: string }) {
 function ReviewCard({ review, locale }: { review: GoogleReview; locale: Locale }) {
   const t = locationsContent[locale].club.reviews;
   return (
-    <li className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 p-6">
+    <li className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 pad-card">
       <p className="sr-only">{fill(t.stars, { n: review.rating })}</p>
       <Stars value={review.rating} />
       {/* Review text exactly as delivered by Google – never edit */}
@@ -52,7 +52,7 @@ function ReviewCard({ review, locale }: { review: GoogleReview; locale: Locale }
 function PlaceholderCard({ widths, locale, className }: { widths: string[]; locale: Locale; className?: string }) {
   const t = locationsContent[locale].club.reviews;
   return (
-    <li aria-hidden className={cn("flex h-full flex-col rounded-[20px] border border-dashed border-white/20 bg-ink-700/70 p-6", className)}>
+    <li aria-hidden className={cn("flex h-full flex-col rounded-[20px] border border-dashed border-white/20 bg-ink-700/70 pad-card", className)}>
       <Stars />
       <span className="mt-5 flex flex-col gap-2.5">
         {widths.map((w, i) => (
@@ -92,7 +92,7 @@ export function ClubReviews({ data, locale }: { data: ClubReviewsData; locale: L
 
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {/* Summary */}
-        <div className="flex flex-col gap-5 rounded-[20px] border border-white/10 bg-brandbook-gradient p-6 md:col-span-3 md:flex-row md:items-center md:justify-between lg:col-span-1 lg:flex-col lg:items-start">
+        <div className="flex flex-col gap-5 rounded-[20px] border border-white/10 bg-brandbook-gradient pad-card md:col-span-3 md:flex-row md:items-center md:justify-between lg:col-span-1 lg:flex-col lg:items-start">
           <div>
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/80">{t.source}</p>
             <p className="mt-3 flex items-baseline gap-2">

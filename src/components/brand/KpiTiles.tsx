@@ -12,7 +12,7 @@ export function KpiTiles({ items, intl, className }: { items: Kpi[]; intl: strin
       {items.map((k, i) => (
         <li key={k.label}>
           <Reveal delay={i * 0.05} className="h-full">
-            <div className="flex h-full flex-col justify-between gap-6 rounded-[20px] border border-white/10 bg-ink-700 p-5 md:p-7">
+            <div className="flex h-full flex-col justify-between gap-6 rounded-[20px] border border-white/10 bg-ink-700 pad-card">
               <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{k.label}</p>
               <div>
                 <p className="font-display text-5xl font-extrabold italic leading-none text-white md:text-6xl lg:text-7xl">

@@ -114,7 +114,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-x-3 top-[84px] bottom-3 overflow-y-auto rounded-[28px] border border-white/10 bg-ink-800/95 p-6 backdrop-blur-xl md:inset-x-5 md:top-[100px] lg:hidden"
+            className="fixed inset-x-3 top-[84px] bottom-3 overflow-y-auto rounded-[28px] border border-white/10 bg-ink-800/95 pad-panel backdrop-blur-xl md:inset-x-5 md:top-[100px] lg:hidden"
           >
             <nav aria-label={t.header.mobileNav}>
               <ul className="space-y-1">

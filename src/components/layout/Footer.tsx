@@ -68,7 +68,8 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
 
           {/* Newsletter stands on its own */}
-          <NewsletterSignup locale={locale} className="border-white/15 bg-ink-800/70 backdrop-blur-xl lg:mt-6" />
+          {/* "Benachrichtige mich" on planned clubs jumps here (#newsletter) */}
+          <NewsletterSignup locale={locale} id="newsletter" className="border-white/15 bg-ink-800/70 backdrop-blur-xl lg:mt-6" />
         </div>
 
         {/* WhatsApp community – full-width band, opens the overlay with every location's group */}

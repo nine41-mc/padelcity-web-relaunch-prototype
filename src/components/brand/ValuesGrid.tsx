@@ -25,7 +25,7 @@ export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: st
             onFocus={() => setActive(i)}
             aria-pressed={active === i}
             className={cn(
-              "group relative flex min-h-24 flex-col justify-between overflow-hidden rounded-[20px] border p-4 text-left transition-all duration-300 md:min-h-28",
+              "group relative flex min-h-24 flex-col justify-between overflow-hidden rounded-[20px] border pad-card text-left transition-all duration-300 md:min-h-28",
               active === i ? "border-transparent bg-brand-gradient shadow-glow" : "border-white/10 bg-ink-700 hover:-translate-y-0.5 hover:border-white/25",
               i === items.length - 1 && "col-span-2 md:col-span-1 lg:col-span-2",
             )}
@@ -35,7 +35,7 @@ export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: st
           </button>
         ))}
       </div>
-      <div className="relative min-h-72 overflow-hidden rounded-[28px] bg-brandbook-gradient p-8 md:p-12" aria-live="polite">
+      <div className="relative min-h-72 overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner" aria-live="polite">
         <div className="absolute inset-0 bg-court-lines opacity-70" aria-hidden />
         <AnimatePresence mode="wait">
           <motion.div

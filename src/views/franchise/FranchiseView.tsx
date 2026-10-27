@@ -50,7 +50,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           {t.benefits.items.map((b, i) => (
             <li key={b.title}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="group h-full rounded-[20px] border border-white/10 bg-ink-700 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 md:p-8">
+                <div className="group h-full rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50">
                   <BrandIcon name={b.icon} />
                   <h3 className="mt-6 font-display text-2xl font-extrabold italic uppercase md:text-3xl">{b.title}</h3>
                   <p className="mt-3 text-white/70">{b.text}</p>
@@ -66,7 +66,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
         <SectionIntro eyebrow={t.partnership.eyebrow} title={t.partnership.title} />
         <div className="grid gap-4 md:grid-cols-2 md:gap-5">
           <Reveal className="h-full">
-            <div className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient p-6 md:p-10">
+            <div className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
               <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
               <div className="relative">
                 <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.partnership.weProvideLabel}</p>
@@ -84,7 +84,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
             </div>
           </Reveal>
           <Reveal delay={0.08} className="h-full">
-            <div className="h-full rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-10">
+            <div className="h-full rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
               <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{t.partnership.youBringLabel}</p>
               <ul className="mt-6 space-y-4">
                 {t.partnership.youBring.map((item) => (
@@ -108,7 +108,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           {t.phases.items.map((ph, i) => (
             <li key={ph.title}>
               <Reveal delay={i * 0.07} className="h-full">
-                <div className="h-full rounded-[24px] border border-white/10 bg-ink-700 p-6 md:p-8">
+                <div className="h-full rounded-[24px] border border-white/10 bg-ink-700 pad-panel">
                   <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/60">0{i + 1}</span>
                   <h3 className="mt-2 font-display text-4xl font-extrabold italic uppercase leading-none">{ph.title}</h3>
                   <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
@@ -164,7 +164,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           {t.requirements.items.map((r, i) => (
             <li key={r.title}>
               <Reveal delay={i * 0.06} className="h-full">
-                <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 p-6 md:p-8">
+                <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 pad-card">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{r.title}</p>
                   <p className="mt-4 font-display text-4xl font-extrabold italic uppercase text-white md:text-3xl lg:text-5xl">
                     {/* Söhne Schmal italic has no clean "×" – set it upright in Poppins with some air */}
@@ -215,7 +215,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
               ))}
             </ul>
             {contact && (
-              <figure className="mt-10 flex items-center gap-5 rounded-[24px] border border-white/10 bg-ink-700 p-5">
+              <figure className="mt-10 flex items-center gap-5 rounded-[24px] border border-white/10 bg-ink-700 pad-card">
                 {contact.image && (
                   <Media src={contact.image} alt={contact.name} className="size-20 shrink-0 rounded-full md:size-24" imgClassName="object-[50%_20%]" sizes="96px" />
                 )}

@@ -5,12 +5,12 @@ import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { COUNTRY_ORDER, fill, locationsContent, regionLabel } from "@/lib/content/locations";
-import { NewsletterSignup } from "@/components/modules/NewsletterSignup";
 import { Chip } from "@/components/ui/Chip";
 import { Media } from "@/components/ui/Media";
 import { CountryFlag } from "./CountryFlag";
 
-const NOTIFY_ID = "planned-notify";
+// "Notify me" uses the one newsletter signup in the footer – no separate opening newsletter
+const NOTIFY_ID = "newsletter";
 
 /** "2027-03-15" → "15. März 2027", "2027-03" → "März 2027", "2027" → "2027". */
 export function formatOpeningDate(value: string, locale: Locale): string {
@@ -25,7 +25,7 @@ export function formatOpeningDate(value: string, locale: Locale): string {
 /**
  * "Bald eröffnet / Coming soon": planned clubs in the ClubCard look (image on top, chips, hover lift/glow),
  * with a city landmark illustration instead of a venue photo. Not linked – planned clubs have no detail page.
- * Each card's "Notify me" jumps to the single newsletter signup below the grid.
+ * Each card's "Notify me" jumps to the newsletter signup in the footer.
  * Phone: horizontal scroll-snap row; tablet 2 / desktop 3 columns.
  */
 export function PlannedClubs({ clubs, locale }: { clubs: Club[]; locale: Locale }) {
@@ -48,9 +48,6 @@ export function PlannedClubs({ clubs, locale }: { clubs: Club[]; locale: Locale 
           </li>
         ))}
       </ul>
-      <div id={NOTIFY_ID} className="mt-12 scroll-mt-28 rounded-[28px] target:ring-2 target:ring-magenta-500/60">
-        <NewsletterSignup locale={locale} title={t.notifyTitle} text={t.notifyText} />
-      </div>
     </div>
   );
 }

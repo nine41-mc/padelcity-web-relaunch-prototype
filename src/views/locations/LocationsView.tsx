@@ -59,7 +59,8 @@ export async function LocationsView({ locale }: { locale: Locale }) {
         <CityIndex clubs={clubs} planned={planned} locale={locale} />
       </Section>
 
-      <Section className="!pb-10 md:!pb-14">
+      {/* Stacked panels: 24 px between franchise teaser and app banner (grid gap, see pad-* scale) */}
+      <Section className="!pb-6">
         <Reveal>
           <FranchiseTeaser locale={locale} />
         </Reveal>

@@ -35,7 +35,7 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
               </div>
               <div
                 className={cn(
-                  "flex h-[calc(100%-2.25rem)] flex-col rounded-[20px] border p-5 md:p-6",
+                  "flex h-[calc(100%-2.25rem)] flex-col rounded-[20px] border pad-card",
                   m.highlight ? "border-magenta-500/50 bg-magenta-500/[0.08]" : "border-white/10 bg-ink-700",
                 )}
               >

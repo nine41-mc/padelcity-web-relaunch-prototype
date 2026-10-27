@@ -141,7 +141,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
             <Reveal key={c.title} delay={i * 0.06}>
               <Link
                 href={c.href}
-                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br ${c.tone} p-6 transition-all duration-300 hover:-translate-y-1 hover:border-white/40`}
+                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br ${c.tone} pad-card transition-all duration-300 hover:-translate-y-1 hover:border-white/40`}
               >
                 <c.icon className="size-8 text-white" aria-hidden />
                 <div>
@@ -214,10 +214,10 @@ export async function HomeView({ locale }: { locale: Locale }) {
                     {keepTogether(heroEvent.title)}
                   </Link>
                 </h3>
-                {/* The text ends with the lead-in to the buttons ("Anmelden und buchen:") instead of a separate label */}
+                {/* The text ends with the lead-in to the buttons ("Jetzt anmelden und buchen:") instead of a separate label */}
                 <p className="mt-4 text-lg text-white/80">
                   {heroEvent.subtitle && <>{heroEvent.subtitle} </>}
-                  <span className="whitespace-nowrap font-semibold text-white">{getDictionary(locale).eventCard.signupLead}</span>
+                  <span className="whitespace-nowrap">{getDictionary(locale).eventCard.signupLead}</span>
                 </p>
                 {/* Sign-up (app primary, web outline); the whole teaser links to the detail page */}
                 <EventSignup eventId={heroEvent.id} locale={locale} size="md" className="mt-5 max-w-md" />

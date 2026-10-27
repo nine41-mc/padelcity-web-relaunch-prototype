@@ -185,7 +185,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
 
             {/* Contentful module: eventSignupCard – sign-up facts and sign-up. Phone: below the intro; desktop: sticky right column */}
             <aside className="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
-              <div className="rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-8">
+              <div className="rounded-[28px] border border-white/10 bg-ink-700 pad-panel">
                 <dl className="space-y-4">
                   <Fact icon={<Users className="size-5" />} label={t.detail.format}>
                     {event.personsPerTeam ? t.detail.team(event.personsPerTeam) : t.detail.single}
@@ -232,7 +232,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
               )}
               <ol className="grid gap-4 md:grid-cols-3">
                 {steps.map((s, i) => (
-                  <li key={s.title} className="rounded-[20px] border border-white/10 p-5">
+                  <li key={s.title} className="rounded-[20px] border border-white/10 pad-card">
                     <span className="font-display text-3xl font-extrabold italic text-brand-gradient">0{i + 1}</span>
                     <p className="mt-2 font-display text-xl font-extrabold italic uppercase">{s.title}</p>
                     <p className="mt-2 text-sm text-white/70">{s.text}</p>
@@ -255,7 +255,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
             </div>
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.schedule.map((d) => (
-                <div key={d.day} className="rounded-[20px] border border-white/10 p-6">
+                <div key={d.day} className="rounded-[20px] border border-white/10 pad-card">
                   <p className="font-display text-2xl font-extrabold italic uppercase text-white">{d.day}</p>
                   <ul className="mt-4 space-y-3">
                     {d.items.map((it) => (

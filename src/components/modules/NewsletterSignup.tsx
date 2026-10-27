@@ -11,30 +11,14 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
  * Newsletter module (Contentful module "newsletterSignup").
  * Prototype only: no data is sent anywhere. Real target (e.g. HubSpot / Brevo) + double opt-in TBD.
  */
-export function NewsletterSignup({
-  locale = "de",
-  title,
-  text,
-  compact = false,
-  className,
-}: {
-  locale?: Locale;
-  title?: string;
-  text?: string;
-  compact?: boolean;
-  className?: string;
-}) {
+export function NewsletterSignup({ locale = "de", id, className }: { locale?: Locale; id?: string; className?: string }) {
   const t = getDictionary(locale).newsletter;
   const [done, setDone] = useState(false);
   const inputId = useId();
   return (
-    <div className={cn("rounded-[28px] border border-white/10 bg-white/[0.03] p-6 md:p-10", className)}>
-      {!compact && (
-        <>
-          <h3 className="font-display text-3xl font-extrabold italic uppercase md:text-4xl">{title ?? t.title}</h3>
-          <p className="mt-2 max-w-md text-white/70">{text ?? t.text}</p>
-        </>
-      )}
+    <div id={id} className={cn("scroll-mt-28 rounded-[28px] border border-white/10 bg-white/[0.03] pad-banner", className)}>
+      <h3 className="font-display text-3xl font-extrabold italic uppercase md:text-4xl">{t.title}</h3>
+      <p className="mt-2 max-w-md text-white/70">{t.text}</p>
       {done ? (
         <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-optic-500 outline-none" role="status">
           <span className="grid size-8 place-items-center rounded-full bg-optic-500 text-on-optic">

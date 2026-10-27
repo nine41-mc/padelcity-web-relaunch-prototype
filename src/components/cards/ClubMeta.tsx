@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react";
 import { Clock } from "lucide-react";
 import type { Club, Sport } from "@/lib/data/types";
-import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
-import { todaysHours } from "@/components/locations/geo";
+import { openStatusText } from "@/components/locations/geo";
+import { localeTags, type Locale } from "@/lib/i18n/config";
 import { cn } from "../ui/cn";
 
 /** Sports offered at a club (from its courts), padel first. */
@@ -16,16 +16,15 @@ export function clubSports(club: Pick<Club, "courts">): Sport[] {
 }
 
 /**
- * "Geöffnet bis 23:00" – computed in the browser so it is correct for *today* even on a static build.
+ * "Geöffnet bis 23:00" / "Geschlossen · Öffnet Mi um 07:30" – computed in the browser so it is correct for *today* even on a static build.
  * Opening hours are master data (Contentful), not booking data.
  */
 export function OpenStatus({ club, locale, className }: { club: Club; locale: Locale; className?: string }) {
   const t = getDictionary(locale).clubCard;
   const [text, setText] = useState<string | null>(null);
   useEffect(() => {
-    const h = todaysHours(club.openingHours);
-    setText(!h ? t.closed : h.state === "before" ? t.opensAt.replace("{t}", h.open) : h.state === "open" ? t.openUntil.replace("{t}", h.close) : t.closed);
-  }, [club.openingHours, t]);
+    setText(openStatusText(club.openingHours, t, localeTags[locale].intl));
+  }, [club.openingHours, t, locale]);
   return (
     // Opening status is the one meta line in PadelCity pink (colour roles: SECONDARY exception, see globals.css)
     <p className={cn("flex min-h-5 items-center gap-1.5 text-sm font-semibold text-magenta-300", className)}>

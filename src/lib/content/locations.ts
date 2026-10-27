@@ -71,8 +71,6 @@ const de = {
     notifyCta: "Benachrichtige mich",
     notifyAria: "Benachrichtige mich, wenn {name} eröffnet",
     listLabel: "Geplante PadelCity Clubs",
-    notifyTitle: "Sei beim Opening dabei",
-    notifyText: "Eröffnungen, Pre-Sales und Opening-Events – direkt in dein Postfach.",
   },
   franchise: {
     title: "Deine Stadt soll eine",
@@ -267,8 +265,6 @@ const en: LocationsContent = {
     notifyCta: "Notify me",
     notifyAria: "Notify me when {name} opens",
     listLabel: "Upcoming PadelCity clubs",
-    notifyTitle: "Be there on opening day",
-    notifyText: "Openings, pre-sales and opening events – straight to your inbox.",
   },
   franchise: {
     title: "Want your city to become a",
@@ -468,8 +464,6 @@ const pl: LocationsContent = {
     notifyCta: "Powiadom mnie",
     notifyAria: "Powiadom mnie, gdy {name} zostanie otwarty",
     listLabel: "Planowane kluby PadelCity",
-    notifyTitle: "Bądź na otwarciu",
-    notifyText: "Otwarcia, przedsprzedaże i eventy otwarcia – prosto do twojej skrzynki.",
   },
   franchise: {
     title: "Chcesz, żeby twoje miasto stało się",

@@ -226,7 +226,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               </Button>
             </>
           ) : (
-            <div className="rounded-[20px] border border-dashed border-white/15 p-8 text-center md:p-12">
+            <div className="rounded-[20px] border border-dashed border-white/15 pad-banner text-center">
               <p className="text-lg font-semibold">{fill(t.events.emptyTitle, { city: club.city })}</p>
               <p className="mt-2 text-white/70">{t.events.emptyText}</p>
               <Button href={href(locale, "events")} variant="outline" className="mt-6">

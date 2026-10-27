@@ -110,7 +110,7 @@ export const contentModel: PageType[] = [
       {
         id: "plannedClubs",
         name: "Bald eröffnet",
-        fields: [f("Geplante Clubs mit Stadt", "apiExtend", undefined, "Status „geplant“ + Eröffnungszeitraum fehlen; inaktive Clubs werden gefiltert"), f("Stadt-Illustrationen", "cms"), f("„Benachrichtige mich“", "unknown", undefined, "Newsletter-Tool offen")],
+        fields: [f("Geplante Clubs mit Stadt", "apiExtend", undefined, "Status „geplant“ + Eröffnungszeitraum fehlen; inaktive Clubs werden gefiltert"), f("Stadt-Illustrationen", "cms"), f("„Benachrichtige mich“", "unknown", undefined, "führt zur Newsletter-Anmeldung im Footer; Newsletter-Tool offen")],
       },
       { id: "franchiseTeaser", name: "Franchise-Teaser", fields: [...sectionHead(), f("Kennzahlen im Text (Clubs, Courts)", "cms", undefined, "nur freigegebene Zahlen"), ctas()] },
     ],

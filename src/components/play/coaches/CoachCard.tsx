@@ -172,9 +172,10 @@ export function CoachCard({
         )}
         <div className={cn(feature && "md:flex md:items-end md:justify-between md:gap-6")}>
           <div className={cn("min-w-0", feature && "md:max-w-[62%]")}>
+            {/* line-clamp clips (overflow: hidden) – the right padding keeps the italic overhang of the last letter visible */}
             <h3
               className={cn(
-                "font-display font-extrabold uppercase italic leading-[0.86] tracking-tight [overflow-wrap:anywhere]",
+                "pr-[0.15em] font-display font-extrabold uppercase italic leading-[0.86] tracking-tight [overflow-wrap:anywhere]",
                 feature ? "line-clamp-3 text-[2.6rem] md:text-5xl lg:text-6xl" : "line-clamp-2 text-xl md:text-3xl",
               )}
             >

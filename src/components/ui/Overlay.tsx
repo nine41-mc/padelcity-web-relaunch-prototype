@@ -106,7 +106,7 @@ export function Overlay({
           </div>
 
           {/* Content column */}
-          <div className="relative p-5 md:max-h-[calc(100dvh-34px)] md:overflow-y-auto md:p-8">
+          <div className="relative pad-panel md:max-h-[calc(100dvh-34px)] md:overflow-y-auto">
             <button
               type="button"
               data-autofocus

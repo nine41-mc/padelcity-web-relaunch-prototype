@@ -33,7 +33,7 @@ function Card({ t, locale, index, total }: { t: Testimonial; locale: Locale; ind
       role="group"
       aria-roledescription="slide"
       aria-label={fill(c.slide, { i: index + 1, n: total })}
-      className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-8"
+      className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 pad-panel"
     >
       <Quote aria-hidden className="pointer-events-none absolute right-6 top-6 size-10 rotate-180 fill-magenta-500/25 text-magenta-500/70" />
       <figcaption className="relative flex items-center gap-4">

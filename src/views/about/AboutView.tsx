@@ -71,7 +71,7 @@ export function AboutView({ locale }: { locale: Locale }) {
           </Reveal>
           {quoteAuthor?.quote && (
             <Reveal delay={0.1}>
-              <figure className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient p-8 md:p-12">
+              <figure className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
                 <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
                 <div className="relative flex h-full flex-col">
                   <Quote className="size-10 text-white/70" aria-hidden />
@@ -101,7 +101,7 @@ export function AboutView({ locale }: { locale: Locale }) {
         <div className="grid gap-4 md:grid-cols-2 md:gap-5">
           {t.vision.map((b, i) => (
             <Reveal key={b.k} delay={i * 0.08} className="h-full">
-              <div className="h-full rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-10">
+              <div className="h-full rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
                 <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{b.k}</p>
                 <p className="mt-4 font-display text-4xl font-extrabold italic uppercase leading-none text-brand-gradient md:text-5xl">{b.t}</p>
                 <p className="mt-5 text-lg text-white/75">{b.d}</p>
@@ -132,7 +132,7 @@ export function AboutView({ locale }: { locale: Locale }) {
                 <p className={`mt-3 text-sm leading-relaxed ${p.route ? "text-white/75" : "text-white"}`}>{p.text}</p>
               </>
             );
-            const cls = "group block h-full rounded-[20px] border border-white/10 bg-ink-700 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50";
+            const cls = "group block h-full rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50";
             return (
               <li key={p.name} className={i === 0 ? "md:col-span-2" : undefined}>
                 <Reveal delay={i * 0.04} className="h-full">

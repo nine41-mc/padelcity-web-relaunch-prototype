@@ -10,7 +10,7 @@ import { getDictionary } from "@/lib/i18n/dictionaries";
 export function AppCta({ clubId, locale = "de", showStores = true }: { clubId?: string; locale?: Locale; showStores?: boolean }) {
   const t = getDictionary(locale).appCta;
   return (
-    <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient p-8 md:p-14">
+    <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
       <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
       {/* Left: copy + CTA (club deep link or the app page); right: the store badges get the room */}
       <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">

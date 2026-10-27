@@ -73,7 +73,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
           {t.formats.items.map((item, i) => (
             <li key={item.title}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="group h-full rounded-[20px] border border-white/10 bg-ink-700 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 md:p-8">
+                <div className="group h-full rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50">
                   <BrandIcon name={item.icon} tone={i === 1 ? "gradient" : "glass"} />
                   <h3 className="mt-6 font-display text-2xl font-extrabold italic uppercase md:text-3xl">{item.title}</h3>
                   <p className="mt-3 text-white/70">{item.text}</p>
@@ -90,7 +90,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
           {t.personas.items.map((p, i) => (
             <li key={p.name}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="flex h-full items-start gap-4 rounded-[20px] border border-white/10 bg-ink-700 p-5 md:p-6">
+                <div className="flex h-full items-start gap-4 rounded-[20px] border border-white/10 bg-ink-700 pad-card">
                   <span className="grid size-14 shrink-0 place-items-center rounded-full bg-brand-gradient font-display text-2xl font-extrabold italic" aria-hidden>
                     {p.name[0]}
                   </span>
@@ -198,7 +198,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
           <Reveal delay={0.1}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {t.corporate.formats.map((item) => (
-                <li key={item} className="flex items-start gap-3 rounded-[20px] bg-black/25 p-5 backdrop-blur">
+                <li key={item} className="flex items-start gap-3 rounded-[20px] bg-black/25 pad-card backdrop-blur">
                   <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-white text-purple-700">
                     <Check className="size-3.5" strokeWidth={3} aria-hidden />
                   </span>

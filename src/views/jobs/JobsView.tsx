@@ -60,7 +60,7 @@ export function JobsView({ locale }: { locale: Locale }) {
           {t.benefits.items.map((b, i) => (
             <li key={b.title}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="flex h-full gap-5 rounded-[20px] border border-white/10 bg-ink-700 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 md:flex-col md:p-8">
+                <div className="flex h-full gap-5 rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 md:flex-col">
                   <BrandIcon name={b.icon} tone={i === 0 ? "gradient" : "glass"} />
                   <div>
                     <h3 className="font-display text-2xl font-extrabold italic uppercase leading-none md:text-3xl">{b.title}</h3>
@@ -112,7 +112,7 @@ export function JobsView({ locale }: { locale: Locale }) {
 
       <Section id="initiativ" tone="black" className="scroll-mt-16">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 p-8 md:p-14">
+          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
             <div className="absolute inset-0 bg-court-lines opacity-40" aria-hidden />
             <div className="relative grid items-end gap-8 md:grid-cols-[1.4fr_1fr]">
               <div>
