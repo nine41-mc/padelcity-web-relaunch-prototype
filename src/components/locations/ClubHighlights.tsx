@@ -59,12 +59,22 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
     [highlights],
   );
 
-  // Auto-advance
+  // Auto-advance. Holding pauses timer and progress bar together; releasing continues with the remaining time
+  // (it used to restart the frame, and the bar jumped to a fixed 50 % on every tap).
+  const remaining = useRef(FRAME_MS);
+  const frameKey = open ? `${open.h}-${open.f}` : "";
   useEffect(() => {
-    if (!open || paused) return;
-    const id = window.setTimeout(() => step(1), FRAME_MS);
-    return () => window.clearTimeout(id);
-  }, [open, paused, step]);
+    remaining.current = FRAME_MS;
+  }, [frameKey]);
+  useEffect(() => {
+    if (!frameKey || paused) return;
+    const startedAt = Date.now();
+    const id = window.setTimeout(() => step(1), remaining.current);
+    return () => {
+      window.clearTimeout(id);
+      remaining.current = Math.max(0, remaining.current - (Date.now() - startedAt));
+    };
+  }, [frameKey, paused, step]);
 
   // Keyboard
   useEffect(() => {
@@ -131,8 +141,8 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
                 <span key={i} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/30">
                   <span
                     key={`${open.h}-${open.f}-${i}`}
-                    className={cn("block h-full bg-white", i < open.f ? "w-full" : i > open.f ? "w-0" : paused ? "w-1/2" : "w-full animate-[story-progress_linear_forwards]")}
-                    style={i === open.f ? { animationDuration: `${FRAME_MS}ms` } : undefined}
+                    className={cn("block h-full bg-white", i < open.f ? "w-full" : i > open.f ? "w-0" : "w-full animate-[story-progress_linear_forwards]")}
+                    style={i === open.f ? { animationDuration: `${FRAME_MS}ms`, animationPlayState: paused ? "paused" : "running" } : undefined}
                   />
                 </span>
               ))}
@@ -147,6 +157,11 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
             </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={src(frame.url)} alt={frame.alt ?? city} className="h-full w-full select-none object-cover md:rounded-[18px]" draggable={false} />
+            {/* Preload the next frame so the swap never flashes black */}
+            {(current.frames[open.f + 1] ?? highlights[open.h + 1]?.frames[0]) && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={src((current.frames[open.f + 1] ?? highlights[open.h + 1].frames[0]).url)} alt="" className="hidden" aria-hidden />
+            )}
             {/* Tap zones: left = back, right = next; hold to pause */}
             <button
               type="button"
@@ -154,6 +169,7 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
               onClick={() => step(-1)}
               onPointerDown={() => setPaused(true)}
               onPointerUp={() => setPaused(false)}
+              onPointerLeave={() => setPaused(false)}
               className="absolute inset-y-16 left-0 w-1/3"
             />
             <button
@@ -162,6 +178,7 @@ export function ClubHighlights({ images, city, locale }: { images: ImageAsset[];
               onClick={() => step(1)}
               onPointerDown={() => setPaused(true)}
               onPointerUp={() => setPaused(false)}
+              onPointerLeave={() => setPaused(false)}
               className="absolute inset-y-16 right-0 w-2/3"
             />
           </div>

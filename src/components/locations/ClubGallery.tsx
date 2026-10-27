@@ -11,14 +11,14 @@ import { Media } from "@/components/ui/Media";
 import { cn } from "@/components/ui/cn";
 
 /**
- * Bento gallery: 1 large + 4 small on tablet/desktop, swipeable scroll-snap strip on phone.
+ * Bento gallery: 1 large (2/3) + 2 stacked (1/3) on tablet/desktop, swipeable scroll-snap strip on phone.
  * "+N Fotos" opens a simple lightbox (Esc / arrows / backdrop to close).
  */
 export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsset[]; name: string; locale?: Locale }) {
   const t = locationsContent[locale].club.gallery;
   const [open, setOpen] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
-  const shown = images.slice(0, 5);
+  const shown = images.slice(0, 3);
   const more = images.length - shown.length;
 
   const close = useCallback(() => setOpen(null), []);
@@ -58,7 +58,7 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
       </div>
 
       {/* Tablet/desktop: bento */}
-      <div className="hidden h-[420px] grid-cols-4 grid-rows-2 gap-2 overflow-hidden rounded-[28px] md:grid lg:h-[520px]">
+      <div className="hidden h-[340px] grid-cols-3 grid-rows-2 gap-2 overflow-hidden rounded-[28px] md:grid lg:h-[380px]">
         {shown.map((img, i) => (
           <button
             key={i}
@@ -66,9 +66,8 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
             onClick={() => setOpen(i)}
             className={cn(
               "group relative overflow-hidden",
-              i === 0 && (shown.length === 1 ? "col-span-4 row-span-2" : "col-span-2 row-span-2"),
-              shown.length === 2 && i === 1 && "col-span-2 row-span-2",
-              shown.length === 3 && i > 0 && "col-span-2",
+              i === 0 && (shown.length === 1 ? "col-span-3 row-span-2" : "col-span-2 row-span-2"),
+              shown.length === 2 && i === 1 && "row-span-2",
             )}
             // visible "+3 Fotos" on the last tile → the accessible name starts with it (WCAG 2.5.3)
             aria-label={i === shown.length - 1 && more > 0 ? `+${more} ${t.photos}: ${fill(t.enlarge, { i: i + 1, n: images.length })}` : fill(t.enlarge, { i: i + 1, n: images.length })}
@@ -79,7 +78,7 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
               className="h-full w-full"
               imgClassName="transition-transform duration-700 group-hover:scale-105"
               priority={i === 0}
-              sizes={i === 0 ? "50vw" : "25vw"}
+              sizes={i === 0 ? "66vw" : "33vw"}
             />
             {i === shown.length - 1 && more > 0 && (
               <span className="absolute inset-0 grid place-items-center bg-purple-900/60 text-lg font-semibold backdrop-blur-[2px] transition-colors group-hover:bg-purple-900/40">
