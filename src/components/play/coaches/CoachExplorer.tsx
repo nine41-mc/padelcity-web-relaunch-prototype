@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight, ChevronLeft, ChevronRight, GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
+import { ChevronLeft, ChevronRight, GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
 import type { Person } from "@/lib/content/people";
 import type { Locale } from "@/lib/i18n/config";
+import { Eyebrow } from "@/components/ui/Headline";
 import { Select } from "@/components/ui/Select";
 import { cn } from "@/components/ui/cn";
 import { CoachCard } from "./CoachCard";
@@ -115,24 +116,9 @@ export function CoachExplorer({
 
   return (
     <div>
-      {/* Header rule: "Coaches / Train like a Pro ——— Swipe to see all →" */}
-      <div className="flex items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70 md:gap-4">
-        <span className="inline-flex items-center gap-2 whitespace-nowrap">
-          <span className="size-1.5 rounded-full bg-magenta-400 animate-pulse-dot" aria-hidden />
-          Coaches
-          <span className="hidden sm:inline">
-            <span className="text-white/35">/</span> {labels.kicker}
-          </span>
-        </span>
-        <span className="h-px flex-1 bg-gradient-to-r from-white/30 via-white/15 to-transparent" aria-hidden />
-        {carousel && (
-          <span className="hidden items-center gap-1.5 whitespace-nowrap max-lg:inline-flex" aria-hidden>
-            {labels.swipeHint} <ArrowRight className="size-3.5" />
-          </span>
-        )}
-      </div>
+      <Eyebrow>Coaches</Eyebrow>
 
-      <div className="mt-8 md:mt-10">{heading}</div>
+      <div className="mt-6">{heading}</div>
 
       {/* Toolbar: filters · count · view toggle · arrows */}
       <div className="mt-8 flex flex-col gap-3 md:mt-10 lg:flex-row lg:items-center lg:justify-between">
@@ -233,10 +219,12 @@ export function CoachExplorer({
             ref={track}
             onScroll={updateEdges}
             aria-label={labels.listLabel}
+            // The next card peeks in and fades out at the edge, so it reads as scrollable (Design QA)
+            style={{ maskImage: `linear-gradient(to right, ${edges.start ? "black" : "transparent"}, black 8%, black 88%, ${edges.end ? "black" : "transparent"})` }}
             className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-4 pt-1 scrollbar-none md:-mx-8 md:gap-5 md:scroll-px-8 md:px-8 lg:mx-0 lg:scroll-px-0 lg:px-0"
           >
             {filtered.map((c) => (
-              <li key={c.id} className="w-[86%] shrink-0 snap-start md:w-[72%] lg:w-[calc((100%_-_20px)/2)]">
+              <li key={c.id} className="w-[86%] shrink-0 snap-start md:w-[72%] lg:w-[calc((100%_-_40px)/2.3)]">
                 <CoachCard coach={c} locale={locale} labels={labels} clubs={clubs} variant="feature" onOpen={open} />
               </li>
             ))}

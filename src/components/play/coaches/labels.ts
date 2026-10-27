@@ -3,8 +3,6 @@ export type CoachLabels = {
   listLabel: string;
   prev: string;
   next: string;
-  kicker: string;
-  swipeHint: string;
   footer: string;
   filterLabel: string;
   clubLabel: string;
@@ -23,7 +21,6 @@ export type CoachLabels = {
   students: string;
   pending: string;
   clubsCount: string;
-  headBadge: string;
   open: string;
   openFor: string;
   close: string;

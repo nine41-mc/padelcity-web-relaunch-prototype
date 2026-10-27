@@ -1,12 +1,12 @@
 "use client";
 
-import { ArrowUpRight, Award, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin } from "lucide-react";
 import type { Person } from "@/lib/content/people";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { Media } from "@/components/ui/Media";
 import { cn } from "@/components/ui/cn";
-import { coachClubKeys, fill, isHeadCoach, type CoachClubRef } from "./clubs";
+import { coachClubKeys, fill, type CoachClubRef } from "./clubs";
 import type { CoachLabels } from "./labels";
 
 // Contentful module: coach (card) – inside coachCarousel
@@ -84,7 +84,6 @@ export function CoachCard({
   variant: "feature" | "compact";
   onOpen: (coach: Person, trigger: HTMLElement) => void;
 }) {
-  const head = isHeadCoach(coach.role);
   const keys = coachClubKeys(coach.club);
   const clubLabel = keys.map((k) => clubs[k]?.label ?? k).join(" & ");
   const [first, ...rest] = coach.name.split(" ");
@@ -117,7 +116,7 @@ export function CoachCard({
         <div className="pointer-events-none absolute inset-y-0 right-0 -z-10 hidden w-1/2 bg-gradient-to-l from-black/70 to-transparent md:block" aria-hidden />
       )}
 
-      {/* Top-left: dot-grid badge + stacked icon chips */}
+      {/* Top-left: dot-grid role badge (the clubs are named at the bottom) */}
       <div className={cn("absolute flex flex-col items-start gap-2", feature ? "left-4 top-4 md:left-6 md:top-6" : "left-3 top-3")}>
         <span className="inline-flex h-8 items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 backdrop-blur">
           <DotGrid />
@@ -125,28 +124,6 @@ export function CoachCard({
             {coach.role[locale]}
           </span>
         </span>
-        {feature && (
-          <ul className="flex flex-col gap-1.5" aria-label={coach.name}>
-            {head && (
-              <li className="grid size-9 place-items-center rounded-xl border border-white/15 bg-black/55 backdrop-blur" title={labels.headBadge}>
-                <Award className="size-4 text-white" aria-hidden />
-                <span className="sr-only">{labels.headBadge}</span>
-              </li>
-            )}
-            {keys.length > 1 && (
-              <li
-                className="relative grid size-9 place-items-center rounded-xl border border-white/15 bg-black/55 backdrop-blur"
-                title={fill(labels.clubsCount, { n: keys.length })}
-              >
-                <MapPin className="size-4" aria-hidden />
-                <span className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-brand-gradient text-[10px] font-bold" aria-hidden>
-                  {keys.length}
-                </span>
-                <span className="sr-only">{fill(labels.clubsCount, { n: keys.length })}</span>
-              </li>
-            )}
-          </ul>
-        )}
       </div>
 
       {/* Top-right: open contact & offer dialog. The ::after stretches the hit area over the whole card. */}
