@@ -123,9 +123,10 @@ export function Header() {
                     <Link
                       href={href(locale, key)}
                       aria-current={pathname.startsWith(href(locale, key)) ? "page" : undefined}
-                      className="flex items-baseline justify-between border-b border-white/10 py-4"
+                      className="flex items-center justify-between gap-4 border-b border-white/10 py-4"
                     >
-                      <span className="font-display text-4xl font-extrabold italic uppercase md:text-5xl">{t.nav[key]}</span>
+                      {/* same type as the desktop navigation (Poppins, uppercase, tracked) – Söhne stays reserved for headlines */}
+                      <span className="text-[22px] font-semibold uppercase leading-tight tracking-[0.06em] md:text-2xl">{t.nav[key]}</span>
                       <span className="hidden text-sm text-white/70 md:inline">{t.navDescriptions[key]}</span>
                     </Link>
                   </motion.li>
