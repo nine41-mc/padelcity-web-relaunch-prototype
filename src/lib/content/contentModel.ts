@@ -81,7 +81,7 @@ export const contentModel: PageType[] = [
       { id: "socialWall", name: "Instagram-Wand", fields: [f("Neueste Posts @padelcity.de", "external", "Instagram API")] },
       { id: "voucherTeaser", name: "Gutschein-Modul", fields: [f("Text, Schritte, Karten-Visual, Betrag", "cms"), f("Gutschein kaufen", "external", "App-Deeplink /gift-vouchers", "Kauf braucht Login – bleibt in der App")] },
       { id: "partnerLogos", name: "Partner-Logos", fields: [f("Logos, Links", "cms")] },
-      { id: "appCta", name: "App-CTA", fields: [f("Text, Store-Badges, QR-Code", "cms"), f("QR-Ziel", "external", "Link-Service")] },
+      { id: "appCta", name: "App-CTA", fields: [f("Text, CTA, Store-Badges", "cms")] },
     ],
   },
   {

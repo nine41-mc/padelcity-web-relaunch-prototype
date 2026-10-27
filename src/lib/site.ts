@@ -23,8 +23,8 @@ export const site = {
 } as const;
 
 export const stores = {
-  ios: "https://apps.apple.com/de/app/padelcity-lets-play-padel/id6451471569",
-  android: "https://play.google.com/store/apps/details?id=de.padelcity.app",
+  ios: "https://apps.apple.com/de/app/padelcity-padel-jetzt-buchen/id6451471569",
+  android: "https://play.google.com/store/apps/details?id=de.padelcity.app&hl=de",
 } as const;
 
 export type NavItem = { key: RouteKey };

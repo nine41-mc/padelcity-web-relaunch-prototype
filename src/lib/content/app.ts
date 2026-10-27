@@ -169,7 +169,6 @@ const de = {
     phoneBack: "booking" as ScreenKey,
     phoneFront: "home" as ScreenKey,
   },
-  qr: { title: "QR zum App-Download", text: "Mit der Handy-Kamera scannen – iOS & Android.", aria: "QR zum App-Download (Platzhalter)" },
   phoneLabel: "Screenshot der PadelCity App",
   screens: screensDe,
   callouts: calloutsDe,
@@ -276,7 +275,6 @@ const de = {
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} von 5 Sternen im ${store}, ${count}`,
     outOf: "von 5 Sternen,",
-    asOf: "Stand: Oktober 2026",
   },
   how: {
     eyebrow: "So funktioniert's",
@@ -321,7 +319,6 @@ const en: AppContent = {
     phoneBack: "booking",
     phoneFront: "home",
   },
-  qr: { title: "Scan to download", text: "Point your phone camera here – iOS & Android.", aria: "QR code to download the app (placeholder)" },
   phoneLabel: "PadelCity app screenshot",
   screens: screensEn,
   callouts: calloutsEn,
@@ -428,7 +425,6 @@ const en: AppContent = {
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} out of 5 stars on ${store}, ${count}`,
     outOf: "out of 5 stars,",
-    asOf: "As of October 2026",
   },
   how: {
     eyebrow: "How it works",
@@ -470,7 +466,6 @@ const pl: AppContent = {
     phoneBack: "booking",
     phoneFront: "home",
   },
-  qr: { title: "Zeskanuj i pobierz", text: "Zeskanuj aparatem w telefonie – iOS i Android.", aria: "Kod QR do pobrania aplikacji (placeholder)" },
   phoneLabel: "Zrzut ekranu aplikacji PadelCity",
   screens: screensPl,
   callouts: calloutsPl,
@@ -577,7 +572,6 @@ const pl: AppContent = {
     ],
     ratingsLabel: (value: string, store: string, count: string) => `${value} na 5 gwiazdek w ${store}, ${count}`,
     outOf: "na 5 gwiazdek,",
-    asOf: "Stan na październik 2026",
   },
   how: {
     eyebrow: "Jak to działa",

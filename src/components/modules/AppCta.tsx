@@ -12,7 +12,8 @@ export function AppCta({ clubId, locale = "de", showStores = true }: { clubId?: 
   return (
     <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient p-8 md:p-14">
       <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
-      <div className="relative grid items-end gap-8 md:grid-cols-[1.4fr_1fr]">
+      {/* Left: copy + CTA (club deep link or the app page); right: the store badges get the room */}
+      <div className="relative grid items-center gap-8 md:grid-cols-[1.4fr_1fr]">
         <div>
           <Headline size="md">
             {t.title} <Accent>{t.accent}</Accent>
@@ -20,13 +21,11 @@ export function AppCta({ clubId, locale = "de", showStores = true }: { clubId?: 
           <p className="mt-4 max-w-lg text-white/80">
             {t.text}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 md:items-end">
-          <Button href={clubId ? deeplinks.club(clubId) : href(locale, "app")} size="lg" data-track="app_cta">
-            {t.open}
+          <Button href={clubId ? deeplinks.club(clubId) : href(locale, "app")} size="lg" className="mt-8" data-track="app_cta">
+            {clubId ? t.open : t.discover}
           </Button>
-          {showStores && <StoreBadges locale={locale} />}
         </div>
+        {showStores && <StoreBadges locale={locale} size="lg" className="md:justify-end" />}
       </div>
     </div>
   );

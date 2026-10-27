@@ -11,7 +11,6 @@ import { StoreBadges } from "@/components/ui/StoreBadges";
 import { Reveal } from "@/components/ui/Reveal";
 import { AppPhone } from "@/components/play/app/AppPhone";
 import { StoreGallery } from "@/components/play/app/StoreGallery";
-import { QrPlaceholder } from "@/components/play/QrPlaceholder";
 import { FeatureStory } from "@/components/play/FeatureStory";
 import { Faq } from "@/components/play/Faq";
 
@@ -79,12 +78,9 @@ export function AppView({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
-            <p className="mt-2 text-xs text-white/60">{t.socialProof.asOf}</p>
-            <div id="download" className="mt-10 flex scroll-mt-28 flex-col gap-6 md:flex-row md:items-center">
+            <div id="download" className="mt-10 scroll-mt-28">
               <StoreBadges locale={locale} />
-              <QrPlaceholder className="hidden lg:flex" labels={t.qr} />
             </div>
-            {/* TODO(content): real QR code (Adjust smart link) */}
             <p className="mt-6 text-sm text-white/70">{t.hero.note}</p>
           </div>
           <div className="relative flex justify-center md:-translate-x-16 lg:-translate-x-10">
