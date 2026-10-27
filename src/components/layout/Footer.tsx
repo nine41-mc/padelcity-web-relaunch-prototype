@@ -8,7 +8,6 @@ import { href, type RouteKey } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { NewsletterSignup } from "../modules/NewsletterSignup";
 import { Accent } from "../ui/Headline";
-import { Marquee } from "../ui/Marquee";
 import { WhatsAppGroups } from "../community/WhatsAppGroups";
 import { whatsappGroupCount } from "@/lib/content/whatsapp";
 
@@ -49,20 +48,9 @@ export function Footer({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <footer className="relative isolate overflow-hidden bg-black">
-      {/* Facts ticker – Optic Yellow band as the hand-over from page to footer */}
-      <div className="relative z-10 flex h-14 items-center overflow-hidden bg-optic-500 text-on-optic md:h-16" lang={locale}>
-        <Marquee>
-          {[...t.footer.facts, "#bettertogether", "Let's play Padel"].map((item) => (
-            <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase md:text-2xl">
-              {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-purple-600" aria-hidden />
-            </span>
-          ))}
-        </Marquee>
-      </div>
-
+    <footer className="relative isolate overflow-hidden border-t border-white/10 bg-black">
       {/* Atmosphere: purple glow + court lines */}
-      <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden>
+      <div className="pointer-events-none absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,transparent,black_320px)]" aria-hidden>
         <div className="absolute -left-40 top-10 size-[640px] rounded-full bg-purple-600/35 blur-[140px]" />
         <div className="absolute -right-40 bottom-40 size-[520px] rounded-full bg-magenta-500/25 blur-[140px]" />
         <div className="absolute inset-0 bg-court-lines opacity-40 [mask-image:linear-gradient(to_bottom,transparent,black_30%,black_70%,transparent)]" />
