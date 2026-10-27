@@ -23,7 +23,7 @@ export function courtSummary(club: Club, locale: Locale = "de") {
 
 /**
  * Club card (Elephant "Courtfinder" pattern, without availability). Image in the Instagram-poster look
- * (status, city, torn line, price); below it address, courts, sports and the arrow.
+ * (status, city, price); below it address, courts, sports and the arrow.
  * PadelCity principle: no booking-system data (free slots/occupancy) on the website.
  */
 export function ClubCard({
@@ -57,7 +57,7 @@ export function ClubCard({
         className,
       )}
     >
-      {/* Image in the poster look of the home showcase: status top-left, city + torn line, price bottom-right.
+      {/* Image in the poster look of the home showcase: status top-left, city, price bottom-right.
           Own compositing layer + 1px bleed: during the lift and zoom the image edge rounds to sub-pixels and let a light seam flash. */}
       <div className="relative aspect-[16/10] transform-gpu overflow-hidden [container-type:inline-size]">
         <Media

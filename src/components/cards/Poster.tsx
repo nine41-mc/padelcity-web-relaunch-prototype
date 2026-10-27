@@ -4,7 +4,7 @@ import { cn } from "../ui/cn";
 /*
  * Instagram-poster look shared by the home showcase posters and the club cards:
  * purple grainy sky over the photo, the city name huge in Poppins Bold (last line outlined),
- * a torn paper line and the location inside the city below it. The parent needs
+ * and the location inside the city below it. The parent needs
  * `[container-type:inline-size]` – font sizes are in container units (cqw).
  */
 
@@ -36,7 +36,7 @@ function splitWord(word: string, maxOneLine = 7): string[] {
 }
 
 /**
- * Poster title = the city, big; the location inside the city goes small below the torn line.
+ * Poster title = the city, big; the location inside the city goes small below it.
  * "München Frankfurter Ring" → München + Frankfurter Ring · "Tucherpark" (city München) → München + Tucherpark ·
  * "Frankfurt" (city Frankfurt am Main) → Frankfurt.
  */
@@ -72,11 +72,11 @@ export function PosterSky({ bottom = "h-1/2" }: { bottom?: string }) {
 }
 
 /**
- * City name + torn line + location – fixed rules so every tile looks the same:
+ * City name + location – fixed rules so every tile looks the same (the torn paper line was dropped in Design QA):
  *  - ONE font size per tile type (container units), independent of the name length;
  *  - names up to 7 letters stay on one line (Berlin, München, Fürth), longer ones split at a syllable
  *    (Frank|furt, Gelsen|kirchen) with the second line outlined;
- *  - so the torn line sits at exactly two heights: below one line or below two lines.
+ *  - so the location sits at exactly two heights: below one line or below two lines.
  * Sized so the longest line we have (8 letters, "Reckling") still fits the tile width.
  */
 export function PosterTitle({
@@ -102,16 +102,9 @@ export function PosterTitle({
           </span>
         ))}
       </p>
-      {/* Torn paper line */}
-      <svg viewBox="0 0 400 12" preserveAspectRatio="none" className="mt-3 h-2.5 w-full text-white" aria-hidden>
-        <path
-          d="M0 5 L22 3 L38 6 L61 2 L80 5 L104 4 L131 7 L150 3 L178 5 L203 2 L229 6 L251 4 L276 6 L300 2 L323 5 L349 3 L372 6 L400 4 L400 9 L377 8 L351 10 L330 7 L305 9 L280 8 L252 10 L230 8 L206 10 L181 7 L158 9 L131 8 L109 10 L84 8 L60 9 L39 7 L18 10 L0 8 Z"
-          fill="currentColor"
-        />
-      </svg>
-      {/* Location within the city (e.g. München → Frankfurter Ring / Tucherpark) below the torn line */}
+      {/* Location within the city (e.g. München → Frankfurter Ring / Tucherpark) */}
       {spot && (
-        <p className="mt-2 px-4 font-sans font-bold leading-none tracking-[-0.03em] text-white" style={{ fontSize: `${size.spot}cqw` }}>
+        <p className="mt-3 px-4 font-sans font-bold leading-none tracking-[-0.03em] text-white" style={{ fontSize: `${size.spot}cqw` }}>
           {spot}
         </p>
       )}

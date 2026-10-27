@@ -15,8 +15,8 @@ import { href } from "@/lib/i18n/routes";
 
 /**
  * Big, swipeable club posters – "every location as a hero moment".
- * Look taken from PadelCity's Instagram opening posts: purple grainy sky, huge city name (second line outlined),
- * torn paper line. Opening status top-left; courts + sports appear on hover (always visible on touch devices).
+ * Look taken from PadelCity's Instagram opening posts: purple grainy sky, huge city name (second line outlined).
+ * Opening status top-left; courts + sports appear on hover (always visible on touch devices).
  */
 export function ClubShowcase({
   clubs,
@@ -101,7 +101,7 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
         <OpenStatus club={club} locale={locale} />
       </span>
 
-      {/* City name: huge Poppins Bold, last line outlined; location below the torn line */}
+      {/* City name: huge Poppins Bold, last line outlined; location below */}
       <PosterTitle club={club} className="top-[12%]" />
 
       {/* Courts + sports: revealed on hover/focus; always visible on touch devices (no hover) */}
