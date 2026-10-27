@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { keepTogether } from "@/lib/typography";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CalendarDays, Clock, MapPin, RotateCcw, Users } from "lucide-react";
+import { CalendarCheck, CalendarDays, Clock, MapPin, Ticket, Users, UsersRound } from "lucide-react";
 import { getClubs, getEvent, getEvents } from "@/lib/data";
 import type { Club, ClubEvent } from "@/lib/data/types";
 import { site, webApp } from "@/lib/site";
@@ -22,7 +22,6 @@ import { PartnerBand } from "@/components/modules/PartnerBand";
 import { EventCard } from "@/components/cards/EventCard";
 import { Countdown } from "@/components/play/Countdown";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
-import { formatDateRange } from "@/components/play/eventFormat";
 
 /* ---------- Route helpers (used by the DE/EN wrappers) ---------- */
 
@@ -112,9 +111,12 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
   const price = event.pricePerPerson
     ? new Intl.NumberFormat(intl, { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(event.pricePerPerson)
     : t.detail.free;
-  const deadline = event.registrationClosesAt
-    ? `${new Date(event.registrationClosesAt).toLocaleDateString(intl, { weekday: "short", day: "numeric", month: "short" })} · ${event.registrationClosesAt.slice(11, 16)}${t.date.time ? ` ${t.date.time}` : ""}`
-    : t.detail.untilStart;
+  const dateTime = (iso: string) =>
+    `${new Date(iso).toLocaleDateString(intl, { weekday: "short", day: "numeric", month: "short", year: "numeric" })} · ${iso.slice(11, 16)}${t.date.time ? ` ${t.date.time}` : ""}`;
+  // APL: registrationClosesAt empty = sign-up open until the event starts
+  const deadline = dateTime(event.registrationClosesAt ?? event.start);
+  // Live in production (public APL endpoint, fetched on page view); mock values in the prototype
+  const freePlaces = event.maxParticipants !== undefined && event.confirmedParticipants !== undefined ? Math.max(0, event.maxParticipants - event.confirmedParticipants) : undefined;
   const eventPartners = (content.partnerNames ?? [])
     .map((n) => partners.find((p) => p.name === n))
     .filter((p): p is (typeof partners)[number] => Boolean(p));
@@ -156,38 +158,51 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
               ) : (
                 <Lead className="mt-5">{event.subtitle ?? t.detail.fallbackDescription(t.types[event.type], where)}</Lead>
               )}
+              {/* When & where */}
+              <dl className="mt-8 grid gap-5 border-t border-white/10 pt-6 sm:grid-cols-3">
+                <Fact icon={<CalendarDays className="size-5" />} label={t.detail.start}>
+                  {dateTime(event.start)}
+                </Fact>
+                <Fact icon={<CalendarCheck className="size-5" />} label={t.detail.end}>
+                  {dateTime(event.end ?? event.start)}
+                </Fact>
+                <Fact icon={<MapPin className="size-5" />} label={t.detail.place}>
+                  {club ? (
+                    <>
+                      <Link href={href(locale, "locations", club.slug)} className="font-semibold underline-offset-4 hover:underline" data-track="club_link_click">
+                        {club.name}
+                      </Link>
+                      <span className="block text-sm text-white/70">
+                        {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
+                      </span>
+                    </>
+                  ) : (
+                    where
+                  )}
+                </Fact>
+              </dl>
             </div>
 
-            {/* Phone: key facts & sign-up directly below the intro; desktop: sticky right column spanning both rows */}
+            {/* Contentful module: eventSignupCard – sign-up facts and sign-up. Phone: below the intro; desktop: sticky right column */}
             <aside className="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
               <div className="rounded-[28px] border border-white/10 bg-ink-700 p-6 md:p-8">
                 <dl className="space-y-4">
-                  <Fact icon={<CalendarDays className="size-5" />} label={t.detail.date}>
-                    {formatDateRange(event.start, event.end, locale)}
-                  </Fact>
-                  <Fact icon={<MapPin className="size-5" />} label={t.detail.place}>
-                    {club ? (
-                      <>
-                        <Link href={href(locale, "locations", club.slug)} className="font-semibold underline-offset-4 hover:underline" data-track="club_link_click">
-                          {club.name}
-                        </Link>
-                        <span className="block text-sm text-white/70">
-                          {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
-                        </span>
-                      </>
-                    ) : (
-                      where
-                    )}
-                  </Fact>
                   <Fact icon={<Users className="size-5" />} label={t.detail.format}>
                     {event.personsPerTeam ? t.detail.team(event.personsPerTeam) : t.detail.single}
                   </Fact>
                   <Fact icon={<Clock className="size-5" />} label={t.detail.deadline}>
                     {deadline}
                   </Fact>
-                  <Fact icon={<RotateCcw className="size-5" />} label={t.detail.cancellation}>
-                    {t.detail.freeCancellation[event.freeCancellation ?? "UNTIL_24H_BEFORE_EVENT"]}
-                  </Fact>
+                  {event.maxParticipants !== undefined && (
+                    <Fact icon={<UsersRound className="size-5" />} label={t.detail.maxParticipants}>
+                      {event.maxParticipants}
+                    </Fact>
+                  )}
+                  {freePlaces !== undefined && (
+                    <Fact icon={<Ticket className="size-5" />} label={t.detail.freePlaces}>
+                      {freePlaces > 0 ? freePlaces : <span className="font-semibold text-magenta-300">{t.detail.fullyBooked}</span>}
+                    </Fact>
+                  )}
                 </dl>
                 <p className="mt-6 flex items-baseline gap-2 border-t border-white/10 pt-6">
                   <span className="font-display text-4xl font-extrabold italic">{price}</span>
@@ -210,6 +225,10 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
                     </div>
                   ))}
                 </dl>
+              )}
+              {/* Cancellation policy as in the app – only for the fixed-time rule; rules counted from the sign-up stay hidden for now */}
+              {(event.freeCancellation ?? "UNTIL_24H_BEFORE_EVENT") === "UNTIL_24H_BEFORE_EVENT" && (
+                <CancellationTable cutoff={new Date(new Date(event.start).getTime() - 24 * 3600 * 1000)} locale={locale} t={t} />
               )}
               <ol className="grid gap-4 md:grid-cols-3">
                 {steps.map((s, i) => (
@@ -301,5 +320,37 @@ function Fact({ icon, label, children }: { icon: React.ReactNode; label: string;
         <dd className="mt-0.5">{children}</dd>
       </div>
     </div>
+  );
+}
+
+type T = (typeof eventsContent)[Locale];
+
+/** Cancellation policy (APL terms): free refund until the cut-off, full fee from then on. */
+function CancellationTable({ cutoff, locale, t }: { cutoff: Date; locale: Locale; t: T }) {
+  const intl = localeTags[locale].intl;
+  const day = cutoff.toLocaleDateString(intl, { day: "numeric", month: "short" });
+  const time = `${String(cutoff.getHours()).padStart(2, "0")}:${String(cutoff.getMinutes()).padStart(2, "0")}${t.date.time ? ` ${t.date.time}` : ""}`;
+  const rows = [
+    { when: t.detail.until, text: t.detail.freeRefund, free: true },
+    { when: t.detail.from, text: t.detail.fullFee, free: false },
+  ];
+  return (
+    <section className="mb-8" aria-labelledby="cancellation-title">
+      <h2 id="cancellation-title" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">
+        {t.detail.cancellationTitle}
+      </h2>
+      <dl className="mt-3 divide-y divide-white/10 rounded-[20px] border border-white/10 bg-ink-700">
+        {rows.map((r) => (
+          <div key={r.when} className="grid grid-cols-[7rem_1fr] items-center gap-4 p-5 md:grid-cols-[9rem_1fr]">
+            <dt className="text-sm text-white/70">
+              {r.when}
+              <span className="block text-lg font-semibold text-white">{day}</span>
+              {time}
+            </dt>
+            <dd className={r.free ? "text-lg font-semibold text-success" : "text-white/85"}>{r.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
   );
 }

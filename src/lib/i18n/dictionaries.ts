@@ -77,7 +77,7 @@ const de = {
   },
   clubCard: { from: "ab", courts: "Courts", court: "Court", indoor: "Indoor", outdoor: "Outdoor", indoorOutdoor: "Indoor & Outdoor", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", opensAt: "Öffnet heute um {t}", closed: "Heute geschlossen", sportsLabel: "Sportarten" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
-  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", signupLead: "Anmelden und buchen:", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der App anmelden (PadelCity App)", free: "Free", time: "Uhr" },
+  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", signupLead: "Anmelden und buchen:", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der App anmelden (PadelCity App)", free: "Kostenlos", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
   share: { label: "Teilen", copied: "Link kopiert" },
 };
@@ -239,7 +239,7 @@ const pl: Dictionary = {
   },
   clubCard: { from: "od", courts: "kortów", court: "kort", indoor: "kryte", outdoor: "odkryte", indoorOutdoor: "kryte i odkryte", parking: "Parking", view: "zobacz", perHour: "/ godz.", openUntil: "Otwarte do {t}", opensAt: "Dziś otwarcie o {t}", closed: "Dziś zamknięte", sportsLabel: "Dyscypliny" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tenis", squash: "Squash", badminton: "Badminton", soccer: "Piłka nożna", multisport: "Multisport" },
-  eventCard: { tournament: "Turniej", training: "Trening", event: "Event", signup: "Zapisz się online", signupApp: "W aplikacji", signupLabel: "Zapisz się", signupLead: "Zapisz się i zarezerwuj:", web: "Online", app: "W aplikacji", webAria: "Zapisz się online (otwiera nową kartę)", appAria: "Zapisz się w aplikacji (PadelCity)", free: "Free", time: "" },
+  eventCard: { tournament: "Turniej", training: "Trening", event: "Event", signup: "Zapisz się online", signupApp: "W aplikacji", signupLabel: "Zapisz się", signupLead: "Zapisz się i zarezerwuj:", web: "Online", app: "W aplikacji", webAria: "Zapisz się online (otwiera nową kartę)", appAria: "Zapisz się w aplikacji (PadelCity)", free: "Bezpłatnie", time: "" },
   media: { placeholder: "Zdjęcie wkrótce" },
   share: { label: "Udostępnij", copied: "Link skopiowany" },
 };

@@ -102,6 +102,10 @@ export type ClubEvent = {
   freeCancellation?: FreeCancellation;
   /** APL personsPerTeam for TEAM events; undefined = individual sign-up. */
   personsPerTeam?: number;
+  /** APL maxConfirmedRegistrations (persons). */
+  maxParticipants?: number;
+  /** APL totalConfirmedRegistrations – live; free places = max − confirmed. */
+  confirmedParticipants?: number;
   source: DataSource;
 };
 

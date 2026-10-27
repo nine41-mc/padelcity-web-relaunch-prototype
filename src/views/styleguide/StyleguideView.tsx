@@ -455,6 +455,13 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           angeglichen, nicht alle gleich hoch gesetzt.
         </p>
 
+        <H3>Overlays (ein Design für alle)</H3>
+        <p className="max-w-3xl text-white/75">
+          Coach, Club-Info und WhatsApp-Community nutzen dasselbe Overlay (Komponente Overlay): Rand mit Verlauf-Glow, Bild links (Desktop) bzw. oben (Handy) mit optionaler Pill,
+          rechts Titel in Söhne Schmal, eine Zeile darunter (z. B. Ort) und Abschnitte mit kleinem Label in Versalien („Kontakt“, „Training &amp; Preise“, „Allgemeine Hinweise“).
+          Schließen-X rund oben rechts, Esc und Klick auf den Hintergrund schließen, die Seite dahinter scrollt nicht. Ausnahme: die Club-Stories (Bildbetrachter im Vollbild).
+        </p>
+
         <H3>WhatsApp-Community-Overlay</H3>
         <div className="flex flex-wrap items-center gap-4 rounded-[24px] border border-white/10 bg-ink-700 p-6">
           <WhatsAppGroups locale={locale} label="Gruppe finden" variant="gradient" track="styleguide_whatsapp_overlay" />
@@ -463,6 +470,25 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             Geteilte Gruppen stehen bei jeder Stadt, die eigene Stadt zuerst („Andernach & Mülheim-Kärlich“, „Mülheim-Kärlich & Andernach“), Kanäle sind gekennzeichnet. Auf der Clubseite führt die Kachel direkt in die Gruppe des Clubs.
           </p>
         </div>
+
+        <H3>Partner-Modul („Better together.“)</H3>
+        <p className="max-w-3xl text-white/75">
+          Ein Partner-Modul für die ganze Website: Eyebrow „Unsere Partner“, Headline „Better together.“, Button „Partner werden“, darunter die Logos als Laufband in Graustufen.
+          Auf der Startseite mit allen Partnern, auf Event-Seiten nur mit den Partnern des Events. Einen zweiten Logo-Streifen gibt es nicht.
+        </p>
+
+        <H3>News &amp; Magazin (Startseite)</H3>
+        <p className="max-w-3xl text-white/75">
+          Aufbau wie die Events-Sektion: Pill „News &amp; Magazin“, Headline „Stories vom Court.“, Button „Zum Magazin“, darunter die drei neuesten Artikel als Artikel-Karten.
+        </p>
+
+        <H3>Event-Detail: eine Seite für alle Events</H3>
+        <p className="max-w-3xl text-white/75">
+          Links Bild, Kategorie, Titel, Text, darunter Beginn, Ende und Ort. Rechts die mitlaufende Anmelde-Karte: Format (Einzelanmeldung / Team), Anmeldefrist, max. Teilnehmer,
+          freie Plätze (live aus der API, „Ausgebucht“ in Magenta 300), Preis und Anmeldung. Darunter die Stornierungsbedingungen als Tabelle wie in der App („Bis … Kostenfreie
+          Rückerstattung“ in Success-Grün, „Ab … 100 %“), nur bei der Regel „24 Std. vor Beginn“. Claim mit Countdown (Tage · Std · Min · Sek), Intro, weitere Eckdaten, Ablauf,
+          Zeitplan, Video und Partner erscheinen nur, wenn sie in Contentful gepflegt sind.
+        </p>
 
         <H3>Footer</H3>
         <ul className="grid gap-3 md:grid-cols-2">

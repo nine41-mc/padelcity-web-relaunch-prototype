@@ -39,7 +39,7 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
   ];
 
   // One pill, the units separated by thin dividers (Design QA: four bubbles read as four elements);
-  // four equal cells, wide enough for the longest unit ("Sekunden"), so the pill never changes width
+  // four equal cells with short units (Tage, Std, Min, Sek), so the pill never changes width
   return (
     <div
       className={cn("grid w-fit grid-cols-4 divide-x divide-white/15 rounded-2xl border border-white/15 bg-black/40 backdrop-blur", className)}
@@ -47,7 +47,7 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
       aria-label={labels.aria}
     >
       {units.map(([label, v]) => (
-        <div key={label} className={cn("flex flex-col items-center", size === "md" ? "w-[4.75rem] py-2 md:w-24" : "w-16 py-1.5")}>
+        <div key={label} className={cn("flex flex-col items-center", size === "md" ? "w-16 py-2 md:w-20" : "w-14 py-1.5")}>
           <span className={cn("font-display font-extrabold italic tabular-nums leading-none", size === "md" ? "text-3xl md:text-4xl" : "text-xl")}>
             {v === undefined ? "--" : String(v).padStart(2, "0")}
           </span>

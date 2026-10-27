@@ -3,7 +3,8 @@ import type { ClubEvent } from "../types";
 /**
  * Illustrative events (source: "mock"). Dates are relative to "today" so the prototype never looks stale.
  * Sign-up deadline, free cancellation and team size mirror the APL fields (registrationClosesAt,
- * freeCancellationStrategy, personsPerTeam); omitted = APL default (until start / 24 h before / individual).
+ * freeCancellationStrategy, personsPerTeam, maxConfirmedRegistrations, totalConfirmedRegistrations);
+ * omitted = APL default (until start / 24 h before / individual).
  */
 
 function inDays(days: number, time = "18:00") {
@@ -26,6 +27,8 @@ export const mockEvents: ClubEvent[] = [
     isHighlighted: true,
     registrationClosesAt: inDays(30, "23:59"),
     personsPerTeam: 2,
+    maxParticipants: 128,
+    confirmedParticipants: 97,
     source: "mock",
   },
   {
@@ -43,6 +46,8 @@ export const mockEvents: ClubEvent[] = [
     isHighlighted: true,
     registrationClosesAt: inDays(45, "23:59"),
     personsPerTeam: 2,
+    maxParticipants: 64,
+    confirmedParticipants: 40,
     source: "mock",
   },
   {
@@ -58,6 +63,9 @@ export const mockEvents: ClubEvent[] = [
     pricePerPerson: 22,
     recurrence: "Jeden Freitag",
     image: { url: "/images/events/beginner-girls.jpg", alt: "Spielerin beim Schlag auf dem Court" },
+    end: inDays(3, "20:00"),
+    maxParticipants: 16,
+    confirmedParticipants: 11,
     source: "mock",
   },
   {
@@ -73,6 +81,9 @@ export const mockEvents: ClubEvent[] = [
     pricePerPerson: 22,
     recurrence: "Jeden 2. Samstag",
     image: { url: "/images/events/gameplay-mix-1.jpg", alt: "Spielerin returniert im Mixed-Match, Zuschauer am Court" },
+    end: inDays(4, "20:00"),
+    maxParticipants: 16,
+    confirmedParticipants: 16,
     source: "mock",
   },
   {
@@ -88,6 +99,9 @@ export const mockEvents: ClubEvent[] = [
     pricePerPerson: 25,
     recurrence: "Jeden Sonntag",
     image: { url: "/images/events/gameplay-mix-2.jpg", alt: "Spieler beim Überkopfschlag, Partner am Netz" },
+    end: inDays(5, "21:00"),
+    maxParticipants: 16,
+    confirmedParticipants: 9,
     source: "mock",
   },
   {
@@ -103,6 +117,9 @@ export const mockEvents: ClubEvent[] = [
     pricePerPerson: 19,
     recurrence: "Jeden Mittwoch",
     image: { url: "/images/events/afterwork.jpg", alt: "Gruppe von Spielerinnen und Spielern mit Getränken am Netz" },
+    end: inDays(2, "21:30"),
+    maxParticipants: 24,
+    confirmedParticipants: 14,
     source: "mock",
   },
   {
@@ -119,6 +136,9 @@ export const mockEvents: ClubEvent[] = [
     image: { url: "/images/events/king-of-the-court.jpg", alt: "Turnier-Match mit Zuschauern am Court" },
     registrationClosesAt: inDays(10, "18:00"),
     personsPerTeam: 2,
+    end: inDays(12, "12:00"),
+    maxParticipants: 32,
+    confirmedParticipants: 26,
     source: "mock",
   },
   {
@@ -136,6 +156,9 @@ export const mockEvents: ClubEvent[] = [
     image: { url: "/images/events/kids-camp.jpg", alt: "Junge und Mädchen beim Padel-Schlag" },
     registrationClosesAt: inDays(9, "23:59"),
     freeCancellation: "WITHIN_14DAYS_FROM_BOOKING",
+    end: inDays(16, "15:30"),
+    maxParticipants: 20,
+    confirmedParticipants: 12,
     source: "mock",
   },
 ];
