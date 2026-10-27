@@ -46,6 +46,35 @@ const [path, width, id] = process.argv.slice(2);
   await p.waitForTimeout(1500);
   // prototype-only highlight colour switcher (brand discussion) is not part of the design
   await p.evaluate(() => document.querySelectorAll("button.fixed.bottom-4.left-4").forEach((e) => e.remove()));
+  // App icons are CSS masks (AppIcon) – html-to-design does not understand masks and turns them into grey boxes.
+  // Swap each one for the inline SVG in its rendered colour and size, so Figma gets editable vectors.
+  const icons = await p.evaluate(async () => {
+    const svgs = {};
+    let swapped = 0;
+    for (const el of [...document.querySelectorAll("body *")]) {
+      const s = getComputedStyle(el);
+      const mask = s.maskImage && s.maskImage !== "none" ? s.maskImage : s.webkitMaskImage;
+      const url = mask && mask !== "none" && (mask.match(/url\("?([^")]+\.svg)"?\)/) || [])[1];
+      const r = el.getBoundingClientRect();
+      if (!url || !r.width) continue;
+      svgs[url] ??= await (await fetch(url)).text();
+      const svg = new DOMParser().parseFromString(svgs[url], "image/svg+xml").documentElement;
+      // every painted part takes the mask colour (the element's background, bg-current)
+      for (const n of [svg, ...svg.querySelectorAll("*")])
+        for (const a of ["fill", "stroke"]) if (n.getAttribute(a) && n.getAttribute(a) !== "none") n.setAttribute(a, "currentColor");
+      svg.setAttribute("width", String(r.width));
+      svg.setAttribute("height", String(r.height));
+      svg.setAttribute("aria-hidden", "true");
+      Object.assign(svg.style, {
+        color: s.backgroundColor, opacity: s.opacity, display: s.display === "inline" ? "inline-block" : s.display, flexShrink: "0",
+        margin: s.margin, verticalAlign: s.verticalAlign, position: s.position, inset: s.position === "static" ? "" : s.inset,
+      });
+      el.replaceWith(document.importNode(svg, true));
+      swapped++;
+    }
+    return swapped;
+  });
+  console.log(path, width, "icons as svg:", icons);
   if (id.startsWith("preview:")) {
     // dry run: full-page screenshot of exactly what would be captured, nothing is sent to Figma
     await p.screenshot({ path: id.slice(8), fullPage: true });

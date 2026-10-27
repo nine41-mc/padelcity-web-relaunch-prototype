@@ -18,6 +18,14 @@ Capture mode (CSS injected by the script):
 - the app feature story shows one phone per feature instead of the sticky phone that swaps screens while
   scrolling – a capture would only contain the first screen (`data-story*` hooks in `FeatureStory.tsx`);
 - cookie banner closed with „Nur essenzielle“, Next.js dev overlay and the highlight colour switcher hidden.
+- app icons (`AppIcon`, CSS masks) are swapped for inline SVGs in their rendered colour and size – html-to-design does not
+  support masks and would import grey boxes.
+
+After capturing: the captures carry the CSS font names „soehneSchmal“ and „goodBrush“. Map them to „Söhne Schmal · Fett
+Kursiv“ and „GOOD BRUSH · Regular“ in a Figma browser tab (Chrome with the Figma Font Helper, the Plugin API is available as
+the global `figma` there): `getStyledTextSegments(["fontName"])` per text, load the other fonts of the node, then
+`setRangeFontName` on the affected ranges. The Figma MCP cannot load these fonts. Clone frames for the content-model page
+only after this step.
 
 The script waits up to 240 s for the upload and then closes the browser. Long pages (/standorte, /faq) need most of
 that; with a shorter wait their capture stayed „processing“ in Figma and had to be redone with a new capture ID.
