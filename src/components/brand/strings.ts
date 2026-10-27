@@ -16,7 +16,7 @@ const de = {
     eyebrow: "Rechtliches",
     notice: "Text übernommen von padelcity.de. Vor dem Go-live prüft und ergänzt die Rechtsabteilung ihn für die neue Website (Tracking, Consent, Newsletter, Formulare, Hosting).",
   },
-  people: { photoSoon: "Foto folgt" },
+  people: { photoSoon: "Foto folgt", linkedin: (name: string) => `${name} auf LinkedIn` },
 };
 
 export type BrandStrings = typeof de;
@@ -36,7 +36,7 @@ const en: BrandStrings = {
     eyebrow: "Legal",
     notice: "Text taken over from padelcity.de. Before go-live our legal team reviews and extends it for the new website (tracking, consent, newsletter, forms, hosting).",
   },
-  people: { photoSoon: "Photo coming soon" },
+  people: { photoSoon: "Photo coming soon", linkedin: (name: string) => `${name} on LinkedIn` },
 };
 
 const pl: BrandStrings = {
@@ -54,7 +54,7 @@ const pl: BrandStrings = {
     eyebrow: "Informacje prawne",
     notice: "Tekst przejęty z padelcity.de. Przed startem nasz dział prawny sprawdzi go i uzupełni pod kątem nowej strony (tracking, zgody, newsletter, formularze, hosting).",
   },
-  people: { photoSoon: "Zdjęcie wkrótce" },
+  people: { photoSoon: "Zdjęcie wkrótce", linkedin: (name: string) => `${name} na LinkedInie` },
 };
 
 export const brandStrings: Record<Locale, BrandStrings> = { de, en, pl };

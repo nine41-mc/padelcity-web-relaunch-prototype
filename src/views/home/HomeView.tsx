@@ -295,7 +295,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: voucherTeaser (copy from padelcity.de) */}
       <Section tone="black">
-        <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-white/10 bg-ink-800 p-6 md:p-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:p-16">
+        <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-white/10 bg-ink-800 pad-banner lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <div className="absolute -left-24 -top-24 size-80 rounded-full bg-purple-600/30 blur-[110px]" aria-hidden />
           <div className="relative">
             <Eyebrow className="mb-4">{t.shop.eyebrow}</Eyebrow>

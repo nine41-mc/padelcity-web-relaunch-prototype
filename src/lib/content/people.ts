@@ -28,6 +28,8 @@ export type Person = {
   bio?: Record<Locale, string>;
   image?: string; // /images/... or Contentful URL
   quote?: Record<Locale, string>;
+  /** LinkedIn profile – Contentful later; the prototype falls back to the PadelCity company page. Never guess a profile URL. */
+  linkedin?: string;
   club?: string; // coaches / club staff: home club(s), as named on padelcity.de
   languages?: string[]; // coaches
   /** Coaches: hours on court / number of students. NO real figures yet → leave undefined (UI shows "–"). Never estimate. */

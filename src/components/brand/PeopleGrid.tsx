@@ -1,4 +1,6 @@
+import { Linkedin } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
+import { site } from "@/lib/site";
 import type { Person } from "@/lib/content/people";
 import { Media } from "../ui/Media";
 import { Reveal } from "../ui/Reveal";
@@ -65,28 +67,46 @@ export function PeopleGrid({
       {people.map((p, i) => (
         <li key={p.id}>
           <Reveal delay={i * 0.06} className="h-full">
-            <figure className="group relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700">
-              {p.image ? (
-                <Media
-                  src={p.image}
-                  alt={p.name}
-                  className="aspect-[4/5]"
-                  imgClassName="object-[50%_22%] grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                  sizes={compact ? "(min-width:1200px) 16vw, (min-width:768px) 25vw, 50vw" : "(min-width:1200px) 25vw, 50vw"}
-                  overlay
-                />
-              ) : (
-                <PersonPlaceholder name={p.name} label={t.photoSoon} />
+            <figure className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700">
+              <div className="relative">
+                {p.image ? (
+                  <Media
+                    src={p.image}
+                    alt={p.name}
+                    className="aspect-[4/5]"
+                    imgClassName="object-[50%_22%] grayscale transition-all duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                    sizes={compact ? "(min-width:1200px) 16vw, (min-width:768px) 25vw, 50vw" : "(min-width:1200px) 25vw, 50vw"}
+                    overlay
+                  />
+                ) : (
+                  <PersonPlaceholder name={p.name} label={t.photoSoon} />
+                )}
+                {/* Name and role sit inside the photo with air below, not glued to the bio box */}
+                <div className={cn("absolute inset-x-0 bottom-0", compact ? "p-3 md:p-4" : "p-4 pb-5 md:p-5 md:pb-6")}>
+                  {variant === "quote" && p.quote && <p className="mb-3 text-sm italic leading-snug text-white/80">{open}{p.quote[locale]}{close}</p>}
+                  <p className={cn("font-display font-extrabold italic uppercase leading-none", compact ? "text-lg" : "text-xl md:text-2xl")}>{p.name}</p>
+                  <p className={cn("mt-1 font-medium uppercase tracking-[0.12em] text-magenta-300", compact ? "text-[13px] font-semibold leading-snug" : "text-[13px] font-semibold md:text-sm")}>
+                    {p.role[locale]}
+                    {p.club && <span className="text-white/70"> · {p.club}</span>}
+                  </p>
+                </div>
+              </div>
+              {showBio && (
+                <figcaption className="flex flex-1 flex-col gap-4 p-4 md:p-5">
+                  {p.bio && <p className="text-sm leading-snug text-white/75">{p.bio[locale]}</p>}
+                  {/* Round LinkedIn button as in the footer "Follow us!" – prototype: company page until profiles come from Contentful */}
+                  <a
+                    href={p.linkedin ?? site.social.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t.linkedin(p.name)}
+                    data-track="person_linkedin_click"
+                    className="mt-auto grid size-11 place-items-center rounded-full border border-white/25 transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-ink-800"
+                  >
+                    <Linkedin className="size-5" aria-hidden />
+                  </a>
+                </figcaption>
               )}
-              <figcaption className={cn(showBio ? "relative -mt-16" : "absolute inset-x-0 bottom-0", compact ? "p-3 md:p-4" : "p-4 md:p-5")}>
-                {variant === "quote" && p.quote && <p className="mb-3 text-sm italic leading-snug text-white/80">{open}{p.quote[locale]}{close}</p>}
-                <p className={cn("font-display font-extrabold italic uppercase leading-none", compact ? "text-lg" : "text-xl md:text-2xl")}>{p.name}</p>
-                <p className={cn("mt-1 font-medium uppercase tracking-[0.12em] text-magenta-300", compact ? "text-[13px] font-semibold leading-snug" : "text-[13px] font-semibold md:text-sm")}>
-                  {p.role[locale]}
-                  {p.club && <span className="text-white/70"> · {p.club}</span>}
-                </p>
-                {showBio && p.bio && <p className="mt-2 text-sm leading-snug text-white/75">{p.bio[locale]}</p>}
-              </figcaption>
             </figure>
           </Reveal>
         </li>

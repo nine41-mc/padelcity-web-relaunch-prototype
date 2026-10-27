@@ -73,7 +73,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         {/* WhatsApp community – full-width band, opens the overlay with every location's group */}
-        <div className="relative mt-20 overflow-hidden rounded-[32px] bg-brandbook-gradient p-6 md:mt-28 md:p-10 lg:p-12">
+        <div className="relative mt-20 overflow-hidden rounded-[32px] bg-brandbook-gradient pad-banner md:mt-28">
           <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
           <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto]">
             <div>

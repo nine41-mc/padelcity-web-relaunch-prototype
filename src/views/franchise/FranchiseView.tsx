@@ -110,7 +110,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
               <Reveal delay={i * 0.07} className="h-full">
                 <div className="h-full rounded-[24px] border border-white/10 bg-ink-700 pad-panel">
                   <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/60">0{i + 1}</span>
-                  <h3 className="mt-2 font-display text-4xl font-extrabold italic uppercase leading-none">{ph.title}</h3>
+                  <h3 className="mt-2 font-display text-4xl font-extrabold italic uppercase leading-none text-brand-gradient">{ph.title}</h3>
                   <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
                     {ph.items.map((item) => {
                       const text = typeof item === "string" ? item : item.text;
@@ -166,7 +166,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
               <Reveal delay={i * 0.06} className="h-full">
                 <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 pad-card">
                   <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{r.title}</p>
-                  <p className="mt-4 font-display text-4xl font-extrabold italic uppercase text-white md:text-3xl lg:text-5xl">
+                  <p className="mt-4 font-display text-4xl font-extrabold italic uppercase text-brand-gradient md:text-3xl lg:text-5xl">
                     {/* Söhne Schmal italic has no clean "×" – set it upright in Poppins with some air */}
                     {r.value.split("×").map((part, i) => (
                       <span key={i}>

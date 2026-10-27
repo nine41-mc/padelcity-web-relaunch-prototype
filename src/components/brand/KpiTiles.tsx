@@ -15,7 +15,7 @@ export function KpiTiles({ items, intl, className }: { items: Kpi[]; intl: strin
             <div className="flex h-full flex-col justify-between gap-6 rounded-[20px] border border-white/10 bg-ink-700 pad-card">
               <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{k.label}</p>
               <div>
-                <p className="font-display text-5xl font-extrabold italic leading-none text-white md:text-6xl lg:text-7xl">
+                <p className="font-display text-5xl font-extrabold italic leading-none text-brand-gradient md:text-6xl lg:text-7xl">
                   <CountUp value={k.value} prefix={k.prefix} suffix={k.suffix} intl={intl} />
                 </p>
                 {k.note && <p className="mt-2 text-sm text-white/70">{k.note}</p>}

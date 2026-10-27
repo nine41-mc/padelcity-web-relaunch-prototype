@@ -128,7 +128,7 @@ export function AboutView({ locale }: { locale: Locale }) {
                   <BrandIcon name={p.icon} tone="glass" />
                   {p.route && <ArrowUpRight className="size-5 text-white/70 transition-all duration-300 group-hover:rotate-45 group-hover:text-white" aria-hidden />}
                 </div>
-                <h3 className="mt-6 font-display text-3xl font-extrabold italic uppercase leading-none">{p.name}</h3>
+                <h3 className="mt-6 font-display text-3xl font-extrabold italic uppercase leading-none text-brand-gradient">{p.name}</h3>
                 <p className={`mt-3 text-sm leading-relaxed ${p.route ? "text-white/75" : "text-white"}`}>{p.text}</p>
               </>
             );

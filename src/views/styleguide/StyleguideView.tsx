@@ -471,6 +471,12 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           </p>
         </div>
 
+        <H3>Info-Kacheln mit großem Wert</H3>
+        <p className="max-w-3xl text-white/75">
+          Kacheln aus Label, großem Wert und Text (Vision &amp; Mission, Voraussetzungen und Phasen im Franchise, Kennzahlen bei Investoren, Säulen auf „Über uns“): Label grau in Versalien,
+          Wert bzw. Kachel-Headline im Brand-Verlauf, Text in Weiß 70 %. Kacheln mit Icon bekommen ihren Farbakzent über das Icon und behalten die weiße Headline.
+        </p>
+
         <H3>Partner-Modul („Better together.“)</H3>
         <p className="max-w-3xl text-white/75">
           Ein Partner-Modul für die ganze Website: Eyebrow „Unsere Partner“, Headline „Better together.“, Button „Partner werden“, darunter die Logos als Laufband in Graustufen.
