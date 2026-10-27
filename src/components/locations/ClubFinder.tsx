@@ -192,7 +192,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           e.preventDefault();
           document.getElementById("results")?.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
-        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
+        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated md:p-[3px] has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
       >
         <label className="flex min-h-14 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5">
           <Search className="size-5 shrink-0 text-white/70" aria-hidden />

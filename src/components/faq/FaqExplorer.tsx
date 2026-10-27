@@ -82,7 +82,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
               onChange={(e) => setQuery(e.target.value)}
               placeholder={labels.searchPlaceholder}
               autoComplete="off"
-              className="h-14 w-full rounded-full border border-white/20 bg-ink-700 pl-12 pr-14 text-base text-chalk placeholder:text-white/60 transition hover:border-white/50 focus-visible:border-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white [&::-webkit-search-cancel-button]:hidden"
+              className="h-13 w-full rounded-full border border-white/20 bg-ink-700 pl-12 pr-14 text-base text-chalk placeholder:text-white/60 transition hover:border-white/50 focus-visible:border-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white [&::-webkit-search-cancel-button]:hidden"
             />
             {query && (
               <button
