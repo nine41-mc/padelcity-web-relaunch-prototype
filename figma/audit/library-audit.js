@@ -19,7 +19,7 @@ const PAGES = { foundations: "1:6", components: "1:7", icons: "13129:1060", star
 // Counting the content-model annotations loads ~20,000 layers and exceeds the use_figma time limit together with
 // the rest – set to true and run on its own (the other checks are skipped then).
 const COUNT_CONTENT_MODEL_ANNOTATIONS = false;
-const EXPECTED_ANNOTATIONS = 158;
+const EXPECTED_ANNOTATIONS = 170;
 const BRAND_FONTS = ["Poppins", "Söhne Schmal", "GOOD BRUSH"];
 const EXPECTED_GRIDS = ["Grid/Desktop", "Grid/Tablet", "Grid/Mobile"];
 

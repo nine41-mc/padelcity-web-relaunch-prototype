@@ -202,6 +202,11 @@ export const contentModel: PageType[] = [
       { id: "eventSignupCard", name: "Anmeldung", fields: [f("Preis pro Person", "api", "GET /club-events/{id} → pricePerPerson, isFreeEvent"), f("Im Web anmelden", "external", "Events-Web-App /events/{id}", "Event-ID aus der API"), f("In der App anmelden", "external", "Link-Service")] },
       { id: "richText", name: "Beschreibung", fields: [f("Text", "api", "GET /club-events/{id} → description", "Event-Text überschreibt Vorlagen-Text; übersetzbar")] },
       { id: "formatSteps", name: "Ablauf / Format", fields: [f("Schritte, Zeitplan", "cms")] },
+      // hero events (One Point Challenge & co.) – the local events use only the modules above
+      { id: "heroEventIntro", name: "Hero-Event: Claim & Countdown", fields: [f("Claim mit Akzentwort, Präsentator (z. B. powered by CUPRA)", "cms"), f("Countdown", "api", "GET /club-events/{id} → eventPeriod", "wird auf der Website aus dem Startdatum berechnet")] },
+      { id: "factGrid", name: "Hero-Event: Eckdaten", fields: [f("Datum, Ort", "api", "GET /club-events/{id} → eventPeriod, club"), f("Weitere Eckdaten (Preisgeld, Teilnehmende …), Intro-Text", "cms")] },
+      { id: "videoEmbed", name: "Hero-Event: Video", fields: [f("Titel, Vorschaubild", "cms"), f("Video", "external", "YouTube")] },
+      { id: "eventPartners", name: "Hero-Event: Partner", fields: [f("Partner-Logos", "cms", "Referenz auf Partner-Einträge")] },
     ],
   },
   {

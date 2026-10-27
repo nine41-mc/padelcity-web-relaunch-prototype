@@ -1,6 +1,6 @@
 # Content model in Figma
 
-The Figma page „🧩 Content-Modell“ (file `n3QOz0mQUCyzzVmxX4nKw3`, page `15234:28`) holds copies of the 16 desktop
+The Figma page „🧩 Content-Modell“ (file `n3QOz0mQUCyzzVmxX4nKw3`, page `15234:28`) holds copies of the 17 desktop
 captures with annotations generated from `src/lib/content/contentModel.ts`. Do not edit the annotations by hand –
 regenerate them whenever the content model changes:
 

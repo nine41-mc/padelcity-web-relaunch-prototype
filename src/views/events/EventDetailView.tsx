@@ -232,7 +232,7 @@ function HeroEventLayout({ event, club, content, locale, t }: { event: ClubEvent
         </div>
       </Section>
 
-      {/* Contentful module: partnerLogos */}
+      {/* Contentful module: eventPartners (references to partner entries, logos as in partnerLogos) */}
       {eventPartners.length > 0 && (
         <Section tone="black" className="!py-16 md:!py-20">
           <p className="mb-8 text-center text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.detail.partners}</p>
