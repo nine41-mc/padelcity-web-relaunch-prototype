@@ -8,7 +8,6 @@ import { Section } from "@/components/ui/Section";
 import { Headline } from "@/components/ui/Headline";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
-import { NewsletterSignup } from "@/components/modules/NewsletterSignup";
 import { ArticleCard } from "@/components/brand/ArticleCard";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { YouTubeLite } from "@/components/brand/YouTubeLite";
@@ -148,9 +147,6 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
             </li>
           ))}
         </ul>
-        <div className="mt-14">
-          <NewsletterSignup locale={locale} title={t.article.more.title} text={t.article.more.text} />
-        </div>
       </Section>
     </>
   );

@@ -19,9 +19,9 @@ const PRESS = [
 ];
 
 const copy = {
-  de: { title: "Bekannt aus …", text: "Danke an alle Medien, die bereits über uns berichtet haben." },
-  en: { title: "As seen in …", text: "Thanks to all the media who have already covered us." },
-  pl: { title: "Pisali o nas …", text: "Dziękujemy wszystkim mediom, które już o nas pisały." },
+  de: { title: "Bekannt aus …" },
+  en: { title: "As seen in …" },
+  pl: { title: "Pisali o nas …" },
 };
 
 /** Press logos as a running band – same pattern as the partner logos, used on the magazine page. */
@@ -29,11 +29,10 @@ export function PressLogos({ locale }: { locale: Locale }) {
   const t = copy[locale];
   return (
     <section aria-labelledby="press-title" className="border-y border-white/10 bg-black py-14 md:py-20">
-      <div className="container-site mb-8 flex flex-col gap-2 md:mb-10 md:flex-row md:items-end md:justify-between">
+      <div className="container-site mb-8 md:mb-10">
         <h2 id="press-title" className="font-display text-4xl font-extrabold italic uppercase leading-none md:text-5xl">
           {t.title}
         </h2>
-        <p className="max-w-md text-white/75">{t.text}</p>
       </div>
       <Marquee>
         {PRESS.map((p) => (

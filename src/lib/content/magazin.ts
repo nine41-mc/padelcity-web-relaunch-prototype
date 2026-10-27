@@ -12,9 +12,9 @@ export type Hub = Article["hub"];
 
 export const hubs: Record<Locale, { id: Hub; label: string; text: string }[]> = {
   de: [
-    { id: "lernen", label: "Padel Lernen", text: "Regeln, Technik, Taktik – alles für deinen nächsten Schritt." },
-    { id: "spielen", label: "Padel Spielen", text: "Matches, Turniere, Community – raus auf den Court." },
-    { id: "erleben", label: "Padel Erleben", text: "Events, Culture, Behind the Scenes – die Welt von PadelCity." },
+    { id: "lernen", label: "Padel lernen", text: "Regeln, Technik, Taktik – alles für deinen nächsten Schritt." },
+    { id: "spielen", label: "Padel spielen", text: "Matches, Turniere, Community – raus auf den Court." },
+    { id: "erleben", label: "Padel erleben", text: "Events, Culture, Behind the Scenes – die Welt von PadelCity." },
   ],
   en: [
     { id: "lernen", label: "Learn Padel", text: "Rules, technique, tactics – everything for your next step." },
@@ -422,11 +422,9 @@ const de = {
   minutes: "Min.",
   readingTime: "Min. Lesezeit",
   filter: { aria: "Magazin filtern", all: "Alle Stories", count: "{n} Stories aus der Welt von PadelCity" },
-  newsletter: { title: "Der Magazin-Newsletter", text: "Die besten Stories, Technik-Tipps und Event-News – einmal im Monat in deinem Postfach." },
   article: {
     share: "Teile die Story",
     related: "Weiterlesen",
-    more: { title: "Mehr Stories?", text: "Die besten Magazin-Artikel und Event-News – einmal im Monat in deinem Postfach." },
     video: "PadelCity TV",
   },
   videoUi: {
@@ -450,11 +448,9 @@ const en: MagazinContent = {
   minutes: "min",
   readingTime: "min read",
   filter: { aria: "Filter the magazine", all: "All stories", count: "{n} stories from the world of PadelCity" },
-  newsletter: { title: "The magazine newsletter", text: "The best stories, technique tips and event news – once a month, straight to your inbox." },
   article: {
     share: "Share the story",
     related: "Read on",
-    more: { title: "Want more stories?", text: "The best magazine articles and event news – once a month, straight to your inbox." },
     video: "PadelCity TV",
   },
   videoUi: {
@@ -476,11 +472,9 @@ const pl: MagazinContent = {
   minutes: "min",
   readingTime: "min czytania",
   filter: { aria: "Filtruj magazyn", all: "Wszystkie historie", count: "Historie ze świata PadelCity: {n}" },
-  newsletter: { title: "Newsletter magazynu", text: "Najlepsze historie, porady techniczne i wieści o eventach – raz w miesiącu w twojej skrzynce." },
   article: {
     share: "Udostępnij historię",
     related: "Czytaj dalej",
-    more: { title: "Chcesz więcej historii?", text: "Najlepsze artykuły z magazynu i wieści o eventach – raz w miesiącu w twojej skrzynce." },
     video: "PadelCity TV",
   },
   videoUi: {

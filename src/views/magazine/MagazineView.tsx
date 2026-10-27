@@ -8,12 +8,11 @@ import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
-import { NewsletterSignup } from "@/components/modules/NewsletterSignup";
 import { PressLogos } from "@/components/modules/PressLogos";
 import { ArticleCard } from "@/components/brand/ArticleCard";
 import { MagazinHub } from "@/components/brand/MagazinHub";
 
-// Contentful page "magazine": contentHubs, featuredArticle, articleGrid (filter by hub), pressLogos, newsletterSignup
+// Contentful page "magazine": contentHubs, featuredArticle, articleGrid (filter by hub), pressLogos
 
 /** Magazine hub – shared by /magazin (de) and /en/magazine (en). */
 export function MagazineView({ locale }: { locale: Locale }) {
@@ -33,18 +32,6 @@ export function MagazineView({ locale }: { locale: Locale }) {
           <Headline as="h1" size="xl">
             {t.hero.title} <Accent>{t.hero.accent}</Accent>
           </Headline>
-          <ul className="mt-10 grid gap-3 md:grid-cols-3">
-            {hubs[locale].map((h, i) => (
-              <li key={h.id}>
-                <Reveal delay={i * 0.06} className="h-full">
-                  <div className="h-full rounded-[20px] border border-white/10 bg-ink-700/70 p-5 backdrop-blur md:p-6">
-                    <p className="font-display text-2xl font-extrabold italic uppercase text-brand-gradient md:text-3xl">{h.label}</p>
-                    <p className="mt-2 text-sm text-white/70">{h.text}</p>
-                  </div>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -93,10 +80,6 @@ export function MagazineView({ locale }: { locale: Locale }) {
       </Section>
 
       <PressLogos locale={locale} />
-
-      <Section tone="black">
-        <NewsletterSignup locale={locale} title={t.newsletter.title} text={t.newsletter.text} />
-      </Section>
     </>
   );
 }

@@ -20,6 +20,8 @@ import { VoucherCard } from "@/components/brand/VoucherCard";
 import { deeplinks } from "@/lib/site";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { EventCard } from "@/components/cards/EventCard";
+import { ArticleCard } from "@/components/brand/ArticleCard";
+import { getArticles } from "@/lib/content/magazin";
 import { AppCta } from "@/components/modules/AppCta";
 import { Testimonials } from "@/components/modules/Testimonials";
 import { Button } from "@/components/ui/Button";
@@ -37,6 +39,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
   const clubs = await getClubs(locale);
   const events = (await getEvents({ locale })).filter((e) => e.type !== "hero").slice(0, 3);
   const heroEvent = (await getEvents({ locale })).find((e) => e.isHighlighted);
+  // TODO(data): move behind @/lib/data (getArticles) once the Contentful adapter exists.
+  const articles = getArticles(locale).slice(0, 3);
   const planned = await getPlannedClubs(locale);
   // Countries with live clubs (DE · AT · PL), derived from data.
   const countries = [...new Set(clubs.map((c) => c.country))].sort((a, b) => (a === "DE" ? -1 : b === "DE" ? 1 : a.localeCompare(b)));
@@ -230,22 +234,23 @@ export async function HomeView({ locale }: { locale: Locale }) {
         </div>
       </Section>
 
-      {/* Academy + Magazin split */}
+      {/* News & Magazin – newest articles */}
       <Section tone="black">
-        <div className="grid gap-4 lg:grid-cols-2 lg:gap-6">
-          {t.split.map((s, i) => (
-            <Reveal key={s.key} delay={i * 0.08}>
-              <Link href={href(locale, s.key as RouteKey)} className="group relative block overflow-hidden rounded-[28px]">
-                <Media src={s.img} alt={s.eyebrow} className="aspect-[4/5] md:aspect-[16/11]" imgClassName="transition-transform duration-[1.2s] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
-                <div className="absolute inset-x-6 bottom-6 md:inset-x-10 md:bottom-10">
-                  <p className="text-sm font-semibold uppercase tracking-[0.14em] text-magenta-300">{s.eyebrow}</p>
-                  <h3 className="mt-2 max-w-md font-display text-4xl leading-[0.95] font-extrabold italic uppercase text-balance md:text-5xl lg:min-h-[1.9em]">{s.title}</h3>
-                  <span className="mt-5 inline-flex items-center gap-2 text-white/85 group-hover:text-white">
-                    {s.cta} <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" />
-                  </span>
-                </div>
-              </Link>
+        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <Reveal>
+            <Eyebrow>{t.news.eyebrow}</Eyebrow>
+            <Headline className="mt-6">
+              {t.news.title} <Accent>{t.news.accent}</Accent>
+            </Headline>
+          </Reveal>
+          <Button href={href(locale, "magazine")} variant="outline">
+            {t.news.all}
+          </Button>
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+          {articles.map((a, i) => (
+            <Reveal key={a.slug} delay={i * 0.06} className={i === 2 ? "md:hidden lg:block" : undefined}>
+              <ArticleCard article={a} locale={locale} />
             </Reveal>
           ))}
         </div>

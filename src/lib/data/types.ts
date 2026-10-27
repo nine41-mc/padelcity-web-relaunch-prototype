@@ -112,7 +112,7 @@ export type Article = {
   slug: string;
   title: string;
   excerpt: string;
-  hub: "lernen" | "spielen" | "erleben"; // briefing: Padel Lernen / Spielen / Erleben
+  hub: "lernen" | "spielen" | "erleben"; // briefing: Padel lernen / spielen / erleben
   category: string;
   author: string;
   publishedAt: string;

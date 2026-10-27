@@ -48,7 +48,6 @@ Mit **GENERISCH** markierte Club-Bilder zeigen NICHT den jeweiligen Club (keine 
 | `images/hero/home-3.jpg` | https://padelcity.de/wp-content/uploads/2024/11/PadelCity-Recklinghausen-Opening19.jpg | Recklinghausen Opening, Action |
 | `images/hero/courts.jpg` | https://padelcity.de/wp-content/uploads/2025/08/DJI_0252.jpg | Frankfurter Ring, Drohne |
 | `images/hero/community.jpg` | https://padelcity.de/wp-content/uploads/2024/11/PadelCity-Recklinghausen-Opening9.jpg | Recklinghausen Opening, Gruppenfoto |
-| `images/hero/academy.jpg` | https://padelcity.de/wp-content/uploads/2023/03/INDIVIDUAL-AND-GROUP-TRAINING.png | Academy-Seite (CSS-Hintergrund) |
 | `images/hero/franchise.jpg` | https://padelcity.de/wp-content/uploads/2025/08/DJI_0301.jpg | Fürth, Drohne |
 | `images/hero/investors.jpg` | https://padelcity.de/wp-content/uploads/2026/08/IMG_0369-2.jpg | Padelblog-Beitragsbild (Business-Gruppenfoto) |
 | `images/hero/partner.jpg` | https://padelcity.de/wp-content/uploads/2024/11/PadelCity-Recklinghausen-Opening13.jpg | Recklinghausen Opening, Spieler mit Sponsor-Shirts |
@@ -56,7 +55,6 @@ Mit **GENERISCH** markierte Club-Bilder zeigen NICHT den jeweiligen Club (keine 
 | `images/hero/jobs.jpg` | https://padelcity.de/wp-content/uploads/2025/01/A7401944-HDR.jpg | Leipzig Empfang/Shop |
 | `images/hero/app.jpg` | https://padelcity.de/wp-content/uploads/2026/06/A7407073.jpg | Padelblog-Beitragsbild (Neon "Be the next starter") |
 | `images/hero/events.jpg` | https://padelcity.de/wp-content/uploads/2024/11/PadelCity-Recklinghausen-Opening17.jpg | Recklinghausen Opening, Siegerehrung CUPRA |
-| `images/hero/magazin.jpg` | https://padelcity.de/wp-content/uploads/2026/05/DSC02777-scaled.jpg | Ingolstadt, Netz mit PadelCity-Logo |
 | `images/academy/training-1.jpg` | https://padelcity.de/wp-content/uploads/2023/03/INDIVIDUAL-AND-GROUP-TRAINING.png | Academy-Seite |
 | `images/academy/training-2.jpg` | https://padelcity.de/wp-content/uploads/2025/11/PADEL-CITY-LINGEN-07302.jpg | Lingen, Spieler auf Court |
 | `images/magazin/article-1.jpg` | https://padelcity.de/wp-content/uploads/2026/06/A7407073.jpg | Padelblog-Beitragsbild |

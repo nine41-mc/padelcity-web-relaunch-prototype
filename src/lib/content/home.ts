@@ -55,10 +55,7 @@ const de = {
     jobs: "Werde Teil des Teams",
   },
   events: { eyebrow: "Social Events & Turniere", title: "Mehr als ein", accent: "Match.", all: "Alle Events", hero: "Hero Event", more: "Mehr erfahren" },
-  split: [
-    { key: "academy", eyebrow: "PadelCity Academy", title: "Vom ersten Ball zum ersten Turnier.", cta: "Training finden", img: "/images/hero/academy.jpg" },
-    { key: "magazine", eyebrow: "Magazin", title: "Technik, Stories & Culture.", cta: "Jetzt lesen", img: "/images/hero/magazin.jpg" },
-  ],
+  news: { eyebrow: "News & Magazin", title: "Stories vom", accent: "Court.", all: "Zum Magazin" },
   community: {
     eyebrow: "#bettertogether",
     title: "Everybody's",
@@ -134,10 +131,7 @@ const en: HomeContent = {
     jobs: "Join the team",
   },
   events: { eyebrow: "Social events & tournaments", title: "More than a", accent: "match.", all: "All events", hero: "Hero event", more: "Learn more" },
-  split: [
-    { key: "academy", eyebrow: "PadelCity Academy", title: "From your first ball to your first tournament.", cta: "Find coaching", img: "/images/hero/academy.jpg" },
-    { key: "magazine", eyebrow: "Magazine", title: "Technique, stories & culture.", cta: "Read now", img: "/images/hero/magazin.jpg" },
-  ],
+  news: { eyebrow: "News & magazine", title: "Stories from the", accent: "court.", all: "To the magazine" },
   community: {
     eyebrow: "#bettertogether",
     title: "Everybody's",
@@ -210,10 +204,7 @@ const pl: HomeContent = {
     jobs: "Dołącz do zespołu",
   },
   events: { eyebrow: "Eventy towarzyskie i turnieje", title: "Więcej niż", accent: "mecz.", all: "Wszystkie eventy", hero: "Hero Event", more: "Dowiedz się więcej" },
-  split: [
-    { key: "academy", eyebrow: "PadelCity Academy", title: "Od pierwszej piłki do pierwszego turnieju.", cta: "Znajdź trening", img: "/images/hero/academy.jpg" },
-    { key: "magazine", eyebrow: "Magazyn", title: "Technika, historie i kultura.", cta: "Czytaj teraz", img: "/images/hero/magazin.jpg" },
-  ],
+  news: { eyebrow: "News i magazyn", title: "Historie z", accent: "kortu.", all: "Do magazynu" },
   community: {
     eyebrow: "#bettertogether",
     title: "Everybody's",

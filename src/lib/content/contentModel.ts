@@ -75,7 +75,7 @@ export const contentModel: PageType[] = [
           f("Level, Wiederholung", "apiExtend", undefined, "Felder fehlen"),
         ],
       },
-      { id: "academyMagazineTeaser", name: "Academy- & Magazin-Teaser", fields: [f("Texte, Bilder, Artikel-Auswahl", "cms")] },
+      { id: "newsMagazine", name: "News & Magazin", fields: [f("Überschrift, Link", "cms"), f("Neueste 3 Artikel", "cms", "article", "automatisch nach Datum")] },
       { id: "community", name: "Community / WhatsApp", fields: [...sectionHead(), f("Gruppen-Links je Stadt", "apiExtend", undefined, "WhatsApp-Link fehlt in der API")] },
       { id: "testimonials", name: "Stimmen", fields: [f("Zitate", "cms", undefined, "im Prototyp Platzhalter – echte Stimmen nur mit Einwilligung")] },
       { id: "socialWall", name: "Instagram-Wand", fields: [f("Neueste Posts @padelcity.de", "external", "Instagram API")] },
@@ -247,11 +247,10 @@ export const contentModel: PageType[] = [
     path: "/magazin, /magazin/[artikel]",
     modules: [
       { id: "pageHero", name: "Hero", fields: sectionHead() },
-      { id: "contentHubs", name: "Rubriken", fields: [f("Rubriken (Hubs)", "cms")] },
+      { id: "contentHubs", name: "Rubriken", fields: [f("Rubriken (Hubs) als Filter der Artikelliste", "cms")] },
       { id: "article", name: "Artikel", fields: [f("Titel, Teaser, Text, Bilder, Autor, Datum, Lesezeit", "cms")] },
       { id: "relatedArticles", name: "Weiterlesen", fields: [f("Weitere Artikel", "cms", "article.relatedArticles", "im Prototyp automatisch: gleiche Rubrik zuerst")] },
       { id: "pressLogos", name: "Presse", fields: [f("Logos, Links", "cms")] },
-      { id: "newsletterSignup", name: "Newsletter", fields: [f("Anmeldung", "unknown", undefined, "Newsletter-Tool offen")] },
     ],
   },
   {
