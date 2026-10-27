@@ -26,17 +26,22 @@ GitHub Pages über `.github/workflows/deploy.yml`: jeder Push auf `main` (oder e
 
 Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu starten.
 
-## Seiten (DE · EN)
+## Seiten (DE · EN · PL)
 
-| DE | EN | Inhalt |
-|---|---|---|
-| `/` | `/en` | Video-Hero, Nr.-1-Zahlen + Club-Karte, Club-Showcase, Zielgruppen-Einstiege, Series A (qualitativ), Events, Academy/Magazin, Community, Shop-Teaser (Phase 2), Partner |
-| `/standorte`, `/standorte/[slug]` | `/en/locations/…` | Club-Finder (Suche, Filter, Nähe, Liste/Karte), Club-Seite mit Galerie, „In der App buchen“ (Preis ab, Öffnungszeiten, Courts, Deeplink), Facilities, Coaches, Events, FAQ |
-| `/events`, `/events/[slug]` | `/en/events/…` | Hero-Events (Countdown) + lokale Events, Anmeldung im Web (`webApp.event`) oder per App-Deeplink |
-| `/academy` | `/en/academy` | Level-Pfad, Programme, 19 echte Coaches, Standorte, Videos |
-| `/app` | `/en/app` | App-Landingpage mit Feature-Story |
-| `/franchise`, `/investoren`, `/partner` | `/en/franchise`, `/en/investors`, `/en/partners` | B2B-Zielgruppen inkl. Lead-Formularen (Prototyp: sendet nichts) |
-| `/ueber-uns`, `/jobs`, `/magazin` | `/en/about`, `/en/jobs`, `/en/magazine` | Story, Gründer & Team, Employer Branding, Editorial Hub mit 6 Artikeln |
+| DE | EN | PL | Inhalt |
+|---|---|---|---|
+| `/` | `/en` | `/pl` | Video-Hero, Nr.-1-Zahlen + Club-Karte, Club-Showcase, Zielgruppen-Einstiege, Series A (qualitativ), Events, Academy/Magazin, Community, Gutscheine, Partner |
+| `/standorte`, `/standorte/[slug]` | `/en/locations/…` | `/pl/lokalizacje/…` | Club-Finder (Suche, Filter, Nähe, Liste/Karte); Club-Seite: Galerie, Öffnungszeiten unter dem Namen (aufklappbar), Kontakt-Kacheln (Route · Anrufen · E-Mail · WhatsApp, je mit Kopieren), „Preise & Courts“ mit einem Sportarten-Filter, Ausstattung, Highlights, Events, Coaches, „In der App buchen“, Karte, Clubs in der Nähe, Teilen |
+| `/events`, `/events/[slug]` | `/en/events/…` | `/pl/wydarzenia/…` | Hero-Events (Countdown) + lokale Events, Anmeldung im Web (`webApp.event`) oder per App-Deeplink, Teilen |
+| `/academy` | `/en/academy` | `/pl/akademia` | Level-Pfad, Programme, Preisliste (1er–4er Training, Coach/Head Coach), echte Coaches, Standorte, Videos, FAQ |
+| `/app` | `/en/app` | `/pl/aplikacja` | App-Landingpage mit Feature-Story |
+| `/magazin`, `/magazin/[slug]` | `/en/magazine/…` | `/pl/magazyn/…` | Editorial Hub mit 6 Artikeln, Artikel mit Teilen |
+| `/franchise`, `/investoren`, `/partner` | `/en/franchise`, `/en/investors`, `/en/partners` | `/pl/franczyza`, `/pl/inwestorzy`, `/pl/partnerzy` | B2B-Zielgruppen inkl. Lead-Formularen (Prototyp: sendet nichts) |
+| `/ueber-uns`, `/jobs`, `/faq` | `/en/about`, `/en/jobs`, `/en/faq` | `/pl/o-nas`, `/pl/kariera`, `/pl/faq` | Story, Gründer & Team, Employer Branding (Personio), FAQ live aus der API |
+| `/impressum`, `/datenschutz`, `/agb` | `/en/imprint`, `/en/privacy`, `/en/terms` | `/pl/nota-prawna`, `/pl/polityka-prywatnosci`, `/pl/regulamin` | Rechtstexte |
+| `/sitemap`, `/content-modell` | `/en/sitemap`, `/en/content-model` | `/pl/mapa-strony`, `/pl/model-tresci` | Sitemap aller Seiten; Content-Modell (jedes Modul und Feld mit Datenquelle) |
+
+Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg im Footer), `/coming-soon` (Platzhalter für noch fehlende Seiten).
 
 ## Struktur
 
@@ -55,7 +60,7 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
   |---|---|---|
   | Primär | Brand-Gradient Purple `#8412B5` → Magenta `#E005C3` (`bg-brand-gradient`) | Primäre CTAs (inkl. runder Pfeil auf weißen Buttons), aktive Zustände (aktiver Tab, gewählter Filter-Chip/Segment, gewählte Option, offenes Akkordeon), lila Flächen und Glows (`shadow-glow`) |
   | Sekundär | Weiß auf Ink | Text, **alle** Icons (Ausstattung, Sportarten, Kontakt, Social, Filter …), Outline-Buttons, Rahmen, Hover (→ Weiß bzw. Magenta-300 bei Links) |
-  | Highlight | Optic Yellow `#DFFF4F` (Tennisball-Farbe) | **Nur:** `<Accent>`-Brush-Wort, Ticker (Home + Footer), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball |
+  | Highlight | Optic Yellow `#DFFF4F` (Tennisball-Farbe) | **Nur:** `<Accent>`-Brush-Wort, Ticker (Home), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball |
   | Status | Success / Danger / Warning | Nur System-Feedback |
 
   Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Magenta-300 auf Ink ≈ 7:1, Optic-Yellow-Fokusring auf Ink ≈ 17:1 (Token-Name im Code: `optic-*`). Druckwerte: Pantone 388 C/U und CMYK 20/0/100/0 als Empfehlung, final zu prüfen.
@@ -65,7 +70,7 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 ## Offene Themen für den Workshop
 
 1. **Contentful-Zugriff** – direkt (read-only Delivery API beim Build) oder über den PadelCity-API-Layer, wie Elephant vorschlägt? Für Marketing-Inhalte und Club-Stammdaten ist der direkte Weg einfacher und berührt das Buchungssystem nicht.
-2. **Content-Modell** – stabile Club-Slugs, Website-Sichtbarkeits-Flag (heute nur `isShownInApp` in der api-platform-DB), englische Club-Texte, Marketing-Events ohne Buchungsdaten, Coach-Felder (Sprachen, Bio).
+2. **Content-Modell** – stabile Club-Slugs, Website-Sichtbarkeits-Flag (heute nur `isShownInApp` in der api-platform-DB), englische Club-Texte, Marketing-Events ohne Buchungsdaten, Coach-Kennzahlen (Std. on Court, Trainierende) ohne API-Felder.
 3. **App-Deeplinks** – Club- und Event-Deeplinks existieren (Adjust/go.link); QR-Code für Desktop, Store-Fallback und Tracking abstimmen.
 4. **Karten-Provider** – CARTO verlangt inzwischen API-Key; Prototyp nutzt abgedunkelte OSM-Kacheln. Anbieter + Key festlegen.
 5. **Google-Bewertungen** – Rating ist Mock; Quelle (Places API) + Caching/Lizenz klären.

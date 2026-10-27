@@ -1,5 +1,8 @@
 # PadelCity Website Relaunch – Prototype Brief (for all contributors)
 
+> **Historical.** Working brief for the agents that built the first prototype rounds. Parts are outdated (e.g. neon accent, button variants, DE/EN only – PL was added later). The current state is the code, `README.md` and `/content-modell`.
+
+
 Project: /Users/manuelcramer/development/padelcity/website_relaunch/prototype
 Stack: Next.js 15.5 App Router, React 19, TypeScript strict, Tailwind CSS v4 (tokens in src/app/globals.css), motion (motion/react), lucide-react, leaflet/react-leaflet. Do NOT add dependencies without asking the orchestrator.
 
