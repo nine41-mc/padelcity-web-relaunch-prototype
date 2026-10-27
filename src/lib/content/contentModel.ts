@@ -129,7 +129,7 @@ export const contentModel: PageType[] = [
         name: "Preise & Ausstattung",
         fields: [
           priceFrom(),
-          f("Preisliste: Peak/Off-Peak, Tage, Sportarten, Court-Typen", "unknown", undefined, "Quelle offen: Tarife aus dem Buchungssystem oder Pflege in Contentful; der Ab-Preis ist der günstigste Preis der Liste"),
+          f("Preisliste je Sportart: Wochentage & Feiertage, Zeitfenster, Indoor/Outdoor, Double/Single, Premium", "apiExtend", "ClubPriceList.pricing", "liegt pro Club und Sportart in der APL (aus dem operativen Contentful synchronisiert), aber ohne öffentlichen Endpunkt; gültige Liste über validFrom/isActive. Der Ab-Preis ist der günstigste Preis der Liste"),
           f("Court-Übersicht", "api", "GET /clubs → courts[]"),
           f("Ausstattungs-Liste", "api", "GET /clubs → facilities[].type, name, iconUrl"),
         ],

@@ -2,8 +2,8 @@ import type { Sport } from "@/lib/data/types";
 
 /*
  * Full court price lists per club (one booking slot = 60 minutes): by day group, off-peak/peak and court type.
- * Source of the real data is still open (tariffs in the booking system vs. maintained in Contentful) – see the
- * content model. Prototype: only clubs listed here get the "Alle Preise anzeigen" toggle.
+ * Real source: api-platform ClubPriceList.pricing per club and sport (weekdays, holidays, time periods, indoor/outdoor,
+ * double/single, premium) – not exposed by an endpoint yet. Prototype: only clubs listed here get "Alle Preise anzeigen".
  */
 
 export type CourtKind = "indoor_double" | "indoor_single" | "outdoor_double" | "outdoor_single";
