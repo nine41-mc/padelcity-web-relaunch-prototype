@@ -215,7 +215,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
                   {heroEvent.subtitle && <>{heroEvent.subtitle} </>}
                   <span className="whitespace-nowrap font-semibold text-white">{getDictionary(locale).eventCard.signupLead}</span>
                 </p>
-                {/* Equal sign-up options; the whole teaser links to the detail page */}
+                {/* Sign-up (app primary, web outline); the whole teaser links to the detail page */}
                 <EventSignup eventId={heroEvent.id} locale={locale} size="md" className="mt-5 max-w-md" />
               </div>
             </div>

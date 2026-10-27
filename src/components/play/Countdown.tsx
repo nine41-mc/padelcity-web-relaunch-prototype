@@ -38,16 +38,15 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
     [labels.seconds, t?.s],
   ];
 
+  // One pill, the units separated by thin dividers (Design QA: four bubbles read as four elements)
   return (
-    <div className={cn("flex gap-2 md:gap-3", className)} role="timer" aria-label={labels.aria}>
+    <div
+      className={cn("inline-flex w-fit divide-x divide-white/15 rounded-2xl border border-white/15 bg-black/40 backdrop-blur", className)}
+      role="timer"
+      aria-label={labels.aria}
+    >
       {units.map(([label, v]) => (
-        <div
-          key={label}
-          className={cn(
-            "flex flex-col items-center rounded-xl border border-white/15 bg-black/40 backdrop-blur",
-            size === "md" ? "min-w-16 px-3 py-2 md:min-w-20" : "min-w-12 px-2 py-1.5",
-          )}
-        >
+        <div key={label} className={cn("flex flex-col items-center", size === "md" ? "min-w-16 px-3 py-2 md:min-w-20" : "min-w-12 px-2.5 py-1.5")}>
           <span className={cn("font-display font-extrabold italic tabular-nums leading-none", size === "md" ? "text-3xl md:text-4xl" : "text-xl")}>
             {v === undefined ? "--" : String(v).padStart(2, "0")}
           </span>

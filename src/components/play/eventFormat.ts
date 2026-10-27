@@ -23,10 +23,20 @@ export function formatDateRange(start: string, end: string | undefined, locale: 
   return `${s.toLocaleDateString(intl, { day: "numeric", month: "short" })} – ${right}`;
 }
 
-export function dayParts(iso: string, locale: Locale) {
-  const d = new Date(iso);
+/**
+ * Date badge: "03" / "DEZ", multi-day "03–05" / "DEZ", across months "30–02" / "NOV–DEZ".
+ * The year only when it is not the current one.
+ */
+export function dateBadge(start: string, end: string | undefined, locale: Locale, now = new Date()) {
+  const intl = localeTags[locale].intl;
+  const month = (d: Date) => d.toLocaleDateString(intl, { month: "short" }).replace(".", "");
+  const day = (d: Date) => String(d.getDate()).padStart(2, "0");
+  const s = new Date(start);
+  const e = end && end.slice(0, 10) !== start.slice(0, 10) ? new Date(end) : undefined;
+  const sameMonth = !e || (s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear());
   return {
-    day: String(d.getDate()).padStart(2, "0"),
-    month: d.toLocaleDateString(localeTags[locale].intl, { month: "short" }).replace(".", ""),
+    day: e ? `${day(s)}–${day(e)}` : day(s),
+    month: sameMonth ? month(s) : `${month(s)}–${month(e!)}`,
+    year: s.getFullYear() !== now.getFullYear() ? String(s.getFullYear()) : undefined,
   };
 }

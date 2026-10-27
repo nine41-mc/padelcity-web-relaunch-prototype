@@ -57,9 +57,9 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
             </li>
           )}
         </ul>
-        {/* Equal sign-up options (web / app). No capacity/places left. */}
+        {/* Sign-up: app primary, web as outline. No capacity/places left. */}
         <div className="relative z-10 mt-auto border-t border-white/10 pt-4">
-          <EventSignup eventId={event.id} locale={locale} size="sm" tone="glass" />
+          <EventSignup eventId={event.id} locale={locale} size="sm" />
         </div>
       </div>
     </article>
