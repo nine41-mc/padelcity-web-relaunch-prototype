@@ -142,7 +142,7 @@ export function Header() {
               </ul>
             </nav>
             <div className="mt-8 space-y-4">
-              <Button href={href(locale, "locations")} variant="gradient" size="lg" className="w-full justify-between">
+              <Button href={href(locale, "locations")} variant="gradient" size="md" className="w-full justify-between">
                 {t.header.findCourt}
               </Button>
               <StoreBadges locale={locale} />

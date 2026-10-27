@@ -79,10 +79,10 @@ export function NotFoundContent() {
         </Headline>
         <p className="mt-6 max-w-lg text-lg text-white/80">{t.text}</p>
         <div className="mt-10 flex flex-wrap gap-3">
-          <Button href={href(locale, "home")} size="lg">
+          <Button href={href(locale, "home")} size="md">
             {t.home}
           </Button>
-          <Button href={href(t.otherLocale, "home")} variant="outline" size="lg" lang={t.otherLocale}>
+          <Button href={href(t.otherLocale, "home")} variant="outline" size="md" lang={t.otherLocale}>
             {t.other}
           </Button>
         </div>

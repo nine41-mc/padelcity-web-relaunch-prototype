@@ -41,10 +41,10 @@ export function PartnersView({ locale }: { locale: Locale }) {
         lead={t.hero.lead}
         actions={
           <>
-            <Button href="#kontakt" size="lg" data-track="partner_hero_cta">
+            <Button href="#kontakt" size="md" data-track="partner_hero_cta">
               {t.hero.ctaPrimary}
             </Button>
-            <Button href="#firmenevents" variant="outline" size="lg">
+            <Button href="#firmenevents" variant="outline" size="md">
               {t.hero.ctaSecondary}
             </Button>
           </>

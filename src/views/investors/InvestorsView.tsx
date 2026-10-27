@@ -42,10 +42,10 @@ export function InvestorsView({ locale }: { locale: Locale }) {
           </Headline>
           <Lead className="mt-8">{t.hero.lead}</Lead>
           <div className="mt-10 flex flex-wrap gap-3">
-            <Button href="#equity-story" size="lg">
+            <Button href="#equity-story" size="md">
               {t.hero.ctaStory}
             </Button>
-            <Button href="#kontakt" variant="outline" size="lg" data-track="ir_contact_cta">
+            <Button href="#kontakt" variant="outline" size="md" data-track="ir_contact_cta">
               {t.hero.ctaContact}
             </Button>
           </div>

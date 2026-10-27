@@ -32,10 +32,10 @@ export function JobsView({ locale }: { locale: Locale }) {
         lead={t.hero.lead}
         actions={
           <>
-            <Button href="#stellen" size="lg" data-track="jobs_hero_cta">
+            <Button href="#stellen" size="md" data-track="jobs_hero_cta">
               {t.hero.ctaPrimary}
             </Button>
-            <Button href="#initiativ" variant="outline" size="lg">
+            <Button href="#initiativ" variant="outline" size="md">
               {t.hero.ctaSecondary}
             </Button>
           </>
@@ -122,7 +122,7 @@ export function JobsView({ locale }: { locale: Locale }) {
                 <p className="mt-5 max-w-lg text-lg text-white/70">{t.initiative.text}</p>
               </div>
               <div className="md:justify-self-end">
-                <Button href={`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(t.initiative.cta)}`} external variant="gradient" size="lg" data-track="jobs_initiative_cta">
+                <Button href={`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(t.initiative.cta)}`} external variant="gradient" size="md" data-track="jobs_initiative_cta">
                   {t.initiative.cta}
                 </Button>
               </div>

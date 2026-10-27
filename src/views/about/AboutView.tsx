@@ -50,7 +50,7 @@ export function AboutView({ locale }: { locale: Locale }) {
         image={{ url: "/images/about/hero.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
-          <Button href="#story" size="lg">
+          <Button href="#story" size="md">
             {t.hero.cta}
           </Button>
         }
@@ -182,7 +182,7 @@ export function AboutView({ locale }: { locale: Locale }) {
                 {t.jobs.title} <Accent>{t.jobs.accent}</Accent>
               </Headline>
               <p className="mt-5 max-w-md text-lg text-white/70">{t.jobs.text}</p>
-              <Button href={href(locale, "jobs")} variant="gradient" size="lg" className="mt-8" data-track="about_jobs_cta">
+              <Button href={href(locale, "jobs")} variant="gradient" size="md" className="mt-8" data-track="about_jobs_cta">
                 {t.jobs.cta}
               </Button>
             </div>

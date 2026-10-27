@@ -84,7 +84,7 @@ export function Footer({ locale }: { locale: Locale }) {
               </p>
               <p className="mt-4 max-w-xl text-white/85 md:text-lg">{t.footer.community.text}</p>
             </div>
-            <WhatsAppGroups locale={locale} label={t.footer.community.cta} variant="primary" size="lg" className="w-full md:w-auto" track="footer_whatsapp_overlay" />
+            <WhatsAppGroups locale={locale} label={t.footer.community.cta} variant="primary" size="md" className="w-full md:w-auto" track="footer_whatsapp_overlay" />
           </div>
         </div>
 

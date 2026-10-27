@@ -31,10 +31,10 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
         lead={t.hero.lead}
         actions={
           <>
-            <Button href="#anfrage" variant="primary" size="lg" data-track="franchise_hero_cta">
+            <Button href="#anfrage" variant="primary" size="md" data-track="franchise_hero_cta">
               {t.hero.ctaPrimary}
             </Button>
-            <Button href="#ablauf" variant="outline" size="lg">
+            <Button href="#ablauf" variant="outline" size="md">
               {t.hero.ctaSecondary}
             </Button>
           </>

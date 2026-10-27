@@ -21,7 +21,7 @@ export function AppCta({ clubId, locale = "de", showStores = true }: { clubId?: 
           <p className="mt-4 max-w-lg text-white/80">
             {t.text}
           </p>
-          <Button href={clubId ? deeplinks.club(clubId) : href(locale, "app")} size="lg" className="mt-8" data-track="app_cta">
+          <Button href={clubId ? deeplinks.club(clubId) : href(locale, "app")} size="md" className="mt-8" data-track="app_cta">
             {clubId ? t.open : t.discover}
           </Button>
         </div>
