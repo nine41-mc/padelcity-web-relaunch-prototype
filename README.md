@@ -93,6 +93,8 @@ patterns are built as a code component first, then as a library component.
 - Overview: `/styleguide#code-connect` lists every mapping (Figma name, code component, file, Figma properties, notes),
   generated from the templates into `src/lib/codeConnect.json` by `node figma/overview/build-overview.mjs`;
   `npm run figma:check` fails when the list is out of date.
+- When a library component becomes a variant set (e.g. a new `Device` variant), its node ID changes: update the
+  `url` in the template, otherwise `figma:publish` rejects it as "not a top level component".
 - Library quality audit: `figma/audit/library-audit.js` (run via the Figma MCP tool `use_figma`, see
   `figma/audit/README.md`). Run it after every library change and before every publish.
 - Design tokens: `figma/tokens/tokens.json` (DTCG export of all variables, gradients, shadows and text styles) and

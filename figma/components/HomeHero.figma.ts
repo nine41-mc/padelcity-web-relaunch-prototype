@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15914-647
+// url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15919-3331
 // source=src/components/home/HomeHero.tsx
 // component=HomeHero
 // figma=Home Hero

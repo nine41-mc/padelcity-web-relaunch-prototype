@@ -520,8 +520,8 @@
       "id": "footer",
       "code": "Footer",
       "figma": "Footer",
-      "nodeId": "15205:883",
-      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15205-883",
+      "nodeId": "15918:2610",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15918-2610",
       "source": "src/components/layout/Footer.tsx",
       "imports": [
         "import { Footer } from \"@/components/layout/Footer\""
@@ -550,8 +550,8 @@
       "id": "home-hero",
       "code": "HomeHero",
       "figma": "Home Hero",
-      "nodeId": "15914:647",
-      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15914-647",
+      "nodeId": "15919:3331",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15919-3331",
       "source": "src/components/home/HomeHero.tsx",
       "imports": [
         "import { HomeHero } from \"@/components/home/HomeHero\"",
@@ -801,8 +801,8 @@
       "id": "partner-band",
       "code": "PartnerBand",
       "figma": "Partner Band",
-      "nodeId": "15868:660",
-      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15868-660",
+      "nodeId": "15919:3022",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15919-3022",
       "source": "src/components/modules/PartnerBand.tsx",
       "imports": [
         "import { PartnerBand } from \"@/components/modules/PartnerBand\""

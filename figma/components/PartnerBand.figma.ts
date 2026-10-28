@@ -1,4 +1,4 @@
-// url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15868-660
+// url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15919-3022
 // source=src/components/modules/PartnerBand.tsx
 // component=PartnerBand
 // figma=Partner Band
