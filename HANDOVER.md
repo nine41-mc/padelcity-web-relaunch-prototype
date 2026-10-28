@@ -42,7 +42,8 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 ## 3. Inhalte und Daten
 
 - **Content-Modell:** Seite `/content-modell` (aus `src/lib/content/contentModel.ts`) und die Figma-Seite
-  „🧩 Content-Modell“ mit 176 Annotationen – jedes Modul mit Contentful-Feldern, Quelle und Pflicht/Optional.
+  „🧩 Content-Modell“ mit 176 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
+  erweitern, neuer Contentful-Space, externer Dienst, unklar) und Hinweisen.
 - **Datenschicht:** `src/lib/data/` als Fassade (Contentful → Mock-Fallback), Details in `src/lib/data/README.md`.
 - **Grundsatz:** keine Buchungssystem-Daten auf der Website. Einzige Ausnahme (seit 27.10.2026): Event-Detail mit
   max. Teilnehmern, freien Plätzen (live) und der Storno-Tabelle für die Regel „kostenfrei bis 24 h vor Start“.
@@ -52,7 +53,9 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 ## 4. Nicht übernehmen
 
 - `scripts/encrypt-export.mjs`, `public/sw.js` – Passwortschutz nur für das Prototyp-Hosting auf GitHub Pages.
-- `src/lib/data/mock/*` und Platzhalter (Testimonials, Coaches, Google-Rating, LinkedIn-Link auf die Firmenseite).
+- `src/lib/data/mock/*` und Platzhalter: Testimonials (Einwilligung offen), Google-Rating, LinkedIn-Link auf die
+  Firmenseite, Coach-Kennzahlen (Beispielwerte 7.000 Std. on Court / 350 Trainierende, von PadelCity am 13.10.2026
+  vorgegeben, bis echte Werte je Coach vorliegen – `EXAMPLE_COACH_STATS` in `src/lib/data/index.ts`).
 - `AGENTS_BRIEF.md` – historischer Arbeitsstand, teils veraltet.
 
 ## 5. Qualitäts-Gates

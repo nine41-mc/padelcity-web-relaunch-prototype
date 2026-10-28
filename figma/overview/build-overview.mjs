@@ -1,7 +1,7 @@
 // Code Connect overview: reads every template in figma/ (components, icons, logos, flags) and writes
 // src/lib/codeConnect.json – the table on /styleguide#code-connect and the Figma page „🔗 Code Connect“ use it.
 // Usage: node figma/overview/build-overview.mjs (write) · --check (exit 1 if the JSON is out of date, part of figma:check)
-import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 
 const root = new URL("../../", import.meta.url);
 const target = new URL("src/lib/codeConnect.json", root);
@@ -66,6 +66,31 @@ for (const [dir, kind] of Object.entries(KINDS)) {
     }
     entries.push(entry);
   }
+}
+
+// The code side of every template must exist: source file, imported modules and the imported names
+const codeErrors = [];
+const resolveModule = (spec) => {
+  if (!spec.startsWith("@/")) return null; // packages (lucide-react) are checked by tsc
+  const base = new URL(`src/${spec.slice(2)}`, root).pathname;
+  return [".tsx", ".ts", "/index.tsx", "/index.ts"].map((ext) => base + ext).find((p) => existsSync(p));
+};
+for (const e of entries) {
+  if (!e.source.startsWith("node_modules/") && !existsSync(new URL(e.source, root))) codeErrors.push(`${e.figma}: source ${e.source} fehlt`);
+  for (const imp of e.imports) {
+    const [, names, spec] = imp.match(/^import \{ ([^}]+) \} from "([^"]+)"/) ?? [];
+    if (!spec) continue;
+    const file = resolveModule(spec);
+    if (spec.startsWith("@/") && !file) { codeErrors.push(`${e.figma}: Modul ${spec} fehlt`); continue; }
+    if (!file) continue;
+    const code = readFileSync(file, "utf8");
+    for (const name of names.split(",").map((n) => n.trim()))
+      if (!new RegExp(`export (async )?(function|const|class|type) ${name}\\b|export \\{[^}]*\\b${name}\\b`).test(code)) codeErrors.push(`${e.figma}: ${name} wird von ${spec} nicht exportiert`);
+  }
+}
+if (codeErrors.length) {
+  console.log(`Code Connect zeigt auf Code, den es nicht gibt:\n  ${codeErrors.join("\n  ")}`);
+  process.exit(1);
 }
 
 // Code Connect ids must be unique (they also key the styleguide list)

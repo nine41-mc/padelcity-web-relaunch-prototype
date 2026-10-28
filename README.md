@@ -4,8 +4,8 @@ Klickbarer, responsiver Prototyp (Phone < 768 px · Tablet ≥ 768 px · Desktop
 
 ## Grundsätze
 
-- **Keine Buchungssystem-Daten auf der Website.** Keine freien Slots, keine Verfügbarkeit, keine Auslastung. Gebucht wird ausschließlich in der App; die Website verlinkt per Deeplink (Adjust/go.link).
-- **Nur öffentliche Kennzahlen:** 30+ Clubs, 200+ Courts, 25+ Städte. Keine Series-A-Zahlen.
+- **Keine Buchungssystem-Daten auf der Website.** Keine freien Slots, keine Verfügbarkeit, keine Auslastung. Gebucht wird ausschließlich in der App; die Website verlinkt per Deeplink (neuer Link-Service `link.padelcity.de`, ersetzt go.link). Einzige Ausnahme (seit 27.10.2026): das Event-Detail zeigt max. Teilnehmer, freie Plätze (live) und die Storno-Tabelle für die Regel „kostenfrei bis 24 Std. vor Beginn“.
+- **Nur freigegebene Kennzahlen:** 30+ Clubs, 200+ Courts, 25+ Städte, 3 Länder. Keine Series-A- oder Finanzierungszahlen.
 - **Nur echte Personen:** Gründer, Team und Coaches mit echten Namen, Rollen und Fotos (`src/lib/content/people.ts`, Quellen in `public/images/SOURCES.md`).
 
 ## Starten
@@ -30,9 +30,9 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 
 | DE | EN | PL | Inhalt |
 |---|---|---|---|
-| `/` | `/en` | `/pl` | Video-Hero, Nr.-1-Zahlen + Club-Karte, Club-Showcase, Zielgruppen-Einstiege, Series A (qualitativ), Events, Academy/Magazin, Community, Gutscheine, Partner |
+| `/` | `/en` | `/pl` | Video-Hero, Nr.-1-Zahlen + Club-Karte, Club-Showcase, Zielgruppen-Einstiege, Series A (qualitativ), Events, News & Magazin, Community, Stimmen, Gutscheine, Partner |
 | `/standorte`, `/standorte/[slug]` | `/en/locations/…` | `/pl/lokalizacje/…` | Club-Finder (Suche, Filter, Nähe, Liste/Karte); Club-Seite: Galerie, Öffnungszeiten unter dem Namen (aufklappbar), Kontakt-Kacheln (Route · Anrufen · E-Mail · WhatsApp, je mit Kopieren), „Preise & Courts“ mit einem Sportarten-Filter, Ausstattung, Highlights, Events, Coaches, „In der App buchen“, Karte, Clubs in der Nähe, Teilen |
-| `/events`, `/events/[slug]` | `/en/events/…` | `/pl/wydarzenia/…` | Hero-Events (Countdown) + lokale Events, Anmeldung im Web (`webApp.event`) oder per App-Deeplink, Teilen |
+| `/events`, `/events/[slug]` | `/en/events/…` | `/pl/wydarzenia/…` | Hero-Events (Countdown) + lokale Events; Event-Detail mit Eckdaten, freien Plätzen, Storno-Tabelle, Anmeldung im Web (`webApp.event`) oder per App-Deeplink, Teilen |
 | `/academy` | `/en/academy` | `/pl/akademia` | Level-Pfad, Programme, Preisliste (1er–4er Training, Coach/Head Coach), echte Coaches, Standorte, Videos, FAQ |
 | `/app` | `/en/app` | `/pl/aplikacja` | App-Landingpage mit Feature-Story |
 | `/magazin`, `/magazin/[slug]` | `/en/magazine/…` | `/pl/magazyn/…` | Editorial Hub mit 6 Artikeln, Artikel mit Teilen |
@@ -41,19 +41,19 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 | `/impressum`, `/datenschutz`, `/agb` | `/en/imprint`, `/en/privacy`, `/en/terms` | `/pl/nota-prawna`, `/pl/polityka-prywatnosci`, `/pl/regulamin` | Rechtstexte |
 | `/sitemap`, `/content-modell` | `/en/sitemap`, `/en/content-model` | `/pl/mapa-strony`, `/pl/model-tresci` | Sitemap aller Seiten; Content-Modell (jedes Modul und Feld mit Datenquelle) |
 
-Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg im Footer), `/coming-soon` (Platzhalter für noch fehlende Seiten).
+Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg im Footer), `/coming-soon` (Ziel aller App- und Web-App-Links, solange `NEXT_PUBLIC_APP_LINKS_LIVE` nicht gesetzt ist – siehe `src/lib/site.ts`).
 
 ## Struktur
 
-- `src/app/(de)/…` und `src/app/(en)/en/…` – dünne Routen-Wrapper je Sprache (eigene Root-Layouts, `lang`, hreflang)
+- `src/app/(de)/…`, `src/app/(en)/en/…` und `src/app/(pl)/pl/…` – dünne Routen-Wrapper je Sprache (eigene Root-Layouts, `lang`, hreflang)
 - `src/views/<bereich>/` – Seitenlogik, sprachunabhängig (`locale`-Prop)
-- `src/lib/content/*.ts` – Texte als `{ de, en }` (später Contentful-Module)
+- `src/lib/content/*.ts` – Texte als `{ de, en, pl }` (später Contentful-Module, Modell in `contentModel.ts`)
 - `src/lib/i18n/` – Locales, lokalisierte Pfade (`href()`), UI-Wörterbuch
 - `src/lib/data/` – Datenfassade (Contentful → Mock)
 
 ## Design-System
 
-- Tokens in `src/app/globals.css` – 1:1 aus den Figma-Foundations bzw. `padel_city_ui` (Purple, Magenta, Gray-Blue, Radii, Shadows).
+- Tokens in `src/app/globals.css` – wertgleich mit der Figma-Library „PadelCity Website Relaunch“ (`figma/tokens/tokens.json`, geprüft mit `npm run tokens:check`); Farbwerte wie in „PadelCity [Master]“, dort heißt Ink Gray-Blue.
 - **Farbrollen (verbindlich, Details im Kommentar oben in `globals.css`):**
 
   | Rolle | Farbe | Wofür |
@@ -75,7 +75,7 @@ Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten: Li
 
 1. **Contentful-Zugriff** – direkt (read-only Delivery API beim Build) oder über den PadelCity-API-Layer, wie Elephant vorschlägt? Für Marketing-Inhalte und Club-Stammdaten ist der direkte Weg einfacher und berührt das Buchungssystem nicht.
 2. **Content-Modell** – stabile Club-Slugs, Website-Sichtbarkeits-Flag (heute nur `isShownInApp` in der api-platform-DB), englische Club-Texte, Marketing-Events ohne Buchungsdaten, Coach-Kennzahlen (Std. on Court, Trainierende) ohne API-Felder.
-3. **App-Deeplinks** – Club- und Event-Deeplinks existieren (Adjust/go.link); QR-Code für Desktop, Store-Fallback und Tracking abstimmen.
+3. **App-Deeplinks** – Club- und Event-Deeplinks kommen über den neuen Link-Service (`link.padelcity.de`); bis er live ist, führen sie auf `/coming-soon`. QR-Code für Desktop, Store-Fallback und Tracking abstimmen.
 4. **Karten-Provider** – CARTO verlangt inzwischen API-Key; Prototyp nutzt abgedunkelte OSM-Kacheln. Anbieter + Key festlegen.
 5. **Google-Bewertungen** – Rating ist Mock; Quelle (Places API) + Caching/Lizenz klären.
 6. **Tracking/Consent** – CTAs tragen `data-track`-Attribute; GA4 Server-Side + CMP noch nicht eingebaut.
@@ -85,12 +85,13 @@ Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten: Li
 ## Figma Code Connect
 
 `figma/` holds Code Connect templates (`*.figma.ts`) that link the web library in the Figma file
-„PadelCity Website Relaunch“ to the React components here (46 components, 86 icons, 5 logos, 3 country flags). Dev Mode then shows
+„PadelCity Website Relaunch“ to the React components here (47 components, 86 icons, 5 logos, 3 country flags). Dev Mode then shows
 the matching code snippet for a selected component. Every library component has exactly one code component – new
 patterns are built as a code component first, then as a library component.
 
 - Config: `figma.config.json` (label „React“, language tsx). The templates are excluded from the app's
-  `tsconfig`/ESLint and checked separately: `npm run figma:check`.
+  `tsconfig`/ESLint and checked separately: `npm run figma:check` (types, overview up to date, unique ids, and that every
+  template's source file, import path and imported names exist in the code).
 - Publish (needs the Figma library to be published and an Organization/Enterprise plan):
   `FIGMA_ACCESS_TOKEN=… npm run figma:publish` (token with Code Connect write scope, e.g. from the keychain:
   `FIGMA_ACCESS_TOKEN=$(security find-generic-password -s <entry> -w) npm run figma:publish`).

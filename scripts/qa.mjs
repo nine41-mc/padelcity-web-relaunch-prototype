@@ -6,7 +6,8 @@
 //   npm run qa -- --base https://…              a deployed site instead of out/ (no password-protected builds)
 //
 // Checks: HTTP status of every internal link, pages missing from the sitemaps, console errors and uncaught page
-// errors, failed same-origin requests, horizontal overflow, broken images, axe (WCAG 2.2 AA).
+// errors, failed same-origin requests, horizontal overflow, broken images, axe (WCAG 2.2 AA); then the interactive
+// parts (menus, overlays, filter, search, language switch, accordion, share) – see INTERACTIONS.
 // Report: .qa/report.json · exit code 1 when anything is found. See QA.md.
 import { createServer } from "node:http";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
@@ -107,9 +108,7 @@ const check = async (ctx, path, width) => {
     add("Seite lädt nicht", where, e.message.slice(0, 120));
     return page.close();
   }
-  // Cookie banner: essential only, then scroll once through the page so lazy content renders
-  const essential = page.getByRole("button", { name: /Nur essenzielle|Only essential|Tylko niezbędne/i });
-  if (await essential.count()) await essential.first().click().catch(() => {});
+  // Scroll once through the page so lazy content renders
   let height = await page.evaluate(() => document.documentElement.scrollHeight);
   for (let y = 0; y < height; y += 800) {
     await page.evaluate((top) => window.scrollTo(0, top), y);
@@ -143,6 +142,79 @@ for (const width of widths) {
   );
   await ctx.close();
 }
+// ---------------------------------------------------------------------------------------------- interactions
+// Overlays, menus and controls: each opens without errors, fits the viewport, has a close button, closes with Esc
+// and passes axe while open. Skipped with --only (a quick run) or --no-interactions.
+const dialogSel = "dialog[open], [role=dialog]:not([hidden]), [aria-modal=true]";
+const opensDialog = (open) => async (page, where) => {
+  await open(page);
+  const dialog = page.locator(dialogSel).first();
+  await dialog.waitFor({ state: "visible", timeout: 5000 });
+  await page.waitForTimeout(700); // let the slide-in finish before measuring
+  const box = await dialog.boundingBox();
+  const vw = page.viewportSize().width;
+  if (box.x < -1 || box.x + box.width > vw + 1) add("Interaktion: Overlay passt nicht in die Breite", where, `${Math.round(box.x)}–${Math.round(box.x + box.width)} px`);
+  if (!(await dialog.getByRole("button", { name: /schließen|close|zamknij/i }).count())) add("Interaktion: Overlay ohne Schließen-Button", where, "");
+  const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
+  for (const v of axe.violations) add(`Interaktion: axe ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}`);
+  await page.keyboard.press("Escape");
+  await page.waitForTimeout(400);
+  if (await page.locator(dialogSel).first().isVisible().catch(() => false)) add("Interaktion: Esc schließt nicht", where, "");
+};
+const expects = (act, check, message) => async (page, where) => {
+  await act(page);
+  await page.waitForTimeout(600);
+  if (!(await check(page))) add(`Interaktion: ${message}`, where, page.url().slice(base.length));
+};
+const button = (page, name) => page.getByRole("button", { name }).first();
+const INTERACTIONS = [
+  // The mobile menu is a disclosure (aria-expanded, page inert), not a dialog
+  [390, "/", "Mobilmenü", async (page, where) => {
+    const toggle = page.locator("button[aria-controls=mobile-menu]");
+    await toggle.click();
+    const menu = page.locator("#mobile-menu");
+    await menu.waitFor({ state: "visible", timeout: 5000 });
+    await page.waitForTimeout(400);
+    if ((await toggle.getAttribute("aria-expanded")) !== "true") add("Interaktion: Menü-Button ohne aria-expanded", where, "");
+    const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
+    for (const v of axe.violations) add(`Interaktion: axe ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}`);
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(500);
+    if (await menu.isVisible().catch(() => false)) add("Interaktion: Esc schließt nicht", where, "");
+    if (!(await toggle.evaluate((el) => el === document.activeElement))) add("Interaktion: Fokus nicht zurück am Menü-Button", where, "");
+  }],
+  [390, "/", "WhatsApp-Gruppen", opensDialog((p) => button(p, /WhatsApp/i).click())],
+  [1440, "/", "Barrierefreiheit-Panel", opensDialog((p) => button(p, /Barrierefreiheit: Darstellung anpassen/).click())],
+  [1440, "/", "Sprachwechsel", expects((p) => p.getByRole("link", { name: /^en\b/i }).first().click(), (p) => p.url().endsWith("/en/"), "Sprachwechsel führt nicht nach /en/")],
+  [1440, "/", "Club-Suche", expects(async (p) => { await p.getByRole("searchbox").or(p.getByLabel(/Stadt oder Club/)).first().fill("Berlin"); await p.keyboard.press("Enter"); }, (p) => /\/standorte\/\?q=Berlin/.test(p.url()), "Suche führt nicht zu /standorte/?q=Berlin")],
+  [390, "/standorte/", "Filter", opensDialog((p) => button(p, /Filter/i).click())],
+  [1440, "/standorte/regensburg/", "Club-Info", opensDialog((p) => button(p, /^Info$/).click())],
+  [390, "/standorte/regensburg/", "Galerie", opensDialog((p) => button(p, /vergrößern/).click())],
+  [1440, "/standorte/regensburg/", "Öffnungszeiten", expects((p) => p.locator("button[aria-expanded=false]").filter({ hasText: /Geöffnet|Geschlossen/ }).first().click(), (p) => p.locator("button[aria-expanded=true]").filter({ hasText: /Geöffnet|Geschlossen/ }).count(), "Öffnungszeiten klappen nicht auf")],
+  [1440, "/academy/", "Coach-Dialog", opensDialog((p) => button(p, /Kontakt & Preise von/).click())],
+  [1440, "/faq/", "FAQ-Akkordeon", expects((p) => p.locator("main details:not([open]) > summary").first().click(), (p) => p.locator("main details[open]").count(), "FAQ klappt nicht auf")],
+  [1440, "/events/afterwork-americano-berlin/", "Teilen (Link kopieren)", expects((p) => button(p, /Teilen/).click(), (p) => p.getByText(/kopiert|copied|skopiowano/i).count(), "Teilen bestätigt das Kopieren nicht")],
+];
+if (!only.length && !process.argv.includes("--no-interactions")) {
+  for (const [width, path, name, run] of INTERACTIONS) {
+    const mobile = width < 768;
+    const ctx = await browser.newContext({ viewport: { width, height: 844 }, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce", permissions: ["clipboard-read", "clipboard-write"] });
+    const page = await ctx.newPage();
+    const where = `${name} (${path} @${width})`;
+    page.on("pageerror", (e) => add("Interaktion: Seitenfehler", where, e.message.slice(0, 200)));
+    page.on("console", (m) => m.type() === "error" && add("Interaktion: Konsolenfehler", where, m.text().slice(0, 200)));
+    try {
+      await page.goto(base + path, { waitUntil: "load", timeout: 60000 });
+      await page.waitForTimeout(500);
+      await run(page, where);
+    } catch (e) {
+      add("Interaktion: Ablauf fehlgeschlagen", where, e.message.split("\n")[0].slice(0, 160));
+    }
+    await ctx.close();
+  }
+  console.log(`${INTERACTIONS.length} Interaktionen geprüft.`);
+}
+
 await browser.close();
 server?.close();
 
