@@ -135,7 +135,8 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
       )}
 
       {days && (
-        <div className="relative mt-6 overflow-x-auto">
+        // Scrolls sideways on phones: focusable so keyboard users can scroll it (WCAG 2.1.1)
+        <div className="relative mt-6 overflow-x-auto" tabIndex={0} role="region" aria-label={t.priceList.label}>
           {priceSports.length > 1 && (
             <div ref={measureRef} aria-hidden className="pointer-events-none invisible absolute inset-x-0 top-0">
               {priceSports.map((s) => (

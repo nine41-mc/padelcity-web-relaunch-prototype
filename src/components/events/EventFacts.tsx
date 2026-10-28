@@ -5,14 +5,15 @@ import { eventsContent } from "@/lib/content/events";
 /** One key fact (Figma: Fact Row) – icon, small label in caps, value. Use inside a <dl>. */
 export function FactRow({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-start gap-3">
-      <span className="mt-0.5 text-white/70" aria-hidden>
-        {icon}
-      </span>
-      <div>
-        <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{label}</dt>
-        <dd className="mt-0.5">{children}</dd>
-      </div>
+    // dt and dd stay direct children of the row (valid <dl>); the icon (size-5) sits in the dt's left padding
+    <div className="pl-8">
+      <dt className="relative text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">
+        <span className="absolute -left-8 top-0.5 text-white/70" aria-hidden>
+          {icon}
+        </span>
+        {label}
+      </dt>
+      <dd className="mt-0.5">{children}</dd>
     </div>
   );
 }

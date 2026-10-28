@@ -44,9 +44,12 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
   return (
     <>
       {/* Phone: swipe strip */}
-      <div className="-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 scrollbar-none md:hidden" aria-label={fill(t.photosOf, { club: name })}>
+      <div role="group" className="-mx-4 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 scrollbar-none md:hidden" aria-label={fill(t.photosOf, { club: name })}>
         {images.map((img, i) => (
-          <button key={i} type="button" onClick={() => setOpen(i)} className="relative w-[86%] shrink-0 snap-center overflow-hidden rounded-[20px]" aria-label={fill(t.enlarge, { i: i + 1, n: images.length })}>
+          <button key={i} type="button" onClick={() => setOpen(i)} className="relative w-[86%] shrink-0 snap-center overflow-hidden rounded-[20px]"
+            // the first photo shows "10 Fotos" → the accessible name starts with it (WCAG 2.5.3)
+            aria-label={i === 0 ? `${images.length} ${images.length === 1 ? t.photo : t.photos}: ${fill(t.enlarge, { i: 1, n: images.length })}` : fill(t.enlarge, { i: i + 1, n: images.length })}
+          >
             <Media src={img.url} alt={img.alt} className="aspect-[4/3]" priority={i === 0} sizes="86vw" />
             {i === 0 && (
               <span className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/60 px-3 py-1.5 text-[13px] font-semibold backdrop-blur">

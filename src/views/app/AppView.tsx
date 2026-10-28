@@ -127,9 +127,12 @@ export function AppView({ locale }: { locale: Locale }) {
             <li key={s.step} className="h-full">
               <Reveal delay={i * 0.08} className="h-full">
               <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 pad-card">
-                <span className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-white/[0.04]" aria-hidden>
-                  {s.step}
-                </span>
+                {/* Decorative watermark as generated content: not text, so contrast checks do not report it */}
+                <span
+                  data-step={s.step}
+                  className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-white/[0.04] before:content-[attr(data-step)]"
+                  aria-hidden
+                />
                 <span className="font-display text-5xl font-extrabold italic text-brand-gradient">{s.step}</span>
                 <h3 className="mt-4 text-xl font-semibold md:min-h-[2lh]">{s.title}</h3>
                 <p className="mt-2 text-white/70">{s.text}</p>

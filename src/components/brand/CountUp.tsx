@@ -42,7 +42,9 @@ export function CountUp({
   const fmt = (n: number) => (isYear ? String(n) : n.toLocaleString(intl));
   return (
     // Invisible final value in the same grid cell reserves the width → no reflow while counting.
-    <span ref={ref} aria-label={`${prefix}${fmt(value)}${suffix}`} className="inline-grid tabular-nums">
+    // Screen readers get the final value as text (aria-label is not allowed on a plain span).
+    <span ref={ref} className="inline-grid tabular-nums">
+      <span className="sr-only">{`${prefix}${fmt(value)}${suffix}`}</span>
       <span aria-hidden className="invisible col-start-1 row-start-1">
         {prefix}
         {fmt(value)}

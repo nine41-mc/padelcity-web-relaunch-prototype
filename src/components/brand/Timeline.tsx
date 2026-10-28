@@ -18,6 +18,8 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
         className="scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 md:-mx-8 md:px-8 lg:mx-0 lg:grid lg:snap-none lg:gap-6 lg:overflow-visible lg:px-0"
         style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}
         aria-label={t.aria}
+        // Swipe strip below lg: focusable so keyboard users can scroll it (WCAG 2.1.1)
+        tabIndex={0}
       >
         {items.map((m, i) => (
           <li key={m.year + m.title} className="relative w-[78%] shrink-0 snap-start sm:w-[46%] lg:w-auto">

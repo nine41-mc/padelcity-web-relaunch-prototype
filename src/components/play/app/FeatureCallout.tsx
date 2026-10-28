@@ -151,9 +151,10 @@ function Vouchers({ c }: { c: AppCallouts["vouchers"] }) {
 
 function Benefits({ c }: { c: AppCallouts["benefits"] }) {
   return (
-    <div className="rounded-2xl bg-magenta-500 p-4 font-sans text-white shadow-[0_24px_60px_-12px_rgb(0_0_0/0.7)]">
+    // Magenta 600: white small text reaches 5.1 : 1 (Magenta 500 only 4.2 : 1)
+    <div className="rounded-2xl bg-magenta-600 p-4 font-sans text-white shadow-[0_24px_60px_-12px_rgb(0_0_0/0.7)]">
       <p className="text-sm font-semibold">{c.title}</p>
-      <p className="mt-1 text-xs text-white/90">{c.text}</p>
+      <p className="mt-1 text-xs">{c.text}</p>
     </div>
   );
 }

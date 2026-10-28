@@ -64,8 +64,11 @@ export function Testimonials({ locale, items = allTestimonials }: { locale: Loca
       </Reveal>
 
       <div role="region" aria-roledescription="carousel" aria-label={c.regionLabel}>
+        {/* Swipe strip on phones: focusable so keyboard users can scroll it (WCAG 2.1.1) */}
         <ul
           ref={listRef}
+          tabIndex={0}
+          aria-label={c.regionLabel}
           className="scrollbar-none -mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-4 px-4 pb-2 md:mx-0 md:grid md:grid-cols-2 md:gap-5 md:overflow-visible md:px-0 md:pb-0 xl:grid-cols-4"
         >
           {items.map((t, i) => (
