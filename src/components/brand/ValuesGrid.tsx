@@ -6,7 +6,7 @@ import type { Value } from "@/lib/content/about";
 import { cn } from "../ui/cn";
 import { useSystemReducedMotion } from "@/lib/a11y";
 
-// Contentful module: valuesGrid (entries: value { name, claim, text })
+// Contentful module: aboutContent – Werte (entries: value { name, claim, text })
 
 /** Interactive values grid: pick a value (click / hover / focus) to show its story in the spotlight panel. */
 export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: string }) {

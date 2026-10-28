@@ -2,7 +2,7 @@ import "server-only";
 import { whatsappForClub } from "../content/whatsapp";
 import { localizeEvent } from "../content/events";
 import { cache } from "react";
-import type { Club, ClubEvent, DataSource } from "./types";
+import type { Club, ClubEvent } from "./types";
 import type { Locale } from "../i18n/config";
 import { mockClubs } from "./mock/clubs";
 import { toEnglishMock } from "./mock/clubs-en";
@@ -145,10 +145,5 @@ export const getCoaches = cache(async (locale: Locale = "de"): Promise<Person[]>
   const withStats = list.map((p) => ({ ...p, hoursOnCourt: p.hoursOnCourt ?? EXAMPLE_COACH_STATS.hoursOnCourt, students: p.students ?? EXAMPLE_COACH_STATS.students }));
   return withStats.sort((a, b) => Number(isHead(b)) - Number(isHead(a)));
 });
-
-export async function getDataStatus(): Promise<{ contentfulConfigured: boolean; clubs: DataSource }> {
-  const clubs = await getClubs();
-  return { contentfulConfigured: isContentfulConfigured(), clubs: clubs[0]?.source ?? "mock" };
-}
 
 export type { Club, ClubEvent, DataSource } from "./types";

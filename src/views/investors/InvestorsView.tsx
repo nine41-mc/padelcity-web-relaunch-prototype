@@ -92,7 +92,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
           <div>
             <SectionIntro eyebrow={t.press.eyebrow} title={t.press.title} className="mb-8 md:mb-10" />
-            {/* Contentful module: downloadList – TODO(content): real files; until then every item is requested by email */}
+            {/* Contentful module: investorsContent – Downloads. TODO(content): real files; until then every item is requested by email */}
             <ul className="divide-y divide-white/10 border-y border-white/10">
               {t.press.items.map((d) => (
                 <li key={d.title}>

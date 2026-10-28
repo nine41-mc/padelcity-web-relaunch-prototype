@@ -8,7 +8,7 @@ import { Chip } from "../ui/Chip";
 import { cn } from "../ui/cn";
 import { CardArrow } from "@/components/ui/CardArrow";
 
-// Contentful module: articleTeaser (reference to `article`)
+// Card for an `article` reference – used by newsMagazine (home), the magazine list and relatedArticles
 
 export function ArticleCard({ article, locale, className, large = false }: { article: MagazinArticle; locale: Locale; className?: string; large?: boolean }) {
   const t = magazinContent[locale];

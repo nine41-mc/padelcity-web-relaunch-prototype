@@ -29,18 +29,6 @@ export function nameKey(input: string): string {
   return slugify(input).replace(/-/g, "");
 }
 
-/** Money as serialized by api-platform's MoneyNormalizer: { amount: "3400" (minor units), currency, symbol }. */
-export function moneyToEuro(money: unknown): number | undefined {
-  if (money == null) return undefined;
-  if (typeof money === "number") return money / 100;
-  if (typeof money === "string") return Number.isFinite(Number(money)) ? Number(money) / 100 : undefined;
-  if (typeof money === "object" && "amount" in money) {
-    const n = Number((money as { amount: unknown }).amount);
-    return Number.isFinite(n) ? n / 100 : undefined;
-  }
-  return undefined;
-}
-
 /** ISO instant → club-local "YYYY-MM-DDTHH:mm" (the format the Slot / ClubEvent view models use). */
 export function toLocalIso(iso: string, timeZone = DEFAULT_TIMEZONE): string {
   const d = new Date(iso);

@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 import type { EquityChapter } from "@/lib/content/investors";
 import { cn } from "../ui/cn";
 
-// Contentful module: equityStory (entries: equityChapter { kicker, title, text, bullets[] })
+// Contentful module: investorsContent – Equity Story (entries: equityChapter { kicker, title, text, bullets[] })
 
 /**
  * Equity story in chapters. Desktop: sticky chapter index on the left that follows the scroll

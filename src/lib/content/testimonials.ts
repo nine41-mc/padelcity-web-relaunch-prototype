@@ -118,4 +118,3 @@ export const testimonialsContent = {
   },
 } satisfies Record<Locale, Record<string, string | null>>;
 
-export type TestimonialsCopy = (typeof testimonialsContent)[Locale];

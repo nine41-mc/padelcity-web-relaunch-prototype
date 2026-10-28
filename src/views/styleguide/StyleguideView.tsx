@@ -92,7 +92,8 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
   const event = events.find((e) => e.level && e.image) ?? events[0];
 
   return (
-    <>
+    // Internal page, written in German on every locale → lang="de" for screen readers (WCAG 3.1.2)
+    <div lang="de">
       {/* Intro */}
       <Section tone="purple" className="pt-36 md:pt-44 !pb-16">
         <div className="absolute inset-0 bg-court-lines opacity-50" aria-hidden />
@@ -762,7 +763,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
       {/* Code Connect */}
       <CodeConnectBlock />
-    </>
+    </div>
   );
 }
 

@@ -27,8 +27,6 @@ export const stores = {
   android: "https://play.google.com/store/apps/details?id=de.padelcity.app&hl=de",
 } as const;
 
-export type NavItem = { key: RouteKey };
-
 /** Main navigation (labels in src/lib/i18n/dictionaries.ts → nav.<key>). */
 export const mainNav: RouteKey[] = ["locations", "app", "events", "academy", "magazine", "franchise"];
 export const secondaryNav: RouteKey[] = ["about", "jobs", "partners", "investors", "faq"];

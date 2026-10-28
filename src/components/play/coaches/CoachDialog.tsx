@@ -12,7 +12,7 @@ import { CoachStat, DotGrid } from "./CoachCard";
 import { coachClubKeys, fill, type CoachClubRef } from "./clubs";
 import type { CoachLabels } from "./labels";
 
-// Contentful module: coach (detail: contact + coachTrainingTime offer)
+// Content type coach (detail: contact + coachTrainingTime offer) – opened from coachCarousel and clubCoaches
 /** Coach detail in the shared overlay; focus returns to the trigger (handled by the parent). */
 export function CoachDialog({
   coach,

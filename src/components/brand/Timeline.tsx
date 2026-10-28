@@ -4,7 +4,7 @@ import { brandStrings } from "./strings";
 import { Reveal } from "../ui/Reveal";
 import { cn } from "../ui/cn";
 
-// Contentful module: milestoneTimeline (entries: milestone { year, title, text, highlight })
+// Contentful module: aboutContent / investorsContent – Meilensteine (entries: milestone { year, title, text, highlight })
 
 /**
  * Milestone timeline shared by About and Investors.

@@ -133,22 +133,6 @@ export type Article = {
   body?: string[]; // paragraphs (Contentful rich text later)
 };
 
-export type Job = {
-  id: string;
-  title: string;
-  department: string;
-  location: string;
-  employmentType: string;
-  url: string; // Personio
-};
-
-export type TeamMember = {
-  name: string;
-  role: string;
-  image?: ImageAsset;
-  quote?: string;
-};
-
 export type Partner = {
   name: string;
   logo: string; // /brand/partners/*

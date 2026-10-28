@@ -17,7 +17,8 @@ import type { Locale } from "../i18n/config";
  * A person without a confirmed photo has `image: undefined` → branded placeholder.
  * Coaches: pages load them via `getCoaches(locale)` (@/lib/data) – Contentful first, this list as fallback.
  *   Stats (hoursOnCourt, students), contact (email, phone) and offers are NOT set here: no confirmed
- *   figures/consent → the UI renders placeholders ("–", "Kontakt über den Club", "Preise & Zeiten folgen").
+ *   figures/consent → getCoaches() adds PadelCity's example stats, the UI shows "Kontakt über den Club" and
+ *   "Preise & Zeiten folgen".
  * Owner: people agent. Pages import from here – never invent people elsewhere.
  */
 export type Person = {
@@ -32,7 +33,8 @@ export type Person = {
   linkedin?: string;
   club?: string; // coaches / club staff: home club(s), as named on padelcity.de
   languages?: string[]; // coaches
-  /** Coaches: hours on court / number of students. NO real figures yet → leave undefined (UI shows "–"). Never estimate. */
+  /** Coaches: hours on court / number of students. NO real figures yet → leave undefined; getCoaches() then shows the
+   *  example values given by PadelCity (EXAMPLE_COACH_STATS in src/lib/data/index.ts). Never estimate per coach. */
   hoursOnCourt?: number;
   students?: number;
   /** Coaches: contact data from Contentful (`EmailAddress`, `phoneNumber`). Only with the coach's consent – never invent. */
@@ -54,7 +56,7 @@ export type CoachOffer = { club?: string; times: CoachTrainingSlot[]; prices: Co
 
 const same = (s: string): Record<Locale, string> => ({ de: s, en: s, pl: s });
 
-// Contentful module: founders (Our Founders)
+// Contentful module: peopleGrid on /ueber-uns and /investoren (Our Founders)
 export const founders: Person[] = [
   {
     id: "jonathan-sierck",
@@ -110,7 +112,7 @@ export const founders: Person[] = [
 
 const t = (slug: string) => `/images/team/${slug}.jpg`;
 
-// Contentful module: team (Our A-Team) – order as on padelcity.de
+// Contentful module: peopleGrid on /ueber-uns (Our A-Team) – order as on padelcity.de
 export const team: Person[] = [
   { id: "markus-balzat", name: "Dr. Markus Balzat", role: { de: "CPO & Geschäftsführer", en: "CPO & Managing Director", pl: "CPO i dyrektor zarządzający" }, image: t("markus-balzat"), source: "padelcity.de" },
   { id: "timo-gieb", name: "Timo Gieb", role: { de: "CFO & Geschäftsführer", en: "CFO & Managing Director", pl: "CFO i dyrektor zarządzający" }, image: t("timo-gieb"), source: "padelcity.de" },
@@ -145,7 +147,7 @@ const c = (slug: string) => `/images/academy/real-coaches/${slug}.jpg`;
 const headCoach = same("Head Coach");
 const coach = same("Coach");
 
-// Contentful module: coaches (Academy "Meet your coaches") – order as on padelcity.de/academy
+// Contentful module: coachCarousel (Academy "Meet your coaches") – order as on padelcity.de/academy
 export const coaches: Person[] = [
   { id: "daniel-lingen", name: "Daniel Lingen", role: headCoach, club: "Dortmund", bio: { de: "Sport- und Regionalmanager", en: "Sports & Regional Manager", pl: "Menedżer sportowy i regionalny" }, image: c("daniel-lingen"), source: "padelcity.de" },
   { id: "harry-payrleitner", name: "Harry Payrleitner", role: headCoach, club: "Fürth & Erlangen", bio: { de: "Anlagenleiter Fürth", en: "Club Manager, Fürth", pl: "Kierownik klubu, Fürth" }, image: c("harry-payrleitner"), source: "padelcity.de" },
@@ -168,8 +170,3 @@ export const coaches: Person[] = [
   { id: "heiko-olbrisch", name: "Heiko Olbrisch", role: coach, club: "Dortmund", image: c("heiko-olbrisch"), source: "padelcity.de" },
 ];
 
-/** Coaches whose `club` names the given city/club (case-insensitive substring match, e.g. "Dortmund"). */
-export function coachesForClub(clubName: string): Person[] {
-  const needle = clubName.toLowerCase();
-  return coaches.filter((p) => p.club?.toLowerCase().includes(needle));
-}

@@ -12,10 +12,6 @@ export function distanceKm(a: LatLng, b: LatLng): number {
   return 2 * R * Math.asin(Math.sqrt(h));
 }
 
-export function formatKm(km: number, intl = "de-DE") {
-  return `${km.toLocaleString(intl, { maximumFractionDigits: km < 10 ? 1 : 0 })} km`;
-}
-
 const DAY_KEYS = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"] as const;
 // English labels ("Mon – Fri", "Sat – Sun", "Daily") → German keys
 const EN_ALIAS: Record<string, string> = { Tu: "Di", We: "Mi", Th: "Do", Su: "So" };

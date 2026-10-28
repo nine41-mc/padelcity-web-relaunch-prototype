@@ -93,7 +93,7 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
             </div>
 
             {article.pullQuote && (
-              // Contentful module: pullQuote
+              // Content type article – field pullQuote
               <blockquote className="my-12 border-l-4 border-magenta-500 pl-6 md:my-16 md:pl-10 lg:-mx-12">
                 <p className="font-display text-3xl font-extrabold italic uppercase leading-[1.02] text-brand-gradient md:text-5xl">
                   {open}
@@ -110,7 +110,7 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
             </div>
 
             {article.inlineImage && (
-              // Contentful module: inlineImage
+              // Content type article – field inlineImage
               <figure className="my-12 md:-mx-8 lg:-mx-32">
                 <Media src={article.inlineImage.url} alt={article.inlineImage.alt} className="aspect-[16/9] rounded-[20px]" sizes="(min-width:1200px) 980px, 100vw" />
                 <figcaption className="mt-3 text-sm text-white/70">{article.inlineImage.alt}</figcaption>

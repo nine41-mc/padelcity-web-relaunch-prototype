@@ -3,7 +3,7 @@ import { Reveal } from "../ui/Reveal";
 import { cn } from "../ui/cn";
 import { CountUp } from "./CountUp";
 
-// Contentful module: kpiTiles (entries: kpi { label, value, prefix, suffix, note }) – only approved public figures.
+// Contentful module: aboutContent / investorsContent – Kennzahlen (entries: kpi { label, value, prefix, suffix, note }) – only approved public figures.
 
 /** KPI tiles with animated counters. */
 export function KpiTiles({ items, intl, className }: { items: Kpi[]; intl: string; className?: string }) {

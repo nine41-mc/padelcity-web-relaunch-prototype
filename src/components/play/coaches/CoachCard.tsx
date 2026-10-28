@@ -9,7 +9,7 @@ import { cn } from "@/components/ui/cn";
 import { coachClubKeys, fill, type CoachClubRef } from "./clubs";
 import type { CoachLabels } from "./labels";
 
-// Contentful module: coach (card) – inside coachCarousel
+// Content type coach (card) – inside coachCarousel and clubCoaches
 /** White 3×3 dot grid (Elephant inspo "dot-grid badge"). */
 export function DotGrid({ className }: { className?: string }) {
   return (
