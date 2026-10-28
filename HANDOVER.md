@@ -29,7 +29,7 @@ Komponente Quelle und Figma-Node.
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown |
 | Standorte (`locations/`) | CourtPill, AppBookingBar, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
-| Module (`modules/`, `brand/`) | SectionIntro, NewsletterSignup, PartnerBand |
+| Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher) |
 
 Regel: Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.

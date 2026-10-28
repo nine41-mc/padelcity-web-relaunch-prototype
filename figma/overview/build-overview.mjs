@@ -17,6 +17,7 @@ const AREAS = {
   play: "Events",
   locations: "Standorte",
   modules: "Module",
+  home: "Module",
   a11y: "Barrierefreiheit",
 };
 

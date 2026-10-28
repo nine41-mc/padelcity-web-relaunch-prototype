@@ -279,6 +279,21 @@
     },
     {
       "kind": "component",
+      "id": "club-map",
+      "code": "GermanyMap",
+      "figma": "Club Map",
+      "nodeId": "15914:908",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15914-908",
+      "source": "src/components/home/GermanyMap.tsx",
+      "imports": [
+        "import { GermanyMap } from \"@/components/home/GermanyMap\""
+      ],
+      "area": "Module",
+      "props": [],
+      "notes": "Pins are computed from the club entries (open + planned); labels from homeContent[locale].leader."
+    },
+    {
+      "kind": "component",
       "id": "coach-card",
       "code": "CoachCard",
       "figma": "Coach Card",
@@ -532,6 +547,22 @@
     },
     {
       "kind": "component",
+      "id": "home-hero",
+      "code": "HomeHero",
+      "figma": "Home Hero",
+      "nodeId": "15914:647",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15914-647",
+      "source": "src/components/home/HomeHero.tsx",
+      "imports": [
+        "import { HomeHero } from \"@/components/home/HomeHero\"",
+        "import { homeContent } from \"@/lib/content/home\""
+      ],
+      "area": "Module",
+      "props": [],
+      "notes": "Claim, lead, CTAs and search texts come from homeContent[locale].hero (Contentful module heroHome). Video on tablet/desktop, poster only on phones; the pause button is part of the component."
+    },
+    {
+      "kind": "component",
       "id": "info-tile",
       "code": "InfoTile",
       "figma": "Info Tile",
@@ -696,6 +727,50 @@
         }
       ],
       "notes": ""
+    },
+    {
+      "kind": "component",
+      "id": "page-hero",
+      "code": "PageHero",
+      "figma": "Page Hero",
+      "nodeId": "15913:669",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15913-669",
+      "source": "src/components/modules/PageHero.tsx",
+      "imports": [
+        "import { PageHero } from \"@/components/modules/PageHero\""
+      ],
+      "area": "Module",
+      "props": [
+        {
+          "name": "Align",
+          "kind": "Variante"
+        },
+        {
+          "name": "Eyebrow",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Lead",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Actions",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Lead text",
+          "kind": "Text"
+        },
+        {
+          "name": "Label",
+          "kind": "Textebene"
+        },
+        {
+          "name": "Headline",
+          "kind": "Textebene"
+        }
+      ],
+      "notes": "Headline as children with one <Accent> word; image from Contentful (without image: Brandbook gradient)."
     },
     {
       "kind": "component",

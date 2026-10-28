@@ -37,6 +37,7 @@ Listed in `EXCEPTIONS` in the script. Add new ones there – with a reason – i
 | Exception | Reason |
 |---|---|
 | Store Badge, Voucher Card: fixed colours | brand artwork, hard-coded in the code as well |
+| Club Map: fixed colours, no text styles, contrast not checked | map illustration from the code (SVG); the grey country names are decorative |
 | `Breakpoint/*` unused | documentation only – Figma has no property to bind them to |
 | Testimonial Card › Quote without text style | mixes two weights on purpose |
 | Map Pin › Body radius not bound | teardrop shape from `border-radius: 50%`, not a token |

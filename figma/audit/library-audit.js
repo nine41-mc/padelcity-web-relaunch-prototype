@@ -5,7 +5,9 @@
 
 const EXCEPTIONS = {
   // Brand artwork with fixed colours, as in the code
-  artworkComponents: ["Store Badge", "Voucher Card"],
+  artworkComponents: ["Store Badge", "Voucher Card", "Club Map"],
+  // Illustrations whose labels are decorative (grey neighbour-country names on the map, white 40 % as in code)
+  contrastSkipComponents: ["Club Map"],
   // Documentation-only variables: there is no Figma property to bind them to
   unusedVariables: [/^Breakpoint\//],
   // Text that mixes two weights on purpose and therefore has no single text style
@@ -178,6 +180,7 @@ const backgrounds = (text, root) => {
   return bgs;
 };
 for (const c of libraryComponents) {
+  if (EXCEPTIONS.contrastSkipComponents.includes(c.name)) continue;
   for (const v of c.type === "COMPONENT_SET" ? c.children : [c]) {
     if (EXCEPTIONS.contrastSkipVariant.test(v.name)) continue;
     for (const t of v.findAll((n) => n.type === "TEXT" && n.visible && n.characters.trim() && n.fillStyleId !== EXCEPTIONS.gradientTextStyle)) {
