@@ -49,10 +49,14 @@ jobs:
           node-version: '24'
           cache: npm
       - run: npm ci --no-audit --no-fund
-      # No basePath and no Contentful: QA checks the mock data, like a local run.
+      # Same data as the deploy (Contentful when the secrets are set, otherwise mock data) – the redirect targets
+      # and the club pages only exist with the Contentful clubs. No basePath: QA serves the export from /.
       - name: Build (static export)
         env:
           NEXT_TELEMETRY_DISABLED: '1'
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ENVIRONMENT_ID: ${{ vars.CONTENTFUL_ENVIRONMENT_ID || 'master' }}
+          CONTENTFUL_DELIVERY_TOKEN: ${{ secrets.CONTENTFUL_DELIVERY_TOKEN }}
         run: npm run build
       - uses: actions/upload-artifact@v7
         with:

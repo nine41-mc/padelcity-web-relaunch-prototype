@@ -37,6 +37,10 @@ Interaktionen) oder `--widths 768`; `--no-interactions` lässt die Interaktionen
 einen anderen Browser. Erstmalig `npx playwright install chromium webkit firefox` ausführen. In Firefox gibt es
 keine Mobil-Emulation (kein Touch, keine mobile User-Agent) – nur die Breite.
 
+**Daten:** Der Build nimmt Contentful, wenn `.env.local` (lokal) bzw. die Secrets (CI) gesetzt sind, sonst die
+Mock-Daten. Die QA immer gegen einen Contentful-Build laufen lassen – mit Mock-Daten fehlen Clubs, und deren
+Weiterleitungsziele melden 404.
+
 **CI:** `.github/workflows/checks.yml` führt Lint, Typen, `figma:check`, `tokens:check` und `npm run qa` (je Browser
 ein Job) bei jedem Push aus; `deploy.yml` deployt `main` nur, wenn alle grün sind. Bei Funden hängt der Job den
 Bericht als Artefakt `qa-report-<browser>` an. Nicht gegen den Dev-Server testen – der hängt nach einigen hundert

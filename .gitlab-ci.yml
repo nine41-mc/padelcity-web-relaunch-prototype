@@ -57,13 +57,10 @@ code:
     - npm run figma:check
     - npm run tokens:check
 
-# Export for the QA: no basePath and no Contentful – QA checks the mock data, like a local run
+# Export for the QA: same data as Pages (Contentful when the variables are set), but no basePath – QA serves it from /
 export:
   stage: build
   extends: .licensed-fonts
-  variables:
-    CONTENTFUL_SPACE_ID: ""
-    CONTENTFUL_DELIVERY_TOKEN: ""
   script:
     - npm ci --no-audit --no-fund
     - npm run build
