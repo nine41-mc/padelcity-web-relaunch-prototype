@@ -20,6 +20,9 @@ export function Reveal({
   const reduce = systemReduce || motionOff;
   return (
     <motion.div
+      // data-reveal: the static HTML ships the start state (opacity 0) – globals.css shows it without the fade when
+      // motion is reduced or off, SiteShell's <noscript> when JS never runs
+      data-reveal=""
       className={className}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}

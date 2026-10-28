@@ -52,6 +52,10 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
       <body className="antialiased">
         {/* display preferences of the accessibility panel (data-a11y-* on <html>), applied before paint */}
         <script dangerouslySetInnerHTML={{ __html: a11yPrePaintScript }} />
+        {/* without JS the fade-in never runs – show Reveal content (see globals.css) */}
+        <noscript>
+          <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
         {bilingual ? (
           <>
             <script dangerouslySetInnerHTML={{ __html: detectLocaleScript }} />

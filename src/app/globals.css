@@ -336,6 +336,13 @@ html[data-a11y-motion="off"] *::after {
   scroll-behavior: auto !important;
 }
 
+/* Reveal (fade-up on scroll) renders its start state into the static HTML. Reduced or switched-off motion shows the
+   content at once – before JS hydrates, so slow devices never show half-transparent text. No JS: SiteShell <noscript>. */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+html[data-a11y-motion="off"] [data-reveal] { opacity: 1 !important; transform: none !important; }
+
 /* High contrast: full-white text, clearer borders, darker image overlays, underlined text links */
 html[data-a11y-contrast="high"] [class*="text-white/"] { color: #fff !important; }
 html[data-a11y-contrast="high"] [class*="border-white/"] { border-color: rgb(255 255 255 / 0.7) !important; }
