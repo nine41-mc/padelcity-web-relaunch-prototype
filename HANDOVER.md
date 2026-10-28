@@ -65,8 +65,8 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 | Tokens Figma ↔ Theme | `npm run tokens:check` |
 | Figma-Library (Variablen, Bindungen, Kontrast, Styles) | `figma/audit/library-audit.js` per `use_figma`, siehe `figma/audit/README.md` |
 
-Stand 28.10.2026: alle 205 Seiten (DE/EN/PL) in 390 und 1440 px geprüft – Konsolenfehler, horizontales Scrollen und
-axe (WCAG 2.2 AA, `@axe-core/playwright`). Die Funde sind behoben; die Nachprüfung über alle Seitentypen ist ohne Fund.
+Stand 29.10.2026: alle 205 Seiten (DE/EN/PL) des statischen Exports in 390 und 1440 px geprüft – keine
+Konsolenfehler, kein horizontales Scrollen, keine kaputten Bilder, kein axe-Fund (WCAG 2.2 AA, `@axe-core/playwright`).
 Im Produktiv-Build gehört dieser Lauf als CI-Schritt dazu.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
