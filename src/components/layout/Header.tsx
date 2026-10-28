@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -12,6 +11,7 @@ import { cn } from "../ui/cn";
 import { Logo } from "./Logo";
 import { LanguageSwitch } from "./LanguageSwitch";
 import { MobileMenu } from "./MobileMenu";
+import { NavLink } from "./NavLink";
 
 export function Header() {
   const pathname = usePathname() ?? "/";
@@ -67,17 +67,9 @@ export function Header() {
               const active = pathname.startsWith(target);
               return (
                 <li key={key}>
-                  <Link
-                    href={target}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "relative rounded-full px-2.5 py-2 text-[15px] font-semibold uppercase tracking-[0.06em] transition-colors xl:px-4 xl:text-base",
-                      active ? "text-white" : "text-white/85 hover:text-white",
-                    )}
-                  >
+                  <NavLink href={target} active={active}>
                     {t.nav[key]}
-                    {active && <span className="absolute inset-x-4 -bottom-0.5 h-0.5 rounded-full bg-brand-gradient" />}
-                  </Link>
+                  </NavLink>
                 </li>
               );
             })}

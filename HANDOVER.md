@@ -25,12 +25,15 @@ Komponente Quelle und Figma-Node.
 | Bereich | Komponenten (Datei) |
 |---|---|
 | Basis (`ui/`) | Button (4 Varianten), Chip, Eyebrow + Headline + Accent (`Headline.tsx`), Section, Select, SearchInput, FaqItem/FaqGroup, CardArrow, CarouselArrow, InfoTile, ShareButton, Overlay/OverlaySection, StoreBadges, Marquee (Ticker) |
-| Layout (`layout/`) | Header, MobileMenu, LanguageSwitch, Footer |
+| Layout (`layout/`) | Header mit NavLink (Nav Item), MobileMenu, LanguageSwitch, Footer |
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown |
 | Standorte (`locations/`) | CourtPill, AppBookingBar, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
 | Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher) |
+
+Seitenmodule (Header, Home Hero, Page Hero, Section, Partner Band, Footer) haben in Figma die Variante
+Device=Desktop/Mobile; Templates für Startseite und Event-Detail liegen auf der Seite „🧱 Templates“ in 1440 und 390 px.
 
 Regel: Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
 Der Styleguide (`/styleguide`) zeigt alle Muster mit Zuständen; `/styleguide#code-connect` die vollständige Zuordnung
@@ -87,3 +90,20 @@ Code-Connect-Schreibrecht.
   Status steht als Open Status in der Library.
 - **Personenfotos:** ohne bestätigtes Foto zeigt die Person Card den Marken-Platzhalter mit Initialen.
 - **Dev-Warnung:** der eigene `next/image`-Loader meldet im Dev-Modus eine Warnung; im statischen Export ohne Folgen.
+
+## 8. Offene Inhalte (nach Zuständigkeit)
+
+Im Code als `TODO(content)` markiert (`grep -rn "TODO(content)" src`); hier nach Ansprechpartner sortiert.
+
+| Wer | Was | Stelle im Code |
+|---|---|---|
+| Events-Team | finale Texte, Zeitpläne und Partner der Hero-Events; Ticketing („Zuschauer frei“); Preisgeld (Platzhalter `[XX.XXX] €`) | `lib/content/events.ts` |
+| Ops / AGB | Fristen für anteilige Zahlung; Storno-Fenster und Gebühren; Leihschläger und -bälle in jedem Club; Partner-Benefits je Club | `lib/content/faq.ts` |
+| HR | Benefits; Personio-Subdomain und Karriereseiten-Design (danach Vorschau entfernen) | `lib/content/jobs.ts`, `components/brand/PersonioJobs.tsx` |
+| Franchise-Team | Mindestanzahl Courts, Deckenhöhe, Investitionsrahmen – erst nach Freigabe | `lib/content/franchise.ts` |
+| Investor Relations | Downloads als echte Dateien; eigenes IR-Postfach; Series-A-Details nur nach Freigabe | `lib/content/investors.ts`, `views/home/HomeView.tsx` |
+| Academy | Texte prüfen; Preisliste vor Go-live bestätigen; Benefit-Regeln je Programm; welche Clubs Academy anbieten; YouTube-IDs „Learn with PadelCity“ | `lib/content/academy.ts`, `views/academy/AcademyView.tsx` |
+| Marketing / Brand | Texte der App-Seite; Zahlungsarten; Timeline und Werte gegen das Brandbook; Personas Sponsoring; Einwilligungen der Testimonials | `lib/content/app.ts`, `about.ts`, `sponsoring.ts`, `testimonials.ts` |
+| Content / Fotos & Video | Galerien je Club (5+ Bilder) aus Contentful; Inline-Bilder und PadelCity-TV-IDs im Magazin; echtes Kinder-Foto; Social Wall live (Instagram API) | `views/locations/ClubView.tsx`, `lib/content/magazin.ts`, `components/modules/SocialWall.tsx` |
+| Clubs / Daten | Ausstattung lokalisiert aus Contentful; Eröffnungsmonate geplanter Clubs (heute Platzhalter) | `components/locations/AppBooking.tsx`, `lib/data/mock/supplement.ts` |
+| Technik | Google-Places-API-Key für Bewertungen; Magazin hinter die Datenschicht (`TODO(data)`) | `lib/data/google-reviews.ts`, `views/home/HomeView.tsx`, `views/magazine/MagazineView.tsx` |

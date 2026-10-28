@@ -668,6 +668,30 @@
     },
     {
       "kind": "component",
+      "id": "nav-item",
+      "code": "NavLink",
+      "figma": "Nav Item",
+      "nodeId": "15918:672",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15918-672",
+      "source": "src/components/layout/NavLink.tsx",
+      "imports": [
+        "import { NavLink } from \"@/components/layout/NavLink\""
+      ],
+      "area": "Layout",
+      "props": [
+        {
+          "name": "Label",
+          "kind": "Text"
+        },
+        {
+          "name": "State",
+          "kind": "Variante"
+        }
+      ],
+      "notes": "Rendered by <Header /> for every main navigation entry; active = the current page (aria-current=\"page\"). \"Hover\" is the CSS hover state, no prop."
+    },
+    {
+      "kind": "component",
       "id": "newsletter",
       "code": "NewsletterSignup",
       "figma": "Newsletter",

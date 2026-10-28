@@ -75,7 +75,7 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
 4. **Karten-Provider** – CARTO verlangt inzwischen API-Key; Prototyp nutzt abgedunkelte OSM-Kacheln. Anbieter + Key festlegen.
 5. **Google-Bewertungen** – Rating ist Mock; Quelle (Places API) + Caching/Lizenz klären.
 6. **Tracking/Consent** – CTAs tragen `data-track`-Attribute; GA4 Server-Side + CMP noch nicht eingebaut.
-7. **Inhalte** – `TODO(content)`-Stellen (Jobs/Personio, Franchise-Konditionen, Rechtstexte, YouTube-IDs); einige Clubs mit generischen Fotos (`public/images/SOURCES.md`).
+7. **Inhalte** – `TODO(content)`-Stellen nach Zuständigkeit in `HANDOVER.md` (Abschnitt 8); einige Clubs mit generischen Fotos (`public/images/SOURCES.md`).
 8. **Ziel-Stack** – Der Prototyp läuft auf Next.js 15.5 (alle Audit-Findings behoben bis auf `zod` in der Code-Connect-CLI, nur Dev-Tool). Für den Produktiv-Build direkt auf Next.js 16 aufsetzen.
 
 ## Figma Code Connect

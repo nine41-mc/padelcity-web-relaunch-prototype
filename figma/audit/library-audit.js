@@ -136,8 +136,9 @@ for (const c of allComponents) {
     const shaped = ["ELLIPSE", "VECTOR", "TEXT", "BOOLEAN_OPERATION", "LINE", "POLYGON", "STAR"].includes(n.type);
     if ("topLeftRadius" in n && !shaped && n.cornerRadius !== 0 && !bv.topLeftRadius && !EXCEPTIONS.rawRadius.includes(where)) add("Radius nicht gebunden", where);
     if (n.layoutMode && n.layoutMode !== "NONE") {
-      for (const k of ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom", "itemSpacing"]) {
+      for (const k of ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom", "itemSpacing", "counterAxisSpacing"]) {
         if (k === "itemSpacing" && n.primaryAxisAlignItems === "SPACE_BETWEEN") continue;
+        if (k === "counterAxisSpacing" && n.layoutWrap !== "WRAP") continue;
         if (n[k] > 0 && !bv[k]) add("Abstand nicht gebunden", `${where} (${k})`);
       }
     }
