@@ -125,7 +125,10 @@ const ownNodes = (c) => {
   visit(c);
   return out;
 };
-const SIDES = ["strokeWeight", "strokeTopWeight", "strokeRightWeight", "strokeBottomWeight", "strokeLeftWeight"];
+// The REST API names bindings differently from the Plugin API: stroke weights sit under individualStrokeWeights,
+// corner radii under rectangleCornerRadii (RECTANGLE_TOP_LEFT_CORNER_RADIUS …) – see @figma/rest-api-spec
+const strokeBound = (bv) => bv.strokeWeight || Object.keys(bv.individualStrokeWeights ?? {}).length > 0;
+const radiusBound = (bv) => bv.topLeftRadius || Object.keys(bv.rectangleCornerRadii ?? {}).length > 0;
 const SHAPED = ["ELLIPSE", "VECTOR", "TEXT", "BOOLEAN_OPERATION", "LINE", "REGULAR_POLYGON", "STAR"];
 
 for (const c of allComponents) {
@@ -153,9 +156,9 @@ for (const c of allComponents) {
       }
     }
     if (!inLibrary || artwork || isSetFrame) continue;
-    if (n.strokes?.length && n.type !== "VECTOR" && !SIDES.some((s) => bv[s])) add("Strichstärke nicht gebunden", where);
+    if (n.strokes?.length && n.type !== "VECTOR" && !strokeBound(bv)) add("Strichstärke nicht gebunden", where);
     const radius = n.cornerRadius || n.rectangleCornerRadii?.some((r) => r > 0);
-    if (!SHAPED.includes(n.type) && radius && !bv.topLeftRadius && !EXCEPTIONS.rawRadius.includes(where)) add("Radius nicht gebunden", where);
+    if (!SHAPED.includes(n.type) && radius && !radiusBound(bv) && !EXCEPTIONS.rawRadius.includes(where)) add("Radius nicht gebunden", where);
     if (n.layoutMode && n.layoutMode !== "NONE") {
       for (const k of ["paddingLeft", "paddingRight", "paddingTop", "paddingBottom", "itemSpacing", "counterAxisSpacing"]) {
         if (k === "itemSpacing" && n.primaryAxisAlignItems === "SPACE_BETWEEN") continue;
