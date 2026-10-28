@@ -64,10 +64,10 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 | Code-Connect-Templates und -Übersicht | `npm run figma:check` |
 | Tokens Figma ↔ Theme | `npm run tokens:check` |
 | Figma-Library (Variablen, Bindungen, Kontrast, Styles) | `figma/audit/library-audit.js` per `use_figma`, siehe `figma/audit/README.md` |
+| Seiten: Links, Sitemap, Konsole, Layout, Bilder, axe (WCAG 2.2 AA) | `npm run build && npm run qa` |
 
-Stand 29.10.2026: alle 205 Seiten (DE/EN/PL) des statischen Exports in 390 und 1440 px geprüft – keine
-Konsolenfehler, kein horizontales Scrollen, keine kaputten Bilder, kein axe-Fund (WCAG 2.2 AA, `@axe-core/playwright`).
-Im Produktiv-Build gehört dieser Lauf als CI-Schritt dazu.
+Die vollständige Checkliste mit Reihenfolge steht in `QA.md`. Stand 29.10.2026: `npm run qa` über alle 205 Seiten
+(DE/EN/PL) in 390 und 1440 px ohne Fund. Im Produktiv-Build gehört dieser Lauf als CI-Schritt dazu.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
 Code-Connect-Schreibrecht.

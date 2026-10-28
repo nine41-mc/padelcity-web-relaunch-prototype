@@ -67,6 +67,10 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
 - Schriften wie in der App: Söhne Schmal Fett Kursiv (Headlines), Good Brush (Akzentwort), Poppins (Text).
 - Icons: App-Icons aus `mobile-app-flutter/assets/icons` (als CSS-Mask), sonst lucide.
 
+## Qualität
+
+Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten: Links, Konsole, Layout, Bilder, axe).
+
 ## Offene Themen für den Workshop
 
 1. **Contentful-Zugriff** – direkt (read-only Delivery API beim Build) oder über den PadelCity-API-Layer, wie Elephant vorschlägt? Für Marketing-Inhalte und Club-Stammdaten ist der direkte Weg einfacher und berührt das Buchungssystem nicht.
