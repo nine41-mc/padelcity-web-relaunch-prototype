@@ -42,8 +42,10 @@ cache:
   before_script:
     - test -f "$FONTS_DEPLOY_KEY" || { echo "CI/CD-Variable FONTS_DEPLOY_KEY fehlt (siehe Kopf dieser Datei)."; exit 1; }
     - apt-get update -qq && apt-get install -y -qq git openssh-client > /dev/null
-    - chmod 600 "$FONTS_DEPLOY_KEY"
-    - GIT_SSH_COMMAND="ssh -i $FONTS_DEPLOY_KEY -o StrictHostKeyChecking=accept-new" git clone --depth 1 git@github.com:nine41-mc/padelcity-brand-fonts.git .brand-fonts
+    # GitLab drops the trailing newline of file variables – ssh then cannot read the key ("error in libcrypto")
+    - KEY_FILE="$(mktemp)" && { cat "$FONTS_DEPLOY_KEY"; echo; } > "$KEY_FILE" && chmod 600 "$KEY_FILE"
+    - GIT_SSH_COMMAND="ssh -i $KEY_FILE -o StrictHostKeyChecking=accept-new" git clone --depth 1 git@github.com:nine41-mc/padelcity-brand-fonts.git .brand-fonts
+    - rm -f "$KEY_FILE"
     - mkdir -p src/app/fonts/licensed
     - cp .brand-fonts/GoodBrush.otf .brand-fonts/SoehneSchmal-FettKursiv.ttf src/app/fonts/licensed/
     - rm -rf .brand-fonts
