@@ -709,7 +709,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       </Block>
 
       {/* Figma */}
-      <Block id="figma" eyebrow="13" title="Abgleich mit der Figma-Library" lead="Referenz ist „PadelCity [Master]“ – dieselbe Library nutzen App und Admin-Portal (dort ergänzt um shadcn). Elephants Website-Entwurf hat noch keine eigene Library.">
+      <Block id="figma" eyebrow="13" title="Abgleich mit der Figma-Library" lead="Die Website hat eine eigene Library („PadelCity Website Relaunch“), abgeleitet aus diesem Prototyp und wertgleich mit dem Theme. Referenz für Farben und Schriften bleibt „PadelCity [Master]“ – dieselbe Library nutzen App und Admin-Portal (dort ergänzt um shadcn).">
         <H3>Was übereinstimmt</H3>
         <Table
           head={["Thema", "Website", "Figma-Library"]}
@@ -739,22 +739,25 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Highlight-Farbe", "Optic Yellow #DFFF4F", "nicht vorhanden", "Neu für den Relaunch"],
           ]}
         />
-        <H3>Vorschlag für die Library</H3>
+        <H3>Was die Website-Library ergänzt</H3>
         <ul className="grid gap-3 md:grid-cols-2">
           {[
-            "Optic Yellow (300–600) als neue Farbfamilie plus semantisches Token „highlight“ aufnehmen",
-            "Website-Verlauf (#DC05A1) als eigenen Paint-Style „gradient-web“ ergänzen oder den bestehenden angleichen",
-            "Radius 12, 32 und „pill“ ergänzen",
-            "Website-Textstyles (Headline xl/lg/md/sm, Eyebrow, Lead, Label) als eigene Gruppe „Web“ anlegen",
-            "Button-Varianten der Website (primary-white, gradient, outline-white, optic) als Komponenten-Set",
-            "Benennung Ink ↔ Gray-Blue vereinheitlichen (Website ink-800 = gray-blue-900)",
+            "Optic Yellow als Farbfamilie und semantisches Token „Highlight“",
+            "Website-Verlauf (#DC05A1 → #8512B5) als Paint-Style „Gradient/Brand“, Brandbook-Verlauf als „Gradient/Brandbook“",
+            "Radien 12, 32 und „full“ sowie Karten-, Modul- und Gutschein-Radien",
+            "Website-Textstyles (Display, Accent, Button, Label, Body) mit Responsive-Modi Desktop, Tablet und Mobil",
+            "Button-Varianten der Website (Primary, Gradient, Outline, Optic) als Komponenten-Sets",
+            "Benennung Ink statt Gray-Blue – die Werte sind identisch",
           ].map((t) => (
             <li key={t} className="flex gap-3 rounded-[16px] border border-white/10 bg-ink-700 p-4 text-white/85">
-              <ArrowUpRight className="mt-0.5 size-5 shrink-0 text-white" aria-hidden /> {t}
+              <Check className="mt-0.5 size-5 shrink-0 text-white" aria-hidden /> {t}
             </li>
           ))}
         </ul>
-        <p className="mt-6 text-sm text-white/60">Stand des Abgleichs: 15.10.2026.</p>
+        <p className="mt-6 max-w-3xl text-white/75">
+          Offen: eine gemeinsame Core-Library für App, Admin-Portal und Website, aus der die Website-Library ihre Basis-Tokens bezieht.
+        </p>
+        <p className="mt-6 text-sm text-white/60">Stand des Abgleichs: 28.10.2026.</p>
       </Block>
 
       {/* Code Connect */}
