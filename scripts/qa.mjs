@@ -266,6 +266,12 @@ const contextFor = (engine, width, extra = {}) => {
   return { viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce", ...permissions, ...extra };
 };
 const label = (engine) => (engines.length > 1 ? ` ${engine}` : "");
+// For contrast findings: what axe measured (text and background colour, ratio) – tells a real issue from a
+// rendering difference between environments
+const measured = (v) => {
+  const d = v.id === "color-contrast" ? v.nodes[0].any?.[0]?.data : null;
+  return d ? ` (${d.fgColor} auf ${d.bgColor}, ${d.contrastRatio}:1, nötig ${d.expectedContrastRatio})` : "";
+};
 const check = async (ctx, path, width, engine) => {
   const page = await ctx.newPage();
   const where = `${path} @${width}${label(engine)}`;
@@ -294,7 +300,7 @@ const check = async (ctx, path, width, engine) => {
   if (dom.overflow > 0) add("Horizontales Scrollen", where, `${dom.overflow} px`);
   for (const src of dom.broken) add("Bild lädt nicht", where, src.slice(0, 120));
   const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
-  for (const v of axe.violations) add(`axe: ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}`);
+  for (const v of axe.violations) add(`axe: ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}${measured(v)}`);
   await page.close();
 };
 const checkPages = async (browser, engine) => {
