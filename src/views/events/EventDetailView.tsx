@@ -22,6 +22,7 @@ import { PartnerBand } from "@/components/modules/PartnerBand";
 import { EventCard } from "@/components/cards/EventCard";
 import { Countdown } from "@/components/play/Countdown";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
+import { CancellationTable, EventSignupCard, FactRow } from "@/components/events/EventFacts";
 
 /* ---------- Route helpers (used by the DE/EN wrappers) ---------- */
 
@@ -160,13 +161,13 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
               )}
               {/* When & where */}
               <dl className="mt-8 grid gap-5 border-t border-white/10 pt-6 sm:grid-cols-3">
-                <Fact icon={<CalendarDays className="size-5" />} label={t.detail.start}>
+                <FactRow icon={<CalendarDays className="size-5" />} label={t.detail.start}>
                   {dateTime(event.start)}
-                </Fact>
-                <Fact icon={<CalendarCheck className="size-5" />} label={t.detail.end}>
+                </FactRow>
+                <FactRow icon={<CalendarCheck className="size-5" />} label={t.detail.end}>
                   {dateTime(event.end ?? event.start)}
-                </Fact>
-                <Fact icon={<MapPin className="size-5" />} label={t.detail.place}>
+                </FactRow>
+                <FactRow icon={<MapPin className="size-5" />} label={t.detail.place}>
                   {club ? (
                     <>
                       <Link href={href(locale, "locations", club.slug)} className="font-semibold underline-offset-4 hover:underline" data-track="club_link_click">
@@ -179,38 +180,35 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
                   ) : (
                     where
                   )}
-                </Fact>
+                </FactRow>
               </dl>
             </div>
 
             {/* Contentful module: eventSignupCard – sign-up facts and sign-up. Phone: below the intro; desktop: sticky right column */}
             <aside className="lg:sticky lg:top-28 lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:self-start">
-              <div className="rounded-[28px] border border-white/10 bg-ink-700 pad-panel">
-                <dl className="space-y-4">
-                  <Fact icon={<Users className="size-5" />} label={t.detail.format}>
+              <EventSignupCard
+                price={price}
+                priceNote={event.pricePerPerson ? t.detail.perPerson : undefined}
+                signup={<EventSignup eventId={event.id} locale={locale} size="md" showLabel />}
+                note={t.detail.appOnly}
+              >
+                  <FactRow icon={<Users className="size-5" />} label={t.detail.format}>
                     {event.personsPerTeam ? t.detail.team(event.personsPerTeam) : t.detail.single}
-                  </Fact>
-                  <Fact icon={<Clock className="size-5" />} label={t.detail.deadline}>
+                  </FactRow>
+                  <FactRow icon={<Clock className="size-5" />} label={t.detail.deadline}>
                     {deadline}
-                  </Fact>
+                  </FactRow>
                   {event.maxParticipants !== undefined && (
-                    <Fact icon={<UsersRound className="size-5" />} label={t.detail.maxParticipants}>
+                    <FactRow icon={<UsersRound className="size-5" />} label={t.detail.maxParticipants}>
                       {event.maxParticipants}
-                    </Fact>
+                    </FactRow>
                   )}
                   {freePlaces !== undefined && (
-                    <Fact icon={<Ticket className="size-5" />} label={t.detail.freePlaces}>
+                    <FactRow icon={<Ticket className="size-5" />} label={t.detail.freePlaces}>
                       {freePlaces > 0 ? freePlaces : <span className="font-semibold text-magenta-300">{t.detail.fullyBooked}</span>}
-                    </Fact>
+                    </FactRow>
                   )}
-                </dl>
-                <p className="mt-6 flex items-baseline gap-2 border-t border-white/10 pt-6">
-                  <span className="font-display text-4xl font-extrabold italic">{price}</span>
-                  {event.pricePerPerson ? <span className="text-sm text-white/70">{t.detail.perPerson}</span> : null}
-                </p>
-                <EventSignup eventId={event.id} locale={locale} size="md" showLabel className="mt-6" />
-                <p className="mt-4 text-center text-sm text-white/70">{t.detail.appOnly}</p>
-              </div>
+              </EventSignupCard>
             </aside>
 
             {/* Contentful module: formatSteps (default steps unless the event brings its own) */}
@@ -228,7 +226,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
               )}
               {/* Cancellation policy as in the app – only for the fixed-time rule; rules counted from the sign-up stay hidden for now */}
               {(event.freeCancellation ?? "UNTIL_24H_BEFORE_EVENT") === "UNTIL_24H_BEFORE_EVENT" && (
-                <CancellationTable cutoff={new Date(new Date(event.start).getTime() - 24 * 3600 * 1000)} locale={locale} t={t} />
+                <CancellationTable cutoff={new Date(new Date(event.start).getTime() - 24 * 3600 * 1000)} locale={locale} />
               )}
               <ol className="grid gap-4 md:grid-cols-3">
                 {steps.map((s, i) => (
@@ -306,51 +304,5 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
         <AppCta clubId={club?.id} locale={locale} />
       </Section>
     </>
-  );
-}
-
-function Fact({ icon, label, children }: { icon: React.ReactNode; label: string; children: React.ReactNode }) {
-  return (
-    <div className="flex items-start gap-3">
-      <span className="mt-0.5 text-white/70" aria-hidden>
-        {icon}
-      </span>
-      <div>
-        <dt className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{label}</dt>
-        <dd className="mt-0.5">{children}</dd>
-      </div>
-    </div>
-  );
-}
-
-type T = (typeof eventsContent)[Locale];
-
-/** Cancellation policy (APL terms): free refund until the cut-off, full fee from then on. */
-function CancellationTable({ cutoff, locale, t }: { cutoff: Date; locale: Locale; t: T }) {
-  const intl = localeTags[locale].intl;
-  const day = cutoff.toLocaleDateString(intl, { day: "numeric", month: "short" });
-  const time = `${String(cutoff.getHours()).padStart(2, "0")}:${String(cutoff.getMinutes()).padStart(2, "0")}${t.date.time ? ` ${t.date.time}` : ""}`;
-  const rows = [
-    { when: t.detail.until, text: t.detail.freeRefund, free: true },
-    { when: t.detail.from, text: t.detail.fullFee, free: false },
-  ];
-  return (
-    <section className="mb-8" aria-labelledby="cancellation-title">
-      <h2 id="cancellation-title" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">
-        {t.detail.cancellationTitle}
-      </h2>
-      <dl className="mt-3 divide-y divide-white/10 rounded-[20px] border border-white/10 bg-ink-700">
-        {rows.map((r) => (
-          <div key={r.when} className="grid grid-cols-[7rem_1fr] items-center gap-4 p-5 md:grid-cols-[9rem_1fr]">
-            <dt className="text-sm text-white/70">
-              {r.when}
-              <span className="block text-lg font-semibold text-white">{day}</span>
-              {time}
-            </dt>
-            <dd className={r.free ? "text-lg font-semibold text-success" : "text-white/85"}>{r.text}</dd>
-          </div>
-        ))}
-      </dl>
-    </section>
   );
 }

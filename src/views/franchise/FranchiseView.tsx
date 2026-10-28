@@ -13,6 +13,7 @@ import { ClubPoster } from "@/components/home/ClubShowcase";
 import { SectionIntro } from "@/components/brand/SectionIntro";
 import { BrandIcon } from "@/components/brand/BrandIcon";
 import { LeadForm } from "@/components/brand/LeadForm";
+import { InfoTile } from "@/components/ui/InfoTile";
 
 // Contentful page "franchise": pageHero, benefitsGrid, partnershipSplit, processSteps, requirements, clubList (franchise filter), leadForm
 
@@ -164,19 +165,19 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           {t.requirements.items.map((r, i) => (
             <li key={r.title}>
               <Reveal delay={i * 0.06} className="h-full">
-                <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-ink-700 pad-card">
-                  <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{r.title}</p>
-                  <p className="mt-4 font-display text-4xl font-extrabold italic uppercase text-brand-gradient md:text-3xl lg:text-5xl">
-                    {/* Söhne Schmal italic has no clean "×" – set it upright in Poppins with some air */}
-                    {r.value.split("×").map((part, i) => (
+                <InfoTile
+                  label={r.title}
+                  text={r.text}
+                  value={
+                    // Söhne Schmal italic has no clean "×" – set it upright in Poppins with some air
+                    r.value.split("×").map((part, i) => (
                       <span key={i}>
                         {i > 0 && <span className="mx-[0.12em] inline-block align-[0.08em] font-sans text-[0.6em] font-semibold not-italic">×</span>}
                         {part.trim()}
                       </span>
-                    ))}
-                  </p>
-                  <p className="mt-4 text-white/70">{r.text}</p>
-                </div>
+                    ))
+                  }
+                />
               </Reveal>
             </li>
           ))}

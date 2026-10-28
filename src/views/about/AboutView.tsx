@@ -18,6 +18,7 @@ import { Timeline } from "@/components/brand/Timeline";
 import { PeopleGrid } from "@/components/brand/PeopleGrid";
 import { BrandIcon } from "@/components/brand/BrandIcon";
 import { Testimonials } from "@/components/modules/Testimonials";
+import { InfoTile } from "@/components/ui/InfoTile";
 
 // Contentful page "about": pageHero, storyBlock + founderQuote, visionMission, valuesGrid, pillarsGrid, peopleGrid (founders),
 // peopleGrid (team / Faces of PadelCity), testimonials, milestoneTimeline, jobsTeaser
@@ -101,11 +102,7 @@ export function AboutView({ locale }: { locale: Locale }) {
         <div className="grid gap-4 md:grid-cols-2 md:gap-5">
           {t.vision.map((b, i) => (
             <Reveal key={b.k} delay={i * 0.08} className="h-full">
-              <div className="h-full rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
-                <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{b.k}</p>
-                <p className="mt-4 font-display text-4xl font-extrabold italic uppercase leading-none text-brand-gradient md:text-5xl">{b.t}</p>
-                <p className="mt-5 text-lg text-white/75">{b.d}</p>
-              </div>
+              <InfoTile size="lg" label={b.k} value={b.t} text={b.d} />
             </Reveal>
           ))}
         </div>

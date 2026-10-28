@@ -12,6 +12,7 @@ import { formatPrice } from "@/lib/format";
 import { AppIcon } from "@/components/ui/Icon";
 import { cn } from "@/components/ui/cn";
 import { sheetChip } from "./FilterSheet";
+import { CourtPill } from "./CourtPill";
 
 const card = "rounded-[20px] border border-white/10 bg-ink-700 pad-card";
 const label = "flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70";
@@ -60,9 +61,8 @@ export function ClubPricesCourts({ club, locale }: { club: Club; locale: Locale 
             {/* Pills hug their label (no stretched grid cells with empty space on the right) */}
             <ul className="mt-4 flex flex-wrap gap-3" aria-label={t.courtsLabel}>
               {courts.lines.map((l) => (
-                <li key={l.key} className="flex items-center gap-3 rounded-2xl border border-white/10 bg-ink-800/60 py-4 pl-4 pr-5">
-                  <AppIcon name={`${l.courtType}_court`} className="size-6 shrink-0 text-white" />
-                  <span className="font-medium leading-tight">{l.label}</span>
+                <li key={l.key}>
+                  <CourtPill courtType={l.courtType} label={l.label} />
                 </li>
               ))}
             </ul>
