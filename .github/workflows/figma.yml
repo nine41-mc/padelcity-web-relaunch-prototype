@@ -1,0 +1,27 @@
+name: Figma
+
+# The Figma library changes without a code push – so these checks also run every night. They read the library over
+# the REST API (figma/audit/rest-check.mjs): Code Connect targets and the library audit. A red run does not block
+# the deploy; GitHub mails the result. Needs the repository secret FIGMA_ACCESS_TOKEN (see figma/audit/README.md).
+on:
+  schedule:
+    - cron: '17 4 * * *'
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  library:
+    name: Code Connect targets and library audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+      - name: Check the Figma library
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: node figma/audit/rest-check.mjs

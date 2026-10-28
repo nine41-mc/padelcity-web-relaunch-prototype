@@ -9,6 +9,7 @@
     "lint": "eslint",
     "figma:check": "tsc -p figma/tsconfig.json && node figma/overview/build-overview.mjs --check",
     "figma:publish": "figma connect publish",
+    "figma:audit": "node figma/audit/rest-check.mjs",
     "tokens:check": "node figma/tokens/check-theme.mjs",
     "qa": "node scripts/qa.mjs"
   },

@@ -50,6 +50,8 @@ Seitenaufrufen.
 
 ## 2. Figma-Library (nach jeder Änderung an Variablen, Styles oder Komponenten)
 
+- [ ] Nach dem Veröffentlichen: GitHub-Workflow „Figma“ grün (läuft nachts und bei jedem Push; prüft Code-Connect-Ziele
+      und das Library-Audit über die REST-API, `npm run figma:audit`)
 - [ ] `figma/audit/library-audit.js` per Figma-MCP (`use_figma`) ausführen – `findings` muss leer sein; neue
       Ausnahmen nur mit Begründung im Skript (`EXCEPTIONS`) und in `figma/audit/README.md`
 - [ ] Neue oder geänderte Komponenten per Screenshot ansehen, auch in schmaler und breiter Instanz

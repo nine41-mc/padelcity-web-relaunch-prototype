@@ -15,6 +15,20 @@ content as `code` with the file key above. Two runs:
 Run it after every library change and before every publish. Page IDs are at the top of the script; update them if
 pages are recreated.
 
+## In the CI
+
+`rest-check.mjs` runs the same checks over the Figma REST API, plus the Code Connect targets of `verify-targets.mjs`
+(`.github/workflows/figma.yml`: every night, on every push and by hand). It reads `EXCEPTIONS` from
+`library-audit.js` – add exceptions there only. A red run does not block the deploy; GitHub mails the result.
+
+- Secret: `FIGMA_ACCESS_TOKEN` (repository secret, scope `file_content:read`; `file_variables:read` for the variable
+  checks). Set it from the keychain without showing it:
+  `gh secret set FIGMA_ACCESS_TOKEN --repo nine41-mc/padelcity-web-relaunch-prototype --body "$(security find-generic-password -s figma-comments-pat -w)"`
+- The variables endpoint needs a Figma Enterprise plan. Without it the variable checks are skipped with a notice;
+  run `library-audit.js` via `use_figma` for them after variable changes.
+- Not in the CI: the content-model annotation count (run 2 above).
+- Locally: `FIGMA_ACCESS_TOKEN=… npm run figma:audit`.
+
 ## What it checks
 
 | Area | Checks |
