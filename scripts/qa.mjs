@@ -4,6 +4,7 @@
 //   npm run qa -- --browsers all                also WebKit (Safari) and Firefox – or e.g. --browsers webkit
 //   npm run qa -- --only /,/events/             only these paths
 //   npm run qa -- --widths 768                  other widths
+//   npm run qa -- --parallel 2                  fewer pages at once (small CI runners)
 //   npm run qa -- --seo-only                    links, sitemap, redirects and SEO only – no browser (seconds)
 //   npm run qa -- --base https://…              a deployed site instead of out/ (no password-protected builds)
 //
@@ -33,7 +34,7 @@ for (const name of engines) {
 }
 const only = arg("only", "")?.split(",").filter(Boolean);
 const outDir = arg("dir", "out");
-const PARALLEL = 4;
+const PARALLEL = Number(arg("parallel", "4")); // pages checked at once per width – lower on small runners
 // Pages that are deliberately not in the sitemaps
 const NOT_IN_SITEMAP = [
   "/coming-soon/", // placeholder target of app and web-app links until they are live (src/lib/site.ts)

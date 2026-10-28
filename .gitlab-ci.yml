@@ -1,6 +1,6 @@
 # PadelCity website prototype → GitLab Pages (static export). Same gates as .github/workflows/checks.yml.
 #
-# - Every pipeline runs the checks: lint, types, Code Connect, tokens, then `npm run qa` per browser.
+# - Every pipeline runs the checks: lint, types, Code Connect, tokens, then `npm run qa` (Chromium, 390 and 1440 px).
 # - Pages deploys on the default branch, on schedules (e.g. nightly, to pick up Contentful changes)
 #   and when triggered manually ("Run pipeline") – only when all checks pass.
 # - Contentful credentials come from masked CI/CD variables (Settings → CI/CD → Variables):
@@ -71,16 +71,15 @@ export:
       - out
     expire_in: 1 day
 
+# Lighter than GitHub on purpose: the K8s runner ran out of space with Chromium and needed ~2 h per browser for the
+# full matrix. Here Chromium in phone and desktop width; WebKit, Firefox and 768 px run in .github/workflows/checks.yml.
 qa:
   stage: qa
   image: mcr.microsoft.com/playwright:v1.58.2-noble
   needs: [ export ]
-  parallel:
-    matrix:
-      - BROWSER: [ chromium, webkit, firefox ]
   script:
     - npm ci --no-audit --no-fund
-    - npm run qa -- --browsers $BROWSER
+    - npm run qa -- --browsers chromium --widths 390,1440 --parallel 2
   artifacts:
     when: on_failure
     paths:

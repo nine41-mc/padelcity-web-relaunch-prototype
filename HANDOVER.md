@@ -72,7 +72,8 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 Die vollständige Checkliste mit Reihenfolge steht in `QA.md`. Die Code-Gates laufen in der CI
 (`.github/workflows/checks.yml`) bei jedem Push; auf `main` wird nur deployt, wenn sie grün sind – die QA in
 Chromium, WebKit und Firefox parallel. Die Figma-Library prüft `.github/workflows/figma.yml` jede Nacht und bei
-jedem Push (blockiert den Deploy nicht). GitLab (`.gitlab-ci.yml`) führt dieselben Code-Gates aus. Stand 28.10.2026: `npm run qa -- --browsers all` über alle 205 Seiten
+jedem Push (blockiert den Deploy nicht). GitLab (`.gitlab-ci.yml`) führt dieselben Code-Gates aus, die QA dort nur in Chromium (390 und 1440 px) – der
+Kubernetes-Runner hatte für die volle Matrix zu wenig Speicher und Zeit. Stand 28.10.2026: `npm run qa -- --browsers all` über alle 205 Seiten
 (DE/EN/PL) in 390, 768 und 1440 px ohne Fund. Im Produktiv-Build diese CI-Schritte übernehmen.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
