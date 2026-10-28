@@ -134,7 +134,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             swatch={<div className="h-28 rounded-[16px] bg-brand-gradient" />}
             values="#8412B5 → #DC05A1"
             bb={ROLE_BRANDBOOK.primary}
-            uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows", "Pulsierender Punkt im Eyebrow (Pink)"]}
+            uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows", "Pulsierender Punkt im Eyebrow (Pink)", "Text im Verlauf (Kennzahlen, Titel): eine Stufe heller, Magenta 400 → Purple 400"]}
           />
           <RoleCard
             role="Secondary"
@@ -215,6 +215,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           head={["Kombination", "Kontrast", "Einsatz"]}
           rows={[
             ["Weiß auf Brand-Verlauf", "≥ 4,6 : 1", "Button-Labels – dafür wurde der Magenta-Stopp auf #DC05A1 justiert"],
+            ["Text-Verlauf (Magenta 400 → Purple 400) auf Ink 700/800", "≥ 4,4 : 1", "Kennzahlen und Titel im Verlauf (text-brand-gradient) – der Brand-Verlauf selbst erreicht als Text nur 2,3 : 1"],
             ["Weiß auf Ink 800", "19,8 : 1", "Fließtext"],
             ["Magenta 300 auf Ink 800", "≈ 7 : 1", "Textlinks im Hover, Öffnungsstatus"],
             ["Optic Yellow auf Ink 800", "≈ 17 : 1", "Fokus-Ring, Level-Labels, Akzente"],
@@ -744,7 +745,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <ul className="grid gap-3 md:grid-cols-2">
           {[
             "Optic Yellow als Farbfamilie und semantisches Token „Highlight“",
-            "Website-Verlauf (#DC05A1 → #8512B5) als Paint-Style „Gradient/Brand“, Brandbook-Verlauf als „Gradient/Brandbook“",
+            "Website-Verlauf (#DC05A1 → #8512B5) als Paint-Style „Gradient/Brand“, für Text auf Ink „Gradient/Brand-Text“ (#FB37E1 → #BA45ED), Brandbook-Verlauf als „Gradient/Brandbook“",
             "Radien 12, 32 und „full“ sowie Karten-, Modul- und Gutschein-Radien",
             "Website-Textstyles (Display, Accent, Button, Label, Body) mit Responsive-Modi Desktop, Tablet und Mobil",
             "Button-Varianten der Website (Primary, Gradient, Outline, Optic) als Komponenten-Sets",

@@ -15,7 +15,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # Deploys only when lint, types, Code Connect, tokens and the page QA pass (checks.yml)
+  checks:
+    uses: ./.github/workflows/checks.yml
+    secrets: inherit
+
   build-deploy:
+    needs: checks
     runs-on: ubuntu-latest
     environment:
       name: github-pages

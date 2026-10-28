@@ -18,9 +18,6 @@ const EXCEPTIONS = {
   contrastSkipVariant: /State=Disabled/,
   // Frames that stand for a photo (placeholder fill in the library) – like IMAGE fills, contrast depends on the photo
   photoFrames: ["photo"],
-  // Display values in Gradient/Brand (text-brand-gradient, as in code): the purple start #8412B5 only reaches ~2.3:1
-  // on ink – brand decision, open accessibility point for the design team
-  gradientTextStyle: "S:b8f68bdafedc6ca4ff257476104254f9642d68f7,",
 };
 const PAGES = { foundations: "1:6", components: "1:7", icons: "13129:1060", start: "15232:5", contentModel: "15234:28" };
 // Counting the content-model annotations loads ~20,000 layers and exceeds the use_figma time limit together with
@@ -184,7 +181,7 @@ for (const c of libraryComponents) {
   if (EXCEPTIONS.contrastSkipComponents.includes(c.name)) continue;
   for (const v of c.type === "COMPONENT_SET" ? c.children : [c]) {
     if (EXCEPTIONS.contrastSkipVariant.test(v.name)) continue;
-    for (const t of v.findAll((n) => n.type === "TEXT" && n.visible && n.characters.trim() && n.fillStyleId !== EXCEPTIONS.gradientTextStyle)) {
+    for (const t of v.findAll((n) => n.type === "TEXT" && n.visible && n.characters.trim())) {
       const bgs = backgrounds(t, v);
       if (!bgs) continue;
       let op = 1;

@@ -1,25 +1,35 @@
-// Page QA for the static export: crawls every internal link, then checks each page in phone and desktop width.
+// Page QA for the static export: crawls every internal link, then checks each page in phone, tablet and desktop width.
 //
-//   npm run build && npm run qa                 all pages, 390 and 1440 px
+//   npm run build && npm run qa                 all pages, 390, 768 and 1440 px, Chromium
+//   npm run qa -- --browsers all                also WebKit (Safari) and Firefox – or e.g. --browsers webkit
 //   npm run qa -- --only /,/events/             only these paths
 //   npm run qa -- --widths 768                  other widths
 //   npm run qa -- --base https://…              a deployed site instead of out/ (no password-protected builds)
 //
 // Checks: HTTP status of every internal link, pages missing from the sitemaps, console errors and uncaught page
 // errors, failed same-origin requests, horizontal overflow, broken images, axe (WCAG 2.2 AA); then the interactive
-// parts (menus, overlays, filter, search, language switch, accordion, share) – see INTERACTIONS.
+// parts (menus, overlays, filter, search, language switch, accordion, share) – see INTERACTIONS. Every target in
+// seo/redirects-draft.csv must be a page of the export (see REDIRECTS).
 // Report: .qa/report.json · exit code 1 when anything is found. See QA.md.
 import { createServer } from "node:http";
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { extname, join } from "node:path";
-import { chromium } from "playwright";
+import { chromium, firefox, webkit } from "playwright";
 import { AxeBuilder } from "@axe-core/playwright";
 
 const arg = (name, fallback) => {
   const i = process.argv.indexOf(`--${name}`);
   return i > -1 ? process.argv[i + 1] : fallback;
 };
-const widths = arg("widths", "390,1440").split(",").map(Number);
+const widths = arg("widths", "390,768,1440").split(",").map(Number);
+const ENGINES = { chromium, webkit, firefox };
+const browserArg = arg("browsers", "chromium");
+const engines = browserArg === "all" ? Object.keys(ENGINES) : browserArg.split(",");
+for (const name of engines) {
+  if (ENGINES[name]) continue;
+  console.error(`Unbekannter Browser „${name}“ – chromium, webkit, firefox oder all.`);
+  process.exit(2);
+}
 const only = arg("only", "")?.split(",").filter(Boolean);
 const outDir = arg("dir", "out");
 const PARALLEL = 4;
@@ -93,12 +103,49 @@ for (const sitemap of SITEMAPS) {
   for (const p of own) if (!listed.has(p) && !NOT_IN_SITEMAP.includes(p)) add("Fehlt in der Sitemap", p, sitemap);
 }
 
+// ---------------------------------------------------------------------------------------------- redirects
+// seo/redirects-draft.csv (alte_url;neue_url;status;hinweis): every old URL once, a target for every row that is not
+// „offen“, and every target is a page of the export.
+const REDIRECTS = "seo/redirects-draft.csv";
+const STATES = ["eindeutig", "prüfen", "offen"];
+if (existsSync(REDIRECTS)) {
+  const [head, ...rows] = readFileSync(REDIRECTS, "utf8").trim().split("\n");
+  if (head !== "alte_url;neue_url;status;hinweis") add("Weiterleitungen: Kopfzeile", REDIRECTS, head);
+  const seen = new Set();
+  for (const [i, row] of rows.entries()) {
+    const where = `${REDIRECTS}:${i + 2}`;
+    const [from, to, state, ...rest] = row.split(";");
+    if (rest.length !== 1) add("Weiterleitungen: Spaltenzahl", where, row.slice(0, 120));
+    if (!/^\/.*\/$/.test(from ?? "")) add("Weiterleitungen: alte URL", where, `„${from}“ muss mit / beginnen und enden`);
+    if (seen.has(from)) add("Weiterleitungen: alte URL doppelt", where, from);
+    seen.add(from);
+    if (!STATES.includes(state)) add("Weiterleitungen: Status", where, `„${state}“ – erlaubt: ${STATES.join(", ")}`);
+    if (!to) {
+      if (state !== "offen") add("Weiterleitungen: Ziel fehlt", where, `${from} (${state})`);
+      continue;
+    }
+    const [path] = to.split("#"); // a fragment may point at a module (/#newsletter)
+    const target = norm(path);
+    if (!target || target !== path) { add("Weiterleitungen: Ziel", where, `„${to}“ ist kein Seitenpfad mit / am Ende`); continue; }
+    if (!status.has(target)) status.set(target, (await fetch(base + target, { redirect: "manual" }).catch(() => null))?.status ?? 0);
+    if (status.get(target) !== 200) add("Weiterleitungen: Ziel nicht erreichbar", where, `${from} → ${to} (HTTP ${status.get(target)})`);
+    const id = to.split("#")[1];
+    if (id && status.get(target) === 200 && !(await (await fetch(base + target)).text()).includes(`id="${id}"`)) add("Weiterleitungen: Anker fehlt", where, `${to} – kein Element mit id="${id}"`);
+  }
+}
+
 // ---------------------------------------------------------------------------------------------- page checks
 const routes = only.length ? only : pages;
-const browser = await chromium.launch();
-const check = async (ctx, path, width) => {
+// Firefox has no mobile emulation and no clipboard permissions in Playwright
+const contextFor = (engine, width, extra = {}) => {
+  const mobile = width < 768 && engine !== "firefox";
+  const permissions = engine === "chromium" ? { permissions: ["clipboard-read", "clipboard-write"] } : {};
+  return { viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce", ...permissions, ...extra };
+};
+const label = (engine) => (engines.length > 1 ? ` ${engine}` : "");
+const check = async (ctx, path, width, engine) => {
   const page = await ctx.newPage();
-  const where = `${path} @${width}`;
+  const where = `${path} @${width}${label(engine)}`;
   page.on("console", (m) => m.type() === "error" && add("Konsolenfehler", where, m.text().slice(0, 200)));
   page.on("pageerror", (e) => add("Seitenfehler", where, e.message.slice(0, 200)));
   page.on("response", (r) => r.status() >= 400 && r.url().startsWith(base) && add("Fehlgeschlagene Anfrage", where, `${r.status()} ${r.url().slice(base.length)}`));
@@ -127,21 +174,22 @@ const check = async (ctx, path, width) => {
   for (const v of axe.violations) add(`axe: ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}`);
   await page.close();
 };
-for (const width of widths) {
-  const mobile = width < 768;
-  const ctx = await browser.newContext({ viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce" });
-  const todo = [...routes];
-  let done = 0;
-  await Promise.all(
-    Array.from({ length: PARALLEL }, async () => {
-      for (let path = todo.shift(); path; path = todo.shift()) {
-        await check(ctx, path, width);
-        if (++done % 25 === 0) console.log(`${width} px: ${done}/${routes.length}`);
-      }
-    }),
-  );
-  await ctx.close();
-}
+const checkPages = async (browser, engine) => {
+  for (const width of widths) {
+    const ctx = await browser.newContext(contextFor(engine, width));
+    const todo = [...routes];
+    let done = 0;
+    await Promise.all(
+      Array.from({ length: PARALLEL }, async () => {
+        for (let path = todo.shift(); path; path = todo.shift()) {
+          await check(ctx, path, width, engine);
+          if (++done % 25 === 0) console.log(`${engine} ${width} px: ${done}/${routes.length}`);
+        }
+      }),
+    );
+    await ctx.close();
+  }
+};
 // ---------------------------------------------------------------------------------------------- interactions
 // Overlays, menus and controls: each opens without errors, fits the viewport, has a close button, closes with Esc
 // and passes axe while open. Skipped with --only (a quick run) or --no-interactions.
@@ -193,14 +241,21 @@ const INTERACTIONS = [
   [1440, "/standorte/regensburg/", "Öffnungszeiten", expects((p) => p.locator("button[aria-expanded=false]").filter({ hasText: /Geöffnet|Geschlossen/ }).first().click(), (p) => p.locator("button[aria-expanded=true]").filter({ hasText: /Geöffnet|Geschlossen/ }).count(), "Öffnungszeiten klappen nicht auf")],
   [1440, "/academy/", "Coach-Dialog", opensDialog((p) => button(p, /Kontakt & Preise von/).click())],
   [1440, "/faq/", "FAQ-Akkordeon", expects((p) => p.locator("main details:not([open]) > summary").first().click(), (p) => p.locator("main details[open]").count(), "FAQ klappt nicht auf")],
-  [1440, "/events/afterwork-americano-berlin/", "Teilen (Link kopieren)", expects((p) => button(p, /Teilen/).click(), (p) => p.getByText(/kopiert|copied|skopiowano/i).count(), "Teilen bestätigt das Kopieren nicht")],
+  // With a share sheet (Safari/WebKit) the button hands the URL to navigator.share, otherwise it copies and confirms
+  [1440, "/events/afterwork-americano-berlin/", "Teilen", expects(
+    async (p) => {
+      await p.evaluate(() => { if (navigator.share) navigator.share = async (data) => { window.__shared = data; }; });
+      await button(p, /Teilen/).click();
+    },
+    async (p) => (await p.evaluate(() => window.__shared?.url === location.href.split("#")[0])) || (await p.getByText(/kopiert|copied|skopiowano/i).count()),
+    "Teilen öffnet weder das Teilen-Menü noch bestätigt es das Kopieren",
+  )],
 ];
-if (!only.length && !process.argv.includes("--no-interactions")) {
+const checkInteractions = async (browser, engine) => {
   for (const [width, path, name, run] of INTERACTIONS) {
-    const mobile = width < 768;
-    const ctx = await browser.newContext({ viewport: { width, height: 844 }, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce", permissions: ["clipboard-read", "clipboard-write"] });
+    const ctx = await browser.newContext(contextFor(engine, width, { viewport: { width, height: 844 } }));
     const page = await ctx.newPage();
-    const where = `${name} (${path} @${width})`;
+    const where = `${name} (${path} @${width}${label(engine)})`;
     page.on("pageerror", (e) => add("Interaktion: Seitenfehler", where, e.message.slice(0, 200)));
     page.on("console", (m) => m.type() === "error" && add("Interaktion: Konsolenfehler", where, m.text().slice(0, 200)));
     try {
@@ -212,17 +267,22 @@ if (!only.length && !process.argv.includes("--no-interactions")) {
     }
     await ctx.close();
   }
-  console.log(`${INTERACTIONS.length} Interaktionen geprüft.`);
-}
+  console.log(`${engine}: ${INTERACTIONS.length} Interaktionen geprüft.`);
+};
 
-await browser.close();
+for (const engine of engines) {
+  const browser = await ENGINES[engine].launch();
+  await checkPages(browser, engine);
+  if (!only.length && !process.argv.includes("--no-interactions")) await checkInteractions(browser, engine);
+  await browser.close();
+}
 server?.close();
 
 // ---------------------------------------------------------------------------------------------- report
 mkdirSync(".qa", { recursive: true });
-writeFileSync(".qa/report.json", JSON.stringify({ base, widths, pages: routes.length, findings }, null, 2));
+writeFileSync(".qa/report.json", JSON.stringify({ base, browsers: engines, widths, pages: routes.length, findings }, null, 2));
 const byCheck = Object.groupBy(findings, (f) => f.check);
-console.log(`\n${routes.length} Seiten × ${widths.length} Breiten geprüft, ${pages.length} Seiten verlinkt, ${findings.length} Funde.`);
+console.log(`\n${routes.length} Seiten × ${widths.length} Breiten × ${engines.length} Browser geprüft, ${pages.length} Seiten verlinkt, ${findings.length} Funde.`);
 for (const [checkName, list] of Object.entries(byCheck)) {
   console.log(`\n✗ ${checkName} (${list.length})`);
   for (const f of list.slice(0, 8)) console.log(`  ${f.where}  ${f.detail}`);

@@ -2,6 +2,14 @@ import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 
 /**
+ * Event times are the club's wall-clock time (ISO without offset, as the APL shows them). As a Date in UTC they
+ * format the same on every machine – the build (CI runs in UTC) and any visitor's browser. Format with timeZone "UTC".
+ */
+export function eventWallClock(iso: string) {
+  return new Date(`${iso.slice(0, 16)}:00Z`);
+}
+
+/**
  * Date badge: "03" / "DEZ", multi-day "03–05" / "DEZ", across months "30–02" / "NOV–DEZ".
  * The year only when it is not the current one.
  */

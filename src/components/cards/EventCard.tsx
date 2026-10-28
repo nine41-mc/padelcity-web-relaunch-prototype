@@ -10,11 +10,21 @@ import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
+import { eventWallClock } from "../play/eventFormat";
+
+// Safari's ICU joins the parts differently ("Do. 05. Nov." instead of "Do., 05. Nov.") – the server HTML would not
+// match the client render (React hydration error). So only the parts come from Intl, the separators are fixed.
+const DATE_PATTERN: Record<Locale, (p: Record<string, string>) => string> = {
+  de: (p) => `${p.weekday}, ${p.day}. ${p.month}`,
+  en: (p) => `${p.weekday} ${p.day} ${p.month}`,
+  pl: (p) => `${p.weekday}, ${p.day} ${p.month}`,
+};
 
 export function formatEventDate(iso: string, locale: Locale = "de") {
-  const d = new Date(iso);
+  const fmt = new Intl.DateTimeFormat(localeTags[locale].intl, { weekday: "short", day: "2-digit", month: "short", timeZone: "UTC" });
+  const parts = Object.fromEntries(fmt.formatToParts(eventWallClock(iso)).map((p) => [p.type, p.value]));
   const suffix = getDictionary(locale).eventCard.time;
-  return d.toLocaleDateString(localeTags[locale].intl, { weekday: "short", day: "2-digit", month: "short" }) + " · " + iso.slice(11, 16) + (suffix ? ` ${suffix}` : "");
+  return DATE_PATTERN[locale](parts) + " · " + iso.slice(11, 16) + (suffix ? ` ${suffix}` : "");
 }
 
 export function EventCard({ event, locale = "de", className }: { event: ClubEvent; locale?: Locale; className?: string }) {

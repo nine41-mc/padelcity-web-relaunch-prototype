@@ -159,6 +159,9 @@
   /* Magenta stop nudged from #e005a4 to #dc05a1 (visually identical) so white text on the
      gradient's darkest-contrast corner reaches 4.59:1 (was 4.44:1) – WCAG 2.2 AA for small text. */
   --gradient-brand: linear-gradient(313deg, #dc05a1 0%, #8512b5 100%);
+  /* Gradient text sits on ink (ink-700/800): the brand gradient's purple end only reaches ~2.3:1 there. One step
+     lighter (magenta-400 → purple-400) keeps the look and reaches at least 4.4:1 – decided 28.10.2026. */
+  --gradient-brand-text: linear-gradient(313deg, #fb37e1 0%, #ba45ed 100%);
   --gradient-brandbook: linear-gradient(120deg, #401b78 0%, #791979 50%, #ac007d 100%);
   --header-h: 72px;
   color-scheme: dark;
@@ -171,7 +174,7 @@
   background-image: var(--gradient-brandbook);
 }
 @utility text-brand-gradient {
-  background-image: var(--gradient-brand);
+  background-image: var(--gradient-brand-text);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;

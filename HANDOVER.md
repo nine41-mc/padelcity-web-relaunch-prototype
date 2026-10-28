@@ -10,7 +10,7 @@ Jede Komponente der Figma-Library hat genau eine Code-Komponente, verknüpft per
 |---|---|---|
 | Tailwind-Theme (Farben, Radien, Breakpoints, Schatten, Animationen) | `src/app/globals.css` (`@theme`) | wertgleich mit den Figma-Variablen, geprüft mit `npm run tokens:check` |
 | Design Tokens (DTCG) | `figma/tokens/tokens.json` | alle 200 Variablen inkl. Aliasse und Responsive-Modi, Verläufe, Schatten, Text-Styles – Basis für Style Dictionary |
-| Verläufe | `--gradient-brand` (313°), `--gradient-brandbook` (120°) + Utilities `bg-brand-gradient`, `bg-brandbook-gradient`, `text-brand-gradient` | `globals.css` |
+| Verläufe | `--gradient-brand` (313°), `--gradient-brand-text` (313°, eine Stufe heller für Text auf Ink), `--gradient-brandbook` (120°) + Utilities `bg-brand-gradient`, `bg-brandbook-gradient`, `text-brand-gradient` | `globals.css` |
 | Abstands-Skala für Kacheln und Panels | Utilities `pad-card` (20), `pad-panel` (24/32), `pad-banner` (24/40/56) | Figma: `Layout/pad-*` (05 Responsive) – keine Einzelwerte daneben |
 | Container | Utility `container-site` (max. 1440, Rand 16/32/64) | Figma: `Layout/gutter`, `Layout/container-max` |
 | Schriften | `src/app/fonts.ts` | Söhne Schmal und Good Brush sind lizenziert und liegen in einem privaten Repo (Deploy-Key im CI) |
@@ -67,10 +67,12 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 | Code-Connect-Templates und -Übersicht | `npm run figma:check` |
 | Tokens Figma ↔ Theme | `npm run tokens:check` |
 | Figma-Library (Variablen, Bindungen, Kontrast, Styles) | `figma/audit/library-audit.js` per `use_figma`, siehe `figma/audit/README.md` |
-| Seiten: Links, Sitemap, Konsole, Layout, Bilder, axe (WCAG 2.2 AA) | `npm run build && npm run qa` |
+| Seiten: Links, Sitemap, Konsole, Layout, Bilder, axe (WCAG 2.2 AA), Interaktionen, Weiterleitungsliste | `npm run build && npm run qa` (Chromium; `-- --browsers all` auch WebKit und Firefox) |
 
-Die vollständige Checkliste mit Reihenfolge steht in `QA.md`. Stand 29.10.2026: `npm run qa` über alle 205 Seiten
-(DE/EN/PL) in 390 und 1440 px ohne Fund. Im Produktiv-Build gehört dieser Lauf als CI-Schritt dazu.
+Die vollständige Checkliste mit Reihenfolge steht in `QA.md`. Alle Gates außer dem Library-Audit laufen in der CI
+(`.github/workflows/checks.yml`) bei jedem Push; auf `main` wird nur deployt, wenn sie grün sind – die QA in
+Chromium, WebKit und Firefox parallel. Stand 28.10.2026: `npm run qa -- --browsers all` über alle 205 Seiten
+(DE/EN/PL) in 390, 768 und 1440 px ohne Fund. Im Produktiv-Build diese CI-Schritte übernehmen.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
 Code-Connect-Schreibrecht.
@@ -91,8 +93,6 @@ Code-Connect-Schreibrecht.
 
 ## 7. Offene Punkte
 
-- **Kontrast Verlaufswerte:** Kennzahlen in `text-brand-gradient` (KPI, Info Tile) erreichen am lila Startpunkt
-  nur ~2,3:1 auf Ink – im Audit als bekannte Ausnahme geführt, Entscheidung beim Design-Team.
 - **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful.
 - **Öffnungszeiten-Liste** (`locations/ClubHours.tsx`) ist nicht als eigene Library-Komponente angelegt; der
   Status steht als Open Status in der Library.

@@ -1,17 +1,30 @@
-# PadelCity website prototype → GitLab Pages (static export).
+# PadelCity website prototype → GitLab Pages (static export). Same gates as .github/workflows/checks.yml.
 #
-# - Runs on the default branch, on schedules (e.g. nightly, to pick up Contentful changes)
-#   and when triggered manually ("Run pipeline").
+# - Every pipeline runs the checks: lint, types, Code Connect, tokens, then `npm run qa` per browser.
+# - Pages deploys on the default branch, on schedules (e.g. nightly, to pick up Contentful changes)
+#   and when triggered manually ("Run pipeline") – only when all checks pass.
 # - Contentful credentials come from masked CI/CD variables (Settings → CI/CD → Variables):
 #   CONTENTFUL_SPACE_ID, CONTENTFUL_ENVIRONMENT_ID, CONTENTFUL_DELIVERY_TOKEN.
 #   Without them the build falls back to mock data.
+# - Licensed fonts: CI/CD variable FONTS_DEPLOY_KEY (type File, not protected – branch pipelines build too) with the
+#   private key of a read-only deploy key on github.com/nine41-mc/padelcity-brand-fonts. Without it build and deploy stop.
 # - Pages access is restricted to project members (Settings → General → Visibility → Pages).
 
 image: node:24.19.0-slim
 
 stages:
   - check
+  - build
+  - qa
   - deploy
+
+# One pipeline per change: merge request pipelines, otherwise branch pipelines
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
 
 variables:
   NEXT_TELEMETRY_DISABLED: "1"
@@ -24,18 +37,60 @@ cache:
   paths:
     - .npm/
 
-check:
+# Söhne Schmal and Good Brush from the private fonts repo (never committed)
+.licensed-fonts:
+  before_script:
+    - test -f "$FONTS_DEPLOY_KEY" || { echo "CI/CD-Variable FONTS_DEPLOY_KEY fehlt (siehe Kopf dieser Datei)."; exit 1; }
+    - apt-get update -qq && apt-get install -y -qq git openssh-client > /dev/null
+    - chmod 600 "$FONTS_DEPLOY_KEY"
+    - GIT_SSH_COMMAND="ssh -i $FONTS_DEPLOY_KEY -o StrictHostKeyChecking=accept-new" git clone --depth 1 git@github.com:nine41-mc/padelcity-brand-fonts.git .brand-fonts
+    - mkdir -p src/app/fonts/licensed
+    - cp .brand-fonts/GoodBrush.otf .brand-fonts/SoehneSchmal-FettKursiv.ttf src/app/fonts/licensed/
+    - rm -rf .brand-fonts
+
+code:
   stage: check
   script:
     - npm ci --no-audit --no-fund
-    - npx tsc --noEmit
     - npm run lint
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-    - if: $CI_COMMIT_BRANCH && $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    - npx tsc --noEmit
+    - npm run figma:check
+    - npm run tokens:check
+
+# Export for the QA: no basePath and no Contentful – QA checks the mock data, like a local run
+export:
+  stage: build
+  extends: .licensed-fonts
+  variables:
+    CONTENTFUL_SPACE_ID: ""
+    CONTENTFUL_DELIVERY_TOKEN: ""
+  script:
+    - npm ci --no-audit --no-fund
+    - npm run build
+  artifacts:
+    paths:
+      - out
+    expire_in: 1 day
+
+qa:
+  stage: qa
+  image: mcr.microsoft.com/playwright:v1.58.2-noble
+  needs: [ export ]
+  parallel:
+    matrix:
+      - BROWSER: [ chromium, webkit, firefox ]
+  script:
+    - npm ci --no-audit --no-fund
+    - npm run qa -- --browsers $BROWSER
+  artifacts:
+    when: on_failure
+    paths:
+      - .qa/report.json
+    expire_in: 1 week
 
 pages:
   stage: deploy
+  extends: .licensed-fonts
   script:
     - npm ci --no-audit --no-fund
     # Pages may serve the site from a sub-path (https://<group>.<pages-domain>/<project>/).

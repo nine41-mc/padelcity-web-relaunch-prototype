@@ -55,8 +55,10 @@ export function EventSignupCard({
 export function CancellationTable({ cutoff, locale }: { cutoff: Date; locale: Locale }) {
   const t = eventsContent[locale];
   const intl = localeTags[locale].intl;
-  const day = cutoff.toLocaleDateString(intl, { day: "numeric", month: "short" });
-  const time = `${String(cutoff.getHours()).padStart(2, "0")}:${String(cutoff.getMinutes()).padStart(2, "0")}${t.date.time ? ` ${t.date.time}` : ""}`;
+  // cutoff is a wall-clock time (eventWallClock) – formatted in UTC, so the build machine's time zone does not matter
+  const day = cutoff.toLocaleDateString(intl, { day: "numeric", month: "short", timeZone: "UTC" });
+  const clock = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit", hourCycle: "h23", timeZone: "UTC" }).format(cutoff);
+  const time = `${clock}${t.date.time ? ` ${t.date.time}` : ""}`;
   const rows = [
     { when: t.detail.until, text: t.detail.freeRefund, free: true },
     { when: t.detail.from, text: t.detail.fullFee, free: false },

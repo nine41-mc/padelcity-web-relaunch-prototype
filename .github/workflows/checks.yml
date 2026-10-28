@@ -1,0 +1,89 @@
+name: Checks
+
+# Quality gates from QA.md, section 1. Runs on every push to a branch; on main the deploy workflow calls it and
+# only deploys when it passes.
+on:
+  push:
+    branches-ignore: [ main ]
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  code:
+    name: Lint, types, Code Connect, tokens
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run lint
+      - run: npx tsc --noEmit
+      - run: npm run figma:check
+      - run: npm run tokens:check
+
+  build:
+    name: Static export
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      # Same fonts as the deploy – text widths decide about overflow and wrapping.
+      - name: Fetch licensed brand fonts
+        uses: actions/checkout@v7
+        with:
+          repository: nine41-mc/padelcity-brand-fonts
+          ssh-key: ${{ secrets.FONTS_DEPLOY_KEY }}
+          path: .brand-fonts
+      - name: Install fonts into the build
+        run: |
+          mkdir -p src/app/fonts/licensed
+          cp .brand-fonts/GoodBrush.otf .brand-fonts/SoehneSchmal-FettKursiv.ttf src/app/fonts/licensed/
+          rm -rf .brand-fonts
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      # No basePath and no Contentful: QA checks the mock data, like a local run.
+      - name: Build (static export)
+        env:
+          NEXT_TELEMETRY_DISABLED: '1'
+        run: npm run build
+      - uses: actions/upload-artifact@v7
+        with:
+          name: export
+          path: out
+          retention-days: 1
+
+  qa:
+    name: QA (${{ matrix.browser }})
+    needs: build
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [ chromium, webkit, firefox ]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - uses: actions/download-artifact@v8
+        with:
+          name: export
+          path: out
+      - run: npm run qa -- --browsers ${{ matrix.browser }}
+      - name: Upload QA report
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: qa-report-${{ matrix.browser }}
+          path: .qa/report.json

@@ -9,9 +9,10 @@ Die Befehle laufen im Prototyp-Ordner.
 - [ ] `npm run lint`
 - [ ] `npm run figma:check` – Code-Connect-Vorlagen kompilieren, `src/lib/codeConnect.json` ist aktuell, ids eindeutig,
       Quelldatei, Import-Pfad und importierte Namen jeder Vorlage existieren im Code
-- [ ] `npm run tokens:check` – wenn `globals.css` oder Figma-Variablen geändert wurden (100 Werte Figma ↔ Theme)
+- [ ] `npm run tokens:check` – wenn `globals.css` oder Figma-Variablen geändert wurden (102 Werte Figma ↔ Theme)
 - [ ] `npm run build` – statischer Export aller Routen
-- [ ] `npm run qa` – alle Seiten in 390 und 1440 px, ca. 3 Minuten (Details unten)
+- [ ] `npm run qa` – alle Seiten in 390, 768 und 1440 px in Chromium, ca. 5 Minuten (Details unten); vor einer
+      Übergabe `npm run qa -- --browsers all` (zusätzlich WebKit/Safari und Firefox)
 - [ ] Styleguide (`/styleguide`) nachziehen, wenn sich ein Muster oder eine Regel geändert hat
 
 ### Was `npm run qa` prüft
@@ -28,11 +29,17 @@ jede Seite:
 | Layout | die Seite horizontal scrollt |
 | Bilder | ein Bild nicht lädt |
 | Barrierefreiheit | axe einen Verstoß gegen WCAG 2.2 AA meldet |
+| Weiterleitungen | in `seo/redirects-draft.csv` eine alte URL doppelt ist, ein Status nicht `eindeutig`, `prüfen` oder `offen` ist, eine Zeile außer „offen“ kein Ziel hat oder ein Ziel keine Seite des Exports ist |
 | Interaktionen | Mobilmenü, Overlays (WhatsApp, Barrierefreiheit, Filter, Club-Info, Galerie, Coach), Suche, Sprachwechsel, Öffnungszeiten, FAQ oder Teilen nicht funktionieren – Overlays müssen in die Breite passen, einen Schließen-Button haben, mit Esc schließen und im geöffneten Zustand axe bestehen |
 
 Bericht: `.qa/report.json`, Exit-Code 1 bei Funden. Schneller: `npm run qa -- --only /,/events/` (ohne
-Interaktionen) oder `--widths 768`; `--no-interactions` lässt die Interaktionen weg. Erstmalig
-`npx playwright install chromium` ausführen. Nicht gegen den Dev-Server testen – der hängt nach einigen hundert
+Interaktionen) oder `--widths 768`; `--no-interactions` lässt die Interaktionen weg; `--browsers webkit` prüft nur
+einen anderen Browser. Erstmalig `npx playwright install chromium webkit firefox` ausführen. In Firefox gibt es
+keine Mobil-Emulation (kein Touch, keine mobile User-Agent) – nur die Breite.
+
+**CI:** `.github/workflows/checks.yml` führt Lint, Typen, `figma:check`, `tokens:check` und `npm run qa` (je Browser
+ein Job) bei jedem Push aus; `deploy.yml` deployt `main` nur, wenn alle grün sind. Bei Funden hängt der Job den
+Bericht als Artefakt `qa-report-<browser>` an. Nicht gegen den Dev-Server testen – der hängt nach einigen hundert
 Seitenaufrufen.
 
 ## 2. Figma-Library (nach jeder Änderung an Variablen, Styles oder Komponenten)

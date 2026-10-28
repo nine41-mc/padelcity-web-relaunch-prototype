@@ -20,7 +20,9 @@ Ohne Konfiguration läuft alles mit Mock-Daten. Für Contentful `.env.example` n
 
 ## Deployment
 
-GitHub Pages über `.github/workflows/deploy.yml`: jeder Push auf `main` (oder ein manueller Run) baut den statischen Export und veröffentlicht ihn. Contentful-Zugangsdaten und der Deploy-Key für die lizenzierten Fonts liegen als Repository-Secrets.
+GitHub Pages über `.github/workflows/deploy.yml`: jeder Push auf `main` (oder ein manueller Run) läuft zuerst durch die Checks (`.github/workflows/checks.yml`: Lint, Typen, Code Connect, Tokens, `npm run qa` in Chromium, WebKit und Firefox), baut dann den statischen Export und veröffentlicht ihn. Pushes auf andere Branches laufen nur durch die Checks.
+
+Alternativ für GitLab Pages: `.gitlab-ci.yml` mit denselben Checks; Pages auf dem Default-Branch, per Zeitplan oder manuell, nur wenn die Checks grün sind. Braucht die CI/CD-Variable `FONTS_DEPLOY_KEY` (Typ File) für die lizenzierten Fonts – siehe Kopf der Datei. Contentful-Zugangsdaten und der Deploy-Key für die lizenzierten Fonts liegen als Repository-Secrets.
 
 **Passwortschutz:** GitHub Pages kennt keine Zugriffskontrolle. Deshalb verschlüsselt [`scripts/encrypt-export.mjs`](scripts/encrypt-export.mjs) nach dem Build jede HTML-Seite und jede RSC-Datei (`*.txt`) mit AES-256-GCM (Schlüssel per PBKDF2 aus dem Secret `PROTOTYPE_PASSWORD`). Jede Seite ist zunächst eine Passwortabfrage. Nach der Eingabe speichert der Browser den Schlüssel (IndexedDB) und der Service Worker [`public/sw.js`](public/sw.js) entschlüsselt Seiten und Seitendaten, bevor der Browser sie sieht – die Seite verhält sich wie ein ungeschützter Build (Video, Skripte, schnelle Seitenwechsel). Browser ohne Service Worker entschlüsseln über `document.write` (Fallback). Nicht geschützt sind JS-Bundles (UI-Texte), Bilder, Fonts und der Quellcode in diesem öffentlichen Repository. Ohne gesetztes Secret bricht der Deploy ab.
 
@@ -63,13 +65,13 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
   | Highlight | Optic Yellow `#DFFF4F` (Tennisball-Farbe) | **Nur:** `<Accent>`-Brush-Wort, Ticker (Home), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball |
   | Status | Success / Danger / Warning | Nur System-Feedback |
 
-  Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Magenta-300 auf Ink ≈ 7:1, Optic-Yellow-Fokusring auf Ink ≈ 17:1 (Token-Name im Code: `optic-*`). Druckwerte: Pantone 388 C/U und CMYK 20/0/100/0 als Empfehlung, final zu prüfen.
+  Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Text-Verlauf (Magenta-400 → Purple-400) auf Ink ≥ 4,4:1, Magenta-300 auf Ink ≈ 7:1, Optic-Yellow-Fokusring auf Ink ≈ 17:1 (Token-Name im Code: `optic-*`). Druckwerte: Pantone 388 C/U und CMYK 20/0/100/0 als Empfehlung, final zu prüfen.
 - Schriften wie in der App: Söhne Schmal Fett Kursiv (Headlines), Good Brush (Akzentwort), Poppins (Text).
 - Icons: App-Icons aus `mobile-app-flutter/assets/icons` (als CSS-Mask), sonst lucide.
 
 ## Qualität
 
-Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten: Links, Konsole, Layout, Bilder, axe).
+Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten in 390, 768 und 1440 px: Links, Konsole, Layout, Bilder, axe, Interaktionen, Weiterleitungsliste). Dieselben Checks laufen in der CI vor jedem Deploy.
 
 ## Offene Themen für den Workshop
 

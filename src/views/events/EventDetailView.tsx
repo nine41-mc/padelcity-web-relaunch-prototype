@@ -22,6 +22,7 @@ import { PartnerBand } from "@/components/modules/PartnerBand";
 import { EventCard } from "@/components/cards/EventCard";
 import { Countdown } from "@/components/play/Countdown";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
+import { eventWallClock } from "@/components/play/eventFormat";
 import { CancellationTable, EventSignupCard, FactRow } from "@/components/events/EventFacts";
 
 /* ---------- Route helpers (used by the DE/EN wrappers) ---------- */
@@ -226,7 +227,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
               )}
               {/* Cancellation policy as in the app – only for the fixed-time rule; rules counted from the sign-up stay hidden for now */}
               {(event.freeCancellation ?? "UNTIL_24H_BEFORE_EVENT") === "UNTIL_24H_BEFORE_EVENT" && (
-                <CancellationTable cutoff={new Date(new Date(event.start).getTime() - 24 * 3600 * 1000)} locale={locale} />
+                <CancellationTable cutoff={new Date(eventWallClock(event.start).getTime() - 24 * 3600 * 1000)} locale={locale} />
               )}
               <ol className="grid gap-4 md:grid-cols-3">
                 {steps.map((s, i) => (
