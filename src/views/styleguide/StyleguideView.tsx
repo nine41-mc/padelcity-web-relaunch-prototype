@@ -34,6 +34,7 @@ import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import { ClubCard } from "@/components/cards/ClubCard";
 import { EventCard } from "@/components/cards/EventCard";
 import { cn } from "@/components/ui/cn";
+import codeConnect from "@/lib/codeConnect.json";
 
 /**
  * Hidden styleguide / pattern library (easter egg: footer © line).
@@ -55,6 +56,7 @@ const TOC = [
   ["a11y", "Barrierefreiheit"],
   ["sprache", "Sprache & Inhalte"],
   ["figma", "Figma-Abgleich"],
+  ["code-connect", "Code Connect"],
 ] as const;
 
 const APP_ICONS = [
@@ -498,13 +500,9 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
         <H3>Library ↔ Code (Code Connect)</H3>
         <p className="max-w-3xl text-white/75">
-          Jede Library-Komponente hat genau eine Code-Komponente, in Figma per Code Connect verknüpft: Card Arrow → CardArrow, Carousel Arrow → CarouselArrow, Input / Search →
-          SearchInput, Language Switch → LanguageSwitch, FAQ Item → FaqItem (in FaqGroup), Testimonial Card → TestimonialCard, Mobile Menu → MobileMenu, dazu Buttons, Chip,
-          Eyebrow, Section, Section Intro, Karten, Newsletter, Header, Footer, Select, Filter Chip, Map Pin, Store Badges, Booking Bar, KPI Tile, Voucher Card und Ticker.
-          Im Library-Bereich „Muster“: Fact Row → FactRow, Event Signup Card → EventSignupCard, Cancellation Table → CancellationTable, Event Signup → EventSignup,
-          Countdown → Countdown, Info Tile → InfoTile, Person Card → PersonCard, Court Pill → CourtPill, Share Button → ShareButton, Open Status → OpenStatus,
-          Overlay → Overlay (mit OverlaySection) und Partner Band → PartnerBand.
-          Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
+          Jede Library-Komponente hat genau eine Code-Komponente, in Figma per Code Connect verknüpft – die vollständige Zuordnung steht unter{" "}
+          <a href="#code-connect" className="underline underline-offset-4 hover:text-white">Code Connect</a>. Neue Muster entstehen erst als Code-Komponente, dann als
+          Library-Komponente – nie als Kopie im Seiten-Code.
         </p>
 
         <H3>Footer</H3>
@@ -758,6 +756,9 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         </ul>
         <p className="mt-6 text-sm text-white/60">Stand des Abgleichs: 15.10.2026.</p>
       </Block>
+
+      {/* Code Connect */}
+      <CodeConnectBlock />
     </>
   );
 }
@@ -995,9 +996,98 @@ function Surface({ className, name, text }: { className: string; name: string; t
   );
 }
 
+const CC_AREAS = ["Basis", "Layout", "Karten", "Events", "Standorte", "Module", "Barrierefreiheit"];
+
+function CodeConnectBlock() {
+  const entries = codeConnect.entries;
+  const components = entries.filter((e) => e.kind === "component");
+  const assets = entries.filter((e) => e.kind !== "component");
+  const count = (kind: string) => entries.filter((e) => e.kind === kind).length;
+  return (
+    <Block
+      id="code-connect"
+      eyebrow="14"
+      title="Code Connect"
+      lead="Welche Library-Komponente welcher Code-Komponente entspricht – generiert aus den Code-Connect-Vorlagen, damit die Liste nie veraltet."
+    >
+      <div className="grid gap-3 sm:grid-cols-4">
+        {[
+          [count("component"), "Komponenten"],
+          [count("icon"), "Icons"],
+          [count("logo"), "Logos"],
+          [count("flag"), "Länderflaggen"],
+        ].map(([n, label]) => (
+          <div key={label} className="rounded-[16px] border border-white/10 bg-ink-700 p-5">
+            <p className="font-display text-4xl font-extrabold italic">{n}</p>
+            <p className="mt-1 text-sm text-white/70">{label}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-6 max-w-3xl text-white/75">
+        In Figma zeigt Dev Mode für eine ausgewählte Instanz den passenden Code. Die Spalte „Figma-Eigenschaften“ nennt die Properties, die im Code ankommen; Hover-,
+        Fokus- und Offen-Zustände sind CSS bzw. Laufzeit-Zustände ohne Prop. Quelle: <code className="text-white">figma/**/*.figma.ts</code>, Liste:{" "}
+        <code className="text-white">node figma/overview/build-overview.mjs</code>, geprüft mit <code className="text-white">npm run figma:check</code>.
+      </p>
+      {CC_AREAS.map((area) => {
+        const rows = components.filter((e) => e.area === area);
+        if (!rows.length) return null;
+        return (
+          <div key={area}>
+            <H3>{area}</H3>
+            <div className="mt-6 overflow-x-auto rounded-[16px] border border-white/10">
+              <table className="w-full min-w-[760px] text-left text-sm">
+                <thead className="bg-white/5 text-[12px] uppercase tracking-[0.1em] text-white/70">
+                  <tr>
+                    {["Figma", "Code", "Datei", "Figma-Eigenschaften", "Hinweis"].map((h) => (
+                      <th key={h} className="px-4 py-3 font-semibold">
+                        {h}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((e) => (
+                    <tr key={e.id} className="border-t border-white/10">
+                      <td className="px-4 py-3 align-top">
+                        <a href={e.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-semibold text-white underline-offset-4 hover:underline">
+                          {e.figma} <ArrowUpRight className="size-3.5" aria-label="öffnet Figma" />
+                        </a>
+                      </td>
+                      <td className="px-4 py-3 align-top font-mono text-[13px] text-magenta-300">{`<${e.code} />`}</td>
+                      <td className="px-4 py-3 align-top font-mono text-[12px] text-white/70">{e.source?.replace("src/components/", "")}</td>
+                      <td className="px-4 py-3 align-top text-white/80">{e.props?.length ? e.props.map((p) => `${p.name} (${p.kind})`).join(", ") : "–"}</td>
+                      <td className="px-4 py-3 align-top text-white/70">{e.notes || "–"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        );
+      })}
+      <H3>Icons, Logos und Flaggen</H3>
+      <p className="max-w-3xl text-white/75">
+        App-Icons werden zu <code className="text-white">{"<AppIcon name=… />"}</code>, UI-Icons zu lucide-Komponenten, Logos zu Dateien unter <code className="text-white">/brand</code>,
+        Flaggen zu <code className="text-white">{"<CountryFlag />"}</code>.
+      </p>
+      <ul className="mt-6 grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-3">
+        {assets.map((e) => (
+          <li key={e.id} className="flex min-w-0 flex-col gap-0.5 rounded-[12px] border border-white/10 bg-ink-700 px-3 py-2">
+            <a href={e.url} target="_blank" rel="noreferrer" className="truncate text-white/85 hover:text-white hover:underline">
+              {e.figma}
+            </a>
+            <span className="truncate font-mono text-[12px] text-magenta-300">{e.example}</span>
+          </li>
+        ))}
+      </ul>
+    </Block>
+  );
+}
+
 function Table({ head, rows }: { head: string[]; rows: string[][] }) {
   return (
-    <div className="mt-6 overflow-x-auto rounded-[16px] border border-white/10">
+    // Scrolls sideways on phones: focusable so keyboard users can scroll it (WCAG 2.1.1)
+    <div className="mt-6 overflow-x-auto rounded-[16px] border border-white/10" tabIndex={0} role="region" aria-label={head.join(" · ")}>
       <table className="w-full min-w-[520px] text-left text-sm">
         <thead className="bg-white/5 text-[12px] uppercase tracking-[0.1em] text-white/70">
           <tr>

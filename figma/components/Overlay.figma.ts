@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15868-639
 // source=src/components/ui/Overlay.tsx
 // component=Overlay
+// figma=Overlay
 import figma from 'figma'
 const instance = figma.selectedInstance
 const title = instance.getString('Title')

@@ -76,7 +76,7 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
 5. **Google-Bewertungen** – Rating ist Mock; Quelle (Places API) + Caching/Lizenz klären.
 6. **Tracking/Consent** – CTAs tragen `data-track`-Attribute; GA4 Server-Side + CMP noch nicht eingebaut.
 7. **Inhalte** – `TODO(content)`-Stellen (Jobs/Personio, Franchise-Konditionen, Rechtstexte, YouTube-IDs); einige Clubs mit generischen Fotos (`public/images/SOURCES.md`).
-8. **Abhängigkeiten** – `npm audit` meldet transitive Findings (u. a. sharp/libvips, postcss in Next) – im Projekt sauber aufsetzen.
+8. **Ziel-Stack** – Der Prototyp läuft auf Next.js 15.5 (alle Audit-Findings behoben bis auf `zod` in der Code-Connect-CLI, nur Dev-Tool). Für den Produktiv-Build direkt auf Next.js 16 aufsetzen.
 
 ## Figma Code Connect
 
@@ -88,7 +88,11 @@ patterns are built as a code component first, then as a library component.
 - Config: `figma.config.json` (label „React“, language tsx). The templates are excluded from the app's
   `tsconfig`/ESLint and checked separately: `npm run figma:check`.
 - Publish (needs the Figma library to be published and an Organization/Enterprise plan):
-  `FIGMA_ACCESS_TOKEN=… npm run figma:publish` (token with Code Connect write scope).
+  `FIGMA_ACCESS_TOKEN=… npm run figma:publish` (token with Code Connect write scope, e.g. from the keychain:
+  `FIGMA_ACCESS_TOKEN=$(security find-generic-password -s <entry> -w) npm run figma:publish`).
+- Overview: `/styleguide#code-connect` lists every mapping (Figma name, code component, file, Figma properties, notes),
+  generated from the templates into `src/lib/codeConnect.json` by `node figma/overview/build-overview.mjs`;
+  `npm run figma:check` fails when the list is out of date.
 - Library quality audit: `figma/audit/library-audit.js` (run via the Figma MCP tool `use_figma`, see
   `figma/audit/README.md`). Run it after every library change and before every publish.
 - Design tokens: `figma/tokens/tokens.json` (DTCG export of all variables, gradients, shadows and text styles) and

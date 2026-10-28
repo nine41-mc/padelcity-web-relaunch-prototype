@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15864-543
 // source=src/components/ui/CardArrow.tsx
 // component=CardArrow
+// figma=Card Arrow
 import figma from 'figma'
 const instance = figma.selectedInstance
 // Decorative round arrow in the corner of a linked card; the card itself is the link (group hover turns it 45°).

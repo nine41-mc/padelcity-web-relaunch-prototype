@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15205-808
 // source=src/components/brand/SectionIntro.tsx
 // component=SectionIntro
+// figma=Section Intro
 import figma from 'figma'
 const instance = figma.selectedInstance
 const textOf = (layer: string) => {

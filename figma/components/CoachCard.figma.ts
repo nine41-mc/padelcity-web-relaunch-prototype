@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15210-422
 // source=src/components/play/coaches/CoachCard.tsx
 // component=CoachCard
+// figma=Coach Card
 import figma from 'figma'
 const instance = figma.selectedInstance
 // The library tile is the compact grid tile; variant="feature" is the large carousel tile.

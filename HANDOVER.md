@@ -33,7 +33,8 @@ Komponente Quelle und Figma-Node.
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher) |
 
 Regel: Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
-Der Styleguide (`/styleguide`) zeigt alle Muster mit Zuständen und die Zuordnung Library ↔ Code.
+Der Styleguide (`/styleguide`) zeigt alle Muster mit Zuständen; `/styleguide#code-connect` die vollständige Zuordnung
+Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise), generiert aus den Code-Connect-Vorlagen.
 
 ## 3. Inhalte und Daten
 
@@ -57,14 +58,27 @@ Der Styleguide (`/styleguide`) zeigt alle Muster mit Zuständen und die Zuordnun
 |---|---|
 | Typen | `npx tsc --noEmit` |
 | Lint | `npm run lint` |
-| Code-Connect-Templates | `npm run figma:check` |
+| Code-Connect-Templates und -Übersicht | `npm run figma:check` |
 | Tokens Figma ↔ Theme | `npm run tokens:check` |
 | Figma-Library (Variablen, Bindungen, Kontrast, Styles) | `figma/audit/library-audit.js` per `use_figma`, siehe `figma/audit/README.md` |
+
+Stand 28.10.2026: alle 205 Seiten (DE/EN/PL) in 390 und 1440 px geprüft – Konsolenfehler, horizontales Scrollen und
+axe (WCAG 2.2 AA, `@axe-core/playwright`). Die Funde sind behoben; die Nachprüfung über alle Seitentypen ist ohne Fund.
+Im Produktiv-Build gehört dieser Lauf als CI-Schritt dazu.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
 Code-Connect-Schreibrecht.
 
-## 6. Offene Punkte
+## 6. Für den Produktiv-Build
+
+- **Next.js 16** statt 15 (der Prototyp bleibt auf 15.5; Audit-Findings dort behoben).
+- **SEO:** übernehmen lassen sich `hreflang` (`alternates()` in `src/lib/i18n/routes.ts`, auf allen öffentlichen
+  Seiten) und die strukturierten Daten (Organization, SportsActivityLocation, SportsEvent, Article, FAQPage,
+  MobileApplication). Neu im Produktiv-Build: `sitemap.xml`, `robots.txt` und Open-Graph-Bilder pro Seitentyp – der
+  Prototyp braucht sie als passwortgeschützter Export nicht.
+- **Tracking und Consent:** GA4 server-side und CMP; die CTAs tragen bereits `data-track`-Attribute.
+
+## 7. Offene Punkte
 
 - **Kontrast Verlaufswerte:** Kennzahlen in `text-brand-gradient` (KPI, Info Tile) erreichen am lila Startpunkt
   nur ~2,3:1 auf Ink – im Audit als bekannte Ausnahme geführt, Entscheidung beim Design-Team.

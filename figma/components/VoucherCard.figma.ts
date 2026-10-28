@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15210-595
 // source=src/components/brand/VoucherCard.tsx
 // component=VoucherCard
+// figma=Voucher Card
 import figma from 'figma'
 const instance = figma.selectedInstance
 const label = instance.getString('Label')

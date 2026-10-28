@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15866-585
 // source=src/components/events/EventFacts.tsx
 // component=EventSignupCard
+// figma=Event Signup Card
 import figma from 'figma'
 const instance = figma.selectedInstance
 // Children are FactRows (format, deadline, max. participants, free places – only those the APL delivers).

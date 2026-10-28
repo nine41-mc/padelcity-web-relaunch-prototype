@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15205-698
 // source=src/components/ui/SearchInput.tsx
 // component=SearchInput
+// figma=Input / Search
 import figma from 'figma'
 const instance = figma.selectedInstance
 const placeholder = instance.getString('Value')

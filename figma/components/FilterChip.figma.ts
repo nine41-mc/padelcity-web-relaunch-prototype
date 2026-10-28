@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15205-671
 // source=src/components/locations/FilterSheet.tsx
 // component=sheetChip
+// figma=Filter Chip
 import figma from 'figma'
 const instance = figma.selectedInstance
 // Filter chips are plain buttons styled with sheetChip(active) (club finder filter sheet).

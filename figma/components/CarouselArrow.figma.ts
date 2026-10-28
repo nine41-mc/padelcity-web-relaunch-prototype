@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15210-487
 // source=src/components/ui/CarouselArrow.tsx
 // component=CarouselArrow
+// figma=Carousel Arrow
 import figma from 'figma'
 const instance = figma.selectedInstance
 const direction = instance.getEnum('Direction', { Prev: 'prev', Next: 'next' })

@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15210-448
 // source=src/components/brand/KpiTiles.tsx
 // component=KpiTiles
+// figma=KPI Tile
 import figma from 'figma'
 const instance = figma.selectedInstance
 const textOf = (layer: string) => {

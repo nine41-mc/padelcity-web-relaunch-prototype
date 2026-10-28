@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15205-490
 // source=src/components/ui/Button.tsx
 // component=Button
+// figma=Button/Outline
 import figma from 'figma'
 const instance = figma.selectedInstance
 

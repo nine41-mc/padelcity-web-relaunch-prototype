@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15864-544
 // source=src/components/events/EventFacts.tsx
 // component=FactRow
+// figma=Fact Row
 import figma from 'figma'
 const instance = figma.selectedInstance
 // One key fact of an event; render inside a <dl> (EventSignupCard or the left column of the event detail).

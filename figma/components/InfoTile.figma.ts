@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15866-568
 // source=src/components/ui/InfoTile.tsx
 // component=InfoTile
+// figma=Info Tile
 import figma from 'figma'
 const instance = figma.selectedInstance
 const label = instance.getString('Label')

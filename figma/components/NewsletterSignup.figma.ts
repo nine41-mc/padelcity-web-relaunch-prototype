@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15205-832
 // source=src/components/modules/NewsletterSignup.tsx
 // component=NewsletterSignup
+// figma=Newsletter
 import figma from 'figma'
 // Default/Success are runtime states of the form (success after submit).
 // One newsletter for the whole site (footer): title and text come from the dictionary, not from props.

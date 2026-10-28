@@ -1,6 +1,7 @@
 // url=https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15210-453
 // source=src/components/brand/TestimonialCard.tsx
 // component=TestimonialCard
+// figma=Testimonial Card
 import figma from 'figma'
 // Real player voices only with consent – the prototype shows placeholders.
 
