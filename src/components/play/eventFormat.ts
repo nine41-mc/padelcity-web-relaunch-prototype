@@ -10,6 +10,24 @@ export function eventWallClock(iso: string) {
 }
 
 /**
+ * ISO 8601 with the club's UTC offset (structured data wants one) – "2026-10-30T19:30" → "2026-10-30T19:30:00+01:00".
+ * Our clubs are all in the Europe/Berlin zone (Warsaw shares it); times that already carry an offset stay as they are.
+ */
+export function eventIsoWithOffset(iso: string, timeZone = "Europe/Berlin") {
+  if (/(Z|[+-]\d\d:\d\d)$/.test(iso)) return iso;
+  const wall = eventWallClock(iso).getTime();
+  const fmt = new Intl.DateTimeFormat("en-GB", { timeZone, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" });
+  const offsetAt = (t: number) => {
+    const p = Object.fromEntries(fmt.formatToParts(t).map((x) => [x.type, Number(x.value)]));
+    return Date.UTC(p.year, p.month - 1, p.day, p.hour, p.minute) - t;
+  };
+  const offset = offsetAt(wall - offsetAt(wall)) / 60000; // second pass gets the right side of a DST switch
+  const sign = offset < 0 ? "-" : "+";
+  const abs = Math.abs(offset);
+  return `${iso.slice(0, 16)}:00${sign}${String(Math.floor(abs / 60)).padStart(2, "0")}:${String(abs % 60).padStart(2, "0")}`;
+}
+
+/**
  * Date badge: "03" / "DEZ", multi-day "03–05" / "DEZ", across months "30–02" / "NOV–DEZ".
  * The year only when it is not the current one.
  */

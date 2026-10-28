@@ -22,7 +22,7 @@ function appJsonLd(locale: Locale) {
     name: "PadelCity – Let's play Padel!",
     description: t.meta.description,
     inLanguage: localeTags[locale].lang,
-    url: new URL(href(locale, "app"), site.url).toString(),
+    url: `${site.url}${href(locale, "app")}/`,
     operatingSystem: "iOS, Android",
     applicationCategory: "SportsApplication",
     offers: { "@type": "Offer", price: 0, priceCurrency: "EUR" },

@@ -30,9 +30,11 @@ jede Seite:
 | Bilder | ein Bild nicht lädt |
 | Barrierefreiheit | axe einen Verstoß gegen WCAG 2.2 AA meldet |
 | Weiterleitungen | in `seo/redirects-draft.csv` eine alte URL doppelt ist, ein Status nicht `eindeutig`, `prüfen` oder `offen` ist, eine Zeile außer „offen“ kein Ziel hat oder ein Ziel keine Seite des Exports ist |
+| SEO | Titel oder Beschreibung fehlen oder sind innerhalb einer Sprache doppelt, die Beschreibung Zeilenumbrüche oder Aufzählungen enthält, die Seite nicht genau eine `h1` hat, Canonical oder `hreflang` nicht auf die Seite selbst zeigen, ein `hreflang`-Ziel fehlt, `x-default` fehlt oder eine Sprachvariante nicht zurückverweist (interne Seiten wie Styleguide und Content-Modell ausgenommen) |
+| Strukturierte Daten | ein JSON-LD-Block kein gültiges JSON ist, Pflichtfelder seines Typs fehlen (Event, Club, Artikel, FAQ, Organisation, App), ein Event-Datum keine Zeitzone hat, eine URL nicht absolut ist, eine eigene Seiten-URL kein `/` am Ende hat oder nicht existiert, oder ein Text mit Leerzeichen beginnt oder endet |
 | Interaktionen | Mobilmenü, Overlays (WhatsApp, Barrierefreiheit, Filter, Club-Info, Galerie, Coach), Suche, Sprachwechsel, Öffnungszeiten, FAQ oder Teilen nicht funktionieren – Overlays müssen in die Breite passen, einen Schließen-Button haben, mit Esc schließen und im geöffneten Zustand axe bestehen |
 
-Bericht: `.qa/report.json`, Exit-Code 1 bei Funden. Schneller: `npm run qa -- --only /,/events/` (ohne
+Bericht: `.qa/report.json`, Exit-Code 1 bei Funden. **Hinweise** (Titel über 65 Zeichen, Beschreibung unter 50 oder über 160 Zeichen) stehen mit im Bericht, lassen den Lauf aber nicht scheitern – das sind Texte für Marketing/SEO. `npm run qa -- --seo-only` prüft Links, Sitemap, Weiterleitungen und SEO in Sekunden ohne Browser. Schneller: `npm run qa -- --only /,/events/` (ohne
 Interaktionen) oder `--widths 768`; `--no-interactions` lässt die Interaktionen weg; `--browsers webkit` prüft nur
 einen anderen Browser. Erstmalig `npx playwright install chromium webkit firefox` ausführen. In Firefox gibt es
 keine Mobil-Emulation (kein Touch, keine mobile User-Agent) – nur die Breite.

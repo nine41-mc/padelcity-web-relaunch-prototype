@@ -4,6 +4,7 @@
 //   npm run qa -- --browsers all                also WebKit (Safari) and Firefox – or e.g. --browsers webkit
 //   npm run qa -- --only /,/events/             only these paths
 //   npm run qa -- --widths 768                  other widths
+//   npm run qa -- --seo-only                    links, sitemap, redirects and SEO only – no browser (seconds)
 //   npm run qa -- --base https://…              a deployed site instead of out/ (no password-protected builds)
 //
 // Checks: HTTP status of every internal link, pages missing from the sitemaps, console errors and uncaught page
@@ -68,6 +69,9 @@ const { server, base } = external ? { server: null, base: external.replace(/\/$/
 // ---------------------------------------------------------------------------------------------- crawl
 const findings = [];
 const add = (check, where, detail) => findings.push({ check, where, detail });
+// Notes are reported but do not fail the run (content to tune, e.g. snippet lengths)
+const notes = [];
+const note = (check, where, detail) => notes.push({ check, where, detail });
 const norm = (href) => {
   const u = new URL(href, base);
   if (u.origin !== base) return null;
@@ -77,6 +81,7 @@ const norm = (href) => {
   return p;
 };
 const status = new Map();
+const htmlOf = new Map();
 const linkedFrom = new Map();
 const queue = [...START];
 while (queue.length) {
@@ -86,6 +91,7 @@ while (queue.length) {
   status.set(path, res ? res.status : 0);
   if (!res || res.status !== 200) continue;
   const html = await res.text();
+  htmlOf.set(path, html);
   for (const [, href] of html.matchAll(/href="([^"#?]*)/g)) {
     const p = norm(href);
     if (!p) continue;
@@ -134,8 +140,124 @@ if (existsSync(REDIRECTS)) {
   }
 }
 
+// ---------------------------------------------------------------------------------------------- SEO
+// Per page from the served HTML: title, description, one h1, canonical, hreflang (targets exist and link back),
+// <html lang>, and the JSON-LD blocks (valid JSON, required fields per type, our URLs absolute and existing).
+// Canonical and hreflang point at the production domain – they are checked by path against this export.
+const SITE = "https://www.padelcity.de";
+const INTERNAL = /^\/(?:(?:en|pl)\/)?(styleguide|content-modell|content-model|model-tresci|coming-soon|404)\//; // noindex helpers
+const decode = (s) => s.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"').replace(/&lt;/g, "<").replace(/&gt;/g, ">");
+const attrs = (tag) => Object.fromEntries([...tag.matchAll(/([\w:-]+)="([^"]*)"/g)].map(([, k, v]) => [k.toLowerCase(), decode(v)]));
+const tags = (html, name) => [...html.matchAll(new RegExp(`<${name}\\b[^>]*>`, "gi"))].map(([t]) => attrs(t));
+const sitePath = (url) => (url && url.startsWith(SITE) ? new URL(url).pathname : null);
+const exists = async (path) => {
+  if (!status.has(path)) status.set(path, (await fetch(base + path, { redirect: "manual" }).catch(() => null))?.status ?? 0);
+  return status.get(path) === 200;
+};
+const seen = { title: new Map(), description: new Map() };
+const alternatesOf = new Map();
+for (const path of pages) {
+  const html = htmlOf.get(path);
+  const internal = INTERNAL.test(path);
+  const lang = /<html[^>]*\slang="([^"]+)"/.exec(html)?.[1];
+  const title = decode(/<title>([^<]*)<\/title>/.exec(html)?.[1] ?? "").trim();
+  const description = tags(html, "meta").find((m) => m.name === "description")?.content?.trim() ?? "";
+  if (!title) add("SEO: Titel fehlt", path, "");
+  if (!description) add("SEO: Beschreibung fehlt", path, "");
+  if (!internal) {
+    for (const [key, value] of [["title", title], ["description", description]]) {
+      if (!value) continue;
+      const k = `${lang}|${value}`;
+      if (seen[key].has(k)) add(`SEO: ${key === "title" ? "Titel" : "Beschreibung"} doppelt`, path, `wie ${seen[key].get(k)}`);
+      else seen[key].set(k, path);
+    }
+    if (description && (description.length < 50 || description.length > 160)) note("SEO: Beschreibung kürzer als 50 oder länger als 160 Zeichen", path, `${description.length} Zeichen`);
+    if (/\n|•/.test(description)) add("SEO: Beschreibung mit Zeilenumbruch oder Aufzählung", path, description.slice(0, 80));
+    if (title.length > 65) note("SEO: Titel länger als 65 Zeichen", path, `${title.length} Zeichen`);
+  }
+  const h1 = (html.match(/<h1[\s>]/g) ?? []).length;
+  if (h1 !== 1 && !path.startsWith("/404")) add("SEO: nicht genau eine h1", path, `${h1}×`);
+  if (internal) continue; // noindex helpers: no canonical, hreflang or structured data
+  const links = tags(html, "link");
+  const canonical = links.filter((l) => l.rel === "canonical");
+  if (canonical.length !== 1) add("SEO: Canonical fehlt oder mehrfach", path, `${canonical.length}×`);
+  else if (sitePath(canonical[0].href) !== path && !path.startsWith("/404")) add("SEO: Canonical zeigt nicht auf die Seite", path, canonical[0].href);
+  const alternates = Object.fromEntries(links.filter((l) => l.rel === "alternate" && l.hreflang).map((l) => [l.hreflang, l.href]));
+  alternatesOf.set(path, alternates);
+  if (path.startsWith("/404")) continue;
+  if (!Object.keys(alternates).length) add("SEO: hreflang fehlt", path, "");
+  else {
+    if (sitePath(alternates[lang]) !== path) add("SEO: hreflang der eigenen Sprache zeigt nicht auf die Seite", path, `${lang} → ${alternates[lang] ?? "fehlt"}`);
+    if (!alternates["x-default"]) add("SEO: hreflang x-default fehlt", path, "");
+    for (const [code, url] of Object.entries(alternates)) {
+      const target = sitePath(url);
+      if (!target || !(await exists(target))) add("SEO: hreflang-Ziel nicht erreichbar", path, `${code} → ${url}`);
+    }
+  }
+  // JSON-LD
+  for (const [, raw] of html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)) {
+    let data;
+    try {
+      data = JSON.parse(raw);
+    } catch (e) {
+      add("JSON-LD: kein gültiges JSON", path, e.message.slice(0, 100));
+      continue;
+    }
+    for (const item of [].concat(data["@graph"] ?? data)) await checkJsonLd(item, path);
+  }
+}
+// hreflang must be mutual: every alternate lists this page under its own language
+for (const [path, alternates] of alternatesOf) {
+  for (const [code, url] of Object.entries(alternates)) {
+    const target = sitePath(url);
+    if (code === "x-default" || !target || target === path || !alternatesOf.has(target)) continue;
+    const back = alternatesOf.get(target);
+    if (!Object.values(back).some((u) => sitePath(u) === path)) add("SEO: hreflang ohne Rückverweis", path, `${code} → ${target} verweist nicht zurück`);
+  }
+}
+
+async function checkJsonLd(item, path) {
+  const type = item["@type"];
+  const where = `${path} (${type ?? "?"})`;
+  if (item["@context"] !== "https://schema.org") add("JSON-LD: @context fehlt", where, String(item["@context"]));
+  if (!type) return add("JSON-LD: @type fehlt", where, "");
+  const missing = (obj, keys) => keys.filter((k) => k.split(".").reduce((o, part) => o?.[part], obj) == null || k.split(".").reduce((o, part) => o?.[part], obj) === "");
+  const REQUIRED = {
+    SportsEvent: ["name", "startDate", "location.name", "location.address.addressLocality", "location.address.addressCountry"],
+    SportsActivityLocation: ["name", "url", "address.streetAddress", "address.postalCode", "address.addressLocality", "address.addressCountry", "geo.latitude", "geo.longitude"],
+    Article: ["headline", "datePublished", "author.name", "image", "mainEntityOfPage"],
+    FAQPage: ["mainEntity"],
+    Organization: ["name", "url", "logo"],
+    MobileApplication: ["name", "operatingSystem", "applicationCategory"],
+  };
+  if (!REQUIRED[type]) return add("JSON-LD: unbekannter Typ – Pflichtfelder in scripts/qa.mjs ergänzen", where, type);
+  for (const key of missing(item, REQUIRED[type])) add("JSON-LD: Pflichtfeld fehlt", where, key);
+  if (type === "SportsEvent") {
+    for (const key of ["startDate", "endDate"]) if (item[key] && !/^\d{4}-\d\d-\d\dT\d\d:\d\d(:\d\d)?(Z|[+-]\d\d:\d\d)$/.test(item[key])) add("JSON-LD: Datum ohne Zeitzone", where, `${key} ${item[key]}`);
+    if (item.endDate && Date.parse(item.endDate) < Date.parse(item.startDate)) add("JSON-LD: Ende vor Beginn", where, `${item.startDate} → ${item.endDate}`);
+  }
+  if (type === "FAQPage") for (const [i, q] of (item.mainEntity ?? []).entries()) for (const key of missing(q, ["name", "acceptedAnswer.text"])) add("JSON-LD: Pflichtfeld fehlt", where, `mainEntity[${i}].${key}`);
+  if (type === "Article" && item.headline?.length > 110) add("JSON-LD: headline länger als 110 Zeichen", where, `${item.headline.length}`);
+  // Every string: no stray whitespace; every URL absolute; our page URLs end with / and exist
+  const walk = async (value, key) => {
+    if (Array.isArray(value)) for (const v of value) await walk(v, key);
+    else if (value && typeof value === "object") for (const [k, v] of Object.entries(value)) await walk(v, k);
+    else if (typeof value === "string") {
+      if (value !== value.trim()) add("JSON-LD: Leerzeichen am Rand", where, `${key}: „${value.slice(0, 40)}“`);
+      if (/^(url|mainEntityOfPage|image|logo|sameAs|installUrl)$/.test(key) && !/^https:\/\//.test(value)) add("JSON-LD: URL nicht absolut", where, `${key}: ${value}`);
+      const own = sitePath(value);
+      if (own && /^(url|mainEntityOfPage)$/.test(key) && !/\.[a-z0-9]+$/i.test(own)) {
+        if (!own.endsWith("/")) add("JSON-LD: Seiten-URL ohne / am Ende", where, `${key}: ${value}`);
+        else if (!(await exists(own))) add("JSON-LD: Seiten-URL nicht erreichbar", where, `${key}: ${value}`);
+      }
+    }
+  };
+  await walk(item, "");
+}
+
 // ---------------------------------------------------------------------------------------------- page checks
 const routes = only.length ? only : pages;
+const seoOnly = process.argv.includes("--seo-only");
 // Firefox has no mobile emulation and no clipboard permissions in Playwright
 const contextFor = (engine, width, extra = {}) => {
   const mobile = width < 768 && engine !== "firefox";
@@ -270,7 +392,7 @@ const checkInteractions = async (browser, engine) => {
   console.log(`${engine}: ${INTERACTIONS.length} Interaktionen geprüft.`);
 };
 
-for (const engine of engines) {
+for (const engine of seoOnly ? [] : engines) {
   const browser = await ENGINES[engine].launch();
   await checkPages(browser, engine);
   if (!only.length && !process.argv.includes("--no-interactions")) await checkInteractions(browser, engine);
@@ -280,12 +402,20 @@ server?.close();
 
 // ---------------------------------------------------------------------------------------------- report
 mkdirSync(".qa", { recursive: true });
-writeFileSync(".qa/report.json", JSON.stringify({ base, browsers: engines, widths, pages: routes.length, findings }, null, 2));
+writeFileSync(".qa/report.json", JSON.stringify({ base, browsers: engines, widths, pages: routes.length, findings, notes }, null, 2));
 const byCheck = Object.groupBy(findings, (f) => f.check);
-console.log(`\n${routes.length} Seiten × ${widths.length} Breiten × ${engines.length} Browser geprüft, ${pages.length} Seiten verlinkt, ${findings.length} Funde.`);
+console.log(seoOnly
+  ? `\n${pages.length} Seiten geprüft (Links, Sitemap, Weiterleitungen, SEO – ohne Browser), ${findings.length} Funde.`
+  : `\n${routes.length} Seiten × ${widths.length} Breiten × ${engines.length} Browser geprüft, ${pages.length} Seiten verlinkt, ${findings.length} Funde.`);
 for (const [checkName, list] of Object.entries(byCheck)) {
   console.log(`\n✗ ${checkName} (${list.length})`);
   for (const f of list.slice(0, 8)) console.log(`  ${f.where}  ${f.detail}`);
   if (list.length > 8) console.log(`  … ${list.length - 8} weitere in .qa/report.json`);
+}
+const notesByCheck = Object.groupBy(notes, (f) => f.check);
+for (const [checkName, list] of Object.entries(notesByCheck)) {
+  console.log(`\nℹ Hinweis: ${checkName} (${list.length})`);
+  for (const f of list.slice(0, 5)) console.log(`  ${f.where}  ${f.detail}`);
+  if (list.length > 5) console.log(`  … ${list.length - 5} weitere in .qa/report.json`);
 }
 process.exit(findings.length ? 1 : 0);

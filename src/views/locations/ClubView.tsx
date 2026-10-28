@@ -43,13 +43,19 @@ export async function clubStaticParams(locale: Locale): Promise<ClubParams[]> {
 }
 
 /** generateMetadata for the club detail page (per locale, with hreflang alternates). */
+// Search snippet and JSON-LD description from facts, not from Club.description: in Contentful that field holds
+// the club's notices from the app ("Liebe Padel Community, ab dem 01.11. …"), which change and read as cut-off.
+function clubSummary(club: Club, locale: Locale) {
+  return fill(locationsContent[locale].meta.clubDescription, { club: club.fullName ?? club.name, n: club.courts.length });
+}
+
 export async function clubMetadata(slug: string, locale: Locale): Promise<Metadata> {
   const club = await getClub(slug, locale);
   if (!club) return {};
   const t = locationsContent[locale].meta;
   return {
     title: fill(t.clubTitle, { club: club.fullName ?? club.name, city: club.city }),
-    description: `${club.teaser} ${fill(t.clubDescription, { n: club.courts.length })}`,
+    description: clubSummary(club, locale),
     alternates: alternates("locations", club.slug, locale),
     // openGraph replaces the layout's object → repeat type/locale/siteName
     openGraph: { type: "website", siteName: site.name, locale: localeTags[locale].og, images: club.mainImage ? [{ url: club.mainImage.url, alt: club.mainImage.alt }] : undefined },
@@ -81,7 +87,7 @@ function jsonLd(club: Club, locale: Locale) {
     "@context": "https://schema.org",
     "@type": "SportsActivityLocation",
     name: club.fullName ?? club.name,
-    description: club.description,
+    description: clubSummary(club, locale),
     url: `${site.url}${href(locale, "locations", club.slug)}/`,
     inLanguage: localeTags[locale].lang,
     image: club.mainImage ? absolute(club.mainImage.url) : undefined,
@@ -91,7 +97,7 @@ function jsonLd(club: Club, locale: Locale) {
     currenciesAccepted: club.currency ?? "EUR",
     address: {
       "@type": "PostalAddress",
-      streetAddress: `${a.streetName} ${a.buildingNumber}`,
+      streetAddress: `${a.streetName} ${a.buildingNumber}`.trim(),
       postalCode: a.postalCode,
       addressLocality: a.localityName,
       addressRegion: club.region,

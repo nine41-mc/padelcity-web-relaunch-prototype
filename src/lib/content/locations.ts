@@ -7,7 +7,7 @@ const de = {
     title: "Standorte – Finde deinen Court",
     description: "Alle 30+ PadelCity Clubs in Deutschland, Österreich und Polen: Courts, Facilities, Öffnungszeiten und Anfahrt. Buchen in der PadelCity App.",
     clubTitle: "{club} – Padel spielen in {city}",
-    clubDescription: "{n} Courts, Öffnungszeiten, Facilities & Anfahrt. Court buchen in der PadelCity App.",
+    clubDescription: "{club}: {n} Courts, Öffnungszeiten, Facilities & Anfahrt. Court buchen in der PadelCity App.",
   },
   hero: {
     // {clubs}/{cities} = approved key facts (keyFacts), {countries} = derived from open clubs
@@ -202,7 +202,7 @@ const en: LocationsContent = {
     title: "Locations – Find your court",
     description: "All 30+ PadelCity clubs in Germany, Austria and Poland: courts, facilities, opening hours and directions. Book in the PadelCity app.",
     clubTitle: "{club} – Play padel in {city}",
-    clubDescription: "{n} courts, opening hours, facilities & directions. Book your court in the PadelCity app.",
+    clubDescription: "{club}: {n} courts, opening hours, facilities & directions. Book your court in the PadelCity app.",
   },
   hero: {
     eyebrow: "{clubs}+ clubs · {cities}+ cities · {countries} countries",
@@ -401,7 +401,7 @@ const pl: LocationsContent = {
     title: "Lokalizacje – znajdź swój kort",
     description: "Wszystkie 30+ klubów PadelCity w Niemczech, Austrii i Polsce: korty, udogodnienia, godziny otwarcia i dojazd. Rezerwuj w aplikacji PadelCity.",
     clubTitle: "{club} – graj w padla ({city})",
-    clubDescription: "{n} kortów, godziny otwarcia, udogodnienia i dojazd. Zarezerwuj kort w aplikacji PadelCity.",
+    clubDescription: "{club}: korty ({n}), godziny otwarcia, udogodnienia i dojazd. Zarezerwuj kort w aplikacji PadelCity.",
   },
   hero: {
     eyebrow: "{clubs}+ klubów · {cities}+ miast · {countries} kraje",

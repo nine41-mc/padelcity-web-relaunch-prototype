@@ -33,7 +33,7 @@ export function AboutView({ locale }: { locale: Locale }) {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "PadelCity",
-    url: `${site.url}${href(locale, "home")}`,
+    url: `${site.url}${href(locale, "home").replace(/\/?$/, "/")}`,
     logo: `${site.url}/brand/logo.svg`,
     foundingDate: String(keyFacts.foundedYear),
     founder: founders.map((f) => ({ "@type": "Person", name: f.name, jobTitle: f.role[locale] })),

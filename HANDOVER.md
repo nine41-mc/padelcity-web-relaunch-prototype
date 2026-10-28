@@ -67,7 +67,7 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 | Code-Connect-Templates und -Übersicht | `npm run figma:check` |
 | Tokens Figma ↔ Theme | `npm run tokens:check` |
 | Figma-Library (Variablen, Bindungen, Kontrast, Styles) | `figma/audit/library-audit.js` per `use_figma`, siehe `figma/audit/README.md` |
-| Seiten: Links, Sitemap, Konsole, Layout, Bilder, axe (WCAG 2.2 AA), Interaktionen, Weiterleitungsliste | `npm run build && npm run qa` (Chromium; `-- --browsers all` auch WebKit und Firefox) |
+| Seiten: Links, Sitemap, Konsole, Layout, Bilder, axe (WCAG 2.2 AA), Interaktionen, Weiterleitungsliste, SEO (Titel, Beschreibung, h1, Canonical, hreflang) und JSON-LD | `npm run build && npm run qa` (Chromium; `-- --browsers all` auch WebKit und Firefox) |
 
 Die vollständige Checkliste mit Reihenfolge steht in `QA.md`. Alle Gates außer dem Library-Audit laufen in der CI
 (`.github/workflows/checks.yml`) bei jedem Push; auf `main` wird nur deployt, wenn sie grün sind – die QA in
@@ -82,7 +82,10 @@ Code-Connect-Schreibrecht.
 - **Next.js 16** statt 15 (der Prototyp bleibt auf 15.5; Audit-Findings dort behoben).
 - **SEO:** übernehmen lassen sich `hreflang` (`alternates()` in `src/lib/i18n/routes.ts`, auf allen öffentlichen
   Seiten) und die strukturierten Daten (Organization, SportsActivityLocation, SportsEvent, Article, FAQPage,
-  MobileApplication). Neu im Produktiv-Build: `sitemap.xml`, `robots.txt` und Open-Graph-Bilder pro Seitentyp – der
+  MobileApplication), beide von `npm run qa` geprüft. Club-Beschreibungen für Suchtreffer und JSON-LD entstehen aus
+  Fakten (Name, Courts), nicht aus dem Contentful-Feld `description` – das enthält die App-Hinweise der Clubs.
+  Event-Zeiten sind Ortszeit des Clubs und gehen mit Zeitzone ins JSON-LD. Offene Hinweise aus der QA: Titel der
+  Club-Seiten teils über 65 Zeichen, Beschreibungen der Rechtstexte unter 50 Zeichen. Neu im Produktiv-Build: `sitemap.xml`, `robots.txt` und Open-Graph-Bilder pro Seitentyp – der
   Prototyp braucht sie als passwortgeschützter Export nicht.
 - **Tracking und Consent:** GA4 server-side und CMP; die CTAs tragen bereits `data-track`-Attribute.
 - **Weiterleitungen (301) von padelcity.de:** fast alle URLs ändern sich (z. B. `/padelcity-unser-team/` →

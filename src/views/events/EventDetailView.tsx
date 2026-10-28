@@ -22,7 +22,7 @@ import { PartnerBand } from "@/components/modules/PartnerBand";
 import { EventCard } from "@/components/cards/EventCard";
 import { Countdown } from "@/components/play/Countdown";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
-import { eventWallClock } from "@/components/play/eventFormat";
+import { eventIsoWithOffset, eventWallClock } from "@/components/play/eventFormat";
 import { CancellationTable, EventSignupCard, FactRow } from "@/components/events/EventFacts";
 
 /* ---------- Route helpers (used by the DE/EN wrappers) ---------- */
@@ -36,6 +36,14 @@ async function loadEvent(slug: string, locale: Locale) {
   return raw ? localizeEvent(raw, locale) : undefined;
 }
 
+// Search snippet: the subtitle alone is often too short ("Für Kids von 6–14 Jahren") – add the generic sentence
+// when both fit into ~160 characters, otherwise the longer of the two.
+function eventDescription(subtitle: string | undefined, generic: string) {
+  if (!subtitle) return generic;
+  const both = `${subtitle}${/[.!?]$/.test(subtitle) ? "" : "."} ${generic}`;
+  return both.length <= 160 ? both : subtitle.length >= 50 ? subtitle : generic;
+}
+
 export async function eventMetadata(slug: string, locale: Locale): Promise<Metadata> {
   const event = await loadEvent(slug, locale);
   if (!event) return {};
@@ -44,7 +52,7 @@ export async function eventMetadata(slug: string, locale: Locale): Promise<Metad
   return {
     // Event names are the same in both locales → localized suffix keeps DE/EN titles distinct.
     title: t.detail.metaTitle(event.title, event.city ?? where),
-    description: event.subtitle ?? t.detail.metaDescription(event.title, t.types[event.type], where),
+    description: eventDescription(event.subtitle, t.detail.metaDescription(event.title, t.types[event.type], where)),
     alternates: alternates("events", slug, locale),
     // openGraph replaces the layout's object → repeat type/locale/siteName
     openGraph: { type: "website", siteName: site.name, locale: localeTags[locale].og, images: event.image ? [{ url: event.image.url, alt: event.image.alt }] : undefined },
@@ -58,20 +66,20 @@ function eventJsonLd(event: ClubEvent, locale: Locale, club?: Club) {
     name: event.title,
     description: event.subtitle,
     inLanguage: localeTags[locale].lang,
-    url: new URL(href(locale, "events", event.slug), site.url).toString(),
+    url: `${site.url}${href(locale, "events", event.slug)}/`,
     sport: "Padel",
-    startDate: event.start,
-    endDate: event.end ?? event.start,
+    startDate: eventIsoWithOffset(event.start),
+    endDate: eventIsoWithOffset(event.end ?? event.start),
     eventStatus: "https://schema.org/EventScheduled",
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     image: event.image ? [new URL(event.image.url, site.url).toString()] : undefined,
     location: {
       "@type": "Place",
-      name: club?.name ?? event.clubName ?? event.city,
+      name: club?.fullName ?? club?.name ?? event.clubName ?? event.city,
       address: club
         ? {
             "@type": "PostalAddress",
-            streetAddress: `${club.address.streetName} ${club.address.buildingNumber}`,
+            streetAddress: `${club.address.streetName} ${club.address.buildingNumber}`.trim(),
             postalCode: club.address.postalCode,
             addressLocality: club.address.localityName,
             addressCountry: club.country,
@@ -82,7 +90,7 @@ function eventJsonLd(event: ClubEvent, locale: Locale, club?: Club) {
     // Price only – no availability/capacity (no booking-system data on the website).
     offers: {
       "@type": "Offer",
-      url: webApp.event(event.id),
+      url: new URL(webApp.event(event.id), site.url).toString(),
       price: event.pricePerPerson ?? 0,
       priceCurrency: "EUR",
     },

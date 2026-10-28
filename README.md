@@ -71,7 +71,7 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
 
 ## Qualität
 
-Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten in 390, 768 und 1440 px: Links, Konsole, Layout, Bilder, axe, Interaktionen, Weiterleitungsliste). Dieselben Checks laufen in der CI vor jedem Deploy.
+Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten in 390, 768 und 1440 px: Links, Konsole, Layout, Bilder, axe, Interaktionen, Weiterleitungsliste, SEO und strukturierte Daten). Dieselben Checks laufen in der CI vor jedem Deploy.
 
 ## Offene Themen für den Workshop
 

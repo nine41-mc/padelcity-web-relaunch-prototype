@@ -39,7 +39,7 @@ const ADJUST_BASE = process.env.NEXT_PUBLIC_ADJUST_BASE ?? "https://padelcity.go
  * link.padelcity.de, events are mock data). Until NEXT_PUBLIC_APP_LINKS_LIVE=true every such link leads to the
  * "Coming soon" page (with a little padel pong) instead of a dead end. Internal path – Next/asset() add the basePath.
  */
-export const COMING_SOON = "/coming-soon";
+export const COMING_SOON = "/coming-soon/";
 const APP_LINKS_LIVE = process.env.NEXT_PUBLIC_APP_LINKS_LIVE === "true";
 
 /** Universal link that opens the app (or falls back to the store) via Adjust. */

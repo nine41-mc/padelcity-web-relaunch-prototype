@@ -52,5 +52,5 @@ export function EventSignup({
 
 /** Internal targets (the "Coming soon" page while app links aren't live) need the basePath and open in the same tab. */
 function linkProps(url: string) {
-  return url.startsWith("/") ? { href: asset(url + "/") } : { href: url, target: "_blank", rel: "noopener noreferrer" };
+  return url.startsWith("/") ? { href: asset(url.endsWith("/") ? url : `${url}/`) } : { href: url, target: "_blank", rel: "noopener noreferrer" };
 }
