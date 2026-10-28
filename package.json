@@ -16,7 +16,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^0.544.0",
     "motion": "^12.23.12",
-    "next": "^15.5.27",
+    "next": "^15.5.28",
     "react": "^19.1.4",
     "react-dom": "^19.1.4",
     "react-leaflet": "^5.0.0",
@@ -34,5 +34,10 @@
     "eslint-config-next": "^15.5.27",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "^8.5.29"
+    }
   }
 }
