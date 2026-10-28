@@ -1,12 +1,13 @@
 "use client";
 
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
-import { ArrowUpRight, MessageCircle, Search } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { whatsappByCity } from "@/lib/content/whatsapp";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
 import { Overlay } from "@/components/ui/Overlay";
+import { SearchInput } from "@/components/ui/SearchInput";
 
 const copy = {
   de: {
@@ -16,6 +17,7 @@ const copy = {
     join: "Beitreten",
     channel: "Kanal",
     close: "Schließen",
+    clear: "Suche löschen",
     empty: "Für diese Stadt gibt es noch keine Gruppe.",
   },
   en: {
@@ -25,6 +27,7 @@ const copy = {
     join: "Join",
     channel: "Channel",
     close: "Close",
+    clear: "Clear search",
     empty: "There's no group for this city yet.",
   },
   pl: {
@@ -34,6 +37,7 @@ const copy = {
     join: "Dołącz",
     channel: "Kanał",
     close: "Zamknij",
+    clear: "Wyczyść wyszukiwanie",
     empty: "Dla tego miasta nie ma jeszcze grupy.",
   },
 };
@@ -134,17 +138,7 @@ export function WhatsAppGroups({
         closeLabel={t.close}
       >
       <div className="mt-6">
-        <label className="flex min-h-13 items-center gap-3 rounded-full border border-white/40 bg-ink-800 px-4 has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white">
-          <Search className="size-5 shrink-0 text-white/70" aria-hidden />
-          <input
-            type="search"
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder={t.search}
-            aria-label={t.search}
-            className="w-full bg-transparent text-base text-white placeholder:text-white/60 focus:outline-none"
-          />
-        </label>
+        <SearchInput value={q} onChange={setQ} placeholder={t.search} ariaLabel={t.search} clearLabel={t.clear} />
       </div>
 
       <ul className="mt-4 grid gap-2 sm:grid-cols-2">

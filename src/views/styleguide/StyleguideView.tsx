@@ -496,6 +496,14 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Zeitplan, Video und Partner erscheinen nur, wenn sie in Contentful gepflegt sind.
         </p>
 
+        <H3>Library ↔ Code (Code Connect)</H3>
+        <p className="max-w-3xl text-white/75">
+          Jede Library-Komponente hat genau eine Code-Komponente, in Figma per Code Connect verknüpft: Card Arrow → CardArrow, Carousel Arrow → CarouselArrow, Input / Search →
+          SearchInput, Language Switch → LanguageSwitch, FAQ Item → FaqItem (in FaqGroup), Testimonial Card → TestimonialCard, Mobile Menu → MobileMenu, dazu Buttons, Chip,
+          Eyebrow, Section, Section Intro, Karten, Newsletter, Header, Footer, Select, Filter Chip, Map Pin, Store Badges, Booking Bar, KPI Tile, Voucher Card und Ticker.
+          Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
+        </p>
+
         <H3>Footer</H3>
         <ul className="grid gap-3 md:grid-cols-2">
           {[

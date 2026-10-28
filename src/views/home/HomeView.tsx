@@ -4,7 +4,7 @@ import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
-import { ArrowUpRight, Building2, Handshake, LineChart, Trophy } from "lucide-react";
+import { Building2, Handshake, LineChart, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts } from "@/lib/content/partners";
 import type { Locale } from "@/lib/i18n/config";
@@ -31,6 +31,7 @@ import { Marquee } from "@/components/ui/Marquee";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { CardArrow } from "@/components/ui/CardArrow";
 
 /** Home page – shared by / (de) and /en (en). */
 export async function HomeView({ locale }: { locale: Locale }) {
@@ -148,9 +149,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
                   <h3 className="font-display text-3xl font-extrabold italic uppercase">{c.title}</h3>
                   <p className="mt-2 text-white/85 md:min-h-[3lh]">{c.text}</p>
                 </div>
-                <span className="absolute right-5 top-5 grid size-10 place-items-center rounded-full bg-white/10 transition-all group-hover:rotate-45 group-hover:bg-brand-gradient group-hover:text-white">
-                  <ArrowUpRight className="size-5" />
-                </span>
+                <CardArrow className="absolute right-5 top-5" />
               </Link>
             </Reveal>
           ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
+import { GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
 import type { Person } from "@/lib/content/people";
 import type { Locale } from "@/lib/i18n/config";
 import { Eyebrow } from "@/components/ui/Headline";
@@ -11,6 +11,7 @@ import { CoachCard } from "./CoachCard";
 import { CoachDialog } from "./CoachDialog";
 import { coachClubKeys, fill, isHeadCoach, type CoachClubRef } from "./clubs";
 import type { CoachLabels } from "./labels";
+import { CarouselArrow } from "@/components/ui/CarouselArrow";
 
 type Role = "all" | "head" | "coach";
 
@@ -166,26 +167,8 @@ export function CoachExplorer({
             </button>
             {overflow && (
               <div className="hidden gap-2 md:flex">
-                <button
-                  type="button"
-                  onClick={() => scroll(-1)}
-                  disabled={edges.start}
-                  aria-label={labels.prev}
-                  aria-controls="coach-track"
-                  className="grid size-11 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/5 disabled:opacity-30"
-                >
-                  <ChevronLeft className="size-5" aria-hidden />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => scroll(1)}
-                  disabled={edges.end}
-                  aria-label={labels.next}
-                  aria-controls="coach-track"
-                  className="grid size-11 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/5 disabled:opacity-30"
-                >
-                  <ChevronRight className="size-5" aria-hidden />
-                </button>
+                <CarouselArrow direction="prev" label={labels.prev} onClick={() => scroll(-1)} disabled={edges.start} controls="coach-track" />
+                <CarouselArrow direction="next" label={labels.next} onClick={() => scroll(1)} disabled={edges.end} controls="coach-track" />
               </div>
             )}
           </div>

@@ -3,7 +3,7 @@
 // Contentful module: clubShowcase (selected clubs, headline)
 import Link from "next/link";
 import { useCallback, useEffect, useId, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+
 import type { Club } from "@/lib/data/types";
 import { Media } from "../ui/Media";
 import { PosterSky, PosterTitle } from "../cards/Poster";
@@ -12,6 +12,8 @@ import { cn } from "../ui/cn";
 import { OpenStatus, SportList } from "../cards/ClubMeta";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
+import { CarouselArrow } from "@/components/ui/CarouselArrow";
+import { CardArrow } from "@/components/ui/CardArrow";
 
 /**
  * Big, swipeable club posters – "every location as a hero moment".
@@ -46,18 +48,12 @@ export function ClubShowcase({
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     ref.current?.scrollBy({ left: dir * ref.current.clientWidth * 0.8, behavior: reduce ? "auto" : "smooth" });
   };
-  const arrowCls =
-    "size-12 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/10 disabled:pointer-events-none disabled:opacity-30";
   return (
     <div className="relative">
       <div className="container-site mb-6 flex items-center gap-2 md:justify-end">
         {action && <div className="mr-auto md:mr-2">{action}</div>}
-        <button type="button" onClick={() => scroll(-1)} disabled={edges.start} aria-controls={trackId} className={`hidden md:grid ${arrowCls}`} aria-label={labels.prev}>
-          <ArrowLeft className="size-5" aria-hidden />
-        </button>
-        <button type="button" onClick={() => scroll(1)} disabled={edges.end} aria-controls={trackId} className={`hidden md:grid ${arrowCls}`} aria-label={labels.next}>
-          <ArrowRight className="size-5" aria-hidden />
-        </button>
+        <CarouselArrow direction="prev" label={labels.prev} onClick={() => scroll(-1)} disabled={edges.start} controls={trackId} className="hidden md:grid" />
+        <CarouselArrow direction="next" label={labels.next} onClick={() => scroll(1)} disabled={edges.end} controls={trackId} className="hidden md:grid" />
       </div>
       <div
         ref={ref}
@@ -109,9 +105,7 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
         <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
         <SportList club={club} locale={locale} className="mt-1 text-white/80" />
       </div>
-      <span className="absolute bottom-5 right-5 grid size-11 place-items-center rounded-full bg-white/15 text-white backdrop-blur transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
-        <ArrowUpRight className="size-5" />
-      </span>
+      <CardArrow tone="photo" className="absolute bottom-5 right-5" />
     </Link>
   );
 }

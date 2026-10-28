@@ -9,8 +9,9 @@ import { plural } from "@/lib/i18n/plural";
 import { Media } from "../ui/Media";
 import { OpenStatus, SportList } from "./ClubMeta";
 import { PosterSky, PosterTitle } from "./Poster";
-import { ArrowUpRight } from "lucide-react";
+
 import { cn } from "../ui/cn";
+import { CardArrow } from "@/components/ui/CardArrow";
 
 export function courtSummary(club: Club, locale: Locale = "de") {
   // Tiles: total + kind ("13 Courts · Indoor & Outdoor"); the club page keeps the full breakdown
@@ -89,9 +90,7 @@ export function ClubCard({
             <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
             <SportList club={club} locale={locale} className="mt-1 text-white/70" />
           </div>
-          <span className="grid size-11 shrink-0 place-items-center rounded-full bg-white/10 text-white transition-all group-hover:rotate-45 group-hover:bg-brand-gradient" aria-hidden>
-            <ArrowUpRight className="size-5" />
-          </span>
+          <CardArrow />
         </div>
       </div>
       {/* Whole card is the link */}

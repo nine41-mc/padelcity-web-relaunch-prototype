@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { formatDate, getArticles, hubLabel, hubs, magazinContent } from "@/lib/content/magazin";
@@ -11,6 +11,7 @@ import { Chip } from "@/components/ui/Chip";
 import { PressLogos } from "@/components/modules/PressLogos";
 import { ArticleCard } from "@/components/brand/ArticleCard";
 import { MagazinHub } from "@/components/brand/MagazinHub";
+import { CardArrow } from "@/components/ui/CardArrow";
 
 // Contentful page "magazine": contentHubs, featuredArticle, articleGrid (filter by hub), pressLogos
 
@@ -65,9 +66,7 @@ export function MagazineView({ locale }: { locale: Locale }) {
                       <Clock className="size-4" aria-hidden /> {featured.readingTimeMin} {t.minutes}
                     </span>
                   </span>
-                  <span className="grid size-12 place-items-center rounded-full bg-white text-ink-800 transition-transform duration-300 group-hover:rotate-45" aria-hidden>
-                    <ArrowUpRight className="size-5" />
-                  </span>
+                  <CardArrow tone="solid" />
                 </div>
               </div>
             </article>

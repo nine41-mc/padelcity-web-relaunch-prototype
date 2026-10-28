@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowUpRight, Clock } from "lucide-react";
+import { Clock } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { formatDate, hubLabel, magazinContent, type MagazinArticle } from "@/lib/content/magazin";
 import { Media } from "../ui/Media";
 import { Chip } from "../ui/Chip";
 import { cn } from "../ui/cn";
+import { CardArrow } from "@/components/ui/CardArrow";
 
 // Contentful module: articleTeaser (reference to `article`)
 
@@ -46,9 +47,7 @@ export function ArticleCard({ article, locale, className, large = false }: { art
         <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/70">{article.excerpt}</p>
         <div className="mt-auto flex items-center justify-between pt-5 text-sm text-white/70">
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt, locale)}</time>
-          <span className="grid size-9 place-items-center rounded-full bg-white/10 transition-transform duration-300 group-hover:rotate-45 group-hover:bg-brand-gradient group-hover:text-white" aria-hidden>
-            <ArrowUpRight className="size-4" />
-          </span>
+          <CardArrow size="sm" />
         </div>
       </div>
     </article>

@@ -1,25 +1,11 @@
 "use client";
 
 import { useDeferredValue, useId, useMemo, useState } from "react";
-import {
-  BadgePercent,
-  CalendarDays,
-  CircleUser,
-  CreditCard,
-  Dumbbell,
-  Info,
-  Lock,
-  MapPin,
-  MessageCircleQuestionMark,
-  Plus,
-  RotateCcw,
-  Search,
-  Users,
-  X,
-  type LucideIcon,
-} from "lucide-react";
+import { BadgePercent, CalendarDays, CircleUser, CreditCard, Dumbbell, Info, Lock, MapPin, MessageCircleQuestionMark, RotateCcw, Users, type LucideIcon } from "lucide-react";
 import type { FaqCategory, FaqContent } from "@/lib/content/faq";
 import { cn } from "@/components/ui/cn";
+import { SearchInput } from "@/components/ui/SearchInput";
+import { FaqGroup, FaqItem } from "@/components/ui/FaqItem";
 
 const ICONS: Record<string, LucideIcon> = {
   infoCircle: Info,
@@ -73,28 +59,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
           <label htmlFor={searchId} className="mb-2 block text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
             {labels.searchLabel}
           </label>
-          <div className="relative">
-            <Search className="pointer-events-none absolute left-4 top-1/2 size-5 -translate-y-1/2 text-white/60" aria-hidden />
-            <input
-              id={searchId}
-              type="search"
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={labels.searchPlaceholder}
-              autoComplete="off"
-              className="h-13 w-full rounded-full border border-white/20 bg-ink-700 pl-12 pr-14 text-base text-chalk placeholder:text-white/60 transition hover:border-white/50 focus-visible:border-white focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-white [&::-webkit-search-cancel-button]:hidden"
-            />
-            {query && (
-              <button
-                type="button"
-                onClick={() => setQuery("")}
-                aria-label={labels.clear}
-                className="absolute right-1.5 top-1/2 grid size-11 -translate-y-1/2 place-items-center rounded-full text-white/70 transition hover:bg-white/10 hover:text-white"
-              >
-                <X className="size-5" aria-hidden />
-              </button>
-            )}
-          </div>
+          <SearchInput id={searchId} value={query} onChange={setQuery} placeholder={labels.searchPlaceholder} clearLabel={labels.clear} />
         </div>
         <p className="text-sm text-white/70" aria-live="polite" aria-atomic="true">
           {status}
@@ -152,19 +117,12 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                       </span>
                       <span className="font-display text-2xl font-extrabold uppercase italic leading-none tracking-tight md:text-3xl">{c.title}</span>
                     </h2>
-                    <div className="divide-y divide-white/10 rounded-[20px] border border-white/10 bg-ink-700">
+                    <FaqGroup>
                       {c.items.map((i) => (
-                        <details key={i.id} id={`faq-q-${i.id}`} className="faq-item group scroll-mt-28" open={Boolean(q) && total <= 3}>
-                          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-[20px] px-5 py-4 font-semibold transition hover:text-white md:px-6 md:text-lg [&::-webkit-details-marker]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-optic-500">
-                            {i.q}
-                            <span className="grid size-9 shrink-0 place-items-center rounded-full border border-white/20 transition-transform duration-300 group-open:rotate-45 group-open:border-transparent group-open:bg-brand-gradient group-open:text-white motion-reduce:transition-none">
-                              <Plus className="size-4" aria-hidden />
-                            </span>
-                          </summary>
+                        <FaqItem key={i.id} id={`faq-q-${i.id}`} question={i.q} defaultOpen={Boolean(q) && total <= 3}>
                           {i.html ? (
                             <div
                               className={cn(
-                                "max-w-3xl px-5 pb-5 text-white/75 md:px-6",
                                 "[&_p+p]:mt-3 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ol]:mt-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_li]:mt-1",
                                 "[&_a]:font-medium [&_a]:text-white [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-magenta-300 [&_strong]:text-white [&_a]:break-words",
                               )}
@@ -172,11 +130,11 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                               dangerouslySetInnerHTML={{ __html: i.html }}
                             />
                           ) : (
-                            <p className="max-w-3xl px-5 pb-5 text-white/75 md:px-6">{i.a}</p>
+                            <p>{i.a}</p>
                           )}
-                        </details>
+                        </FaqItem>
                       ))}
-                    </div>
+                    </FaqGroup>
                   </section>
                 );
               })}

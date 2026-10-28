@@ -2,9 +2,10 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+
 import type { StorePanel } from "@/lib/content/app";
 import { cn } from "@/components/ui/cn";
+import { CarouselArrow } from "@/components/ui/CarouselArrow";
 
 // Contentful module: appStoreGallery (items: image, alt; link: store URL)
 /**
@@ -68,24 +69,8 @@ export function StoreGallery({
         </ul>
       </div>
       <div className="mt-4 flex gap-3">
-        <button
-          type="button"
-          onClick={() => scroll(-1)}
-          disabled={edges.start}
-          aria-label={labels.prev}
-          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-optic-500"
-        >
-          <ArrowLeft className="size-5" aria-hidden />
-        </button>
-        <button
-          type="button"
-          onClick={() => scroll(1)}
-          disabled={edges.end}
-          aria-label={labels.next}
-          className="grid size-11 place-items-center rounded-full border border-white/40 transition-colors disabled:pointer-events-none disabled:opacity-30 hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-optic-500"
-        >
-          <ArrowRight className="size-5" aria-hidden />
-        </button>
+        <CarouselArrow direction="prev" label={labels.prev} onClick={() => scroll(-1)} disabled={edges.start} />
+        <CarouselArrow direction="next" label={labels.next} onClick={() => scroll(1)} disabled={edges.end} />
       </div>
     </div>
   );

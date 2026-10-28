@@ -3,16 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
-import { mainNav, secondaryNav } from "@/lib/site";
-import { localeTags, locales } from "@/lib/i18n/config";
-import { href, localeFromPath, switchLocalePath } from "@/lib/i18n/routes";
+import { mainNav } from "@/lib/site";
+import { href, localeFromPath } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Button } from "../ui/Button";
-import { StoreBadges } from "../ui/StoreBadges";
 import { cn } from "../ui/cn";
 import { Logo } from "./Logo";
+import { LanguageSwitch } from "./LanguageSwitch";
+import { MobileMenu } from "./MobileMenu";
 
 export function Header() {
   const pathname = usePathname() ?? "/";
@@ -106,76 +105,7 @@ export function Header() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-menu"
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-x-3 top-[84px] bottom-3 overflow-y-auto rounded-[28px] border border-white/10 bg-ink-800/95 pad-panel backdrop-blur-xl md:inset-x-5 md:top-[100px] lg:hidden"
-          >
-            <nav aria-label={t.header.mobileNav}>
-              <ul className="space-y-1">
-                {mainNav.map((key, i) => (
-                  <motion.li key={key} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.04 * i }}>
-                    <Link
-                      href={href(locale, key)}
-                      aria-current={pathname.startsWith(href(locale, key)) ? "page" : undefined}
-                      className="flex items-center justify-between gap-4 border-b border-white/10 py-4"
-                    >
-                      {/* same type as the desktop navigation (Poppins, uppercase, tracked) – Söhne stays reserved for headlines */}
-                      <span className="text-[22px] font-semibold uppercase leading-tight tracking-[0.06em] md:text-2xl">{t.nav[key]}</span>
-                      <span className="hidden text-sm text-white/70 md:inline">{t.navDescriptions[key]}</span>
-                    </Link>
-                  </motion.li>
-                ))}
-              </ul>
-              <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-white/70">
-                {secondaryNav.map((key) => (
-                  <li key={key}>
-                    <Link href={href(locale, key)} className="hover:text-white">
-                      {t.nav[key]}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className="mt-8 space-y-4">
-              <Button href={href(locale, "locations")} variant="gradient" size="md" className="w-full justify-between">
-                {t.header.findCourt}
-              </Button>
-              <StoreBadges locale={locale} />
-              <LanguageSwitch pathname={pathname} current={locale} label={t.header.language} />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <MobileMenu open={open} locale={locale} pathname={pathname} />
     </header>
-  );
-}
-
-function LanguageSwitch({ pathname, current, label, className }: { pathname: string; current: (typeof locales)[number]; label: string; className?: string }) {
-  return (
-    <div role="group" aria-label={label} className={cn("flex h-13 items-center gap-1 rounded-full border border-white/25 px-1 text-sm font-semibold uppercase leading-none tracking-[0.06em]", className)}>
-      {locales.map((l) => (
-        <Link
-          key={l}
-          href={switchLocalePath(pathname, l)}
-          hrefLang={localeTags[l].lang}
-          lang={localeTags[l].lang}
-          aria-current={l === current ? "true" : undefined}
-          className={cn(
-            "flex h-11 min-w-11 items-center justify-center rounded-full px-2.5 pt-px transition-colors",
-            l === current ? "bg-brand-gradient text-white" : "text-white/85 hover:text-white",
-          )}
-        >
-          {l}
-          {/* WCAG 2.5.3: the accessible name contains the visible text ("de – Deutsch") */}
-          <span className="sr-only"> – {localeTags[l].label}</span>
-        </Link>
-      ))}
-    </div>
   );
 }
