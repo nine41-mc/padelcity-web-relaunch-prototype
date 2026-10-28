@@ -222,7 +222,7 @@
   @media (width >= 768px) {
     padding: 40px;
   }
-  @media (width >= 1024px) {
+  @media (width >= 1200px) {
     padding: 56px;
   }
 }

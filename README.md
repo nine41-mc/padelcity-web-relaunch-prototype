@@ -81,15 +81,16 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
 ## Figma Code Connect
 
 `figma/` holds Code Connect templates (`*.figma.ts`) that link the web library in the Figma file
-„PadelCity Website Relaunch“ to the React components here (24 components, 83 icons, 5 logos, 3 country flags). Dev Mode then shows
-the matching code snippet for a selected component.
+„PadelCity Website Relaunch“ to the React components here (43 components, 86 icons, 5 logos, 3 country flags). Dev Mode then shows
+the matching code snippet for a selected component. Every library component has exactly one code component – new
+patterns are built as a code component first, then as a library component.
 
 - Config: `figma.config.json` (label „React“, language tsx). The templates are excluded from the app's
   `tsconfig`/ESLint and checked separately: `npm run figma:check`.
 - Publish (needs the Figma library to be published and an Organization/Enterprise plan):
   `FIGMA_ACCESS_TOKEN=… npm run figma:publish` (token with Code Connect write scope).
-- Not mapped (no standalone code component, markup lives inside other components): Icon Button, Input/Search
-  (FaqExplorer), FAQ Item (FaqExplorer), Language Switch (Header-internal),
-  Mobile Menu (part of Header), Carousel Arrow (inline in carousels), Testimonial Card (Testimonials-internal).
 - Library quality audit: `figma/audit/library-audit.js` (run via the Figma MCP tool `use_figma`, see
   `figma/audit/README.md`). Run it after every library change and before every publish.
+- Design tokens: `figma/tokens/tokens.json` (DTCG export of all variables, gradients, shadows and text styles) and
+  `npm run tokens:check`, which compares it with the Tailwind theme in `globals.css`. See `figma/tokens/README.md`.
+- Handover for the production build: [`HANDOVER.md`](HANDOVER.md).

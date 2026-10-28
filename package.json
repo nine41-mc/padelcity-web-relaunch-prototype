@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "figma:check": "tsc -p figma/tsconfig.json",
-    "figma:publish": "figma connect publish"
+    "figma:publish": "figma connect publish",
+    "tokens:check": "node figma/tokens/check-theme.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
