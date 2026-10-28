@@ -84,7 +84,9 @@ Code-Connect-Schreibrecht.
   Seiten) und die strukturierten Daten (Organization, SportsActivityLocation, SportsEvent, Article, FAQPage,
   MobileApplication), beide von `npm run qa` geprüft. Club-Beschreibungen für Suchtreffer und JSON-LD entstehen aus
   Fakten (Name, Courts), nicht aus dem Contentful-Feld `description` – das enthält die App-Hinweise der Clubs.
-  Event-Zeiten sind Ortszeit des Clubs und gehen mit Zeitzone ins JSON-LD. Offene Hinweise aus der QA: Titel der
+  Event-Zeiten werden als Ortszeit des Clubs ohne Zeitzone erwartet (Format der Mock-Daten) und gehen mit Zeitzone ins
+  JSON-LD; liefert die APL Zeiten mit Offset oder „Z“, in der Datenschicht vorher in Club-Zeit umrechnen
+  (`src/components/play/eventFormat.ts`). Offene Hinweise aus der QA: Titel der
   Club-Seiten teils über 65 Zeichen, Beschreibungen der Rechtstexte unter 50 Zeichen. Neu im Produktiv-Build: `sitemap.xml`, `robots.txt` und Open-Graph-Bilder pro Seitentyp – der
   Prototyp braucht sie als passwortgeschützter Export nicht.
 - **Tracking und Consent:** GA4 server-side und CMP; die CTAs tragen bereits `data-track`-Attribute.

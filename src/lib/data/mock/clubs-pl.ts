@@ -43,13 +43,13 @@ const cities: Record<string, string> = { München: "Monachium", "Frankfurt am Ma
 const tags: Record<string, string> = { Neu: "Nowość", "Der Erste": "Pierwszy", "Deutscher Meister": "Mistrz Niemiec", Franchise: "Franczyza" };
 
 export function toPolishMock(club: Club): Club {
-  const teaser = teasers[club.slug] ?? club.teaser;
+  const teaser = teasers[club.slug];
   const loc = club.courts[0]?.locationType === "outdoor" ? "Korty odkryte" : "Korty kryte";
   return {
     ...club,
     city: cities[club.city] ?? club.city,
-    teaser,
-    description: `${teaser} ${loc}, rakiety do wypożyczenia na miejscu i społeczność, która przyjmie cię z otwartymi ramionami. Zarezerwuj kort w aplikacji PadelCity – w kilka kliknięć.`,
+    // Seed clubs only – supplement clubs bring their own translated description
+    description: teaser ? `${teaser} ${loc}, rakiety do wypożyczenia na miejscu i społeczność, która przyjmie cię z otwartymi ramionami. Zarezerwuj kort w aplikacji PadelCity – w kilka kliknięć.` : club.description,
     facilities: club.facilities.map((f) => ({ ...f, name: facilities[f.type] ?? f.name })),
     tags: club.tags.map((t) => tags[t] ?? t),
     address: { ...club.address, localityName: cities[club.address.localityName] ?? club.address.localityName },

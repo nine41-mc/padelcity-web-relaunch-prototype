@@ -13,7 +13,6 @@ import {
   regionForCity,
   regionFromSubdivision,
   slugify,
-  teaserFrom,
   uniq,
 } from "./mappers";
 
@@ -352,8 +351,6 @@ export async function fetchContentfulClubs(mocks: Club[], locale: CfLocale = "de
       region: subRegion ?? (country === "DE" ? mock?.region : regionForCity(city) ?? regionForCity(name.replace(/^padel\s*city\s+/i, ""))),
       country,
       description: description || mock?.description || "",
-      // Real Contentful description first – mock teasers are illustrative and must never override facts.
-      teaser: teaserFrom(description) ?? `${courts.length} Courts in ${city}`,
       address: {
         streetName: str(f.streetName) ?? "",
         buildingNumber: str(f.buildingNumber) ?? "",

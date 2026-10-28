@@ -43,13 +43,13 @@ const cities: Record<string, string> = { München: "Munich", "Frankfurt am Main"
 const tags: Record<string, string> = { Neu: "New", "Der Erste": "The first", "Deutscher Meister": "German champions" };
 
 export function toEnglishMock(club: Club): Club {
-  const teaser = teasers[club.slug] ?? club.teaser;
+  const teaser = teasers[club.slug];
   const loc = club.courts[0]?.locationType === "outdoor" ? "outdoor" : "indoor";
   return {
     ...club,
     city: cities[club.city] ?? club.city,
-    teaser,
-    description: `${teaser} ${loc} courts, rental rackets on site and a community that welcomes you with open arms. Book your court in the PadelCity app – in just a few taps.`,
+    // Seed clubs only – supplement clubs bring their own translated description
+    description: teaser ? `${teaser} ${loc} courts, rental rackets on site and a community that welcomes you with open arms. Book your court in the PadelCity app – in just a few taps.` : club.description,
     facilities: club.facilities.map((f) => ({ ...f, name: facilities[f.type] ?? f.name })),
     tags: club.tags.map((t) => tags[t] ?? t),
     address: { ...club.address, localityName: cities[club.address.localityName] ?? club.address.localityName },

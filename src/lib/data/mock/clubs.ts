@@ -104,7 +104,6 @@ export const mockClubs: Club[] = seeds.map((s, i) => {
     region: s.region,
     country: "DE",
     description: `${s.teaser} ${s.loc === "indoor" ? "Indoor" : "Outdoor"}-Courts, Leihschläger vor Ort und eine Community, die dich mit offenen Armen empfängt. Buche deinen Court in der PadelCity App – in wenigen Klicks.`,
-    teaser: s.teaser,
     address: { streetName, buildingNumber, postalCode, localityName: s.city },
     position: { latitude: s.lat, longitude: s.lng },
     courts: courts(s.slug, s.doubles, s.singles, s.loc, s.premium ?? 0),

@@ -28,7 +28,6 @@ const innsbruck: Club = {
   status: "open",
   // padelcity.de/innsbruck: 4 courts = 2 indoor double + 2 indoor single, Mon–Sun & holidays 07:00–22:00,
   // 60 min from 34 € (double) / 22 € (single). Address: Stadlweg 40, 6020 Innsbruck.
-  teaser: "Unser erster Club in Österreich.",
   description:
     "PadelCity Innsbruck: 4 Indoor-Courts (2 Doppel, 2 Einzel), täglich und an Feiertagen von 7 bis 22 Uhr geöffnet. Leihschläger buchst du in der PadelCity App einfach dazu.",
   address: { streetName: "Stadlweg", buildingNumber: "40", postalCode: "6020", localityName: "Innsbruck" },
@@ -58,7 +57,6 @@ const warschau: Club = {
   country: "PL",
   status: "open",
   // padelcity.pl: "Warsaw – Arkadia", al. Jana Pawła II 82, outdoor, 3 courts (2 double, 1 single), daily 8:00–23:00.
-  teaser: "Outdoor-Padel mitten in Warschau.",
   description:
     "PadelCity Warschau an der Westfield Arkadia: 3 Outdoor-Courts (2 Doppel, 1 Einzel), täglich von 8 bis 23 Uhr geöffnet. Gebucht wird in der PadelCity App.",
   address: { streetName: "al. Jana Pawła II", buildingNumber: "82", postalCode: "", localityName: "Warschau" },
@@ -140,7 +138,6 @@ const plannedClubs: Club[] = plannedSeeds.map((s, i) => ({
   country: s.country,
   status: "planned",
   openingDate: PLACEHOLDER_OPENING[i % PLACEHOLDER_OPENING.length],
-  teaser: "Bald eröffnet.",
   description: `${s.name} ist in Planung. Den Eröffnungstermin geben wir bekannt, sobald er feststeht.`,
   address: NO_ADDRESS(s.city),
   position: { latitude: s.lat, longitude: s.lng },

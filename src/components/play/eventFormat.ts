@@ -2,8 +2,9 @@ import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 
 /**
- * Event times are the club's wall-clock time (ISO without offset, as the APL shows them). As a Date in UTC they
+ * Event times are the club's wall-clock time (ISO without offset – the mock data's format). As a Date in UTC they
  * format the same on every machine – the build (CI runs in UTC) and any visitor's browser. Format with timeZone "UTC".
+ * An offset or "Z" is ignored here: if the APL delivers times with one, convert them to club time in the data layer.
  */
 export function eventWallClock(iso: string) {
   return new Date(`${iso.slice(0, 16)}:00Z`);

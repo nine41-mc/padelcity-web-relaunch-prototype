@@ -22,7 +22,7 @@ Seiten (Server Components) ──► @/lib/data (index.ts = Fassade)
 | FAQ (`getFaq(locale)` in `faq.ts`) | api-platform `GET /faq/sections` + `/faq/sections/{id}/topics` (öffentlich) | `src/lib/content/faq.ts` (statisch) |
 | Coaches (`getCoaches(locale)`) | Contentful `coach` + `coachTrainingTime` (`contentful-coaches.ts`) | `src/lib/content/people.ts` (ohne Kontakt/Preise/Zahlen) |
 
-- Die Seite wird **statisch exportiert** (`output: "export"`); Contentful wird beim Build gelesen. Inhaltsänderungen → Pipeline neu laufen lassen (Schedule oder Contentful-Webhook auf den GitLab-Pipeline-Trigger).
+- Die Seite wird **statisch exportiert** (`output: "export"`); Contentful wird beim Build gelesen. Inhaltsänderungen → Pipeline neu laufen lassen (GitHub: Workflow „Build & Deploy“ manuell starten; GitLab: Schedule oder Contentful-Webhook auf den Pipeline-Trigger).
 - Fehlende Env-Variablen oder Fehler → stiller Fallback auf Mock-Daten (ein `console.warn` pro Build).
 - Was Contentful nicht kennt (Teaser, kuratierte Tags, Franchise-Flag), wird aus dem Mock-Club mit gleichem Slug/Namen/Ort ergänzt.
 - **Locale-Fallback**: Clubs, Courts und Coaches werden mit `locale=*` geladen. Text kommt in der Seitensprache, alle übrigen Felder (Bilder, `location`, `openingTimes`, Preis, Court-Typen) fallen auf die Default-Locale `en` zurück – api-platform pflegt/liest diese Felder nur in EN (`ClubHandler.php`, `setLocale(LOCALE__EN)`).
@@ -36,7 +36,7 @@ Nur ein **Contentful Content Delivery API**-Token (read-only, nur veröffentlich
 1. In Contentful den Space öffnen, in dem die Club-Stammdaten liegen (derselbe, den api-platform synchronisiert).
 2. **Settings → API keys → Add API key**, Name z. B. `website-prototype`, Environment `master` auswählen.
 3. *Space ID* und *Content Delivery API – access token* kopieren. (Den Preview-Token und Management-Tokens **nicht** verwenden.)
-4. Lokal: `.env.local` aus `.env.example` anlegen. GitLab: als **masked** CI/CD-Variablen `CONTENTFUL_SPACE_ID`, `CONTENTFUL_ENVIRONMENT_ID`, `CONTENTFUL_DELIVERY_TOKEN` hinterlegen.
+4. Lokal: `.env.local` aus `.env.example` anlegen. GitHub: Repository-Secrets `CONTENTFUL_SPACE_ID` und `CONTENTFUL_DELIVERY_TOKEN` (optional Variable `CONTENTFUL_ENVIRONMENT_ID`, sonst `master`) – `deploy.yml` und `checks.yml` lesen sie. GitLab: als **masked** CI/CD-Variablen `CONTENTFUL_SPACE_ID`, `CONTENTFUL_ENVIRONMENT_ID`, `CONTENTFUL_DELIVERY_TOKEN` hinterlegen.
 
 API-Keys anlegen dürfen Space-Admins; ein eigener Key pro Anwendung lässt sich später einzeln widerrufen.
 
@@ -94,7 +94,7 @@ Die Seite `/faq` · `/en/faq` zeigt dieselben Fragen wie der Hilfe-Bereich der A
 
 - `getClubReviews(club, locale)` ruft beim Build `GET https://places.googleapis.com/v1/places/{placeId}` mit Field-Mask `rating,userRatingCount,reviews,googleMapsUri` und `languageCode=de|en` auf – nur wenn `GOOGLE_PLACES_API_KEY` gesetzt ist **und** für den Slug eine Place-ID in `placeIds` steht (aktuell leer).
 - Sonst (oder bei Fehlern, ein `console.warn` pro Build) → `{ status: "placeholder" }`: gleiches Layout, deutlich als Platzhalter markiert, keine Namen, keine Zitate, keine Zahlen („–“).
-- Key: in der Google Cloud Console nur für die *Places API (New)* freischalten und per API-Restriction einschränken; GitLab: masked CI/CD-Variable `GOOGLE_PLACES_API_KEY`. Wird nur beim Build verwendet, nie im Browser.
+- Key: in der Google Cloud Console nur für die *Places API (New)* freischalten und per API-Restriction einschränken; GitLab: masked CI/CD-Variable `GOOGLE_PLACES_API_KEY`; GitHub: Repository-Secret und im Build-Schritt von `deploy.yml` und `checks.yml` als `env` ergänzen (heute nicht eingetragen, weil noch kein Key existiert). Wird nur beim Build verwendet, nie im Browser.
 
 **Darstellungsregeln (Google Maps Platform Policies):**
 - Quelle sichtbar machen: „Google“-Attribution („Bewertungen von Google“, „via Google“; später ggf. Google-Logo nach Brand-Guidelines).

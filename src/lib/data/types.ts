@@ -53,7 +53,6 @@ export type Club = {
   region?: string; // Bundesland / subdivision
   country: ClubCountry;
   description: string;
-  teaser: string; // one-liner for cards
   address: { streetName: string; buildingNumber: string; postalCode: string; localityName: string };
   position: { latitude: number; longitude: number };
   courts: CourtSummary[];

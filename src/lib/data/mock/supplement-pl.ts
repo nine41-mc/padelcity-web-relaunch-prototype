@@ -47,7 +47,6 @@ export function toPolishSupplement(club: Club): Club {
   if (club.status === "planned") {
     return {
       ...base,
-      teaser: "Wkrótce otwarcie.",
       description: `${name} jest w przygotowaniu. Termin otwarcia ogłosimy, gdy tylko zostanie ustalony.`,
       address: { ...club.address, localityName: city },
       mainImage: club.mainImage && { ...club.mainImage, alt: plannedImageAltPl[club.slug] ?? club.mainImage.alt },
@@ -56,7 +55,6 @@ export function toPolishSupplement(club: Club): Club {
   if (club.slug === "innsbruck") {
     return {
       ...base,
-      teaser: "Nasz pierwszy klub w Austrii.",
       description:
         "PadelCity Innsbruck: 4 korty kryte (2 podwójne, 2 pojedyncze), otwarte codziennie, także w święta, od 7:00 do 22:00. Rakiety do wypożyczenia dodasz po prostu do rezerwacji w aplikacji PadelCity.",
       tags: club.tags.map((t) => (t === "Neu" ? "Nowość" : t)),
@@ -65,7 +63,6 @@ export function toPolishSupplement(club: Club): Club {
   if (club.slug === "warschau") {
     return {
       ...base,
-      teaser: "Padel na świeżym powietrzu w samym sercu Warszawy.",
       description:
         "PadelCity Warszawa przy Westfield Arkadia: 3 korty odkryte (2 podwójne, 1 pojedynczy), otwarte codziennie od 8:00 do 23:00. Rezerwacja w aplikacji PadelCity.",
       tags: club.tags.map((t) => (t === "Neu" ? "Nowość" : t)),

@@ -40,7 +40,6 @@ export function toEnglishSupplement(club: Club): Club {
   if (club.status === "planned") {
     return {
       ...base,
-      teaser: "Opening soon.",
       description: `${name} is in the pipeline. We'll announce the opening date as soon as it's fixed.`,
       address: { ...club.address, localityName: city },
       mainImage: club.mainImage && { ...club.mainImage, alt: plannedImageAltEn[club.slug] ?? club.mainImage.alt },
@@ -49,7 +48,6 @@ export function toEnglishSupplement(club: Club): Club {
   if (club.slug === "innsbruck") {
     return {
       ...base,
-      teaser: "Our first club in Austria.",
       description:
         "PadelCity Innsbruck: 4 indoor courts (2 doubles, 2 singles), open daily including public holidays from 7 am to 10 pm. Add rental rackets to your booking in the PadelCity app.",
       tags: club.tags.map((t) => (t === "Neu" ? "New" : t)),
@@ -58,7 +56,6 @@ export function toEnglishSupplement(club: Club): Club {
   if (club.slug === "warschau") {
     return {
       ...base,
-      teaser: "Outdoor padel in the heart of Warsaw.",
       description:
         "PadelCity Warsaw at Westfield Arkadia: 3 outdoor courts (2 doubles, 1 singles), open daily from 8 am to 11 pm. Book in the PadelCity app.",
       tags: club.tags.map((t) => (t === "Neu" ? "New" : t)),

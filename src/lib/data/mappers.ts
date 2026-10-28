@@ -254,14 +254,6 @@ export function findMockMatch(mocks: Club[], live: { slug: string; name: string;
   return sameCity.length === 1 ? sameCity[0] : undefined;
 }
 
-/** First sentence (≤ 120 chars) of a description, used as teaser when no curated one exists. */
-export function teaserFrom(description: string | undefined): string | undefined {
-  if (!description) return undefined;
-  const first = (/^[\s\S]*?[.!?](?=\s|$)/.exec(description)?.[0] ?? description).trim();
-  if (!first) return undefined;
-  return first.length > 120 ? `${first.slice(0, 117)}…` : first;
-}
-
 export function errorMessage(err: unknown): string {
   if (err instanceof Error) return err.name === "TimeoutError" ? "timeout" : err.message;
   return String(err);
