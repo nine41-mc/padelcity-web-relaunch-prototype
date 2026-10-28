@@ -1,0 +1,140 @@
+alte_url;neue_url;status;hinweis
+/academy/;/academy/;eindeutig;
+/allgemeine-geschaeftsbedingungen/;/agb/;eindeutig;
+/andernach/;/standorte/andernach/;eindeutig;
+/app/;/app/;eindeutig;
+/berlin/;/standorte/berlin/;eindeutig;
+/bielefeld/;/standorte/bielefeld/;eindeutig;
+/cadolzburg/;/standorte/cadolzburg/;eindeutig;
+/category/padel/;/magazin/;eindeutig;
+/datenschutzerklaerung/;/datenschutz/;eindeutig;
+/dortmund/;/standorte/dortmund/;eindeutig;
+/duesseldorf/;/standorte/duesseldorf/;eindeutig;
+/en/;/en/;eindeutig;
+/en/about-us/;/en/about/;eindeutig;
+/en/academy/;/en/academy/;eindeutig;
+/en/andernach-en/;/en/locations/andernach/;eindeutig;
+/en/app-2/;/en/app/;eindeutig;
+/en/app-3/;/en/app/;eindeutig;
+/en/app/;/en/app/;eindeutig;
+/en/berlin/;/en/locations/berlin/;eindeutig;
+/en/bielefeld/;/en/locations/bielefeld/;eindeutig;
+/en/cadolzburg/;/en/locations/cadolzburg/;eindeutig;
+/en/category/padel_en/;/en/magazine/;eindeutig;
+/en/christmas-events/;/en/events/;prüfen;saisonale Seite – weiterleiten oder entfallen lassen
+/en/dortmund/;/en/locations/dortmund/;eindeutig;
+/en/duesseldorf/;/en/locations/duesseldorf/;eindeutig;
+/en/erding/;/en/locations/erding/;eindeutig;
+/en/erlangen-en/;/en/locations/erlangen/;eindeutig;
+/en/footer/;/en/;prüfen;WordPress-Hilfsseite, nicht öffentlich gedacht
+/en/franchising/;/en/franchise/;eindeutig;
+/en/frankfurt-en/;/en/locations/frankfurt/;eindeutig;
+/en/fuerth/;/en/locations/fuerth/;eindeutig;
+/en/gelsenkirchen-en/;/en/locations/gelsenkirchen/;eindeutig;
+/en/heilsbronn/;/en/locations/heilsbronn/;eindeutig;
+/en/how-a-lack-of-space-turned-into-a-success-story/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/imprint/;/en/imprint/;eindeutig;
+/en/ingolstadt/;/en/locations/ingolstadt/;eindeutig;
+/en/innsbruck/;/en/locations/innsbruck/;eindeutig;
+/en/jena/;/en/locations/jena/;eindeutig;
+/en/jobs/;/en/jobs/;eindeutig;
+/en/karlsruhe/;/en/locations/karlsruhe/;eindeutig;
+/en/leipzig-en/;;offen;heute ein Club „Leipzig“, neu Leutzsch und Plagwitz – Zuordnung klären
+/en/leipzig-plagwitz/;/en/locations/leipzig-plagwitz/;eindeutig;
+/en/lingen-en/;/en/locations/lingen/;eindeutig;
+/en/locations/;/en/locations/;eindeutig;
+/en/marburg-3/;/en/locations/marburg/;eindeutig;Dublette der alten Seite
+/en/marburg/;/en/locations/marburg/;eindeutig;
+/en/muelheim-kaerlich/;/en/locations/muelheim-kaerlich/;eindeutig;
+/en/muenchen-ffr-en/;/en/locations/muenchen-frankfurter-ring/;eindeutig;
+/en/muenchen-tucherpark/;/en/locations/muenchen-tucherpark/;eindeutig;
+/en/neu-ulm/;/en/locations/neu-ulm/;eindeutig;
+/en/neufahrn/;;offen;Club Neufahrn ist im Prototyp nicht enthalten – Status klären
+/en/padelcity-events/;/en/events/;eindeutig;
+/en/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio-item/one-point-challenge-tour-austria/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio-item/one-point-challenge-tourfrance-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio-item/one-point-challenge-tourthe-winner-takes-it-all-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio_entries/duesseldorf-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio_entries/innsbruck/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio_entries/oberhausen-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio_entries/solothurn/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/privacy-policy/;/en/privacy/;eindeutig;
+/en/radolfzell/;/en/locations/radolfzell/;eindeutig;
+/en/ravensburg/;/en/locations/ravensburg/;eindeutig;
+/en/recklinghausen/;/en/locations/recklinghausen/;eindeutig;
+/en/regensburg/;/en/locations/regensburg/;eindeutig;
+/en/reutlingen/;/en/locations/reutlingen/;eindeutig;
+/en/rothenburg/;/en/locations/rothenburg/;eindeutig;
+/en/schwabach/;/en/locations/schwabach/;eindeutig;
+/en/terms-of-use/;/en/terms/;eindeutig;
+/en/thepadelblog/;/en/magazine/;eindeutig;
+/en/this-is-padelcity/;/en/about/;prüfen;Inhalt prüfen (Über-uns-Seite?)
+/en/twelve-million-2/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/weihnachten/;/en/events/;prüfen;saisonale Seite – weiterleiten oder entfallen lassen
+/en/wetzlar-en/;/en/locations/wetzlar/;eindeutig;
+/en/what-exactly-is-padel/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/when-shots-slowly-start-becoming-a-game/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/when-the-plan-suddenly-flies-to-madrid-alone/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/why-padel-is-booming-right-now-2/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/why-padel-is-booming-right-now/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/why-the-best-padel-doesnt-start-on-the-court/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/wiesbaden/;/en/locations/wiesbaden/;eindeutig;
+/erding/;/standorte/erding/;eindeutig;
+/erlangen/;/standorte/erlangen/;eindeutig;
+/events/;/events/;eindeutig;
+/footer/;/;prüfen;WordPress-Hilfsseite, nicht öffentlich gedacht
+/franchising/;/franchise/;eindeutig;
+/frankfurt/;/standorte/frankfurt/;eindeutig;
+/fuerth/;/standorte/fuerth/;eindeutig;
+/gelsenkirchen/;/standorte/gelsenkirchen/;eindeutig;
+/heilsbronn/;/standorte/heilsbronn/;eindeutig;
+/imprint/;/impressum/;eindeutig;
+/ingolstadt/;/standorte/ingolstadt/;eindeutig;
+/innsbruck/;/standorte/innsbruck/;eindeutig;
+/jena/;/standorte/jena/;eindeutig;
+/jobs-2/;/jobs/;eindeutig;
+/jobs/;/jobs/;eindeutig;
+/karlsruhe/;/standorte/karlsruhe/;eindeutig;
+/leipzig-plagwitz/;/standorte/leipzig-plagwitz/;eindeutig;
+/leipzig/;;offen;heute ein Club „Leipzig“, neu Leutzsch und Plagwitz – Zuordnung klären
+/lingen/;/standorte/lingen/;eindeutig;
+/locations/;/standorte/;eindeutig;
+/marburg/;/standorte/marburg/;eindeutig;
+/muelheim-kaerlich/;/standorte/muelheim-kaerlich/;eindeutig;
+/muenchen-frankfurter-ring/;/standorte/muenchen-frankfurter-ring/;eindeutig;
+/muenchen-tucherpark/;/standorte/muenchen-tucherpark/;eindeutig;
+/neu-ulm/;/standorte/neu-ulm/;eindeutig;
+/neufahrn/;;offen;Club Neufahrn ist im Prototyp nicht enthalten – Status klären
+/newsletter-bestaetigung/;;offen;Bestätigungsseite für das Double-Opt-in fehlt in der neuen Website – mit dem Newsletter-Anbieter klären
+/newsletter/;/#newsletter;prüfen;Newsletter ist künftig ein Modul im Footer
+/padel-camp/;/academy/;prüfen;Inhalt prüfen (Camp = Academy-Angebot?)
+/padel-vs-tennis/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/padelblog/;/magazin/;eindeutig;
+/padelcity-unser-team/;/ueber-uns/;eindeutig;
+/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio-item/one-point-challenge-tour-austria/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio-item/one-point-challenge-tourfrance/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio-item/one-point-challenge-tourthe-winner-takes-it-all-3-2/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio_entries/duesseldorf/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio_entries/innsbruck-2/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio_entries/oberhausen/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio_entries/solothurn-2/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/radolfzell/;/standorte/radolfzell/;eindeutig;
+/ravensburg/;/standorte/ravensburg/;eindeutig;
+/recklinghausen/;/standorte/recklinghausen/;eindeutig;
+/regensburg/;/standorte/regensburg/;eindeutig;
+/reutlingen/;/standorte/reutlingen/;eindeutig;
+/rothenburg/;/standorte/rothenburg/;eindeutig;
+/schwabach/;/standorte/schwabach/;eindeutig;
+/warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt-2/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/was-ist-padel-eigentlich/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/weihnachten/;/events/;prüfen;saisonale Seite – weiterleiten oder entfallen lassen
+/wenn-aus-schlaegen-langsam-ein-spiel-wird/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/wenn-der-plan-ploetzlich-alleine-nach-madrid-fliegt/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/wetzlar/;/standorte/wetzlar/;eindeutig;
+/wie-aus-platzmangel-eine-erfolgsgeschichte-wurde-2/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/wie-aus-platzmangel-eine-erfolgsgeschichte-wurde/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/wiesbaden/;/standorte/wiesbaden/;eindeutig;
+/zwoelf-millionen/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht

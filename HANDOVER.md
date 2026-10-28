@@ -83,6 +83,11 @@ Code-Connect-Schreibrecht.
   MobileApplication). Neu im Produktiv-Build: `sitemap.xml`, `robots.txt` und Open-Graph-Bilder pro Seitentyp – der
   Prototyp braucht sie als passwortgeschützter Export nicht.
 - **Tracking und Consent:** GA4 server-side und CMP; die CTAs tragen bereits `data-track`-Attribute.
+- **Weiterleitungen (301) von padelcity.de:** fast alle URLs ändern sich (z. B. `/padelcity-unser-team/` →
+  `/ueber-uns/`, `/berlin/` → `/standorte/berlin/`). Entwurf mit allen 139 URLs der heutigen Sitemap (Stand
+  28.10.2026): `seo/redirects-draft.csv` – 93 eindeutig zugeordnet, 8 zu prüfen, 38 offen (vor allem alte
+  Blog-Artikel und Portfolio-Einträge, die es im neuen Magazin nicht gibt; Leipzig und Neufahrn; die
+  Bestätigungsseite für das Newsletter-Double-Opt-in). Ohne Weiterleitungen gehen Rankings und externe Links verloren.
 
 ## 7. Offene Punkte
 

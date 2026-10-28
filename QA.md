@@ -76,6 +76,7 @@ Seitenaufrufen.
 
 - [ ] Alle Punkte aus 1 und 2 grün
 - [ ] `HANDOVER.md` aktuell: Komponenten, Qualitäts-Gates, offene Punkte, offene Inhalte
+- [ ] `seo/redirects-draft.csv`: neue Seiten oder geänderte Pfade nachtragen (jede alte URL braucht ein Ziel)
 - [ ] `README.md`: Grundsätze, Seitenübersicht, Workshop-Themen und Code-Connect-Zahlen aktuell
 - [ ] Deploy auf GitHub Pages erfolgreich (`gh run list`) und Library in Figma veröffentlicht
       (keine Komponente im Status „geändert“)
