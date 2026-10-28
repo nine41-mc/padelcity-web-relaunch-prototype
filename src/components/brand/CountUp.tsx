@@ -1,7 +1,8 @@
 "use client";
 
-import { animate, useInView, useReducedMotion } from "motion/react";
+import { animate, useInView } from "motion/react";
 import { useEffect, useRef, useState } from "react";
+import { useSystemReducedMotion } from "@/lib/a11y";
 
 /** Animated number counter that starts when scrolled into view. Years are rendered without grouping. */
 export function CountUp({
@@ -20,10 +21,10 @@ export function CountUp({
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-40px" });
-  const reduce = useReducedMotion();
+  const reduce = useSystemReducedMotion();
   const isYear = value >= 1900 && value <= 2100;
   const from = isYear ? value - 4 : 0;
-  const [display, setDisplay] = useState(reduce ? value : from);
+  const [display, setDisplay] = useState(from);
 
   useEffect(() => {
     if (!inView || reduce) {

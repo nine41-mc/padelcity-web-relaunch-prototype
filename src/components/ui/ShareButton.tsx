@@ -27,7 +27,11 @@ export function ShareButton({ title, locale, track, className }: { title: string
           }
           return;
         }
-        await navigator.clipboard?.writeText(url);
+        try {
+          await navigator.clipboard?.writeText(url);
+        } catch {
+          return; // clipboard blocked (permission, insecure context) – nothing to confirm
+        }
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }}

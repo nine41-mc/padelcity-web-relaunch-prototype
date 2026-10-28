@@ -1,6 +1,7 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { useReducedMotion } from "motion/react";
 
 /**
  * Display preferences of the accessibility panel ("Darstellung").
@@ -86,4 +87,15 @@ export function useA11yPrefs(): A11yPrefs {
 /** true when the visitor switched motion off in the panel (system "reduce motion" is handled separately). */
 export function useMotionOff(): boolean {
   return useA11yPrefs().motion === "off";
+}
+
+/**
+ * System setting "reduce motion" – false until hydrated. motion's useReducedMotion() is null on the server but already
+ * true in the first client render, so components that branch on it render different HTML and hydration fails.
+ */
+export function useSystemReducedMotion(): boolean {
+  const reduce = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  return mounted && !!reduce;
 }

@@ -1,4 +1,4 @@
-// Contentful module: appBookingBlock (config only: headline, text, steps) + facilityGrid (club entry)
+// Contentful module: appBooking (config only: headline, text, steps) + facilityGrid (club entry)
 
 import { Smartphone } from "lucide-react";
 import type { Club } from "@/lib/data/types";

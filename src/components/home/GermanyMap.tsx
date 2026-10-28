@@ -1,6 +1,6 @@
 "use client";
 
-// Contentful module: clubMap (live + planned clubs, derived from club entries)
+// Contentful module: leaderMap (live + planned clubs, derived from club entries)
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Club } from "@/lib/data/types";

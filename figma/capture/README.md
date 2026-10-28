@@ -21,10 +21,11 @@ Capture mode (CSS injected by the script):
 - app icons (`AppIcon`, CSS masks) are swapped for inline SVGs in their rendered colour and size – html-to-design does not
   support masks and would import grey boxes.
 
-After capturing: the captures carry the CSS font names „soehneSchmal“ and „goodBrush“. Map them to „Söhne Schmal · Fett
-Kursiv“ and „GOOD BRUSH · Regular“ in a Figma browser tab (Chrome with the Figma Font Helper, the Plugin API is available as
-the global `figma` there): `getStyledTextSegments(["fontName"])` per text, load the other fonts of the node, then
-`setRangeFontName` on the affected ranges. The Figma MCP cannot load these fonts. In the same pass, give outlined text a stroke:
+After capturing: the captures carry the CSS font names „soehneSchmal“ and „goodBrush“. Map them to the brand fonts with
+the Figma MCP (`use_figma`): `getStyledTextSegments(["fontName"])` per text, load the other fonts of the node (skip nodes
+whose system fonts, e.g. Monaco, cannot be loaded), then `setRangeFontName` on the affected ranges. Both fonts are uploaded
+to the Figma organisation (since 28.10.2026); the MCP knows Söhne as „Sohne Schmal · Fett Kursiv“, the browser shows it as
+„Söhne Schmal“ – same font. In the same pass, give outlined text a stroke:
 html-to-design drops `-webkit-text-stroke`, so texts like the second line of a poster city name („kirchen“) arrive with no
 fill and no stroke – add a 1.5 px centred stroke (white; step numbers in „In der App buchen“ white 60 %, the varsity
 shadow „Dein Weg / auf den Court“ magenta 500). Clone frames for the content-model page

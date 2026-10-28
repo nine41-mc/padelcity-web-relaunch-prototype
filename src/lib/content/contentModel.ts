@@ -63,7 +63,7 @@ export const contentModel: PageType[] = [
       { id: "heroHome", name: "Hero", fields: [f("Headline, Akzentwort, Text", "cms"), f("Video / Bild", "cms", "Contentful-Asset"), ctas(), f("Club-Suche (Städte, Clubs)", "api", "GET /clubs")] },
       { id: "factTicker", name: "Kennzahlen-Ticker", fields: [f("Freigegebene Kennzahlen, Claims", "cms")] },
       { id: "leaderMap", name: "Nr. 1 + Karte", fields: [...sectionHead(), f("Club-Pins (Position, Name)", "api", "GET /clubs → position"), f("Geplante Clubs auf der Karte", "apiExtend", undefined, "inaktive Clubs werden nie ausgegeben; Status „bald eröffnet“ fehlt")] },
-      { id: "clubShowcase", name: "Club-Showcase (Poster)", fields: [...sectionHead(), f("Auswahl und Reihenfolge der Clubs", "cms", "Referenz auf Club-ID"), ...clubCore(), f("Öffnungsstatus „Geöffnet bis …“", "api", "GET /clubs → openingSchedule"), f("Courts, Sportarten (Hover)", "api", "GET /clubs → courts[].locationType, sportType")] },
+      { id: "clubShowcase", name: "Club-Showcase (Poster)", fields: [...sectionHead(), f("Auswahl und Reihenfolge der Clubs", "cms", "Referenz auf Club-ID"), ...clubCore(), f("Öffnungsstatus „Geöffnet bis …“ / „Geschlossen · Öffnet Mi um …“", "api", "GET /clubs → openingSchedule"), f("Courts, Sportarten (Hover)", "api", "GET /clubs → courts[].locationType, sportType")] },
       { id: "audienceEntries", name: "Zielgruppen-Einstiege", fields: [f("Kacheln (Titel, Text, Bild, Ziel)", "cms")] },
       { id: "seriesATeaser", name: "Series-A-Teaser", fields: [f("Text (qualitativ, keine Zahlen)", "cms")] },
       {
@@ -133,7 +133,7 @@ export const contentModel: PageType[] = [
       {
         id: "clubHours",
         name: "Öffnungszeiten",
-        text: "Unter dem Clubnamen: Status „Geöffnet bis …“, aufklappbar zur Woche (wie bei Google).",
+        text: "Unter dem Clubnamen: Status wie bei Google („Geöffnet bis …“ bzw. „Geschlossen · Öffnet Mi um …“), aufklappbar zur Woche.",
         fields: [f("Öffnungszeiten je Wochentag inkl. Feiertage", "api", "GET /clubs → openingTimes, openingSchedule", "Sondertage nur für die nächsten 7 Tage")],
       },
       { id: "clubDescription", name: "Beschreibung", fields: [f("Text DE/EN/PL", "api", "GET /clubs → description (?_locale=)", "als gerendertes Rich Text hinter „Info“ im Kopf (Dialog); ob PL gepflegt ist, prüfen"), f("Kurz-Teaser", "apiExtend", undefined, "kein eigenes Teaser-Feld")] },

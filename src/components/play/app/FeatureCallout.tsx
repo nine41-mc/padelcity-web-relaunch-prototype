@@ -1,8 +1,8 @@
 "use client";
 
-import { useMotionOff } from "@/lib/a11y";
+import { useMotionOff, useSystemReducedMotion } from "@/lib/a11y";
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Check, Minus, Plus, Ticket, User } from "lucide-react";
 import type { AppCallouts, AppFeatureId } from "@/lib/content/app";
 import { cn } from "@/components/ui/cn";
@@ -23,7 +23,7 @@ const LOOP_MAX_MS = 5000;
  * It stops after whole cycles only: cutting it off mid-cycle made the state jump straight to the end (16:00 → 21:00).
  */
 function useLoop(steps: number, ms: number) {
-  const systemReduce = useReducedMotion();
+  const systemReduce = useSystemReducedMotion();
   const motionOff = useMotionOff();
   const reduce = systemReduce || motionOff;
   const [step, setStep] = useState(reduce ? steps - 1 : 0);
@@ -160,7 +160,7 @@ function Benefits({ c }: { c: AppCallouts["benefits"] }) {
 
 /** `onMount`: animate in right away (sticky phone swaps); otherwise when scrolled into view. */
 export function FeatureCallout({ id, callouts, className, onMount }: { id: AppFeatureId; callouts: AppCallouts; className?: string; onMount?: boolean }) {
-  const reduce = useReducedMotion();
+  const reduce = useSystemReducedMotion();
   if (id === "events") return null; // the events screen speaks for itself
   const body =
     id === "booking" ? <Booking c={callouts.booking} /> :

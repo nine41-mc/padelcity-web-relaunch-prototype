@@ -2,17 +2,12 @@
 // source=src/components/modules/NewsletterSignup.tsx
 // component=NewsletterSignup
 import figma from 'figma'
-const instance = figma.selectedInstance
-const textOf = (layer: string) => {
-  const t = instance.findText(layer)
-  return t.type === 'TEXT' ? t.textContent : ''
-}
 // Default/Success are runtime states of the form (success after submit).
-const title = textOf('Title')
-const text = textOf('Text')
+// One newsletter for the whole site (footer): title and text come from the dictionary, not from props.
+// `id="newsletter"` is the anchor "Benachrichtige mich" on planned clubs jumps to.
 
 export default {
-  example: figma.code`<NewsletterSignup locale="de" title="${title}" text="${text}" />`,
+  example: figma.code`<NewsletterSignup locale="de" id="newsletter" />`,
   imports: ['import { NewsletterSignup } from "@/components/modules/NewsletterSignup"'],
   id: 'newsletter',
   metadata: { nestable: false },

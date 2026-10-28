@@ -1,10 +1,10 @@
 "use client";
 
 // Contentful module: heroHome (headline, accent word, sublines, media, CTAs)
-import { useMotionOff } from "@/lib/a11y";
+import { useMotionOff, useSystemReducedMotion } from "@/lib/a11y";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { MapPin, Pause, Play, Search } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Accent } from "../ui/Headline";
@@ -18,7 +18,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
   const [q, setQ] = useState("");
   const motionOff = useMotionOff();
   // system "reduce motion" or "Bewegung aus" in the accessibility panel → video starts paused
-  const reduce = useReducedMotion() || motionOff;
+  const reduce = useSystemReducedMotion() || motionOff;
   const [wide, setWide] = useState(false);
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");

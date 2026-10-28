@@ -1,7 +1,7 @@
 "use client";
 
-import { motion, useReducedMotion } from "motion/react";
-import { useMotionOff } from "@/lib/a11y";
+import { motion } from "motion/react";
+import { useMotionOff, useSystemReducedMotion } from "@/lib/a11y";
 
 /** Fade-up on scroll. Keep delays small; stagger lists with `delay={i * 0.06}`. */
 export function Reveal({
@@ -15,7 +15,7 @@ export function Reveal({
   className?: string;
   y?: number;
 }) {
-  const systemReduce = useReducedMotion();
+  const systemReduce = useSystemReducedMotion();
   const motionOff = useMotionOff();
   const reduce = systemReduce || motionOff;
   return (

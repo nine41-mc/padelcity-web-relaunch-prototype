@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Check } from "lucide-react";
 import type { AppCallouts, AppFeature, AppScreenshot, ScreenKey } from "@/lib/content/app";
 import { deeplinks } from "@/lib/site";
@@ -15,6 +15,7 @@ import { PhoneMockup } from "./PhoneMockup";
 import { AppScreenImage } from "./AppScreens";
 import { AppPhone } from "./app/AppPhone";
 import { FeatureCallout } from "./app/FeatureCallout";
+import { useSystemReducedMotion } from "@/lib/a11y";
 
 function ctaHref(f: AppFeature, locale: Locale): string {
   switch (f.deeplink) {
@@ -51,7 +52,7 @@ export function FeatureStory({
 }) {
   const [active, setActive] = useState(0);
   const refs = useRef<(HTMLElement | null)[]>([]);
-  const reduce = useReducedMotion();
+  const reduce = useSystemReducedMotion();
   const activeFeature = features[active] ?? features[0];
   const activeShot = screens[activeFeature.screen];
 

@@ -266,7 +266,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               </Button>
             </>
           ) : (
-            // Contentful module: academyTeaser (empty state – no coach matched to this club)
+            // Contentful module: clubCoaches (empty state – no coach matched to this club)
             <div className="grid overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 md:grid-cols-2">
               <Media src="/images/academy/coaching.jpg" alt={t.coaching.imageAlt} className="aspect-[16/10] md:aspect-auto md:min-h-[320px]" sizes="(min-width:768px) 50vw, 100vw" />
               <div className="flex min-w-0 flex-col justify-center gap-5 p-6 md:p-10">

@@ -244,7 +244,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
         </div>
       </section>
 
-      {/* Contentful module: schedule */}
+      {/* Contentful module: formatSteps (schedule) */}
       {content.schedule && content.schedule.length > 0 && (
         <Section tone="black">
           <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">

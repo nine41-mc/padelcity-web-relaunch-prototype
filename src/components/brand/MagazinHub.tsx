@@ -4,7 +4,7 @@ import { useState } from "react";
 import type { Hub, MagazinArticle } from "@/lib/content/magazin";
 import { cn } from "../ui/cn";
 
-// Contentful module: articleGrid (filter by hub)
+// Contentful module: contentHubs (article list filtered by hub)
 
 /**
  * Hub filter + article grid. Cards are rendered on the server and passed in as a map

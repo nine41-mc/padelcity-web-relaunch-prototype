@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import type { Value } from "@/lib/content/about";
 import { cn } from "../ui/cn";
+import { useSystemReducedMotion } from "@/lib/a11y";
 
 // Contentful module: valuesGrid (entries: value { name, claim, text })
 
 /** Interactive values grid: pick a value (click / hover / focus) to show its story in the spotlight panel. */
 export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: string }) {
   const [active, setActive] = useState(0);
-  const reduce = useReducedMotion();
+  const reduce = useSystemReducedMotion();
   const current = items[active];
 
   return (

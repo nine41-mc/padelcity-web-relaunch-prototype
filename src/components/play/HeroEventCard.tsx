@@ -12,7 +12,7 @@ import { cn } from "@/components/ui/cn";
 import { Countdown } from "./Countdown";
 import { dateBadge } from "./eventFormat";
 
-// Contentful module: featuredEvent (reference → event, optional override image/claim)
+// Contentful module: heroEvents (reference → event, optional override image/claim)
 /** Big immersive card for hero events (One Point Challenge, Series Finals). */
 export function HeroEventCard({ event, locale, className, priority }: { event: ClubEvent; locale: Locale; className?: string; priority?: boolean }) {
   const t = eventsContent[locale];

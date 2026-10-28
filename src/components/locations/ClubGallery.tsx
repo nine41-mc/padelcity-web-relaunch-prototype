@@ -1,6 +1,6 @@
 "use client";
 
-// Contentful module: clubGallery (Club.images, ordered; first = hero)
+// Contentful module: clubHero (Club.images, ordered; first = hero)
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Images, X } from "lucide-react";
