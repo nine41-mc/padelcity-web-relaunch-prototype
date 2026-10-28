@@ -101,7 +101,7 @@ export function Overlay({
             />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_70%_at_0%_100%,rgb(224_5_195/0.4),transparent_65%)]" aria-hidden />
             {badge && (
-              <span className="absolute left-4 top-4 inline-flex h-8 items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 backdrop-blur">{badge}</span>
+              <span className="absolute left-4 top-4 inline-flex h-8 items-center gap-2 rounded-full border border-white/15 bg-black/60 px-3 backdrop-blur">{badge}</span>
             )}
           </div>
 

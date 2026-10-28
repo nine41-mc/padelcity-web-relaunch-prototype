@@ -36,7 +36,7 @@ export function ShareButton({ title, locale, track, className }: { title: string
         setTimeout(() => setCopied(false), 2000);
       }}
       className={cn(
-        "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/30 px-4 text-sm font-semibold text-white transition hover:border-transparent hover:bg-brand-gradient",
+        "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/25 px-4 text-sm font-semibold text-white transition hover:border-transparent hover:bg-brand-gradient",
         className,
       )}
     >

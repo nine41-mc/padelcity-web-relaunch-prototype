@@ -501,6 +501,9 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Jede Library-Komponente hat genau eine Code-Komponente, in Figma per Code Connect verknüpft: Card Arrow → CardArrow, Carousel Arrow → CarouselArrow, Input / Search →
           SearchInput, Language Switch → LanguageSwitch, FAQ Item → FaqItem (in FaqGroup), Testimonial Card → TestimonialCard, Mobile Menu → MobileMenu, dazu Buttons, Chip,
           Eyebrow, Section, Section Intro, Karten, Newsletter, Header, Footer, Select, Filter Chip, Map Pin, Store Badges, Booking Bar, KPI Tile, Voucher Card und Ticker.
+          Im Library-Bereich „Muster“: Fact Row → FactRow, Event Signup Card → EventSignupCard, Cancellation Table → CancellationTable, Event Signup → EventSignup,
+          Countdown → Countdown, Info Tile → InfoTile, Person Card → PersonCard, Court Pill → CourtPill, Share Button → ShareButton, Open Status → OpenStatus,
+          Overlay → Overlay (mit OverlaySection) und Partner Band → PartnerBand.
           Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
         </p>
 
