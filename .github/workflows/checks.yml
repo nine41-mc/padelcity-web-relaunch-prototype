@@ -67,7 +67,9 @@ jobs:
   qa:
     name: QA (${{ matrix.browser }})
     needs: build
-    runs-on: ubuntu-latest
+    # ubuntu-latest moved to 26.04 (Oct 2026); Playwright 1.58 installs its browsers only up to 24.04.
+    # Move on together with a Playwright update (package.json and the image in .gitlab-ci.yml).
+    runs-on: ubuntu-24.04
     strategy:
       fail-fast: false
       matrix:
