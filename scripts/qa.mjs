@@ -283,22 +283,29 @@ const open = async (page, path) => {
   }
 };
 // Page evaluation and axe have no timeout of their own; in CI a Chromium page has hung there and blocked the job
-// until the runner killed it. Past this budget the page becomes a finding and the run goes on.
+// until the runner killed it. Past this budget the page gets one more try in a fresh tab – the hangs hit a different
+// page each time and never reproduced locally – and only a second hang becomes a finding.
 const PAGE_BUDGET = 180000;
-const check = async (ctx, path, width, engine) => {
+const check = async (ctx, path, width, engine, retry = true) => {
   const page = await ctx.newPage();
   const where = `${path} @${width}${label(engine)}`;
+  const mark = findings.length;
   let timer;
   const hung = new Promise((resolve) => (timer = setTimeout(() => resolve("hung"), PAGE_BUDGET)));
-  const run = checkPage(page, where, path);
-  if ((await Promise.race([run, hung])) === "hung") {
-    run.catch(() => {}); // it fails once the page is closed below
-    add("Seite hängt", where, `keine Antwort nach ${PAGE_BUDGET / 1000} s`);
-    await page.close({ runBeforeUnload: false }).catch(() => {});
-  }
+  const state = { step: "Laden" }; // the step the page is in, named in the finding when it hangs
+  const run = checkPage(page, where, path, state);
+  const result = await Promise.race([run, hung]);
   clearTimeout(timer);
+  if (result !== "hung") return;
+  run.catch(() => {}); // it fails once the page is closed below
+  await page.close({ runBeforeUnload: false }).catch(() => {});
+  if (!retry) return add("Seite hängt", where, `zweimal keine Antwort nach ${PAGE_BUDGET / 1000} s, Schritt: ${state.step}`);
+  // drop what the hung try already reported for this page, the retry reports it again
+  for (let i = findings.length - 1; i >= mark; i--) if (findings[i].where === where) findings.splice(i, 1);
+  console.log(`${where}: keine Antwort nach ${PAGE_BUDGET / 1000} s (Schritt: ${state.step}), zweiter Versuch`);
+  return check(ctx, path, width, engine, false);
 };
-const checkPage = async (page, where, path) => {
+const checkPage = async (page, where, path, state) => {
   page.on("console", (m) => m.type() === "error" && add("Konsolenfehler", where, m.text().slice(0, 200)));
   page.on("pageerror", (e) => add("Seitenfehler", where, e.message.slice(0, 200)));
   page.on("response", (r) => r.status() >= 400 && r.url().startsWith(base) && add("Fehlgeschlagene Anfrage", where, `${r.status()} ${r.url().slice(base.length)}`));
@@ -309,22 +316,28 @@ const checkPage = async (page, where, path) => {
     return page.close();
   }
   // Scroll once through the page so lazy content renders
+  state.step = "Scrollen";
   let height = await page.evaluate(() => document.documentElement.scrollHeight);
   for (let y = 0; y < height; y += 800) {
+    state.step = `Scrollen bei ${y} von ${height} px`;
     await page.evaluate((top) => window.scrollTo(0, top), y);
     await page.waitForTimeout(40);
     height = await page.evaluate(() => document.documentElement.scrollHeight);
   }
+  state.step = "Zurück nach oben";
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(300);
+  state.step = "Layout und Bilder";
   const dom = await page.evaluate(() => ({
     overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
     broken: [...document.images].filter((i) => i.complete && i.naturalWidth === 0 && i.getAttribute("src")).map((i) => i.getAttribute("src")),
   }));
   if (dom.overflow > 0) add("Horizontales Scrollen", where, `${dom.overflow} px`);
   for (const src of dom.broken) add("Bild lädt nicht", where, src.slice(0, 120));
+  state.step = "axe";
   const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
   for (const v of axe.violations) add(`axe: ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}${measured(v)}`);
+  state.step = "Schließen";
   await page.close();
 };
 const checkPages = async (browser, engine) => {
