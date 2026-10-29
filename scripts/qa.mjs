@@ -265,6 +265,15 @@ const contextFor = (engine, width, extra = {}) => {
   const permissions = engine === "chromium" ? { permissions: ["clipboard-read", "clipboard-write"] } : {};
   return { viewport: { width, height: 900 }, isMobile: mobile, hasTouch: mobile, reducedMotion: "reduce", ...permissions, ...extra };
 };
+// Map tiles come from a placeholder: OpenStreetMap's tile policy does not allow automated bulk loading (a run would
+// fetch thousands of tiles), and the QA should not depend on an external server. Our own pages are checked unchanged.
+const TILE_HOSTS = ["tile.openstreetmap.org", process.env.NEXT_PUBLIC_MAP_TILE_URL && new URL(process.env.NEXT_PUBLIC_MAP_TILE_URL.replace(/\{s\}\./, "")).hostname].filter(Boolean);
+const TILE = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==", "base64");
+const newContext = async (browser, options) => {
+  const ctx = await browser.newContext(options);
+  await ctx.route((url) => TILE_HOSTS.some((h) => url.hostname === h || url.hostname.endsWith("." + h)), (route) => route.fulfill({ status: 200, contentType: "image/png", body: TILE }));
+  return ctx;
+};
 const label = (engine) => (engines.length > 1 ? ` ${engine}` : "");
 // For contrast findings: what axe measured (text and background colour, ratio) – tells a real issue from a
 // rendering difference between environments
@@ -342,7 +351,7 @@ const checkPage = async (page, where, path, state) => {
 };
 const checkPages = async (browser, engine) => {
   for (const width of widths) {
-    const ctx = await browser.newContext(contextFor(engine, width));
+    const ctx = await newContext(browser, contextFor(engine, width));
     const todo = [...routes];
     let done = 0;
     await Promise.all(
@@ -441,7 +450,7 @@ const INTERACTIONS = [
 ];
 const checkInteractions = async (browser, engine) => {
   for (const [width, path, name, run] of INTERACTIONS) {
-    const ctx = await browser.newContext(contextFor(engine, width, { viewport: { width, height: 844 } }));
+    const ctx = await newContext(browser, contextFor(engine, width, { viewport: { width, height: 844 } }));
     const page = await ctx.newPage();
     const where = `${name} (${path} @${width}${label(engine)})`;
     page.on("pageerror", (e) => add("Interaktion: Seitenfehler", where, e.message.slice(0, 200)));
