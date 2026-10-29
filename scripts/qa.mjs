@@ -282,9 +282,23 @@ const open = async (page, path) => {
     await page.goto(base + path, { waitUntil: "load", timeout: 60000 });
   }
 };
+// Page evaluation and axe have no timeout of their own; in CI a Chromium page has hung there and blocked the job
+// until the runner killed it. Past this budget the page becomes a finding and the run goes on.
+const PAGE_BUDGET = 180000;
 const check = async (ctx, path, width, engine) => {
   const page = await ctx.newPage();
   const where = `${path} @${width}${label(engine)}`;
+  let timer;
+  const hung = new Promise((resolve) => (timer = setTimeout(() => resolve("hung"), PAGE_BUDGET)));
+  const run = checkPage(page, where, path);
+  if ((await Promise.race([run, hung])) === "hung") {
+    run.catch(() => {}); // it fails once the page is closed below
+    add("Seite hängt", where, `keine Antwort nach ${PAGE_BUDGET / 1000} s`);
+    await page.close({ runBeforeUnload: false }).catch(() => {});
+  }
+  clearTimeout(timer);
+};
+const checkPage = async (page, where, path) => {
   page.on("console", (m) => m.type() === "error" && add("Konsolenfehler", where, m.text().slice(0, 200)));
   page.on("pageerror", (e) => add("Seitenfehler", where, e.message.slice(0, 200)));
   page.on("response", (r) => r.status() >= 400 && r.url().startsWith(base) && add("Fehlgeschlagene Anfrage", where, `${r.status()} ${r.url().slice(base.length)}`));
