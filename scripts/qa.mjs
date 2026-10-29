@@ -268,7 +268,7 @@ const contextFor = (engine, width, extra = {}) => {
 // Map tiles come from a placeholder: OpenStreetMap's tile policy does not allow automated bulk loading (a run would
 // fetch thousands of tiles), and the QA should not depend on an external server. Our own pages are checked unchanged.
 const TILE_HOSTS = ["tile.openstreetmap.org", process.env.NEXT_PUBLIC_MAP_TILE_URL && new URL(process.env.NEXT_PUBLIC_MAP_TILE_URL.replace(/\{s\}\./, "")).hostname].filter(Boolean);
-const TILE = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==", "base64");
+const TILE = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPg5uYHAABKACYs206WAAAAAElFTkSuQmCC", "base64");
 const newContext = async (browser, options) => {
   const ctx = await browser.newContext(options);
   await ctx.route((url) => TILE_HOSTS.some((h) => url.hostname === h || url.hostname.endsWith("." + h)), (route) => route.fulfill({ status: 200, contentType: "image/png", body: TILE }));
