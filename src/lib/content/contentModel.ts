@@ -232,7 +232,6 @@ export const contentModel: PageType[] = [
     text: "Gruppen- und Firmen-Events ab 2 Courts à 2 Stunden, auf Anfrage statt in der App gebucht.",
     modules: [
       { id: "pageHero", name: "Hero", fields: sectionHead() },
-      { id: "eventInquiryFacts", name: "Gut zu wissen", fields: [f("Bedingungen: Label, Wert, Text", "cms")] },
       {
         id: "eventInquiryForm",
         name: "Anfrage-Formular",
@@ -242,6 +241,7 @@ export const contentModel: PageType[] = [
           f("Versand der Anfrage", "unknown", undefined, "Mail an das Events-Postfach mit festem Betreff für den bestehenden Mail-Flow; Mail-Dienst und Spamschutz offen"),
         ],
       },
+      { id: "eventInquiryFacts", name: "Gut zu wissen", fields: [f("Bedingungen: Label, Wert, Text", "cms")] },
     ],
   },
   {

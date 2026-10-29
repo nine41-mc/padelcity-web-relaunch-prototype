@@ -7,7 +7,7 @@ import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { EventInquiryFacts } from "@/components/events/EventInquiryTeaser";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
 
-// Contentful: page "eventInquiry" (modules: pageHero, eventInquiryFacts, eventInquiryForm)
+// Contentful: page "eventInquiry" (modules: pageHero, eventInquiryForm, eventInquiryFacts)
 /** Event request form – shared by /events/anfrage (de), /en/events/inquiry (en) and /pl/wydarzenia/zapytanie (pl). */
 export async function EventInquiryView({ locale }: { locale: Locale }) {
   const t = eventInquiryContent[locale];
@@ -21,13 +21,6 @@ export async function EventInquiryView({ locale }: { locale: Locale }) {
         {t.hero.title} <Accent>{t.hero.accent}</Accent>
       </PageHero>
 
-      <Section tone="ink" className="!pt-8 md:!pt-12">
-        <Headline size="sm" className="mb-8">
-          {t.facts.title}
-        </Headline>
-        <EventInquiryFacts locale={locale} />
-      </Section>
-
       <Section tone="black" id="anfrage" className="scroll-mt-20">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
@@ -37,6 +30,13 @@ export async function EventInquiryView({ locale }: { locale: Locale }) {
           </div>
           <EventInquiryForm locale={locale} t={t} locations={locations} className="lg:col-span-8" />
         </div>
+      </Section>
+
+      <Section tone="ink">
+        <Headline size="sm" className="mb-8">
+          {t.facts.title}
+        </Headline>
+        <EventInquiryFacts locale={locale} />
       </Section>
     </>
   );

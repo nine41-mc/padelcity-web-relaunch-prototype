@@ -2,7 +2,8 @@ import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { eventInquiryContent } from "@/lib/content/eventInquiry";
 import { Section } from "../ui/Section";
-import { Accent, Eyebrow, Headline } from "../ui/Headline";
+import { Accent } from "../ui/Headline";
+import { SectionIntro } from "../brand/SectionIntro";
 import { Button } from "../ui/Button";
 import { InfoTile } from "../ui/InfoTile";
 import { Reveal } from "../ui/Reveal";
@@ -24,26 +25,16 @@ export function EventInquiryFacts({ locale }: { locale: Locale }) {
 }
 
 // Contentful module: eventInquiryTeaser (on /events)
-/** Teaser for group and company events with the conditions and the way to the request form. */
+/** Teaser for group and company events: intro with the text under the headline, the conditions, then the CTA. */
 export function EventInquiryTeaser({ locale }: { locale: Locale }) {
   const t = eventInquiryContent[locale].teaser;
   return (
     <Section tone="black">
-      <div className="mb-10 grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-12">
-        <div>
-          <Eyebrow className="mb-4">{t.eyebrow}</Eyebrow>
-          <Headline size="md">
-            {t.title} <Accent>{t.accent}</Accent>
-          </Headline>
-        </div>
-        <div>
-          <p className="text-lg text-white/75">{t.text}</p>
-          <Button href={href(locale, "eventInquiry")} variant="gradient" arrow className="mt-6" data-track="event_inquiry_open">
-            {t.cta}
-          </Button>
-        </div>
-      </div>
+      <SectionIntro eyebrow={t.eyebrow} title={<>{t.title} <Accent>{t.accent}</Accent></>} lead={t.text} />
       <EventInquiryFacts locale={locale} />
+      <Button href={href(locale, "eventInquiry")} variant="gradient" arrow className="mt-8" data-track="event_inquiry_open">
+        {t.cta}
+      </Button>
     </Section>
   );
 }

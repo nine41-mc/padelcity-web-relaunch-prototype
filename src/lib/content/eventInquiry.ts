@@ -34,7 +34,7 @@ const de = {
     ],
   },
   intro: {
-    title: "Jetzt anfragen",
+    title: "Jetzt Formular ausfüllen",
     text: "Dauert keine 2 Minuten – wir melden uns schnellstmöglich mit einem unverbindlichen Angebot bei dir.",
   },
   form: {
@@ -118,7 +118,7 @@ const en: EventInquiryContent = {
     ],
   },
   intro: {
-    title: "Send a request",
+    title: "Fill in the form now",
     text: "Takes less than 2 minutes – we'll get back to you as soon as possible with a no-obligation offer.",
   },
   form: {
@@ -200,7 +200,7 @@ const pl: EventInquiryContent = {
     ],
   },
   intro: {
-    title: "Wyślij zapytanie",
+    title: "Wypełnij formularz",
     text: "Zajmie ci to mniej niż 2 minuty – odezwiemy się jak najszybciej z niezobowiązującą ofertą.",
   },
   form: {
