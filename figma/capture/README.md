@@ -12,7 +12,9 @@ NODE_PATH=<node_modules with playwright> node figma/capture/capture.cjs /app/ 14
 sending anything to Figma.
 
 Before capturing: dev server on port 3010 with a valid Contentful token in `.env.local` (otherwise the pages show
-mock data).
+mock data). Alternatively serve the static export (`npm run build`, then any static server on `out/`) and pass its
+address as `CAPTURE_BASE=http://localhost:<port>` – `npm run build` and `next dev` share `.next`, so do not build while the dev
+server runs.
 
 Capture mode (CSS injected by the script):
 - the app feature story shows one phone per feature instead of the sticky phone that swaps screens while

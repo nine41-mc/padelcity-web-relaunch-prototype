@@ -18,6 +18,8 @@ const CAPTURE_CSS = `
 `;
 
 const [path, width, id] = process.argv.slice(2);
+// CAPTURE_BASE: e.g. a static server on out/ (npm run build) when the dev server is not running
+const BASE = process.env.CAPTURE_BASE || "http://localhost:3010";
 (async () => {
   const browser = await chromium.launch();
   const mobile = Number(width) < 768;
@@ -29,7 +31,7 @@ const [path, width, id] = process.argv.slice(2);
     reducedMotion: "reduce",
   });
   const p = await ctx.newPage();
-  await p.goto("http://localhost:3010" + path, { waitUntil: "load", timeout: 90000 });
+  await p.goto(BASE + path, { waitUntil: "load", timeout: 90000 });
   await p.waitForTimeout(2500);
   // cookie banner: the privacy-friendly choice, as a visitor would
   const essential = p.getByRole("button", { name: /Nur essenzielle|Only essential|Tylko niezbędne/i });

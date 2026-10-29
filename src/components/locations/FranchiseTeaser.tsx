@@ -19,17 +19,16 @@ export function FranchiseTeaser({ locale = "de" }: { locale?: Locale }) {
         <div className="grid size-20 place-items-center rounded-full bg-brand-gradient shadow-glow md:size-28" aria-hidden>
           <MapPin className="size-9 text-white md:size-12" />
         </div>
-        <div className="grid gap-6 lg:grid-cols-[1.3fr_1fr] lg:items-end">
+        {/* Text under the headline, button under the text – no text column beside the headline */}
+        <div>
           <Headline size="md">
             {t.title} <Accent>{t.accent}</Accent>
             {t.titleEnd}
           </Headline>
-          <div>
-            <p className="text-white/80">{fill(t.text, { clubs: keyFacts.clubs, courts: keyFacts.courts })}</p>
-            <Button href={href(locale, "franchise")} className="mt-6" data-track="franchise_teaser">
-              {t.cta}
-            </Button>
-          </div>
+          <p className="mt-5 max-w-2xl text-white/80">{fill(t.text, { clubs: keyFacts.clubs, courts: keyFacts.courts })}</p>
+          <Button href={href(locale, "franchise")} className="mt-6" data-track="franchise_teaser">
+            {t.cta}
+          </Button>
         </div>
       </div>
     </div>

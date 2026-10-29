@@ -42,6 +42,10 @@ markiert seine Elemente deshalb mit `data-reveal`, und `globals.css` (reduzierte
 Barrierefreiheits-Panel) sowie ein `<noscript>`-Block in `SiteShell.tsx` setzen sie sichtbar. Ohne das fehlten Inhalte,
 bis das Script geladen war – auf langsamen Verbindungen und in der QA als Kontrastfund sichtbar.
 
+Regel für Sektionsköpfe: Einleitender Text steht unter der Headline, nie als eigene Spalte rechts daneben (`SectionIntro`); ein
+CTA, der zum Inhalt der Sektion gehört, steht unter diesem Inhalt (Event-Teaser, Franchise-Teaser). Rechts neben der Headline
+steht höchstens ein einzelner Link-Button zur Übersicht.
+
 Regel: Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
 Der Styleguide (`/styleguide`) zeigt alle Muster mit Zuständen; `/styleguide#code-connect` die vollständige Zuordnung
 Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise), generiert aus den Code-Connect-Vorlagen.
