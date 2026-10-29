@@ -307,6 +307,21 @@
     },
     {
       "kind": "component",
+      "id": "club-hours",
+      "code": "ClubHours",
+      "figma": "Club Hours",
+      "nodeId": "15995:830",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15995-830",
+      "source": "src/components/locations/ClubHours.tsx",
+      "imports": [
+        "import { ClubHours } from \"@/components/locations/ClubHours\""
+      ],
+      "area": "Standorte",
+      "props": [],
+      "notes": "Open/closed is a runtime state (the status line toggles the week list); status text, today and the week come from club.openingHours and are set in the browser."
+    },
+    {
+      "kind": "component",
       "id": "club-map",
       "code": "GermanyMap",
       "figma": "Club Map",
@@ -901,7 +916,7 @@
           "kind": "Variante"
         }
       ],
-      "notes": "Name/role come from the person entry; without a confirmed photo the branded initials placeholder renders."
+      "notes": "Name, role and photo come from the person entry: Photo=false is the branded initials placeholder the card renders when person.image is empty (initials from the name), never a stand-in photo of someone else."
     },
     {
       "kind": "component",

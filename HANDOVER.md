@@ -29,7 +29,7 @@ Komponente Quelle und Figma-Node.
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown, EventInquiryForm, EventInquiryTeaser (mit EventInquiryFacts) |
 | Formulare (`forms/`) | TextField, TextareaField (`Field.tsx`), ChoiceCards, YesNoRow, Consent, FormStep – genutzt von EventInquiryForm und LeadForm; in der Library unter Formulare (Input / Text, Input / Textarea, Choice Card, Yes-No Row, Consent, Form Step) |
-| Standorte (`locations/`) | CourtPill, AppBookingBar, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
+| Standorte (`locations/`) | CourtPill, AppBookingBar, ClubHours, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
 | Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher); Einblendung beim Scrollen `Reveal` (`ui/Reveal.tsx`) |
 
@@ -112,9 +112,8 @@ Code-Connect-Schreibrecht.
   Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie einsortieren; Mail-Dienst und
   Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts. Im Content-Modell fehlen Seite und Teaser noch.
 - **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful.
-- **Öffnungszeiten-Liste** (`locations/ClubHours.tsx`) ist nicht als eigene Library-Komponente angelegt; der
-  Status steht als Open Status in der Library.
-- **Personenfotos:** ohne bestätigtes Foto zeigt die Person Card den Marken-Platzhalter mit Initialen.
+- **Personenfotos:** ohne bestätigtes Foto zeigt die Person Card den Marken-Platzhalter mit Initialen (Library:
+  Person Card, Photo=false).
 - **Dev-Warnung:** der eigene `next/image`-Loader meldet im Dev-Modus eine Warnung; im statischen Export ohne Folgen.
 
 ## 8. Offene Inhalte (nach Zuständigkeit)

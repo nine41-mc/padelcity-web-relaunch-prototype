@@ -4,7 +4,8 @@
 // figma=Person Card
 import figma from 'figma'
 const instance = figma.selectedInstance
-// Name/role come from the person entry; without a confirmed photo the branded initials placeholder renders.
+// Name, role and photo come from the person entry: Photo=false is the branded initials placeholder the card renders
+// when person.image is empty (initials from the name), never a stand-in photo of someone else.
 const bio = instance.getEnum('Bio', { true: true, false: false })
 
 export default {
