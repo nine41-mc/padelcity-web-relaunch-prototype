@@ -127,6 +127,7 @@ export async function SitemapView({ locale }: { locale: Locale }) {
           {/* Events + magazine */}
           <div className="space-y-10">
             <Group title={t.events}>
+              <Item href={href(locale, "eventInquiry")}>{d.nav.eventInquiry}</Item>
               {events.map((e) => (
                 <Item key={e.id} href={href(locale, "events", e.slug)}>
                   {e.title}

@@ -10,8 +10,9 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroEventCard } from "@/components/play/HeroEventCard";
 import { EventsExplorer } from "@/components/play/EventsExplorer";
+import { EventInquiryTeaser } from "@/components/events/EventInquiryTeaser";
 
-// Contentful: page "events" (modules: pageHero, featuredEvents, eventList, appCta)
+// Contentful: page "events" (modules: pageHero, featuredEvents, eventInquiryTeaser, eventList, appCta)
 /** Events overview – shared by /events (de) and /en/events (en). */
 export async function EventsView({ locale }: { locale: Locale }) {
   const t = eventsContent[locale];
@@ -54,7 +55,9 @@ export async function EventsView({ locale }: { locale: Locale }) {
         </div>
       </Section>
 
-      <Section tone="black" id="events" className="scroll-mt-20">
+      <EventInquiryTeaser locale={locale} />
+
+      <Section tone="ink" id="events" className="scroll-mt-20">
         <div className="mb-8">
           <Eyebrow className="mb-4">{t.local.eyebrow}</Eyebrow>
           <Headline size="md">{t.local.title}</Headline>
@@ -62,7 +65,7 @@ export async function EventsView({ locale }: { locale: Locale }) {
         <EventsExplorer events={localEvents} locale={locale} labels={t.explorer} typeLabels={t.types} />
       </Section>
 
-      <Section tone="ink">
+      <Section tone="black">
         <AppCta locale={locale} />
       </Section>
     </>

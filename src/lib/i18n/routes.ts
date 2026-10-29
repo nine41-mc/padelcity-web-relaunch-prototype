@@ -11,6 +11,8 @@ export const routes = {
   locations: { de: "/standorte", en: "/en/locations", pl: "/pl/lokalizacje" },
   app: { de: "/app", en: "/en/app", pl: "/pl/aplikacja" },
   events: { de: "/events", en: "/en/events", pl: "/pl/wydarzenia" },
+  // Group and company events on request (form); below /events, so the path switch below picks the longest match
+  eventInquiry: { de: "/events/anfrage", en: "/en/events/inquiry", pl: "/pl/wydarzenia/zapytanie" },
   academy: { de: "/academy", en: "/en/academy", pl: "/pl/akademia" },
   magazine: { de: "/magazin", en: "/en/magazine", pl: "/pl/magazyn" },
   franchise: { de: "/franchise", en: "/en/franchise", pl: "/pl/franczyza" },
@@ -53,6 +55,8 @@ export function alternates(key: RouteKey, slug?: string, current: Locale = "de")
 /** Maps the current pathname to the same page in the other locale (language switcher). */
 export function switchLocalePath(pathname: string, target: Locale): string {
   const clean = pathname.replace(/\/+$/, "") || "/";
+  // the longest matching base wins: /events/anfrage is its own route, not the event "anfrage" below /events
+  let best: { key: RouteKey; base: string } | undefined;
   for (const key of Object.keys(routes) as RouteKey[]) {
     for (const from of ["en", "pl", "de"] as Locale[]) {
       const base = routes[key][from];
@@ -60,12 +64,10 @@ export function switchLocalePath(pathname: string, target: Locale): string {
         if (clean === base) return routes.home[target];
         continue;
       }
-      if (clean === base || clean.startsWith(base + "/")) {
-        return routes[key][target] + clean.slice(base.length);
-      }
+      if ((clean === base || clean.startsWith(base + "/")) && base.length > (best?.base.length ?? 0)) best = { key, base };
     }
   }
-  return routes.home[target];
+  return best ? routes[best.key][target] + clean.slice(best.base.length) : routes.home[target];
 }
 
 export function localeFromPath(pathname: string): Locale {

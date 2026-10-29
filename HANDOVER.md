@@ -27,7 +27,8 @@ Komponente Quelle und Figma-Node.
 | Basis (`ui/`) | Button (4 Varianten), Chip, Eyebrow + Headline + Accent (`Headline.tsx`), Section, Select, SearchInput, FaqItem/FaqGroup, CardArrow, CarouselArrow, InfoTile, ShareButton, Overlay/OverlaySection, StoreBadges, Marquee (Ticker) |
 | Layout (`layout/`) | Header mit NavLink (Nav Item), MobileMenu, LanguageSwitch, Footer |
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
-| Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown |
+| Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown, EventInquiryForm, EventInquiryTeaser (mit EventInquiryFacts) |
+| Formulare (`forms/`) | TextField, TextareaField (`Field.tsx`), ChoiceCards, YesNoRow, Consent, FormStep – genutzt von EventInquiryForm und LeadForm; noch nicht als Library-Komponenten angelegt (Figma: lokale Entwürfe „Entwurf/…“ auf der Seite „✏️ Entwurf · Eventanfrage“) |
 | Standorte (`locations/`) | CourtPill, AppBookingBar, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
 | Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher); Einblendung beim Scrollen `Reveal` (`ui/Reveal.tsx`) |
@@ -107,6 +108,10 @@ Code-Connect-Schreibrecht.
 
 ## 7. Offene Punkte
 
+- **Event-Anfrage (`/events/anfrage`):** Versand offen – laut Briefing eine Mail an das Events-Postfach mit festem
+  Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie einsortieren; Mail-Dienst und
+  Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts. Die Formular-Bausteine (`components/forms/`)
+  fehlen noch in der Figma-Library und im Content-Modell.
 - **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful.
 - **Öffnungszeiten-Liste** (`locations/ClubHours.tsx`) ist nicht als eigene Library-Komponente angelegt; der
   Status steht als Open Status in der Library.

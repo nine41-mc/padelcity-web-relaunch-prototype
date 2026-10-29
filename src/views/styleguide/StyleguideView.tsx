@@ -35,6 +35,7 @@ import { ClubCard } from "@/components/cards/ClubCard";
 import { EventCard } from "@/components/cards/EventCard";
 import { cn } from "@/components/ui/cn";
 import codeConnect from "@/lib/codeConnect.json";
+import { FormDemo } from "./FormDemo";
 
 /**
  * Hidden styleguide / pattern library (easter egg: footer © line).
@@ -544,6 +545,15 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Entfernung, A–Z, Z–A), „Gerade geöffnet“, Sportarten, Ausstattung (Indoor, Outdoor, Center Court, Franchise) und auf dem Handy auch die Länder. Auf dem Handy als Bottom
           Sheet, ab Tablet als Panel von rechts. Aktive Kriterien färben das Icon im Verlauf und zeigen einen Zähler. Filter wirken sofort; der Button zeigt die Trefferzahl.
         </p>
+
+        <H3>Formulare</H3>
+        <p className="mb-6 max-w-3xl text-white/75">
+          Felder im Glas-Look auf dunkler Karte (components/forms), genutzt von der Event-Anfrage und dem Anfrage-Formular für Franchise und Partner. Pflichtfelder tragen ein
+          magentafarbenes Sternchen, optionale den grauen Zusatz „(optional)“. Fehler stehen als Text direkt am Feld und ersetzen dessen Hinweis; der Rahmen wird rot. Beim Absenden
+          springt der Fokus auf das erste fehlerhafte Feld. Ja/Nein-Fragen sind zwei Filter-Chips, Auswahlen mit Erklärung Karten mit Verlaufsrahmen. Lange Formulare gliedern
+          nummerierte Schritte.
+        </p>
+        <FormDemo locale={locale} />
       </Block>
 
       {/* Flächen */}

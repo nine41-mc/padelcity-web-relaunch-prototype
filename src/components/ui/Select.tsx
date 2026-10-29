@@ -22,6 +22,8 @@ export function Select({
   required,
   id,
   size = "md",
+  invalid,
+  describedBy,
   className,
 }: {
   value: string;
@@ -35,6 +37,10 @@ export function Select({
   required?: boolean;
   id?: string;
   size?: "md" | "lg";
+  /** Error state for forms that validate themselves: red border and aria-invalid. */
+  invalid?: boolean;
+  /** id of a hint or error text below the select */
+  describedBy?: string;
   className?: string;
 }) {
   const autoId = useId();
@@ -169,12 +175,14 @@ export function Select({
         aria-label={label}
         aria-activedescendant={open ? `${baseId}-opt-${active}` : undefined}
         aria-required={required || undefined}
+        aria-invalid={invalid || undefined}
+        aria-describedby={describedBy}
         onClick={() => (open ? setOpen(false) : openList())}
         onKeyDown={onKeyDown}
         className={cn(
           "flex w-full items-center gap-2.5 rounded-full border bg-ink-700 pr-3 text-left font-medium text-white transition-colors",
           size === "lg" ? "h-12 pl-5 text-base" : "h-11 pl-4 text-sm",
-          open ? "border-white" : "border-white/45 hover:border-white/75",
+          open ? "border-white" : invalid ? "border-danger" : "border-white/45 hover:border-white/75",
           "focus-visible:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-optic-500/40",
         )}
       >

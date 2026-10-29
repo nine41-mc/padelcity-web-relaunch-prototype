@@ -2,6 +2,7 @@ import { PartnerLogo } from "@/components/ui/PartnerLogo";
 import { Check } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
+import { href } from "@/lib/i18n/routes";
 import { keyFacts, partners } from "@/lib/content/partners";
 import { sponsoringContent } from "@/lib/content/sponsoring";
 import type { Partner } from "@/lib/data/types";
@@ -190,7 +191,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
             </Headline>
             <p className="mt-6 max-w-lg text-lg text-white/85">{t.corporate.text}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="#kontakt" data-track="corporate_event_cta">
+              <Button href={href(locale, "eventInquiry")} data-track="corporate_event_cta">
                 {t.corporate.cta}
               </Button>
             </div>

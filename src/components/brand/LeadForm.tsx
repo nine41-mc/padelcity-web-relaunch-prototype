@@ -1,14 +1,14 @@
 "use client";
 
 import { useId, useState } from "react";
-import Link from "next/link";
 import { Check } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
-import { href } from "@/lib/i18n/routes";
 import { brandStrings } from "./strings";
 import { Button } from "../ui/Button";
 import { Select } from "@/components/ui/Select";
 import { cn } from "../ui/cn";
+import { FieldLabel, fieldClass } from "../forms/Field";
+import { Consent } from "../forms/Consent";
 
 // Contentful module: leadForm (config: title, fields, consent text, success text, CRM target)
 
@@ -44,9 +44,6 @@ export function LeadForm({
   const uid = useId();
   const [done, setDone] = useState(false);
 
-  const inputCls =
-    "w-full rounded-2xl border border-white/45 bg-black/40 px-4 text-white placeholder:text-white/60 transition-colors focus:border-optic-500 focus:outline-none focus:ring-2 focus:ring-optic-500/50";
-
   if (done) {
     return (
       <div
@@ -79,31 +76,21 @@ export function LeadForm({
           const span = f.type === "textarea" || !f.half ? "md:col-span-2" : "";
           return (
             <div key={f.name} className={span}>
-              <label htmlFor={id} className="mb-2 block text-sm font-medium text-white/80">
+              <FieldLabel htmlFor={id} required={f.required}>
                 {f.label}
-                {f.required && <span className="text-magenta-300"> *</span>}
-              </label>
+              </FieldLabel>
               {f.type === "textarea" ? (
-                <textarea id={id} name={f.name} required={f.required} rows={4} placeholder={f.placeholder} className={cn(inputCls, "py-3")} />
+                <textarea id={id} name={f.name} required={f.required} rows={4} placeholder={f.placeholder} className={cn(fieldClass(), "py-3")} />
               ) : f.type === "select" ? (
                 <FormSelect id={id} name={f.name} required={f.required} label={f.label} placeholder={t.choose} options={f.options} />
               ) : (
-                <input id={id} name={f.name} type={f.type} required={f.required} autoComplete={f.autoComplete} placeholder={f.placeholder} className={cn(inputCls, "h-12")} />
+                <input id={id} name={f.name} type={f.type} required={f.required} autoComplete={f.autoComplete} placeholder={f.placeholder} className={cn(fieldClass(), "h-12")} />
               )}
             </div>
           );
         })}
       </div>
-      <label className="mt-6 flex cursor-pointer items-start gap-3 text-sm text-white/70">
-        <input type="checkbox" required name="consent" className="size-6 shrink-0 accent-[#e005c3]" />
-        <span>
-          {consentText ?? t.consent}{" "}
-          <Link href={href(locale, "privacy")} className="underline underline-offset-2 hover:text-white">
-            {t.privacy}
-          </Link>
-          . <span className="text-magenta-300">*</span>
-        </span>
-      </label>
+      <Consent locale={locale} id={`${uid}-consent`} name="consent" required text={consentText} className="mt-6" />
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-white/70">{t.required}</p>
         <Button type="submit" variant="gradient" data-track={track}>

@@ -407,6 +407,28 @@ const INTERACTIONS = [
   [1440, "/standorte/regensburg/", "Öffnungszeiten", expects((p) => p.locator("button[aria-expanded=false]").filter({ hasText: /Geöffnet|Geschlossen/ }).first().click(), (p) => p.locator("button[aria-expanded=true]").filter({ hasText: /Geöffnet|Geschlossen/ }).count(), "Öffnungszeiten klappen nicht auf")],
   [1440, "/academy/", "Coach-Dialog", opensDialog((p) => button(p, /Kontakt & Preise von/).click())],
   [1440, "/faq/", "FAQ-Akkordeon", expects((p) => p.locator("main details:not([open]) > summary").first().click(), (p) => p.locator("main details[open]").count(), "FAQ klappt nicht auf")],
+  // Empty submit: errors at the fields, focus on the first one, axe in the error state; filled in: success message
+  [390, "/events/anfrage/", "Event-Anfrage", async (page, where) => {
+    const form = page.locator("main form");
+    await button(page, /Unverbindlich anfragen/).click();
+    await form.getByRole("alert").waitFor({ state: "visible", timeout: 5000 });
+    const errors = await form.locator("[aria-invalid=true], fieldset[aria-describedby]").count();
+    if (errors !== 8) add("Interaktion: Fehlermeldungen fehlen", where, `${errors} von 8 Pflichtfeldern markiert`);
+    if (!(await page.evaluate(() => document.activeElement?.closest("fieldset") !== null))) add("Interaktion: Fokus nicht auf dem ersten Fehler", where, "");
+    const axe = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
+    for (const v of axe.violations) add(`Interaktion: axe ${v.id}`, where, `${v.nodes.length}× – ${v.nodes[0].target.join(" ").slice(0, 120)}${measured(v)}`);
+    await form.getByText("Firmen-Event").click();
+    await form.getByLabel(/Gruppengröße/).fill("18");
+    await form.getByRole("combobox", { name: /Standort/ }).click();
+    await page.getByRole("option").first().click();
+    await form.getByLabel(/Wunschtermin/).fill("Fr, 11.12.2026, 18:00–20:00 Uhr");
+    await form.getByLabel(/^Vorname/).fill("Erika");
+    await form.getByLabel(/^Name/).fill("Musterfrau");
+    await form.getByLabel(/E-Mail/).fill("erika@example.com");
+    await form.getByRole("checkbox").check();
+    await button(page, /Unverbindlich anfragen/).click();
+    if (!(await page.getByRole("status").filter({ hasText: /Danke/ }).count())) add("Interaktion: Kein Danke-Zustand nach vollständiger Anfrage", where, "");
+  }],
   // With a share sheet (Safari/WebKit) the button hands the URL to navigator.share, otherwise it copies and confirms
   [1440, "/events/afterwork-americano-berlin/", "Teilen", expects(
     async (p) => {
