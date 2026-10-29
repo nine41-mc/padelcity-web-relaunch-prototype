@@ -9,7 +9,7 @@ Jede Komponente der Figma-Library hat genau eine Code-Komponente, verknüpft per
 | Was | Wo | Hinweis |
 |---|---|---|
 | Tailwind-Theme (Farben, Radien, Breakpoints, Schatten, Animationen) | `src/app/globals.css` (`@theme`) | wertgleich mit den Figma-Variablen, geprüft mit `npm run tokens:check` |
-| Design Tokens (DTCG) | `figma/tokens/tokens.json` | alle 200 Variablen inkl. Aliasse und Responsive-Modi, Verläufe, Schatten, Text-Styles – Basis für Style Dictionary |
+| Design Tokens (DTCG) | `figma/tokens/tokens.json` | alle 201 Variablen inkl. Aliasse und Responsive-Modi, Verläufe, Schatten, Text-Styles – Basis für Style Dictionary |
 | Verläufe | `--gradient-brand` (313°), `--gradient-brand-text` (313°, eine Stufe heller für Text auf Ink), `--gradient-brandbook` (120°) + Utilities `bg-brand-gradient`, `bg-brandbook-gradient`, `text-brand-gradient` | `globals.css` |
 | Abstands-Skala für Kacheln und Panels | Utilities `pad-card` (20), `pad-panel` (24/32), `pad-banner` (24/40/56) | Figma: `Layout/pad-*` (05 Responsive) – keine Einzelwerte daneben |
 | Container | Utility `container-site` (max. 1440, Rand 16/32/64) | Figma: `Layout/gutter`, `Layout/container-max` |
@@ -28,7 +28,7 @@ Komponente Quelle und Figma-Node.
 | Layout (`layout/`) | Header mit NavLink (Nav Item), MobileMenu, LanguageSwitch, Footer |
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown, EventInquiryForm, EventInquiryTeaser (mit EventInquiryFacts) |
-| Formulare (`forms/`) | TextField, TextareaField (`Field.tsx`), ChoiceCards, YesNoRow, Consent, FormStep – genutzt von EventInquiryForm und LeadForm; noch nicht als Library-Komponenten angelegt (Figma: lokale Entwürfe „Entwurf/…“ auf der Seite „✏️ Entwurf · Eventanfrage“) |
+| Formulare (`forms/`) | TextField, TextareaField (`Field.tsx`), ChoiceCards, YesNoRow, Consent, FormStep – genutzt von EventInquiryForm und LeadForm; in der Library unter Formulare (Input / Text, Input / Textarea, Choice Card, Yes-No Row, Consent, Form Step) |
 | Standorte (`locations/`) | CourtPill, AppBookingBar, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
 | Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher); Einblendung beim Scrollen `Reveal` (`ui/Reveal.tsx`) |
@@ -110,8 +110,7 @@ Code-Connect-Schreibrecht.
 
 - **Event-Anfrage (`/events/anfrage`):** Versand offen – laut Briefing eine Mail an das Events-Postfach mit festem
   Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie einsortieren; Mail-Dienst und
-  Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts. Die Formular-Bausteine (`components/forms/`)
-  fehlen noch in der Figma-Library und im Content-Modell.
+  Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts. Im Content-Modell fehlen Seite und Teaser noch.
 - **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful.
 - **Öffnungszeiten-Liste** (`locations/ClubHours.tsx`) ist nicht als eigene Library-Komponente angelegt; der
   Status steht als Open Status in der Library.

@@ -4,13 +4,14 @@
 // figma=Select
 import figma from 'figma'
 const instance = figma.selectedInstance
-// "Open" is a runtime state (listbox open), not a prop. In the Default state the shown text is the placeholder.
+// "Open" is a runtime state (listbox open), not a prop; "Error" is the invalid prop for forms that validate themselves. In the Default state the shown text is the placeholder.
 const size = instance.getEnum('Size', { M: 'md', L: 'lg' })
 const text = instance.getString('Value')
-const placeholder = instance.getEnum('State', { Default: text, Selected: '', Open: '' })
+const placeholder = instance.getEnum('State', { Default: text, Selected: '', Open: '', Error: text })
+const invalid = instance.getEnum('State', { Default: false, Selected: false, Open: false, Error: true })
 
 export default {
-  example: figma.code`<Select label={label} value={value} onChange={setValue} options={options} size="${size}"${placeholder ? figma.code` placeholder="${placeholder}"` : ''} />`,
+  example: figma.code`<Select label={label} value={value} onChange={setValue} options={options} size="${size}"${placeholder ? figma.code` placeholder="${placeholder}"` : ''}${invalid ? ' invalid describedBy={errorId}' : ''} />`,
   imports: ['import { Select } from "@/components/ui/Select"'],
   id: 'select',
   metadata: { nestable: true },

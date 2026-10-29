@@ -264,6 +264,34 @@
     },
     {
       "kind": "component",
+      "id": "choice-cards",
+      "code": "ChoiceCards",
+      "figma": "Choice Card",
+      "nodeId": "15972:65",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15972-65",
+      "source": "src/components/forms/ChoiceCards.tsx",
+      "imports": [
+        "import { ChoiceCards } from \"@/components/forms/ChoiceCards\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Title",
+          "kind": "Text"
+        },
+        {
+          "name": "Text",
+          "kind": "Text"
+        },
+        {
+          "name": "State",
+          "kind": "Variante"
+        }
+      ],
+      "notes": "One card stands for one option of the radio group; the code renders the whole group with its legend."
+    },
+    {
+      "kind": "component",
       "id": "club-card",
       "code": "ClubCard",
       "figma": "Club Card",
@@ -306,6 +334,26 @@
       "area": "Karten",
       "props": [],
       "notes": "The library tile is the compact grid tile; variant=\"feature\" is the large carousel tile."
+    },
+    {
+      "kind": "component",
+      "id": "consent",
+      "code": "Consent",
+      "figma": "Consent",
+      "nodeId": "15972:93",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15972-93",
+      "source": "src/components/forms/Consent.tsx",
+      "imports": [
+        "import { Consent } from \"@/components/forms/Consent\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Checked",
+          "kind": "Variante"
+        }
+      ],
+      "notes": "The link to the privacy policy and the required star come from the component; the text defaults to the lead-form copy."
     },
     {
       "kind": "component",
@@ -528,6 +576,30 @@
       ],
       "area": "Layout",
       "props": [],
+      "notes": ""
+    },
+    {
+      "kind": "component",
+      "id": "form-step",
+      "code": "FormStep",
+      "figma": "Form Step",
+      "nodeId": "15972:30",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15972-30",
+      "source": "src/components/forms/FormStep.tsx",
+      "imports": [
+        "import { FormStep } from \"@/components/forms/FormStep\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Number",
+          "kind": "Text"
+        },
+        {
+          "name": "Title",
+          "kind": "Text"
+        }
+      ],
       "notes": ""
     },
     {
@@ -933,7 +1005,7 @@
           "kind": "Variante"
         }
       ],
-      "notes": "\"Open\" is a runtime state (listbox open), not a prop. In the Default state the shown text is the placeholder."
+      "notes": "\"Open\" is a runtime state (listbox open), not a prop; \"Error\" is the invalid prop for forms that validate themselves. In the Default state the shown text is the placeholder."
     },
     {
       "kind": "component",
@@ -982,6 +1054,94 @@
     },
     {
       "kind": "component",
+      "id": "text-field",
+      "code": "TextField",
+      "figma": "Input / Text",
+      "nodeId": "15972:44",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15972-44",
+      "source": "src/components/forms/Field.tsx",
+      "imports": [
+        "import { TextField } from \"@/components/forms/Field\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Label",
+          "kind": "Text"
+        },
+        {
+          "name": "Value",
+          "kind": "Text"
+        },
+        {
+          "name": "Show Message",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Message",
+          "kind": "Text"
+        },
+        {
+          "name": "State",
+          "kind": "Variante"
+        },
+        {
+          "name": "Required",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Optional",
+          "kind": "Boolean"
+        }
+      ],
+      "notes": "\"Value\" is the placeholder in the design. In State=Error the message line is the error, otherwise the hint."
+    },
+    {
+      "kind": "component",
+      "id": "textarea-field",
+      "code": "TextareaField",
+      "figma": "Input / Textarea",
+      "nodeId": "15972:55",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15972-55",
+      "source": "src/components/forms/Field.tsx",
+      "imports": [
+        "import { TextareaField } from \"@/components/forms/Field\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Label",
+          "kind": "Text"
+        },
+        {
+          "name": "Value",
+          "kind": "Text"
+        },
+        {
+          "name": "Show Message",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Message",
+          "kind": "Text"
+        },
+        {
+          "name": "State",
+          "kind": "Variante"
+        },
+        {
+          "name": "Required",
+          "kind": "Boolean"
+        },
+        {
+          "name": "Optional",
+          "kind": "Boolean"
+        }
+      ],
+      "notes": "\"Value\" is the placeholder in the design. In State=Error the message line is the error, otherwise the hint."
+    },
+    {
+      "kind": "component",
       "id": "ticker",
       "code": "Marquee",
       "figma": "Ticker",
@@ -1015,6 +1175,34 @@
         {
           "name": "Amount",
           "kind": "Text"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "kind": "component",
+      "id": "yes-no-row",
+      "code": "YesNoRow",
+      "figma": "Yes-No Row",
+      "nodeId": "15972:84",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15972-84",
+      "source": "src/components/forms/YesNoRow.tsx",
+      "imports": [
+        "import { YesNoRow } from \"@/components/forms/YesNoRow\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Title",
+          "kind": "Text"
+        },
+        {
+          "name": "Text",
+          "kind": "Text"
+        },
+        {
+          "name": "Value",
+          "kind": "Variante"
         }
       ],
       "notes": ""
