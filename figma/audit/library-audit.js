@@ -18,6 +18,11 @@ const EXCEPTIONS = {
   contrastSkipVariant: /State=Disabled/,
   // Frames that stand for a photo (placeholder fill in the library) – like IMAGE fills, contrast depends on the photo
   photoFrames: ["photo"],
+  // Properties a variant may leave unbound because it has no layer for them: [set name, property, variant name]
+  unboundInVariant: [
+    [/^Button\//, "Icon", /Arrow=false/], // the icon slot exists only next to the arrow
+    [/^Filter Chip$/, "Icon", /Has Icon=false/],
+  ],
 };
 const PAGES = { foundations: "1:6", components: "1:7", icons: "13129:1060", start: "15232:5", contentModel: "15234:28" };
 // Counting the content-model annotations loads ~20,000 layers and exceeds the use_figma time limit together with
@@ -109,6 +114,15 @@ for (const c of allComponents) {
   if (c.type === "COMPONENT_SET") {
     const props = Object.keys(c.componentPropertyDefinitions).map((k) => k.split("#")[0]);
     if (new Set(props).size !== props.length) add("Doppelter Property-Name", c.name);
+    // every variant must use every non-variant property, or setting it on an instance of that variant does nothing
+    const defs = c.componentPropertyDefinitions;
+    for (const v of c.children) {
+      const refs = new Set([v, ...ownNodes(v)].flatMap((n) => Object.values(n.componentPropertyReferences || {})));
+      for (const k of Object.keys(defs).filter((k) => defs[k].type !== "VARIANT" && !refs.has(k))) {
+        const name = k.split("#")[0];
+        if (!EXCEPTIONS.unboundInVariant.some(([set, prop, variant]) => set.test(c.name) && prop === name && variant.test(v.name))) add("Property in Variante nicht verknüpft", `${c.name} › ${v.name} (${name})`);
+      }
+    }
   }
   // the set's own frame is presentation only (padding/radius on the canvas) – only its colours are checked
   const variants = c.type === "COMPONENT_SET" ? c.children : [c];

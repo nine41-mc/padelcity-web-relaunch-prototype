@@ -138,6 +138,15 @@ for (const c of allComponents) {
   if (c.type === "COMPONENT_SET") {
     const props = Object.keys(c.componentPropertyDefinitions ?? {}).map((k) => k.split("#")[0]);
     if (new Set(props).size !== props.length) add("Doppelter Property-Name", c.name);
+    // every variant must use every non-variant property, or setting it on an instance of that variant does nothing
+    const defs = c.componentPropertyDefinitions ?? {};
+    for (const v of c.children) {
+      const refs = new Set([v, ...ownNodes(v)].flatMap((n) => Object.values(n.componentPropertyReferences ?? {})));
+      for (const k of Object.keys(defs).filter((k) => defs[k].type !== "VARIANT" && !refs.has(k))) {
+        const name = k.split("#")[0];
+        if (!EXCEPTIONS.unboundInVariant.some(([set, prop, variant]) => set.test(c.name) && prop === name && variant.test(v.name))) add("Property in Variante nicht verknüpft", `${c.name} › ${v.name} (${name})`);
+      }
+    }
   }
   const variants = c.type === "COMPONENT_SET" ? c.children : [];
   for (const n of [c, ...variants, ...ownNodes(c).filter((n) => !variants.includes(n))]) {

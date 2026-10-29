@@ -34,7 +34,7 @@ pages are recreated.
 | Area | Checks |
 |---|---|
 | Variables | no `ALL_SCOPES`, WEB code syntax set, description (all layers except 01 Base), no fixed values in 02/03, no broken aliases, no alias to a higher layer, no duplicate names, no unused variables |
-| Components | description, no duplicate property names, no default layer names, no binding to 01 Base (paints and node properties, including the component root and the variant-set frame), no fixed colours, stroke weights / radii / padding / gaps (incl. row gaps of wrapping layouts) bound, text with a text style, brand fonts only |
+| Components | description, no duplicate property names, every variant uses every non-variant property (Boolean, text, instance swap), no default layer names, no binding to 01 Base (paints and node properties, including the component root and the variant-set frame), no fixed colours, stroke weights / radii / padding / gaps (incl. row gaps of wrapping layouts) bound, text with a text style, brand fonts only |
 | Contrast | every text segment in every variant against its real background (opacity and gradient stops included), WCAG 2.2 AA: 4.5:1, 3:1 for large text. Not checked: text on photos (IMAGE fills and frames named `photo`). Gradient text uses Gradient/Brand-Text, every stop is checked |
 | Styles | descriptions on text and effect styles, grid styles Desktop/Tablet/Mobile present |
 | Content model | 176 annotations on the content-model page (separate run; see `figma/content-model/README.md`) |
@@ -56,6 +56,7 @@ Listed in `EXCEPTIONS` in the script. Add new ones there – with a reason – i
 | Testimonial Card › Quote without text style | mixes two weights on purpose |
 | Map Pin › Body radius not bound | teardrop shape from `border-radius: 50%`, not a token |
 | Disabled button variants skipped in the contrast check | WCAG exempts inactive controls |
+| Icon property unused in `Arrow=false` buttons and `Has Icon=false` filter chips | these variants have no icon layer |
 | Padding/radius of variant-set frames | canvas presentation only, not part of instances (their colours are still checked) |
 
 Not covered: text on photos (contrast depends on the image), the Status Quo and prototype captures (flat
