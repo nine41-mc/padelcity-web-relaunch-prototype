@@ -272,6 +272,16 @@ const measured = (v) => {
   const d = v.id === "color-contrast" ? v.nodes[0].any?.[0]?.data : null;
   return d ? ` (${d.fgColor} auf ${d.bgColor}, ${d.contrastRatio}:1, nötig ${d.expectedContrastRatio})` : "";
 };
+// One retry on a load timeout: with all three browsers in parallel WebKit occasionally misses the 60 s budget under
+// load, and the same page loads fine on its own
+const open = async (page, path) => {
+  try {
+    await page.goto(base + path, { waitUntil: "load", timeout: 60000 });
+  } catch (e) {
+    if (e.name !== "TimeoutError") throw e;
+    await page.goto(base + path, { waitUntil: "load", timeout: 60000 });
+  }
+};
 const check = async (ctx, path, width, engine) => {
   const page = await ctx.newPage();
   const where = `${path} @${width}${label(engine)}`;
@@ -279,7 +289,7 @@ const check = async (ctx, path, width, engine) => {
   page.on("pageerror", (e) => add("Seitenfehler", where, e.message.slice(0, 200)));
   page.on("response", (r) => r.status() >= 400 && r.url().startsWith(base) && add("Fehlgeschlagene Anfrage", where, `${r.status()} ${r.url().slice(base.length)}`));
   try {
-    await page.goto(base + path, { waitUntil: "load", timeout: 60000 });
+    await open(page, path);
   } catch (e) {
     add("Seite lädt nicht", where, e.message.slice(0, 120));
     return page.close();
@@ -388,7 +398,7 @@ const checkInteractions = async (browser, engine) => {
     page.on("pageerror", (e) => add("Interaktion: Seitenfehler", where, e.message.slice(0, 200)));
     page.on("console", (m) => m.type() === "error" && add("Interaktion: Konsolenfehler", where, m.text().slice(0, 200)));
     try {
-      await page.goto(base + path, { waitUntil: "load", timeout: 60000 });
+      await open(page, path);
       await page.waitForTimeout(500);
       await run(page, where);
     } catch (e) {

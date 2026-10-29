@@ -77,6 +77,8 @@ qa:
   stage: qa
   image: mcr.microsoft.com/playwright:v1.58.2-noble
   needs: [ export ]
+  # Usually ~20 min, but the shared runner has taken over an hour; above the runner's maximum GitLab uses that instead
+  timeout: 90m
   script:
     - npm ci --no-audit --no-fund
     - npm run qa -- --browsers chromium --widths 390,1440 --parallel 2

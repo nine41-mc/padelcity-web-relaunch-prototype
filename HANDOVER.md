@@ -30,10 +30,16 @@ Komponente Quelle und Figma-Node.
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown |
 | Standorte (`locations/`) | CourtPill, AppBookingBar, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
 | Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
-| Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher) |
+| Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher); Einblendung beim Scrollen `Reveal` (`ui/Reveal.tsx`) |
 
 Seitenmodule (Header, Home Hero, Page Hero, Section, Partner Band, Footer) haben in Figma die Variante
 Device=Desktop/Mobile; Templates für Startseite und Event-Detail liegen auf der Seite „🧱 Templates“ in 1440 und 390 px.
+
+Regel für Einblende-Effekte: Inhalte, die per Animation erscheinen, müssen ohne JavaScript und bei reduzierter
+Bewegung sofort sichtbar sein. Das statische HTML enthält den Startzustand der Animation (`opacity: 0`); `Reveal`
+markiert seine Elemente deshalb mit `data-reveal`, und `globals.css` (reduzierte Bewegung aus System oder
+Barrierefreiheits-Panel) sowie ein `<noscript>`-Block in `SiteShell.tsx` setzen sie sichtbar. Ohne das fehlten Inhalte,
+bis das Script geladen war – auf langsamen Verbindungen und in der QA als Kontrastfund sichtbar.
 
 Regel: Neue Muster entstehen erst als Code-Komponente, dann als Library-Komponente – nie als Kopie im Seiten-Code.
 Der Styleguide (`/styleguide`) zeigt alle Muster mit Zuständen; `/styleguide#code-connect` die vollständige Zuordnung
@@ -73,7 +79,8 @@ Die vollständige Checkliste mit Reihenfolge steht in `QA.md`. Die Code-Gates la
 (`.github/workflows/checks.yml`) bei jedem Push; auf `main` wird nur deployt, wenn sie grün sind – die QA in
 Chromium, WebKit und Firefox parallel. Die Figma-Library prüft `.github/workflows/figma.yml` jede Nacht und bei
 jedem Push (blockiert den Deploy nicht). GitLab (`.gitlab-ci.yml`) führt dieselben Code-Gates aus, die QA dort nur in Chromium (390 und 1440 px) – der
-Kubernetes-Runner hatte für die volle Matrix zu wenig Speicher und Zeit. Stand 28.10.2026: `npm run qa -- --browsers all` über alle 205 Seiten
+Kubernetes-Runner hatte für die volle Matrix zu wenig Speicher und Zeit. Der Job braucht meist rund 20 Minuten,
+auf dem geteilten Runner aber auch über eine Stunde; bricht er am Zeitlimit ohne Fund ab, reicht ein Neustart. Stand 29.10.2026: `npm run qa -- --browsers all` über alle 205 Seiten
 (DE/EN/PL) in 390, 768 und 1440 px ohne Fund. Im Produktiv-Build diese CI-Schritte übernehmen.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
