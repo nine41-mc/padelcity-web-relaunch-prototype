@@ -20,11 +20,11 @@ import { useSystemReducedMotion } from "@/lib/a11y";
 function ctaHref(f: AppFeature, locale: Locale): string {
   switch (f.deeplink) {
     case "openMatches":
-      return deeplinks.openMatches();
+      return deeplinks.openMatches("app-landing-page");
     case "events":
-      return deeplinks.events();
+      return deeplinks.events("app-landing-page");
     case "vouchers":
-      return deeplinks.vouchers();
+      return deeplinks.vouchers("app-landing-page");
     case "locations":
       return href(locale, "locations");
     default:

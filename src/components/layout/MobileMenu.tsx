@@ -57,7 +57,7 @@ export function MobileMenu({ open, locale, pathname }: { open: boolean; locale: 
             <Button href={href(locale, "locations")} variant="gradient" size="md" className="w-full justify-between">
               {t.header.findCourt}
             </Button>
-            <StoreBadges locale={locale} />
+            <StoreBadges locale={locale} campaign="menu" />
             <LanguageSwitch pathname={pathname} current={locale} label={t.header.language} />
           </div>
         </motion.div>

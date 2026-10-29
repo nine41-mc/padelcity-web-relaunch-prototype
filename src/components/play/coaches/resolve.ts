@@ -29,7 +29,7 @@ export function resolveCoachClubs(keys: string[], deClubs: Club[], localClubs: C
       key,
       label,
       href: one ? href(locale, "locations", one.slug) : href(locale, "locations"),
-      appHref: one ? deeplinks.club(one.id) : undefined,
+      appHref: one ? deeplinks.club(one.slug) : undefined,
       clubId: one?.id,
       candidates: matches.length > 1 ? matches.map((c) => c.id) : undefined,
     };

@@ -46,7 +46,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
           lead={t.hero.lead}
           actions={
             <>
-              <Button href={deeplinks.events()} size="md" variant="gradient" data-track="academy_signup_click">
+              <Button href={deeplinks.events("academy-page")} size="md" variant="gradient" data-track="academy_signup_click">
                 {t.hero.ctaApp}
               </Button>
               <Button href="#programme" size="md" variant="outline" arrow={false}>
@@ -101,7 +101,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
                     <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
                       <span className="text-sm text-white/70">{p.meta}</span>
                       <a
-                        href={corporate ? `mailto:${site.email}?subject=${encodeURIComponent(t.programmesSection.mailSubject)}` : deeplinks.events()}
+                        href={corporate ? `mailto:${site.email}?subject=${encodeURIComponent(t.programmesSection.mailSubject)}` : deeplinks.events("academy-page")}
                         data-track={corporate ? "corporate_inquiry_click" : "academy_signup_click"}
                         aria-label={`${p.title}: ${corporate ? t.programmesSection.inquiry : t.programmesSection.book}`}
                         className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-gradient transition-transform duration-300 hover:rotate-45 after:absolute after:inset-0 after:content-['']"
@@ -151,7 +151,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
             labels={t.coachesSection}
             clubs={coachClubs}
             fallbackEmail={site.email}
-            fallbackAppHref={deeplinks.events()}
+            fallbackAppHref={deeplinks.events("academy-page")}
             heading={
               <Headline size="md">
                 {t.coachesSection.title} <Accent>{t.coachesSection.accent}</Accent>
@@ -220,7 +220,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section tone="ink">
-        <AppCta locale={locale} />
+        <AppCta locale={locale} campaign="academy-page" />
       </Section>
     </>
   );

@@ -310,7 +310,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
       )}
 
       <Section tone="ink" className={more.length ? "!pt-0" : undefined}>
-        <AppCta clubId={club?.id} locale={locale} />
+        <AppCta clubSlug={club?.slug} campaign="event-page" locale={locale} />
       </Section>
     </>
   );

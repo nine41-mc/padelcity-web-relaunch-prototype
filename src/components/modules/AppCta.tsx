@@ -7,7 +7,18 @@ import { href } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 
 /** Reusable "Court-Buchung bleibt App-exklusiv" banner. */
-export function AppCta({ clubId, locale = "de", showStores = true }: { clubId?: string; locale?: Locale; showStores?: boolean }) {
+export function AppCta({
+  clubSlug,
+  campaign,
+  locale = "de",
+  showStores = true,
+}: {
+  clubSlug?: string;
+  /** utm_campaign of the page (`<page>-page`) for the store badges */
+  campaign?: string;
+  locale?: Locale;
+  showStores?: boolean;
+}) {
   const t = getDictionary(locale).appCta;
   return (
     <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
@@ -21,11 +32,11 @@ export function AppCta({ clubId, locale = "de", showStores = true }: { clubId?: 
           <p className="mt-4 max-w-lg text-white/80">
             {t.text}
           </p>
-          <Button href={clubId ? deeplinks.club(clubId) : href(locale, "app")} size="md" className="mt-8" data-track="app_cta">
-            {clubId ? t.open : t.discover}
+          <Button href={clubSlug ? deeplinks.club(clubSlug) : href(locale, "app")} size="md" className="mt-8" data-track="app_cta">
+            {clubSlug ? t.open : t.discover}
           </Button>
         </div>
-        {showStores && <StoreBadges locale={locale} size="lg" className="md:justify-end" />}
+        {showStores && <StoreBadges locale={locale} campaign={campaign} size="lg" className="md:justify-end" />}
       </div>
     </div>
   );

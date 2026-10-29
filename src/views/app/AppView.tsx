@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { site, stores } from "@/lib/site";
+import { site, storeLinks, stores } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -78,7 +78,7 @@ export function AppView({ locale }: { locale: Locale }) {
               ))}
             </ul>
             <div id="download" className="mt-10 scroll-mt-28">
-              <StoreBadges locale={locale} />
+              <StoreBadges locale={locale} campaign="app-landing-page" />
             </div>
           </div>
           <div className="relative flex justify-center md:-translate-x-16 lg:-translate-x-10">
@@ -109,7 +109,7 @@ export function AppView({ locale }: { locale: Locale }) {
             <Headline size="md">{t.gallery.title}</Headline>
             <p className="mt-4 text-white/70">{t.gallery.text}</p>
           </div>
-          <Button href={stores.ios} variant="outline" className="w-fit shrink-0" data-track="app_gallery_appstore_click">
+          <Button href={storeLinks("app-landing-page").ios} variant="outline" className="w-fit shrink-0" data-track="app_gallery_appstore_click">
             {t.gallery.cta}
           </Button>
         </div>
@@ -167,7 +167,7 @@ export function AppView({ locale }: { locale: Locale }) {
             </Headline>
             <p className="mt-6 max-w-lg text-lg text-white/80">{t.final.text}</p>
             <div className="mt-8 flex flex-col gap-5">
-              <StoreBadges locale={locale} />
+              <StoreBadges locale={locale} campaign="app-landing-page" />
               <Button href={href(locale, "locations")} variant="primary" size="md" className="w-fit">
                 {t.final.clubs}
               </Button>

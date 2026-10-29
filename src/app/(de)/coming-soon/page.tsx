@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { StoreBadges } from "@/components/ui/StoreBadges";
 import { PadelPong } from "@/components/brand/PadelPong";
 
-// Target of every link that can't work in the prototype yet (app deep links, web-app event sign-up).
+// Target of the event sign-up links (app + web app) while the events are mock data – their ids exist nowhere.
 // Bilingual on purpose: links from DE and EN pages land here (see COMING_SOON in src/lib/site.ts). Never indexed.
 export const metadata: Metadata = { title: "Coming soon", robots: { index: false, follow: false } };
 
@@ -26,7 +26,7 @@ export default function Page() {
             <Button href="/" variant="primary">
               Zur Startseite
             </Button>
-            <StoreBadges locale="de" />
+            <StoreBadges locale="de" campaign="coming-soon-page" />
           </div>
         </div>
         <div>

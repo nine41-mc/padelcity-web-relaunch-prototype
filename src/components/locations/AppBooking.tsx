@@ -52,7 +52,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
           </Headline>
           <p className="mt-5 max-w-lg text-white/75 md:text-lg">{t.text}</p>
           <div className="mt-8 flex flex-col gap-5">
-            <Button href={deeplinks.club(club.id)} variant="primary" size="md" className="w-full sm:w-fit" data-track="club_book_in_app">
+            <Button href={deeplinks.club(club.slug)} variant="primary" size="md" className="w-full sm:w-fit" data-track="club_book_in_app">
               {t.cta}
             </Button>
           </div>

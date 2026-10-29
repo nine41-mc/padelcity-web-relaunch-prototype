@@ -31,7 +31,7 @@ export async function EventsView({ locale }: { locale: Locale }) {
             <Button href="#events" size="md" variant="primary" arrow>
               {t.hero.ctaFind}
             </Button>
-            <Button href={deeplinks.events()} size="md" variant="outline" data-track="app_open_click">
+            <Button href={deeplinks.events("events-page")} size="md" variant="outline" data-track="app_open_click">
               {t.hero.ctaApp}
             </Button>
           </>
@@ -66,7 +66,7 @@ export async function EventsView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section tone="black">
-        <AppCta locale={locale} />
+        <AppCta locale={locale} campaign="events-page" />
       </Section>
     </>
   );

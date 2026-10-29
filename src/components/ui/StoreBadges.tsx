@@ -1,13 +1,15 @@
 import Image from "next/image";
-import { stores } from "@/lib/site";
+import { storeLinks } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { cn } from "./cn";
 
 // width/height = the SVGs' intrinsic size (221×74) so the reserved box matches before the files load (no wrap → no CLS).
 
-export function StoreBadges({ className, locale = "de", size = "md" }: { className?: string; locale?: Locale; size?: "md" | "lg" }) {
+/** `campaign`: utm_campaign of the page (`<page>-page`), passed to the stores as App Store `ct` / Play `referrer`. */
+export function StoreBadges({ className, locale = "de", size = "md", campaign }: { className?: string; locale?: Locale; size?: "md" | "lg"; campaign?: string }) {
   const t = getDictionary(locale).stores;
+  const stores = storeLinks(campaign);
   const badge = size === "lg" ? "h-14 w-auto lg:h-16" : "h-12 w-auto";
   return (
     <div className={cn("flex flex-wrap items-center gap-3", className)}>

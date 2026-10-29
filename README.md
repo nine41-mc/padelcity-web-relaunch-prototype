@@ -4,7 +4,7 @@ Klickbarer, responsiver Prototyp (Phone < 768 px · Tablet ≥ 768 px · Desktop
 
 ## Grundsätze
 
-- **Keine Buchungssystem-Daten auf der Website.** Keine freien Slots, keine Verfügbarkeit, keine Auslastung. Gebucht wird ausschließlich in der App; die Website verlinkt per Deeplink (neuer Link-Service `link.padelcity.de`, ersetzt go.link). Einzige Ausnahme (seit 27.10.2026): das Event-Detail zeigt max. Teilnehmer, freie Plätze (live) und die Storno-Tabelle für die Regel „kostenfrei bis 24 Std. vor Beginn“.
+- **Keine Buchungssystem-Daten auf der Website.** Keine freien Slots, keine Verfügbarkeit, keine Auslastung. Gebucht wird ausschließlich in der App; die Website verlinkt per Deeplink über den Link-Service `link.padelcity.de` (seit der aktuellen App-Version; Adjust/go.link ist abgelöst). Einzige Ausnahme (seit 27.10.2026): das Event-Detail zeigt max. Teilnehmer, freie Plätze (live) und die Storno-Tabelle für die Regel „kostenfrei bis 24 Std. vor Beginn“.
 - **Nur freigegebene Kennzahlen:** 30+ Clubs, 200+ Courts, 25+ Städte, 3 Länder. Keine Series-A- oder Finanzierungszahlen.
 - **Nur echte Personen:** Gründer, Team und Coaches mit echten Namen, Rollen und Fotos (`src/lib/content/people.ts`, Quellen in `public/images/SOURCES.md`).
 
@@ -43,7 +43,7 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 | `/impressum`, `/datenschutz`, `/agb` | `/en/imprint`, `/en/privacy`, `/en/terms` | `/pl/nota-prawna`, `/pl/polityka-prywatnosci`, `/pl/regulamin` | Rechtstexte |
 | `/sitemap`, `/content-modell` | `/en/sitemap`, `/en/content-model` | `/pl/mapa-strony`, `/pl/model-tresci` | Sitemap aller Seiten; Content-Modell (jedes Modul und Feld mit Datenquelle) |
 
-Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg im Footer), `/coming-soon` (Ziel aller App- und Web-App-Links, solange `NEXT_PUBLIC_APP_LINKS_LIVE` nicht gesetzt ist – siehe `src/lib/site.ts`).
+Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg im Footer), `/coming-soon` (Ziel der Event-Anmeldung in App und Web-App, solange die Events Mock-Daten sind und `NEXT_PUBLIC_EVENT_LINKS_LIVE` nicht gesetzt ist – siehe `src/lib/site.ts`).
 
 ## Struktur
 
@@ -77,7 +77,7 @@ Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten in 
 
 1. **Contentful-Zugriff** – direkt (read-only Delivery API beim Build) oder über den PadelCity-API-Layer, wie Elephant vorschlägt? Für Marketing-Inhalte und Club-Stammdaten ist der direkte Weg einfacher und berührt das Buchungssystem nicht.
 2. **Content-Modell** – stabile Club-Slugs, Website-Sichtbarkeits-Flag (heute nur `isShownInApp` in der api-platform-DB), englische Club-Texte, Marketing-Events ohne Buchungsdaten, Coach-Kennzahlen (Std. on Court, Trainierende) ohne API-Felder.
-3. **App-Deeplinks** – Club- und Event-Deeplinks kommen über den neuen Link-Service (`link.padelcity.de`); bis er live ist, führen sie auf `/coming-soon`. QR-Code für Desktop, Store-Fallback und Tracking abstimmen.
+3. **App-Deeplinks** – Alle App-Links laufen über `link.padelcity.de` (`deeplinks` in `src/lib/site.ts`): Club, Open Matches, Event-Liste, Gutscheine; ohne App leitet der Link-Service auf padelcity.de/app/ weiter. UTM: `utm_source=padelcity-website`, `utm_medium=website`, `utm_campaign=<seite>-page`, `utm_content=<cta>`; Store-Badges mit App-Store-`ct` bzw. Play-`referrer`. Club-Links brauchen die App-Club-ID (api-platform `club.id`), die Website kennt nur die Contentful-ID – im Prototyp eine feste Tabelle (`src/lib/appClubs.ts`); für den Live-Betrieb eine Quelle festlegen (z. B. öffentlicher Endpunkt mit `contentful_id` → `id`). Offen: Event-Links (warten auf echte Event-IDs), QR-Code für Desktop.
 4. **Karten-Provider** – CARTO verlangt inzwischen API-Key; Prototyp nutzt abgedunkelte OSM-Kacheln. Anbieter + Key festlegen.
 5. **Google-Bewertungen** – Rating ist Mock; Quelle (Places API) + Caching/Lizenz klären.
 6. **Tracking/Consent** – CTAs tragen `data-track`-Attribute; GA4 Server-Side + CMP noch nicht eingebaut.

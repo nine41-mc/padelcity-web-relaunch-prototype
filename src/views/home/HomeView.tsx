@@ -315,7 +315,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ol>
-            <Button href={deeplinks.vouchers()} variant="primary" className="mt-8" data-track="home_voucher_cta">
+            <Button href={deeplinks.vouchers("home-page")} variant="primary" className="mt-8" data-track="home_voucher_cta">
               {t.shop.cta}
             </Button>
           </div>
@@ -329,7 +329,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
 
       {/* App CTA */}
       <Section>
-        <AppCta locale={locale} />
+        <AppCta locale={locale} campaign="home-page" />
       </Section>
 
       <PartnerBand locale={locale} />

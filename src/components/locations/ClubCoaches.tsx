@@ -31,7 +31,7 @@ export function ClubCoaches({
   labels: CoachLabels;
   clubs: Record<string, CoachClubRef>;
   fallbackEmail: string;
-  /** deeplinks.club(club.id) */
+  /** deeplinks.club(club.slug) */
   appHref: string;
   listLabel: string;
   prevLabel: string;

@@ -133,7 +133,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
     .map((c) => ({ club: c, km: distanceKm(club.position, c.position) }))
     .sort((x, y) => x.km - y.km)
     .slice(0, 3);
-  const bookHref = deeplinks.club(club.id);
+  const bookHref = deeplinks.club(club.slug);
   const gallery = galleryImages(club, locale);
   // Club manager photo: contact.profileImage (Contentful; the APL serves it as contact.profileImageUrl), else the team
   // photo from padelcity.de matched by name

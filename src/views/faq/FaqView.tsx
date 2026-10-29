@@ -72,7 +72,7 @@ export async function FaqView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section tone="ink">
-        <AppCta locale={locale} />
+        <AppCta locale={locale} campaign="faq-page" />
       </Section>
     </>
   );
