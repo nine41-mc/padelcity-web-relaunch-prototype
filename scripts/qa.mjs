@@ -384,10 +384,15 @@ const opensDialog = (open) => async (page, where) => {
   await page.waitForTimeout(400);
   if (await page.locator(dialogSel).first().isVisible().catch(() => false)) add("Interaktion: Esc schließt nicht", where, "");
 };
+// Checks again until it holds or 10 s are up: on a slow CI runner a client-side navigation (search → /standorte)
+// has taken longer than a single fixed wait
 const expects = (act, check, message) => async (page, where) => {
   await act(page);
-  await page.waitForTimeout(600);
-  if (!(await check(page))) add(`Interaktion: ${message}`, where, page.url().slice(base.length));
+  for (let waited = 0; waited < 10000; waited += 500) {
+    await page.waitForTimeout(500);
+    if (await check(page)) return;
+  }
+  add(`Interaktion: ${message}`, where, page.url().slice(base.length));
 };
 const button = (page, name) => page.getByRole("button", { name }).first();
 const INTERACTIONS = [
