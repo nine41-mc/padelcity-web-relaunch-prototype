@@ -4,7 +4,7 @@ import { cn } from "../ui/cn";
 import { sheetChip } from "../locations/FilterSheet";
 
 /**
- * Option with a yes/no choice (Figma: Add-on Row, Wert=Nein/Ja): title and text left, two Filter Chips as radios
+ * Option with a yes/no choice (Figma: Yes-No Row, Value=No/Yes): title and text left, two Filter Chips as radios
  * right. Stack several in a bordered list (`divide-y`). Controlled.
  */
 export function YesNoRow({

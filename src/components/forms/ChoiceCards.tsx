@@ -6,7 +6,7 @@ import { FieldMessage } from "./Field";
 export type Choice = { value: string; title: string; text?: string };
 
 /**
- * Single choice as cards (Figma: Choice Card, State=Default/Selected) – a radio group with a visible legend.
+ * Single choice as cards (Figma: Choice Card, State=Default/Selected/Error) – a radio group with a visible legend.
  * Selected: brand-gradient border and filled radio. Controlled.
  */
 export function ChoiceCards({

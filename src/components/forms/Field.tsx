@@ -19,7 +19,7 @@ export function FieldLabel({ htmlFor, id, required, optional, children }: { html
   );
 }
 
-/** Hint below a field; an error replaces it (Figma: State=Error). */
+/** Hint below a field; an error replaces it (Figma: Message, State=Error). */
 export function FieldMessage({ id, error, hint }: { id: string; error?: string; hint?: string }) {
   if (!error && !hint) return null;
   return (
@@ -31,7 +31,7 @@ export function FieldMessage({ id, error, hint }: { id: string; error?: string; 
 
 type Common = { id: string; label: string; required?: boolean; optional?: string; hint?: string; error?: string; className?: string };
 
-/** Text field with label, hint and error (Figma: Input Field). Uncontrolled unless `value` is passed. */
+/** Text field with label, hint and error (Figma: Input / Text). Uncontrolled unless `value` is passed. */
 export function TextField({
   id,
   label,
@@ -61,7 +61,7 @@ export function TextField({
   );
 }
 
-/** Multi-line field (Figma: Textarea Field). */
+/** Multi-line field (Figma: Input / Textarea). */
 export function TextareaField({
   id,
   label,
