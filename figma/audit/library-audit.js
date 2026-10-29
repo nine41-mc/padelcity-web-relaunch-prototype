@@ -28,7 +28,7 @@ const PAGES = { foundations: "1:6", components: "1:7", icons: "13129:1060", star
 // Counting the content-model annotations loads ~20,000 layers and exceeds the use_figma time limit together with
 // the rest – set to true and run on its own (the other checks are skipped then).
 const COUNT_CONTENT_MODEL_ANNOTATIONS = false;
-const EXPECTED_ANNOTATIONS = 176;
+const EXPECTED_ANNOTATIONS = 183;
 // "Sohne Schmal": since 28.10.2026 the Figma MCP (cloud) reports Söhne Schmal without the umlaut – the file itself
 // still uses "Söhne Schmal" (checked in the browser with local fonts), so both names count as the brand font.
 const BRAND_FONTS = ["Poppins", "Söhne Schmal", "Sohne Schmal", "GOOD BRUSH"];

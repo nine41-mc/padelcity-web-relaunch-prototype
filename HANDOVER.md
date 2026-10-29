@@ -49,7 +49,7 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 ## 3. Inhalte und Daten
 
 - **Content-Modell:** Seite `/content-modell` (aus `src/lib/content/contentModel.ts`) und die Figma-Seite
-  „🧩 Content-Modell“ mit 176 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
+  „🧩 Content-Modell“ mit 183 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
   erweitern, neuer Contentful-Space, externer Dienst, unklar) und Hinweisen.
 - **Datenschicht:** `src/lib/data/` als Fassade (Contentful → Mock-Fallback), Details in `src/lib/data/README.md`.
 - **Grundsatz:** keine Buchungssystem-Daten auf der Website. Einzige Ausnahme (seit 27.10.2026): Event-Detail mit
@@ -110,7 +110,7 @@ Code-Connect-Schreibrecht.
 
 - **Event-Anfrage (`/events/anfrage`):** Versand offen – laut Briefing eine Mail an das Events-Postfach mit festem
   Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie einsortieren; Mail-Dienst und
-  Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts. Im Content-Modell fehlen Seite und Teaser noch.
+  Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts.
 - **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful.
 - **Personenfotos:** ohne bestätigtes Foto zeigt die Person Card den Marken-Platzhalter mit Initialen (Library:
   Person Card, Photo=false).

@@ -181,6 +181,11 @@ export const contentModel: PageType[] = [
       { id: "pageHero", name: "Hero", fields: sectionHead() },
       { id: "heroEvents", name: "Hero-Events", fields: [f("Auswahl, Bild, Claim, Countdown", "cms", "Referenz auf Event-ID")] },
       {
+        id: "eventInquiryTeaser",
+        name: "Teaser Event-Anfrage",
+        fields: [...sectionHead(), f("Bedingungen (Vorlauf, Mindestumfang, kleinere Buchungen)", "cms", "dieselben Einträge wie auf /events/anfrage"), ctas()],
+      },
+      {
         id: "eventList",
         name: "Event-Liste & Filter",
         fields: [
@@ -218,6 +223,25 @@ export const contentModel: PageType[] = [
       { id: "factGrid", name: "Intro & weitere Eckdaten", fields: [f("Intro-Text, Eckdaten (Preisgeld, Teilnehmende …)", "cms")] },
       { id: "videoEmbed", name: "Video", fields: [f("Titel, Vorschaubild", "cms"), f("Video", "external", "YouTube")] },
       { id: "eventPartners", name: "Partner", fields: [f("Partner-Auswahl", "cms", "Referenz auf Partner-Einträge", "im Partner-Modul („Better together.“) statt aller Partner")] },
+    ],
+  },
+  {
+    id: "eventInquiry",
+    name: "Event-Anfrage",
+    path: "/events/anfrage",
+    text: "Gruppen- und Firmen-Events ab 2 Courts à 2 Stunden, auf Anfrage statt in der App gebucht.",
+    modules: [
+      { id: "pageHero", name: "Hero", fields: sectionHead() },
+      { id: "eventInquiryFacts", name: "Gut zu wissen", fields: [f("Bedingungen: Label, Wert, Text", "cms")] },
+      {
+        id: "eventInquiryForm",
+        name: "Anfrage-Formular",
+        fields: [
+          f("Formular-Texte, Anlässe, Zusatzleistungen, Fehlermeldungen", "cms"),
+          f("Standorte zur Auswahl", "api", "GET /clubs → name", "geöffnete Clubs"),
+          f("Versand der Anfrage", "unknown", undefined, "Mail an das Events-Postfach mit festem Betreff für den bestehenden Mail-Flow; Mail-Dienst und Spamschutz offen"),
+        ],
+      },
     ],
   },
   {
