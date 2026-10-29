@@ -112,10 +112,11 @@ Code-Connect-Schreibrecht.
 
 ## 7. Offene Punkte
 
-- **Event-Anfrage (`/events/anfrage`):** Versand offen – laut Briefing eine Mail an das Events-Postfach mit festem
-  Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie einsortieren; Mail-Dienst und
-  Spamschutz sind noch nicht entschieden. Der Prototyp sendet nichts.
-- **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful.
+- **Event-Anfrage (`/events/anfrage`):** Der Prototyp sendet bewusst nichts. Für die Website laut Briefing eine Mail an
+  das Events-Postfach mit festem Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie
+  einsortieren.
+- **Event-Karten:** Level und Wiederholung kommen weder aus der APL noch aus Contentful; wird konzeptionell geklärt
+  (in Figma annotiert, „API · erweitern“).
 - **Personenfotos:** ohne bestätigtes Foto zeigt die Person Card den Marken-Platzhalter mit Initialen (Library:
   Person Card, Photo=false).
 - **Dev-Warnung:** der eigene `next/image`-Loader meldet im Dev-Modus eine Warnung; im statischen Export ohne Folgen.

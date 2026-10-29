@@ -3,7 +3,7 @@ import type { Locale } from "../i18n/config";
 /**
  * Event inquiry (Contentful: page "eventInquiry" + module "eventInquiryTeaser" on /events) – group and company events
  * from 2 courts × 2 hours, sent as a request instead of booked in the app. Copy from the briefing
- * „eventanfrage-formular_V2“ (29.10.2026). TODO(content): confirm „3 Wochen im Voraus“ for app bookings with Ops.
+ * „eventanfrage-formular_V2“ (29.10.2026).
  */
 
 const de = {
