@@ -151,6 +151,12 @@ export function Footer({ locale }: { locale: Locale }) {
                 {t.footer.cookies}
               </a>
             </li>
+            {/* Deliberately dead link: the 404 page with padel pong (the URL doesn't exist, so the real 404 shows) */}
+            <li>
+              <a href={asset(locale === "de" ? "/404/" : `/${locale}/404/`)} className="inline-flex min-h-11 items-center hover:text-white" data-track="footer_404">
+                404
+              </a>
+            </li>
           </ul>
         </div>
       </div>

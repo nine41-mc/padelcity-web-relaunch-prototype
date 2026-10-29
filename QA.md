@@ -22,8 +22,8 @@ jede Seite:
 
 | Prüfung | Fund, wenn … |
 |---|---|
-| Links | ein internes Link-Ziel nicht HTTP 200 liefert |
-| Sitemap | eine Seite in keiner Sitemap steht (Ausnahme `/coming-soon/`, siehe `scripts/qa.mjs`) |
+| Links | ein internes Link-Ziel nicht HTTP 200 liefert (Ausnahme: der absichtliche „404“-Link im Footer) |
+| Sitemap | eine Seite in keiner Sitemap steht (Ausnahmen `/coming-soon/` und `/404/`, siehe `scripts/qa.mjs`) |
 | Konsole | ein Konsolenfehler oder ein ungefangener Seitenfehler auftritt |
 | Anfragen | eine Anfrage an die eigene Seite mit 4xx/5xx antwortet |
 | Layout | die Seite horizontal scrollt |

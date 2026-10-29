@@ -8,6 +8,7 @@ import { href, localeFromPath, type RouteKey } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Button } from "../ui/Button";
 import { Accent, Headline } from "../ui/Headline";
+import { PadelPong } from "./PadelPong";
 
 const copy = {
   de: {
@@ -18,6 +19,8 @@ const copy = {
     other: "English site",
     otherLocale: "en" as Locale,
     popular: "Beliebte Seiten",
+    pong: "Animiertes Padel-Pong: ein gelbgrüner Ball fliegt zwischen zwei Schlägern hin und her",
+    pongHint: "Maus oder Finger über das Feld bewegen und links mitspielen.",
   },
   en: {
     title: "Ball",
@@ -27,6 +30,8 @@ const copy = {
     other: "Deutsche Seite",
     otherLocale: "de" as Locale,
     popular: "Popular pages",
+    pong: "Animated padel pong: a lime ball flies back and forth between two rackets",
+    pongHint: "Move your pointer or finger over the court to play on the left.",
   },
   pl: {
     title: "Piłka w",
@@ -36,6 +41,8 @@ const copy = {
     other: "English site",
     otherLocale: "en" as Locale,
     popular: "Popularne strony",
+    pong: "Animowany padel pong: limonkowa piłka lata między dwiema rakietami",
+    pongHint: "Przesuń kursor lub palec nad kortem, aby grać po lewej stronie.",
   },
 } satisfies Record<Locale, unknown>;
 
@@ -97,6 +104,11 @@ export function NotFoundContent() {
             </Link>
           ))}
         </nav>
+        {/* A rally while you're here – the footer's "404" link leads to this page on purpose */}
+        <div className="mt-14 max-w-2xl">
+          <PadelPong label={t.pong} />
+          <p className="mt-3 text-sm text-white/70">{t.pongHint}</p>
+        </div>
       </div>
     </section>
   );

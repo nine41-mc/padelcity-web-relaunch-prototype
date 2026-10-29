@@ -37,8 +37,11 @@ const outDir = arg("dir", "out");
 const PARALLEL = Number(arg("parallel", "4")); // pages checked at once per width – lower on small runners
 // Pages that are deliberately not in the sitemaps
 const NOT_IN_SITEMAP = [
-  "/coming-soon/", // placeholder target of app and web-app links until they are live (src/lib/site.ts)
+  "/coming-soon/", // placeholder target of event sign-up links while the events are mock data (src/lib/site.ts)
+  "/404/", // the footer's deliberate "404" link (padel pong)
 ];
+// The footer's "404" link points at a URL that doesn't exist on purpose – the 404 answer is expected there
+const DELIBERATE_404 = /^\/(?:(?:en|pl)\/)?404\/$/;
 const SITEMAPS = ["/sitemap/", "/en/sitemap/", "/pl/mapa-strony/"];
 const START = ["/", "/en/", "/pl/", ...SITEMAPS];
 
@@ -100,7 +103,7 @@ while (queue.length) {
     if (!status.has(p)) queue.push(p);
   }
 }
-for (const [path, code] of status) if (code !== 200) add("Link-Ziel nicht erreichbar", path, `HTTP ${code}, verlinkt von ${linkedFrom.get(path)}`);
+for (const [path, code] of status) if (code !== 200 && !(code === 404 && DELIBERATE_404.test(path))) add("Link-Ziel nicht erreichbar", path, `HTTP ${code}, verlinkt von ${linkedFrom.get(path)}`);
 const pages = [...status].filter(([, code]) => code === 200).map(([path]) => path);
 for (const sitemap of SITEMAPS) {
   const html = await (await fetch(base + sitemap)).text();
