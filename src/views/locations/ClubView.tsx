@@ -7,7 +7,7 @@ import type { Club, ImageAsset } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { alternates, href } from "@/lib/i18n/routes";
-import { deeplinks, site } from "@/lib/site";
+import { deeplinks, pageTitle, site } from "@/lib/site";
 import { fill, locationsContent } from "@/lib/content/locations";
 import { academyContent } from "@/lib/content/academy";
 import { coaches, team } from "@/lib/content/people";
@@ -54,7 +54,7 @@ export async function clubMetadata(slug: string, locale: Locale): Promise<Metada
   if (!club) return {};
   const t = locationsContent[locale].meta;
   return {
-    title: fill(t.clubTitle, { club: club.fullName ?? club.name, city: club.city }),
+    title: pageTitle(fill(t.clubTitle, { club: club.fullName ?? club.name, city: club.city })),
     description: clubSummary(club, locale),
     alternates: alternates("locations", club.slug, locale),
     // openGraph replaces the layout's object → repeat type/locale/siteName

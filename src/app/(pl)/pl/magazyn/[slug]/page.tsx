@@ -3,6 +3,7 @@ import { ArticleView } from "@/views/magazine/ArticleView";
 import { articleSlugs, getArticle } from "@/lib/content/magazin";
 import { alternates } from "@/lib/i18n/routes";
 import { localeTags } from "@/lib/i18n/config";
+import { pageTitle } from "@/lib/site";
 
 type Params = { slug: string };
 
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   const a = getArticle(slug, "pl");
   if (!a) return {};
   return {
-    title: a.title,
+    title: pageTitle(a.title),
     description: a.excerpt,
     alternates: alternates("magazine", slug, "pl"),
     openGraph: {

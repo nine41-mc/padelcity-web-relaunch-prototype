@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { CalendarCheck, CalendarDays, Clock, MapPin, Ticket, Users, UsersRound } from "lucide-react";
 import { getClubs, getEvent, getEvents } from "@/lib/data";
 import type { Club, ClubEvent } from "@/lib/data/types";
-import { site, webApp } from "@/lib/site";
+import { pageTitle, site, webApp } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { alternates, href } from "@/lib/i18n/routes";
@@ -51,7 +51,7 @@ export async function eventMetadata(slug: string, locale: Locale): Promise<Metad
   const where = event.clubName ?? event.city ?? site.name;
   return {
     // Event names are the same in both locales → localized suffix keeps DE/EN titles distinct.
-    title: t.detail.metaTitle(event.title, event.city ?? where),
+    title: pageTitle(t.detail.metaTitle(event.title, event.city ?? where)),
     description: eventDescription(event.subtitle, t.detail.metaDescription(event.title, t.types[event.type], where)),
     alternates: alternates("events", slug, locale),
     // openGraph replaces the layout's object → repeat type/locale/siteName

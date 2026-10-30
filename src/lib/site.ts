@@ -23,6 +23,14 @@ export const site = {
   },
 } as const;
 
+/**
+ * Page title for generateMetadata. The layout template appends " | PadelCity"; titles that already name the brand,
+ * or that would pass 65 characters with it (search results cut there), are used as they are.
+ */
+export function pageTitle(title: string): string | { absolute: string } {
+  return title.includes(site.name) || `${title} | ${site.name}`.length > 65 ? { absolute: title } : title;
+}
+
 export const stores = {
   ios: "https://apps.apple.com/de/app/padelcity-padel-jetzt-buchen/id6451471569",
   android: "https://play.google.com/store/apps/details?id=de.padelcity.app",
