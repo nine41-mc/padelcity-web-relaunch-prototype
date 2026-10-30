@@ -84,7 +84,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
         <ol className="grid gap-6 md:grid-cols-3 md:gap-8">
           {t.steps.map((s, i) => (
             <li key={s.title} className="flex gap-4">
-              <span className="font-display text-5xl leading-none font-extrabold italic text-transparent [-webkit-text-stroke:1.5px_rgb(255_255_255/0.6)]" aria-hidden>
+              <span className="font-display text-5xl leading-none font-extrabold italic text-transparent [-webkit-text-stroke:1.5px_color-mix(in_srgb,var(--color-fg)_60%,transparent)]" aria-hidden>
                 {i + 1}
               </span>
               <span>
