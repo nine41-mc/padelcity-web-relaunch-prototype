@@ -14,6 +14,7 @@ Jede Komponente der Figma-Library hat genau eine Code-Komponente, verknüpft per
 | Abstands-Skala für Kacheln und Panels | Utilities `pad-card` (20), `pad-panel` (24/32), `pad-banner` (24/40/56) | Figma: `Layout/pad-*` (05 Responsive) – keine Einzelwerte daneben |
 | Container | Utility `container-site` (max. 1440, Rand 16/32/64) | Figma: `Layout/gutter`, `Layout/container-max` |
 | Schriften | `src/app/fonts.ts` | Söhne Schmal und Good Brush sind lizenziert und liegen in einem privaten Repo (Deploy-Key im CI) |
+| Academy-Stil | `src/components/play/Collegiate.tsx` | Ersatz für die Brandbook-Schrift Octin College (nicht lizenziert): `VarsityText` (Söhne Schmal mit versetzter Magenta-Kontur) und `CollegiateBadge` (Konturschrift); Styleguide „Typografie“, Figma-Komponenten „Varsity Text“ und „Collegiate Badge“. Offen: Octin College lizenzieren oder beim Ersatz bleiben |
 | Breakpoints | Phone < 768 · Tablet `md` ≥ 768 · Desktop `lg` ≥ 1200 | Figma-Modi Mobile / Tablet / Desktop |
 | Farbrollen | Kommentar oben in `globals.css`, Tabelle in `README.md` | Primär (Verlauf) · Sekundär (Weiß) · Highlight (Optic Yellow, nur definierte Stellen) · Status |
 

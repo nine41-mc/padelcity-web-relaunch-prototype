@@ -25,6 +25,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { getClubs, getEvents } from "@/lib/data";
 import { Section } from "@/components/ui/Section";
 import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { CollegiateBadge, VarsityText } from "@/components/play/Collegiate";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { AppIcon } from "@/components/ui/Icon";
@@ -273,6 +274,25 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           </Spec>
           <Spec label="Label · Poppins 600, 13 px, Versalien, Sperrung 0,14 em">
             <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/75">Öffnungszeiten</p>
+          </Spec>
+        </div>
+
+        <H3>Academy-Stil („Collegiate“)</H3>
+        <p className="max-w-3xl text-white/75">
+          Nur auf der Academy-Seite: Das Brandbook setzt die Academy in Octin College. Die Schrift ist für den Prototyp nicht lizenziert, deshalb
+          ahmen zwei Komponenten den College-Look nach – mit derselben Söhne Schmal Fett Kursiv wie alle Headlines, aber mit versetzter
+          Magenta-Kontur bzw. als Konturschrift im Abzeichen. Ob Octin College für die Website lizenziert wird, ist offen (HANDOVER.md).
+        </p>
+        <div className="space-y-6 rounded-[24px] border border-white/10 bg-ink-700 p-6 md:p-10">
+          <Spec label="VarsityText · Söhne Schmal Fett Kursiv, Kontur Magenta-500 1,5 px um 0,06 em versetzt">
+            <p className="text-[2.6rem] leading-[0.95] md:text-7xl">
+              <VarsityText>Dein Weg</VarsityText>
+              <br />
+              <VarsityText className="text-white/90">auf den Court</VarsityText>
+            </p>
+          </Spec>
+          <Spec label="CollegiateBadge · Academy-Hero, gedreht −4°, nur ab Tablet">
+            <CollegiateBadge />
           </Spec>
         </div>
       </Block>
