@@ -22,7 +22,7 @@ const AREAS = {
 };
 
 // Components whose folder does not name their area
-const AREA_OVERRIDES = { SectionIntro: "Module", OpenStatus: "Standorte" };
+const AREA_OVERRIDES = { SectionIntro: "Module", OpenStatus: "Standorte", VarsityText: "Basis", CollegiateBadge: "Basis" };
 
 const PROP_KINDS = { getString: "Text", getEnum: "Variante", getBoolean: "Boolean", getInstanceSwap: "Instance Swap", findText: "Textebene" };
 

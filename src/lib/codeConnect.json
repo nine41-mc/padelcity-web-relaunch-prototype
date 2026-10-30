@@ -352,6 +352,34 @@
     },
     {
       "kind": "component",
+      "id": "collegiate-badge",
+      "code": "CollegiateBadge",
+      "figma": "Collegiate Badge",
+      "nodeId": "16090:802",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=16090-802",
+      "source": "src/components/play/Collegiate.tsx",
+      "imports": [
+        "import { CollegiateBadge } from \"@/components/play/Collegiate\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Top",
+          "kind": "Text"
+        },
+        {
+          "name": "Main",
+          "kind": "Text"
+        },
+        {
+          "name": "Bottom",
+          "kind": "Text"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "kind": "component",
       "id": "consent",
       "code": "Consent",
       "figma": "Consent",
@@ -1169,6 +1197,26 @@
       "area": "Basis",
       "props": [],
       "notes": "Optic Yellow band: Marquee with claim items and dots (see HomeView / Footer); includes the pause button (WCAG 2.2.2)."
+    },
+    {
+      "kind": "component",
+      "id": "varsity-text",
+      "code": "VarsityText",
+      "figma": "Varsity Text",
+      "nodeId": "16090:799",
+      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=16090-799",
+      "source": "src/components/play/Collegiate.tsx",
+      "imports": [
+        "import { VarsityText } from \"@/components/play/Collegiate\""
+      ],
+      "area": "Basis",
+      "props": [
+        {
+          "name": "Text",
+          "kind": "Text"
+        }
+      ],
+      "notes": ""
     },
     {
       "kind": "component",

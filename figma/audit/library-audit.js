@@ -5,7 +5,7 @@
 
 const EXCEPTIONS = {
   // Brand artwork with fixed colours, as in the code
-  artworkComponents: ["Store Badge", "Voucher Card", "Club Map"],
+  artworkComponents: ["Store Badge", "Voucher Card", "Club Map", "Collegiate Badge"],
   // Illustrations whose labels are decorative (grey neighbour-country names on the map, white 40 % as in code)
   contrastSkipComponents: ["Club Map"],
   // Documentation-only variables: there is no Figma property to bind them to

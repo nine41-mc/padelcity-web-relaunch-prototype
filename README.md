@@ -88,7 +88,7 @@ Checks und Reihenfolge: [`QA.md`](QA.md) – u. a. `npm run qa` (alle Seiten in 
 ## Figma Code Connect
 
 `figma/` holds Code Connect templates (`*.figma.ts`) that link the web library in the Figma file
-„PadelCity Website Relaunch“ to the React components here (54 components, 86 icons, 5 logos, 3 country flags). Dev Mode then shows
+„PadelCity Website Relaunch“ to the React components here (56 components, 86 icons, 5 logos, 3 country flags). Dev Mode then shows
 the matching code snippet for a selected component. Every library component has exactly one code component – new
 patterns are built as a code component first, then as a library component.
 
