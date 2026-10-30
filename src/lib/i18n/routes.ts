@@ -18,6 +18,8 @@ export const routes = {
   franchise: { de: "/franchise", en: "/en/franchise", pl: "/pl/franczyza" },
   investors: { de: "/investoren", en: "/en/investors", pl: "/pl/inwestorzy" },
   partners: { de: "/partner", en: "/en/partners", pl: "/pl/partnerzy" },
+  // Company hub: who we are plus the paths for partners, franchise, investors and jobs
+  company: { de: "/unternehmen", en: "/en/company", pl: "/pl/firma" },
   about: { de: "/ueber-uns", en: "/en/about", pl: "/pl/o-nas" },
   jobs: { de: "/jobs", en: "/en/jobs", pl: "/pl/kariera" },
   faq: { de: "/faq", en: "/en/faq", pl: "/pl/faq" },

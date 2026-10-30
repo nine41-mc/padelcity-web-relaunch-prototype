@@ -4,12 +4,11 @@ import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
-import { Building2, Handshake, LineChart, Trophy } from "lucide-react";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts } from "@/lib/content/partners";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
-import { href, type RouteKey } from "@/lib/i18n/routes";
+import { href } from "@/lib/i18n/routes";
 import { homeContent } from "@/lib/content/home";
 import { HomeHero } from "@/components/home/HomeHero";
 import { CountUp } from "@/components/home/CountUp";
@@ -31,7 +30,6 @@ import { Marquee } from "@/components/ui/Marquee";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { CardArrow } from "@/components/ui/CardArrow";
 
 /** Home page – shared by / (de) and /en (en). */
 export async function HomeView({ locale }: { locale: Locale }) {
@@ -98,6 +96,10 @@ export async function HomeView({ locale }: { locale: Locale }) {
               ))}
             </dl>
             {/* Public key figures approved by Marketing: 30+ clubs, 200+ courts, 25+ cities */}
+            {/* The only company link on the home page – partners, franchise, investors and jobs live on the hub */}
+            <Button href={href(locale, "company")} variant="outline" className="mt-10 w-fit">
+              {t.leader.company}
+            </Button>
           </div>
           <Reveal delay={0.1} className="mx-auto w-full max-w-xl lg:max-w-none">
             <GermanyMap clubs={clubs} planned={planned} locale={locale} label={t.leader.mapLabel} hint={t.leader.mapHint} legend={t.leader.legend} />
@@ -126,65 +128,6 @@ export async function HomeView({ locale }: { locale: Locale }) {
             </Button>
           }
         />
-      </section>
-
-      {/* Audience paths: players, partners, investors, franchise */}
-      <Section>
-        <Reveal>
-          <Headline size="md" className="max-w-3xl">
-            {t.paths.title} <Accent>{t.paths.accent}</Accent>
-          </Headline>
-        </Reveal>
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {t.paths.items.map((item, i) => ({
-            ...item,
-            icon: [Trophy, Handshake, LineChart, Building2][i],
-            href: href(locale, item.key as RouteKey),
-            tone: i === 0 ? "from-purple-600 to-magenta-700" : "from-surface-variant to-surface",
-          })).map((c, i) => (
-            <Reveal key={c.title} delay={i * 0.06}>
-              <Link
-                href={c.href}
-                data-theme={i === 0 ? "dark" : undefined}
-                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-fg/10 bg-gradient-to-br ${c.tone} pad-card transition-all duration-300 hover:-translate-y-1 hover:border-fg/40`}
-              >
-                <c.icon className="size-8 text-fg" aria-hidden />
-                <div>
-                  <h3 className="font-display text-3xl font-extrabold italic uppercase">{c.title}</h3>
-                  <p className="mt-2 text-fg/85 md:min-h-[3lh]">{c.text}</p>
-                </div>
-                <CardArrow className="absolute right-5 top-5" />
-              </Link>
-            </Reveal>
-          ))}
-        </div>
-      </Section>
-
-      {/* Series A momentum */}
-      <section className="relative isolate overflow-hidden bg-brandbook-gradient py-24 md:py-32">
-        <div className="absolute inset-0 -z-10 bg-court-lines opacity-60" />
-        <div className="absolute -right-32 -top-32 -z-10 size-[520px] rounded-full bg-magenta-500/40 blur-[120px]" />
-        <div className="container-site grid items-center gap-12 lg:grid-cols-2">
-          <Reveal>
-            <Eyebrow>{t.momentum.eyebrow}</Eyebrow>
-            <Headline size="lg" className="mt-6">
-              {t.momentum.title} <br />
-              {t.momentum.title2} <Accent>{t.momentum.accent}</Accent>
-            </Headline>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">
-              {t.momentum.text}
-            </p>
-            {/* TODO(content): Series A details (Volumen, Lead-Investor, Datum) nur nach Freigabe */}
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={href(locale, "investors")}>{t.momentum.ir}</Button>
-              <Button href={href(locale, "jobs")} variant="outline">
-                {t.momentum.jobs}
-              </Button>
-            </div>
-          </Reveal>
-        </div>
       </section>
 
       {/* Events */}

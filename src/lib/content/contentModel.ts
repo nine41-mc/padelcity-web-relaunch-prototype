@@ -64,8 +64,6 @@ export const contentModel: PageType[] = [
       { id: "factTicker", name: "Kennzahlen-Ticker", fields: [f("Freigegebene Kennzahlen, Claims", "cms")] },
       { id: "leaderMap", name: "Nr. 1 + Karte", fields: [...sectionHead(), f("Club-Pins (Position, Name)", "api", "GET /clubs → position"), f("Geplante Clubs auf der Karte", "apiExtend", undefined, "inaktive Clubs werden nie ausgegeben; Status „bald eröffnet“ fehlt")] },
       { id: "clubShowcase", name: "Club-Showcase (Poster)", fields: [...sectionHead(), f("Auswahl und Reihenfolge der Clubs", "cms", "Referenz auf Club-ID"), ...clubCore(), f("Öffnungsstatus „Geöffnet bis …“ / „Geschlossen · Öffnet Mi um …“", "api", "GET /clubs → openingSchedule"), f("Courts, Sportarten (Hover)", "api", "GET /clubs → courts[].locationType, sportType")] },
-      { id: "audienceEntries", name: "Zielgruppen-Einstiege", fields: [f("Kacheln (Titel, Text, Bild, Ziel)", "cms")] },
-      { id: "seriesATeaser", name: "Series-A-Teaser", fields: [f("Text (qualitativ, keine Zahlen)", "cms")] },
       {
         id: "featuredEvents",
         name: "Events-Teaser",
@@ -326,6 +324,16 @@ export const contentModel: PageType[] = [
       { id: "aboutContent", name: "Inhalte", text: "Story, Vision, Werte, Säulen, Meilensteine", fields: [f("Alle Texte und Bilder", "cms")] },
       { id: "peopleGrid", name: "Team", fields: [f("Name, Rolle, Foto", "cms")] },
       { id: "testimonials", name: "Stimmen", fields: [f("Zitate", "cms")] },
+    ],
+  },
+  {
+    id: "company",
+    name: "Unternehmen",
+    path: "/unternehmen",
+    modules: [
+      { id: "companyIntro", name: "Wer wir sind", fields: [f("Headline, Text, Link auf Über uns", "cms")] },
+      { id: "audienceEntries", name: "Zielgruppen-Einstiege", text: "Partner, Franchise, Investoren, Jobs", fields: [f("Kacheln (Titel, Text, Ziel)", "cms")] },
+      { id: "seriesATeaser", name: "Series-A-Teaser", fields: [f("Text (qualitativ, keine Zahlen)", "cms")] },
     ],
   },
   {

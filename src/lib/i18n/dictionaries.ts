@@ -14,6 +14,7 @@ const de = {
     franchise: "Franchise",
     investors: "Investor Relations",
     partners: "Partner & Sponsoring",
+    company: "Unternehmen",
     about: "Über uns",
     jobs: "Jobs",
     faq: "FAQ",
@@ -31,6 +32,7 @@ const de = {
     academy: "Training für jedes Level",
     magazine: "Stories, Tipps, Culture",
     franchise: "Bring PadelCity in deine Stadt",
+    company: "Partner, Franchise, Investoren, Jobs",
   } as Partial<Record<RouteKey, string>>,
   header: {
     cta: "Jetzt Padel spielen",
@@ -99,6 +101,7 @@ const en: Dictionary = {
     franchise: "Franchise",
     investors: "Investor Relations",
     partners: "Partners & Sponsoring",
+    company: "Company",
     about: "About us",
     jobs: "Jobs",
     faq: "FAQ",
@@ -116,6 +119,7 @@ const en: Dictionary = {
     academy: "Coaching for every level",
     magazine: "Stories, tips, culture",
     franchise: "Bring PadelCity to your city",
+    company: "Partners, franchise, investors, jobs",
   },
   header: {
     cta: "Play padel now",
@@ -182,6 +186,7 @@ const pl: Dictionary = {
     franchise: "Franczyza",
     investors: "Relacje inwestorskie",
     partners: "Partnerzy i sponsoring",
+    company: "Firma",
     about: "O nas",
     jobs: "Praca",
     faq: "FAQ",
@@ -199,6 +204,7 @@ const pl: Dictionary = {
     academy: "Treningi na każdym poziomie",
     magazine: "Historie, porady, kultura",
     franchise: "Przenieś PadelCity do swojego miasta",
+    company: "Partnerzy, franczyza, inwestorzy, kariera",
   },
   header: {
     cta: "Zagraj w padla",

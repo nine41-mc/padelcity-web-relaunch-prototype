@@ -53,8 +53,9 @@ export function storeLinks(campaign?: string) {
 }
 
 /** Main navigation (labels in src/lib/i18n/dictionaries.ts → nav.<key>). */
-export const mainNav: RouteKey[] = ["locations", "app", "events", "academy", "magazine", "franchise"];
-export const secondaryNav: RouteKey[] = ["about", "jobs", "partners", "investors", "faq"];
+// Main navigation for players; everything company-related is bundled on the company hub (team feedback m-1, m-9)
+export const mainNav: RouteKey[] = ["locations", "app", "events", "academy", "magazine", "company"];
+export const secondaryNav: RouteKey[] = ["about", "jobs", "partners", "franchise", "investors", "faq"];
 export const legalNav: RouteKey[] = ["imprint", "privacy", "terms"];
 
 const LINK_BASE = process.env.NEXT_PUBLIC_APP_LINK_BASE ?? "https://link.padelcity.de";
