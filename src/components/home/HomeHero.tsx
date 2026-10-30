@@ -59,7 +59,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
   };
 
   return (
-    <section className="relative isolate flex min-h-[100svh] items-end overflow-hidden pb-14 pt-32 md:items-center md:pb-24">
+    <section className="theme-dark relative isolate flex min-h-[100svh] items-end overflow-hidden pb-14 pt-32 md:items-center md:pb-24">
       <motion.div style={{ y, scale }} className="absolute inset-0 -z-20">
         <video
           ref={video}

@@ -77,7 +77,7 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
     <Link
       href={href(locale, "locations", club.slug)}
       className={cn(
-        "group relative block overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size]",
+        "theme-dark group relative block overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size]",
         fill ? "aspect-[4/5] w-full" : "aspect-[3/4] w-[78vw] shrink-0 snap-start md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]",
       )}
     >

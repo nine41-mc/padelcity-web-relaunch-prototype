@@ -19,7 +19,7 @@ export function ArticleCard({ article, locale, className, large = false }: { art
         className,
       )}
     >
-      <div className="relative">
+      <div className="theme-dark relative">
         <Media
           src={article.image?.url}
           alt={article.image?.alt ?? article.title}

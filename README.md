@@ -66,6 +66,7 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
   | Status | Success / Danger / Warning | Nur System-Feedback |
 
   Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Text-Verlauf (Magenta-400 → Purple-400) auf Ink ≥ 4,4:1, Magenta-300 auf Ink ≈ 7:1, Optic-Yellow-Fokusring auf Ink ≈ 17:1 (Token-Name im Code: `optic-*`). Druckwerte: Pantone 388 C/U und CMYK 20/0/100/0 als Empfehlung, final zu prüfen.
+- Vergleichs-Umschalter nur auf der Startseite (unten links, für die Marken-Diskussion): Highlight-Farbe (`HighlightDemo`) und Dunkel/Hell (`ThemeDemo`). Hell tauscht per `html[data-theme="light"]` die Flächen-Tokens; Fotos, Verläufe, Header und Footer bleiben dunkel (`.theme-dark`), Highlight-Text wird auf Hell Lila. Nichts wird gespeichert; Dunkel bleibt der Standard. Figma-Gegenstück: Entwurf „Startseite · Light Mode“ ohne Library-Variablen.
 - Schriften wie in der App: Söhne Schmal Fett Kursiv (Headlines), Good Brush (Akzentwort), Poppins (Text).
 - Icons: App-Icons aus `mobile-app-flutter/assets/icons` (als CSS-Mask), sonst lucide.
 

@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n/config";
  * (brush word, ticker, map pin label, footer ball …) cycles the highlight colour – Optic Yellow, Purple,
  * Magenta, Turquoise (app badge colour "color-badge-abo-background" #15C0D3). Works via CSS variables
  * (html[data-highlight], see globals.css), so every highlight element changes at once.
- * The floating button shows the current colour and is the keyboard-accessible way to switch.
+ * The button (next to the ThemeDemo switch) shows the current colour and is the keyboard-accessible way to switch.
  */
 const COLORS = [
   { id: "optic", name: "Optic Yellow", hex: "#DFFF4F" },
@@ -55,19 +55,20 @@ export function HighlightDemo({ locale }: { locale: Locale }) {
   }, [next]);
 
   const c = COLORS[i];
+  // Compact pill next to the ThemeDemo switch (HomeView positions both); the hint moves into the tooltip.
   return (
     <button
       type="button"
       onClick={next}
-      className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-3 rounded-full border border-white/25 bg-ink-700/90 py-2 pl-2 pr-4 text-left text-white shadow-elevated backdrop-blur transition-colors hover:border-white"
+      title={t.hint}
+      className="flex min-w-0 items-center gap-2 rounded-full border border-white/20 bg-ink-700/85 py-1.5 pl-1.5 pr-3 text-left text-white shadow-elevated backdrop-blur transition-colors hover:border-white"
     >
-      <span className="size-8 shrink-0 rounded-full ring-2 ring-white/30" style={{ background: c.hex }} aria-hidden />
+      <span className="size-6 shrink-0 rounded-full ring-2 ring-white/30" style={{ background: c.hex }} aria-hidden />
       <span className="min-w-0 leading-tight">
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.label}</span>
-        <span className="block text-sm font-semibold">
-          {c.name} <span className="font-normal text-white/60">· {c.hex}</span>
+        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.label}</span>
+        <span className="block truncate text-xs font-semibold">
+          {c.name} <span className="hidden font-normal text-white/60 sm:inline">· {c.hex}</span>
         </span>
-        <span className="hidden text-xs text-white/60 sm:block">{t.hint}</span>
       </span>
     </button>
   );

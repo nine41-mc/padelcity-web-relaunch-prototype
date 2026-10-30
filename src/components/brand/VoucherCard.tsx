@@ -55,7 +55,7 @@ export function VoucherCard({ label, amount, aria, className }: { label: string;
       role="img"
       aria-label={aria}
       className={cn(
-        "relative aspect-[1.65] w-full overflow-hidden rounded-[22px] bg-[#ebebeb] text-ink-800 shadow-[0_40px_90px_-30px_rgb(224_5_195/0.55)] ring-1 ring-black/5 [container-type:inline-size]",
+        "theme-dark relative aspect-[1.65] w-full overflow-hidden rounded-[22px] bg-[#ebebeb] text-ink-800 shadow-[0_40px_90px_-30px_rgb(224_5_195/0.55)] ring-1 ring-black/5 [container-type:inline-size]",
         className,
       )}
     >

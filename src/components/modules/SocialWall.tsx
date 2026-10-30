@@ -54,7 +54,7 @@ export function SocialWall({ locale }: { locale: Locale }) {
       <ul className="grid grid-cols-3 gap-1 md:grid-cols-6">
         {POSTS.map((p, i) => (
           <li key={p.src} className={i >= 9 ? "hidden md:block" : undefined}>
-            <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="group relative block overflow-hidden" data-track="social_wall_post">
+            <a href={site.social.instagram} target="_blank" rel="noopener noreferrer" className="theme-dark group relative block overflow-hidden" data-track="social_wall_post">
               <Media src={p.src} alt={t.alt} className="aspect-[4/5]" imgClassName="transition-transform duration-700 group-hover:scale-105" sizes="(min-width:768px) 17vw, 33vw" />
               {p.reel && <Play className="absolute right-2 top-2 size-5 fill-white text-white drop-shadow" aria-hidden />}
               <span className="absolute inset-0 grid place-items-center bg-purple-900/0 opacity-0 transition group-hover:bg-purple-900/55 group-hover:opacity-100" aria-hidden>

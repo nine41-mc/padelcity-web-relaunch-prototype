@@ -1,5 +1,6 @@
 import { keepTogether } from "@/lib/typography";
 import { HighlightDemo } from "@/components/home/HighlightDemo";
+import { ThemeDemo } from "@/components/home/ThemeDemo";
 import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
@@ -52,7 +53,11 @@ export async function HomeView({ locale }: { locale: Locale }) {
   return (
     <>
       {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis) */}
-      <HighlightDemo locale={locale} />
+      {/* Comparison switches for the brand discussion (home only): highlight colour and dark/light */}
+      <div className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-2">
+        <HighlightDemo locale={locale} />
+        <ThemeDemo locale={locale} />
+      </div>
       <HomeHero locale={locale} t={t.hero} />
 
       {/* Momentum ticker */}
@@ -137,7 +142,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
             ...item,
             icon: [Trophy, Handshake, LineChart, Building2][i],
             href: href(locale, item.key as RouteKey),
-            tone: i === 0 ? "from-purple-600 to-magenta-700" : "from-ink-500 to-ink-600",
+            tone: i === 0 ? "theme-dark from-purple-600 to-magenta-700" : "from-ink-500 to-ink-600",
           })).map((c, i) => (
             <Reveal key={c.title} delay={i * 0.06}>
               <Link
@@ -198,7 +203,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         </div>
         {heroEvent && (
           <Reveal className="mb-6">
-            <div className="group relative overflow-hidden rounded-[28px]">
+            <div className="theme-dark group relative overflow-hidden rounded-[28px]">
               <Media
                 src={heroEvent.image?.url}
                 alt={heroEvent.image?.alt ?? heroEvent.title}

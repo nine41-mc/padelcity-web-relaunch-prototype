@@ -39,7 +39,7 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
         className,
       )}
     >
-      <div className="relative">
+      <div className="theme-dark relative">
         <Media src={event.image?.url} alt={event.image?.alt ?? event.title} className="aspect-[16/10]" overlay sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw" />
         <div className="absolute inset-x-3 top-3 flex justify-between">
           {event.recurrence ? <Chip tone="gradient">{event.recurrence}</Chip> : <Chip tone="dark">{event.type === "tournament" ? t.tournament : event.type === "training" ? t.training : t.event}</Chip>}
