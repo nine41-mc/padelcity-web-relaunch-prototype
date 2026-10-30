@@ -421,6 +421,8 @@ html[data-a11y-contrast="high"] footer a:not([class*="rounded-full"]) {
  * Highlight comparison (home page, HighlightDemo): clicking a highlight element cycles the highlight colour.
  * Optic Yellow is the default; the others are candidates for comparison only.
  */
+/* Claim comparison (ClaimDemo on the home page): both claims are rendered, html[data-claim] picks one */
+html:not([data-claim="serve"]) [data-claim-variant="serve"], html[data-claim="serve"] [data-claim-variant="noise"] { display: none; }
 html[data-highlight="purple"] { --color-optic-300: #cc74f1; --color-optic-400: #ba45ed; --color-optic-500: #8412b5; --color-optic-600: #660e8b; --color-on-optic: #ffffff; }
 html[data-highlight="magenta"] { --color-optic-300: #fc69e8; --color-optic-400: #fb37e1; --color-optic-500: #e005c3; --color-optic-600: #c804ae; --color-on-optic: #ffffff; }
 html[data-highlight="turquoise"] { --color-optic-300: #86e8f3; --color-optic-400: #45dced; --color-optic-500: #15c0d3; --color-optic-600: #1198a7; --color-on-optic: #0b0b0f; }

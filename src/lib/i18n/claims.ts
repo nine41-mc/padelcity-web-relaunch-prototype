@@ -10,6 +10,7 @@ const ENGLISH_CLAIMS = new Set([
   "Make some noise",
   "Make some noise for Padel",
   "Make some noise for Padel.",
+  "We serve. You play.",
   "Follow us!",
   "Never play",
   "alone.",

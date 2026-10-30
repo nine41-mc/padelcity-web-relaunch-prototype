@@ -62,7 +62,12 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="relative">
             <PadelBall id={`ballShade-${locale}`} className="absolute -top-6 right-0 size-20 rotate-12 drop-shadow-[0_12px_30px_color-mix(in_srgb,var(--color-optic-500)_45%,transparent)] motion-safe:animate-[ball-bob_3.2s_ease-in-out_infinite] md:-top-10 md:size-28 lg:right-6" />
             <p className="max-w-[12ch] font-display text-6xl leading-[0.86] font-extrabold italic uppercase text-balance md:text-8xl lg:text-[7.5rem]">
-              {t.footer.claim1} <Accent>{t.footer.claimAccent}</Accent> {t.footer.claim2}
+              <span data-claim-variant="noise">
+                {t.footer.claim1} <Accent>{t.footer.claimAccent}</Accent> {t.footer.claim2}
+              </span>
+              <span data-claim-variant="serve">
+                {t.footer.claimAlt.claim1} <Accent>{t.footer.claimAlt.claimAccent}</Accent> {t.footer.claimAlt.claim2}
+              </span>
             </p>
 
           </div>
