@@ -32,12 +32,13 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 
 | DE | EN | PL | Inhalt |
 |---|---|---|---|
-| `/` | `/en` | `/pl` | Video-Hero, Nr.-1-Zahlen + Club-Karte, Club-Showcase, Zielgruppen-Einstiege, Series A (qualitativ), Events, News & Magazin, Community, Stimmen, Gutscheine, Partner |
-| `/standorte`, `/standorte/[slug]` | `/en/locations/…` | `/pl/lokalizacje/…` | Club-Finder (Suche, Filter, Nähe, Liste/Karte); Club-Seite: Galerie, Öffnungszeiten unter dem Namen (aufklappbar), Kontakt-Kacheln (Route · Anrufen · E-Mail · WhatsApp, je mit Kopieren), „Preise & Courts“ mit einem Sportarten-Filter, Ausstattung, Highlights, Events, Coaches, „In der App buchen“, Karte, Clubs in der Nähe, Teilen |
+| `/` | `/en` | `/pl` | Für Spieler: Video-Hero, Nr.-1-Zahlen + Club-Karte (Link zum Unternehmen), Club-Showcase, „Zum ersten Mal Padel?“, Events, News & Magazin, Community, Stimmen, Gutscheine, Partner |
+| `/standorte`, `/standorte/[slug]` | `/en/locations/…` | `/pl/lokalizacje/…` | Club-Finder (Suche, Filter, Nähe, Liste/Karte; Umkreissuche: Orte ohne Club zeigen die Clubs im Umkreis von 50 km, Ortsdaten [GeoNames](https://www.geonames.org/), CC BY 4.0, in `public/data/places.json`, erzeugt mit `scripts/build-places.py`); Club-Seite: Galerie, Öffnungszeiten unter dem Namen (aufklappbar), Kontakt-Kacheln (Route · Anrufen · E-Mail · WhatsApp, je mit Kopieren), „Preise & Courts“ mit einem Sportarten-Filter, Ausstattung, Highlights, Events, Coaches, „In der App buchen“, Karte, Clubs in der Nähe, Teilen |
 | `/events`, `/events/[slug]` | `/en/events/…` | `/pl/wydarzenia/…` | Hero-Events (Countdown) + lokale Events; Event-Detail mit Eckdaten, freien Plätzen, Storno-Tabelle, Anmeldung im Web (`webApp.event`) oder per App-Deeplink, Teilen |
 | `/academy` | `/en/academy` | `/pl/akademia` | Level-Pfad, Programme, Preisliste (1er–4er Training, Coach/Head Coach), echte Coaches, Standorte, Videos, FAQ |
 | `/app` | `/en/app` | `/pl/aplikacja` | App-Landingpage mit Feature-Story |
 | `/magazin`, `/magazin/[slug]` | `/en/magazine/…` | `/pl/magazyn/…` | Editorial Hub mit 6 Artikeln, Artikel mit Teilen |
+| `/unternehmen` | `/en/company` | `/pl/firma` | Unternehmens-Hub: wer wir sind, Wege zu Partner, Franchise, Investoren und Jobs, Series A (qualitativ) |
 | `/franchise`, `/investoren`, `/partner` | `/en/franchise`, `/en/investors`, `/en/partners` | `/pl/franczyza`, `/pl/inwestorzy`, `/pl/partnerzy` | B2B-Zielgruppen inkl. Lead-Formularen (Prototyp: sendet nichts) |
 | `/ueber-uns`, `/jobs`, `/faq` | `/en/about`, `/en/jobs`, `/en/faq` | `/pl/o-nas`, `/pl/kariera`, `/pl/faq` | Story, Gründer & Team, Employer Branding (Personio), FAQ live aus der API |
 | `/impressum`, `/datenschutz`, `/agb` | `/en/imprint`, `/en/privacy`, `/en/terms` | `/pl/nota-prawna`, `/pl/polityka-prywatnosci`, `/pl/regulamin` | Rechtstexte |

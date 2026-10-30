@@ -17,6 +17,11 @@ import { ClubMapLazy } from "./ClubMapLazy";
 import { CountryFlag } from "./CountryFlag";
 import { FilterSheet, SheetGroup, sheetChip } from "./FilterSheet";
 import { distanceKm, todaysHours, type LatLng } from "./geo";
+import { findPlace, type FoundPlace } from "./places";
+
+// Radius search: a place without a club lists the clubs within this distance, otherwise the nearest ones
+const RADIUS_KM = 50;
+const NEAREST = 3;
 
 type FilterKey = "indoor" | "outdoor" | "centerCourt" | "franchise";
 type SortKey = "default" | "distance" | "az" | "za";
@@ -54,6 +59,8 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
   const [openNow, setOpenNow] = useState(false);
   const [sort, setSort] = useState<SortKey>("default");
   const [sheetOpen, setSheetOpen] = useState(false);
+  // Place found for a search without a club match (radius search), keyed by the query it belongs to
+  const [place, setPlace] = useState<{ query: string; found: FoundPlace } | null>(null);
   const sportNames = getDictionary(locale).sports;
   const closeSheet = useCallback(() => setSheetOpen(false), []);
 
@@ -113,12 +120,27 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
     if (k === "distance" && !user && geo !== "loading") locate();
   };
 
+  // No club matches the search text → look the text up as a place (radius search)
+  const q0 = query.trim().toLowerCase();
+  const noTextMatch = q0.length >= 3 && !clubs.some((c) => matchesQuery(c, q0));
+  useEffect(() => {
+    if (!noTextMatch) return;
+    let live = true;
+    // the original spelling, so a match on another spelling shows what the visitor typed
+    findPlace(query).then((found) => live && setPlace(found ? { query: q0, found } : null));
+    return () => {
+      live = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- runs per normalized query, not per keystroke of case or spaces
+  }, [noTextMatch, q0]);
+  const near = noTextMatch && place?.query === q0 ? place.found : null;
+
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     const list = clubs
       .filter((c) => {
         if (country !== "all" && c.country !== country) return false;
-        if (!matchesQuery(c, q)) return false;
+        if (!near && !matchesQuery(c, q)) return false;
         if (filters.has("indoor") && !c.courts.some((x) => x.locationType === "indoor")) return false;
         if (filters.has("outdoor") && !c.courts.some((x) => x.locationType === "outdoor")) return false;
         if (filters.has("centerCourt") && !c.courts.some((x) => x.isPremium)) return false;
@@ -127,13 +149,18 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         if (openNow && todaysHours(c.openingHours)?.state !== "open") return false;
         return true;
       })
-      .map((c) => ({ club: c, km: user ? distanceKm(user, c.position) : undefined }));
+      .map((c) => ({ club: c, km: near ? distanceKm(near.position, c.position) : user ? distanceKm(user, c.position) : undefined }));
+    if (near) {
+      list.sort((a, b) => (a.km ?? 0) - (b.km ?? 0));
+      const inRadius = list.filter((r) => (r.km ?? Infinity) <= RADIUS_KM);
+      return inRadius.length ? inRadius : list.slice(0, NEAREST);
+    }
     if (effectiveSort === "distance") list.sort((a, b) => (a.km ?? 0) - (b.km ?? 0));
     if (effectiveSort === "az" || effectiveSort === "za") {
       list.sort((a, b) => a.club.name.localeCompare(b.club.name, locale) * (effectiveSort === "za" ? -1 : 1));
     }
     return list;
-  }, [clubs, query, filters, user, country, sports, openNow, effectiveSort, locale]);
+  }, [clubs, query, filters, user, country, sports, openNow, effectiveSort, locale, near]);
 
   // Planned clubs appear on the map only (outline pins); court-type filters don't apply – they have no courts yet.
   const plannedOnMap = useMemo(() => {
@@ -369,6 +396,14 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           </SheetGroup>
         )}
       </FilterSheet>
+
+      {/* Radius search: the place the search was read as, and whether clubs are within the radius */}
+      {near && results.length > 0 && (
+        <p className="mt-8 text-fg/85" aria-live="polite">
+          {((results[0].km ?? Infinity) <= RADIUS_KM ? t.nearPlace : t.nearestToPlace).replace("{place}", near.name).replace("{km}", String(RADIUS_KM))}
+          <span className="ml-2 text-xs text-fg/60">{t.placeSource}</span>
+        </p>
+      )}
 
       {/* Results */}
       {results.length === 0 ? (
