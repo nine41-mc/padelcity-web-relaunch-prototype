@@ -157,6 +157,33 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         </div>
         <Note>Optic Yellow ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,1 : 1).</Note>
 
+        <H3>Hell &amp; Dunkel: Farbrollen</H3>
+        <p className="max-w-3xl text-fg/75">
+          Komponenten nutzen Rollen statt fester Farben, jede Rolle hat einen Wert für Dunkel und Hell (Umschalter im Header, ohne Wahl
+          folgt die Seite der Systemeinstellung). Fotos, Marken-Verläufe, Header und Footer bleiben auch im hellen Modus dunkel
+          (<code className="font-mono text-[13px]">data-theme=&quot;dark&quot;</code>). Figma: 02 Semantic Tokens mit den Modi Dark und Light.
+        </p>
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          {(["dark", "light"] as const).map((mode) => (
+            <div key={mode} data-theme={mode} className="rounded-[24px] border border-fg/10 bg-canvas p-5 md:p-6">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{mode === "dark" ? "Dunkel" : "Hell"}</p>
+              <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {THEME_ROLES.map((r) => (
+                  <li key={r.name} className="min-w-0">
+                    <span className={`block h-12 rounded-xl border border-fg/10 ${r.swatch}`} aria-hidden />
+                    <span className="mt-1.5 block truncate font-mono text-[12px] text-fg">{r.name}</span>
+                    <span className="block text-[12px] text-fg/70">{r.use}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-fg">
+                Text <span className="text-fg/70">· gedämpft</span> · <span className="font-brush text-2xl text-highlight-fg">Highlight</span> ·{" "}
+                <span className="text-accent-fg">Live-Info</span>
+              </p>
+            </div>
+          ))}
+        </div>
+
         <H3>Farbpass Optic Yellow (Entwurf)</H3>
         <p className="mb-4 max-w-3xl text-fg/75">
           „Optic Yellow“ ist der Name der Tennisball-Farbe beim Tennis-Weltverband ITF – einen offiziellen Farbwert gibt es nicht (die Regeln verlangen nur „weiß oder gelb“).
@@ -964,6 +991,19 @@ function Palette({ name, steps }: { name: string; steps: [string, string][] }) {
   );
 }
 
+/** Semantic colour roles (globals.css) – shown side by side in both modes in the colour block. */
+const THEME_ROLES = [
+  { name: "canvas", use: "Seite", swatch: "bg-canvas" },
+  { name: "canvas-deep", use: "tiefere Abschnitte", swatch: "bg-canvas-deep" },
+  { name: "raised", use: "Karten, Panels", swatch: "bg-raised" },
+  { name: "surface", use: "Felder, Kacheln", swatch: "bg-surface" },
+  { name: "fg", use: "Text, Icons", swatch: "bg-fg" },
+  { name: "fg/10", use: "Linien", swatch: "bg-fg/10" },
+  { name: "fg-inverse", use: "Text auf fg-Buttons", swatch: "bg-fg-inverse" },
+  { name: "highlight-fg", use: "Highlight als Text", swatch: "bg-highlight-fg" },
+  { name: "accent-fg", use: "Live-Info, Link-Hover", swatch: "bg-accent-fg" },
+] as const;
+
 function TypeCard({ name, role, sample, children }: { name: string; role: string; sample: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-4 rounded-[24px] border border-fg/10 bg-raised p-6">
@@ -999,21 +1039,21 @@ function DoDont({ dos, donts }: { dos: string[]; donts: string[] }) {
   return (
     <div className="grid gap-4 md:grid-cols-2">
       <div className="rounded-[24px] border border-fg/10 bg-raised p-6">
-        <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-success">So</p>
+        <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-success-fg">So</p>
         <ul className="space-y-2 text-fg/85">
           {dos.map((d) => (
             <li key={d} className="flex gap-2">
-              <Check className="mt-1 size-4 shrink-0 text-success" aria-hidden /> {d}
+              <Check className="mt-1 size-4 shrink-0 text-success-fg" aria-hidden /> {d}
             </li>
           ))}
         </ul>
       </div>
       <div className="rounded-[24px] border border-fg/10 bg-raised p-6">
-        <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-danger">Nicht so</p>
+        <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-danger-fg">Nicht so</p>
         <ul className="space-y-2 text-fg/85">
           {donts.map((d) => (
             <li key={d} className="flex gap-2">
-              <X className="mt-1 size-4 shrink-0 text-danger" aria-hidden /> {d}
+              <X className="mt-1 size-4 shrink-0 text-danger-fg" aria-hidden /> {d}
             </li>
           ))}
         </ul>

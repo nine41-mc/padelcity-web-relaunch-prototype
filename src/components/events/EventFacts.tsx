@@ -76,7 +76,7 @@ export function CancellationTable({ cutoff, locale }: { cutoff: Date; locale: Lo
               <span className="block text-lg font-semibold text-fg">{day}</span>
               {time}
             </dt>
-            <dd className={r.free ? "text-lg font-semibold text-success" : "text-fg/85"}>{r.text}</dd>
+            <dd className={r.free ? "text-lg font-semibold text-success-fg" : "text-fg/85"}>{r.text}</dd>
           </div>
         ))}
       </dl>

@@ -26,12 +26,38 @@ for (const t of [...leaves(tokens.base), ...leaves(tokens.numeric)]) {
   if (!name || tailwindBuiltIns.has(name)) continue;
   same(`--${name}`, t.$value, cssVar(name));
 }
-// … and every colour in @theme exists in Figma
+// … and every colour in @theme exists in Figma (palette in 01 Base, colour roles in 02 Semantic)
 const theme = css.slice(css.indexOf("@theme"), css.indexOf("\n}\n", css.indexOf("@theme")));
-const figmaVars = new Set(leaves(tokens.base).map((t) => t.$extensions?.["com.figma"]?.codeSyntax));
+const figmaVars = new Set([...leaves(tokens.base), ...leaves(tokens.semantic)].map((t) => t.$extensions?.["com.figma"]?.codeSyntax));
 for (const [, name] of theme.matchAll(/--(color-[\w-]+):/g)) {
   checked.count++;
-  if (!figmaVars.has(`var(--${name})`)) drift.push(`--${name}: im Code, fehlt in Figma (01 Base)`);
+  if (!figmaVars.has(`var(--${name})`)) drift.push(`--${name}: im Code, fehlt in Figma (01 Base / 02 Semantic)`);
+}
+
+// Colour roles: the Dark and Light mode of each semantic token with a var(--…) code syntax against the @theme value
+// (dark) and the html[data-theme="light"] block (light); the [data-theme="dark"] block must repeat the dark values
+const block = (selector) => {
+  const i = css.indexOf(selector);
+  return i < 0 ? "" : css.slice(i, css.indexOf("}", i));
+};
+const lightCss = block(':root[data-theme="light"],');
+const darkCss = block('[data-theme="dark"],');
+const baseHex = Object.fromEntries(leaves(tokens.base).map((t) => [`{base.${t.path.join(".")}}`, t.$value]));
+const resolve = (value, scope) => {
+  for (let i = 0; i < 5 && value?.startsWith("var("); i++) {
+    const name = value.match(/^var\(--([\w-]+)\)$/)?.[1];
+    value = scope.match(new RegExp(`--${name}:\\s*([^;]+);`))?.[1].trim() ?? cssVar(name);
+  }
+  return value;
+};
+for (const t of leaves(tokens.semantic)) {
+  const ext = t.$extensions?.["com.figma"];
+  const name = ext?.codeSyntax?.match(/^var\(--([\w-]+)\)$/)?.[1];
+  if (!name || !ext.modes || !lightCss.includes(`--${name}:`)) continue;
+  const label = `--${name} (${t.path.join("/")})`;
+  same(`${label} dunkel`, baseHex[ext.modes.Dark], resolve(cssVar(name), theme));
+  same(`${label} hell`, baseHex[ext.modes.Light], resolve(`var(--${name})`, lightCss));
+  same(`${label} dunkle Bereiche`, baseHex[ext.modes.Dark], resolve(`var(--${name})`, darkCss));
 }
 
 // Gradients: angle and stops

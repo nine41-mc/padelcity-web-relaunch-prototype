@@ -162,7 +162,7 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
                   <tr key={`${p.from}-${p.until}`}>
                     <th scope="row" className="py-1.5 pr-4 font-normal text-fg/70">
                       {periodLabel(g.periods, i, t.priceList)}
-                      <span className="block whitespace-nowrap text-sm text-fg/50">{p.from} – {p.until}</span>
+                      <span className="block whitespace-nowrap text-sm text-fg/60">{p.from} – {p.until}</span>
                     </th>
                     {columns.map((k) => (
                       <td key={k} className={cn("py-1.5 pl-4 font-display text-2xl font-extrabold italic tabular-nums", align)}>

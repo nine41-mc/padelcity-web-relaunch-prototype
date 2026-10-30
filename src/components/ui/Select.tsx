@@ -183,7 +183,7 @@ export function Select({
           "flex w-full items-center gap-2.5 rounded-full border bg-raised pr-3 text-left font-medium text-fg transition-colors",
           size === "lg" ? "h-12 pl-5 text-base" : "h-11 pl-4 text-sm",
           open ? "border-fg" : invalid ? "border-danger" : "border-fg/45 hover:border-fg/75",
-          "focus-visible:border-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-optic-500/40",
+          "focus-visible:border-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-focus/40",
         )}
       >
         {icon && <span className="shrink-0 text-fg [&>svg]:size-4" aria-hidden>{icon}</span>}

@@ -4,7 +4,7 @@ import { cn } from "../ui/cn";
 export const fieldClass = (invalid?: boolean) =>
   cn(
     "w-full rounded-2xl border bg-canvas-deep/40 px-4 text-fg placeholder:text-fg/60 transition-colors focus:outline-none focus:ring-2",
-    invalid ? "border-danger focus:border-danger focus:ring-danger/40" : "border-fg/45 focus:border-optic-500 focus:ring-optic-500/50",
+    invalid ? "border-danger focus:border-danger focus:ring-danger/40" : "border-fg/45 focus:border-focus focus:ring-focus/50",
   );
 
 /** Label line: required star in magenta, optional note in grey. */
@@ -23,7 +23,7 @@ export function FieldLabel({ htmlFor, id, required, optional, children }: { html
 export function FieldMessage({ id, error, hint }: { id: string; error?: string; hint?: string }) {
   if (!error && !hint) return null;
   return (
-    <p id={id} className={cn("mt-2 text-sm", error ? "text-danger" : "text-fg/75")}>
+    <p id={id} className={cn("mt-2 text-sm", error ? "text-danger-fg" : "text-fg/75")}>
       {error ?? hint}
     </p>
   );

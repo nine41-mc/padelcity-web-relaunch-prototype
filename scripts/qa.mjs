@@ -4,6 +4,7 @@
 //   npm run qa -- --browsers all                also WebKit (Safari) and Firefox – or e.g. --browsers webkit
 //   npm run qa -- --only /,/events/             only these paths
 //   npm run qa -- --widths 768                  other widths
+//   npm run qa -- --theme light                 light theme instead of dark (stored choice, as after the header toggle)
 //   npm run qa -- --parallel 2                  fewer pages at once (small CI runners)
 //   npm run qa -- --seo-only                    links, sitemap, redirects and SEO only – no browser (seconds)
 //   npm run qa -- --base https://…              a deployed site instead of out/ (no password-protected builds)
@@ -24,6 +25,8 @@ const arg = (name, fallback) => {
   return i > -1 ? process.argv[i + 1] : fallback;
 };
 const widths = arg("widths", "390,768,1440").split(",").map(Number);
+const theme = arg("theme", "dark");
+if (!["dark", "light"].includes(theme)) throw new Error(`--theme dark|light, not ${theme}`);
 const ENGINES = { chromium, webkit, firefox };
 const browserArg = arg("browsers", "chromium");
 const engines = browserArg === "all" ? Object.keys(ENGINES) : browserArg.split(",");
@@ -274,6 +277,8 @@ const TILE_HOSTS = ["tile.openstreetmap.org", process.env.NEXT_PUBLIC_MAP_TILE_U
 const TILE = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGPg5uYHAABKACYs206WAAAAAElFTkSuQmCC", "base64");
 const newContext = async (browser, options) => {
   const ctx = await browser.newContext(options);
+  // the choice the header toggle stores (src/lib/theme.ts) – the pre-paint script applies it before the first paint
+  await ctx.addInitScript((t) => { try { localStorage.setItem("pc-theme", t); } catch {} }, theme);
   await ctx.route((url) => TILE_HOSTS.some((h) => url.hostname === h || url.hostname.endsWith("." + h)), (route) => route.fulfill({ status: 200, contentType: "image/png", body: TILE }));
   return ctx;
 };
@@ -485,11 +490,11 @@ server?.close();
 
 // ---------------------------------------------------------------------------------------------- report
 mkdirSync(".qa", { recursive: true });
-writeFileSync(".qa/report.json", JSON.stringify({ base, browsers: engines, widths, pages: routes.length, findings, notes }, null, 2));
+writeFileSync(".qa/report.json", JSON.stringify({ base, theme, browsers: engines, widths, pages: routes.length, findings, notes }, null, 2));
 const byCheck = Object.groupBy(findings, (f) => f.check);
 console.log(seoOnly
   ? `\n${pages.length} Seiten geprüft (Links, Sitemap, Weiterleitungen, SEO – ohne Browser), ${findings.length} Funde.`
-  : `\n${routes.length} Seiten × ${widths.length} Breiten × ${engines.length} Browser geprüft, ${pages.length} Seiten verlinkt, ${findings.length} Funde.`);
+  : `\n${routes.length} Seiten × ${widths.length} Breiten × ${engines.length} Browser (${theme === "light" ? "hell" : "dunkel"}) geprüft, ${pages.length} Seiten verlinkt, ${findings.length} Funde.`);
 for (const [checkName, list] of Object.entries(byCheck)) {
   console.log(`\n✗ ${checkName} (${list.length})`);
   for (const f of list.slice(0, 8)) console.log(`  ${f.where}  ${f.detail}`);

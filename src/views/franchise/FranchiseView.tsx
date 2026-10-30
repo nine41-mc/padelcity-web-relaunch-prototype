@@ -120,7 +120,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
                           <Check className="mt-1 size-4 shrink-0 text-accent-fg" aria-hidden />
                           <span>
                             {text}
-                            {typeof item !== "string" && <span className="text-fg/55"> ({t.phases.optional})</span>}
+                            {typeof item !== "string" && <span className="text-fg/60"> ({t.phases.optional})</span>}
                           </span>
                         </li>
                       );

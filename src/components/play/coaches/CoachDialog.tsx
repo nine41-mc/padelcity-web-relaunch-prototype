@@ -193,7 +193,7 @@ function Offer({ offer, labels, locale, showClub }: { offer: CoachOffer; labels:
         <div className={cn("overflow-x-auto", offer.times.length > 0 && "mt-4")}>
           <table className="w-full min-w-[260px] text-left text-sm tabular-nums">
             <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-[0.14em] text-fg/60">
-              {labels.prices} <span className="normal-case tracking-normal text-fg/50">({sizes.length > 1 ? `1–${sizes[sizes.length - 1]}` : sizes[0]} {labels.playersHint})</span>
+              {labels.prices} <span className="normal-case tracking-normal text-fg/60">({sizes.length > 1 ? `1–${sizes[sizes.length - 1]}` : sizes[0]} {labels.playersHint})</span>
             </caption>
             <thead>
               <tr className="border-b border-fg/10 text-xs text-fg/60">

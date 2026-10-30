@@ -36,11 +36,11 @@ export function ShareButton({ title, locale, track, className }: { title: string
         setTimeout(() => setCopied(false), 2000);
       }}
       className={cn(
-        "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-white/25 px-4 text-sm font-semibold text-white transition hover:border-transparent hover:bg-brand-gradient",
+        "inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-fg/25 px-4 text-sm font-semibold text-fg transition hover:border-transparent hover:bg-brand-gradient hover:text-white",
         className,
       )}
     >
-      {copied ? <Check className="size-4 text-success" aria-hidden /> : <Share2 className="size-4" aria-hidden />}
+      {copied ? <Check className="size-4 text-success-fg" aria-hidden /> : <Share2 className="size-4" aria-hidden />}
       <span aria-live="polite">{copied ? t.copied : t.label}</span>
     </button>
   );

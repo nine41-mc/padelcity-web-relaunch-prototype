@@ -83,7 +83,7 @@ export function FaqExplorer({ categories, labels }: { categories: FaqCategory[];
                       <Icon className="size-4 shrink-0 text-fg" aria-hidden />
                       {c.title}
                     </span>
-                    <span className="text-xs font-medium text-fg/50 tabular-nums">{c.items.length}</span>
+                    <span className="text-xs font-medium text-fg/60 tabular-nums">{c.items.length}</span>
                   </a>
                 </li>
               );

@@ -16,9 +16,9 @@ export function Chip({
         tone === "default" && "border border-fg/35 text-fg/90",
         tone === "gradient" && "bg-brand-gradient text-white",
         tone === "solid" && "bg-fg text-fg-inverse",
-        tone === "dark" && "bg-black/60 text-fg backdrop-blur",
+        tone === "dark" && "bg-black/60 text-white backdrop-blur",
         // Skill level ("Level 1–3") – HIGHLIGHT role: the only chip allowed in Optic Yellow
-        tone === "level" && "border border-optic-500/70 text-highlight-fg",
+        tone === "level" && "border border-highlight-fg/70 text-highlight-fg",
         className,
       )}
     >

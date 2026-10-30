@@ -117,12 +117,12 @@ function Matches({ c }: { c: AppCallouts["matches"] }) {
         <span className="ml-auto text-sm text-fg/70">{joined}/4</span>
       </div>
       <div className={cn("mt-3 flex items-start gap-2 border-t border-fg/10 pt-3 transition-opacity duration-300", confirmed ? "opacity-100" : "opacity-30")}>
-        <svg viewBox="0 0 32 32" className="size-6 shrink-0 text-success" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+        <svg viewBox="0 0 32 32" className="size-6 shrink-0 text-success-fg" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="16" cy="16" r="14" />
           <motion.path d="M10 16.5l4 4 8-9" initial={false} animate={{ pathLength: confirmed ? 1 : 0 }} transition={{ duration: 0.5 }} />
         </svg>
         <div>
-          <p className="text-sm font-semibold text-success">{c.title}</p>
+          <p className="text-sm font-semibold text-success-fg">{c.title}</p>
           <p className="mt-0.5 text-xs text-fg/70">{c.text}</p>
         </div>
       </div>
@@ -142,7 +142,7 @@ function Vouchers({ c }: { c: AppCallouts["vouchers"] }) {
         {typed}
         {!done && <span className="ml-0.5 h-4 w-px animate-pulse bg-fg" />}
       </div>
-      <p className={cn("mt-2 flex items-center gap-1.5 text-xs text-success transition-opacity duration-300", done ? "opacity-100" : "opacity-0")}>
+      <p className={cn("mt-2 flex items-center gap-1.5 text-xs text-success-fg transition-opacity duration-300", done ? "opacity-100" : "opacity-0")}>
         <Check className="size-3.5" aria-hidden /> {c.applied}
       </p>
     </div>
@@ -173,6 +173,7 @@ export function FeatureCallout({ id, callouts, className, onMount }: { id: AppFe
     <motion.div
       key={id}
       aria-hidden
+      data-theme="dark"
       className={cn("w-[264px] md:w-[280px]", className)}
       initial={reduce ? false : { opacity: 0, y: 20, scale: 0.96 }}
       {...(onMount ? { animate: { opacity: 1, y: 0, scale: 1 } } : { whileInView: { opacity: 1, y: 0, scale: 1 }, viewport: { once: true, amount: 0.6 } })}

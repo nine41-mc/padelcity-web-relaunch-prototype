@@ -168,7 +168,7 @@ export function ContentModelExplorer({ pages, locale }: { pages: PageType[]; loc
                     className="flex w-full flex-wrap items-center gap-x-4 gap-y-2 px-5 py-4 text-left md:px-6"
                   >
                     <span className="font-display text-2xl font-extrabold italic uppercase leading-none md:text-3xl">{p.name}</span>
-                    <span className="font-mono text-xs text-fg/55">{p.path}</span>
+                    <span className="font-mono text-xs text-fg/60">{p.path}</span>
                     <span className="ml-auto flex items-center gap-3">
                       <span className="hidden gap-1.5 sm:flex" aria-hidden>
                         {SOURCES.map((s) => (c[s.id] ? <span key={s.id} className={cn("rounded-full px-2 py-0.5 text-xs font-semibold", byId[s.id].chip)}>{c[s.id]}</span> : null))}
@@ -185,7 +185,7 @@ export function ContentModelExplorer({ pages, locale }: { pages: PageType[]; loc
                         <section key={m.id} className="rounded-[16px] border border-fg/10 bg-canvas/60 p-4" aria-labelledby={`m-${p.id}-${m.id}`}>
                           <h4 id={`m-${p.id}-${m.id}`} className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                             <span className="text-lg font-semibold">{m.name}</span>
-                            <code className="text-xs text-fg/50">{m.id}</code>
+                            <code className="text-xs text-fg/60">{m.id}</code>
                           </h4>
                           {m.text && <p className="mt-1 text-sm text-fg/65">{m.text}</p>}
                           <ul className="mt-3 divide-y divide-fg/5">
@@ -194,7 +194,7 @@ export function ContentModelExplorer({ pages, locale }: { pages: PageType[]; loc
                                 <div className="min-w-0">
                                   <p className="text-sm font-medium">{f.name}</p>
                                   {(f.ref || f.note) && (
-                                    <p className="text-xs text-fg/55">
+                                    <p className="text-xs text-fg/60">
                                       {f.ref && <code className="text-fg/70">{f.ref}</code>}
                                       {f.ref && f.note && " · "}
                                       {f.note}
@@ -215,7 +215,7 @@ export function ContentModelExplorer({ pages, locale }: { pages: PageType[]; loc
           })}
         </ul>
       </div>
-      <p className="text-sm text-fg/50">
+      <p className="text-sm text-fg/60">
         Seiten im Prototyp: <Link href={href(locale, "home")} className="underline hover:text-fg">Startseite</Link> · Quelle dieser Übersicht: <code>src/lib/content/contentModel.ts</code>
       </p>
     </div>

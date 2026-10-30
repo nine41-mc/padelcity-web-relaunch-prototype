@@ -194,7 +194,7 @@ export function EventInquiryForm({ locale, t, locations, className }: { locale: 
         </Button>
       </div>
       {errors.summary && (
-        <p role="alert" className="mt-4 text-sm text-danger">
+        <p role="alert" className="mt-4 text-sm text-danger-fg">
           {errors.summary}
         </p>
       )}

@@ -37,7 +37,7 @@ export async function FaqView({ locale }: { locale: Locale }) {
 
       <Section tone="ink" className="!pt-6 md:!pt-10">
         <FaqExplorer categories={faq.categories} labels={t.explorer} />
-        {faq.source === "api" && <p className="mt-10 text-xs text-fg/50">{t.explorer.sourceApi}</p>}
+        {faq.source === "api" && <p className="mt-10 text-xs text-fg/60">{t.explorer.sourceApi}</p>}
       </Section>
 
       {/* Contentful module: contactTeaser */}

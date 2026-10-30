@@ -90,7 +90,7 @@ export function Overlay({
       {open && (
         <div className="grid max-h-[calc(100dvh-34px)] overflow-y-auto overscroll-contain md:grid-cols-[minmax(0,300px)_1fr] md:overflow-hidden">
           {/* Image column */}
-          <div className="relative aspect-[16/10] md:aspect-auto md:min-h-full">
+          <div data-theme="dark" className="relative aspect-[16/10] md:aspect-auto md:min-h-full">
             <Media
               src={image}
               alt={imageAlt}

@@ -103,11 +103,20 @@
   --color-highlight-fg: var(--color-optic-500); /* highlight as text (accent word, level, stats) */
   --color-accent-fg: #fc69e8; /* pink text: live club info, link hover */
   --color-focus: var(--color-optic-500); /* keyboard focus ring */
+  --color-success-fg: var(--color-success); /* status as text (success / danger stay the surface colours) */
+  --color-danger-fg: var(--color-danger);
+
+  /* Light theme greys (Figma city/mist, city/fog) */
+  --color-mist: #f1f0f5;
+  --color-fog: #eeeef2;
 
   /* Status (shared with the app) */
   --color-success: #00b894;
   --color-danger: #ff2e47;
   --color-warning: #ffd500;
+  /* status text on light surfaces (AA on white) */
+  --color-success-dark: #00866b;
+  --color-danger-dark: #c4162c;
 
   /* Typography */
   --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
@@ -185,15 +194,17 @@
 :root[data-theme="light"],
 [data-theme="light"] {
   --color-canvas: #f8f8f8;
-  --color-canvas-deep: #eeeef2;
+  --color-canvas-deep: var(--color-fog);
   --color-raised: #ffffff;
   --color-surface: #ffffff;
-  --color-surface-variant: #f1f0f5;
+  --color-surface-variant: var(--color-mist);
   --color-fg: #0b0b0f;
   --color-fg-inverse: #ffffff;
   --color-highlight-fg: var(--color-purple-500);
-  --color-accent-fg: #960382;
+  --color-accent-fg: var(--color-magenta-700);
   --color-focus: var(--color-purple-500);
+  --color-success-fg: var(--color-success-dark);
+  --color-danger-fg: var(--color-danger-dark);
   color-scheme: light;
 }
 /* Dark areas inside a light page (photos, brand banners, footer): the dark values again. Brand-gradient surfaces
@@ -210,6 +221,8 @@
   --color-highlight-fg: var(--color-optic-500);
   --color-accent-fg: #fc69e8;
   --color-focus: var(--color-optic-500);
+  --color-success-fg: var(--color-success);
+  --color-danger-fg: var(--color-danger);
   color-scheme: dark;
 }
 /* Highlight candidates other than Optic Yellow and purple read too light as text on chalk → their darker step. */
