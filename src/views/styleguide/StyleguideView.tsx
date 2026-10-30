@@ -741,7 +741,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
         <H3>Claims</H3>
         <div className="flex flex-wrap gap-3">
-          {["Game. Set. Match.", "Drive the Padel Boom!", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fall in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
+          {["Game. Set. Match.", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fall in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
             <span key={c} className="rounded-full bg-fg/5 px-4 py-2 font-display text-xl font-extrabold italic uppercase">
               {c}
             </span>

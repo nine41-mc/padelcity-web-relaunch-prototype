@@ -7,7 +7,6 @@ const ENGLISH_CLAIMS = new Set([
   "Let's play Padel!",
   "Game. Set. Match.",
   "#bettertogether",
-  "Drive the Padel Boom!",
   "Make some noise",
   "Make some noise for Padel",
   "Make some noise for Padel.",

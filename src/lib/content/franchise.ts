@@ -17,7 +17,7 @@ const de = {
       "Werde PadelCity Franchise-Partner: starke Marke, eigene App & Buchungsplattform, Academy, Events und Partnernetzwerk. Jetzt Standort anfragen.",
   },
   hero: {
-    eyebrow: "Franchise · Drive the Padel Boom!",
+    eyebrow: "Franchise",
     imageAlt: "Luftaufnahme eines PadelCity Clubs mit Outdoor-Courts",
     title: "Bring PadelCity in deine",
     accent: "Stadt",
@@ -130,7 +130,7 @@ const en: FranchiseContent = {
       "Become a PadelCity franchise partner: a strong brand, our own app and booking platform, academy, events and partner network. Enquire about your site now.",
   },
   hero: {
-    eyebrow: "Franchise · Drive the Padel Boom!",
+    eyebrow: "Franchise",
     imageAlt: "Aerial view of a PadelCity club with outdoor courts",
     title: "Bring PadelCity to your",
     accent: "city",
@@ -239,7 +239,7 @@ const pl: FranchiseContent = {
       "Zostań partnerem franczyzowym PadelCity: silna marka, własna aplikacja do rezerwacji, Academy, wydarzenia i sieć partnerów. Zapytaj o swoją lokalizację.",
   },
   hero: {
-    eyebrow: "Franczyza · Drive the Padel Boom!",
+    eyebrow: "Franczyza",
     imageAlt: "Widok z lotu ptaka na klub PadelCity z kortami zewnętrznymi",
     title: "Przenieś PadelCity do swojego",
     accent: "miasta",
