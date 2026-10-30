@@ -236,7 +236,7 @@ const pl: FranchiseContent = {
   meta: {
     title: "Franczyza – Przenieś PadelCity do swojego miasta",
     description:
-      "Zostań partnerem franczyzowym PadelCity: silna marka, własna aplikacja i platforma rezerwacyjna, Academy, wydarzenia i sieć partnerów. Zapytaj o swoją lokalizację.",
+      "Zostań partnerem franczyzowym PadelCity: silna marka, własna aplikacja do rezerwacji, Academy, wydarzenia i sieć partnerów. Zapytaj o swoją lokalizację.",
   },
   hero: {
     eyebrow: "Franczyza · Drive the Padel Boom!",

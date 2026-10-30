@@ -240,7 +240,7 @@ const en: AcademyContent = {
   meta: {
     title: "Academy – learn padel at every level",
     description:
-      "Taster sessions, course series, private coaching, kids & juniors, corporate workshops and a performance centre: the PadelCity Academy takes your game to the next level.",
+      "Taster sessions, course series, private coaching, kids & juniors, corporate workshops and a performance centre: the PadelCity Academy takes your game further.",
   },
   hero: {
     eyebrow: "PadelCity Academy",

@@ -14,7 +14,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
   "imprint": {
     "de": {
       "title": "Impressum",
-      "description": "Impressum der PadelCity Website.",
+      "description": "Impressum von PadelCity: Anbieter, Geschäftsführung, Registereintrag, Umsatzsteuer-ID und Hinweise zur Haftung für Inhalte und Links.",
       "source": "https://padelcity.de/imprint/",
       "sections": [
         {
@@ -54,7 +54,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
     },
     "en": {
       "title": "Imprint",
-      "description": "Imprint of the PadelCity website.",
+      "description": "Imprint of PadelCity: provider, managing directors, register entry, VAT ID and notes on liability for content and links.",
       "source": "https://padelcity.de/imprint/",
       "sections": [
         {
@@ -98,7 +98,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
     },
     "pl": {
       "title": "Nota prawna",
-      "description": "Nota prawna strony internetowej PadelCity.",
+      "description": "Nota prawna PadelCity: operator strony, zarząd, wpis do rejestru, numer VAT oraz informacje o odpowiedzialności za treści i linki.",
       "source": "https://padelcity.de/imprint/",
       "sections": [
         {
@@ -144,7 +144,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
   "privacy": {
     "de": {
       "title": "Datenschutz",
-      "description": "Datenschutzerklärung der PadelCity Website.",
+      "description": "Datenschutzerklärung von PadelCity: welche Daten wir verarbeiten, Cookies, Newsletter, Zahlungen, eingesetzte Dienste und deine Rechte.",
       "source": "https://padelcity.de/datenschutzerklaerung/",
       "sections": [
         {
@@ -231,7 +231,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
     },
     "en": {
       "title": "Privacy policy",
-      "description": "Privacy policy of the PadelCity website.",
+      "description": "Privacy policy of PadelCity: what data we process, cookies, newsletter, payments, services we use and your rights as a data subject.",
       "source": "https://padelcity.de/datenschutzerklaerung/",
       "sections": [
         {
@@ -415,7 +415,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
   "terms": {
     "de": {
       "title": "AGB",
-      "description": "Allgemeine Geschäftsbedingungen von PadelCity.",
+      "description": "AGB von PadelCity: Leistungen, Anmeldung, Padel-Community, Pflichten der Nutzer, Entgelt, Haftung und Schlussbestimmungen.",
       "source": "https://padelcity.de/allgemeine-geschaeftsbedingungen/",
       "sections": [
         {
@@ -458,7 +458,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
     },
     "en": {
       "title": "Terms & conditions",
-      "description": "General terms and conditions of PadelCity.",
+      "description": "Terms and conditions of PadelCity: services, registration, the Padel Community, user obligations, fees, liability and final provisions.",
       "source": "https://padelcity.de/allgemeine-geschaeftsbedingungen/",
       "sections": [
         {
@@ -505,7 +505,7 @@ export const legalContent: Record<LegalKey, Record<Locale, LegalDoc>> = {
     },
     "pl": {
       "title": "Regulamin",
-      "description": "Ogólne warunki handlowe PadelCity.",
+      "description": "Regulamin PadelCity: usługi, rejestracja, społeczność padlowa, obowiązki użytkownika, opłaty, odpowiedzialność i postanowienia końcowe.",
       "source": "https://padelcity.de/allgemeine-geschaeftsbedingungen/",
       "sections": [
         {
