@@ -165,6 +165,7 @@ export const contentModel: PageType[] = [
         text: "Keine freien Slots, keine Auslastung auf der Website.",
         fields: [f("Headline, Text, 3 Schritte", "cms"), f("Deeplink zum Club", "external", "Link-Service mit Club-ID", "API baut heute nur Match-Deeplinks")],
       },
+      { id: "recurringBooking", name: "Dauerbuchung anfragen", fields: [f("Headline, Text, Formularfelder", "cms"), f("Ziel der Anfragen", "unknown", undefined, "Postfach von Operations offen")] },
       { id: "clubDirections", name: "So findest du uns", fields: [f("Position", "api", "GET /clubs → position"), f("Karte", "external", undefined, "Karten-Anbieter offen")] },
       { id: "nearbyClubs", name: "Clubs in der Nähe", fields: [...clubCore(), f("Entfernung", "api", "GET /clubs → position", "wird auf der Website aus den Positionen berechnet")] },
       { id: "clubReviews", name: "Google-Bewertungen", fields: [f("Sterne, Anzahl, Auszüge", "external", "Google Places API")] },

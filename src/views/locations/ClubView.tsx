@@ -32,6 +32,7 @@ import { ClubHighlights } from "@/components/locations/ClubHighlights";
 import { ClubMapLazy } from "@/components/locations/ClubMapLazy";
 import { ClubReviews } from "@/components/locations/ClubReviews";
 import { ClubContactBar } from "@/components/locations/ClubContactBar";
+import { RecurringBookingForm } from "@/components/locations/RecurringBookingForm";
 import { distanceKm, googleMapsRoute, schemaDays } from "@/components/locations/geo";
 import { HOLIDAY_LABEL } from "@/lib/data/mappers";
 import { faqContent } from "@/lib/content/faq";
@@ -319,6 +320,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         <Section id="book" className={sectionCls}>
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />
+          <RecurringBookingForm locale={locale} clubName={club.fullName ?? club.name} t={t.recurring} className="mt-10" />
         </Section>
 
         {/* Questions about the club (team feedback ort-5): club answers once Ops delivers them, until then the general ones */}
