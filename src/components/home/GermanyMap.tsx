@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
+import { cn } from "@/components/ui/cn";
 
 // Coarse outline of Germany (lon, lat). Decorative only – not for navigation.
 const OUTLINE: [number, number][] = [
@@ -139,24 +140,25 @@ export function GermanyMap({
               <g key={code} onPointerEnter={() => setHoverCountry(code)} onPointerLeave={() => setHoverCountry(null)} aria-hidden>
                 <path
                   d={path(pts)}
-                  fill={lit ? "url(#landFill)" : "rgb(255 255 255 / 0.06)"}
+                  fill={lit ? "url(#landFill)" : undefined}
                   fillOpacity={lit ? 0.55 : 1}
-                  stroke={lit ? "rgb(255 255 255 / 0.55)" : "rgb(255 255 255 / 0.22)"}
+                  stroke={lit ? "rgb(255 255 255 / 0.55)" : undefined}
                   strokeWidth="0.8"
                   strokeLinejoin="round"
                   strokeDasharray={lit ? undefined : "3 2"}
-                  className="transition-[fill,stroke] duration-300"
+                  // unlit neighbours via the white token (white 6 % / 22 %), so the light-mode comparison flips them to ink
+                  className={cn("transition-[fill,stroke] duration-300", !lit && "fill-white/6 stroke-white/22")}
                 />
                 {lx < viewW - 30 && (
                   <text
                     x={lx}
                     y={ly}
                     textAnchor="middle"
-                    fill={lit ? "rgb(255 255 255 / 0.85)" : "rgb(255 255 255 / 0.4)"}
+                    fill={lit ? "rgb(255 255 255 / 0.85)" : undefined}
                     fontSize="11"
                     fontWeight="600"
                     letterSpacing="1.5"
-                    className="pointer-events-none select-none uppercase transition-[fill] duration-300"
+                    className={cn("pointer-events-none select-none uppercase transition-[fill] duration-300", !lit && "fill-white/40")}
                   >
                     {COUNTRY_NAMES[locale][code]}
                   </text>
