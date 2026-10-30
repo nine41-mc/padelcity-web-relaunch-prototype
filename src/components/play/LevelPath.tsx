@@ -62,7 +62,7 @@ export function LevelPath({
                 >
                   <span
                     className={cn(
-                      "grid size-11 place-items-center rounded-[10px] border-2 font-display text-2xl font-extrabold not-italic transition-all duration-300 md:size-14 md:text-3xl",
+                      "grid size-11 place-items-center rounded-[10px] border-2 font-display text-2xl font-extrabold transition-all duration-300 md:size-14 md:text-3xl",
                       on
                         ? "scale-110 border-transparent bg-brand-gradient shadow-glow"
                         : cn("bg-ink-800 group-hover:scale-105", l.level <= 2 ? "border-purple-400" : l.level <= 5 ? "border-magenta-400" : "border-white"),
@@ -105,7 +105,7 @@ export function LevelPath({
                   </span>
                   <span className="rounded-md border border-white/40 px-2 py-0.5 font-display text-lg font-extrabold uppercase italic tracking-wide">{stage.title}</span>
                 </span>
-                <span className="mt-5 block font-display text-4xl font-extrabold uppercase not-italic leading-none tracking-wide md:text-5xl">{l.label}</span>
+                <span className="mt-5 block font-display text-4xl font-extrabold uppercase leading-none tracking-wide md:text-5xl">{l.label}</span>
                 <span className="mt-4 block text-white/75">{l.text}</span>
                 <span className="mt-auto block pt-6 text-sm">
                   <span className="block space-y-2 border-t border-white/15 pt-5">
