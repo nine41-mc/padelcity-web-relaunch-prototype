@@ -30,6 +30,10 @@ const BASE = process.env.CAPTURE_BASE || "http://localhost:3010";
     deviceScaleFactor: 1,
     reducedMotion: "reduce",
   });
+  // CAPTURE_THEME=light for the light captures; dark is stored explicitly, the page would otherwise follow the
+  // browser's colour scheme (src/lib/theme.ts)
+  const theme = process.env.CAPTURE_THEME === "light" ? "light" : "dark";
+  await ctx.addInitScript((t) => { try { localStorage.setItem("pc-theme", t); } catch {} }, theme);
   const p = await ctx.newPage();
   await p.goto(BASE + path, { waitUntil: "load", timeout: 90000 });
   await p.waitForTimeout(2500);

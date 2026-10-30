@@ -8,6 +8,8 @@ editable layers. One call = one page in one width; each needs its own capture ID
 NODE_PATH=<node_modules with playwright> node figma/capture/capture.cjs /app/ 1440 <captureId>
 ```
 
+`CAPTURE_THEME=light` captures the light theme (default: dark, stored as the header toggle would).
+
 `preview:<file.png>` instead of a capture ID writes a full-page screenshot of what would be captured, without
 sending anything to Figma.
 

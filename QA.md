@@ -9,10 +9,11 @@ Die Befehle laufen im Prototyp-Ordner.
 - [ ] `npm run lint`
 - [ ] `npm run figma:check` – Code-Connect-Vorlagen kompilieren, `src/lib/codeConnect.json` ist aktuell, ids eindeutig,
       Quelldatei, Import-Pfad und importierte Namen jeder Vorlage existieren im Code
-- [ ] `npm run tokens:check` – wenn `globals.css` oder Figma-Variablen geändert wurden (102 Werte Figma ↔ Theme)
+- [ ] `npm run tokens:check` – wenn `globals.css` oder Figma-Variablen geändert wurden (170 Werte Figma ↔ Theme, Farbrollen in Dunkel und Hell)
 - [ ] `npm run build` – statischer Export aller Routen
 - [ ] `npm run qa` – alle Seiten in 390, 768 und 1440 px in Chromium, ca. 5 Minuten (Details unten); vor einer
-      Übergabe `npm run qa -- --browsers all` (zusätzlich WebKit/Safari und Firefox)
+      Übergabe `npm run qa -- --browsers all` (zusätzlich WebKit/Safari und Firefox) und `npm run qa -- --theme light`
+      (dieselbe Prüfung im hellen Modus – Kontrast, dunkle Bereiche auf Fotos)
 - [ ] Styleguide (`/styleguide`) nachziehen, wenn sich ein Muster oder eine Regel geändert hat
 
 ### Was `npm run qa` prüft

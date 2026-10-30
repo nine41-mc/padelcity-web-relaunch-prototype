@@ -66,7 +66,19 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
   | Status | Success / Danger / Warning | Nur System-Feedback |
 
   Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Text-Verlauf (Magenta-400 → Purple-400) auf Ink ≥ 4,4:1, Magenta-300 auf Ink ≈ 7:1, Optic-Yellow-Fokusring auf Ink ≈ 17:1 (Token-Name im Code: `optic-*`). Druckwerte: Pantone 388 C/U und CMYK 20/0/100/0 als Empfehlung, final zu prüfen.
-- Vergleichs-Umschalter nur auf der Startseite (unten links, für die Marken-Diskussion): Highlight-Farbe (`HighlightDemo`) und Dunkel/Hell (`ThemeDemo`). Hell tauscht per `html[data-theme="light"]` die Flächen-Tokens; Fotos, Verläufe, Header und Footer bleiben dunkel (`.theme-dark`), Highlight-Text wird auf Hell Lila. Nichts wird gespeichert; Dunkel bleibt der Standard. Figma-Gegenstück: Entwurf „Startseite · Light Mode“ ohne Library-Variablen.
+- **Hell & Dunkel:** Umschalter im Header und im Menü (`ThemeToggle`); die Wahl wird gespeichert, ohne Wahl folgt die Seite der Systemeinstellung (`src/lib/theme.ts`, gesetzt vor dem ersten Paint). Komponenten nutzen **Farbrollen** statt Weiß/Ink:
+
+  | Rolle (Tailwind) | Dunkel | Hell | Wofür |
+  |---|---|---|---|
+  | `canvas` · `canvas-deep` | Ink 800 · Schwarz | Chalk · `fog` | Seite, tiefere Abschnitte |
+  | `raised` · `surface` · `surface-variant` | Ink 700 · 600 · 500 | Weiß · Weiß · `mist` | Karten, Felder, Varianten |
+  | `fg` (mit Deckkraft, z. B. `fg/70`, `border-fg/10`) | Weiß | Ink 800 | Text, Icons, Linien; gedämpfter Text mindestens 60 % |
+  | `fg-inverse` | Ink 800 | Weiß | Text auf `bg-fg`-Buttons |
+  | `highlight-fg` · `accent-fg` · `focus` | Optic Yellow · Magenta 300 · Optic | Purple 500 · Magenta 700 · Purple | Highlight als Text, Live-Info, Fokusring |
+  | `success-fg` · `danger-fg` | Success · Danger | dunklere Stufen | Status als Text |
+
+  Fotos (Heros, Karten-Bilder, Videos), Marken-Verläufe, Header und Footer bleiben auch im hellen Modus dunkel: `data-theme="dark"` am Bereich (Verlaufsflächen automatisch). Figma: 02 Semantic und 03 Component Tokens mit den Modi Dark/Light, dunkle Bereiche der Komponenten mit festem Modus Dark. `npm run tokens:check` vergleicht beide Modi mit `globals.css`.
+- Vergleichs-Umschalter Highlight-Farbe nur auf der Startseite (unten links, `HighlightDemo`, für die Marken-Diskussion).
 - Schriften wie in der App: Söhne Schmal Fett Kursiv (Headlines), Good Brush (Akzentwort), Poppins (Text).
 - Icons: App-Icons aus `mobile-app-flutter/assets/icons` (als CSS-Mask), sonst lucide.
 
