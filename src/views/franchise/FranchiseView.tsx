@@ -51,10 +51,10 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           {t.benefits.items.map((b, i) => (
             <li key={b.title}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="group h-full rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50">
+                <div className="group h-full rounded-[20px] border border-fg/10 bg-raised pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50">
                   <BrandIcon name={b.icon} />
                   <h3 className="mt-6 font-display text-2xl font-extrabold italic uppercase md:text-3xl">{b.title}</h3>
-                  <p className="mt-3 text-white/70">{b.text}</p>
+                  <p className="mt-3 text-fg/70">{b.text}</p>
                 </div>
               </Reveal>
             </li>
@@ -70,11 +70,11 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
             <div className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
               <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
               <div className="relative">
-                <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.partnership.weProvideLabel}</p>
+                <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/85">{t.partnership.weProvideLabel}</p>
                 <ul className="mt-6 space-y-4">
                   {t.partnership.weProvide.map((item) => (
                     <li key={item} className="flex gap-3 text-base md:text-lg">
-                      <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-white text-purple-700">
+                      <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-fg text-purple-700">
                         <Check className="size-3.5" strokeWidth={3} aria-hidden />
                       </span>
                       {item}
@@ -85,12 +85,12 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
             </div>
           </Reveal>
           <Reveal delay={0.08} className="h-full">
-            <div className="h-full rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{t.partnership.youBringLabel}</p>
+            <div className="h-full rounded-[28px] border border-fg/10 bg-raised pad-banner">
+              <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/70">{t.partnership.youBringLabel}</p>
               <ul className="mt-6 space-y-4">
                 {t.partnership.youBring.map((item) => (
-                  <li key={item} className="flex gap-3 text-base text-white/85 md:text-lg">
-                    <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-white/25">
+                  <li key={item} className="flex gap-3 text-base text-fg/85 md:text-lg">
+                    <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full border border-fg/25">
                       <Check className="size-3.5" strokeWidth={3} aria-hidden />
                     </span>
                     {item}
@@ -109,18 +109,18 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
           {t.phases.items.map((ph, i) => (
             <li key={ph.title}>
               <Reveal delay={i * 0.07} className="h-full">
-                <div className="h-full rounded-[24px] border border-white/10 bg-ink-700 pad-panel">
-                  <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/60">0{i + 1}</span>
+                <div className="h-full rounded-[24px] border border-fg/10 bg-raised pad-panel">
+                  <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-fg/60">0{i + 1}</span>
                   <h3 className="mt-2 font-display text-4xl font-extrabold italic uppercase leading-none text-brand-gradient">{ph.title}</h3>
-                  <ul className="mt-6 space-y-3 border-t border-white/10 pt-6">
+                  <ul className="mt-6 space-y-3 border-t border-fg/10 pt-6">
                     {ph.items.map((item) => {
                       const text = typeof item === "string" ? item : item.text;
                       return (
-                        <li key={text} className="flex gap-3 text-white/85">
-                          <Check className="mt-1 size-4 shrink-0 text-magenta-300" aria-hidden />
+                        <li key={text} className="flex gap-3 text-fg/85">
+                          <Check className="mt-1 size-4 shrink-0 text-accent-fg" aria-hidden />
                           <span>
                             {text}
-                            {typeof item !== "string" && <span className="text-white/55"> ({t.phases.optional})</span>}
+                            {typeof item !== "string" && <span className="text-fg/55"> ({t.phases.optional})</span>}
                           </span>
                         </li>
                       );
@@ -150,7 +150,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
                 <div className="pb-2">
                   {/* Two reserved title lines only on tablet, where titles wrap; on desktop they fit one line */}
                   <h3 className="font-display text-2xl font-extrabold italic uppercase leading-none md:min-h-[2lh] md:text-xl lg:min-h-0 lg:text-2xl">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">{s.text}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-fg/70">{s.text}</p>
                 </div>
               </Reveal>
             </li>
@@ -207,23 +207,23 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
             <Headline size="md">
               {t.form.title} <Accent>{t.form.accent}</Accent> {t.form.titleEnd}
             </Headline>
-            <p className="mt-6 max-w-md text-lg text-white/70">{t.form.text}</p>
-            <ul className="mt-8 space-y-3 text-white/70">
+            <p className="mt-6 max-w-md text-lg text-fg/70">{t.form.text}</p>
+            <ul className="mt-8 space-y-3 text-fg/70">
               {t.form.checks.map((c) => (
                 <li key={c} className="flex gap-3">
-                  <Check className="mt-1 size-4 shrink-0 text-magenta-300" aria-hidden /> {c}
+                  <Check className="mt-1 size-4 shrink-0 text-accent-fg" aria-hidden /> {c}
                 </li>
               ))}
             </ul>
             {contact && (
-              <figure className="mt-10 flex items-center gap-5 rounded-[24px] border border-white/10 bg-ink-700 pad-card">
+              <figure className="mt-10 flex items-center gap-5 rounded-[24px] border border-fg/10 bg-raised pad-card">
                 {contact.image && (
                   <Media src={contact.image} alt={contact.name} className="size-20 shrink-0 rounded-full md:size-24" imgClassName="object-[50%_20%]" sizes="96px" />
                 )}
                 <figcaption>
-                  <span className="block text-[13px] font-semibold uppercase tracking-[0.16em] text-white/60">{t.contact.label}</span>
+                  <span className="block text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/60">{t.contact.label}</span>
                   <span className="mt-1 block font-display text-3xl font-extrabold italic uppercase leading-none">{contact.name}</span>
-                  <span className="mt-1 block text-white/70">{contact.role[locale]}</span>
+                  <span className="mt-1 block text-fg/70">{contact.role[locale]}</span>
                 </figcaption>
               </figure>
             )}

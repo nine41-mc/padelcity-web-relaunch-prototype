@@ -13,7 +13,7 @@ import { cn } from "@/components/ui/cn";
  * (pick a start time, switch on split payment, type a voucher code …). Reduced motion → final state.
  */
 
-const card = "rounded-2xl border border-white/10 bg-[#23242b]/95 p-4 font-sans text-white shadow-[0_24px_60px_-12px_rgb(0_0_0/0.7)] backdrop-blur";
+const card = "rounded-2xl border border-fg/10 bg-[#23242b]/95 p-4 font-sans text-fg shadow-[0_24px_60px_-12px_rgb(0_0_0/0.7)] backdrop-blur";
 
 /** WCAG 2.2.2: the demo loop runs at most this long, then rests on its final state. */
 const LOOP_MAX_MS = 5000;
@@ -52,7 +52,7 @@ function Booking({ c }: { c: AppCallouts["booking"] }) {
             key={t}
             className={cn(
               "flex-1 rounded-lg border py-2 text-center text-sm transition-colors duration-300",
-              i === step ? "border-magenta-400 bg-magenta-500/15 text-white" : "border-white/10 bg-white/5 text-white/70",
+              i === step ? "border-magenta-400 bg-magenta-500/15 text-white" : "border-fg/10 bg-fg/5 text-fg/70",
             )}
           >
             {t}
@@ -64,9 +64,9 @@ function Booking({ c }: { c: AppCallouts["booking"] }) {
           <motion.div key={`${d.value}-${step}`} initial={{ scale: 0.94, opacity: 0.6 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3 }} className="flex items-center gap-2 rounded-lg bg-brand-gradient px-3 py-2">
             <span className="text-center leading-none">
               <span className="block text-lg">{d.value}</span>
-              <span className="text-[10px] text-white/80">{d.unit}</span>
+              <span className="text-[10px] text-fg/80">{d.unit}</span>
             </span>
-            <span className="ml-auto border-l border-white/40 pl-2 text-lg font-semibold">{d.price}</span>
+            <span className="ml-auto border-l border-fg/40 pl-2 text-lg font-semibold">{d.price}</span>
           </motion.div>
         ))}
       </div>
@@ -80,20 +80,20 @@ function Split({ c }: { c: AppCallouts["split"] }) {
   return (
     <div className={card}>
       <div className="flex items-center gap-3">
-        <span className={cn("relative h-6 w-10 shrink-0 rounded-full transition-colors duration-300", on ? "bg-brand-gradient" : "bg-white/20")}>
-          <span className={cn("absolute top-0.5 size-5 rounded-full bg-white shadow transition-all duration-300", on ? "left-[18px]" : "left-0.5")} />
+        <span className={cn("relative h-6 w-10 shrink-0 rounded-full transition-colors duration-300", on ? "bg-brand-gradient" : "bg-fg/20")}>
+          <span className={cn("absolute top-0.5 size-5 rounded-full bg-fg shadow transition-all duration-300", on ? "left-[18px]" : "left-0.5")} />
         </span>
         <span className="text-sm font-semibold">{c.label}</span>
       </div>
-      <p className="mt-2 text-xs text-white/70">{c.text}</p>
+      <p className="mt-2 text-xs text-fg/70">{c.text}</p>
       <AnimatePresence initial={false}>
         {step === 2 && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.3 }} className="overflow-hidden">
-            <div className="mt-3 flex items-center gap-2 border-t border-white/10 pt-3">
-              <span className="grid size-7 place-items-center rounded-full border border-white/30"><Minus className="size-3.5" /></span>
+            <div className="mt-3 flex items-center gap-2 border-t border-fg/10 pt-3">
+              <span className="grid size-7 place-items-center rounded-full border border-fg/30"><Minus className="size-3.5" /></span>
               <span className="text-sm">{c.slots}</span>
-              <span className="grid size-7 place-items-center rounded-full border border-white/30"><Plus className="size-3.5" /></span>
-              <span className="ml-auto text-lg font-semibold text-magenta-300">{c.price}</span>
+              <span className="grid size-7 place-items-center rounded-full border border-fg/30"><Plus className="size-3.5" /></span>
+              <span className="ml-auto text-lg font-semibold text-accent-fg">{c.price}</span>
             </div>
           </motion.div>
         )}
@@ -110,20 +110,20 @@ function Matches({ c }: { c: AppCallouts["matches"] }) {
     <div className={card}>
       <div className="flex items-center gap-2">
         {[0, 1, 2, 3].map((i) => (
-          <span key={i} className={cn("grid size-9 place-items-center rounded-full border transition-all duration-300", i < joined ? "border-transparent bg-brand-gradient" : "border-dashed border-white/40")}>
-            {i < joined ? <User className="size-4" /> : <Plus className="size-4 text-white/60" />}
+          <span key={i} className={cn("grid size-9 place-items-center rounded-full border transition-all duration-300", i < joined ? "border-transparent bg-brand-gradient" : "border-dashed border-fg/40")}>
+            {i < joined ? <User className="size-4" /> : <Plus className="size-4 text-fg/60" />}
           </span>
         ))}
-        <span className="ml-auto text-sm text-white/70">{joined}/4</span>
+        <span className="ml-auto text-sm text-fg/70">{joined}/4</span>
       </div>
-      <div className={cn("mt-3 flex items-start gap-2 border-t border-white/10 pt-3 transition-opacity duration-300", confirmed ? "opacity-100" : "opacity-30")}>
+      <div className={cn("mt-3 flex items-start gap-2 border-t border-fg/10 pt-3 transition-opacity duration-300", confirmed ? "opacity-100" : "opacity-30")}>
         <svg viewBox="0 0 32 32" className="size-6 shrink-0 text-success" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="16" cy="16" r="14" />
           <motion.path d="M10 16.5l4 4 8-9" initial={false} animate={{ pathLength: confirmed ? 1 : 0 }} transition={{ duration: 0.5 }} />
         </svg>
         <div>
           <p className="text-sm font-semibold text-success">{c.title}</p>
-          <p className="mt-0.5 text-xs text-white/70">{c.text}</p>
+          <p className="mt-0.5 text-xs text-fg/70">{c.text}</p>
         </div>
       </div>
     </div>
@@ -137,10 +137,10 @@ function Vouchers({ c }: { c: AppCallouts["vouchers"] }) {
   const done = step >= c.code.length;
   return (
     <div className={card}>
-      <p className="flex items-center gap-2 text-sm"><Ticket className="size-4 text-magenta-300" aria-hidden /> {c.label}</p>
-      <div className="mt-2 flex h-10 items-center rounded-lg border border-white/15 bg-white/5 px-3 font-mono text-sm tracking-wider">
+      <p className="flex items-center gap-2 text-sm"><Ticket className="size-4 text-accent-fg" aria-hidden /> {c.label}</p>
+      <div className="mt-2 flex h-10 items-center rounded-lg border border-fg/15 bg-fg/5 px-3 font-mono text-sm tracking-wider">
         {typed}
-        {!done && <span className="ml-0.5 h-4 w-px animate-pulse bg-white" />}
+        {!done && <span className="ml-0.5 h-4 w-px animate-pulse bg-fg" />}
       </div>
       <p className={cn("mt-2 flex items-center gap-1.5 text-xs text-success transition-opacity duration-300", done ? "opacity-100" : "opacity-0")}>
         <Check className="size-3.5" aria-hidden /> {c.applied}

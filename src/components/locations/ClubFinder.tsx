@@ -192,35 +192,35 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           e.preventDefault();
           document.getElementById("results")?.scrollIntoView({ behavior: "smooth", block: "start" });
         }}
-        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-white/35 bg-ink-700/90 p-2 shadow-elevated md:p-[5px] has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
+        className="relative z-10 -mt-8 flex flex-col gap-2 rounded-[28px] border border-fg/35 bg-raised/90 p-2 shadow-elevated md:p-[5px] has-[input:focus-visible]:border-fg has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-fg backdrop-blur-xl md:-mt-10 md:flex-row md:items-center md:rounded-full"
       >
-        <label className="flex min-h-13 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-white/5">
-          <Search className="size-5 shrink-0 text-white/70" aria-hidden />
+        <label className="flex min-h-13 flex-1 items-center gap-3 rounded-full px-4 focus-within:bg-fg/5">
+          <Search className="size-5 shrink-0 text-fg/70" aria-hidden />
           <span className="flex flex-1 flex-col">
-            <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.where}</span>
+            <span className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{t.where}</span>
             <input
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={t.placeholder}
-              className="w-full bg-transparent text-base text-white placeholder:text-white/60 focus:outline-none"
+              className="w-full bg-transparent text-base text-fg placeholder:text-fg/60 focus:outline-none"
               aria-label={t.searchLabel}
             />
           </span>
           {query && (
-            <button type="button" onClick={() => setQuery("")} className="grid size-11 place-items-center rounded-full text-white/70 hover:bg-white/10" aria-label={t.clear}>
+            <button type="button" onClick={() => setQuery("")} className="grid size-11 place-items-center rounded-full text-fg/70 hover:bg-fg/10" aria-label={t.clear}>
               <X className="size-4" />
             </button>
           )}
         </label>
-        <div className="hidden h-10 w-px bg-white/10 md:block" aria-hidden />
+        <div className="hidden h-10 w-px bg-fg/10 md:block" aria-hidden />
         <button
           type="button"
           onClick={locate}
           aria-pressed={!!user}
           className={cn(
             "flex min-h-13 items-center justify-center gap-2 rounded-full px-5 text-sm font-medium transition-colors",
-            user ? "bg-brand-gradient text-white" : "text-white/85 hover:bg-white/5",
+            user ? "bg-brand-gradient text-white" : "text-fg/85 hover:bg-fg/5",
           )}
         >
           {geo === "loading" ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <LocateFixed className="size-5" aria-hidden />}
@@ -231,7 +231,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         </button>
       </form>
       {(geo === "denied" || geo === "unsupported") && (
-        <p className="mt-3 text-sm text-white/70" role="status">
+        <p className="mt-3 text-sm text-fg/70" role="status">
           {t.geoError}
         </p>
       )}
@@ -240,7 +240,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
       <h2 className="sr-only">{t.resultsHeading}</h2>
       <div id="results" className="mt-8 flex scroll-mt-32 items-center gap-4 md:mt-10">
         {countries.length > 1 && (
-          <div className="hidden shrink-0 gap-1 rounded-full border border-white/15 bg-white/[0.03] p-1 md:flex" role="group" aria-label={t.countryLabel} data-testid="country-filter">
+          <div className="hidden shrink-0 gap-1 rounded-full border border-fg/15 bg-fg/[0.03] p-1 md:flex" role="group" aria-label={t.countryLabel} data-testid="country-filter">
             {[{ code: "all" as const, count: clubs.length }, ...countries].map(({ code, count }) => {
               const active = country === code;
               return (
@@ -251,20 +251,20 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
                   onClick={() => setCountry(code)}
                   className={cn(
                     "flex min-h-10 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors",
-                    active ? "bg-brand-gradient text-white" : "text-white/75 hover:text-white",
+                    active ? "bg-brand-gradient text-white" : "text-fg/75 hover:text-fg",
                   )}
                 >
                   {code !== "all" && <CountryFlag country={code} />}
                   {t.countries[code]}
-                  <span className={cn("tabular-nums text-[13px]", active ? "text-white/80" : "text-white/70")}>{count}</span>
+                  <span className={cn("tabular-nums text-[13px]", active ? "text-fg/80" : "text-fg/70")}>{count}</span>
                 </button>
               );
             })}
           </div>
         )}
         <div className="flex w-full items-center justify-between gap-4 md:ml-auto md:w-auto md:justify-end">
-          <p className="whitespace-nowrap text-sm text-white/70 md:hidden lg:block" aria-live="polite">
-            <span className="font-semibold text-white">{results.length}</span> {results.length === 1 ? t.club : t.clubs}
+          <p className="whitespace-nowrap text-sm text-fg/70 md:hidden lg:block" aria-live="polite">
+            <span className="font-semibold text-fg">{results.length}</span> {results.length === 1 ? t.club : t.clubs}
             {effectiveSort === "distance" && t.byDistance}
           </p>
           <div className="flex items-center gap-2">
@@ -277,17 +277,17 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
               aria-label={activeCount ? `${t.filterLabel} (${activeCount})` : t.filterLabel}
               className={cn(
                 "relative grid size-12 place-items-center rounded-full border transition-colors",
-                activeCount ? "border-transparent bg-brand-gradient text-white" : "border-white/40 bg-white/5 text-white hover:border-white/70",
+                activeCount ? "border-transparent bg-brand-gradient text-white" : "border-fg/40 bg-fg/5 text-fg hover:border-fg/70",
               )}
             >
               <SlidersHorizontal className="size-5" aria-hidden />
               {activeCount > 0 && (
-                <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-white text-[11px] font-bold tabular-nums text-ink-800" aria-hidden>
+                <span className="absolute -right-1 -top-1 grid size-5 place-items-center rounded-full bg-fg text-[11px] font-bold tabular-nums text-fg-inverse" aria-hidden>
                   {activeCount}
                 </span>
               )}
             </button>
-            <div className="flex rounded-full border border-white/15 p-1" role="group" aria-label={t.viewLabel}>
+            <div className="flex rounded-full border border-fg/15 p-1" role="group" aria-label={t.viewLabel}>
               {(
                 [
                   ["list", t.list, LayoutGrid],
@@ -302,7 +302,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
                   aria-label={label}
                   className={cn(
                     "flex min-h-10 min-w-10 items-center justify-center gap-2 rounded-full text-sm font-medium transition-colors lg:px-4",
-                    view === key ? "bg-brand-gradient text-white" : "text-white/70 hover:text-white",
+                    view === key ? "bg-brand-gradient text-white" : "text-fg/70 hover:text-fg",
                   )}
                 >
                   {/* Icon only below desktop (label stays the accessible name) */}
@@ -336,7 +336,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         </SheetGroup>
         <SheetGroup label={t.availabilityLabel}>
           <button type="button" aria-pressed={openNow} onClick={() => setOpenNow((v) => !v)} className={sheetChip(openNow)}>
-            <span className={cn("size-2 rounded-full", openNow ? "bg-white" : "bg-success")} aria-hidden />
+            <span className={cn("size-2 rounded-full", openNow ? "bg-fg" : "bg-success")} aria-hidden />
             {t.openNow}
           </button>
         </SheetGroup>
@@ -363,7 +363,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
               <button key={code} type="button" aria-pressed={country === code} onClick={() => setCountry(code)} className={sheetChip(country === code)}>
                 {code !== "all" && <CountryFlag country={code} />}
                 {t.countries[code]}
-                <span className={cn("tabular-nums text-[13px]", country === code ? "text-white/80" : "text-white/70")}>{count}</span>
+                <span className={cn("tabular-nums text-[13px]", country === code ? "text-fg/80" : "text-fg/70")}>{count}</span>
               </button>
             ))}
           </SheetGroup>
@@ -372,10 +372,10 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
 
       {/* Results */}
       {results.length === 0 ? (
-        <div className="mt-10 rounded-[20px] border border-dashed border-white/15 pad-banner text-center">
+        <div className="mt-10 rounded-[20px] border border-dashed border-fg/15 pad-banner text-center">
           <p className="text-lg font-semibold">{t.emptyTitle}</p>
-          <p className="mt-2 text-white/70">{t.emptyText}</p>
-          <button type="button" onClick={reset} className="mt-6 min-h-11 rounded-full border border-white/30 px-5 text-sm font-medium hover:bg-white/5">
+          <p className="mt-2 text-fg/70">{t.emptyText}</p>
+          <button type="button" onClick={reset} className="mt-6 min-h-11 rounded-full border border-fg/30 px-5 text-sm font-medium hover:bg-fg/5">
             {t.reset}
           </button>
         </div>
@@ -389,10 +389,10 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
         </ul>
       ) : (
         <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
-          <div className="relative isolate h-[60vh] min-h-[360px] overflow-hidden rounded-[20px] border border-white/10 lg:sticky lg:top-28 lg:order-2 lg:h-[calc(100vh-9rem)]">
+          <div className="relative isolate h-[60vh] min-h-[360px] overflow-hidden rounded-[20px] border border-fg/10 lg:sticky lg:top-28 lg:order-2 lg:h-[calc(100vh-9rem)]">
             <ClubMapLazy clubs={mapClubs} locale={locale} activeId={activeId} onSelect={setActiveId} user={user} />
             {plannedOnMap.length > 0 && (
-              <p className="pointer-events-none absolute bottom-3 left-3 z-[1000] flex items-center gap-2 rounded-full border border-white/15 bg-ink-800/85 px-3 py-1.5 text-[13px] text-white/85 backdrop-blur">
+              <p className="pointer-events-none absolute bottom-3 left-3 z-[1000] flex items-center gap-2 rounded-full border border-fg/15 bg-canvas/85 px-3 py-1.5 text-[13px] text-fg/85 backdrop-blur">
                 <span className="size-3 rounded-full border-2 border-magenta-500" aria-hidden /> {t.mapLegendPlanned}
               </p>
             )}

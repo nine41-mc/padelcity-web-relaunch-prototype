@@ -17,11 +17,11 @@ export function ContentModelView({ locale }: { locale: Locale }) {
         <Headline as="h1" size="lg">
           Content-<Accent>Modell</Accent>
         </Headline>
-        <div className="mt-8 grid gap-6 text-lg text-white/75 lg:grid-cols-2 lg:gap-12">
+        <div className="mt-8 grid gap-6 text-lg text-fg/75 lg:grid-cols-2 lg:gap-12">
           <p>
             Alle Seitentypen und Module des Prototyps – und für jedes Feld, woher die Daten künftig kommen. Grundlage ist die Entscheidung vom{" "}
-            {contentModelMeta.decided}: Website-exklusive Inhalte in einem <strong className="text-white">zweiten Contentful-Space</strong> im
-            bestehenden Account; Clubs, Coaches, Events und andere operative Daten aus der <strong className="text-white">bestehenden API</strong>.
+            {contentModelMeta.decided}: Website-exklusive Inhalte in einem <strong className="text-fg">zweiten Contentful-Space</strong> im
+            bestehenden Account; Clubs, Coaches, Events und andere operative Daten aus der <strong className="text-fg">bestehenden API</strong>.
           </p>
           <p>
             „API vorhanden“ heißt: Endpunkt und Feld gibt es heute. Welche Teile davon öffentlich für die Website werden, wird noch genau
@@ -30,7 +30,7 @@ export function ContentModelView({ locale }: { locale: Locale }) {
         </div>
         <div className="mt-10 rounded-[20px] border border-amber-400/40 bg-amber-400/[0.06] p-5 md:p-6">
           <h2 className="font-semibold text-amber-200">Wichtig zur API (Prüfung der api-platform)</h2>
-          <ul className="mt-3 space-y-2 text-white/80">
+          <ul className="mt-3 space-y-2 text-fg/80">
             {contentModelMeta.notes.map((n) => (
               <li key={n} className="flex gap-3">
                 <span className="mt-2 size-1.5 shrink-0 rounded-full bg-amber-400" aria-hidden />

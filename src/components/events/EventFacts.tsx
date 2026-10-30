@@ -7,8 +7,8 @@ export function FactRow({ icon, label, children }: { icon: React.ReactNode; labe
   return (
     // dt and dd stay direct children of the row (valid <dl>); the icon (size-5) sits in the dt's left padding
     <div className="pl-8">
-      <dt className="relative text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">
-        <span className="absolute -left-8 top-0.5 text-white/70" aria-hidden>
+      <dt className="relative text-[11px] font-semibold uppercase tracking-[0.14em] text-fg/60">
+        <span className="absolute -left-8 top-0.5 text-fg/70" aria-hidden>
           {icon}
         </span>
         {label}
@@ -36,14 +36,14 @@ export function EventSignupCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-[28px] border border-white/10 bg-ink-700 pad-panel">
+    <div className="rounded-[28px] border border-fg/10 bg-raised pad-panel">
       <dl className="space-y-4">{children}</dl>
-      <p className="mt-6 flex items-baseline gap-2 border-t border-white/10 pt-6">
+      <p className="mt-6 flex items-baseline gap-2 border-t border-fg/10 pt-6">
         <span className="font-display text-4xl font-extrabold italic">{price}</span>
-        {priceNote && <span className="text-sm text-white/70">{priceNote}</span>}
+        {priceNote && <span className="text-sm text-fg/70">{priceNote}</span>}
       </p>
       <div className="mt-6">{signup}</div>
-      {note && <p className="mt-4 text-center text-sm text-white/70">{note}</p>}
+      {note && <p className="mt-4 text-center text-sm text-fg/70">{note}</p>}
     </div>
   );
 }
@@ -65,18 +65,18 @@ export function CancellationTable({ cutoff, locale }: { cutoff: Date; locale: Lo
   ];
   return (
     <section className="mb-8" aria-labelledby="cancellation-title">
-      <h2 id="cancellation-title" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">
+      <h2 id="cancellation-title" className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/60">
         {t.detail.cancellationTitle}
       </h2>
-      <dl className="mt-3 divide-y divide-white/10 rounded-[20px] border border-white/10 bg-ink-700">
+      <dl className="mt-3 divide-y divide-fg/10 rounded-[20px] border border-fg/10 bg-raised">
         {rows.map((r) => (
           <div key={r.when} className="grid grid-cols-[7rem_1fr] items-center gap-4 pad-card md:grid-cols-[9rem_1fr]">
-            <dt className="text-sm text-white/70">
+            <dt className="text-sm text-fg/70">
               {r.when}
-              <span className="block text-lg font-semibold text-white">{day}</span>
+              <span className="block text-lg font-semibold text-fg">{day}</span>
               {time}
             </dt>
-            <dd className={r.free ? "text-lg font-semibold text-success" : "text-white/85"}>{r.text}</dd>
+            <dd className={r.free ? "text-lg font-semibold text-success" : "text-fg/85"}>{r.text}</dd>
           </div>
         ))}
       </dl>

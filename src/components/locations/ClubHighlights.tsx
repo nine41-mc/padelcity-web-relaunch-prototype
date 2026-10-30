@@ -99,29 +99,29 @@ export function ClubHighlights({ images, city, locale, showTitle = true, classNa
 
   return (
     <div className={className}>
-      {showTitle && <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{t.title}</p>}
+      {showTitle && <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{t.title}</p>}
       <ul className="-mx-4 flex gap-5 overflow-x-auto px-4 pb-1 scrollbar-none md:mx-0 md:gap-6 md:px-0">
         {highlights.map((h, i) => (
           <li key={h.label} className="shrink-0">
             <button type="button" onClick={() => start(i)} className="group flex min-w-[76px] flex-col items-center gap-1.5 text-center" data-track="club_highlight_open">
-              <span className={cn("grid size-[76px] place-items-center rounded-full p-[3px] transition-transform group-hover:scale-105", seen.has(i) ? "bg-white/25" : "bg-brand-gradient")}>
-                <span className="relative grid size-full place-items-center overflow-hidden rounded-full border-2 border-ink-800 bg-magenta-700">
+              <span className={cn("grid size-[76px] place-items-center rounded-full p-[3px] transition-transform group-hover:scale-105", seen.has(i) ? "bg-fg/25" : "bg-brand-gradient")}>
+                <span data-theme="dark" className="relative grid size-full place-items-center overflow-hidden rounded-full border-2 border-ink-800 bg-magenta-700">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={src(h.frames[0].url)} alt="" className="absolute inset-0 size-full object-cover opacity-60 mix-blend-luminosity" loading="lazy" />
                   <span className="absolute inset-0 bg-magenta-600/55" aria-hidden />
                   {i === 0 ? (
-                    <span className="relative px-1 font-display text-[9px] font-extrabold italic uppercase leading-[1.05] text-white">
+                    <span className="relative px-1 font-display text-[9px] font-extrabold italic uppercase leading-[1.05] text-fg">
                       {t.welcome}
                       <br />
                       PadelCity
                       <span className="block truncate text-[12px]">{city}</span>
                     </span>
                   ) : (
-                    <span className="relative font-display text-[13px] font-extrabold italic uppercase text-white">{h.label}</span>
+                    <span className="relative font-display text-[13px] font-extrabold italic uppercase text-fg">{h.label}</span>
                   )}
                 </span>
               </span>
-              <span className="whitespace-nowrap text-[12px] font-semibold uppercase tracking-wide text-white/85">{i === 0 ? city : h.label}</span>
+              <span className="whitespace-nowrap text-[12px] font-semibold uppercase tracking-wide text-fg/85">{i === 0 ? city : h.label}</span>
             </button>
           </li>
         ))}
@@ -131,17 +131,18 @@ export function ClubHighlights({ images, city, locale, showTitle = true, classNa
         ref={dialog}
         onClose={() => setOpen(null)}
         aria-label={current ? `${t.title}: ${current.label}` : t.title}
-        className="m-0 h-dvh max-h-none w-screen max-w-none bg-black/95 p-0 text-white backdrop:bg-black/90"
+        data-theme="dark"
+        className="m-0 h-dvh max-h-none w-screen max-w-none bg-black/95 p-0 text-fg backdrop:bg-black/90"
       >
         {current && frame && open && (
           <div className="relative mx-auto flex h-full max-w-[min(100vw,calc(100dvh*9/16))] flex-col">
             {/* Progress bars */}
             <div className="absolute inset-x-3 top-3 z-20 flex gap-1">
               {current.frames.map((_, i) => (
-                <span key={i} className="h-[3px] flex-1 overflow-hidden rounded-full bg-white/30">
+                <span key={i} className="h-[3px] flex-1 overflow-hidden rounded-full bg-fg/30">
                   <span
                     key={`${open.h}-${open.f}-${i}`}
-                    className={cn("block h-full bg-white", i < open.f ? "w-full" : i > open.f ? "w-0" : "w-full animate-[story-progress_linear_forwards]")}
+                    className={cn("block h-full bg-fg", i < open.f ? "w-full" : i > open.f ? "w-0" : "w-full animate-[story-progress_linear_forwards]")}
                     style={i === open.f ? { animationDuration: `${FRAME_MS}ms`, animationPlayState: paused ? "paused" : "running" } : undefined}
                   />
                 </span>
@@ -150,8 +151,8 @@ export function ClubHighlights({ images, city, locale, showTitle = true, classNa
             <div className="absolute inset-x-3 top-7 z-20 flex items-center gap-2">
               <span className="grid size-8 place-items-center rounded-full bg-brand-gradient font-display text-[10px] font-extrabold italic">PC</span>
               <span className="text-sm font-semibold">padelcity.de</span>
-              <span className="text-sm text-white/70">· {open.h === 0 ? city : current.label}</span>
-              <button type="button" onClick={close} aria-label={t.close} className="ml-auto grid size-10 place-items-center rounded-full hover:bg-white/10">
+              <span className="text-sm text-fg/70">· {open.h === 0 ? city : current.label}</span>
+              <button type="button" onClick={close} aria-label={t.close} className="ml-auto grid size-10 place-items-center rounded-full hover:bg-fg/10">
                 <X className="size-6" aria-hidden />
               </button>
             </div>

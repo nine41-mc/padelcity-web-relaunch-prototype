@@ -7,7 +7,7 @@ const tones = {
   /** on photos (club poster) */
   photo: "bg-white/15 text-white backdrop-blur group-hover:bg-brand-gradient",
   /** featured article – white disc, ink arrow */
-  solid: "bg-white text-ink-800",
+  solid: "bg-fg text-fg-inverse",
 };
 
 /**

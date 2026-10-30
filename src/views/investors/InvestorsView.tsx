@@ -29,7 +29,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <section className="relative isolate overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24 lg:min-h-[80vh] lg:pt-52">
+      <section data-theme="dark" className="relative isolate overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24 lg:min-h-[80vh] lg:pt-52">
         <div className="absolute inset-0 -z-10">
           <Media src="/images/investoren/hero.jpg" alt={t.hero.imageAlt} className="h-full w-full" priority imgClassName="grayscale-[35%]" />
           <div className="absolute inset-0 bg-gradient-to-b from-ink-800/80 via-purple-900/70 to-ink-800" />
@@ -52,10 +52,10 @@ export function InvestorsView({ locale }: { locale: Locale }) {
         </div>
       </section>
 
-      <div className="border-y border-white/10 bg-black py-5">
+      <div className="border-y border-fg/10 bg-canvas-deep py-5">
         <Marquee>
           {t.marquee.map((item) => (
-            <span key={item} className="mx-6 flex items-center gap-6 font-display text-2xl font-extrabold italic uppercase text-white/80 md:text-3xl">
+            <span key={item} className="mx-6 flex items-center gap-6 font-display text-2xl font-extrabold italic uppercase text-fg/80 md:text-3xl">
               {item} <span className="size-2 rounded-full bg-magenta-500" aria-hidden />
             </span>
           ))}
@@ -82,7 +82,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
         <PeopleGrid people={founders} locale={locale} showBio />
         {management.length > 0 && (
           <>
-            <h3 className="mt-14 mb-6 text-[13px] font-semibold uppercase tracking-[0.16em] text-white/70">{t.leadership.management}</h3>
+            <h3 className="mt-14 mb-6 text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/70">{t.leadership.management}</h3>
             <PeopleGrid people={management} locale={locale} className="lg:grid-cols-4" />
           </>
         )}
@@ -93,13 +93,13 @@ export function InvestorsView({ locale }: { locale: Locale }) {
           <div>
             <SectionIntro eyebrow={t.press.eyebrow} title={t.press.title} className="mb-8 md:mb-10" />
             {/* Contentful module: investorsContent – Downloads. TODO(content): real files; until then every item is requested by email */}
-            <ul className="divide-y divide-white/10 border-y border-white/10">
+            <ul className="divide-y divide-fg/10 border-y border-fg/10">
               {t.press.items.map((d) => (
                 <li key={d.title}>
                   <a href={irMailto(`${t.press.title}: ${d.title}`)} className="group flex items-center justify-between gap-4 py-5" data-track="ir_press_request">
                     <div>
-                      <p className="text-lg font-semibold transition-colors group-hover:text-magenta-300">{d.title}</p>
-                      <p className="mt-1 text-sm text-white/70">
+                      <p className="text-lg font-semibold transition-colors group-hover:text-accent-fg">{d.title}</p>
+                      <p className="mt-1 text-sm text-fg/70">
                         {d.meta} · {t.press.note}
                       </p>
                     </div>
@@ -119,9 +119,9 @@ export function InvestorsView({ locale }: { locale: Locale }) {
             <div className="relative overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
               <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
               <div className="relative">
-                <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.contact.eyebrow}</p>
+                <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/85">{t.contact.eyebrow}</p>
                 <p className="mt-6 font-display text-4xl font-extrabold italic uppercase leading-none">{t.contact.title}</p>
-                <p className="mt-4 text-white/80">{t.contact.text}</p>
+                <p className="mt-4 text-fg/80">{t.contact.text}</p>
                 <Button href={mailto} variant="gradient" className="mt-8" data-track="ir_contact_mail">
                   {t.contact.mailLabel}
                 </Button>

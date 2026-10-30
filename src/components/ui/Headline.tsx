@@ -43,7 +43,7 @@ export function Accent({
     <span
       className={cn(
         "font-brush not-italic font-normal normal-case relative -top-[0.06em] inline-block -rotate-2 px-[0.04em] text-[1.08em] leading-[0.8] align-baseline",
-        tone === "optic" && "text-optic-500",
+        tone === "optic" && "text-highlight-fg",
         tone === "magenta" && "text-magenta-500",
         tone === "gradient" && "text-brand-gradient",
         className,
@@ -58,7 +58,7 @@ export function Eyebrow({ children, className, dot = true }: { children: React.R
   return (
     <p
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85 backdrop-blur",
+        "inline-flex items-center gap-2 rounded-full border border-fg/15 bg-fg/5 px-3.5 py-1.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/85 backdrop-blur",
         className,
       )}
     >
@@ -69,5 +69,5 @@ export function Eyebrow({ children, className, dot = true }: { children: React.R
 }
 
 export function Lead({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <p className={cn("max-w-2xl text-lg leading-relaxed text-white/85 md:text-xl text-pretty", className)}>{children}</p>;
+  return <p className={cn("max-w-2xl text-lg leading-relaxed text-fg/85 md:text-xl text-pretty", className)}>{children}</p>;
 }

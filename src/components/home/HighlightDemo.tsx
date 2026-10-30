@@ -8,7 +8,7 @@ import type { Locale } from "@/lib/i18n/config";
  * (brush word, ticker, map pin label, footer ball …) cycles the highlight colour – Optic Yellow, Purple,
  * Magenta, Turquoise (app badge colour "color-badge-abo-background" #15C0D3). Works via CSS variables
  * (html[data-highlight], see globals.css), so every highlight element changes at once.
- * The button (next to the ThemeDemo switch) shows the current colour and is the keyboard-accessible way to switch.
+ * The floating button shows the current colour and is the keyboard-accessible way to switch.
  */
 const COLORS = [
   { id: "optic", name: "Optic Yellow", hex: "#DFFF4F" },
@@ -55,19 +55,19 @@ export function HighlightDemo({ locale }: { locale: Locale }) {
   }, [next]);
 
   const c = COLORS[i];
-  // Compact pill next to the ThemeDemo switch (HomeView positions both); the hint moves into the tooltip.
+  // Compact pill (HomeView positions it); the hint moves into the tooltip.
   return (
     <button
       type="button"
       onClick={next}
       title={t.hint}
-      className="flex min-w-0 items-center gap-2 rounded-full border border-white/20 bg-ink-700/85 py-1.5 pl-1.5 pr-3 text-left text-white shadow-elevated backdrop-blur transition-colors hover:border-white"
+      className="flex min-w-0 items-center gap-2 rounded-full border border-fg/20 bg-raised/85 py-1.5 pl-1.5 pr-3 text-left text-fg shadow-elevated backdrop-blur transition-colors hover:border-fg"
     >
-      <span className="size-6 shrink-0 rounded-full ring-2 ring-white/30" style={{ background: c.hex }} aria-hidden />
+      <span className="size-6 shrink-0 rounded-full ring-2 ring-fg/30" style={{ background: c.hex }} aria-hidden />
       <span className="min-w-0 leading-tight">
-        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.label}</span>
+        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-fg/60">{t.label}</span>
         <span className="block truncate text-xs font-semibold">
-          {c.name} <span className="hidden font-normal text-white/60 sm:inline">· {c.hex}</span>
+          {c.name} <span className="hidden font-normal text-fg/60 sm:inline">· {c.hex}</span>
         </span>
       </span>
     </button>

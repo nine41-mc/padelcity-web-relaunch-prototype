@@ -30,12 +30,12 @@ export function EventSignup({
     size === "md" && "h-12 px-5 text-lg",
     size === "lg" && "h-14 px-6 text-xl md:h-16 md:text-2xl",
   );
-  const primary = "bg-white text-ink-800 hover:shadow-glow";
-  const secondary = "border-2 border-white/60 bg-white/5 text-white backdrop-blur hover:border-white hover:bg-white hover:text-ink-800";
+  const primary = "bg-fg text-fg-inverse hover:shadow-glow";
+  const secondary = "border-2 border-fg/60 bg-fg/5 text-fg backdrop-blur hover:border-fg hover:bg-fg hover:text-fg-inverse";
   const icon = size === "lg" ? "size-5 md:size-6" : "size-[1.1em]";
   return (
     <div className={cn("relative z-10", className)}>
-      {showLabel && <p className="mb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85">{t.signupLabel}</p>}
+      {showLabel && <p className="mb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/85">{t.signupLabel}</p>}
       <div className="grid grid-cols-2 gap-2.5">
         <a {...linkProps(deeplinks.event(eventId))} aria-label={t.appAria} data-track="event_signup_app" className={cn(btn, primary)}>
           <Smartphone className={cn(icon, "shrink-0")} aria-hidden />

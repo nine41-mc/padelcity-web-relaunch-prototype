@@ -71,20 +71,20 @@ export function NotFoundContent() {
   const nav = getDictionary(locale).nav;
 
   return (
-    <section lang={locale} className="relative isolate flex min-h-[90vh] items-center overflow-hidden pt-32 pb-20">
+    <section lang={locale} data-theme="dark" className="relative isolate flex min-h-[90vh] items-center overflow-hidden pt-32 pb-20">
       <div className="absolute inset-0 -z-10 bg-brandbook-gradient" aria-hidden />
       <div className="absolute inset-0 -z-10 bg-court-lines" aria-hidden />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-transparent to-ink-800" aria-hidden />
       {/* Ball flying out of the court */}
-      <span className="absolute right-[8%] top-[22%] -z-10 size-16 rounded-full bg-white opacity-90 shadow-glow md:size-24" aria-hidden />
+      <span className="absolute right-[8%] top-[22%] -z-10 size-16 rounded-full bg-fg opacity-90 shadow-glow md:size-24" aria-hidden />
       <div className="container-site">
-        <p className="font-display text-[34vw] font-extrabold italic leading-[0.8] text-white/10 md:text-[22vw] lg:text-[16rem]" aria-hidden>
+        <p className="font-display text-[34vw] font-extrabold italic leading-[0.8] text-fg/10 md:text-[22vw] lg:text-[16rem]" aria-hidden>
           404
         </p>
         <Headline as="h1" size="lg" className="-mt-[12vw] md:-mt-[8vw] lg:-mt-24">
           {t.title} <Accent>{t.accent}</Accent>
         </Headline>
-        <p className="mt-6 max-w-lg text-lg text-white/80">{t.text}</p>
+        <p className="mt-6 max-w-lg text-lg text-fg/80">{t.text}</p>
         <div className="mt-10 flex flex-wrap gap-3">
           <Button href={href(locale, "home")} size="md">
             {t.home}
@@ -98,7 +98,7 @@ export function NotFoundContent() {
             <Link
               key={key}
               href={href(locale, key)}
-              className="rounded-full border border-white/25 px-4 py-2 text-sm transition-colors hover:border-white hover:bg-white/10"
+              className="rounded-full border border-fg/25 px-4 py-2 text-sm transition-colors hover:border-fg hover:bg-fg/10"
             >
               {nav[key]}
             </Link>
@@ -107,7 +107,7 @@ export function NotFoundContent() {
         {/* A rally while you're here – the footer's "404" link leads to this page on purpose */}
         <div className="mt-14 max-w-2xl">
           <PadelPong label={t.pong} />
-          <p className="mt-3 text-sm text-white/70">{t.pongHint}</p>
+          <p className="mt-3 text-sm text-fg/70">{t.pongHint}</p>
         </div>
       </div>
     </section>

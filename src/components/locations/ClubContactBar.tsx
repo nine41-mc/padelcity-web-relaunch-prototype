@@ -27,7 +27,7 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
   const c = club.contact;
   const address = `${a.streetName} ${a.buildingNumber}, ${a.postalCode} ${a.localityName}`;
   const tel = c?.phoneNumber ? `tel:${c.phoneNumber.replace(/[^\d+]/g, "")}` : undefined;
-  const pending = <span className="font-normal text-white/60">{t.pending}</span>;
+  const pending = <span className="font-normal text-fg/60">{t.pending}</span>;
   const icon = (Icon: LucideIcon) => <Icon className="size-5" aria-hidden />;
   const tiles: Tile[] = [
     {
@@ -58,7 +58,7 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
       media: c?.name ? <ManagerAvatar name={c.name} image={managerImage} /> : icon(Mail),
       value: c?.emailAddress ? (
         <>
-          {c.name && <span className="block font-normal text-white/80">{c.name}</span>}
+          {c.name && <span className="block font-normal text-fg/80">{c.name}</span>}
           {/* break only after the @, never inside the domain */}
           <span className="block">
             {c.emailAddress.split("@")[0]}@<wbr />
@@ -84,11 +84,11 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
     <section id="contact" aria-label={t.label} className="scroll-mt-44">
       <ul className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
         {tiles.map((tile) => (
-          <li key={tile.key} className="flex min-w-0 flex-col rounded-[20px] border border-white/12 bg-ink-700 p-3.5 sm:p-5">
+          <li key={tile.key} className="flex min-w-0 flex-col rounded-[20px] border border-fg/12 bg-raised p-3.5 sm:p-5">
             {/* phones: two columns, so the icon sits above the label */}
             <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
-              <span className="grid size-10 shrink-0 sm:size-11 place-items-center overflow-hidden rounded-full bg-white/[0.06]">{tile.media}</span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-white/70 sm:text-[13px] sm:tracking-[0.12em]">{tile.label}</span>
+              <span className="grid size-10 shrink-0 sm:size-11 place-items-center overflow-hidden rounded-full bg-fg/[0.06]">{tile.media}</span>
+              <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg/70 sm:text-[13px] sm:tracking-[0.12em]">{tile.label}</span>
             </div>
             <p className="mt-3 text-sm font-semibold leading-snug sm:mt-4 sm:text-base">{tile.value}</p>
             {/* every tile ends on the same line: one action, copy on the right */}

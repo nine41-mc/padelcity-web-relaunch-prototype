@@ -96,14 +96,14 @@ export function A11yPanel() {
         aria-haspopup="dialog"
         data-a11y-fab
         className={cn(
-          "fixed bottom-4 right-4 z-50 grid size-12 place-items-center rounded-full border border-white/25 bg-ink-700/90 text-white shadow-elevated backdrop-blur transition-colors hover:border-white hover:bg-ink-600",
+          "fixed bottom-4 right-4 z-50 grid size-12 place-items-center rounded-full border border-fg/25 bg-raised/90 text-fg shadow-elevated backdrop-blur transition-colors hover:border-fg hover:bg-surface",
           "[body:has([data-booking-bar=visible])_&]:max-lg:bottom-24",
         )}
       >
         <Accessibility className="size-6" aria-hidden />
       </button>
       <FilterSheet open={open} onClose={() => setOpen(false)} title={t.title} closeLabel={t.close} resetLabel={t.reset} showLabel={t.done} onReset={() => setA11yPrefs(A11Y_DEFAULTS)}>
-        <p className="text-white/75">{t.intro}</p>
+        <p className="text-fg/75">{t.intro}</p>
         {group(t.size, "size", [0, 1, 2, 3], SIZES)}
         {group(t.spacing, "spacing", [0, 1, 2], t.spacingOptions)}
         {group(t.font, "font", ["default", "readable"], t.fontOptions)}

@@ -67,7 +67,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
           <h2 className="text-[2.6rem] leading-[0.95] md:text-7xl">
             <VarsityText>{t.path.line1}</VarsityText>
             <br />
-            <VarsityText className="text-white/90">{t.path.line2}</VarsityText>
+            <VarsityText className="text-fg/90">{t.path.line2}</VarsityText>
           </h2>
         </div>
         <LevelPath stages={t.levelStages} scale={t.levelScale} scaleLabel={t.path.scaleLabel} levelLabel={t.path.level} />
@@ -87,8 +87,8 @@ export async function AcademyView({ locale }: { locale: Locale }) {
                 <Reveal delay={(i % 3) * 0.06} className="h-full">
                 <div
                   className={cn(
-                    "group relative flex h-full flex-col overflow-hidden rounded-[20px] border bg-ink-700 transition-all duration-300 hover:-translate-y-1",
-                    p.highlight ? "border-magenta-500/60 hover:shadow-glow" : "border-white/10 hover:border-magenta-500/50",
+                    "group relative flex h-full flex-col overflow-hidden rounded-[20px] border bg-raised transition-all duration-300 hover:-translate-y-1",
+                    p.highlight ? "border-magenta-500/60 hover:shadow-glow" : "border-fg/10 hover:border-magenta-500/50",
                   )}
                 >
                   <Media src={p.image.url} alt={p.image.alt} className="aspect-[16/10]" overlay imgClassName="transition-transform duration-700 group-hover:scale-105" sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw" />
@@ -97,9 +97,9 @@ export async function AcademyView({ locale }: { locale: Locale }) {
                   </div>
                   <div className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-3xl font-extrabold uppercase leading-none tracking-wide md:min-h-[2lh]">{p.title}</h3>
-                    <p className="mt-3 flex-1 text-white/70">{p.text}</p>
-                    <div className="mt-6 flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-                      <span className="text-sm text-white/70">{p.meta}</span>
+                    <p className="mt-3 flex-1 text-fg/70">{p.text}</p>
+                    <div className="mt-6 flex items-center justify-between gap-3 border-t border-fg/10 pt-4">
+                      <span className="text-sm text-fg/70">{p.meta}</span>
                       <a
                         href={corporate ? `mailto:${site.email}?subject=${encodeURIComponent(t.programmesSection.mailSubject)}` : deeplinks.events("academy-page")}
                         data-track={corporate ? "corporate_inquiry_click" : "academy_signup_click"}
@@ -126,7 +126,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
             <Headline size="md">
               {t.pricesSection.title} <Accent>{t.pricesSection.accent}</Accent>
             </Headline>
-            <p className="mt-5 max-w-lg text-lg text-white/70">{t.pricesSection.text}</p>
+            <p className="mt-5 max-w-lg text-lg text-fg/70">{t.pricesSection.text}</p>
             <Button href={href(locale, "app")} variant="primary" size="md" className="mt-8 w-fit" data-track="academy_prices_book">
               {t.pricesSection.cta}
             </Button>
@@ -137,7 +137,7 @@ export async function AcademyView({ locale }: { locale: Locale }) {
               locale={locale}
               labels={{ unit: t.pricesSection.unit, coach: t.pricesSection.coach, headCoach: t.pricesSection.headCoach, caption: `${t.pricesSection.title} ${t.pricesSection.accent}` }}
             />
-            <p className="mt-4 text-sm text-white/60">{t.pricesSection.note}</p>
+            <p className="mt-4 text-sm text-fg/60">{t.pricesSection.note}</p>
           </div>
         </div>
       </Section>

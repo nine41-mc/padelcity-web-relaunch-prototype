@@ -18,7 +18,7 @@ export function CopyButton({ value, label, copiedLabel, className, track }: { va
         setDone(true);
         setTimeout(() => setDone(false), 1600);
       }}
-      className={cn("grid size-11 shrink-0 place-items-center rounded-full border border-white/15 text-white/75 transition-colors hover:border-white/40 hover:text-white", className)}
+      className={cn("grid size-11 shrink-0 place-items-center rounded-full border border-fg/15 text-fg/75 transition-colors hover:border-fg/40 hover:text-fg", className)}
     >
       {done ? <Check className="size-[18px] text-success" aria-hidden /> : <Copy className="size-[18px]" aria-hidden />}
       <span className="sr-only" aria-live="polite">{done ? copiedLabel : ""}</span>

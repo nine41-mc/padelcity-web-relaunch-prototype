@@ -18,9 +18,9 @@ export function ClubFacilities({ club }: { club: Club }) {
   return (
     <ul className="grid grid-cols-2 gap-3 md:grid-cols-4">
       {club.facilities.map((f) => (
-        <li key={f.type} className="flex items-center gap-3 rounded-[20px] border border-white/10 bg-ink-700 pad-card">
+        <li key={f.type} className="flex items-center gap-3 rounded-[20px] border border-fg/10 bg-raised pad-card">
           <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
-            <AppIcon name={f.icon ?? f.type} className="size-5 text-white" />
+            <AppIcon name={f.icon ?? f.type} className="size-5 text-fg" />
           </span>
           {/* TODO(content): facility names come from Contentful in the requested locale */}
           <span className="min-w-0 text-sm font-medium leading-tight [overflow-wrap:anywhere] hyphens-auto">{f.name}</span>
@@ -40,7 +40,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
   const exclusive = appContent[locale].features.items.filter((f) => ["split", "matches", "benefits"].includes(f.id));
 
   return (
-    <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-ink-700">
+    <div className="relative overflow-hidden rounded-[28px] border border-fg/10 bg-raised">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_0%,rgb(132_18_181/0.55),transparent_55%),radial-gradient(ellipse_at_100%_100%,rgb(224_5_195/0.3),transparent_55%)]" aria-hidden />
       <div className="absolute inset-0 bg-court-lines opacity-40" aria-hidden />
 
@@ -50,7 +50,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
           <Headline size="md">
             {t.title} <Accent>{t.accent}</Accent>
           </Headline>
-          <p className="mt-5 max-w-lg text-white/75 md:text-lg">{t.text}</p>
+          <p className="mt-5 max-w-lg text-fg/75 md:text-lg">{t.text}</p>
           <div className="mt-8 flex flex-col gap-5">
             <Button href={deeplinks.club(club.slug)} variant="primary" size="md" className="w-full sm:w-fit" data-track="club_book_in_app">
               {t.cta}
@@ -62,13 +62,13 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
         <div>
           <ul className="grid gap-3">
             {exclusive.map((f) => (
-              <li key={f.id} className="flex gap-4 rounded-[20px] border border-white/10 bg-ink-800/70 pad-card backdrop-blur">
+              <li key={f.id} className="flex gap-4 rounded-[20px] border border-fg/10 bg-canvas/70 pad-card backdrop-blur">
                 <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
-                  <AppIcon name={f.icon} className="size-5 text-white" />
+                  <AppIcon name={f.icon} className="size-5 text-fg" />
                 </span>
                 <span>
                   <span className="block font-display text-xl font-extrabold italic uppercase leading-tight">{f.eyebrow}</span>
-                  <span className="mt-1 block text-sm text-white/70">{f.text}</span>
+                  <span className="mt-1 block text-sm text-fg/70">{f.text}</span>
                 </span>
               </li>
             ))}
@@ -77,8 +77,8 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
       </div>
 
       {/* So buchst du */}
-      <div className="relative border-t border-white/10 px-6 py-8 md:px-10 lg:px-14 lg:py-10">
-        <h3 className="mb-6 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">
+      <div className="relative border-t border-fg/10 px-6 py-8 md:px-10 lg:px-14 lg:py-10">
+        <h3 className="mb-6 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">
           <Smartphone className="size-4" aria-hidden /> {t.stepsTitle}
         </h3>
         <ol className="grid gap-6 md:grid-cols-3 md:gap-8">
@@ -89,7 +89,7 @@ export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }
               </span>
               <span>
                 <span className="block font-display text-xl font-extrabold italic uppercase">{s.title}</span>
-                <span className="mt-1 block text-sm text-white/70">{fill(s.text, { club: club.name })}</span>
+                <span className="mt-1 block text-sm text-fg/70">{fill(s.text, { club: club.name })}</span>
               </span>
             </li>
           ))}

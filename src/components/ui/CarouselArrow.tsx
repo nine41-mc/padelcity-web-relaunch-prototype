@@ -30,7 +30,7 @@ export function CarouselArrow({
       aria-label={label}
       aria-controls={controls}
       className={cn(
-        "grid size-11 shrink-0 place-items-center rounded-full border border-white/40 transition hover:border-white hover:bg-white/5 disabled:pointer-events-none disabled:opacity-30",
+        "grid size-11 shrink-0 place-items-center rounded-full border border-fg/40 transition hover:border-fg hover:bg-fg/5 disabled:pointer-events-none disabled:opacity-30",
         className,
       )}
     >

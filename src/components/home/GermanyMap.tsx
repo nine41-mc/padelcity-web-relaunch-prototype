@@ -147,7 +147,7 @@ export function GermanyMap({
                   strokeLinejoin="round"
                   strokeDasharray={lit ? undefined : "3 2"}
                   // unlit neighbours via the white token (white 6 % / 22 %), so the light-mode comparison flips them to ink
-                  className={cn("transition-[fill,stroke] duration-300", !lit && "fill-white/6 stroke-white/22")}
+                  className={cn("transition-[fill,stroke] duration-300", !lit && "fill-fg/6 stroke-fg/22")}
                 />
                 {lx < viewW - 30 && (
                   <text
@@ -158,7 +158,7 @@ export function GermanyMap({
                     fontSize="11"
                     fontWeight="600"
                     letterSpacing="1.5"
-                    className={cn("pointer-events-none select-none uppercase transition-[fill] duration-300", !lit && "fill-white/40")}
+                    className={cn("pointer-events-none select-none uppercase transition-[fill] duration-300", !lit && "fill-fg/40")}
                   >
                     {COUNTRY_NAMES[locale][code]}
                   </text>
@@ -241,13 +241,13 @@ export function GermanyMap({
         <ul className="mt-4 flex flex-wrap justify-center gap-2">
           {offMap.map(({ club, planned: p }) =>
             p ? (
-              <li key={club.id} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-dashed border-white/45 px-3.5 text-sm text-white/85">
-                {club.name} <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-magenta-300">{legend.soon}</span>
+              <li key={club.id} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-dashed border-fg/45 px-3.5 text-sm text-fg/85">
+                {club.name} <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-accent-fg">{legend.soon}</span>
               </li>
             ) : (
               <li key={club.id}>
-                <Link href={href(locale, "locations", club.slug)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/45 bg-white/5 px-3.5 text-sm font-semibold text-white hover:border-white hover:bg-white/10">
-                  <span className="size-2 rounded-full bg-white" aria-hidden /> {club.name}
+                <Link href={href(locale, "locations", club.slug)} className="inline-flex min-h-10 items-center gap-2 rounded-full border border-fg/45 bg-fg/5 px-3.5 text-sm font-semibold text-fg hover:border-fg hover:bg-fg/10">
+                  <span className="size-2 rounded-full bg-fg" aria-hidden /> {club.name}
                 </Link>
               </li>
             ),

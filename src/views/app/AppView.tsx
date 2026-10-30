@@ -42,7 +42,7 @@ export function AppView({ locale }: { locale: Locale }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(appJsonLd(locale)) }} />
 
       {/* Contentful module: appHero */}
-      <section className="relative isolate overflow-hidden pb-20 pt-32 md:pt-40 lg:min-h-[100svh] lg:pb-24 lg:pt-44">
+      <section data-theme="dark" className="relative isolate overflow-hidden pb-20 pt-32 md:pt-40 lg:min-h-[100svh] lg:pb-24 lg:pt-44">
         <div className="absolute inset-0 -z-10 bg-brandbook-gradient" />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-ink-800/40 via-purple-900/40 to-ink-800" />
         <div className="absolute inset-0 -z-10 bg-court-lines opacity-50" />
@@ -62,16 +62,16 @@ export function AppView({ locale }: { locale: Locale }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     data-track={r.track}
-                    className="flex items-center gap-3 rounded-full border border-white/20 bg-black/30 py-2 pl-4 pr-5 backdrop-blur transition-colors hover:border-white/50"
+                    className="flex items-center gap-3 rounded-full border border-fg/20 bg-canvas-deep/30 py-2 pl-4 pr-5 backdrop-blur transition-colors hover:border-fg/50"
                   >
                     <span className="flex items-center gap-1.5 font-display text-2xl font-extrabold italic leading-none">
-                      {r.value} <Star className="size-4 fill-white text-white" aria-hidden />
+                      {r.value} <Star className="size-4 fill-fg text-fg" aria-hidden />
                       {/* name = visible text + "von 5 Sternen" (WCAG 2.5.3) */}
                       <span className="sr-only"> {t.socialProof.outOf} </span>
                     </span>
-                    <span className="text-sm leading-tight text-white/80">
+                    <span className="text-sm leading-tight text-fg/80">
                       {r.store}
-                      <span className="block text-xs text-white/60">{r.count}</span>
+                      <span className="block text-xs text-fg/60">{r.count}</span>
                     </span>
                   </a>
                 </li>
@@ -107,7 +107,7 @@ export function AppView({ locale }: { locale: Locale }) {
           <div className="max-w-2xl">
             <Eyebrow className="mb-4">{t.gallery.eyebrow}</Eyebrow>
             <Headline size="md">{t.gallery.title}</Headline>
-            <p className="mt-4 text-white/70">{t.gallery.text}</p>
+            <p className="mt-4 text-fg/70">{t.gallery.text}</p>
           </div>
           <Button href={storeLinks("app-landing-page").ios} variant="outline" className="w-fit shrink-0" data-track="app_gallery_appstore_click">
             {t.gallery.cta}
@@ -126,16 +126,16 @@ export function AppView({ locale }: { locale: Locale }) {
           {t.how.steps.map((s, i) => (
             <li key={s.step} className="h-full">
               <Reveal delay={i * 0.08} className="h-full">
-              <div className="relative h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 pad-card">
+              <div className="relative h-full overflow-hidden rounded-[20px] border border-fg/10 bg-raised pad-card">
                 {/* Decorative watermark as generated content: not text, so contrast checks do not report it */}
                 <span
                   data-step={s.step}
-                  className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-white/[0.04] before:content-[attr(data-step)]"
+                  className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-fg/[0.04] before:content-[attr(data-step)]"
                   aria-hidden
                 />
                 <span className="font-display text-5xl font-extrabold italic text-brand-gradient">{s.step}</span>
                 <h3 className="mt-4 text-xl font-semibold md:min-h-[2lh]">{s.title}</h3>
-                <p className="mt-2 text-white/70">{s.text}</p>
+                <p className="mt-2 text-fg/70">{s.text}</p>
               </div>
               </Reveal>
             </li>
@@ -165,7 +165,7 @@ export function AppView({ locale }: { locale: Locale }) {
             <Headline size="lg">
               {t.final.title} <Accent>{t.final.accent}</Accent>
             </Headline>
-            <p className="mt-6 max-w-lg text-lg text-white/80">{t.final.text}</p>
+            <p className="mt-6 max-w-lg text-lg text-fg/80">{t.final.text}</p>
             <div className="mt-8 flex flex-col gap-5">
               <StoreBadges locale={locale} campaign="app-landing-page" />
               <Button href={href(locale, "locations")} variant="primary" size="md" className="w-fit">

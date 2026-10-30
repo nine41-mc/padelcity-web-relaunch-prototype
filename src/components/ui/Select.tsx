@@ -180,15 +180,15 @@ export function Select({
         onClick={() => (open ? setOpen(false) : openList())}
         onKeyDown={onKeyDown}
         className={cn(
-          "flex w-full items-center gap-2.5 rounded-full border bg-ink-700 pr-3 text-left font-medium text-white transition-colors",
+          "flex w-full items-center gap-2.5 rounded-full border bg-raised pr-3 text-left font-medium text-fg transition-colors",
           size === "lg" ? "h-12 pl-5 text-base" : "h-11 pl-4 text-sm",
-          open ? "border-white" : invalid ? "border-danger" : "border-white/45 hover:border-white/75",
-          "focus-visible:border-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-optic-500/40",
+          open ? "border-fg" : invalid ? "border-danger" : "border-fg/45 hover:border-fg/75",
+          "focus-visible:border-fg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-optic-500/40",
         )}
       >
-        {icon && <span className="shrink-0 text-white [&>svg]:size-4" aria-hidden>{icon}</span>}
-        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-white/70")}>{selected?.label ?? placeholder ?? label}</span>
-        <ChevronDown className={cn("size-4 shrink-0 text-white/80 transition-transform", open && "rotate-180")} aria-hidden />
+        {icon && <span className="shrink-0 text-fg [&>svg]:size-4" aria-hidden>{icon}</span>}
+        <span className={cn("min-w-0 flex-1 truncate", !selected && "text-fg/70")}>{selected?.label ?? placeholder ?? label}</span>
+        <ChevronDown className={cn("size-4 shrink-0 text-fg/80 transition-transform", open && "rotate-180")} aria-hidden />
       </button>
 
       <ul
@@ -198,7 +198,7 @@ export function Select({
         aria-label={label}
         tabIndex={-1}
         hidden={!open}
-        className="absolute left-0 top-[calc(100%+6px)] z-50 max-h-80 min-w-full overflow-y-auto overscroll-contain rounded-2xl border border-white/15 bg-ink-700/95 p-1.5 shadow-elevated backdrop-blur-xl"
+        className="absolute left-0 top-[calc(100%+6px)] z-50 max-h-80 min-w-full overflow-y-auto overscroll-contain rounded-2xl border border-fg/15 bg-raised/95 p-1.5 shadow-elevated backdrop-blur-xl"
       >
         {options.map((o, i) => {
           const isSel = o.value === value;
@@ -214,14 +214,14 @@ export function Select({
               onClick={() => commit(i)}
               className={cn(
                 "flex min-h-11 cursor-pointer items-center gap-3 whitespace-nowrap rounded-xl px-3 text-sm transition-colors",
-                i === active && "bg-white/10",
-                isSel ? "font-semibold text-white" : "text-white/85",
+                i === active && "bg-fg/10",
+                isSel ? "font-semibold text-fg" : "text-fg/85",
                 o.disabled && "cursor-not-allowed opacity-50",
               )}
             >
-              <Check className={cn("size-4 shrink-0 text-magenta-300", !isSel && "invisible")} aria-hidden />
+              <Check className={cn("size-4 shrink-0 text-accent-fg", !isSel && "invisible")} aria-hidden />
               <span className="flex-1">{o.label}</span>
-              {o.count !== undefined && <span className="tabular-nums text-white/70">{o.count}</span>}
+              {o.count !== undefined && <span className="tabular-nums text-fg/70">{o.count}</span>}
             </li>
           );
         })}

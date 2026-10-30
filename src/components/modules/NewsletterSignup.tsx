@@ -16,11 +16,11 @@ export function NewsletterSignup({ locale = "de", id, className }: { locale?: Lo
   const [done, setDone] = useState(false);
   const inputId = useId();
   return (
-    <div id={id} className={cn("scroll-mt-28 rounded-[28px] border border-white/10 bg-white/[0.03] pad-banner", className)}>
+    <div id={id} className={cn("scroll-mt-28 rounded-[28px] border border-fg/10 bg-fg/[0.03] pad-banner", className)}>
       <h3 className="font-display text-3xl font-extrabold italic uppercase md:text-4xl">{t.title}</h3>
-      <p className="mt-2 max-w-md text-white/70">{t.text}</p>
+      <p className="mt-2 max-w-md text-fg/70">{t.text}</p>
       {done ? (
-        <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-optic-500 outline-none" role="status">
+        <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-highlight-fg outline-none" role="status">
           <span className="grid size-8 place-items-center rounded-full bg-optic-500 text-on-optic">
             <Check className="size-4" />
           </span>
@@ -42,14 +42,14 @@ export function NewsletterSignup({ locale = "de", id, className }: { locale?: Lo
             type="email"
             required
             placeholder={t.placeholder}
-            className="h-13 shrink-0 rounded-full border border-white/45 bg-black/40 px-5 sm:flex-1 text-white placeholder:text-white/60 focus:border-optic-500 focus:outline-none focus:ring-2 focus:ring-optic-500/50"
+            className="h-13 shrink-0 rounded-full border border-fg/45 bg-canvas-deep/40 px-5 sm:flex-1 text-fg placeholder:text-fg/60 focus:border-optic-500 focus:outline-none focus:ring-2 focus:ring-optic-500/50"
           />
           <Button type="submit" variant="optic" data-track="newsletter_submit">
             {t.submit}
           </Button>
         </form>
       )}
-      <p className="mt-3 text-sm text-white/70">{t.legal}</p>
+      <p className="mt-3 text-sm text-fg/70">{t.legal}</p>
     </div>
   );
 }

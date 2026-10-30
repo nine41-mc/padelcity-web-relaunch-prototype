@@ -39,7 +39,7 @@ export function MagazineView({ locale }: { locale: Locale }) {
       <section className="pb-6">
         <div className="container-site">
           <Reveal>
-            <article className="group relative grid overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 lg:grid-cols-[1.3fr_1fr]">
+            <article className="group relative grid overflow-hidden rounded-[28px] border border-fg/10 bg-raised lg:grid-cols-[1.3fr_1fr]">
               <Media
                 src={featured.image?.url}
                 alt={featured.image?.alt ?? featured.title}
@@ -58,8 +58,8 @@ export function MagazineView({ locale }: { locale: Locale }) {
                     {featured.title}
                   </Link>
                 </h2>
-                <p className="mt-5 text-lg text-white/70">{featured.excerpt}</p>
-                <div className="mt-auto flex items-center justify-between pt-8 text-sm text-white/70">
+                <p className="mt-5 text-lg text-fg/70">{featured.excerpt}</p>
+                <div className="mt-auto flex items-center justify-between pt-8 text-sm text-fg/70">
                   <span className="flex items-center gap-3">
                     <time dateTime={featured.publishedAt}>{formatDate(featured.publishedAt, locale)}</time>
                     <span className="inline-flex items-center gap-1">

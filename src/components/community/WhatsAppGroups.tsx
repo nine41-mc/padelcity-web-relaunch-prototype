@@ -149,20 +149,20 @@ export function WhatsAppGroups({
               target="_blank"
               rel="noopener noreferrer"
               data-track="whatsapp_group_join"
-              className="group flex min-h-14 items-center gap-3 rounded-[16px] border border-white/10 bg-white/[0.03] px-4 py-3 transition-colors hover:border-white/40 hover:bg-white/[0.06]"
+              className="group flex min-h-14 items-center gap-3 rounded-[16px] border border-fg/10 bg-fg/[0.03] px-4 py-3 transition-colors hover:border-fg/40 hover:bg-fg/[0.06]"
             >
               <span className="flex min-w-0 flex-1 items-center gap-2">
                 <CityName name={g.city} />
-                {g.channel && <span className="shrink-0 rounded-md border border-white/35 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/80">{t.channel}</span>}
+                {g.channel && <span className="shrink-0 rounded-md border border-fg/35 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-fg/80">{t.channel}</span>}
               </span>
-              <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-white group-hover:text-magenta-300">
+              <span className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-fg group-hover:text-accent-fg">
                 {t.join}
                 <ArrowUpRight className="size-4 transition-transform group-hover:rotate-45" aria-hidden />
               </span>
             </a>
           </li>
         ))}
-        {list.length === 0 && <li className={cn("col-span-full py-6 text-center text-white/70")}>{t.empty}</li>}
+        {list.length === 0 && <li className={cn("col-span-full py-6 text-center text-fg/70")}>{t.empty}</li>}
       </ul>
       </Overlay>
     </>

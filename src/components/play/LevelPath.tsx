@@ -65,14 +65,14 @@ export function LevelPath({
                       "grid size-11 place-items-center rounded-[10px] border-2 font-display text-2xl font-extrabold transition-all duration-300 md:size-14 md:text-3xl",
                       on
                         ? "scale-110 border-transparent bg-brand-gradient shadow-glow"
-                        : cn("bg-ink-800 group-hover:scale-105", l.level <= 2 ? "border-purple-400" : l.level <= 5 ? "border-magenta-400" : "border-white"),
+                        : cn("bg-canvas group-hover:scale-105", l.level <= 2 ? "border-purple-400" : l.level <= 5 ? "border-magenta-400" : "border-fg"),
                     )}
                   >
                     <span className="sr-only">{levelLabel} </span>
                     {l.level}
                   </span>
                   {/* name visible from tablet up; on phones only for screen readers ("Level 1 Starter") */}
-                  <span className={cn("mt-2 text-sm transition-colors max-md:sr-only md:block", on ? "font-semibold text-white" : "text-white/70 group-hover:text-white")}>{l.label}</span>
+                  <span className={cn("mt-2 text-sm transition-colors max-md:sr-only md:block", on ? "font-semibold text-fg" : "text-fg/70 group-hover:text-fg")}>{l.label}</span>
                 </button>
               </li>
             );
@@ -96,22 +96,22 @@ export function LevelPath({
                 aria-pressed={on}
                 className={cn(
                   "flex h-full w-full flex-col rounded-[20px] border bg-gradient-to-br pad-panel text-left transition-all duration-300",
-                  on ? cn("border-magenta-400/70 opacity-100 shadow-glow", stageTone[stage.key]) : "border-white/10 from-ink-700 to-ink-700 opacity-60 hover:opacity-90",
+                  on ? cn("border-magenta-400/70 opacity-100 shadow-glow", stageTone[stage.key]) : "border-fg/10 from-raised to-raised opacity-60 hover:opacity-90",
                 )}
               >
                 <span className="flex items-center justify-between gap-3">
-                  <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-white/70">
+                  <span className="text-[13px] font-semibold uppercase tracking-[0.25em] text-fg/70">
                     {levelLabel} 0{l.level}
                   </span>
-                  <span className="rounded-md border border-white/40 px-2 py-0.5 font-display text-lg font-extrabold uppercase italic tracking-wide">{stage.title}</span>
+                  <span className="rounded-md border border-fg/40 px-2 py-0.5 font-display text-lg font-extrabold uppercase italic tracking-wide">{stage.title}</span>
                 </span>
                 <span className="mt-5 block font-display text-4xl font-extrabold uppercase leading-none tracking-wide md:text-5xl">{l.label}</span>
-                <span className="mt-4 block text-white/75">{l.text}</span>
+                <span className="mt-4 block text-fg/75">{l.text}</span>
                 <span className="mt-auto block pt-6 text-sm">
-                  <span className="block space-y-2 border-t border-white/15 pt-5">
+                  <span className="block space-y-2 border-t border-fg/15 pt-5">
                     {stage.bullets.map((b) => (
                       <span key={b} className="flex items-start gap-2">
-                        <Check className="mt-0.5 size-4 shrink-0 text-magenta-300" aria-hidden /> {b}
+                        <Check className="mt-0.5 size-4 shrink-0 text-accent-fg" aria-hidden /> {b}
                       </span>
                     ))}
                   </span>

@@ -27,7 +27,7 @@ export function Consent({
   const msg = `${id}-msg`;
   return (
     <div className={className}>
-      <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-sm text-white/85">
+      <label htmlFor={id} className="flex cursor-pointer items-start gap-3 text-sm text-fg/85">
         <input
           id={id}
           type="checkbox"
@@ -38,10 +38,10 @@ export function Consent({
         />
         <span>
           {text ?? t.consent}{" "}
-          <Link href={href(locale, "privacy")} className="underline underline-offset-2 hover:text-white">
+          <Link href={href(locale, "privacy")} className="underline underline-offset-2 hover:text-fg">
             {t.privacy}
           </Link>
-          . <span className="text-magenta-300">*</span>
+          . <span className="text-accent-fg">*</span>
         </span>
       </label>
       <FieldMessage id={msg} error={error} />

@@ -28,7 +28,7 @@ const copy = {
 export function PressLogos({ locale }: { locale: Locale }) {
   const t = copy[locale];
   return (
-    <section aria-labelledby="press-title" className="border-y border-white/10 bg-black py-14 md:py-20">
+    <section aria-labelledby="press-title" className="border-y border-fg/10 bg-canvas-deep py-14 md:py-20">
       <div className="container-site mb-8 md:mb-10">
         <h2 id="press-title" className="font-display text-4xl font-extrabold italic uppercase leading-none md:text-5xl">
           {t.title}
@@ -38,7 +38,7 @@ export function PressLogos({ locale }: { locale: Locale }) {
         {PRESS.map((p) => (
           <div key={p.name} className="flex h-16 items-center px-7 opacity-70 transition hover:opacity-100 md:px-10">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={asset(`/images/press/${p.file}`)} alt={p.name} className={`${p.h} w-auto max-w-none`} loading="lazy" />
+            <img src={asset(`/images/press/${p.file}`)} alt={p.name} className={`logo-white ${p.h} w-auto max-w-none`} loading="lazy" />
           </div>
         ))}
       </Marquee>

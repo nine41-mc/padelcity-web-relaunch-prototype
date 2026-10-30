@@ -51,10 +51,10 @@ export function PersonioJobs({
     return (
       <div>
         <PersonioPreview initialLang={PERSONIO_LANGUAGE[locale] as PersonioLang} />
-        <p className="mt-3 flex items-start gap-2 text-sm text-white/60">
+        <p className="mt-3 flex items-start gap-2 text-sm text-fg/60">
           <Briefcase className="mt-0.5 size-4 shrink-0" aria-hidden />
           <span>
-            <span className="font-semibold text-white/80">{placeholder.title}.</span> {placeholder.text}
+            <span className="font-semibold text-fg/80">{placeholder.title}.</span> {placeholder.text}
           </span>
         </p>
       </div>
@@ -66,7 +66,7 @@ export function PersonioJobs({
 
   return (
     // Personio renders its own (light) career page – framed as a card so it sits calmly on the dark site
-    <div className="overflow-hidden rounded-[24px] border border-white/10 bg-white">
+    <div className="overflow-hidden rounded-[24px] border border-fg/10 bg-white">
       <iframe
         ref={frame}
         src={src.toString()}

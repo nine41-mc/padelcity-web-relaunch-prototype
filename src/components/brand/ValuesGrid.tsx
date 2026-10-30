@@ -27,11 +27,11 @@ export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: st
             aria-pressed={active === i}
             className={cn(
               "group relative flex min-h-24 flex-col justify-between overflow-hidden rounded-[20px] border pad-card text-left transition-all duration-300 md:min-h-28",
-              active === i ? "border-transparent bg-brand-gradient shadow-glow" : "border-white/10 bg-ink-700 hover:-translate-y-0.5 hover:border-white/25",
+              active === i ? "border-transparent bg-brand-gradient shadow-glow" : "border-fg/10 bg-raised hover:-translate-y-0.5 hover:border-fg/25",
               i === items.length - 1 && "col-span-2 md:col-span-1 lg:col-span-2",
             )}
           >
-            <span className={cn("text-[13px] font-semibold", active === i ? "text-white" : "text-white/75")}>{String(i + 1).padStart(2, "0")}</span>
+            <span className={cn("text-[13px] font-semibold", active === i ? "text-fg" : "text-fg/75")}>{String(i + 1).padStart(2, "0")}</span>
             <span className="font-display text-2xl font-extrabold italic uppercase leading-none md:text-3xl">{v.name}</span>
           </button>
         ))}
@@ -47,9 +47,9 @@ export function ValuesGrid({ items, ariaLabel }: { items: Value[]; ariaLabel: st
             transition={{ duration: 0.35 }}
             className="relative flex h-full flex-col justify-end"
           >
-            <p className="font-brush text-3xl text-white md:text-4xl">{current.claim}</p>
+            <p className="font-brush text-3xl text-fg md:text-4xl">{current.claim}</p>
             <p className="mt-3 font-display text-6xl font-extrabold italic uppercase leading-[0.9] md:text-8xl">{current.name}</p>
-            <p className="mt-5 max-w-md text-lg text-white/85">{current.text}</p>
+            <p className="mt-5 max-w-md text-lg text-fg/85">{current.text}</p>
           </motion.div>
         </AnimatePresence>
       </div>

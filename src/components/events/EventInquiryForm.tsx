@@ -112,15 +112,15 @@ export function EventInquiryForm({ locale, t, locations, className }: { locale: 
           <Check className="size-7" strokeWidth={3} aria-hidden />
         </span>
         <p className="mt-6 font-display text-4xl font-extrabold italic uppercase">{f.success.title}</p>
-        <p className="mt-3 max-w-md text-white/75">{f.success.text}</p>
-        <p className="mt-6 text-sm text-white/70">{brandStrings[locale].leadForm.prototype}</p>
+        <p className="mt-3 max-w-md text-fg/75">{f.success.text}</p>
+        <p className="mt-6 text-sm text-fg/70">{brandStrings[locale].leadForm.prototype}</p>
       </div>
     );
   }
 
-  const step = "border-t border-white/10 pt-8 mt-10";
+  const step = "border-t border-fg/10 pt-8 mt-10";
   return (
-    <form ref={formRef} noValidate onSubmit={submit} className={cn("rounded-[28px] border border-white/10 bg-ink-700 pad-banner", className)}>
+    <form ref={formRef} noValidate onSubmit={submit} className={cn("rounded-[28px] border border-fg/10 bg-raised pad-banner", className)}>
       <FormStep number={1} title={f.steps.event} />
       <div className="mt-6 grid gap-6 md:grid-cols-2">
         <div data-field="occasion" className="md:col-span-2">
@@ -153,8 +153,8 @@ export function EventInquiryForm({ locale, t, locations, className }: { locale: 
       </div>
 
       <FormStep number={2} title={f.steps.addons} className={step} />
-      <p className="mt-6 border-l-[3px] border-magenta-500 pl-4 text-sm text-white/85">{f.addonsNote}</p>
-      <div className="mt-6 divide-y divide-white/10 rounded-[20px] border border-white/10">
+      <p className="mt-6 border-l-[3px] border-magenta-500 pl-4 text-sm text-fg/85">{f.addonsNote}</p>
+      <div className="mt-6 divide-y divide-fg/10 rounded-[20px] border border-fg/10">
         {f.addons.map((a) => (
           <YesNoRow
             key={a.name}
@@ -188,7 +188,7 @@ export function EventInquiryForm({ locale, t, locations, className }: { locale: 
       </div>
 
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-white/70">{brandStrings[locale].leadForm.required}</p>
+        <p className="text-sm text-fg/70">{brandStrings[locale].leadForm.required}</p>
         <Button type="submit" variant="gradient" data-track="event_inquiry_submit">
           {f.submit}
         </Button>

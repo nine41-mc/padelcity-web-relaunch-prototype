@@ -45,19 +45,19 @@ export function ClubHours({ club, locale, className }: { club: Club; locale: Loc
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
         aria-controls={listId}
-        className="inline-flex min-h-11 items-center gap-2 font-semibold text-magenta-300 transition-colors hover:text-white"
+        className="inline-flex min-h-11 items-center gap-2 font-semibold text-accent-fg transition-colors hover:text-fg"
       >
         <Clock className="size-5 shrink-0" aria-hidden />
         <span className="sr-only">{t.hours}: </span>
         {/* Reserve the line before hydration so nothing jumps */}
         <span>{text ?? " "}</span>
-        <ChevronDown className={cn("size-5 shrink-0 text-white/70 transition-transform", open && "rotate-180")} aria-hidden />
+        <ChevronDown className={cn("size-5 shrink-0 text-fg/70 transition-transform", open && "rotate-180")} aria-hidden />
       </button>
       <dl id={listId} hidden={!open} className="mt-2 max-w-sm pl-7">
         {rows.map((r) => (
           <div key={r.key} className={cn("flex justify-between gap-6 py-1.5", r.today && "font-semibold")}>
-            <dt className={r.today ? "text-white" : "text-white/70"}>{r.label}</dt>
-            <dd className={cn("tabular-nums", r.hours ? "text-white" : "text-white/60")}>{r.hours ? `${r.hours.open} – ${r.hours.close}` : t.closed}</dd>
+            <dt className={r.today ? "text-fg" : "text-fg/70"}>{r.label}</dt>
+            <dd className={cn("tabular-nums", r.hours ? "text-fg" : "text-fg/60")}>{r.hours ? `${r.hours.open} – ${r.hours.close}` : t.closed}</dd>
           </div>
         ))}
       </dl>

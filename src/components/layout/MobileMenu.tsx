@@ -9,6 +9,7 @@ import { mainNav, secondaryNav } from "@/lib/site";
 import { Button } from "../ui/Button";
 import { StoreBadges } from "../ui/StoreBadges";
 import { LanguageSwitch } from "./LanguageSwitch";
+import { ThemeToggle } from "./ThemeToggle";
 
 /**
  * Mobile menu (Figma: Mobile Menu) below lg – opened by the toggle in the Header, which also handles Esc, focus and
@@ -25,7 +26,7 @@ export function MobileMenu({ open, locale, pathname }: { open: boolean; locale: 
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12 }}
           transition={{ duration: 0.25 }}
-          className="fixed inset-x-3 top-[84px] bottom-3 overflow-y-auto rounded-[28px] border border-white/10 bg-ink-800/95 pad-panel backdrop-blur-xl md:inset-x-5 md:top-[100px] lg:hidden"
+          className="fixed inset-x-3 top-[84px] bottom-3 overflow-y-auto rounded-[28px] border border-fg/10 bg-canvas/95 pad-panel backdrop-blur-xl md:inset-x-5 md:top-[100px] lg:hidden"
         >
           <nav aria-label={t.header.mobileNav}>
             <ul className="space-y-1">
@@ -34,19 +35,19 @@ export function MobileMenu({ open, locale, pathname }: { open: boolean; locale: 
                   <Link
                     href={href(locale, key)}
                     aria-current={pathname.startsWith(href(locale, key)) ? "page" : undefined}
-                    className="flex items-center justify-between gap-4 border-b border-white/10 py-4"
+                    className="flex items-center justify-between gap-4 border-b border-fg/10 py-4"
                   >
                     {/* same type as the desktop navigation (Poppins, uppercase, tracked) – Söhne stays reserved for headlines */}
                     <span className="text-[22px] font-semibold uppercase leading-tight tracking-[0.06em] md:text-2xl">{t.nav[key]}</span>
-                    <span className="hidden text-sm text-white/70 md:inline">{t.navDescriptions[key]}</span>
+                    <span className="hidden text-sm text-fg/70 md:inline">{t.navDescriptions[key]}</span>
                   </Link>
                 </motion.li>
               ))}
             </ul>
-            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-white/70">
+            <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-fg/70">
               {secondaryNav.map((key) => (
                 <li key={key}>
-                  <Link href={href(locale, key)} className="hover:text-white">
+                  <Link href={href(locale, key)} className="hover:text-fg">
                     {t.nav[key]}
                   </Link>
                 </li>
@@ -58,7 +59,10 @@ export function MobileMenu({ open, locale, pathname }: { open: boolean; locale: 
               {t.header.findCourt}
             </Button>
             <StoreBadges locale={locale} campaign="menu" />
-            <LanguageSwitch pathname={pathname} current={locale} label={t.header.language} />
+            <div className="flex items-center gap-3">
+              <LanguageSwitch pathname={pathname} current={locale} label={t.header.language} />
+              <ThemeToggle labels={{ toLight: t.header.themeToLight, toDark: t.header.themeToDark }} />
+            </div>
           </div>
         </motion.div>
       )}

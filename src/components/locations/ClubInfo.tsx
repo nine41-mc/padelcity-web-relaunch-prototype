@@ -73,8 +73,8 @@ export function ClubInfo({
         closeLabel={closeLabel}
       >
         {blocks(text).map((b, i) => (
-          <section key={i} className="mt-8 text-[15px] leading-relaxed text-white/80 md:text-base">
-            {b.heading && <h3 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">{b.heading}</h3>}
+          <section key={i} className="mt-8 text-[15px] leading-relaxed text-fg/80 md:text-base">
+            {b.heading && <h3 className="mb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/60">{b.heading}</h3>}
             {b.lines.map((l, j) => (
               <p key={j} className="mt-2 first:mt-0">
                 {l}

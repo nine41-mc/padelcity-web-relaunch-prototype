@@ -53,7 +53,7 @@ export function BrandIcon({ name, className, tone = "gradient" }: { name: BrandI
       className={cn(
         "grid size-12 shrink-0 place-items-center rounded-2xl",
         tone === "gradient" && "bg-brand-gradient text-white",
-        tone === "glass" && "border border-white/15 bg-white/5 text-white",
+        tone === "glass" && "border border-fg/15 bg-fg/5 text-fg",
         className,
       )}
       aria-hidden

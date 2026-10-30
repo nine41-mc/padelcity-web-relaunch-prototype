@@ -27,7 +27,7 @@ export function OpenStatus({ club, locale, className }: { club: Club; locale: Lo
   }, [club.openingHours, t, locale]);
   return (
     // Opening status is the one meta line in PadelCity pink (colour roles: SECONDARY exception, see globals.css)
-    <p className={cn("flex min-h-5 items-center gap-1.5 text-sm font-semibold text-magenta-300", className)}>
+    <p className={cn("flex min-h-5 items-center gap-1.5 text-sm font-semibold text-accent-fg", className)}>
       <Clock className="size-4 shrink-0" aria-hidden />
       {/* Reserve the line before hydration so nothing jumps */}
       <span>{text ?? " "}</span>
@@ -39,7 +39,7 @@ export function OpenStatus({ club, locale, className }: { club: Club; locale: Lo
 export function SportList({ club, locale, className }: { club: Club; locale: Locale; className?: string }) {
   const d = getDictionary(locale);
   return (
-    <p className={cn("text-sm", className ?? "text-white/70")}>
+    <p className={cn("text-sm", className ?? "text-fg/70")}>
       <span className="sr-only">{d.clubCard.sportsLabel}: </span>
       {clubSports(club).map((s) => d.sports[s]).join(" · ")}
     </p>

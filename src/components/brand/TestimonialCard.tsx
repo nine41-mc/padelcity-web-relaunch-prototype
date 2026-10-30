@@ -14,7 +14,7 @@ function QuoteText({ text, highlight }: { text: string; highlight: string }) {
   return (
     <>
       {text.slice(0, i)}
-      <strong className="font-semibold text-white">{highlight}</strong>
+      <strong className="font-semibold text-fg">{highlight}</strong>
       {text.slice(i + highlight.length)}
     </>
   );
@@ -28,7 +28,7 @@ export function TestimonialCard({ t, locale, index, total }: { t: Testimonial; l
       role="group"
       aria-roledescription="slide"
       aria-label={fill(c.slide, { i: index + 1, n: total })}
-      className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 pad-panel"
+      className="relative flex h-full flex-col overflow-hidden rounded-[28px] border border-fg/10 bg-raised pad-panel"
     >
       <Quote aria-hidden className="pointer-events-none absolute right-6 top-6 size-10 rotate-180 fill-magenta-500/25 text-magenta-500/70" />
       <figcaption className="relative flex items-center gap-4">
@@ -37,14 +37,14 @@ export function TestimonialCard({ t, locale, index, total }: { t: Testimonial; l
         </span>
         <span className="font-display text-4xl leading-none font-extrabold italic uppercase md:text-5xl">{t.name}</span>
       </figcaption>
-      <blockquote lang={locale} className="relative mt-6 text-base leading-relaxed text-white/75 md:text-[17px]">
+      <blockquote lang={locale} className="relative mt-6 text-base leading-relaxed text-fg/75 md:text-[17px]">
         <p>
           {open}
           <QuoteText text={t.quote[locale]} highlight={t.highlight[locale]} />
           {close}
         </p>
       </blockquote>
-      {c.translated && <p className="relative mt-auto pt-5 text-xs text-white/60">{c.translated}</p>}
+      {c.translated && <p className="relative mt-auto pt-5 text-xs text-fg/60">{c.translated}</p>}
     </figure>
   );
 }

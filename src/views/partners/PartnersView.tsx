@@ -55,11 +55,11 @@ export function PartnersView({ locale }: { locale: Locale }) {
       </PageHero>
 
       {/* Reach stats – approved public key figures only */}
-      <div className="border-y border-white/10 bg-black">
+      <div className="border-y border-fg/10 bg-canvas-deep">
         <dl className="container-site grid grid-cols-2 gap-y-6 py-8 md:grid-cols-4 md:py-10">
           {stats.map((s) => (
-            <div key={s.k} className="flex flex-col-reverse text-center md:border-l md:border-white/10 md:first:border-l-0">
-              <dt className="mt-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{s.k}</dt>
+            <div key={s.k} className="flex flex-col-reverse text-center md:border-l md:border-fg/10 md:first:border-l-0">
+              <dt className="mt-1 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{s.k}</dt>
               <dd className="font-display text-4xl font-extrabold italic md:text-5xl">
                 <CountUp value={s.v} suffix={s.s} intl={intl} />
               </dd>
@@ -74,10 +74,10 @@ export function PartnersView({ locale }: { locale: Locale }) {
           {t.formats.items.map((item, i) => (
             <li key={item.title}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="group h-full rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50">
+                <div className="group h-full rounded-[20px] border border-fg/10 bg-raised pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50">
                   <BrandIcon name={item.icon} tone={i === 1 ? "gradient" : "glass"} />
                   <h3 className="mt-6 font-display text-2xl font-extrabold italic uppercase md:text-3xl">{item.title}</h3>
-                  <p className="mt-3 text-white/70">{item.text}</p>
+                  <p className="mt-3 text-fg/70">{item.text}</p>
                 </div>
               </Reveal>
             </li>
@@ -91,15 +91,15 @@ export function PartnersView({ locale }: { locale: Locale }) {
           {t.personas.items.map((p, i) => (
             <li key={p.name}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="flex h-full items-start gap-4 rounded-[20px] border border-white/10 bg-ink-700 pad-card">
+                <div className="flex h-full items-start gap-4 rounded-[20px] border border-fg/10 bg-raised pad-card">
                   <span className="grid size-14 shrink-0 place-items-center rounded-full bg-brand-gradient font-display text-2xl font-extrabold italic" aria-hidden>
                     {p.name[0]}
                   </span>
                   <div>
                     <p className="font-display text-2xl font-extrabold italic uppercase leading-none">
-                      {p.name} <span className="text-xl text-white/70">{p.age}</span>
+                      {p.name} <span className="text-xl text-fg/70">{p.age}</span>
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-white/70">{p.text}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-fg/70">{p.text}</p>
                   </div>
                 </div>
               </Reveal>
@@ -157,7 +157,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
         <div className="grid gap-5 lg:grid-cols-2">
           {t.cases.items.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08} className="h-full">
-              <article className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-white/10 bg-ink-700">
+              <article className="group flex h-full flex-col overflow-hidden rounded-[28px] border border-fg/10 bg-raised">
                 <div className="relative">
                   <Media src={c.image.url} alt={c.image.alt} className="aspect-[16/9]" imgClassName="transition-transform duration-700 group-hover:scale-105" sizes="(min-width:1200px) 50vw, 100vw" overlay />
                   <Chip tone="solid" className="absolute left-4 top-4">
@@ -166,7 +166,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
                 </div>
                 <div className="flex flex-1 flex-col p-6 md:p-8">
                   <h3 className="font-display text-3xl font-extrabold italic uppercase leading-none md:text-4xl">{c.title}</h3>
-                  <p className="mt-4 text-white/70">{c.text}</p>
+                  <p className="mt-4 text-fg/70">{c.text}</p>
                   <ul className="mt-auto flex flex-wrap gap-2 pt-6">
                     {c.tags.map((tag) => (
                       <li key={tag}>
@@ -185,11 +185,11 @@ export function PartnersView({ locale }: { locale: Locale }) {
         <div className="absolute inset-0 bg-court-lines opacity-50" aria-hidden />
         <div className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.corporate.eyebrow}</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/85">{t.corporate.eyebrow}</p>
             <Headline size="md" className="mt-5">
               {t.corporate.title}
             </Headline>
-            <p className="mt-6 max-w-lg text-lg text-white/85">{t.corporate.text}</p>
+            <p className="mt-6 max-w-lg text-lg text-fg/85">{t.corporate.text}</p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href={href(locale, "eventInquiry")} data-track="corporate_event_cta">
                 {t.corporate.cta}
@@ -199,8 +199,8 @@ export function PartnersView({ locale }: { locale: Locale }) {
           <Reveal delay={0.1}>
             <ul className="grid gap-3 sm:grid-cols-2">
               {t.corporate.formats.map((item) => (
-                <li key={item} className="flex items-start gap-3 rounded-[20px] bg-black/25 pad-card backdrop-blur">
-                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-white text-purple-700">
+                <li key={item} className="flex items-start gap-3 rounded-[20px] bg-canvas-deep/25 pad-card backdrop-blur">
+                  <span className="mt-0.5 grid size-6 shrink-0 place-items-center rounded-full bg-fg text-purple-700">
                     <Check className="size-3.5" strokeWidth={3} aria-hidden />
                   </span>
                   <span className="font-medium">{item}</span>
@@ -217,7 +217,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
             <Headline size="md">
               {t.form.title} <Accent>{t.form.accent}</Accent>
             </Headline>
-            <p className="mt-6 max-w-md text-lg text-white/70">{t.form.text}</p>
+            <p className="mt-6 max-w-md text-lg text-fg/70">{t.form.text}</p>
           </div>
           <LeadForm
             locale={locale}

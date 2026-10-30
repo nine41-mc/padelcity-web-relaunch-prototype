@@ -31,13 +31,13 @@ export function LegalPage({
         <Headline as="h1" size="md" className="mt-6">
           {title}
         </Headline>
-        <p className="mt-6 rounded-2xl border border-dashed border-white/25 bg-white/[0.03] p-4 text-sm text-white/70">{t.notice}</p>
+        <p className="mt-6 rounded-2xl border border-dashed border-fg/25 bg-fg/[0.03] p-4 text-sm text-fg/70">{t.notice}</p>
         <div className="mt-12 space-y-10">
           {blocks.map((s, i) => (
             <section key={`${i}-${s.heading}`}>
               {s.heading && <h2 className="mb-3 text-xl font-semibold">{s.heading}</h2>}
               {/* Paragraphs separated by blank lines; line breaks (addresses, lists) are kept */}
-              <div className="space-y-3 leading-relaxed text-white/75">
+              <div className="space-y-3 leading-relaxed text-fg/75">
                 {s.text.split("\n\n").map((para, j) => (
                   <p key={j} className="whitespace-pre-line [overflow-wrap:anywhere]">
                     {para}
@@ -47,7 +47,7 @@ export function LegalPage({
             </section>
           ))}
         </div>
-        {updated && <p className="mt-12 text-sm text-white/60">{updated}</p>}
+        {updated && <p className="mt-12 text-sm text-fg/60">{updated}</p>}
       </div>
     </section>
   );

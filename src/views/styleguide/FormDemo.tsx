@@ -15,7 +15,7 @@ export function FormDemo({ locale }: { locale: Locale }) {
   const [occasion, setOccasion] = useState(f.occasion.options[0].value);
   const [coach, setCoach] = useState(false);
   return (
-    <div className="grid gap-8 rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
+    <div className="grid gap-8 rounded-[28px] border border-fg/10 bg-raised pad-banner">
       <FormStep number={1} title={f.steps.event} />
       <div className="grid gap-6 md:grid-cols-2">
         <TextField id="sg-field" label={f.groupSize.label} required placeholder={f.groupSize.placeholder} hint={f.date.hint} />
@@ -23,7 +23,7 @@ export function FormDemo({ locale }: { locale: Locale }) {
       </div>
       <ChoiceCards name="sg-choice" legend={f.occasion.label} options={f.occasion.options} value={occasion} onChange={setOccasion} required />
       <ChoiceCards name="sg-choice-error" legend={f.occasion.label} options={f.occasion.options} value="" onChange={() => {}} required error={f.errors.occasion} />
-      <div className="divide-y divide-white/10 rounded-[20px] border border-white/10">
+      <div className="divide-y divide-fg/10 rounded-[20px] border border-fg/10">
         <YesNoRow name="sg-addon" title={f.addons[0].title} text={f.addons[0].text} yes={f.yes} no={f.no} value={coach} onChange={setCoach} />
       </div>
       <TextareaField id="sg-textarea" label={f.details.label} optional={f.optional} placeholder={f.details.placeholder} hint={f.details.hint} rows={3} />

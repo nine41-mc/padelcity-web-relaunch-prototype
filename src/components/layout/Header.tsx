@@ -10,6 +10,7 @@ import { Button } from "../ui/Button";
 import { cn } from "../ui/cn";
 import { Logo } from "./Logo";
 import { LanguageSwitch } from "./LanguageSwitch";
+import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 import { NavLink } from "./NavLink";
 
@@ -49,13 +50,15 @@ export function Header() {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-5 md:pt-4">
+    // stays dark in the light theme: it sits on the photo heroes until scrolled
+    <header data-theme="dark" className="fixed inset-x-0 top-0 z-50 px-3 pt-3 md:px-5 md:pt-4">
       <div
         className={cn(
           "mx-auto flex h-16 max-w-[1440px] items-center justify-between gap-3 xl:gap-4 rounded-full border pl-5 pr-2 transition-all duration-500 md:h-[72px] md:pl-7",
           scrolled || open
-            ? "border-white/10 bg-ink-800/80 shadow-elevated backdrop-blur-xl"
-            : "border-white/15 bg-white/[0.04] backdrop-blur-md",
+            ? "border-fg/10 bg-canvas/80 shadow-elevated backdrop-blur-xl"
+            : // light theme: no photo hero under every header → keep the dark pill readable on chalk
+              "border-fg/15 bg-fg/[0.04] backdrop-blur-md [:root[data-theme=light]_&]:bg-canvas/85",
         )}
       >
         <Logo className="h-6 md:h-7 lg:h-8" locale={locale} />
@@ -78,6 +81,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <LanguageSwitch pathname={pathname} current={locale} label={t.header.language} className="hidden md:flex" />
+          <ThemeToggle labels={{ toLight: t.header.themeToLight, toDark: t.header.themeToDark }} className="hidden md:grid" />
           <div className="hidden md:block">
             <Button href={href(locale, "app")} size="md" data-track="header_cta">
               {t.header.cta}
@@ -87,7 +91,7 @@ export function Header() {
             ref={toggleRef}
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="grid size-12 place-items-center rounded-full bg-white text-ink-800 lg:hidden"
+            className="grid size-12 place-items-center rounded-full bg-fg text-fg-inverse lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? t.header.menuClose : t.header.menuOpen}

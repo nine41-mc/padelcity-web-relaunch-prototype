@@ -21,7 +21,8 @@ export function PageHero({
   align?: "left" | "center";
 }) {
   return (
-    <section className={cn("relative isolate overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24 lg:min-h-[72vh] lg:pt-52", className)}>
+    // photo / gradient background: a dark area in the light theme as well
+    <section data-theme="dark" className={cn("relative isolate overflow-hidden pt-36 pb-16 md:pt-44 md:pb-24 lg:min-h-[72vh] lg:pt-52", className)}>
       <div className="absolute inset-0 -z-10">
         {image ? (
           <Media src={image.url} alt={image.alt} className="h-full w-full" priority imgClassName="grayscale-[35%]" />

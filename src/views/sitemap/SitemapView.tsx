@@ -102,7 +102,7 @@ export async function SitemapView({ locale }: { locale: Locale }) {
               <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
                 {byCountry.map(({ country, open, planned: soon }) => (
                   <div key={country}>
-                    <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-white">
+                    <h3 className="mb-2 flex items-center gap-2 text-sm font-semibold text-fg">
                       <CountryFlag country={country as ClubCountry} /> {countryNames[country]}
                     </h3>
                     <ul className="space-y-0.5">
@@ -112,9 +112,9 @@ export async function SitemapView({ locale }: { locale: Locale }) {
                         </Item>
                       ))}
                       {soon.map((c) => (
-                        <li key={c.id} className="flex min-h-9 items-center gap-2 text-base text-white/60">
+                        <li key={c.id} className="flex min-h-9 items-center gap-2 text-base text-fg/60">
                           {c.name}
-                          <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-magenta-300">{t.soon}</span>
+                          <span className="text-[12px] font-semibold uppercase tracking-[0.1em] text-accent-fg">{t.soon}</span>
                         </li>
                       ))}
                     </ul>
@@ -153,7 +153,7 @@ const byName = (locale: Locale) => (a: Club, b: Club) => a.name.localeCompare(b.
 function Group({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="mb-4 border-b border-white/12 pb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/75">{title}</h2>
+      <h2 className="mb-4 border-b border-fg/12 pb-3 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/75">{title}</h2>
       {Array.isArray(children) ? <ul className="space-y-0.5">{children}</ul> : children}
     </section>
   );
@@ -162,7 +162,7 @@ function Group({ title, children }: { title: string; children: React.ReactNode }
 function Item({ href: link, children }: { href: string; children: React.ReactNode }) {
   return (
     <li>
-      <Link href={link} className="group inline-flex min-h-9 items-center gap-2 text-base text-white/85 transition-colors hover:text-white">
+      <Link href={link} className="group inline-flex min-h-9 items-center gap-2 text-base text-fg/85 transition-colors hover:text-fg">
         <span className="h-px w-0 bg-brand-gradient transition-all duration-300 group-hover:w-4" aria-hidden />
         {children}
       </Link>

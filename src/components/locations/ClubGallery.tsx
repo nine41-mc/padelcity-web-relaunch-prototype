@@ -97,16 +97,17 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
+          data-theme="dark"
           aria-label={fill(t.galleryOf, { club: name })}
           tabIndex={-1}
           className="fixed inset-0 z-[70] flex flex-col bg-black/95 outline-none"
           onClick={(e) => e.target === e.currentTarget && close()}
         >
-          <div className="flex items-center justify-between p-4 text-sm text-white/70">
+          <div className="flex items-center justify-between p-4 text-sm text-fg/70">
             <span>
               {open + 1} / {images.length}
             </span>
-            <button type="button" onClick={close} className="grid size-11 place-items-center rounded-full bg-white/10 hover:bg-white/20" aria-label={t.close}>
+            <button type="button" onClick={close} className="grid size-11 place-items-center rounded-full bg-fg/10 hover:bg-fg/20" aria-label={t.close}>
               <X className="size-5" />
             </button>
           </div>
@@ -114,16 +115,16 @@ export function ClubGallery({ images, name, locale = "de" }: { images: ImageAsse
             <Media src={images[open].url} alt={images[open].alt} className="aspect-[4/3] w-full max-w-5xl rounded-[20px] lg:aspect-[16/9]" sizes="100vw" />
             {images.length > 1 && (
               <>
-                <button type="button" onClick={() => step(-1)} className="absolute left-2 grid size-12 place-items-center rounded-full bg-black/60 hover:bg-white/20 md:left-6" aria-label={t.prev}>
+                <button type="button" onClick={() => step(-1)} className="absolute left-2 grid size-12 place-items-center rounded-full bg-black/60 hover:bg-fg/20 md:left-6" aria-label={t.prev}>
                   <ChevronLeft className="size-6" />
                 </button>
-                <button type="button" onClick={() => step(1)} className="absolute right-2 grid size-12 place-items-center rounded-full bg-black/60 hover:bg-white/20 md:right-6" aria-label={t.next}>
+                <button type="button" onClick={() => step(1)} className="absolute right-2 grid size-12 place-items-center rounded-full bg-black/60 hover:bg-fg/20 md:right-6" aria-label={t.next}>
                   <ChevronRight className="size-6" />
                 </button>
               </>
             )}
           </div>
-          <p className="px-4 pb-6 text-center text-sm text-white/70">{images[open].alt}</p>
+          <p className="px-4 pb-6 text-center text-sm text-fg/70">{images[open].alt}</p>
         </div>
       )}
     </>

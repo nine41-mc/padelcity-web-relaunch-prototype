@@ -76,8 +76,9 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
   return (
     <Link
       href={href(locale, "locations", club.slug)}
+      data-theme="dark"
       className={cn(
-        "theme-dark group relative block overflow-hidden rounded-[28px] bg-ink-700 [container-type:inline-size]",
+        "group relative block overflow-hidden rounded-[28px] bg-raised [container-type:inline-size]",
         fill ? "aspect-[4/5] w-full" : "aspect-[3/4] w-[78vw] shrink-0 snap-start md:w-[42vw] lg:aspect-[4/5] lg:w-[30vw] xl:w-[420px]",
       )}
     >
@@ -102,8 +103,8 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
 
       {/* Courts + sports: revealed on hover/focus; always visible on touch devices (no hover) */}
       <div className="absolute inset-x-5 bottom-5 pr-14 transition-all duration-300 [@media(hover:hover)]:translate-y-3 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
-        <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
-        <SportList club={club} locale={locale} className="mt-1 text-white/80" />
+        <p className="text-sm font-medium text-fg">{courtSummary(club, locale)}</p>
+        <SportList club={club} locale={locale} className="mt-1 text-fg/80" />
       </div>
       <CardArrow tone="photo" className="absolute bottom-5 right-5" />
     </Link>

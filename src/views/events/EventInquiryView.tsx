@@ -26,7 +26,7 @@ export async function EventInquiryView({ locale }: { locale: Locale }) {
           <div className="lg:col-span-4">
             <Eyebrow className="mb-4">{t.hero.eyebrow}</Eyebrow>
             <Headline size="md">{t.intro.title}</Headline>
-            <p className="mt-6 text-lg text-white/75">{t.intro.text}</p>
+            <p className="mt-6 text-lg text-fg/75">{t.intro.text}</p>
           </div>
           <EventInquiryForm locale={locale} t={t} locations={locations} className="lg:col-span-8" />
         </div>

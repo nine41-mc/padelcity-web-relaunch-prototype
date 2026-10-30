@@ -20,7 +20,7 @@ const copy = {
 export function PartnerBand({ locale, partners = allPartners }: { locale: Locale; partners?: Partner[] }) {
   const t = copy[locale];
   return (
-    <Section tone="black" bleed className="border-t border-white/10">
+    <Section tone="black" bleed className="border-t border-fg/10">
       <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <Reveal>
           <Eyebrow>{t.eyebrow}</Eyebrow>

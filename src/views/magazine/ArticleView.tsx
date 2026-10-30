@@ -54,9 +54,9 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
             <Headline as="h1" size="md" className="mt-5 max-w-5xl lg:text-7xl">
               {article.title}
             </Headline>
-            <p className="mt-6 max-w-3xl text-lg text-white/75 md:text-xl">{article.excerpt}</p>
-            <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-white/70">
-              <span className="font-medium text-white/80">{article.author}</span>
+            <p className="mt-6 max-w-3xl text-lg text-fg/75 md:text-xl">{article.excerpt}</p>
+            <p className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg/70">
+              <span className="font-medium text-fg/80">{article.author}</span>
               <time dateTime={article.publishedAt}>{formatDate(article.publishedAt, locale)}</time>
               <span className="inline-flex items-center gap-1">
                 <Clock className="size-4" aria-hidden /> {article.readingTimeMin} {t.readingTime}
@@ -77,13 +77,13 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
         <div className="container-site py-14 md:py-20">
           <div className="mx-auto max-w-[720px]">
             {/* Contentful module: richText */}
-            <div className="space-y-6 text-lg leading-[1.75] text-white/80">
+            <div className="space-y-6 text-lg leading-[1.75] text-fg/80">
               {body.slice(0, 2).map((p, i) => (
                 <p
                   key={i}
                   className={
                     i === 0
-                      ? "text-xl text-white first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-7xl first-letter:font-extrabold first-letter:italic first-letter:leading-[0.8] first-letter:text-magenta-400"
+                      ? "text-xl text-fg first-letter:float-left first-letter:mr-3 first-letter:font-display first-letter:text-7xl first-letter:font-extrabold first-letter:italic first-letter:leading-[0.8] first-letter:text-magenta-400"
                       : undefined
                   }
                 >
@@ -103,7 +103,7 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
               </blockquote>
             )}
 
-            <div className="space-y-6 text-lg leading-[1.75] text-white/80">
+            <div className="space-y-6 text-lg leading-[1.75] text-fg/80">
               {body.slice(2, 4).map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
@@ -113,12 +113,12 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
               // Content type article – field inlineImage
               <figure className="my-12 md:-mx-8 lg:-mx-32">
                 <Media src={article.inlineImage.url} alt={article.inlineImage.alt} className="aspect-[16/9] rounded-[20px]" sizes="(min-width:1200px) 980px, 100vw" />
-                <figcaption className="mt-3 text-sm text-white/70">{article.inlineImage.alt}</figcaption>
+                <figcaption className="mt-3 text-sm text-fg/70">{article.inlineImage.alt}</figcaption>
               </figure>
             )}
 
             {body.length > 4 && (
-              <div className="space-y-6 text-lg leading-[1.75] text-white/80">
+              <div className="space-y-6 text-lg leading-[1.75] text-fg/80">
                 {body.slice(4).map((p, i) => (
                   <p key={i}>{p}</p>
                 ))}
@@ -130,8 +130,8 @@ export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) 
               <YouTubeLite videoId={article.youtubeId} title={`${t.article.video}: ${article.category}`} poster={article.image?.url} t={t.videoUi} />
             </div>
 
-            <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 md:flex-row md:items-center md:justify-between">
-              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-white/70">{t.article.share}</p>
+            <div className="mt-12 flex flex-col gap-4 border-t border-fg/10 pt-8 md:flex-row md:items-center md:justify-between">
+              <p className="text-sm font-semibold uppercase tracking-[0.14em] text-fg/70">{t.article.share}</p>
               <ShareButton title={article.title} locale={locale} track="share_article" />
             </div>
           </div>

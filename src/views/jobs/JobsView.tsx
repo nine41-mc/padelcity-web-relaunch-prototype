@@ -60,11 +60,11 @@ export function JobsView({ locale }: { locale: Locale }) {
           {t.benefits.items.map((b, i) => (
             <li key={b.title}>
               <Reveal delay={i * 0.05} className="h-full">
-                <div className="flex h-full gap-5 rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 md:flex-col">
+                <div className="flex h-full gap-5 rounded-[20px] border border-fg/10 bg-raised pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 md:flex-col">
                   <BrandIcon name={b.icon} tone={i === 0 ? "gradient" : "glass"} />
                   <div>
                     <h3 className="font-display text-2xl font-extrabold italic uppercase leading-none md:text-3xl">{b.title}</h3>
-                    <p className="mt-2 text-white/70">{b.text}</p>
+                    <p className="mt-2 text-fg/70">{b.text}</p>
                   </div>
                 </div>
               </Reveal>
@@ -75,7 +75,7 @@ export function JobsView({ locale }: { locale: Locale }) {
 
       <section className="overflow-hidden bg-brandbook-gradient py-16 md:py-24" aria-labelledby="kultur">
         <div className="container-site">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-white/85">{t.culture.eyebrow}</p>
+          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/85">{t.culture.eyebrow}</p>
           <h2 id="kultur" className="mt-4 max-w-3xl font-display text-4xl font-extrabold italic uppercase leading-[0.95] text-balance md:text-5xl lg:text-6xl">
             {t.culture.title}
           </h2>
@@ -84,13 +84,13 @@ export function JobsView({ locale }: { locale: Locale }) {
           {values[locale].map((v) => (
             <span key={v.name} className="mx-5 flex items-center gap-10 font-display text-6xl font-extrabold italic uppercase md:text-8xl">
               {v.name}
-              <span className="font-brush text-3xl font-normal normal-case not-italic text-white/70 md:text-5xl">{v.claim}</span>
+              <span className="font-brush text-3xl font-normal normal-case not-italic text-fg/70 md:text-5xl">{v.claim}</span>
             </span>
           ))}
         </Marquee>
         <div className="container-site mt-12 grid gap-6 md:grid-cols-[1fr_1fr] md:items-center">
           <Media src="/images/jobs/culture.jpg" alt={t.culture.imageAlt} className="aspect-[16/10] rounded-[28px]" sizes="(min-width:768px) 50vw, 100vw" />
-          <p className="max-w-lg text-lg text-white/85">{t.culture.text}</p>
+          <p className="max-w-lg text-lg text-fg/85">{t.culture.text}</p>
         </div>
       </section>
 
@@ -112,14 +112,14 @@ export function JobsView({ locale }: { locale: Locale }) {
 
       <Section id="initiativ" tone="black" className="scroll-mt-16">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 pad-banner">
+          <div className="relative overflow-hidden rounded-[28px] border border-fg/10 bg-raised pad-banner">
             <div className="absolute inset-0 bg-court-lines opacity-40" aria-hidden />
             <div className="relative grid items-end gap-8 md:grid-cols-[1.4fr_1fr]">
               <div>
                 <Headline size="md">
                   {t.initiative.title} <Accent>{t.initiative.accent}</Accent>
                 </Headline>
-                <p className="mt-5 max-w-lg text-lg text-white/70">{t.initiative.text}</p>
+                <p className="mt-5 max-w-lg text-lg text-fg/70">{t.initiative.text}</p>
               </div>
               <div className="md:justify-self-end">
                 <Button href={`mailto:${APPLY_EMAIL}?subject=${encodeURIComponent(t.initiative.cta)}`} external variant="gradient" size="md" data-track="jobs_initiative_cta">

@@ -10,7 +10,7 @@ import type ClubMap from "./ClubMap";
  */
 const ClubMapClient = dynamic(() => import("./ClubMap"), {
   ssr: false,
-  loading: () => <div className="h-full w-full animate-pulse bg-ink-700" aria-hidden />,
+  loading: () => <div className="h-full w-full animate-pulse bg-raised" aria-hidden />,
 });
 
 export function ClubMapLazy(props: ComponentProps<typeof ClubMap>) {

@@ -75,7 +75,7 @@ export function EventsExplorer({
       <div
         role="search"
         aria-label={t.filterLabel}
-        className="sticky top-[76px] z-20 -mx-4 mb-8 flex flex-col gap-3 border-y border-white/10 bg-ink-800/85 px-4 py-3 backdrop-blur-md md:top-[84px] md:mx-0 md:flex-row md:items-center md:justify-between md:rounded-full md:border md:px-3 md:py-2"
+        className="sticky top-[76px] z-20 -mx-4 mb-8 flex flex-col gap-3 border-y border-fg/10 bg-canvas/85 px-4 py-3 backdrop-blur-md md:top-[84px] md:mx-0 md:flex-row md:items-center md:justify-between md:rounded-full md:border md:px-3 md:py-2"
       >
         <div className="-mx-4 flex gap-2 overflow-x-auto px-4 scrollbar-none md:mx-0 md:px-0" role="radiogroup" aria-label={t.typeLabel}>
           {typeOptions.map((o) => (
@@ -87,7 +87,7 @@ export function EventsExplorer({
               onClick={() => setType(o.value)}
               className={cn(
                 "h-11 shrink-0 rounded-full px-5 text-sm font-medium transition-colors",
-                type === o.value ? "bg-brand-gradient text-white" : "border border-white/40 text-white/85 hover:border-white/70",
+                type === o.value ? "bg-brand-gradient text-white" : "border border-fg/40 text-fg/85 hover:border-fg/70",
               )}
             >
               {o.label}
@@ -110,7 +110,7 @@ export function EventsExplorer({
             onClick={() => setThisWeek((v) => !v)}
             className={cn(
               "inline-flex h-11 shrink-0 items-center gap-2 rounded-full px-4 text-sm font-medium transition-colors",
-              thisWeek ? "bg-brand-gradient text-white" : "border border-white/40 text-white/85 hover:border-white/70",
+              thisWeek ? "bg-brand-gradient text-white" : "border border-fg/40 text-fg/85 hover:border-fg/70",
             )}
           >
             <CalendarSearch className="size-4" aria-hidden /> {t.thisWeek}
@@ -118,7 +118,7 @@ export function EventsExplorer({
         </div>
       </div>
 
-      <p className="mb-6 text-sm text-white/70" aria-live="polite">
+      <p className="mb-6 text-sm text-fg/70" aria-live="polite">
         {filtered.length} {plural(locale, filtered.length, t.one, t.many)}
         {city !== "all" && ` ${t.inCity} ${city}`}
       </p>
@@ -132,14 +132,14 @@ export function EventsExplorer({
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center gap-4 rounded-[28px] border border-dashed border-white/15 pad-banner text-center">
-          <span className="grid size-14 place-items-center rounded-full bg-white/5">
-            <CalendarSearch className="size-6 text-white/70" aria-hidden />
+        <div className="flex flex-col items-center gap-4 rounded-[28px] border border-dashed border-fg/15 pad-banner text-center">
+          <span className="grid size-14 place-items-center rounded-full bg-fg/5">
+            <CalendarSearch className="size-6 text-fg/70" aria-hidden />
           </span>
           <p className="font-display text-3xl font-extrabold italic uppercase">{t.emptyTitle}</p>
-          <p className="max-w-md text-white/70">{t.emptyText}</p>
+          <p className="max-w-md text-fg/70">{t.emptyText}</p>
           {dirty && (
-            <button type="button" onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/40 px-5 py-2 text-sm hover:border-white">
+            <button type="button" onClick={reset} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-fg/40 px-5 py-2 text-sm hover:border-fg">
               <RotateCcw className="size-4" aria-hidden /> {t.reset}
             </button>
           )}

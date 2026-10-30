@@ -35,18 +35,18 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
   return (
     <article
       className={cn(
-        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50",
+        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-fg/10 bg-raised transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50",
         className,
       )}
     >
-      <div className="theme-dark relative">
+      <div data-theme="dark" className="relative">
         <Media src={event.image?.url} alt={event.image?.alt ?? event.title} className="aspect-[16/10]" overlay sizes="(min-width:1200px) 33vw, (min-width:768px) 50vw, 100vw" />
         <div className="absolute inset-x-3 top-3 flex justify-between">
           {event.recurrence ? <Chip tone="gradient">{event.recurrence}</Chip> : <Chip tone="dark">{event.type === "tournament" ? t.tournament : event.type === "training" ? t.training : t.event}</Chip>}
         </div>
         {/* Price bottom-right on the image – same placement as on the club cards */}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/75 to-transparent" aria-hidden />
-        <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">{price}</p>
+        <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-fg drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">{price}</p>
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <div className="flex items-start justify-between gap-3">
@@ -57,18 +57,18 @@ export function EventCard({ event, locale = "de", className }: { event: ClubEven
           </h3>
           {event.level && <Chip tone="level" className="shrink-0">{event.level}</Chip>}
         </div>
-        <ul className="space-y-1 text-sm text-white/70">
+        <ul className="space-y-1 text-sm text-fg/70">
           <li className="flex items-center gap-2">
-            <CalendarDays className="size-4 text-white/70" /> {formatEventDate(event.start, locale)}
+            <CalendarDays className="size-4 text-fg/70" /> {formatEventDate(event.start, locale)}
           </li>
           {event.clubName && (
             <li className="flex items-center gap-2">
-              <MapPin className="size-4 text-white/70" /> {event.clubName}
+              <MapPin className="size-4 text-fg/70" /> {event.clubName}
             </li>
           )}
         </ul>
         {/* Sign-up: app primary, web as outline. No capacity/places left. */}
-        <div className="relative z-10 mt-auto border-t border-white/10 pt-4">
+        <div className="relative z-10 mt-auto border-t border-fg/10 pt-4">
           <EventSignup eventId={event.id} locale={locale} size="sm" />
         </div>
       </div>

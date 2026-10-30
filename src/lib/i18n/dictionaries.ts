@@ -35,6 +35,8 @@ const de = {
   header: {
     cta: "Jetzt Padel spielen",
     menuOpen: "Menü öffnen",
+    themeToLight: "Hellen Modus einschalten",
+    themeToDark: "Dunklen Modus einschalten",
     menuClose: "Menü schließen",
     mainNav: "Hauptnavigation",
     mobileNav: "Mobile Navigation",
@@ -118,6 +120,8 @@ const en: Dictionary = {
   header: {
     cta: "Play padel now",
     menuOpen: "Open menu",
+    themeToLight: "Switch to light mode",
+    themeToDark: "Switch to dark mode",
     menuClose: "Close menu",
     mainNav: "Main navigation",
     mobileNav: "Mobile navigation",
@@ -199,6 +203,8 @@ const pl: Dictionary = {
   header: {
     cta: "Zagraj w padla",
     menuOpen: "Otwórz menu",
+    themeToLight: "Włącz tryb jasny",
+    themeToDark: "Włącz tryb ciemny",
     menuClose: "Zamknij menu",
     mainNav: "Nawigacja główna",
     mobileNav: "Nawigacja mobilna",

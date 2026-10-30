@@ -13,12 +13,12 @@ export function Chip({
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-[13px] font-semibold leading-tight whitespace-nowrap",
-        tone === "default" && "border border-white/35 text-white/90",
+        tone === "default" && "border border-fg/35 text-fg/90",
         tone === "gradient" && "bg-brand-gradient text-white",
-        tone === "solid" && "bg-white text-ink-800",
-        tone === "dark" && "bg-black/60 text-white backdrop-blur",
+        tone === "solid" && "bg-fg text-fg-inverse",
+        tone === "dark" && "bg-black/60 text-fg backdrop-blur",
         // Skill level ("Level 1–3") – HIGHLIGHT role: the only chip allowed in Optic Yellow
-        tone === "level" && "border border-optic-500/70 text-optic-500",
+        tone === "level" && "border border-optic-500/70 text-highlight-fg",
         className,
       )}
     >

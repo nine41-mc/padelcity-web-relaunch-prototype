@@ -38,18 +38,18 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
               <div
                 className={cn(
                   "flex h-[calc(100%-2.25rem)] flex-col rounded-[20px] border pad-card",
-                  m.highlight ? "border-magenta-500/50 bg-magenta-500/[0.08]" : "border-white/10 bg-ink-700",
+                  m.highlight ? "border-magenta-500/50 bg-magenta-500/[0.08]" : "border-fg/10 bg-raised",
                 )}
               >
-                <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-white" : "text-brand-gradient")}>{m.year}</p>
+                <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-fg" : "text-brand-gradient")}>{m.year}</p>
                 <h3 className="mt-4 min-h-[2lh] text-lg font-semibold leading-snug">{m.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/70">{m.text}</p>
+                <p className="mt-2 text-sm leading-relaxed text-fg/70">{m.text}</p>
               </div>
             </Reveal>
           </li>
         ))}
       </ol>
-      <p className="mt-2 text-sm text-white/70 lg:hidden" aria-hidden>
+      <p className="mt-2 text-sm text-fg/70 lg:hidden" aria-hidden>
         {t.swipe}
       </p>
     </div>

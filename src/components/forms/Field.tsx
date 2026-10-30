@@ -3,18 +3,18 @@ import { cn } from "../ui/cn";
 /** Glass input on dark panels (Figma: Input/Glass) – shared by text fields, textareas and the lead form. */
 export const fieldClass = (invalid?: boolean) =>
   cn(
-    "w-full rounded-2xl border bg-black/40 px-4 text-white placeholder:text-white/60 transition-colors focus:outline-none focus:ring-2",
-    invalid ? "border-danger focus:border-danger focus:ring-danger/40" : "border-white/45 focus:border-optic-500 focus:ring-optic-500/50",
+    "w-full rounded-2xl border bg-canvas-deep/40 px-4 text-fg placeholder:text-fg/60 transition-colors focus:outline-none focus:ring-2",
+    invalid ? "border-danger focus:border-danger focus:ring-danger/40" : "border-fg/45 focus:border-optic-500 focus:ring-optic-500/50",
   );
 
 /** Label line: required star in magenta, optional note in grey. */
 export function FieldLabel({ htmlFor, id, required, optional, children }: { htmlFor?: string; id?: string; required?: boolean; optional?: string; children: React.ReactNode }) {
   const Tag = htmlFor ? "label" : "span";
   return (
-    <Tag htmlFor={htmlFor} id={id} className="mb-2 block text-sm font-medium text-white/85">
+    <Tag htmlFor={htmlFor} id={id} className="mb-2 block text-sm font-medium text-fg/85">
       {children}
-      {required && <span className="text-magenta-300"> *</span>}
-      {optional && <span className="font-normal text-white/70"> {optional}</span>}
+      {required && <span className="text-accent-fg"> *</span>}
+      {optional && <span className="font-normal text-fg/70"> {optional}</span>}
     </Tag>
   );
 }
@@ -23,7 +23,7 @@ export function FieldLabel({ htmlFor, id, required, optional, children }: { html
 export function FieldMessage({ id, error, hint }: { id: string; error?: string; hint?: string }) {
   if (!error && !hint) return null;
   return (
-    <p id={id} className={cn("mt-2 text-sm", error ? "text-danger" : "text-white/75")}>
+    <p id={id} className={cn("mt-2 text-sm", error ? "text-danger" : "text-fg/75")}>
       {error ?? hint}
     </p>
   );

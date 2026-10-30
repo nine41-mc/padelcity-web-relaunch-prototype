@@ -95,7 +95,7 @@ export function PosterTitle({
   const lines = posterLines(city, maxOneLine);
   return (
     <div className={cn("absolute inset-x-0", className)} aria-hidden>
-      <p className="px-4 font-sans font-bold leading-[0.82] tracking-[-0.05em] text-white" style={{ fontSize: `${size.font}cqw` }}>
+      <p className="px-4 font-sans font-bold leading-[0.82] tracking-[-0.05em] text-fg" style={{ fontSize: `${size.font}cqw` }}>
         {lines.map((l, i) => (
           <span key={i} className={i > 0 && i === lines.length - 1 ? "block text-transparent [-webkit-text-stroke:1.5px_white]" : "block"}>
             {l}
@@ -104,7 +104,7 @@ export function PosterTitle({
       </p>
       {/* Location within the city (e.g. München → Frankfurter Ring / Tucherpark) */}
       {spot && (
-        <p className="mt-3 px-4 font-sans font-bold leading-none tracking-[-0.03em] text-white" style={{ fontSize: `${size.spot}cqw` }}>
+        <p className="mt-3 px-4 font-sans font-bold leading-none tracking-[-0.03em] text-fg" style={{ fontSize: `${size.spot}cqw` }}>
           {spot}
         </p>
       )}

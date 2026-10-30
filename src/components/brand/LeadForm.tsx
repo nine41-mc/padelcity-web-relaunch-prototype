@@ -56,15 +56,15 @@ export function LeadForm({
           <Check className="size-7" strokeWidth={3} aria-hidden />
         </span>
         <p className="mt-6 font-display text-4xl font-extrabold italic uppercase">{successTitle ?? t.successTitle}</p>
-        <p className="mt-3 max-w-md text-white/75">{successText ?? t.successText}</p>
-        <p className="mt-6 text-sm text-white/70">{t.prototype}</p>
+        <p className="mt-3 max-w-md text-fg/75">{successText ?? t.successText}</p>
+        <p className="mt-6 text-sm text-fg/70">{t.prototype}</p>
       </div>
     );
   }
 
   return (
     <form
-      className={cn("rounded-[28px] border border-white/10 bg-ink-700 pad-banner", className)}
+      className={cn("rounded-[28px] border border-fg/10 bg-raised pad-banner", className)}
       onSubmit={(e) => {
         e.preventDefault();
         setDone(true);
@@ -92,7 +92,7 @@ export function LeadForm({
       </div>
       <Consent locale={locale} id={`${uid}-consent`} name="consent" required text={consentText} className="mt-6" />
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-white/70">{t.required}</p>
+        <p className="text-sm text-fg/70">{t.required}</p>
         <Button type="submit" variant="gradient" data-track={track}>
           {submitLabel}
         </Button>

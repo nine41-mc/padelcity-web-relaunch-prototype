@@ -169,7 +169,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
                 <Lead className="mt-5">{event.subtitle ?? t.detail.fallbackDescription(t.types[event.type], where)}</Lead>
               )}
               {/* When & where */}
-              <dl className="mt-8 grid gap-5 border-t border-white/10 pt-6 sm:grid-cols-3">
+              <dl className="mt-8 grid gap-5 border-t border-fg/10 pt-6 sm:grid-cols-3">
                 <FactRow icon={<CalendarDays className="size-5" />} label={t.detail.start}>
                   {dateTime(event.start)}
                 </FactRow>
@@ -182,7 +182,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
                       <Link href={href(locale, "locations", club.slug)} className="font-semibold underline-offset-4 hover:underline" data-track="club_link_click">
                         {club.name}
                       </Link>
-                      <span className="block text-sm text-white/70">
+                      <span className="block text-sm text-fg/70">
                         {club.address.streetName} {club.address.buildingNumber}, {club.address.postalCode} {club.address.localityName}
                       </span>
                     </>
@@ -214,7 +214,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
                   )}
                   {freePlaces !== undefined && (
                     <FactRow icon={<Ticket className="size-5" />} label={t.detail.freePlaces}>
-                      {freePlaces > 0 ? freePlaces : <span className="font-semibold text-magenta-300">{t.detail.fullyBooked}</span>}
+                      {freePlaces > 0 ? freePlaces : <span className="font-semibold text-accent-fg">{t.detail.fullyBooked}</span>}
                     </FactRow>
                   )}
               </EventSignupCard>
@@ -224,10 +224,10 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
             <div className="lg:col-start-1">
               {content.intro && <Lead className="mb-8">{content.intro}</Lead>}
               {content.facts && content.facts.length > 0 && (
-                <dl className="mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-[20px] border border-white/10 bg-white/10 md:grid-cols-3">
+                <dl className="mb-8 grid grid-cols-2 gap-px overflow-hidden rounded-[20px] border border-fg/10 bg-fg/10 md:grid-cols-3">
                   {content.facts.map((f) => (
-                    <div key={f.label} className="bg-ink-700 p-5">
-                      <dt className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{f.label}</dt>
+                    <div key={f.label} className="bg-raised p-5">
+                      <dt className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{f.label}</dt>
                       <dd className="mt-2 text-lg font-semibold leading-tight">{f.value}</dd>
                     </div>
                   ))}
@@ -239,10 +239,10 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
               )}
               <ol className="grid gap-4 md:grid-cols-3">
                 {steps.map((s, i) => (
-                  <li key={s.title} className="rounded-[20px] border border-white/10 pad-card">
+                  <li key={s.title} className="rounded-[20px] border border-fg/10 pad-card">
                     <span className="font-display text-3xl font-extrabold italic text-brand-gradient">0{i + 1}</span>
                     <p className="mt-2 font-display text-xl font-extrabold italic uppercase">{s.title}</p>
-                    <p className="mt-2 text-sm text-white/70">{s.text}</p>
+                    <p className="mt-2 text-sm text-fg/70">{s.text}</p>
                   </li>
                 ))}
               </ol>
@@ -258,16 +258,16 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
             <div>
               <Eyebrow className="mb-4">{t.detail.scheduleEyebrow}</Eyebrow>
               <Headline size="sm">{t.detail.scheduleTitle}</Headline>
-              <p className="mt-4 text-white/70">{t.detail.scheduleNote}</p>
+              <p className="mt-4 text-fg/70">{t.detail.scheduleNote}</p>
             </div>
             <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
               {content.schedule.map((d) => (
-                <div key={d.day} className="rounded-[20px] border border-white/10 pad-card">
-                  <p className="font-display text-2xl font-extrabold italic uppercase text-white">{d.day}</p>
+                <div key={d.day} className="rounded-[20px] border border-fg/10 pad-card">
+                  <p className="font-display text-2xl font-extrabold italic uppercase text-fg">{d.day}</p>
                   <ul className="mt-4 space-y-3">
                     {d.items.map((it) => (
-                      <li key={it.time + it.title} className="flex gap-4 border-t border-white/10 pt-3">
-                        <span className="w-14 shrink-0 tabular-nums text-white/70">{it.time}</span>
+                      <li key={it.time + it.title} className="flex gap-4 border-t border-fg/10 pt-3">
+                        <span className="w-14 shrink-0 tabular-nums text-fg/70">{it.time}</span>
                         <span>{it.title}</span>
                       </li>
                     ))}
@@ -286,7 +286,7 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
             <div>
               <Eyebrow className="mb-4">{t.detail.videoEyebrow}</Eyebrow>
               <Headline size="md">{t.detail.videoTitle}</Headline>
-              <p className="mt-4 max-w-md text-white/70">{t.detail.videoNote}</p>
+              <p className="mt-4 max-w-md text-fg/70">{t.detail.videoNote}</p>
             </div>
             <LiteYouTube title={content.video.title} youtubeId={content.video.youtubeId} thumbnail={content.video.thumbnail} locale={locale} />
           </div>

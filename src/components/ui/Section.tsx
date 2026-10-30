@@ -2,8 +2,8 @@ import { cn } from "./cn";
 
 type Tone = "ink" | "black" | "purple" | "light";
 const tones: Record<Tone, string> = {
-  ink: "bg-ink-800 text-chalk",
-  black: "bg-black text-chalk",
+  ink: "bg-canvas text-fg",
+  black: "bg-canvas-deep text-fg",
   purple: "bg-brandbook-gradient text-white",
   light: "bg-chalk text-ink-800",
 };

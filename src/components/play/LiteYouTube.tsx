@@ -36,7 +36,7 @@ export function LiteYouTube({
   const [state, setState] = useState<"idle" | "playing" | "missing">("idle");
 
   return (
-    <div className={cn("group relative aspect-video overflow-hidden rounded-[20px] border border-white/10 bg-ink-700", className)}>
+    <div data-theme="dark" className={cn("group relative aspect-video overflow-hidden rounded-[20px] border border-fg/10 bg-raised", className)}>
       {state === "playing" && youtubeId ? (
         <iframe
           className="absolute inset-0 size-full"
@@ -54,7 +54,7 @@ export function LiteYouTube({
         >
           <Media src={thumbnail} alt="" className="!absolute inset-0" imgClassName="transition-transform duration-700 group-hover:scale-105" overlay sizes="(min-width:1200px) 50vw, 100vw" />
           <span className="absolute left-1/2 top-1/2 grid size-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-brand-gradient shadow-glow transition-transform duration-300 group-hover:scale-110 md:size-20">
-            <Play className="ml-1 size-7 fill-white text-white md:size-8" aria-hidden />
+            <Play className="ml-1 size-7 fill-fg text-fg md:size-8" aria-hidden />
           </span>
           <span className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
             <span className="font-semibold leading-tight">
@@ -64,7 +64,7 @@ export function LiteYouTube({
             {duration && <span className="shrink-0 rounded-md bg-black/60 px-2 py-0.5 text-[13px] font-semibold">{duration}</span>}
           </span>
           {state === "missing" && (
-            <span role="status" className="absolute inset-x-4 top-4 rounded-md bg-black/70 px-3 py-2 text-sm text-white/90">
+            <span role="status" className="absolute inset-x-4 top-4 rounded-md bg-black/70 px-3 py-2 text-sm text-fg/90">
               {t.soon} {/* TODO(content): youtubeId missing */}
             </span>
           )}

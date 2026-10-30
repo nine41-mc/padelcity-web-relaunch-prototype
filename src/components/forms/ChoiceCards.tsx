@@ -31,9 +31,9 @@ export function ChoiceCards({
   const msg = `${name}-msg`;
   return (
     <fieldset className={className} aria-describedby={error ? msg : undefined}>
-      <legend className="mb-2 block text-sm font-medium text-white/85">
+      <legend className="mb-2 block text-sm font-medium text-fg/85">
         {legend}
-        {required && <span className="text-magenta-300"> *</span>}
+        {required && <span className="text-accent-fg"> *</span>}
       </legend>
       <div className="grid gap-3 md:grid-cols-3">
         {options.map((o) => (
@@ -42,7 +42,7 @@ export function ChoiceCards({
             key={o.value}
             className={cn(
               "group cursor-pointer rounded-[20px] p-px transition-colors has-checked:bg-brand-gradient has-focus-visible:ring-2 has-focus-visible:ring-optic-500/60",
-              error ? "bg-danger" : "bg-white/10 hover:bg-white/35",
+              error ? "bg-danger" : "bg-fg/10 hover:bg-fg/35",
             )}
           >
             <input
@@ -54,12 +54,12 @@ export function ChoiceCards({
               required={required}
               className="sr-only"
             />
-            <span className="flex h-full flex-col gap-3 rounded-[19px] bg-ink-700 pad-card">
+            <span className="flex h-full flex-col gap-3 rounded-[19px] bg-raised pad-card">
               <span className="grid size-[22px] place-items-center rounded-full border border-white/25 group-has-checked:border-transparent group-has-checked:bg-brand-gradient" aria-hidden>
-                <span className="size-2 rounded-full bg-white opacity-0 group-has-checked:opacity-100" />
+                <span className="size-2 rounded-full bg-fg opacity-0 group-has-checked:opacity-100" />
               </span>
-              <span className="text-lg font-semibold text-white">{o.title}</span>
-              {o.text && <span className="text-sm text-white/85">{o.text}</span>}
+              <span className="text-lg font-semibold text-fg">{o.title}</span>
+              {o.text && <span className="text-sm text-fg/85">{o.text}</span>}
             </span>
           </label>
         ))}

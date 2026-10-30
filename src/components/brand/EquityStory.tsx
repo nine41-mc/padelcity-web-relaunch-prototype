@@ -40,11 +40,11 @@ export function EquityStory({ chapters, ariaLabel }: { chapters: EquityChapter[]
                   href={`#story-${c.id}`}
                   className={cn(
                     "group flex items-baseline gap-5 rounded-2xl px-5 py-4 transition-all duration-500",
-                    active === i ? "bg-white/[0.06]" : "opacity-70 hover:opacity-100 focus-visible:opacity-100",
+                    active === i ? "bg-fg/[0.06]" : "opacity-70 hover:opacity-100 focus-visible:opacity-100",
                   )}
                   aria-current={active === i ? "step" : undefined}
                 >
-                  <span className={cn("font-display text-4xl font-extrabold italic transition-colors", active === i ? "text-white" : "text-white/70")}>
+                  <span className={cn("font-display text-4xl font-extrabold italic transition-colors", active === i ? "text-fg" : "text-fg/70")}>
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <span className="font-display text-3xl font-extrabold italic uppercase leading-none">{c.label}</span>
@@ -52,7 +52,7 @@ export function EquityStory({ chapters, ariaLabel }: { chapters: EquityChapter[]
               </li>
             ))}
           </ol>
-          <div className="mt-8 h-1 w-full overflow-hidden rounded-full bg-white/10" aria-hidden>
+          <div className="mt-8 h-1 w-full overflow-hidden rounded-full bg-fg/10" aria-hidden>
             <div className="h-full bg-brand-gradient transition-all duration-500" style={{ width: `${((active + 1) / chapters.length) * 100}%` }} />
           </div>
         </div>
@@ -70,16 +70,16 @@ export function EquityStory({ chapters, ariaLabel }: { chapters: EquityChapter[]
             }}
             className={cn(
               "scroll-mt-32 rounded-[28px] border pad-banner transition-all duration-500",
-              active === i ? "border-magenta-500/40 bg-ink-700 lg:shadow-glow" : "border-white/10 bg-ink-700/60",
+              active === i ? "border-magenta-500/40 bg-raised lg:shadow-glow" : "border-fg/10 bg-raised/60",
             )}
           >
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-magenta-300">{c.kicker}</p>
+            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-accent-fg">{c.kicker}</p>
             <h3 className="mt-4 font-display text-4xl font-extrabold italic uppercase leading-[0.95] md:text-5xl">{c.title}</h3>
-            <p className="mt-5 text-base leading-relaxed text-white/75 md:text-lg">{c.text}</p>
+            <p className="mt-5 text-base leading-relaxed text-fg/75 md:text-lg">{c.text}</p>
             <ul className="mt-6 space-y-3">
               {c.bullets.map((b) => (
-                <li key={b} className="flex gap-3 text-sm text-white/80 md:text-base">
-                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-white/10">
+                <li key={b} className="flex gap-3 text-sm text-fg/80 md:text-base">
+                  <span className="mt-0.5 grid size-5 shrink-0 place-items-center rounded-full bg-fg/10">
                     <Check className="size-3" strokeWidth={3} aria-hidden />
                   </span>
                   <span>{b}</span>

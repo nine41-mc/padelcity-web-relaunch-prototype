@@ -15,11 +15,11 @@ export function ArticleCard({ article, locale, className, large = false }: { art
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow",
+        "group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-fg/10 bg-raised transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow",
         className,
       )}
     >
-      <div className="theme-dark relative">
+      <div data-theme="dark" className="relative">
         <Media
           src={article.image?.url}
           alt={article.image?.alt ?? article.title}
@@ -32,8 +32,8 @@ export function ArticleCard({ article, locale, className, large = false }: { art
         </div>
       </div>
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <p className="flex items-center gap-3 text-sm text-white/70">
-          <span className="font-semibold uppercase tracking-[0.12em] text-magenta-300">{article.category}</span>
+        <p className="flex items-center gap-3 text-sm text-fg/70">
+          <span className="font-semibold uppercase tracking-[0.12em] text-accent-fg">{article.category}</span>
           <span aria-hidden>·</span>
           <span className="inline-flex items-center gap-1">
             <Clock className="size-3.5" aria-hidden /> {article.readingTimeMin} {t.minutes}
@@ -44,8 +44,8 @@ export function ArticleCard({ article, locale, className, large = false }: { art
             {article.title}
           </Link>
         </h3>
-        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-white/70">{article.excerpt}</p>
-        <div className="mt-auto flex items-center justify-between pt-5 text-sm text-white/70">
+        <p className="mt-3 line-clamp-3 text-sm leading-relaxed text-fg/70">{article.excerpt}</p>
+        <div className="mt-auto flex items-center justify-between pt-5 text-sm text-fg/70">
           <time dateTime={article.publishedAt}>{formatDate(article.publishedAt, locale)}</time>
           <CardArrow size="sm" />
         </div>

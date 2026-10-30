@@ -30,14 +30,14 @@ export async function LocationsView({ locale }: { locale: Locale }) {
         {t.hero.title} <Accent>{t.hero.accent}</Accent>
       </PageHero>
 
-      <section className="relative bg-ink-800 pb-20 md:pb-28">
+      <section className="relative bg-canvas pb-20 md:pb-28">
         <div className="container-site">
           <ClubFinder clubs={clubs} planned={planned} locale={locale} />
         </div>
       </section>
 
       {planned.length > 0 && (
-        <Section tone="ink" className="border-t border-white/5" id="coming-soon">
+        <Section tone="ink" className="border-t border-fg/5" id="coming-soon">
           <Reveal>
             <Eyebrow>{t.planned.eyebrow}</Eyebrow>
             <Headline size="md" className="mt-5">
@@ -49,7 +49,7 @@ export async function LocationsView({ locale }: { locale: Locale }) {
         </Section>
       )}
 
-      <Section tone="black" className="border-t border-white/5">
+      <Section tone="black" className="border-t border-fg/5">
         <Reveal>
           <Eyebrow dot={false}>{t.cities.eyebrow}</Eyebrow>
           <Headline size="md" className="mt-5 mb-12">

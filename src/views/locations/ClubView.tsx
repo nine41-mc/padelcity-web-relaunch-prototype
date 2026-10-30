@@ -145,7 +145,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd(club, locale)).replace(/</g, "\\u003c") }} />
 
       {/* Gallery, full club name, description, contact tiles */}
-      <section className="bg-black pt-24 pb-12 md:pt-32 md:pb-16">
+      <section className="bg-canvas-deep pt-24 pb-12 md:pt-32 md:pb-16">
         <div className="container-site">
           {gallery.length > 0 ? (
             <ClubGallery images={gallery} name={club.name} locale={locale} />
@@ -162,7 +162,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               </Headline>
               {/* Courts and sports, as on the club card */}
               <p className="mt-3 font-semibold md:text-lg">{courtSummary(club, locale)}</p>
-              <SportList club={club} locale={locale} className="mt-1 text-white/70 md:text-base" />
+              <SportList club={club} locale={locale} className="mt-1 text-fg/70 md:text-base" />
               {/* Opening hours as on Google: status line, unfolds into the week */}
               <ClubHours club={club} locale={locale} className="mt-3" />
             </div>
@@ -186,7 +186,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         </div>
       </section>
 
-      <div className="relative bg-ink-800">
+      <div className="relative bg-canvas">
         {/* One sport filter for the price list and the courts of that sport */}
         <Section id="prices" className={sectionCls}>
           <Headline size="sm" className="mb-8">{t.sections.pricesCourts}</Headline>
@@ -232,9 +232,9 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               </Button>
             </>
           ) : (
-            <div className="rounded-[20px] border border-dashed border-white/15 pad-banner text-center">
+            <div className="rounded-[20px] border border-dashed border-fg/15 pad-banner text-center">
               <p className="text-lg font-semibold">{fill(t.events.emptyTitle, { city: club.city })}</p>
-              <p className="mt-2 text-white/70">{t.events.emptyText}</p>
+              <p className="mt-2 text-fg/70">{t.events.emptyText}</p>
               <Button href={href(locale, "events")} variant="outline" className="mt-6">
                 {t.events.allButton}
               </Button>
@@ -273,24 +273,24 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
             </>
           ) : (
             // Contentful module: clubCoaches (empty state – no coach matched to this club)
-            <div className="grid overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 md:grid-cols-2">
+            <div className="grid overflow-hidden rounded-[28px] border border-fg/10 bg-raised md:grid-cols-2">
               <Media src="/images/academy/coaching.jpg" alt={t.coaching.imageAlt} className="aspect-[16/10] md:aspect-auto md:min-h-[320px]" sizes="(min-width:768px) 50vw, 100vw" />
               <div className="flex min-w-0 flex-col justify-center gap-5 p-6 md:p-10">
                 <Eyebrow>{t.coaching.emptyEyebrow}</Eyebrow>
                 <Headline size="sm">
                   {t.coaching.emptyTitle} <Accent>{t.coaching.emptyAccent}</Accent>
                 </Headline>
-                <p className="text-white/70">{fill(t.coaching.emptyText, { club: club.name })}</p>
+                <p className="text-fg/70">{fill(t.coaching.emptyText, { club: club.name })}</p>
                 <a
                   href={`mailto:${clubEmail}?subject=${encodeURIComponent(fill(t.coaching.emptyMailSubject, { club: club.name }))}`}
-                  className="inline-flex min-h-11 w-fit max-w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-2.5 transition hover:border-white/40 hover:bg-white/5"
+                  className="inline-flex min-h-11 w-fit max-w-full items-center gap-3 rounded-2xl border border-fg/15 px-4 py-2.5 transition hover:border-fg/40 hover:bg-fg/5"
                   data-track="club_coaching_inquiry_click"
                 >
                   <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-gradient">
                     <Mail className="size-4" aria-hidden />
                   </span>
                   <span className="min-w-0">
-                    <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.coaching.emptyMail}</span>
+                    <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-fg/60">{t.coaching.emptyMail}</span>
                     <span className="block break-all text-sm">{clubEmail}</span>
                   </span>
                 </a>
@@ -318,7 +318,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         {/* Map: target of "Route planen" on the address tile */}
         <Section id="directions" tone="black" className={sectionCls}>
           <Headline size="sm" className="mb-8">{t.sections.find}</Headline>
-          <div className="relative isolate h-[320px] overflow-hidden rounded-[20px] border border-white/10 md:h-[420px]">
+          <div className="relative isolate h-[320px] overflow-hidden rounded-[20px] border border-fg/10 md:h-[420px]">
             <ClubMapLazy
               clubs={[{ id: club.id, slug: club.slug, name: club.name, city: club.city, position: club.position }]}
               locale={locale}
@@ -329,7 +329,7 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               href={googleMapsRoute(club.position)}
               target="_blank"
               rel="noopener noreferrer"
-              className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 shadow-elevated transition hover:shadow-glow"
+              className="absolute bottom-4 left-4 z-[500] inline-flex min-h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-semibold text-fg-inverse shadow-elevated transition hover:shadow-glow"
             >
               <Navigation className="size-4" aria-hidden /> {t.directions.route}
             </a>

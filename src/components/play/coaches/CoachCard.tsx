@@ -13,7 +13,7 @@ import type { CoachLabels } from "./labels";
 /** White 3×3 dot grid (Elephant inspo "dot-grid badge"). */
 export function DotGrid({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 14 14" className={cn("size-3.5 shrink-0 text-white", className)} aria-hidden>
+    <svg viewBox="0 0 14 14" className={cn("size-3.5 shrink-0 text-fg", className)} aria-hidden>
       {[2, 7, 12].flatMap((y) => [2, 7, 12].map((x) => <circle key={`${x}-${y}`} cx={x} cy={y} r="1.6" fill="currentColor" />))}
     </svg>
   );
@@ -50,20 +50,20 @@ export function CoachStat({
         )}
       >
         {has ? (
-          <span className="text-optic-500">
+          <span className="text-highlight-fg">
             {formatted}
             {suffix}
           </span>
         ) : (
           <>
-            <span className="inline-block h-[0.09em] min-h-[3px] w-[0.7em] -translate-y-[0.28em] -skew-x-12 rounded-full bg-white/40" aria-hidden />
-            <span className="rounded-md border border-white/20 px-1.5 py-0.5 font-sans text-[11px] font-semibold not-italic tracking-[0.12em] text-white/70">
+            <span className="inline-block h-[0.09em] min-h-[3px] w-[0.7em] -translate-y-[0.28em] -skew-x-12 rounded-full bg-fg/40" aria-hidden />
+            <span className="rounded-md border border-fg/20 px-1.5 py-0.5 font-sans text-[11px] font-semibold not-italic tracking-[0.12em] text-fg/70">
               {pending}
             </span>
           </>
         )}
       </p>
-      <p className="mt-1.5 text-[13px] font-semibold uppercase leading-tight tracking-[0.12em] text-white/85">{label}</p>
+      <p className="mt-1.5 text-[13px] font-semibold uppercase leading-tight tracking-[0.12em] text-fg/85">{label}</p>
     </div>
   );
 }
@@ -96,8 +96,8 @@ export function CoachCard({
       aria-haspopup="dialog"
       aria-label={fill(labels.openFor, { name: coach.name })}
       className={cn(
-        "z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-white/25 bg-black/55 font-display uppercase italic tracking-wide backdrop-blur transition",
-        "hover:border-white hover:bg-white/10 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
+        "z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-fg/25 bg-black/55 font-display uppercase italic tracking-wide backdrop-blur transition",
+        "hover:border-fg hover:bg-fg/10 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
         feature ? "relative mt-4 h-11 px-4 text-base md:mt-0 md:text-lg" : "absolute right-3 top-3 size-11",
       )}
     >
@@ -107,10 +107,11 @@ export function CoachCard({
   );
   return (
     <article
+      data-theme="dark"
       className={cn(
-        "group relative isolate h-full overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 md:rounded-[28px]",
+        "group relative isolate h-full overflow-hidden rounded-[20px] border border-fg/10 bg-raised transition-all duration-300 md:rounded-[28px]",
         "hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow motion-reduce:hover:translate-y-0",
-        "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-optic-500 has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-ink-800",
+        "has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-optic-500 has-[:focus-visible]:ring-offset-2 has-[:focus-visible]:ring-offset-canvas",
         feature ? "aspect-[4/5] md:aspect-[16/11] lg:aspect-[16/10]" : "aspect-[3/4]",
       )}
     >
@@ -134,7 +135,7 @@ export function CoachCard({
 
       {/* Top-left: dot-grid role badge (the clubs are named at the bottom) */}
       <div className={cn("absolute flex flex-col items-start gap-2", feature ? "left-4 top-4 md:left-6 md:top-6" : "left-3 top-3")}>
-        <span className="inline-flex h-8 items-center gap-2 rounded-full border border-white/15 bg-black/55 px-3 backdrop-blur">
+        <span className="inline-flex h-8 items-center gap-2 rounded-full border border-fg/15 bg-black/55 px-3 backdrop-blur">
           <DotGrid />
           <span className={cn("font-display font-extrabold uppercase italic leading-none tracking-[0.06em]", feature ? "text-base md:text-lg" : "text-sm")}>
             {coach.role[locale]}
@@ -144,7 +145,7 @@ export function CoachCard({
 
       {/* Top-right: the club(s) on the feature card (same pill as the role badge) */}
       {feature && clubLabel && (
-        <span className="absolute right-4 top-4 inline-flex h-8 max-w-[45%] items-center gap-1.5 rounded-full border border-white/15 bg-black/55 px-3 text-sm text-white/85 backdrop-blur md:right-6 md:top-6">
+        <span className="absolute right-4 top-4 inline-flex h-8 max-w-[45%] items-center gap-1.5 rounded-full border border-fg/15 bg-black/55 px-3 text-sm text-fg/85 backdrop-blur md:right-6 md:top-6">
           <MapPin className="size-3.5 shrink-0" aria-hidden />
           <span className="truncate">{clubLabel}</span>
         </span>
@@ -183,7 +184,7 @@ export function CoachCard({
               {rest.length > 0 && <span className="block">{rest.join(" ")}</span>}
             </h3>
             {!feature && clubLabel && (
-              <p className="mt-1.5 flex items-center gap-1 truncate text-xs text-white/70 md:text-sm">
+              <p className="mt-1.5 flex items-center gap-1 truncate text-xs text-fg/70 md:text-sm">
                 <MapPin className="size-3 shrink-0" aria-hidden />
                 <span className="truncate">{clubLabel}</span>
               </p>
@@ -192,7 +193,7 @@ export function CoachCard({
           {feature && openButton}
         </div>
         {!feature && (
-          <div className="mt-3 hidden grid-cols-2 gap-2 border-t border-white/15 pt-3 md:grid">
+          <div className="mt-3 hidden grid-cols-2 gap-2 border-t border-fg/15 pt-3 md:grid">
             <CoachStat value={coach.hoursOnCourt} label={labels.hours} pending={labels.pending} locale={locale} size="md" />
             <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} size="md" />
           </div>

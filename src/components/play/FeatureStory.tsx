@@ -81,13 +81,13 @@ export function FeatureStory({
               data-index={i}
               aria-labelledby={`feature-${f.id}`}
               className={cn(
-                "grid items-center gap-10 border-t border-white/10 py-14 first:border-t-0 first:pt-0 md:grid-cols-[1fr_auto] md:py-20 lg:flex lg:min-h-[88vh] lg:flex-col lg:items-start lg:justify-center lg:py-0",
+                "grid items-center gap-10 border-t border-fg/10 py-14 first:border-t-0 first:pt-0 md:grid-cols-[1fr_auto] md:py-20 lg:flex lg:min-h-[88vh] lg:flex-col lg:items-start lg:justify-center lg:py-0",
                 "transition-opacity duration-500 lg:opacity-70 lg:focus-within:opacity-100",
                 active === i && "lg:opacity-100",
               )}
             >
               <div>
-                <p className="mb-5 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.14em] text-white/70">
+                <p className="mb-5 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.14em] text-fg/70">
                   <span className="grid size-9 place-items-center rounded-full bg-brand-gradient">
                     <AppIcon name={f.icon} className="size-4" />
                   </span>
@@ -96,11 +96,11 @@ export function FeatureStory({
                 <h3 id={`feature-${f.id}`} className="font-display text-5xl font-extrabold uppercase italic leading-[0.92] text-balance md:text-6xl lg:text-7xl">
                   {f.title} <Accent>{f.accent}</Accent>
                 </h3>
-                <p className="mt-5 max-w-xl text-lg text-white/70">{f.text}</p>
+                <p className="mt-5 max-w-xl text-lg text-fg/70">{f.text}</p>
                 <ul className="mt-6 space-y-2">
                   {f.bullets.map((b) => (
                     <li key={b} className="flex items-center gap-3">
-                      <Check className="size-4 text-magenta-300" aria-hidden /> {b}
+                      <Check className="size-4 text-accent-fg" aria-hidden /> {b}
                     </li>
                   ))}
                 </ul>
@@ -150,7 +150,7 @@ export function FeatureStory({
           </div>
           <ol className="absolute right-0 top-1/2 flex -translate-y-1/2 flex-col gap-2" aria-hidden>
             {features.map((f, i) => (
-              <li key={f.id} className={cn("h-8 w-1 rounded-full transition-colors", i === active ? "bg-brand-gradient" : "bg-white/15")} />
+              <li key={f.id} className={cn("h-8 w-1 rounded-full transition-colors", i === active ? "bg-brand-gradient" : "bg-fg/15")} />
             ))}
           </ol>
         </div>

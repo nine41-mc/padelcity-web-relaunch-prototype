@@ -83,7 +83,7 @@ export function Overlay({
         if (e.target === e.currentTarget) e.currentTarget.close();
       }}
       className={cn(
-        "m-auto w-[calc(100%-32px)] max-w-4xl overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 p-0 text-chalk shadow-glow md:rounded-[28px]",
+        "m-auto w-[calc(100%-32px)] max-w-4xl overflow-hidden rounded-[20px] border border-fg/10 bg-raised p-0 text-fg shadow-glow md:rounded-[28px]",
         "max-h-[calc(100dvh-32px)] backdrop:bg-black/75 backdrop:backdrop-blur-sm",
       )}
     >
@@ -101,7 +101,7 @@ export function Overlay({
             />
             <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_70%_at_0%_100%,rgb(224_5_195/0.4),transparent_65%)]" aria-hidden />
             {badge && (
-              <span className="absolute left-4 top-4 inline-flex h-8 items-center gap-2 rounded-full border border-white/15 bg-black/60 px-3 backdrop-blur">{badge}</span>
+              <span className="absolute left-4 top-4 inline-flex h-8 items-center gap-2 rounded-full border border-fg/15 bg-black/60 px-3 backdrop-blur">{badge}</span>
             )}
           </div>
 
@@ -112,7 +112,7 @@ export function Overlay({
               data-autofocus
               onClick={() => ref.current?.close()}
               aria-label={closeLabel}
-              className="absolute right-3 top-3 grid size-11 place-items-center rounded-full border border-white/25 bg-ink-800/70 transition hover:border-white hover:bg-white/10 max-md:fixed max-md:right-6 max-md:top-6 md:right-5 md:top-5"
+              className="absolute right-3 top-3 grid size-11 place-items-center rounded-full border border-fg/25 bg-canvas/70 transition hover:border-fg hover:bg-fg/10 max-md:fixed max-md:right-6 max-md:top-6 md:right-5 md:top-5"
             >
               <X className="size-5" aria-hidden />
             </button>
@@ -120,7 +120,7 @@ export function Overlay({
             <h2 id={titleId} className="pr-14 font-display text-4xl font-extrabold uppercase italic leading-[0.9] tracking-tight md:text-5xl">
               {title}
             </h2>
-            {meta && <div className="mt-2 text-sm text-white/80">{meta}</div>}
+            {meta && <div className="mt-2 text-sm text-fg/80">{meta}</div>}
             {children}
           </div>
         </div>
@@ -134,7 +134,7 @@ export function OverlaySection({ title, children, className }: { title: string; 
   const id = useId();
   return (
     <section className={cn("mt-8", className)} aria-labelledby={id}>
-      <h3 id={id} className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/60">
+      <h3 id={id} className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/60">
         {title}
       </h3>
       {children}

@@ -107,20 +107,20 @@ export default function ClubMap({
           {showPopups && c.planned && (
             <Popup>
               <p className="font-semibold">{c.name}</p>
-              <p className="text-white/70">
-                {c.city} · <span className="text-magenta-300">{t.soon}</span>
+              <p className="text-fg/70">
+                {c.city} · <span className="text-accent-fg">{t.soon}</span>
               </p>
             </Popup>
           )}
           {showPopups && !c.planned && (
             <Popup>
               <p className="font-semibold">{c.name}</p>
-              <p className="text-white/70">
+              <p className="text-fg/70">
                 {c.city}
                 {c.priceFrom ? ` · ${t.from} ${formatPrice(c.priceFrom, locale, c.currency)}` : ""}
               </p>
               {/* Raw <a> inside Leaflet popup (outside Next router) → needs basePath via asset() */}
-              <a href={asset(href(locale, "locations", c.slug)) + "/"} className="mt-2 inline-block font-medium !text-white underline underline-offset-2 hover:!text-magenta-300">
+              <a href={asset(href(locale, "locations", c.slug)) + "/"} className="mt-2 inline-block font-medium !text-fg underline underline-offset-2 hover:!text-accent-fg">
                 {t.view}
               </a>
             </Popup>

@@ -40,7 +40,7 @@ export function PartnerLogo({ partner, className, sizes = "240px" }: { partner: 
       height={h}
       sizes={sizes}
       style={{ aspectRatio: `${dim.w} / ${dim.h}` }}
-      className={cn("partner-logo block w-auto max-w-full shrink-0 object-contain", className)}
+      className={cn("logo-white block w-auto max-w-full shrink-0 object-contain", className)}
     />
   );
 }

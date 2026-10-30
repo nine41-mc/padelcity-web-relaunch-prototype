@@ -37,14 +37,14 @@ export function MagazinHub({
             data-track="magazin_filter"
             className={cn(
               "h-11 shrink-0 rounded-full border px-5 font-display text-lg italic uppercase transition-colors",
-              hub === h.id ? "border-transparent bg-brand-gradient text-white" : "border-white/20 text-white/80 hover:border-white/50",
+              hub === h.id ? "border-transparent bg-brand-gradient text-white" : "border-fg/20 text-fg/80 hover:border-fg/50",
             )}
           >
             {h.label}
           </button>
         ))}
       </div>
-      <p className="mt-4 min-h-6 text-sm text-white/70" aria-live="polite">
+      <p className="mt-4 min-h-6 text-sm text-fg/70" aria-live="polite">
         {active ? active.text : t.count.replace("{n}", String(list.length))}
       </p>
       <ul className="mt-6 grid gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">

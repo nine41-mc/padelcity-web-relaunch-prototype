@@ -19,8 +19,9 @@ export function HeroEventCard({ event, locale, className, priority }: { event: C
   const date = dateBadge(event.start, event.end, locale);
   return (
     <article
+      data-theme="dark"
       className={cn(
-        "group relative isolate flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[28px] border border-white/10 md:min-h-[560px] lg:min-h-[640px]",
+        "group relative isolate flex min-h-[520px] flex-col justify-end overflow-hidden rounded-[28px] border border-fg/10 md:min-h-[560px] lg:min-h-[640px]",
         className,
       )}
     >
@@ -38,7 +39,7 @@ export function HeroEventCard({ event, locale, className, priority }: { event: C
       {/* Date badge carries the whole period; city and type as pills next to it */}
       <div className="absolute left-5 right-5 top-5 flex items-start gap-3 md:left-8 md:right-8 md:top-8">
         {/* Fixed width, so every badge is the same size whatever the date ("05", "04–06", "30–02") */}
-        <div className="grid w-24 shrink-0 place-items-center rounded-2xl bg-white py-2 text-ink-800">
+        <div className="grid w-24 shrink-0 place-items-center rounded-2xl bg-fg py-2 text-fg-inverse">
           <span className="font-display text-3xl font-extrabold italic leading-none whitespace-nowrap">{date.day}</span>
           <span className="text-[13px] font-semibold uppercase">{date.month}</span>
           {date.year && <span className="text-[11px] font-semibold">{date.year}</span>}
@@ -57,7 +58,7 @@ export function HeroEventCard({ event, locale, className, priority }: { event: C
             {keepTogether(event.title)}
           </Link>
         </h3>
-        {event.subtitle && <p className="max-w-md text-white/85">{event.subtitle}</p>}
+        {event.subtitle && <p className="max-w-md text-fg/85">{event.subtitle}</p>}
         <div className="flex flex-wrap items-end justify-between gap-5">
           <Countdown start={event.start} labels={t.countdown} size="sm" />
           {/* Sign-up (app primary, web outline); the card itself links to the detail page */}

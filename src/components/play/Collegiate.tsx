@@ -9,13 +9,13 @@ export function CollegiateBadge({ className, top = "PadelCity", main = "Academy"
   return (
     <div
       className={cn(
-        "inline-flex flex-col items-center rounded-[18px] border-[3px] border-white p-1 text-white [transform:rotate(-4deg)]",
+        "inline-flex flex-col items-center rounded-[18px] border-[3px] border-fg p-1 text-fg [transform:rotate(-4deg)]",
         className,
       )}
       aria-label={`${top} ${main}, ${bottom}`}
       role="img"
     >
-      <div className="flex flex-col items-center rounded-[12px] border border-white/60 px-5 py-2.5">
+      <div className="flex flex-col items-center rounded-[12px] border border-fg/60 px-5 py-2.5">
         <span className="text-[10px] font-semibold uppercase tracking-[0.35em]">{top}</span>
         <span className="font-display text-4xl font-extrabold uppercase leading-none tracking-wide text-transparent [-webkit-text-stroke:1.5px_white] md:text-5xl">
           {main}

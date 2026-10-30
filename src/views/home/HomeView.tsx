@@ -1,6 +1,5 @@
 import { keepTogether } from "@/lib/typography";
 import { HighlightDemo } from "@/components/home/HighlightDemo";
-import { ThemeDemo } from "@/components/home/ThemeDemo";
 import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
@@ -53,10 +52,9 @@ export async function HomeView({ locale }: { locale: Locale }) {
   return (
     <>
       {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis) */}
-      {/* Comparison switches for the brand discussion (home only): highlight colour and dark/light */}
+      {/* Comparison switch for the brand discussion (home only): highlight colour */}
       <div className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-2">
         <HighlightDemo locale={locale} />
-        <ThemeDemo locale={locale} />
       </div>
       <HomeHero locale={locale} t={t.hero} />
 
@@ -92,8 +90,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 { v: countries.length, s: "", l: t.leader.facts.countries },
               ].map((f, i) => (
                 <Reveal key={f.l} delay={i * 0.08}>
-                  <dt className="text-sm font-medium uppercase tracking-[0.14em] text-white/80">{f.l}</dt>
-                  <dd className="mt-1 font-display text-6xl font-extrabold italic text-white md:text-7xl">
+                  <dt className="text-sm font-medium uppercase tracking-[0.14em] text-fg/80">{f.l}</dt>
+                  <dd className="mt-1 font-display text-6xl font-extrabold italic text-fg md:text-7xl">
                     <CountUp to={f.v} suffix={f.s} intl={intl} />
                   </dd>
                 </Reveal>
@@ -108,7 +106,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       </Section>
 
       {/* Club showcase */}
-      <section className="relative bg-black py-20 md:py-28">
+      <section className="relative bg-canvas-deep py-20 md:py-28">
         <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
             <Eyebrow>{t.showcase.eyebrow}</Eyebrow>
@@ -142,17 +140,18 @@ export async function HomeView({ locale }: { locale: Locale }) {
             ...item,
             icon: [Trophy, Handshake, LineChart, Building2][i],
             href: href(locale, item.key as RouteKey),
-            tone: i === 0 ? "theme-dark from-purple-600 to-magenta-700" : "from-ink-500 to-ink-600",
+            tone: i === 0 ? "from-purple-600 to-magenta-700" : "from-surface-variant to-surface",
           })).map((c, i) => (
             <Reveal key={c.title} delay={i * 0.06}>
               <Link
                 href={c.href}
-                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-white/10 bg-gradient-to-br ${c.tone} pad-card transition-all duration-300 hover:-translate-y-1 hover:border-white/40`}
+                data-theme={i === 0 ? "dark" : undefined}
+                className={`group relative flex h-full min-h-64 flex-col justify-between overflow-hidden rounded-[24px] border border-fg/10 bg-gradient-to-br ${c.tone} pad-card transition-all duration-300 hover:-translate-y-1 hover:border-fg/40`}
               >
-                <c.icon className="size-8 text-white" aria-hidden />
+                <c.icon className="size-8 text-fg" aria-hidden />
                 <div>
                   <h3 className="font-display text-3xl font-extrabold italic uppercase">{c.title}</h3>
-                  <p className="mt-2 text-white/85 md:min-h-[3lh]">{c.text}</p>
+                  <p className="mt-2 text-fg/85 md:min-h-[3lh]">{c.text}</p>
                 </div>
                 <CardArrow className="absolute right-5 top-5" />
               </Link>
@@ -174,7 +173,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
             </Headline>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="text-xl leading-relaxed text-white/85 md:text-2xl">
+            <p className="text-xl leading-relaxed text-fg/85 md:text-2xl">
               {t.momentum.text}
             </p>
             {/* TODO(content): Series A details (Volumen, Lead-Investor, Datum) nur nach Freigabe */}
@@ -203,7 +202,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         </div>
         {heroEvent && (
           <Reveal className="mb-6">
-            <div className="theme-dark group relative overflow-hidden rounded-[28px]">
+            <div data-theme="dark" className="group relative overflow-hidden rounded-[28px]">
               <Media
                 src={heroEvent.image?.url}
                 alt={heroEvent.image?.alt ?? heroEvent.title}
@@ -212,14 +211,14 @@ export async function HomeView({ locale }: { locale: Locale }) {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/10 md:bg-gradient-to-r md:from-black/90 md:via-black/50 md:to-transparent" />
               <div className="absolute inset-0 flex flex-col justify-end p-6 md:max-w-2xl md:p-12">
-                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-magenta-300">{t.events.hero} · {heroEvent.city}</p>
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-accent-fg">{t.events.hero} · {heroEvent.city}</p>
                 <h3 className="mt-3 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-7xl">
                   <Link href={href(locale, "events", heroEvent.slug)} className="after:absolute after:inset-0 after:content-['']">
                     {keepTogether(heroEvent.title)}
                   </Link>
                 </h3>
                 {/* The text ends with the lead-in to the buttons ("Jetzt anmelden und buchen:") instead of a separate label */}
-                <p className="mt-4 text-lg text-white/80">
+                <p className="mt-4 text-lg text-fg/80">
                   {heroEvent.subtitle && <>{heroEvent.subtitle} </>}
                   <span className="whitespace-nowrap">{getDictionary(locale).eventCard.signupLead}</span>
                 </p>
@@ -299,7 +298,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: voucherTeaser (copy from padelcity.de) */}
       <Section tone="black">
-        <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-white/10 bg-ink-800 pad-banner lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-fg/10 bg-canvas pad-banner lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <div className="absolute -left-24 -top-24 size-80 rounded-full bg-purple-600/30 blur-[110px]" aria-hidden />
           <div className="relative">
             <Eyebrow className="mb-4">{t.shop.eyebrow}</Eyebrow>
@@ -309,13 +308,13 @@ export async function HomeView({ locale }: { locale: Locale }) {
               <Accent>{t.shop.accent}</Accent>
             </Headline>
             <p className="mt-4 text-xl font-semibold">{t.shop.subline}</p>
-            <p className="mt-3 max-w-lg text-lg text-white/70">
+            <p className="mt-3 max-w-lg text-lg text-fg/70">
               {t.shop.text} {t.shop.closing}
             </p>
             <ol className="mt-6 space-y-3">
               {t.shop.steps.map((step, i) => (
                 <li key={step} className="flex items-center gap-3">
-                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-white/30 font-display text-lg font-extrabold italic">{i + 1}</span>
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full border border-fg/30 font-display text-lg font-extrabold italic">{i + 1}</span>
                   {step}
                 </li>
               ))}
@@ -326,7 +325,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
           </div>
           <div className="relative mx-auto w-full max-w-[460px] py-6 [perspective:1200px]">
             {/* second card peeking out behind */}
-            <div className="absolute inset-x-6 top-0 aspect-[1.586] rotate-[8deg] rounded-[22px] border border-white/15 bg-ink-600" aria-hidden />
+            <div className="absolute inset-x-6 top-0 aspect-[1.586] rotate-[8deg] rounded-[22px] border border-fg/15 bg-surface" aria-hidden />
             <VoucherCard {...t.shop.card} className="relative -rotate-[5deg] transition-transform duration-500 hover:rotate-0 hover:scale-[1.02]" />
           </div>
         </div>

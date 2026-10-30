@@ -133,7 +133,7 @@ export function CoachExplorer({
             options={[{ value: "", label: labels.allClubs }, ...clubOptions.map((o) => ({ value: o.key, label: o.label }))]}
           />
 
-          <div role="group" aria-label={labels.roleLabel} className="flex rounded-full border border-white/15 bg-white/5 p-0.5">
+          <div role="group" aria-label={labels.roleLabel} className="flex rounded-full border border-fg/15 bg-fg/5 p-0.5">
             {roles.map(([key, label]) => (
               <button
                 key={key}
@@ -142,7 +142,7 @@ export function CoachExplorer({
                 onClick={() => setRole(key)}
                 className={cn(
                   "h-11 flex-1 whitespace-nowrap rounded-full px-4 text-sm font-semibold transition sm:flex-none",
-                  role === key ? "bg-brand-gradient text-white" : "text-white/75 hover:text-white",
+                  role === key ? "bg-brand-gradient text-white" : "text-fg/75 hover:text-fg",
                 )}
               >
                 {label}
@@ -152,7 +152,7 @@ export function CoachExplorer({
         </div>
 
         <div className="flex items-center justify-between gap-3">
-          <p className="text-sm text-white/70" aria-live="polite" aria-atomic="true">
+          <p className="text-sm text-fg/70" aria-live="polite" aria-atomic="true">
             {count}
           </p>
           <div className="flex items-center gap-2">
@@ -160,7 +160,7 @@ export function CoachExplorer({
               type="button"
               aria-pressed={grid}
               onClick={() => setGrid((g) => !g)}
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-white/25 px-4 text-sm font-semibold transition hover:border-white hover:bg-white/5"
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-fg/25 px-4 text-sm font-semibold transition hover:border-fg hover:bg-fg/5"
             >
               {grid ? <GalleryHorizontal className="size-4" aria-hidden /> : <LayoutGrid className="size-4" aria-hidden />}
               {grid ? labels.showCarousel : labels.showAll}
@@ -178,12 +178,12 @@ export function CoachExplorer({
       {/* Results */}
       <div className="mt-6 md:mt-8">
         {filtered.length === 0 ? (
-          <div className="grid place-items-center gap-4 rounded-[28px] border border-dashed border-white/20 pad-banner text-center">
+          <div className="grid place-items-center gap-4 rounded-[28px] border border-dashed border-fg/20 pad-banner text-center">
             <p className="font-display text-3xl font-extrabold uppercase italic leading-none md:text-4xl">{labels.empty}</p>
             <button
               type="button"
               onClick={reset}
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-ink-800 transition hover:shadow-glow"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-fg px-5 text-sm font-semibold text-fg-inverse transition hover:shadow-glow"
             >
               <RotateCcw className="size-4" aria-hidden /> {labels.reset}
             </button>

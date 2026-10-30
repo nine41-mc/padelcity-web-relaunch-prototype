@@ -48,7 +48,7 @@ export function Footer({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <footer className="relative isolate overflow-hidden border-t border-white/10 bg-black">
+    <footer data-theme="dark" className="relative isolate overflow-hidden border-t border-fg/10 bg-canvas-deep">
       {/* Atmosphere: purple glow + court lines */}
       <div className="pointer-events-none absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,transparent,black_320px)]" aria-hidden>
         <div className="absolute -left-40 top-10 size-[640px] rounded-full bg-purple-600/35 blur-[140px]" />
@@ -69,7 +69,7 @@ export function Footer({ locale }: { locale: Locale }) {
 
           {/* Newsletter stands on its own */}
           {/* "Benachrichtige mich" on planned clubs jumps here (#newsletter) */}
-          <NewsletterSignup locale={locale} id="newsletter" className="border-white/15 bg-ink-800/70 backdrop-blur-xl lg:mt-6" />
+          <NewsletterSignup locale={locale} id="newsletter" className="border-fg/15 bg-canvas/70 backdrop-blur-xl lg:mt-6" />
         </div>
 
         {/* WhatsApp community – full-width band, opens the overlay with every location's group */}
@@ -77,25 +77,25 @@ export function Footer({ locale }: { locale: Locale }) {
           <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
           <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto]">
             <div>
-              <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/85">
-                <MessageCircle className="size-4 text-white" aria-hidden /> {t.footer.community.eyebrow(whatsappGroupCount)}
+              <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/85">
+                <MessageCircle className="size-4 text-fg" aria-hidden /> {t.footer.community.eyebrow(whatsappGroupCount)}
               </p>
               <p lang={claimLang(t.footer.community.title)} className="mt-4 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-6xl lg:text-7xl">
                 {t.footer.community.title} <Accent>{t.footer.community.accent}</Accent>
               </p>
-              <p className="mt-4 max-w-xl text-white/85 md:text-lg">{t.footer.community.text}</p>
+              <p className="mt-4 max-w-xl text-fg/85 md:text-lg">{t.footer.community.text}</p>
             </div>
             <WhatsAppGroups locale={locale} label={t.footer.community.cta} variant="primary" size="md" className="w-full md:w-auto" track="footer_whatsapp_overlay" />
           </div>
         </div>
 
         {/* Link columns */}
-        <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-white/12 pt-12 md:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="mt-20 grid grid-cols-2 gap-x-8 gap-y-10 border-t border-fg/12 pt-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div className="col-span-2 md:col-span-1">
             <p lang="en" className="font-display text-4xl font-extrabold italic uppercase leading-[0.95] md:text-5xl">
               Fall in love with <Accent>padel.</Accent>
             </p>
-            <h2 lang={claimLang(t.footer.follow)} className="mt-6 font-display text-xl font-extrabold italic uppercase tracking-wide text-white/85">{t.footer.follow}</h2>
+            <h2 lang={claimLang(t.footer.follow)} className="mt-6 font-display text-xl font-extrabold italic uppercase tracking-wide text-fg/85">{t.footer.follow}</h2>
             <ul className="mt-3 flex flex-wrap gap-2" aria-label={t.footer.follow}>
               {socials.map(({ href: url, icon: I, label }) => (
                 <li key={label}>
@@ -104,7 +104,7 @@ export function Footer({ locale }: { locale: Locale }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="grid size-12 place-items-center rounded-full border border-white/25 transition-all hover:-translate-y-0.5 hover:border-white hover:bg-white hover:text-ink-800"
+                    className="grid size-12 place-items-center rounded-full border border-fg/25 transition-all hover:-translate-y-0.5 hover:border-fg hover:bg-fg hover:text-fg-inverse"
                   >
                     <I className="size-5" />
                   </a>
@@ -132,28 +132,28 @@ export function Footer({ locale }: { locale: Locale }) {
       </div>
 
       {/* Legal bar */}
-      <div className="relative border-t border-white/12 bg-black/80 backdrop-blur">
-        <div className="container-site flex flex-col gap-4 py-6 text-sm text-white/75 md:flex-row md:items-center md:justify-between">
+      <div className="relative border-t border-fg/12 bg-black/80 backdrop-blur">
+        <div className="container-site flex flex-col gap-4 py-6 text-sm text-fg/75 md:flex-row md:items-center md:justify-between">
           {/* Easter egg: the © line opens the hidden styleguide (no visual hint on purpose). */}
-          <Link href={href(locale, "styleguide")} className="inline-flex min-h-11 w-fit items-center hover:text-white/75" data-track="footer_styleguide_easteregg">
+          <Link href={href(locale, "styleguide")} className="inline-flex min-h-11 w-fit items-center hover:text-fg/75" data-track="footer_styleguide_easteregg">
             © {new Date().getFullYear()} The Padel City GmbH · München
           </Link>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             {legalNav.map((key) => (
               <li key={key}>
-                <Link href={href(locale, key)} className="inline-flex min-h-11 items-center hover:text-white">
+                <Link href={href(locale, key)} className="inline-flex min-h-11 items-center hover:text-fg">
                   {t.nav[key]}
                 </Link>
               </li>
             ))}
             <li>
-              <a href="#cookies" className="inline-flex min-h-11 items-center hover:text-white">
+              <a href="#cookies" className="inline-flex min-h-11 items-center hover:text-fg">
                 {t.footer.cookies}
               </a>
             </li>
             {/* Deliberately dead link: the 404 page with padel pong (the URL doesn't exist, so the real 404 shows) */}
             <li>
-              <a href={asset(locale === "de" ? "/404/" : `/${locale}/404/`)} className="inline-flex min-h-11 items-center hover:text-white" data-track="footer_404">
+              <a href={asset(locale === "de" ? "/404/" : `/${locale}/404/`)} className="inline-flex min-h-11 items-center hover:text-fg" data-track="footer_404">
                 404
               </a>
             </li>
@@ -168,11 +168,11 @@ function FooterCol({ title, keys, locale }: { title: string; keys: RouteKey[]; l
   const t = getDictionary(locale);
   return (
     <div>
-      <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-white/75">{title}</h2>
+      <h2 className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/75">{title}</h2>
       <ul className="mt-4 space-y-1">
         {keys.map((key) => (
           <li key={key}>
-            <Link href={href(locale, key)} className="group inline-flex min-h-9 items-center gap-2 text-base text-white/85 transition-colors hover:text-white">
+            <Link href={href(locale, key)} className="group inline-flex min-h-9 items-center gap-2 text-base text-fg/85 transition-colors hover:text-fg">
               <span className="h-px w-0 bg-brand-gradient transition-all duration-300 group-hover:w-4" aria-hidden />
               {t.nav[key]}
             </Link>

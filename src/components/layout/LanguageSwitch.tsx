@@ -9,7 +9,7 @@ import { cn } from "../ui/cn";
  */
 export function LanguageSwitch({ pathname, current, label, className }: { pathname: string; current: Locale; label: string; className?: string }) {
   return (
-    <div role="group" aria-label={label} className={cn("flex h-13 items-center gap-1 rounded-full border border-white/25 px-1 text-sm font-semibold uppercase leading-none tracking-[0.06em]", className)}>
+    <div role="group" aria-label={label} className={cn("flex h-13 items-center gap-1 rounded-full border border-fg/25 px-1 text-sm font-semibold uppercase leading-none tracking-[0.06em]", className)}>
       {locales.map((l) => (
         <Link
           key={l}
@@ -19,7 +19,7 @@ export function LanguageSwitch({ pathname, current, label, className }: { pathna
           aria-current={l === current ? "true" : undefined}
           className={cn(
             "flex h-11 min-w-11 items-center justify-center rounded-full px-2.5 pt-px transition-colors",
-            l === current ? "bg-brand-gradient text-white" : "text-white/85 hover:text-white",
+            l === current ? "bg-brand-gradient text-white" : "text-fg/85 hover:text-fg",
           )}
         >
           {l}

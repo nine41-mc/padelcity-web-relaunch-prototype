@@ -62,7 +62,7 @@ export function StoreGallery({
               width={p.width}
               height={p.height}
               sizes="(min-width: 1200px) 240px, (min-width: 768px) 220px, 200px"
-              className="h-auto w-full rounded-[20px] border border-white/10"
+              className="h-auto w-full rounded-[20px] border border-fg/10"
             />
           </li>
         ))}

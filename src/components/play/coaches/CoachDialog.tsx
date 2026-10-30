@@ -67,7 +67,7 @@ export function CoachDialog({
 >
   {coach && (
     <>
-        <div className="mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-white/10 bg-black/30 p-4">
+        <div className="mt-6 grid grid-cols-2 gap-4 rounded-2xl border border-fg/10 bg-canvas-deep/30 p-4">
           <CoachStat value={coach.hoursOnCourt} label={labels.hours} pending={labels.pending} locale={locale} size="md" />
           <CoachStat value={coach.students} label={labels.students} pending={labels.pending} locale={locale} size="md" suffix="+" />
         </div>
@@ -88,14 +88,14 @@ export function CoachDialog({
               )}
             </ul>
           ) : (
-            <div className="mt-3 rounded-2xl border border-white/10 p-4">
+            <div className="mt-3 rounded-2xl border border-fg/10 p-4">
               <p className="font-display text-xl font-extrabold uppercase italic leading-none">{labels.viaClub}</p>
-              <p className="mt-2 text-sm text-white/70">{labels.viaClubText}</p>
+              <p className="mt-2 text-sm text-fg/70">{labels.viaClubText}</p>
               <ul className="mt-4 flex flex-wrap gap-2">
                 {refs.map((r) =>
                   r.href ? (
                     <li key={r.key}>
-                      <Link href={r.href} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 px-4 text-sm transition hover:border-white hover:bg-white/5">
+                      <Link href={r.href} className="inline-flex min-h-11 items-center gap-2 rounded-full border border-fg/25 px-4 text-sm transition hover:border-fg hover:bg-fg/5">
                         <MapPin className="size-3.5" aria-hidden /> {r.label}
                         <span className="sr-only">– {labels.clubPage}</span>
                         <ArrowUpRight className="size-4" aria-hidden />
@@ -106,7 +106,7 @@ export function CoachDialog({
                 <li>
                   <a
                     href={`mailto:${fallbackEmail}?subject=${encodeURIComponent(fill(labels.mailSubject, { name: coach.name }))}`}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 px-4 text-sm transition hover:border-white hover:bg-white/5"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-fg/25 px-4 text-sm transition hover:border-fg hover:bg-fg/5"
                   >
                     <Mail className="size-3.5" aria-hidden />
                     <span>
@@ -129,21 +129,21 @@ export function CoachDialog({
               ))}
             </div>
           ) : (
-            <div className="mt-3 flex gap-3 rounded-2xl border border-dashed border-white/20 p-4">
-              <Clock className="mt-0.5 size-5 shrink-0 text-white/60" aria-hidden />
+            <div className="mt-3 flex gap-3 rounded-2xl border border-dashed border-fg/20 p-4">
+              <Clock className="mt-0.5 size-5 shrink-0 text-fg/60" aria-hidden />
               <div>
                 <p className="font-display text-xl font-extrabold uppercase italic leading-none">{labels.offerPending}</p>
-                <p className="mt-2 text-sm text-white/70">{labels.offerPendingText}</p>
+                <p className="mt-2 text-sm text-fg/70">{labels.offerPendingText}</p>
               </div>
             </div>
           )}
         </OverlaySection>
 
-        <div className="mt-8 flex flex-col items-start gap-2 border-t border-white/10 pt-6">
+        <div className="mt-8 flex flex-col items-start gap-2 border-t border-fg/10 pt-6">
           <Button href={appHref} variant="gradient" size="sm" data-track="coach_book_click">
             {labels.book}
           </Button>
-          <p className="text-xs text-white/60">{labels.bookNote}</p>
+          <p className="text-xs text-fg/60">{labels.bookNote}</p>
         </div>
         </>
       )}
@@ -153,10 +153,10 @@ export function CoachDialog({
 
 function ContactLink({ href, icon, label, value }: { href: string; icon: React.ReactNode; label: string; value: string }) {
   return (
-    <a href={href} className="flex min-h-11 items-center gap-3 rounded-2xl border border-white/15 px-4 py-3 transition hover:border-white/40 hover:bg-white/5">
+    <a href={href} className="flex min-h-11 items-center gap-3 rounded-2xl border border-fg/15 px-4 py-3 transition hover:border-fg/40 hover:bg-fg/5">
       <span className="grid size-9 shrink-0 place-items-center rounded-full bg-brand-gradient">{icon}</span>
       <span className="min-w-0">
-        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{label}</span>
+        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-fg/60">{label}</span>
         <span className="block truncate text-sm">{value}</span>
       </span>
     </a>
@@ -168,7 +168,7 @@ function Offer({ offer, labels, locale, showClub }: { offer: CoachOffer; labels:
   // Only show group sizes that have a price in at least one row.
   const sizes = ([1, 2, 3, 4] as const).filter((n) => offer.prices.some((p) => p.perPlayerCents[n] !== undefined));
   return (
-    <div className="rounded-2xl border border-white/10 bg-black/30 p-4">
+    <div className="rounded-2xl border border-fg/10 bg-canvas-deep/30 p-4">
       {showClub && offer.club && (
         <p className="mb-3 flex items-center gap-1.5 text-sm font-semibold">
           <MapPin className="size-3.5" aria-hidden /> {offer.club}
@@ -176,11 +176,11 @@ function Offer({ offer, labels, locale, showClub }: { offer: CoachOffer; labels:
       )}
       {offer.times.length > 0 && (
         <>
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/60">{labels.times}</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-fg/60">{labels.times}</p>
           <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-sm tabular-nums">
             {offer.times.map((t) => (
               <div key={t.weekday} className="contents">
-                <dt className="text-white/60">{labels.weekdays[t.weekday - 1]}</dt>
+                <dt className="text-fg/60">{labels.weekdays[t.weekday - 1]}</dt>
                 <dd>
                   {t.startsAt}–{t.endsAt}
                 </dd>
@@ -192,11 +192,11 @@ function Offer({ offer, labels, locale, showClub }: { offer: CoachOffer; labels:
       {offer.prices.length > 0 && sizes.length > 0 && (
         <div className={cn("overflow-x-auto", offer.times.length > 0 && "mt-4")}>
           <table className="w-full min-w-[260px] text-left text-sm tabular-nums">
-            <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-[0.14em] text-white/60">
-              {labels.prices} <span className="normal-case tracking-normal text-white/50">({sizes.length > 1 ? `1–${sizes[sizes.length - 1]}` : sizes[0]} {labels.playersHint})</span>
+            <caption className="mb-2 text-left text-xs font-semibold uppercase tracking-[0.14em] text-fg/60">
+              {labels.prices} <span className="normal-case tracking-normal text-fg/50">({sizes.length > 1 ? `1–${sizes[sizes.length - 1]}` : sizes[0]} {labels.playersHint})</span>
             </caption>
             <thead>
-              <tr className="border-b border-white/10 text-xs text-white/60">
+              <tr className="border-b border-fg/10 text-xs text-fg/60">
                 <th scope="col" className="py-1.5 pr-3 font-medium">
                   <span className="sr-only">{labels.durationHead}</span>
                 </th>
@@ -209,7 +209,7 @@ function Offer({ offer, labels, locale, showClub }: { offer: CoachOffer; labels:
             </thead>
             <tbody>
               {offer.prices.map((p) => (
-                <tr key={p.durationMinutes} className="border-b border-white/5 last:border-0">
+                <tr key={p.durationMinutes} className="border-b border-fg/5 last:border-0">
                   <th scope="row" className="py-1.5 pr-3 font-medium">
                     {fill(labels.duration, { m: p.durationMinutes })}
                   </th>

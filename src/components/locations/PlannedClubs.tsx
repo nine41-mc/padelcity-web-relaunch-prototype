@@ -55,8 +55,8 @@ export function PlannedClubs({ clubs, locale }: { clubs: Club[]; locale: Locale 
 function PlannedClubCard({ club, locale, country }: { club: Club; locale: Locale; country: string }) {
   const t = locationsContent[locale].planned;
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-white/10 bg-ink-700 transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow">
-      <div className="relative">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-[20px] border border-fg/10 bg-raised transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50 hover:shadow-glow">
+      <div data-theme="dark" className="relative">
         <Media
           src={club.mainImage?.url}
           alt={club.mainImage?.alt ?? club.city}
@@ -76,10 +76,10 @@ function PlannedClubCard({ club, locale, country }: { club: Club; locale: Locale
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div>
           <h3 className="text-lg font-semibold leading-tight">{club.name}</h3>
-          {club.region && <p className="mt-1 text-sm text-white/70">{regionLabel(club.region, locale)}</p>}
+          {club.region && <p className="mt-1 text-sm text-fg/70">{regionLabel(club.region, locale)}</p>}
         </div>
-        <div className="mt-auto flex items-center justify-between gap-3 border-t border-white/10 pt-4">
-          <p className="flex items-center gap-1.5 text-sm text-white/75">
+        <div className="mt-auto flex items-center justify-between gap-3 border-t border-fg/10 pt-4">
+          <p className="flex items-center gap-1.5 text-sm text-fg/75">
             <CalendarClock className="size-4 shrink-0 text-magenta-500" aria-hidden />
             {club.openingDate ? fill(t.opening, { date: formatOpeningDate(club.openingDate, locale) }) : t.openingTbd}
           </p>

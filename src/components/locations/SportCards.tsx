@@ -14,8 +14,8 @@ import { cn } from "@/components/ui/cn";
 import { sheetChip } from "./FilterSheet";
 import { CourtPill } from "./CourtPill";
 
-const card = "rounded-[20px] border border-white/10 bg-ink-700 pad-card";
-const label = "flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70";
+const card = "rounded-[20px] border border-fg/10 bg-raised pad-card";
+const label = "flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70";
 const bySportOrder = (a: Sport, b: Sport) => SPORTS.indexOf(a) - SPORTS.indexOf(b);
 
 /** Sport chips as in the club finder filter (icon + name, one active) – only shown when the club offers more than one. */
@@ -25,7 +25,7 @@ function SportFilter({ sports, value, onChange, locale, aria }: { sports: Sport[
   return (
     <div role="group" aria-label={aria} className="mb-4 flex flex-wrap gap-2">
       {sports.map((s) => (
-        <button key={s} type="button" aria-pressed={s === value} onClick={() => onChange(s)} className={cn(sheetChip(s === value), s !== value && "hover:border-white")}>
+        <button key={s} type="button" aria-pressed={s === value} onClick={() => onChange(s)} className={cn(sheetChip(s === value), s !== value && "hover:border-fg")}>
           <AppIcon name={s} className="size-4" />
           {names[s]}
         </button>
@@ -54,7 +54,7 @@ export function ClubPricesCourts({ club, locale }: { club: Club; locale: Locale 
       <div className={card}>
         <PriceList club={club} locale={locale} sport={sport} />
         {courts && (
-          <div className="mt-6 border-t border-white/10 pt-6">
+          <div className="mt-6 border-t border-fg/10 pt-6">
             <p className={label}>
               {t.courtsLabel} ({courtCount})
             </p>
@@ -105,7 +105,7 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
     return () => ro.disconnect();
   }, [list, hasTable]);
   const headRow = (s: Sport, cols: PriceKind[]) => (
-    <tr className="text-[13px] uppercase tracking-[0.14em] text-white/60">
+    <tr className="text-[13px] uppercase tracking-[0.14em] text-fg/60">
       <th scope="col" className="py-2 pr-4 font-semibold">{t.priceList.time}</th>
       {cols.map((k) => (
         <th key={k} scope="col" className={cn("py-2 pl-4 font-semibold", alignOf(cols))}>{columnLabel(k, s, cols, locale)}</th>
@@ -126,9 +126,9 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
     <>
       {from ? (
         <p className="font-display text-5xl font-extrabold italic uppercase">
-          <span className="text-2xl text-white/70">{t.book.priceFrom} </span>
+          <span className="text-2xl text-fg/70">{t.book.priceFrom} </span>
           {formatPrice(from, locale, club.currency)}
-          <span className="text-2xl text-white/70"> {t.book.perHour}</span>
+          <span className="text-2xl text-fg/70"> {t.book.perHour}</span>
         </p>
       ) : (
         <p className="text-lg font-semibold">{t.book.priceOnRequest}</p>
@@ -152,7 +152,7 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
             {colgroup}
             <thead style={{ height: headHeight }}>{headRow(sport, columns)}</thead>
             {dayGroups(days).map((g) => (
-              <tbody key={g.days.join()} className="border-t border-white/10">
+              <tbody key={g.days.join()} className="border-t border-fg/10">
                 <tr>
                   <th scope="rowgroup" colSpan={columns.length + 1} className="pb-1 pt-3 font-semibold">
                     {groupLabel(g.days, g.holiday, weekday, t.sections.holidays)}
@@ -160,9 +160,9 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
                 </tr>
                 {g.periods.map((p, i) => (
                   <tr key={`${p.from}-${p.until}`}>
-                    <th scope="row" className="py-1.5 pr-4 font-normal text-white/70">
+                    <th scope="row" className="py-1.5 pr-4 font-normal text-fg/70">
                       {periodLabel(g.periods, i, t.priceList)}
-                      <span className="block whitespace-nowrap text-sm text-white/50">{p.from} – {p.until}</span>
+                      <span className="block whitespace-nowrap text-sm text-fg/50">{p.from} – {p.until}</span>
                     </th>
                     {columns.map((k) => (
                       <td key={k} className={cn("py-1.5 pl-4 font-display text-2xl font-extrabold italic tabular-nums", align)}>
@@ -174,7 +174,7 @@ function PriceList({ club, locale, sport }: { club: Club; locale: Locale; sport:
               </tbody>
             ))}
           </table>
-          <p className="mt-4 text-sm text-white/60">{fill(t.priceList.note, { date: new Date(list!.validFrom).toLocaleDateString(intl, { day: "numeric", month: "long", year: "numeric" }) })}</p>
+          <p className="mt-4 text-sm text-fg/60">{fill(t.priceList.note, { date: new Date(list!.validFrom).toLocaleDateString(intl, { day: "numeric", month: "long", year: "numeric" }) })}</p>
         </div>
       )}
     </>

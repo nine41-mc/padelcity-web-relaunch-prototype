@@ -59,7 +59,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
   };
 
   return (
-    <section className="theme-dark relative isolate flex min-h-[100svh] items-end overflow-hidden pb-14 pt-32 md:items-center md:pb-24">
+    <section data-theme="dark" className="relative isolate flex min-h-[100svh] items-end overflow-hidden pb-14 pt-32 md:items-center md:pb-24">
       <motion.div style={{ y, scale }} className="absolute inset-0 -z-20">
         <video
           ref={video}
@@ -83,7 +83,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
         type="button"
         onClick={toggleVideo}
         aria-label={playing ? t.videoPause : t.videoPlay}
-        className="absolute bottom-4 right-4 z-10 grid size-11 place-items-center rounded-full border border-white/40 bg-black/40 text-white backdrop-blur transition hover:border-white md:bottom-6 md:right-6"
+        className="absolute bottom-4 right-4 z-10 grid size-11 place-items-center rounded-full border border-fg/40 bg-canvas-deep/40 text-fg backdrop-blur transition hover:border-fg md:bottom-6 md:right-6"
       >
         {playing ? <Pause className="size-4" aria-hidden /> : <Play className="size-4" aria-hidden />}
       </button>
@@ -118,7 +118,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
           <br />
           {t.line2} <Accent>{t.accent}</Accent>
           <br />
-          <span className="text-white/90">{t.line3}</span>
+          <span className="text-fg/90">{t.line3}</span>
         </motion.h1>
 
         {/* Desktop: search on one line with the CTA row; phone: text → search → CTAs */}
@@ -128,7 +128,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
           transition={{ duration: 0.7, delay: 0.35 }}
           className="mt-8 flex flex-col gap-6 md:mt-12 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,36rem)] lg:items-center lg:gap-x-10"
         >
-          <p className="max-w-md text-lg text-white/90 md:text-xl lg:col-start-1 lg:row-start-1">
+          <p className="max-w-md text-lg text-fg/90 md:text-xl lg:col-start-1 lg:row-start-1">
             {t.text}
           </p>
           <form
@@ -137,9 +137,9 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
               e.preventDefault();
               router.push(`${href(locale, "locations")}${q ? `?q=${encodeURIComponent(q)}` : ""}`);
             }}
-            className="flex h-13 w-full max-w-xl items-center gap-2 rounded-full border border-white/45 bg-black/40 p-[5px] pl-5 backdrop-blur-xl has-[input:focus-visible]:border-white has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-white lg:col-start-2 lg:row-start-2"
+            className="flex h-13 w-full max-w-xl items-center gap-2 rounded-full border border-fg/45 bg-canvas-deep/40 p-[5px] pl-5 backdrop-blur-xl has-[input:focus-visible]:border-fg has-[input:focus-visible]:ring-1 has-[input:focus-visible]:ring-fg lg:col-start-2 lg:row-start-2"
           >
-            <MapPin className="size-5 shrink-0 text-white" aria-hidden />
+            <MapPin className="size-5 shrink-0 text-fg" aria-hidden />
             <label htmlFor="hero-q" className="sr-only">
               {t.searchLabel}
             </label>
@@ -148,7 +148,7 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder={t.searchPlaceholder}
-              className="h-10 min-w-0 flex-1 bg-transparent text-base text-white placeholder:text-white/60 focus:outline-none"
+              className="h-10 min-w-0 flex-1 bg-transparent text-base text-fg placeholder:text-fg/60 focus:outline-none"
             />
             <button type="submit" className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-gradient text-white transition hover:shadow-glow hover:brightness-110" aria-label={t.searchSubmit}>
               <Search className="size-5" />

@@ -10,11 +10,11 @@ const base =
 
 const variants: Record<Variant, string> = {
   // Elephant pitch: white pill + round gradient arrow
-  primary: "bg-white text-ink-800 hover:shadow-glow",
+  primary: "bg-fg text-fg-inverse hover:shadow-glow",
   gradient: "bg-brand-gradient text-white hover:shadow-glow hover:brightness-110",
   // HIGHLIGHT role – reserved for the newsletter module only (see globals.css colour roles)
   optic: "bg-optic-500 text-on-optic hover:bg-optic-400 hover:shadow-optic",
-  outline: "border-2 border-white/60 text-white hover:border-white hover:bg-white/5",
+  outline: "border-2 border-fg/60 text-fg hover:border-fg hover:bg-fg/5",
 };
 
 // Söhne Schmal is condensed – it needs a larger size than Poppins to read well.
@@ -36,7 +36,7 @@ const arrowStyles: Record<Variant, string> = {
   primary: "bg-brand-gradient text-white",
   gradient: "bg-white/15 text-white",
   optic: "bg-ink-800 text-optic-500",
-  outline: "bg-white/10 text-white",
+  outline: "bg-fg/10 text-fg",
 };
 
 type Props = {

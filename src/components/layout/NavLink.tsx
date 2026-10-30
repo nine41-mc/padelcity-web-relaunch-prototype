@@ -9,7 +9,7 @@ export function NavLink({ href, active, children }: { href: string; active: bool
       aria-current={active ? "page" : undefined}
       className={cn(
         "relative rounded-full px-2.5 py-2 text-[15px] font-semibold uppercase tracking-[0.06em] transition-colors xl:px-4 xl:text-base",
-        active ? "text-white" : "text-white/85 hover:text-white",
+        active ? "text-fg" : "text-fg/85 hover:text-fg",
       )}
     >
       {children}

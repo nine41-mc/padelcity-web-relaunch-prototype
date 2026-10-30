@@ -37,7 +37,7 @@ export async function FaqView({ locale }: { locale: Locale }) {
 
       <Section tone="ink" className="!pt-6 md:!pt-10">
         <FaqExplorer categories={faq.categories} labels={t.explorer} />
-        {faq.source === "api" && <p className="mt-10 text-xs text-white/50">{t.explorer.sourceApi}</p>}
+        {faq.source === "api" && <p className="mt-10 text-xs text-fg/50">{t.explorer.sourceApi}</p>}
       </Section>
 
       {/* Contentful module: contactTeaser */}
@@ -48,19 +48,19 @@ export async function FaqView({ locale }: { locale: Locale }) {
             <Headline size="md">
               {t.contact.title} <Accent>{t.contact.accent}</Accent>
             </Headline>
-            <p className="mt-5 max-w-lg text-white/70">{t.contact.text}</p>
+            <p className="mt-5 max-w-lg text-fg/70">{t.contact.text}</p>
           </div>
           <div className="flex flex-col gap-3 md:items-end">
             <a
               href={`mailto:${site.email}?subject=${encodeURIComponent(t.contact.mailSubject)}`}
               data-track="faq_contact_click"
-              className="flex min-h-11 w-full items-center gap-3 rounded-2xl border border-white/15 px-4 py-3 transition hover:border-white/40 hover:bg-white/5 md:w-auto"
+              className="flex min-h-11 w-full items-center gap-3 rounded-2xl border border-fg/15 px-4 py-3 transition hover:border-fg/40 hover:bg-fg/5 md:w-auto"
             >
               <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-gradient">
                 <Mail className="size-4" aria-hidden />
               </span>
               <span className="min-w-0">
-                <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-white/60">{t.contact.mail}</span>
+                <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-fg/60">{t.contact.mail}</span>
                 <span className="block break-all">{site.email}</span>
               </span>
             </a>

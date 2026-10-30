@@ -52,15 +52,15 @@ export function ClubCard({
   return (
     <article
       className={cn(
-        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border bg-ink-700 transition-all duration-300 hover:border-magenta-500/50 hover:shadow-glow",
-        active ? "border-magenta-500/50 shadow-glow" : "border-white/10",
+        "group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border bg-raised transition-all duration-300 hover:border-magenta-500/50 hover:shadow-glow",
+        active ? "border-magenta-500/50 shadow-glow" : "border-fg/10",
         lift && "hover:-translate-y-1",
         className,
       )}
     >
       {/* Image in the poster look of the home showcase: status top-left, city, price bottom-right.
           Own compositing layer + 1px bleed: during the lift and zoom the image edge rounds to sub-pixels and let a light seam flash. */}
-      <div className="relative aspect-[16/10] transform-gpu overflow-hidden [container-type:inline-size]">
+      <div data-theme="dark" className="relative aspect-[16/10] transform-gpu overflow-hidden [container-type:inline-size]">
         <Media
           src={club.mainImage?.url}
           alt={club.mainImage?.alt ?? club.name}
@@ -74,21 +74,21 @@ export function ClubCard({
         </span>
         <PosterTitle club={club} className="top-[22%]" size={{ font: 12, spot: 5.5 }} maxOneLine={11} />
         {club.defaultPricePerHour && (
-          <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
+          <p className="absolute bottom-3 right-4 whitespace-nowrap font-display text-4xl font-extrabold italic uppercase leading-none text-fg drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]">
             {t.from} {formatPrice(club.defaultPricePerHour, locale, club.currency)}/h
           </p>
         )}
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5">
         <h3 className="sr-only">{club.name}</h3>
-        <p className="truncate text-sm text-white/70">
+        <p className="truncate text-sm text-fg/70">
           {address}
           {distanceKm !== undefined && ` · ${distanceKm.toLocaleString(intl, { maximumFractionDigits: 1 })} km`}
         </p>
         <div className="mt-auto flex items-end justify-between gap-4 pt-1">
           <div className="min-w-0">
-            <p className="text-sm font-medium text-white">{courtSummary(club, locale)}</p>
-            <SportList club={club} locale={locale} className="mt-1 text-white/70" />
+            <p className="text-sm font-medium text-fg">{courtSummary(club, locale)}</p>
+            <SportList club={club} locale={locale} className="mt-1 text-fg/70" />
           </div>
           <CardArrow />
         </div>

@@ -49,7 +49,7 @@ export function CityIndex({ clubs, planned = [], locale = "de" }: { clubs: Club[
             <div className="columns-1 gap-8 md:columns-2 lg:columns-4">
               {regions.map(([region, cities]) => (
                 <section key={region} className="mb-8 break-inside-avoid">
-                  <h4 className="mb-3 border-b border-white/10 pb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-white/70">{region}</h4>
+                  <h4 className="mb-3 border-b border-fg/10 pb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{region}</h4>
                   <ul className="space-y-1">
                     {[...cities.entries()]
                       .sort((a, b) => a[0].localeCompare(b[0], intl))
@@ -59,20 +59,20 @@ export function CityIndex({ clubs, planned = [], locale = "de" }: { clubs: Club[
                             <span>
                               <span className="font-medium">{city}</span>
                               {list.length > 1 && (
-                                <span className="text-white/70"> · {club.name.replace(/^PadelCity\s*/, "").replace(city, "").trim() || club.name}</span>
+                                <span className="text-fg/70"> · {club.name.replace(/^PadelCity\s*/, "").replace(city, "").trim() || club.name}</span>
                               )}
                             </span>
                           );
                           return club.status === "planned" ? (
-                            <li key={club.id} className="flex min-h-11 items-center justify-between gap-3 py-1.5 text-white/70">
+                            <li key={club.id} className="flex min-h-11 items-center justify-between gap-3 py-1.5 text-fg/70">
                               {label}
-                              <span className="rounded-full border border-white/20 px-2 py-0.5 text-[13px] font-semibold uppercase tracking-wide text-white/70">{t.soon}</span>
+                              <span className="rounded-full border border-fg/20 px-2 py-0.5 text-[13px] font-semibold uppercase tracking-wide text-fg/70">{t.soon}</span>
                             </li>
                           ) : (
                             <li key={club.id}>
-                              <Link href={href(locale, "locations", club.slug)} className="group flex min-h-11 items-center justify-between gap-3 py-1.5 text-white/85 hover:text-white">
+                              <Link href={href(locale, "locations", club.slug)} className="group flex min-h-11 items-center justify-between gap-3 py-1.5 text-fg/85 hover:text-fg">
                                 {label}
-                                <span className="text-sm text-white/70 transition-colors group-hover:text-white">
+                                <span className="text-sm text-fg/70 transition-colors group-hover:text-fg">
                                   {club.courts.length > 0 ? `${club.courts.length} ${plural(locale, club.courts.length, dict.court, dict.courts)} →` : "→"}
                                 </span>
                               </Link>

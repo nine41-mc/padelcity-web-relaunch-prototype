@@ -63,8 +63,8 @@ export function AboutView({ locale }: { locale: Locale }) {
       <Section id="story" className="scroll-mt-16">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-magenta-300">{t.story.eyebrow}</p>
-            <div className="mt-6 space-y-5 text-lg leading-relaxed text-white/80">
+            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-accent-fg">{t.story.eyebrow}</p>
+            <div className="mt-6 space-y-5 text-lg leading-relaxed text-fg/80">
               {t.story.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}
@@ -75,7 +75,7 @@ export function AboutView({ locale }: { locale: Locale }) {
               <figure className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
                 <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
                 <div className="relative flex h-full flex-col">
-                  <Quote className="size-10 text-white/70" aria-hidden />
+                  <Quote className="size-10 text-fg/70" aria-hidden />
                   <blockquote className="mt-6 font-display text-3xl font-extrabold italic uppercase leading-[1.02] md:text-4xl">
                     {open}
                     {quoteAuthor.quote[locale]}
@@ -87,7 +87,7 @@ export function AboutView({ locale }: { locale: Locale }) {
                     )}
                     <span>
                       <span className="block font-semibold">{quoteAuthor.name}</span>
-                      <span className="text-white/85">{quoteAuthor.role[locale]}</span>
+                      <span className="text-fg/85">{quoteAuthor.role[locale]}</span>
                     </span>
                   </figcaption>
                 </div>
@@ -123,13 +123,13 @@ export function AboutView({ locale }: { locale: Locale }) {
               <>
                 <div className="flex items-center justify-between">
                   <BrandIcon name={p.icon} tone="glass" />
-                  {p.route && <ArrowUpRight className="size-5 text-white/70 transition-all duration-300 group-hover:rotate-45 group-hover:text-white" aria-hidden />}
+                  {p.route && <ArrowUpRight className="size-5 text-fg/70 transition-all duration-300 group-hover:rotate-45 group-hover:text-fg" aria-hidden />}
                 </div>
                 <h3 className="mt-6 font-display text-3xl font-extrabold italic uppercase leading-none text-brand-gradient">{p.name}</h3>
-                <p className={`mt-3 text-sm leading-relaxed ${p.route ? "text-white/75" : "text-white"}`}>{p.text}</p>
+                <p className={`mt-3 text-sm leading-relaxed ${p.route ? "text-fg/75" : "text-fg"}`}>{p.text}</p>
               </>
             );
-            const cls = "group block h-full rounded-[20px] border border-white/10 bg-ink-700 pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50";
+            const cls = "group block h-full rounded-[20px] border border-fg/10 bg-raised pad-card transition-all duration-300 hover:-translate-y-1 hover:border-magenta-500/50";
             return (
               <li key={p.name} className={i === 0 ? "md:col-span-2" : undefined}>
                 <Reveal delay={i * 0.04} className="h-full">
@@ -173,12 +173,12 @@ export function AboutView({ locale }: { locale: Locale }) {
       {/* Jobs CTA */}
       <Section tone="black" className="pt-0 md:pt-0 lg:pt-0">
         <Reveal>
-          <div className="relative grid items-center gap-8 overflow-hidden rounded-[28px] border border-white/10 bg-ink-700 md:grid-cols-[1fr_0.8fr]">
+          <div className="relative grid items-center gap-8 overflow-hidden rounded-[28px] border border-fg/10 bg-raised md:grid-cols-[1fr_0.8fr]">
             <div className="p-8 md:p-12">
               <Headline size="md">
                 {t.jobs.title} <Accent>{t.jobs.accent}</Accent>
               </Headline>
-              <p className="mt-5 max-w-md text-lg text-white/70">{t.jobs.text}</p>
+              <p className="mt-5 max-w-md text-lg text-fg/70">{t.jobs.text}</p>
               <Button href={href(locale, "jobs")} variant="gradient" size="md" className="mt-8" data-track="about_jobs_cta">
                 {t.jobs.cta}
               </Button>

@@ -90,6 +90,20 @@
   /* text/icon colour on highlight surfaces (ticker, newsletter button) – switches with the highlight demo */
   --color-on-optic: #0b0b0f;
 
+  /* SEMANTIC ROLES – what components use for surfaces, text and lines. Dark values here; the light values
+     follow below (html[data-theme="light"]), and [data-theme="dark"] brings the dark values back inside a
+     light page (photos, brand banners, footer). Figma: 02 Semantic Tokens, modes Dark / Light. */
+  --color-canvas: #0b0b0f; /* page */
+  --color-canvas-deep: #000000; /* darker sections */
+  --color-raised: #15171f; /* cards, panels */
+  --color-surface: #1b1c26; /* fields, tiles on cards */
+  --color-surface-variant: #20222e;
+  --color-fg: #ffffff; /* text, icons, lines (with opacity: fg/70, border-fg/10) */
+  --color-fg-inverse: #0b0b0f; /* text on fg-filled controls (white buttons in dark) */
+  --color-highlight-fg: var(--color-optic-500); /* highlight as text (accent word, level, stats) */
+  --color-accent-fg: #fc69e8; /* pink text: live club info, link hover */
+  --color-focus: var(--color-optic-500); /* keyboard focus ring */
+
   /* Status (shared with the app) */
   --color-success: #00b894;
   --color-danger: #ff2e47;
@@ -167,6 +181,40 @@
   color-scheme: dark;
 }
 
+/* Light theme: set on <html> before paint (theme pre-paint script: stored choice, else the system setting). */
+:root[data-theme="light"],
+[data-theme="light"] {
+  --color-canvas: #f8f8f8;
+  --color-canvas-deep: #eeeef2;
+  --color-raised: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-variant: #f1f0f5;
+  --color-fg: #0b0b0f;
+  --color-fg-inverse: #ffffff;
+  --color-highlight-fg: var(--color-purple-500);
+  --color-accent-fg: #960382;
+  --color-focus: var(--color-purple-500);
+  color-scheme: light;
+}
+/* Dark areas inside a light page (photos, brand banners, footer): the dark values again. Brand-gradient surfaces
+   are dark areas by themselves; photo heroes and cards set data-theme="dark". */
+[data-theme="dark"],
+:is(.bg-brand-gradient, .bg-brandbook-gradient) {
+  --color-canvas: #0b0b0f;
+  --color-canvas-deep: #000000;
+  --color-raised: #15171f;
+  --color-surface: #1b1c26;
+  --color-surface-variant: #20222e;
+  --color-fg: #ffffff;
+  --color-fg-inverse: #0b0b0f;
+  --color-highlight-fg: var(--color-optic-500);
+  --color-accent-fg: #fc69e8;
+  --color-focus: var(--color-optic-500);
+  color-scheme: dark;
+}
+/* Highlight candidates other than Optic Yellow and purple read too light as text on chalk → their darker step. */
+:root[data-theme="light"]:is([data-highlight="magenta"], [data-highlight="turquoise"]) { --color-highlight-fg: var(--color-optic-600); }
+
 @utility bg-brand-gradient {
   background-image: var(--gradient-brand);
 }
@@ -242,11 +290,14 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    background: var(--color-ink-800);
-    color: var(--color-chalk);
+    background: var(--color-canvas);
+    color: var(--color-fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+  }
+  :is([data-theme], .bg-brand-gradient, .bg-brandbook-gradient) {
+    color: var(--color-fg);
   }
   /* Balanced line breaks for every heading – avoids one-word orphans in big display type. */
   h1, h2, h3 {
@@ -262,7 +313,7 @@
     color: #fff;
   }
   :focus-visible {
-    outline: 2px solid var(--color-optic-500);
+    outline: 2px solid var(--color-focus);
     outline-offset: 3px;
     border-radius: 6px;
   }
@@ -363,43 +414,5 @@ html[data-highlight="turquoise"] { --color-optic-300: #86e8f3; --color-optic-400
 /* clickable for the comparison – no text selection on (double) clicks */
 html[data-highlight-demo] :is(.text-optic-500, .bg-optic-500, [data-highlight-target]) { cursor: pointer; -webkit-user-select: none; user-select: none; }
 
-/*
- * Light-mode comparison (home page, ThemeDemo): html[data-theme="light"] swaps the dark surface tokens, so every
- * white-on-ink utility flips to ink-on-chalk without touching the components. Photos, gradients, the header and
- * the footer stay dark ("dark islands": header, footer, .theme-dark and the brand gradients re-declare the
- * original tokens). Highlight text is unreadable on chalk (1.1:1), so outside the islands it uses
- * --color-highlight-on-light; Optic Yellow and highlight surfaces keep their colour. Not a token set yet –
- * the Figma counterpart is a draft ("Startseite · Light Mode") without library variables.
- */
-html[data-theme="light"] {
-  --color-white: #0b0b0f;
-  --color-chalk: #0b0b0f;
-  --color-ink-800: #f8f8f8;
-  --color-ink-700: #ffffff;
-  --color-ink-600: #ffffff;
-  --color-ink-500: #ffffff;
-  --color-highlight-on-light: var(--color-purple-500);
-}
-html[data-theme="light"][data-highlight="magenta"],
-html[data-theme="light"][data-highlight="turquoise"] { --color-highlight-on-light: var(--color-optic-600); }
-html[data-theme="light"] :where(header, footer, .theme-dark, .bg-brand-gradient, .bg-brandbook-gradient) {
-  --color-white: #ffffff;
-  --color-chalk: #f8f8f8;
-  --color-ink-800: #0b0b0f;
-  --color-ink-700: #15171f;
-  --color-ink-600: #1b1c26;
-  --color-ink-500: #20222e;
-}
-/* islands inherit chalk text again; in the base layer so text utilities on the island itself still win */
-@layer base {
-  html[data-theme="light"] :where(header, footer, .theme-dark, .bg-brand-gradient, .bg-brandbook-gradient) { color: var(--color-chalk); }
-}
-html[data-theme="light"] :is(.text-optic-300, .text-optic-400, .text-optic-500):not(:is(header, footer, .theme-dark, .bg-brand-gradient, .bg-brandbook-gradient) *) {
-  color: var(--color-highlight-on-light);
-}
-html[data-theme="light"] .text-magenta-300:not(:is(header, footer, .theme-dark, .bg-brand-gradient, .bg-brandbook-gradient) *) {
-  color: var(--color-magenta-700);
-}
-html[data-theme="light"] .bg-black:not(:is(header, footer, .theme-dark) *, footer) { background-color: var(--color-ink-800); }
-/* the partner logos are white artwork – inverted to ink on chalk */
-html[data-theme="light"] .partner-logo:not(:is(header, footer, .theme-dark) *) { filter: invert(1); }
+/* Partner and press logos are white artwork – inverted to ink on a light page. */
+:root[data-theme="light"] .logo-white:not([data-theme="dark"] *) { filter: invert(1); }

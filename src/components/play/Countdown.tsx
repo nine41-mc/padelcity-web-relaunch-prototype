@@ -28,7 +28,7 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
   }, [target]);
 
   if (t?.done) {
-    return <p className={cn("font-display text-2xl italic uppercase text-white", className)}>{labels.live}</p>;
+    return <p className={cn("font-display text-2xl italic uppercase text-fg", className)}>{labels.live}</p>;
   }
 
   const units: [string, number | undefined][] = [
@@ -42,7 +42,7 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
   // four equal cells with short units (Tage, Std, Min, Sek), so the pill never changes width
   return (
     <div
-      className={cn("grid w-fit grid-cols-4 divide-x divide-white/15 rounded-2xl border border-white/15 bg-black/40 backdrop-blur", className)}
+      className={cn("grid w-fit grid-cols-4 divide-x divide-fg/15 rounded-2xl border border-fg/15 bg-canvas-deep/40 backdrop-blur", className)}
       role="timer"
       aria-label={labels.aria}
     >
@@ -51,7 +51,7 @@ export function Countdown({ start, labels, className, size = "md" }: { start: st
           <span className={cn("font-display font-extrabold italic tabular-nums leading-none", size === "md" ? "text-3xl md:text-4xl" : "text-xl")}>
             {v === undefined ? "--" : String(v).padStart(2, "0")}
           </span>
-          <span className={cn("mt-1 font-semibold uppercase text-white/70", size === "md" ? "text-[11px] tracking-[0.06em] md:text-[13px] md:tracking-[0.08em]" : "text-[10px] tracking-[0.04em]")}>{label}</span>
+          <span className={cn("mt-1 font-semibold uppercase text-fg/70", size === "md" ? "text-[11px] tracking-[0.06em] md:text-[13px] md:tracking-[0.08em]" : "text-[10px] tracking-[0.04em]")}>{label}</span>
         </div>
       ))}
     </div>

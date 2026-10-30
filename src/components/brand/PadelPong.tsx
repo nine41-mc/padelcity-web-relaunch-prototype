@@ -140,8 +140,8 @@ export function PadelPong({ label }: { label: string }) {
 
   return (
     <div className="relative">
-      <canvas ref={canvas} role="img" aria-label={label} className="aspect-[16/9] w-full touch-none rounded-[24px] border border-white/10" />
-      <p className="pointer-events-none absolute right-5 top-4 font-display text-xl font-extrabold italic uppercase tabular-nums text-optic-500 md:text-2xl" aria-hidden>
+      <canvas ref={canvas} role="img" aria-label={label} className="aspect-[16/9] w-full touch-none rounded-[24px] border border-fg/10" />
+      <p className="pointer-events-none absolute right-5 top-4 font-display text-xl font-extrabold italic uppercase tabular-nums text-highlight-fg md:text-2xl" aria-hidden>
         Rally {rally}
       </p>
     </div>

@@ -28,10 +28,10 @@ export function YesNoRow({
   return (
     <div role="radiogroup" aria-labelledby={titleId} className="flex items-center justify-between gap-4 px-5 py-4">
       <div className="min-w-0">
-        <p id={titleId} className="font-medium text-white">
+        <p id={titleId} className="font-medium text-fg">
           {title}
         </p>
-        {text && <p className="mt-1 text-sm text-white/85">{text}</p>}
+        {text && <p className="mt-1 text-sm text-fg/85">{text}</p>}
       </div>
       <div className="flex shrink-0 gap-2">
         {[

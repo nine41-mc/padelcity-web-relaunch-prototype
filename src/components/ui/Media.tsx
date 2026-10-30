@@ -37,7 +37,7 @@ export function Media({
     }
   }, [src]);
   return (
-    <div className={cn(!/(^|\s)!?(absolute|fixed|sticky)(\s|$)/.test(className ?? "") && "relative", "overflow-hidden bg-ink-600", className)}>
+    <div className={cn(!/(^|\s)!?(absolute|fixed|sticky)(\s|$)/.test(className ?? "") && "relative", "overflow-hidden bg-surface", className)}>
       {(failed || !loaded) && (
         <div className="absolute inset-0 bg-brandbook-gradient opacity-80" aria-label={failed ? alt : undefined} role={failed ? "img" : undefined}>
           <div className="absolute inset-0 bg-court-lines" />

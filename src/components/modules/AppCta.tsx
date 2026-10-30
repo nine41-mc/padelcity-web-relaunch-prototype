@@ -29,7 +29,7 @@ export function AppCta({
           <Headline size="md">
             {t.title} <Accent>{t.accent}</Accent>
           </Headline>
-          <p className="mt-4 max-w-lg text-white/80">
+          <p className="mt-4 max-w-lg text-fg/80">
             {t.text}
           </p>
           <Button href={clubSlug ? deeplinks.club(clubSlug) : href(locale, "app")} size="md" className="mt-8" data-track="app_cta">

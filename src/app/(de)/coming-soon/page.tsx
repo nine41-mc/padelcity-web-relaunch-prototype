@@ -19,7 +19,7 @@ export default function Page() {
             Coming <Accent>soon.</Accent>
           </Headline>
           <Lead className="mt-6">Dieser Link führt bald direkt in die PadelCity App. Bis dahin: ein kleines Match für zwischendurch.</Lead>
-          <p lang="en" className="mt-3 text-white/70">
+          <p lang="en" className="mt-3 text-fg/70">
             This link will soon open the PadelCity app. Until then, enjoy a quick rally.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -31,7 +31,7 @@ export default function Page() {
         </div>
         <div>
           <PadelPong label="Animiertes Padel-Pong: ein gelbgrüner Ball fliegt zwischen zwei Schlägern hin und her" />
-          <p className="mt-3 text-sm text-white/60">Maus oder Finger über das Feld bewegen und links mitspielen · Move your pointer over the court to play.</p>
+          <p className="mt-3 text-sm text-fg/60">Maus oder Finger über das Feld bewegen und links mitspielen · Move your pointer over the court to play.</p>
         </div>
       </div>
     </Section>

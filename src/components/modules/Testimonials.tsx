@@ -90,7 +90,7 @@ export function Testimonials({ locale, items = allTestimonials }: { locale: Loca
                 aria-current={active === i ? "true" : undefined}
                 className="grid size-11 place-items-center"
               >
-                <span className={cn("block h-2 rounded-full transition-all", active === i ? "w-6 bg-brand-gradient" : "w-2 bg-white/40")} />
+                <span className={cn("block h-2 rounded-full transition-all", active === i ? "w-6 bg-brand-gradient" : "w-2 bg-fg/40")} />
               </button>
             ))}
           </div>

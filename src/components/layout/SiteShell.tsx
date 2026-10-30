@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { A11yPanel } from "@/components/a11y/A11yPanel";
 import { a11yPrePaintScript } from "@/lib/a11y-prepaint";
+import { themePrePaintScript } from "@/lib/theme";
 import { goodBrush, poppins, soehneSchmal } from "@/app/fonts";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -46,12 +47,14 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
     <html
       lang={localeTags[locale].lang}
       className={`${poppins.variable} ${soehneSchmal.variable} ${goodBrush.variable}`}
-      // the pre-paint scripts set lang/data-a11y-* on <html> before React hydrates
+      // the pre-paint scripts set lang/data-a11y-*/data-theme on <html> before React hydrates
       suppressHydrationWarning
     >
       <body className="antialiased">
         {/* display preferences of the accessibility panel (data-a11y-* on <html>), applied before paint */}
         <script dangerouslySetInnerHTML={{ __html: a11yPrePaintScript }} />
+        {/* light / dark (data-theme on <html>): stored choice, else the system setting – before paint */}
+        <script dangerouslySetInnerHTML={{ __html: themePrePaintScript }} />
         {/* without JS the fade-in never runs – show Reveal content (see globals.css) */}
         <noscript>
           <style>{"[data-reveal]{opacity:1!important;transform:none!important}"}</style>
