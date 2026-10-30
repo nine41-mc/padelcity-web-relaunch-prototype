@@ -21,12 +21,12 @@ alte_url;neue_url;status;hinweis
 /en/bielefeld/;/en/locations/bielefeld/;eindeutig;
 /en/cadolzburg/;/en/locations/cadolzburg/;eindeutig;
 /en/category/padel_en/;/en/magazine/;eindeutig;
-/en/christmas-events/;/en/events/;prüfen;saisonale Seite – weiterleiten oder entfallen lassen
+/en/christmas-events/;/en/events/inquiry/;eindeutig;Weihnachtsfeiern für Gruppen mit unverbindlicher Anfrage – gleiche Anfrage wie Events
 /en/dortmund/;/en/locations/dortmund/;eindeutig;
 /en/duesseldorf/;/en/locations/duesseldorf/;eindeutig;
 /en/erding/;/en/locations/erding/;eindeutig;
 /en/erlangen-en/;/en/locations/erlangen/;eindeutig;
-/en/footer/;/en/;prüfen;WordPress-Hilfsseite, nicht öffentlich gedacht
+/en/footer/;/en/;eindeutig;WordPress-Hilfsseite, nicht öffentlich gedacht
 /en/franchising/;/en/franchise/;eindeutig;
 /en/frankfurt-en/;/en/locations/frankfurt/;eindeutig;
 /en/fuerth/;/en/locations/fuerth/;eindeutig;
@@ -39,7 +39,7 @@ alte_url;neue_url;status;hinweis
 /en/jena/;/en/locations/jena/;eindeutig;
 /en/jobs/;/en/jobs/;eindeutig;
 /en/karlsruhe/;/en/locations/karlsruhe/;eindeutig;
-/en/leipzig-en/;;offen;heute ein Club „Leipzig“, neu Leutzsch und Plagwitz – Zuordnung klären
+/en/leipzig-en/;/en/locations/leipzig-leutzsch/;eindeutig;alte Seite zeigt Franz-Flemming-Straße 3a = Leutzsch (geprüft 31.10.2026)
 /en/leipzig-plagwitz/;/en/locations/leipzig-plagwitz/;eindeutig;
 /en/lingen-en/;/en/locations/lingen/;eindeutig;
 /en/locations/;/en/locations/;eindeutig;
@@ -49,7 +49,7 @@ alte_url;neue_url;status;hinweis
 /en/muenchen-ffr-en/;/en/locations/muenchen-frankfurter-ring/;eindeutig;
 /en/muenchen-tucherpark/;/en/locations/muenchen-tucherpark/;eindeutig;
 /en/neu-ulm/;/en/locations/neu-ulm/;eindeutig;
-/en/neufahrn/;;offen;Club Neufahrn ist im Prototyp nicht enthalten – Status klären
+/en/neufahrn/;;offen;Club ist auf padelcity.de aktiv (Franchise-Partner, geprüft 31.10.2026), fehlt aber im Prototyp/Contentful – Club anlegen, dann /en/locations/neufahrn/
 /en/padelcity-events/;/en/events/;eindeutig;
 /en/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
 /en/portfolio-item/one-point-challenge-tour-austria/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
@@ -69,9 +69,9 @@ alte_url;neue_url;status;hinweis
 /en/schwabach/;/en/locations/schwabach/;eindeutig;
 /en/terms-of-use/;/en/terms/;eindeutig;
 /en/thepadelblog/;/en/magazine/;eindeutig;
-/en/this-is-padelcity/;/en/about/;prüfen;Inhalt prüfen (Über-uns-Seite?)
+/en/this-is-padelcity/;/en/about/;eindeutig;Über-uns-Seite (geprüft 31.10.2026)
 /en/twelve-million-2/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/en/weihnachten/;/en/events/;prüfen;saisonale Seite – weiterleiten oder entfallen lassen
+/en/weihnachten/;/en/events/inquiry/;eindeutig;Weihnachtsfeiern für Gruppen mit unverbindlicher Anfrage – gleiche Anfrage wie Events
 /en/wetzlar-en/;/en/locations/wetzlar/;eindeutig;
 /en/what-exactly-is-padel/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
 /en/when-shots-slowly-start-becoming-a-game/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
@@ -83,7 +83,7 @@ alte_url;neue_url;status;hinweis
 /erding/;/standorte/erding/;eindeutig;
 /erlangen/;/standorte/erlangen/;eindeutig;
 /events/;/events/;eindeutig;
-/footer/;/;prüfen;WordPress-Hilfsseite, nicht öffentlich gedacht
+/footer/;/;eindeutig;WordPress-Hilfsseite, nicht öffentlich gedacht
 /franchising/;/franchise/;eindeutig;
 /frankfurt/;/standorte/frankfurt/;eindeutig;
 /fuerth/;/standorte/fuerth/;eindeutig;
@@ -97,7 +97,7 @@ alte_url;neue_url;status;hinweis
 /jobs/;/jobs/;eindeutig;
 /karlsruhe/;/standorte/karlsruhe/;eindeutig;
 /leipzig-plagwitz/;/standorte/leipzig-plagwitz/;eindeutig;
-/leipzig/;;offen;heute ein Club „Leipzig“, neu Leutzsch und Plagwitz – Zuordnung klären
+/leipzig/;/standorte/leipzig-leutzsch/;eindeutig;alte Seite zeigt Franz-Flemming-Straße 3a = Leutzsch (geprüft 31.10.2026)
 /lingen/;/standorte/lingen/;eindeutig;
 /locations/;/standorte/;eindeutig;
 /marburg/;/standorte/marburg/;eindeutig;
@@ -105,10 +105,10 @@ alte_url;neue_url;status;hinweis
 /muenchen-frankfurter-ring/;/standorte/muenchen-frankfurter-ring/;eindeutig;
 /muenchen-tucherpark/;/standorte/muenchen-tucherpark/;eindeutig;
 /neu-ulm/;/standorte/neu-ulm/;eindeutig;
-/neufahrn/;;offen;Club Neufahrn ist im Prototyp nicht enthalten – Status klären
+/neufahrn/;;offen;Club ist auf padelcity.de aktiv (Franchise-Partner, geprüft 31.10.2026), fehlt aber im Prototyp/Contentful – Club anlegen, dann /standorte/neufahrn/
 /newsletter-bestaetigung/;;offen;Bestätigungsseite für das Double-Opt-in fehlt in der neuen Website – mit dem Newsletter-Anbieter klären
-/newsletter/;/#newsletter;prüfen;Newsletter ist künftig ein Modul im Footer
-/padel-camp/;/academy/;prüfen;Inhalt prüfen (Camp = Academy-Angebot?)
+/newsletter/;/#newsletter;eindeutig;Newsletter ist künftig ein Modul im Footer
+/padel-camp/;/academy/#programme;eindeutig;Kids-&-Teens-Camp in den Ferien – Camps stehen im Academy-Programm (Kids & Juniors)
 /padel-vs-tennis/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
 /padelblog/;/magazin/;eindeutig;
 /padelcity-unser-team/;/ueber-uns/;eindeutig;
@@ -130,7 +130,7 @@ alte_url;neue_url;status;hinweis
 /warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt-2/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
 /warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
 /was-ist-padel-eigentlich/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/weihnachten/;/events/;prüfen;saisonale Seite – weiterleiten oder entfallen lassen
+/weihnachten/;/events/anfrage/;eindeutig;Weihnachtsfeiern für Gruppen mit unverbindlicher Anfrage – gleiche Anfrage wie Events
 /wenn-aus-schlaegen-langsam-ein-spiel-wird/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
 /wenn-der-plan-ploetzlich-alleine-nach-madrid-fliegt/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
 /wetzlar/;/standorte/wetzlar/;eindeutig;
