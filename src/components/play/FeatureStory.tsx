@@ -82,7 +82,8 @@ export function FeatureStory({
               aria-labelledby={`feature-${f.id}`}
               className={cn(
                 "grid items-center gap-10 border-t border-fg/10 py-14 first:border-t-0 first:pt-0 md:grid-cols-[1fr_auto] md:py-20 lg:flex lg:min-h-[88vh] lg:flex-col lg:items-start lg:justify-center lg:py-0",
-                "transition-opacity duration-500 lg:opacity-70 lg:focus-within:opacity-100",
+                // inactive rows are dimmed; on chalk only to 85 %, or the 70 % body text would drop below AA
+                "transition-opacity duration-500 lg:opacity-70 lg:[:root[data-theme=light]_&]:opacity-85 lg:focus-within:opacity-100",
                 active === i && "lg:opacity-100",
               )}
             >

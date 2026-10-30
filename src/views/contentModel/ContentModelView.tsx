@@ -10,8 +10,9 @@ import { ContentModelExplorer } from "./ContentModelExplorer";
  */
 export function ContentModelView({ locale }: { locale: Locale }) {
   return (
-    // Internal page, written in German on every locale → lang="de" for screen readers (WCAG 3.1.2)
-    <div lang="de">
+    // Internal page, written in German on every locale → lang="de" for screen readers (WCAG 3.1.2).
+    // Its colour key (amber, sky … for the data sources) is made for ink, so it stays dark in the light theme.
+    <div lang="de" data-theme="dark">
       <Section tone="ink" className="!pt-36 md:!pt-44">
         <Eyebrow className="mb-5">Intern · Website-Relaunch</Eyebrow>
         <Headline as="h1" size="lg">
