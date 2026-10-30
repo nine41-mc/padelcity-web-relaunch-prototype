@@ -53,7 +53,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
     <>
       {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis) */}
       {/* Comparison switch for the brand discussion (home only): highlight colour */}
-      <div className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-2">
+      <div data-capture-hide className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-2">
         <HighlightDemo locale={locale} />
       </div>
       <HomeHero locale={locale} t={t.hero} />

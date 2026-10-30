@@ -4,8 +4,8 @@ const { chromium } = require("playwright");
 
 // Capture mode: the page is laid out statically, as a designer needs it in Figma.
 const CAPTURE_CSS = `
-  /* Next.js dev overlay is not part of the design */
-  nextjs-portal { display: none !important; }
+  /* Next.js dev overlay and the comparison switches (data-capture-hide) are not part of the design */
+  nextjs-portal, [data-capture-hide] { display: none !important; }
   /* App feature story: the sticky phone swaps screens while scrolling – a capture only sees the first one.
      Show one phone per feature next to its text instead. */
   @media (min-width: 1024px) {
