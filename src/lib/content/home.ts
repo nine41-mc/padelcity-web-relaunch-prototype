@@ -37,6 +37,19 @@ const de = {
   },
   showcase: { eyebrow: "Unsere Clubs", title: "Clubs mit", accent: "Vibe.", all: "Alle Standorte", prev: "Zurück", next: "Weiter", slugs: showcaseSlugs },
   events: { eyebrow: "Social Events & Turniere", title: "Mehr als ein", accent: "Match.", all: "Alle Events", hero: "Hero Event", more: "Mehr erfahren" },
+  // Newcomers (team feedback m-5): facts only from the FAQ, the rules article and the club prices
+  newbies: {
+    eyebrow: "Neu im Padel",
+    title: "Zum ersten Mal",
+    accent: "Padel?",
+    lead: "So geht's – in vier Schritten vom ersten Schlag zum ersten Match.",
+    steps: [
+      { key: "rules", title: "So funktioniert's", text: "Gespielt wird fast immer zu viert, auf einem Court von 20 × 10 Metern mit Glaswänden. Gezählt wird wie im Tennis.", link: "Regeln in 5 Minuten" },
+      { key: "gear", title: "Ausrüstung", text: "Schläger leihst du vor Ort, Bälle gibt's am Automaten oder an der Bar. Einfach vorbeikommen und loslegen.", link: "Häufige Fragen" },
+      { key: "cost", title: "Kosten", text: "Courts gibt's ab {price} pro Stunde. Mit der anteiligen Zahlung teilt ihr euch den Preis.", link: "Clubs & Preise" },
+      { key: "book", title: "Erster Court", text: "In der App Club wählen, Zeit und Court aussuchen, bezahlen – die Bestätigung kommt sofort. Lieber mit Coach? Starte mit einem Schnupperkurs.", link: "Schnupperkurs" },
+    ],
+  },
   news: { eyebrow: "News & Magazin", title: "Stories vom", accent: "Court.", all: "Zum Magazin" },
   community: {
     eyebrow: "#bettertogether",
@@ -94,6 +107,18 @@ const en: HomeContent = {
   },
   showcase: { eyebrow: "Our clubs", title: "Clubs with", accent: "vibes.", all: "All locations", prev: "Previous", next: "Next", slugs: showcaseSlugs },
   events: { eyebrow: "Social events & tournaments", title: "More than a", accent: "match.", all: "All events", hero: "Hero event", more: "Learn more" },
+  newbies: {
+    eyebrow: "New to padel",
+    title: "First time",
+    accent: "padel?",
+    lead: "Here's how – four steps from your first swing to your first match.",
+    steps: [
+      { key: "rules", title: "How it works", text: "Padel is almost always played in doubles, on a 20 × 10 metre court with glass walls. Scoring works like tennis.", link: "Rules in 5 minutes" },
+      { key: "gear", title: "Gear", text: "Hire a racket on site, balls are at the vending machine or the bar. Just turn up and play.", link: "FAQ" },
+      { key: "cost", title: "Cost", text: "Courts start at {price} per hour. With split payment you share the price.", link: "Clubs & prices" },
+      { key: "book", title: "First court", text: "In the app: pick a club, choose a time and court, pay – confirmation comes straight away. Rather start with a coach? Book a taster session.", link: "Taster session" },
+    ],
+  },
   news: { eyebrow: "News & magazine", title: "Stories from the", accent: "court.", all: "To the magazine" },
   community: {
     eyebrow: "#bettertogether",
@@ -148,6 +173,18 @@ const pl: HomeContent = {
   },
   showcase: { eyebrow: "Nasze kluby", title: "Kluby z", accent: "klimatem.", all: "Wszystkie lokalizacje", prev: "Wstecz", next: "Dalej", slugs: showcaseSlugs },
   events: { eyebrow: "Eventy towarzyskie i turnieje", title: "Więcej niż", accent: "mecz.", all: "Wszystkie eventy", hero: "Hero Event", more: "Dowiedz się więcej" },
+  newbies: {
+    eyebrow: "Nowy w padlu",
+    title: "Pierwszy raz",
+    accent: "padel?",
+    lead: "Tak to działa – cztery kroki od pierwszego uderzenia do pierwszego meczu.",
+    steps: [
+      { key: "rules", title: "Jak to działa", text: "W padla gra się prawie zawsze w deblu, na korcie 20 × 10 metrów ze szklanymi ścianami. Liczenie punktów jak w tenisie.", link: "Zasady w 5 minut" },
+      { key: "gear", title: "Sprzęt", text: "Rakietę wypożyczysz na miejscu, piłki są w automacie albo przy barze. Po prostu przyjdź i graj.", link: "FAQ" },
+      { key: "cost", title: "Koszty", text: "Korty od {price} za godzinę. Dzięki płatności dzielonej dzielicie się ceną.", link: "Kluby i ceny" },
+      { key: "book", title: "Pierwszy kort", text: "W aplikacji wybierz klub, godzinę i kort, zapłać – potwierdzenie przychodzi od razu. Wolisz zacząć z trenerem? Zarezerwuj lekcję próbną.", link: "Lekcja próbna" },
+    ],
+  },
   news: { eyebrow: "News i magazyn", title: "Historie z", accent: "kortu.", all: "Do magazynu" },
   community: {
     eyebrow: "#bettertogether",

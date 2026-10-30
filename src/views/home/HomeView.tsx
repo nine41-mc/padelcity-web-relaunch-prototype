@@ -4,6 +4,8 @@ import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { formatPrice } from "@/lib/format";
 import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts } from "@/lib/content/partners";
 import type { Locale } from "@/lib/i18n/config";
@@ -46,6 +48,15 @@ export async function HomeView({ locale }: { locale: Locale }) {
   // Curated selection (Contentful module clubShowcase → referenced clubs); fill up with clubs that have a photo.
   const curated = t.showcase.slugs.map((slug) => clubs.find((c) => c.slug === slug)).filter((c) => c !== undefined);
   const showcase = [...curated, ...clubs.filter((c) => c.mainImage && !curated.includes(c))].slice(0, 8);
+  // Newcomer block: lowest court price of the euro clubs (the Polish clubs price in złoty)
+  const euroPrices = clubs.filter((c) => (c.currency ?? "EUR") === "EUR" && c.defaultPricePerHour).map((c) => c.defaultPricePerHour as number);
+  const lowestPrice = euroPrices.length ? formatPrice(Math.min(...euroPrices), locale) : "";
+  const newbieLinks: Record<string, string> = {
+    rules: href(locale, "magazine", "padel-regeln-in-5-minuten"),
+    gear: href(locale, "faq"),
+    cost: href(locale, "locations"),
+    book: `${href(locale, "academy")}#programme`,
+  };
 
   return (
     <>
@@ -129,6 +140,33 @@ export async function HomeView({ locale }: { locale: Locale }) {
           }
         />
       </section>
+
+      {/* First time padel? Four steps for newcomers (team feedback m-5) */}
+      <Section>
+        <Reveal className="max-w-3xl">
+          <Eyebrow>{t.newbies.eyebrow}</Eyebrow>
+          <Headline className="mt-6">
+            {t.newbies.title} <Accent>{t.newbies.accent}</Accent>
+          </Headline>
+          <Lead className="mt-6">{t.newbies.lead}</Lead>
+        </Reveal>
+        <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {t.newbies.steps.map((step, i) => (
+            <Reveal key={step.key} delay={i * 0.06} className="h-full">
+              <li className="flex h-full flex-col rounded-[24px] border border-fg/10 bg-raised pad-card">
+                <span className="font-display text-5xl font-extrabold italic leading-none text-fg/25" aria-hidden>
+                  {i + 1}
+                </span>
+                <h3 className="mt-5 font-display text-2xl font-extrabold italic uppercase">{step.title}</h3>
+                <p className="mt-2 flex-1 text-fg/85">{step.key === "cost" ? step.text.replace("{price}", lowestPrice) : step.text}</p>
+                <Link href={newbieLinks[step.key]} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline">
+                  {step.link} <ArrowRight className="size-4" aria-hidden />
+                </Link>
+              </li>
+            </Reveal>
+          ))}
+        </ol>
+      </Section>
 
       {/* Events */}
       <Section>
