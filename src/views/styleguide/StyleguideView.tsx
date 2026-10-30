@@ -152,7 +152,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             swatch={<div className="h-28 rounded-[16px] bg-optic-500" />}
             values="#DFFF4F · RGB 223 255 79"
             bb={ROLE_BRANDBOOK.highlight}
-            uses={["Brush-Wort in Headlines", "Ticker-Bänder", "Level-Labels", "Coach-Kennzahlen", "Newsletter-Modul", "Fokus-Ring", "Aktiver Pin auf der Home-Karte", "Padelball im Footer"]}
+            uses={["Brush-Wort in Headlines", "Haupt-CTA (ein Optic-Button pro Seite)", "Kennzahlen", "Level-Labels", "Fokus-Ring"]}
           />
         </div>
         <Note>Optic Yellow ist knapp gehalten, damit es wirkt. Es erscheint nie als Hover-Farbe und nie als Text auf hellem Grund (Kontrast 1,1 : 1).</Note>
@@ -339,8 +339,8 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           <Demo label="outline · Link zur Übersichtsseite, unter dem Inhalt">
             <Button href="#buttons" variant="outline" className="w-fit">Alle Events</Button>
           </Demo>
-          <Demo label="optic · nur im Newsletter-Modul" className="bg-canvas">
-            <Button variant="optic" type="button">Anmelden</Button>
+          <Demo label="optic · der eine Haupt-CTA einer Seite" className="bg-canvas">
+            <Button variant="optic" type="button">Court buchen in der App</Button>
           </Demo>
           <Demo label="Größen sm · md · lg">
             <div className="flex flex-wrap items-center gap-3">
@@ -354,7 +354,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>So schreiben wir Buttons</H3>
         <DoDont
             dos={["Verb plus Ziel: „In der App buchen“, „Club finden“, „Route öffnen“", "Den Ort der Aktion nennen: „Im Web“ und „In der App“ bei der Event-Anmeldung", "Höchstens drei Wörter", "Du-Ansprache, aktiv: „Jetzt Padel spielen“"]}
-            donts={["„Mehr erfahren“, „Hier klicken“, „Weiter“ ohne Ziel", "Zwei gleich laute Buttons, die dasselbe tun", "Optic-Yellow-Buttons außerhalb des Newsletters", "Versprechen, die die Website nicht hält (z. B. freie Slots)"]}
+            donts={["„Mehr erfahren“, „Hier klicken“, „Weiter“ ohne Ziel", "Zwei gleich laute Buttons, die dasselbe tun", "Mehr als ein Optic-Yellow-Button pro Seite", "Versprechen, die die Website nicht hält (z. B. freie Slots)"]}
           />
         <Note>Links zu Übersichtsseiten („Alle Events“, „Alle Coaches“, „Alle FAQ“, „Alle Standorte“) sind immer Outline-Buttons mit Pfeil. Sie stehen unter dem Inhalt, auf den sie sich beziehen, nicht klein neben der Headline. Kleine Textlinks mit „→“ gibt es dafür nicht. Breadcrumbs und Zurück-Links oben entfallen; die Navigation und der Browser übernehmen das.</Note>
         <Note>Pro Bildschirm gibt es höchstens eine primäre Aktion. Auf Mobilgeräten übernimmt sie die Buchungsleiste unten, die ausblendet, sobald der Buchungsblock selbst sichtbar ist.</Note>
@@ -424,7 +424,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["level", "Spielstärke – die einzige Chip-Variante in Optic Yellow"],
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
             ["Gutschein-Modul", "Startseite: „Verschenke eine Padel Session“ mit drei Schritten (Text von padelcity.de) und dem Gutschein im Look des physischen Gutscheins – heller Beton-Grund, Chevrons im Verlauf, PadelCity-Symbol im Verlauf, „Gutschein“ und „ab 10 € Geschenkwert“; kein Chip, keine Kreditkarten-Optik; Merch-Shop nur als Hinweis"],
-            ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Ticker, Karten-Label, Footer-Ball) oder auf den Button unten links wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
+            ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Kennzahl, Haupt-CTA, Footer-Ball) oder auf den Button unten links wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
             ["Content-Modell", "Footer-Link „Content-Modell“: alle Seitentypen und Module mit der Herkunft jedes Felds (API vorhanden, API erweitern, neuer Contentful-Space, extern, unklar) – Daten in src/lib/content/contentModel.ts"],
             ["Jobs: Personio-Embed", "Seite statisch aus Contentful; nur „Offene Stellen“ ist die eingebettete Personio-Karriereseite (iframe, Höhe per postMessage), als helle Karte mit Ansprechpartnerin daneben; bis die Personio-URL steht, zeigt eine Vorschau im Personio-Look die 8 Stellen von padelcity.de/jobs"],
             ["Franchise: Leistungen & Kontakt", "Drei Phasen-Karten (Bauphase, Aktivierung, Regelbetrieb) mit den Leistungen von padelcity.de, optionale Leistungen gedämpft markiert; Ansprechpartner mit Foto neben dem Formular"],
@@ -446,16 +446,16 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           </Demo>
         </div>
         <H3>Ticker</H3>
-        <div className="flex h-14 items-center overflow-hidden rounded-[16px] bg-optic-500 text-on-optic">
+        <div className="flex h-14 items-center overflow-hidden rounded-[16px] bg-brand-gradient text-white">
           <Marquee>
             {["30+ Clubs", "200+ Courts", "25+ Städte", "3 Länder", "#bettertogether"].map((item) => (
               <span key={item} className="flex items-center gap-8 px-4 font-display text-xl font-extrabold italic uppercase">
-                {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-purple-600" aria-hidden />
+                {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-white/70" aria-hidden />
               </span>
             ))}
           </Marquee>
         </div>
-        <p className="mt-3 text-sm text-fg/70">Nur freigegebene Kennzahlen. Der Ticker hält bei Hover und Fokus an.</p>
+        <p className="mt-3 text-sm text-fg/70">Nur freigegebene Kennzahlen, im Markenverlauf. Der Ticker hält bei Hover und Fokus an.</p>
         <H3>Store-Badges</H3>
         <StoreBadges locale={locale} />
         <p className="mt-3 text-sm text-fg/70">Offizielle Badges von Apple und Google, nicht nachgebaut. Nur auf der App-Seite – nicht im Footer und nicht auf Clubseiten, dort führt „In der App buchen“ direkt in die App.</p>
@@ -558,7 +558,6 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>Footer</H3>
         <ul className="grid gap-3 md:grid-cols-2">
           {[
-            ["Ticker in Optic Yellow", "Übergang von der Seite in den Footer, freigegebene Kennzahlen"],
             ["Claim + Newsletter", "„Make some noise for Padel.“ links, das Newsletter-Modul steht rechts für sich allein"],
             ["WhatsApp-Band", "Volle Breite im Brandbook-Verlauf: „Never play alone.“ mit Button ins Gruppen-Overlay"],
             ["Drei Spalten", "„Fall in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],

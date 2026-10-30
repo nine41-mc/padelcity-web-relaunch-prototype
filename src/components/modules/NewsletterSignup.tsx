@@ -20,8 +20,8 @@ export function NewsletterSignup({ locale = "de", id, className }: { locale?: Lo
       <h3 className="font-display text-3xl font-extrabold italic uppercase md:text-4xl">{t.title}</h3>
       <p className="mt-2 max-w-md text-fg/70">{t.text}</p>
       {done ? (
-        <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-highlight-fg outline-none" role="status">
-          <span className="grid size-8 place-items-center rounded-full bg-optic-500 text-on-optic">
+        <p ref={(el) => el?.focus()} tabIndex={-1} className="mt-6 flex items-center gap-3 text-fg outline-none" role="status">
+          <span className="grid size-8 place-items-center rounded-full bg-fg text-fg-inverse">
             <Check className="size-4" />
           </span>
           {t.success}
@@ -44,7 +44,7 @@ export function NewsletterSignup({ locale = "de", id, className }: { locale?: Lo
             placeholder={t.placeholder}
             className="h-13 shrink-0 rounded-full border border-fg/45 bg-canvas-deep/40 px-5 sm:flex-1 text-fg placeholder:text-fg/60 focus:border-optic-500 focus:outline-none focus:ring-2 focus:ring-optic-500/50"
           />
-          <Button type="submit" variant="optic" data-track="newsletter_submit">
+          <Button type="submit" data-track="newsletter_submit">
             {t.submit}
           </Button>
         </form>

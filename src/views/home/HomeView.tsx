@@ -59,11 +59,11 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <HomeHero locale={locale} t={t.hero} />
 
       {/* Momentum ticker */}
-      <div className="relative z-10 -rotate-1 bg-optic-500 py-3 text-on-optic shadow-optic md:py-4">
+      <div className="relative z-10 -rotate-1 bg-brand-gradient py-3 text-white shadow-glow md:py-4">
         <Marquee>
           {t.ticker.map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">
-              {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-purple-500" aria-hidden />
+              {item} <span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-white/70" aria-hidden />
             </span>
           ))}
         </Marquee>

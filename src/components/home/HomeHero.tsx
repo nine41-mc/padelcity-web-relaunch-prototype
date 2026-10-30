@@ -155,7 +155,8 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
             </button>
           </form>
           <div className="flex flex-wrap gap-3 lg:col-start-1 lg:row-start-2">
-            <Button href={href(locale, "app")} size="md" data-track="hero_app_cta">
+            {/* The one optic CTA of the page: highlight colour only for accent words, key figures and the main CTA */}
+            <Button href={href(locale, "app")} variant="optic" size="md" data-track="hero_app_cta">
               {t.ctaApp}
             </Button>
             {/* Phone: the search above already leads to the locations – one CTA less keeps the hero calm */}

@@ -62,7 +62,7 @@ Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg 
   |---|---|---|
   | Primär | Brand-Gradient Purple `#8412B5` → Magenta `#E005C3` (`bg-brand-gradient`) | Primäre CTAs (inkl. runder Pfeil auf weißen Buttons), aktive Zustände (aktiver Tab, gewählter Filter-Chip/Segment, gewählte Option, offenes Akkordeon), lila Flächen und Glows (`shadow-glow`) |
   | Sekundär | Weiß auf Ink | Text, **alle** Icons (Ausstattung, Sportarten, Kontakt, Social, Filter …), Outline-Buttons, Rahmen, Hover (→ Weiß bzw. Magenta-300 bei Links) |
-  | Highlight | Optic Yellow `#DFFF4F` (Tennisball-Farbe) | **Nur:** `<Accent>`-Brush-Wort, Ticker (Home), Level-Labels (`Chip tone="level"`), Coach-Statistikzahlen, Newsletter-Modul, Tastatur-Fokusring/Skip-Link, aktiver Pin + Label auf der Home-Karte, Footer-Padelball |
+  | Highlight | Optic Yellow `#DFFF4F` (Tennisball-Farbe) | **Nur:** `<Accent>`-Brush-Wort, der eine Haupt-CTA einer Seite (`Button variant="optic"`, Startseite: „Court buchen in der App“), Kennzahlen (Coach-Statistik), Level-Labels (`Chip tone="level"`), Tastatur-Fokusring/Skip-Link; der Footer-Padelball ist ein Objekt, kein Highlight. Ticker, Newsletter und Home-Karte kommen seit 31.10.2026 ohne Gelb aus (Team-Feedback: Gelb gezielter einsetzen) |
   | Status | Success / Danger / Warning | Nur System-Feedback |
 
   Kontrast (WCAG AA): Weiß auf Gradient ≥ 4,5:1, Text-Verlauf (Magenta-400 → Purple-400) auf Ink ≥ 4,4:1, Magenta-300 auf Ink ≈ 7:1, Optic-Yellow-Fokusring auf Ink ≈ 17:1 (Token-Name im Code: `optic-*`). Druckwerte: Pantone 388 C/U und CMYK 20/0/100/0 als Empfehlung, final zu prüfen.
