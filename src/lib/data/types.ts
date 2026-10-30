@@ -64,6 +64,8 @@ export type Club = {
   /** Second poster line when the site lies outside the named city ("Karlsruhe" + "Rheinstetten"). */
   district?: string;
   currency?: "EUR" | "PLN"; // club country currency (default EUR)
+  /** Questions about this club (rental rackets, rebooking, access) – proposed Contentful field, answers come from Ops. */
+  faq?: { id: string; q: string; a: string }[];
   mainImage?: ImageAsset;
   images: ImageAsset[];
   /** Club manager contact (Contentful contact entry). whatsappGroupUrl = proposed new Contentful field on club. */

@@ -34,6 +34,8 @@ import { ClubReviews } from "@/components/locations/ClubReviews";
 import { ClubContactBar } from "@/components/locations/ClubContactBar";
 import { distanceKm, googleMapsRoute, schemaDays } from "@/components/locations/geo";
 import { HOLIDAY_LABEL } from "@/lib/data/mappers";
+import { faqContent } from "@/lib/content/faq";
+import { FaqGroup, FaqItem } from "@/components/ui/FaqItem";
 
 export type ClubParams = { slug: string };
 
@@ -128,6 +130,10 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
   const shownCoaches = clubCoaches.length ? clubCoaches : cityCoaches;
   const coachLabels = academyContent[locale].coachesSection;
   const clubEmail = club.contact?.emailAddress ?? site.email;
+  // TODO(content): club answers on rental rackets, rebooking and access from Ops (Contentful Club.faq); until then the
+  // general answers from the FAQ fallback list
+  const generalFaq = faqContent[locale].categories.flatMap((c) => c.items);
+  const clubFaq = club.faq?.length ? club.faq : ["leihschlaeger", "stornieren", "anfahrt"].map((id) => generalFaq.find((e) => e.id === id)).filter((e) => e !== undefined);
   const nearby = allClubs
     .filter((c) => c.id !== club.id)
     .map((c) => ({ club: c, km: distanceKm(club.position, c.position) }))
@@ -313,6 +319,21 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
         <Section id="book" className={sectionCls}>
           {/* No Reveal here: the block is taller than a phone viewport and must never stay hidden */}
           <AppBookingBlock club={club} locale={locale} />
+        </Section>
+
+        {/* Questions about the club (team feedback ort-5): club answers once Ops delivers them, until then the general ones */}
+        <Section id="faq" className={sectionCls}>
+          <Headline size="sm" className="mb-8">{fill(t.sections.faq, { club: club.name })}</Headline>
+          <FaqGroup>
+            {clubFaq.map((e) => (
+              <FaqItem key={e.id} question={e.q}>
+                <p>{e.a}</p>
+              </FaqItem>
+            ))}
+          </FaqGroup>
+          <Button href={href(locale, "faq")} variant="outline" className="mt-6 w-fit">
+            {t.sections.faqAll}
+          </Button>
         </Section>
 
         {/* Map: target of "Route planen" on the address tile */}

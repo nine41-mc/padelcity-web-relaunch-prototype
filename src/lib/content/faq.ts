@@ -4,8 +4,9 @@ import type { Locale } from "../i18n/config";
  * FAQ page copy + STATIC fallback questions.
  * Primary source at build time: the app's help centre (api-platform `/faq/sections` → Contentful
  * `frequentlyAskedQuestionSection` / `frequentlyAskedQuestions`), loaded by `getFaq(locale)` in src/lib/data/faq.ts.
- * The static list below is only used when that API is unreachable. It generalises the former per-club FAQ
- * (club pages no longer carry FAQs) and only states what the website already says elsewhere.
+ * The static list below is only used when that API is unreachable. It generalises the former per-club FAQ and only
+ * states what the website already says elsewhere. Club pages show a „Fragen zum Club“ module again (team feedback
+ * ort-5): club answers from Contentful once Ops delivers them (Club.faq), until then three entries of this list.
  */
 
 /** Icon keys: API section icons (Contentful) + our static categories. Mapped to lucide icons in FaqExplorer. */
