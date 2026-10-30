@@ -314,6 +314,7 @@ export const contentModel: PageType[] = [
     modules: [
       { id: "partnersContent", name: "Inhalte", text: "Formate, Personas, Case Study, Firmen-Events", fields: [f("Alle Texte und Bilder", "cms")] },
       { id: "partnerLogoWall", name: "Partner-Logos", fields: [f("Logos, Links", "cms")] },
+      { id: "partnerStance", name: "Haltung & Dank", fields: [f("Headline, Absätze", "cms", undefined, "Text zur Freigabe durch Marketing")] },
       { id: "leadForm", name: "Anfrage-Formular", fields: [f("Ziel der Anfragen", "unknown", undefined, "CRM/E-Mail offen")] },
     ],
   },

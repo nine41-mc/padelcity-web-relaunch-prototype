@@ -9,7 +9,7 @@ import type { Partner } from "@/lib/data/types";
 import { PageHero } from "@/components/modules/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { Accent, Headline } from "@/components/ui/Headline";
+import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
@@ -207,6 +207,23 @@ export function PartnersView({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
+          </Reveal>
+        </div>
+      </Section>
+
+      {/* How we see partnerships – attitude and thanks (team feedback m-8-1) */}
+      <Section tone="black">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+          <Reveal>
+            <Eyebrow>{t.stance.eyebrow}</Eyebrow>
+            <Headline size="md" className="mt-6">
+              {t.stance.title} <Accent>{t.stance.accent}</Accent>
+            </Headline>
+          </Reveal>
+          <Reveal delay={0.1} className="space-y-5 text-lg leading-relaxed text-fg/80">
+            {t.stance.paragraphs.map((para) => (
+              <p key={para}>{para}</p>
+            ))}
           </Reveal>
         </div>
       </Section>

@@ -91,6 +91,17 @@ const de = {
     cta: "Event anfragen",
     formats: ["Firmen-Turnier mit Siegerehrung", "Team-Event mit Coach & Schnupperkurs", "Kunden-Event in der Club-Lounge", "Mitarbeiter-Padel als Benefit"],
   },
+  // How we see partnerships (team feedback m-8-1). TODO(content): draft – wording to be approved by Marketing
+  stance: {
+    eyebrow: "Partnerschaft",
+    title: "Mehr als",
+    accent: "Logos.",
+    paragraphs: [
+      "Partnerschaft heißt für uns: gemeinsam etwas aufbauen, das Spielerinnen und Spieler wirklich spüren – auf dem Court, bei Events und in der App. Wir suchen keine Werbefläche, sondern Partner, die Padel und die Community genauso ernst nehmen wie wir.",
+      "Was wir suchen: Marken, die zu einem offenen, sportlichen Lebensgefühl passen, langfristig denken und Lust auf gemeinsame Formate haben. Was wir gemeinsam erreichen wollen: mehr Menschen für Padel begeistern und Momente schaffen, über die man nach dem Spiel noch spricht.",
+      "Danke an alle Partner, die PadelCity schon heute möglich machen – auf und neben dem Court.",
+    ],
+  },
   form: {
     title: "Let's play",
     accent: "together",
@@ -196,6 +207,16 @@ const en: SponsoringContent = {
     cta: "Enquire about an event",
     formats: ["Company tournament with prize-giving", "Team event with coach & taster session", "Client event in the club lounge", "Padel as an employee benefit"],
   },
+  stance: {
+    eyebrow: "Partnership",
+    title: "More than",
+    accent: "logos.",
+    paragraphs: [
+      "To us, partnership means building something together that players really feel – on court, at events and in the app. We're not looking for ad space but for partners who take padel and the community as seriously as we do.",
+      "What we look for: brands that fit an open, sporty way of life, think long-term and want to create formats with us. What we want to achieve together: get more people hooked on padel and create moments people still talk about after the game.",
+      "Thank you to all the partners who already make PadelCity possible – on and off the court.",
+    ],
+  },
   form: {
     title: "Let's play",
     accent: "together",
@@ -298,6 +319,16 @@ const pl: SponsoringContent = {
     text: "Teambuilding, który naprawdę łączy: padla nauczysz się w dziesięć minut, a tematów do rozmów wystarczy do następnego spotkania. Organizujemy wszystko – korty, trenerów, catering.",
     cta: "Zapytaj o event",
     formats: ["Turniej firmowy z dekoracją zwycięzców", "Event zespołowy z trenerem i lekcją próbną", "Event dla klientów w klubowym lounge", "Padel dla pracowników jako benefit"],
+  },
+  stance: {
+    eyebrow: "Partnerstwo",
+    title: "Więcej niż",
+    accent: "logo.",
+    paragraphs: [
+      "Partnerstwo oznacza dla nas wspólne budowanie czegoś, co gracze naprawdę czują – na korcie, podczas eventów i w aplikacji. Nie szukamy powierzchni reklamowej, lecz partnerów, którzy traktują padla i społeczność tak poważnie jak my.",
+      "Kogo szukamy: marek, które pasują do otwartego, sportowego stylu życia, myślą długofalowo i chcą tworzyć z nami wspólne formaty. Co chcemy razem osiągnąć: zarazić padlem więcej ludzi i tworzyć chwile, o których mówi się jeszcze długo po meczu.",
+      "Dziękujemy wszystkim partnerom, którzy już dziś sprawiają, że PadelCity jest możliwe – na korcie i poza nim.",
+    ],
   },
   form: {
     title: "Let's play",
