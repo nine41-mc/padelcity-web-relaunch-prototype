@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { Check } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import type { EventInquiryContent } from "@/lib/content/eventInquiry";
@@ -72,6 +72,11 @@ export function EventInquiryForm({ locale, t, locations, className }: { locale: 
   });
   const [errors, setErrors] = useState<Partial<Record<ErrorKey, string>>>({});
   const [done, setDone] = useState(false);
+  // ?anlass=company preselects the occasion – the company-offer button on the partner page (team feedback partner-2)
+  useEffect(() => {
+    const preset = new URLSearchParams(window.location.search).get("anlass");
+    if (preset && f.occasion.options.some((o) => o.value === preset)) setValues((v) => ({ ...v, occasion: v.occasion || preset }));
+  }, [f.occasion.options]);
 
   const set = <K extends keyof Values>(key: K, value: Values[K]) => {
     setValues((v) => ({ ...v, [key]: value }));

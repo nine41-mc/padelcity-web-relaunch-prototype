@@ -191,7 +191,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
             </Headline>
             <p className="mt-6 max-w-lg text-lg text-fg/85">{t.corporate.text}</p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href={href(locale, "eventInquiry")} data-track="corporate_event_cta">
+              <Button href={`${href(locale, "eventInquiry")}?anlass=company`} data-track="corporate_event_cta">
                 {t.corporate.cta}
               </Button>
             </div>
