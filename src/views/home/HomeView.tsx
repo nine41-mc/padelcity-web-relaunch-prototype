@@ -162,8 +162,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
         </Reveal>
         <ol className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           {t.newbies.steps.map((step, i) => (
-            <Reveal key={step.key} delay={i * 0.06} className="h-full">
-              <li className="flex h-full flex-col rounded-[24px] border border-fg/10 bg-raised pad-card">
+            <li key={step.key} className="h-full">
+              <Reveal delay={i * 0.06} className="flex h-full flex-col rounded-[24px] border border-fg/10 bg-raised pad-card">
                 <span className="font-display text-5xl font-extrabold italic leading-none text-fg/25" aria-hidden>
                   {i + 1}
                 </span>
@@ -172,8 +172,8 @@ export async function HomeView({ locale }: { locale: Locale }) {
                 <Link href={newbieLinks[step.key]} className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold underline-offset-4 hover:underline">
                   {step.link} <ArrowRight className="size-4" aria-hidden />
                 </Link>
-              </li>
-            </Reveal>
+              </Reveal>
+            </li>
           ))}
         </ol>
       </Section>
