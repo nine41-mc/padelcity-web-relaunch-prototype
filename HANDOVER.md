@@ -9,14 +9,14 @@ Jede Komponente der Figma-Library hat genau eine Code-Komponente, verknüpft per
 | Was | Wo | Hinweis |
 |---|---|---|
 | Tailwind-Theme (Farben, Radien, Breakpoints, Schatten, Animationen) | `src/app/globals.css` (`@theme`) | wertgleich mit den Figma-Variablen, geprüft mit `npm run tokens:check` |
-| Design Tokens (DTCG) | `figma/tokens/tokens.json` | alle 201 Variablen inkl. Aliasse und Responsive-Modi, Verläufe, Schatten, Text-Styles – Basis für Style Dictionary |
+| Design Tokens (DTCG) | `figma/tokens/tokens.json` | alle 220 Variablen inkl. Aliasse, Dark/Light- und Responsive-Modi, Verläufe, Schatten, Text-Styles – Basis für Style Dictionary |
 | Verläufe | `--gradient-brand` (313°), `--gradient-brand-text` (313°, eine Stufe heller für Text auf Ink), `--gradient-brandbook` (120°) + Utilities `bg-brand-gradient`, `bg-brandbook-gradient`, `text-brand-gradient` | `globals.css` |
 | Abstands-Skala für Kacheln und Panels | Utilities `pad-card` (20), `pad-panel` (24/32), `pad-banner` (24/40/56) | Figma: `Layout/pad-*` (05 Responsive) – keine Einzelwerte daneben |
 | Container | Utility `container-site` (max. 1440, Rand 16/32/64) | Figma: `Layout/gutter`, `Layout/container-max` |
 | Schriften | `src/app/fonts.ts` | Söhne Schmal und Good Brush sind lizenziert und liegen in einem privaten Repo (Deploy-Key im CI) |
 | Academy-Stil | `src/components/play/Collegiate.tsx` | Ersatz für die Brandbook-Schrift Octin College (nicht lizenziert): `VarsityText` (Söhne Schmal mit versetzter Magenta-Kontur) und `CollegiateBadge` (Konturschrift); Styleguide „Typografie“, Figma-Komponenten „Varsity Text“ und „Collegiate Badge“. Offen: Octin College lizenzieren oder beim Ersatz bleiben |
 | Breakpoints | Phone < 768 · Tablet `md` ≥ 768 · Desktop `lg` ≥ 1200 | Figma-Modi Mobile / Tablet / Desktop |
-| Farbrollen | Kommentar oben in `globals.css`, Tabelle in `README.md` | Primär (Verlauf) · Sekundär (Weiß) · Highlight (Optic Yellow, nur definierte Stellen) · Status |
+| Farbrollen | Kommentar oben in `globals.css`, Tabelle in `README.md` | Primär (Verlauf) · Sekundär (Weiß) · Highlight (Optic Yellow nur für Akzentwort, den einen Haupt-CTA einer Seite, Kennzahlen und Level-Chips – Team-Feedback 31.10.2026) · Status |
 | Hell & Dunkel | `src/lib/theme.ts`, `ThemeToggle`, Rollen in `globals.css` | Rollen `canvas`, `raised`, `surface`, `fg`, `fg-inverse`, `highlight-fg`, `accent-fg`, `focus` mit Werten für Dunkel und Hell; dunkle Bereiche per `data-theme="dark"`; Figma-Modi Dark/Light |
 
 ## 2. Komponenten
@@ -31,8 +31,8 @@ Komponente Quelle und Figma-Node.
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown, EventInquiryForm, EventInquiryTeaser (mit EventInquiryFacts) |
 | Formulare (`forms/`) | TextField, TextareaField (`Field.tsx`), ChoiceCards, YesNoRow, Consent, FormStep – genutzt von EventInquiryForm und LeadForm; in der Library unter Formulare (Input / Text, Input / Textarea, Choice Card, Yes-No Row, Consent, Form Step) |
-| Standorte (`locations/`) | CourtPill, AppBookingBar, ClubHours, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`) |
-| Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand |
+| Standorte (`locations/`) | CourtPill, AppBookingBar, ClubHours, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`); ClubFinder mit Umkreissuche (`places.ts`, Ortsliste `public/data/places.json` aus GeoNames, CC BY 4.0, Skript `scripts/build-places.py`); RecurringBookingForm (Dauerbuchung auf der Club-Seite) |
+| Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand; nur im Prototyp: HighlightDemo und ClaimDemo (Vergleichs-Umschalter auf der Startseite) |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher); Einblendung beim Scrollen `Reveal` (`ui/Reveal.tsx`) |
 
 Seitenmodule (Header, Home Hero, Page Hero, Section, Partner Band, Footer) haben in Figma die Variante
@@ -88,7 +88,7 @@ Chromium, WebKit und Firefox parallel. Die Figma-Library prüft `.github/workflo
 jedem Push (blockiert den Deploy nicht). GitLab (`.gitlab-ci.yml`) führt dieselben Code-Gates aus, die QA dort nur in Chromium (390 und 1440 px) – der
 Kubernetes-Runner hatte für die volle Matrix zu wenig Speicher und Zeit. Der Job braucht meist rund 20 Minuten,
 auf dem geteilten Runner aber auch über eine Stunde. Jede Seite hat 3 Minuten Zeit; hängt sie länger, prüft die QA sie einmal in einem frischen Tab neu, erst ein zweites Hängen wird zum Fund „Seite hängt“ (mit dem Schritt, in dem sie stand). Solche Hänger traf es bisher nur in der CI, jedes Mal eine andere Seite. Kartenkacheln liefert in der QA ein Platzhalter statt OpenStreetMap – dessen Nutzungsrichtlinie erlaubt kein automatisiertes Massenladen, und die QA hängt so nicht an einem fremden Server. Bricht der Job dagegen am Zeitlimit des Jobs ohne Fund ab, reicht ein Neustart. Stand 29.10.2026: `npm run qa -- --browsers all` über alle 205 Seiten
-(DE/EN/PL) in 390, 768 und 1440 px ohne Fund. Im Produktiv-Build diese CI-Schritte übernehmen.
+(DE/EN/PL) in 390, 768 und 1440 px ohne Fund; 31.10.2026: 212 Seiten in Chromium, hell und dunkel, ohne Fund. Im Produktiv-Build diese CI-Schritte übernehmen.
 
 Code Connect veröffentlichen: Library in Figma publizieren, dann `npm run figma:publish` mit einem Token mit
 Code-Connect-Schreibrecht.
@@ -102,9 +102,10 @@ Code-Connect-Schreibrecht.
   Fakten (Name, Courts), nicht aus dem Contentful-Feld `description` – das enthält die App-Hinweise der Clubs.
   Event-Zeiten werden als Ortszeit des Clubs ohne Zeitzone erwartet (Format der Mock-Daten) und gehen mit Zeitzone ins
   JSON-LD; liefert die APL Zeiten mit Offset oder „Z“, in der Datenschicht vorher in Club-Zeit umrechnen
-  (`src/components/play/eventFormat.ts`). Offene Hinweise aus der QA: Titel der
-  Club-Seiten teils über 65 Zeichen, Beschreibungen der Rechtstexte unter 50 Zeichen. Neu im Produktiv-Build: `sitemap.xml`, `robots.txt` und Open-Graph-Bilder pro Seitentyp – der
-  Prototyp braucht sie als passwortgeschützter Export nicht.
+  (`src/components/play/eventFormat.ts`). Titel (≤ 65 Zeichen, Marke nur, wo Platz ist – `pageTitle()` in
+  `src/lib/site.ts`) und Beschreibungen (50–160 Zeichen) sind auf allen Seiten im Ziel. `sitemap.xml` (alle Seiten mit
+  hreflang, Domain padelcity.de) und `robots.txt` entstehen beim Build aus `src/app/sitemap.ts` und `src/app/robots.ts`;
+  zum Launch in `robots.ts` das Crawlen freigeben. Neu im Produktiv-Build: Open-Graph-Bilder pro Seitentyp.
 - **Tracking und Consent:** GA4 server-side und CMP; die CTAs tragen bereits `data-track`-Attribute.
 - **Weiterleitungen (301) von padelcity.de:** fast alle URLs ändern sich (z. B. `/padelcity-unser-team/` →
   `/ueber-uns/`, `/berlin/` → `/standorte/berlin/`). Entwurf mit allen 139 URLs der heutigen Sitemap (Stand
@@ -114,6 +115,16 @@ Code-Connect-Schreibrecht.
   Bestätigungsseite für das Newsletter-Double-Opt-in. Ohne Weiterleitungen gehen Rankings und externe Links verloren.
 
 ## 7. Offene Punkte
+
+- **Team-Feedback vom 28.10.2026:** alle 90 Punkte mit Stand im Artefakt „Feedback PadelCity Team“. Umgesetzt am
+  31.10.2026: Startseite für Spieler (Unternehmens-Blöcke auf die neue Seite `/unternehmen`), „Zum ersten Mal Padel?“,
+  Umkreissuche, Gelb nur noch gezielt, Claims ohne „VIP“ und „Drive the Padel Boom“, Fragen und Dauerbuchung auf der
+  Club-Seite, geführte Firmen-Anfrage, Haltung zu Partnerschaften.
+- **Navigation:** „Unternehmen“ ersetzt „Franchise“ im Hauptmenü (Franchise im Footer) – Abstimmung mit der
+  Geschäftsführung zu Struktur, Navigation und Flows steht aus.
+- **Claim:** „We serve. You play.“ als Vorschlag des Teams; auf der Startseite per Button „Claim“ mit „Make some noise
+  for Padel.“ vergleichbar (Footer und Ticker), Entscheidung mit Brand offen.
+- **Dauerbuchung (Club-Seite):** sendet im Prototyp nichts; Ziel-Postfach bei Operations offen.
 
 - **Event-Anfrage (`/events/anfrage`):** Der Prototyp sendet bewusst nichts. Für die Website laut Briefing eine Mail an
   das Events-Postfach mit festem Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie
@@ -131,12 +142,12 @@ Im Code als `TODO(content)` markiert (`grep -rn "TODO(content)" src`); hier nach
 | Wer | Was | Stelle im Code |
 |---|---|---|
 | Events-Team | finale Texte, Zeitpläne und Partner der Hero-Events; Ticketing („Zuschauer frei“); Preisgeld (Platzhalter `[XX.XXX] €`) | `lib/content/events.ts` |
-| Ops / AGB | Fristen für anteilige Zahlung; Storno-Fenster und Gebühren; Leihschläger und -bälle in jedem Club; Partner-Benefits je Club | `lib/content/faq.ts` |
+| Ops / AGB | Fristen für anteilige Zahlung; Storno-Fenster und Gebühren; Leihschläger und -bälle in jedem Club; Partner-Benefits je Club; Antworten „Fragen zu {Club}“ (Leihschläger, Umbuchen, Zugang) als neues Contentful-Feld; Postfach für Dauerbuchungen | `lib/content/faq.ts`, `views/locations/ClubView.tsx`, `components/locations/RecurringBookingForm.tsx` |
 | HR | Benefits; Personio-Subdomain und Karriereseiten-Design (danach Vorschau entfernen) | `lib/content/jobs.ts`, `components/brand/PersonioJobs.tsx` |
 | Franchise-Team | Mindestanzahl Courts, Deckenhöhe, Investitionsrahmen – erst nach Freigabe | `lib/content/franchise.ts` |
-| Investor Relations | Downloads als echte Dateien; eigenes IR-Postfach; Series-A-Details nur nach Freigabe | `lib/content/investors.ts`, `views/home/HomeView.tsx` |
+| Investor Relations | Downloads als echte Dateien; eigenes IR-Postfach; Series-A-Details nur nach Freigabe | `lib/content/investors.ts`, `views/company/CompanyView.tsx` |
 | Academy | Texte prüfen; Preisliste vor Go-live bestätigen; Benefit-Regeln je Programm; welche Clubs Academy anbieten; YouTube-IDs „Learn with PadelCity“ | `lib/content/academy.ts`, `views/academy/AcademyView.tsx` |
-| Marketing / Brand | Texte der App-Seite; Zahlungsarten; Timeline und Werte gegen das Brandbook; Personas Sponsoring; Einwilligungen der Testimonials | `lib/content/app.ts`, `about.ts`, `sponsoring.ts`, `testimonials.ts` |
+| Marketing / Brand | Texte der App-Seite; Zahlungsarten; Timeline und Werte gegen das Brandbook; Personas Sponsoring; Einwilligungen der Testimonials; Freigabe „Mehr als Logos.“ (Haltung zu Partnerschaften) | `lib/content/app.ts`, `about.ts`, `sponsoring.ts`, `testimonials.ts` |
 | Content / Fotos & Video | Galerien je Club (5+ Bilder) aus Contentful; Inline-Bilder und PadelCity-TV-IDs im Magazin; echtes Kinder-Foto; Social Wall live (Instagram API) | `views/locations/ClubView.tsx`, `lib/content/magazin.ts`, `components/modules/SocialWall.tsx` |
-| Clubs / Daten | Ausstattung lokalisiert aus Contentful; Eröffnungsmonate geplanter Clubs (heute Platzhalter) | `components/locations/AppBooking.tsx`, `lib/data/mock/supplement.ts` |
+| Clubs / Daten | Ausstattung lokalisiert aus Contentful; Eröffnungsmonate geplanter Clubs (heute Platzhalter); Club Neufahrn in Contentful anlegen (auf padelcity.de aktiv, fehlt in den Daten) | `components/locations/AppBooking.tsx`, `lib/data/mock/supplement.ts` |
 | Technik | Google-Places-API-Key für Bewertungen; Magazin hinter die Datenschicht (`TODO(data)`) | `lib/data/google-reviews.ts`, `views/home/HomeView.tsx`, `views/magazine/MagazineView.tsx` |
