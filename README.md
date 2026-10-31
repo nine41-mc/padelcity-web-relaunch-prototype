@@ -44,6 +44,8 @@ Passwort wechseln: neues Secret `PROTOTYPE_PASSWORD` setzen und den Workflow neu
 | `/impressum`, `/datenschutz`, `/agb` | `/en/imprint`, `/en/privacy`, `/en/terms` | `/pl/nota-prawna`, `/pl/polityka-prywatnosci`, `/pl/regulamin` | Rechtstexte |
 | `/sitemap`, `/content-modell` | `/en/sitemap`, `/en/content-model` | `/pl/mapa-strony`, `/pl/model-tresci` | Sitemap aller Seiten; Content-Modell (jedes Modul und Feld mit Datenquelle) |
 
+`sitemap.xml` (alle Seiten in DE/EN/PL mit hreflang, Domain padelcity.de) und `robots.txt` (Prototyp: alles gesperrt; zum Launch freigeben) entstehen beim Build aus `src/app/sitemap.ts` und `src/app/robots.ts`.
+
 Nicht verlinkt und `noindex`: `/styleguide` (Komponenten-Übersicht, Easter Egg im Footer), `/coming-soon` (Ziel der Event-Anmeldung in App und Web-App, solange die Events Mock-Daten sind und `NEXT_PUBLIC_EVENT_LINKS_LIVE` nicht gesetzt ist – siehe `src/lib/site.ts`). Die 404-Seite mit Padel-Pong ist absichtlich über „404“ im Footer erreichbar.
 
 ## Struktur
