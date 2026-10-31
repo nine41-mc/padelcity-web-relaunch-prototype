@@ -64,6 +64,7 @@ export const contentModel: PageType[] = [
       { id: "factTicker", name: "Kennzahlen-Ticker", fields: [f("Freigegebene Kennzahlen, Claims", "cms")] },
       { id: "leaderMap", name: "Nr. 1 + Karte", fields: [...sectionHead(), f("Club-Pins (Position, Name)", "api", "GET /clubs → position"), f("Geplante Clubs auf der Karte", "apiExtend", undefined, "inaktive Clubs werden nie ausgegeben; Status „bald eröffnet“ fehlt")] },
       { id: "clubShowcase", name: "Club-Showcase (Poster)", fields: [...sectionHead(), f("Auswahl und Reihenfolge der Clubs", "cms", "Referenz auf Club-ID"), ...clubCore(), f("Öffnungsstatus „Geöffnet bis …“ / „Geschlossen · Öffnet Mi um …“", "api", "GET /clubs → openingSchedule"), f("Courts, Sportarten (Hover)", "api", "GET /clubs → courts[].locationType, sportType")] },
+      { id: "newcomers", name: "Zum ersten Mal Padel?", text: "Vier Schritte: So geht's, Ausrüstung, Kosten, erster Court", fields: [f("Headline, Text, Schritte mit Link", "cms"), f("Einstiegspreis", "api", "Club-Preise", "kleinster Court-Preis der Euro-Clubs")] },
       {
         id: "featuredEvents",
         name: "Events-Teaser",
@@ -333,6 +334,7 @@ export const contentModel: PageType[] = [
     name: "Unternehmen",
     path: "/unternehmen",
     modules: [
+      { id: "pageHero", name: "Hero", fields: sectionHead() },
       { id: "companyIntro", name: "Wer wir sind", fields: [f("Headline, Text, Link auf Über uns", "cms")] },
       { id: "audienceEntries", name: "Zielgruppen-Einstiege", text: "Partner, Franchise, Investoren, Jobs", fields: [f("Kacheln (Titel, Text, Ziel)", "cms")] },
       { id: "seriesATeaser", name: "Series-A-Teaser", fields: [f("Text (qualitativ, keine Zahlen)", "cms")] },
