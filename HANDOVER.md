@@ -55,7 +55,7 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 ## 3. Inhalte und Daten
 
 - **Content-Modell:** Seite `/content-modell` (aus `src/lib/content/contentModel.ts`) und die Figma-Seite
-  „🧩 Content-Modell“ mit 183 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
+  „🧩 Content-Modell“ mit 193 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
   erweitern, neuer Contentful-Space, externer Dienst, unklar) und Hinweisen.
 - **Datenschicht:** `src/lib/data/` als Fassade (Contentful → Mock-Fallback), Details in `src/lib/data/README.md`.
 - **Grundsatz:** keine Buchungssystem-Daten auf der Website. Einzige Ausnahme (seit 27.10.2026): Event-Detail mit
