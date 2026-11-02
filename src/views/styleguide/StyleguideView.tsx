@@ -37,6 +37,8 @@ import { EventCard } from "@/components/cards/EventCard";
 import { cn } from "@/components/ui/cn";
 import codeConnect from "@/lib/codeConnect.json";
 import { FormDemo } from "./FormDemo";
+import { EventRecap } from "@/components/events/EventRecap";
+import { eventsContent } from "@/lib/content/events";
 
 /**
  * Hidden styleguide / pattern library (easter egg: footer © line).
@@ -548,6 +550,32 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Rückerstattung“ in Success-Grün, „Ab … 100 %“), nur bei der Regel „24 Std. vor Beginn“. Claim mit Countdown (Tage · Std · Min · Sek), Intro, weitere Eckdaten, Ablauf,
           Zeitplan, Video und Partner erscheinen nur, wenn sie in Contentful gepflegt sind.
         </p>
+
+        <H3>Event-Detail: Rückblick nach dem Event</H3>
+        <p className="mb-6 max-w-3xl text-fg/75">
+          Nach dem Event bleibt die Seite unter derselben Adresse stehen, die für die Anmeldung geteilt wurde: Das Events-Team pflegt in Contentful Ergebnisse je Kategorie und
+          Bilder, das Modul erscheint dann zwischen Kopf und Zeitplan. So landen Ergebnisse und Fotos nicht mehr nur auf Instagram. Beispieldaten:
+        </p>
+        <div className="rounded-[24px] border border-fg/10 p-6 md:p-10">
+          <EventRecap
+            labels={eventsContent.de.detail}
+            recap={{
+              text: "Beispieltext: zwei Tage, alle Clubs, ein Finale vor voller Tribüne.",
+              results: [
+                { category: "Herren", places: [{ rank: 1, name: "Team A" }, { rank: 2, name: "Team B" }, { rank: 3, name: "Team C" }] },
+                { category: "Damen", places: [{ rank: 1, name: "Team D" }, { rank: 2, name: "Team E" }, { rank: 3, name: "Team F" }] },
+                { category: "Mixed", places: [{ rank: 1, name: "Team G" }, { rank: 2, name: "Team H" }, { rank: 3, name: "Team I" }] },
+              ],
+              gallery: [
+                { url: "/images/events/tournament-1.jpg", alt: "Beispielbild von einem PadelCity Event" },
+                { url: "/images/events/social-1.jpg", alt: "Beispielbild von einem PadelCity Event" },
+                { url: "/images/events/social-2.jpg", alt: "Beispielbild von einem PadelCity Event" },
+                { url: "/images/events/social-3.jpg", alt: "Beispielbild von einem PadelCity Event" },
+                { url: "/images/events/social-4.jpg", alt: "Beispielbild von einem PadelCity Event" },
+              ],
+            }}
+          />
+        </div>
 
         <H3>Library ↔ Code (Code Connect)</H3>
         <p className="max-w-3xl text-fg/75">

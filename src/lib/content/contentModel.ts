@@ -195,6 +195,16 @@ export const contentModel: PageType[] = [
           f("Liste ohne Login, alle Events", "apiExtend", undefined, "/v2 ist pro Spieler (ohne gebuchte Events, 3 pro Seite, 100-km-Radius)"),
         ],
       },
+      {
+        id: "eventFormats",
+        name: "Unsere Formate",
+        text: "One Point Challenge, Series, Afterwork Americano, Mix nach Level, King of the Court, Kids Camp",
+        fields: [
+          ...sectionHead(),
+          f("Format: Name, Etikett, Text, Bild", "cms"),
+          f("Nächster Termin je Format", "apiExtend", "GET /v2/club-events", "Zuordnung Event → Format fehlt; heute nur über den Titel möglich"),
+        ],
+      },
     ],
   },
   {
@@ -222,6 +232,15 @@ export const contentModel: PageType[] = [
       { id: "eventIntro", name: "Claim & Countdown", fields: [f("Claim mit Akzentwort, Präsentator (z. B. powered by CUPRA)", "cms"), f("Countdown", "api", "GET /club-events/{id} → eventPeriod", "wird auf der Website aus dem Startdatum berechnet")] },
       { id: "factGrid", name: "Intro & weitere Eckdaten", fields: [f("Intro-Text, Eckdaten (Preisgeld, Teilnehmende …)", "cms")] },
       { id: "videoEmbed", name: "Video", fields: [f("Titel, Vorschaubild", "cms"), f("Video", "external", "YouTube")] },
+      {
+        id: "eventRecap",
+        name: "Rückblick",
+        text: "nach dem Event unter derselben Adresse",
+        fields: [
+          f("Text, Ergebnisse je Kategorie (Platz, Team), Bilder", "cms"),
+          f("Vergangene Events bleiben abrufbar", "apiExtend", "GET /club-events/{id}", "für vergangene Events klären; Anmeldung danach ausblenden"),
+        ],
+      },
       { id: "eventPartners", name: "Partner", fields: [f("Partner-Auswahl", "cms", "Referenz auf Partner-Einträge", "im Partner-Modul („Better together.“) statt aller Partner")] },
     ],
   },

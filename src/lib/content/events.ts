@@ -26,6 +26,13 @@ const de = {
     eyebrow: "Highlights",
     title: "Die großen Bühnen",
   },
+  formats: {
+    eyebrow: "Unsere Formate",
+    title: "Jede Woche. Jede Saison.",
+    lead: "Diese Formate laufen immer wieder – in deinem Club oder auf der großen Bühne. Such dir deins aus.",
+    next: "Nächster Termin",
+    none: "Nächste Termine in der App",
+  },
   local: {
     eyebrow: "In deinem Club",
     title: "Spielen, lachen, wiederkommen",
@@ -82,6 +89,10 @@ const de = {
     from: "Ab",
     freeRefund: "Kostenfreie Rückerstattung",
     fullFee: "Ab diesem Zeitpunkt fallen 100 % der Teilnahmegebühr an.",
+    recapEyebrow: "Rückblick",
+    recapTitle: "So war's",
+    results: "Ergebnisse",
+    gallery: "Bilder vom Event",
   },
   date: { time: "Uhr" },
 };
@@ -106,6 +117,13 @@ const en: EventsContent = {
   highlights: {
     eyebrow: "Highlights",
     title: "The big stages",
+  },
+  formats: {
+    eyebrow: "Our formats",
+    title: "Every week. Every season.",
+    lead: "These formats come back again and again – at your club or on the big stage. Pick yours.",
+    next: "Next date",
+    none: "Next dates in the app",
   },
   local: {
     eyebrow: "At your club",
@@ -163,6 +181,10 @@ const en: EventsContent = {
     from: "From",
     freeRefund: "Free refund",
     fullFee: "From this point, 100 % of the entry fee is charged.",
+    recapEyebrow: "Recap",
+    recapTitle: "That was it",
+    results: "Results",
+    gallery: "Photos from the event",
   },
   date: { time: "" },
 };
@@ -185,6 +207,13 @@ const pl: EventsContent = {
   highlights: {
     eyebrow: "Highlights",
     title: "Wielkie sceny",
+  },
+  formats: {
+    eyebrow: "Nasze formaty",
+    title: "Co tydzień. Co sezon.",
+    lead: "Te formaty wracają regularnie – w twoim klubie albo na dużej scenie. Wybierz swój.",
+    next: "Najbliższy termin",
+    none: "Najbliższe terminy w aplikacji",
   },
   local: {
     eyebrow: "W twoim klubie",
@@ -242,6 +271,10 @@ const pl: EventsContent = {
     from: "Od",
     freeRefund: "Bezpłatny zwrot",
     fullFee: "Od tego momentu pobierane jest 100 % opłaty za udział.",
+    recapEyebrow: "Podsumowanie",
+    recapTitle: "Tak było",
+    results: "Wyniki",
+    gallery: "Zdjęcia z wydarzenia",
   },
   date: { time: "" },
 };
@@ -299,6 +332,12 @@ export type EventContent = {
   schedule?: { day: string; items: { time: string; title: string }[] }[];
   video?: { title: string; youtubeId?: string; thumbnail: string };
   partnerNames?: string[]; // names from src/lib/content/partners.ts
+  /** Filled after the event (team feedback v-event-8): results and photos on the same page, under the same URL. */
+  recap?: {
+    text?: string;
+    results?: { category?: string; places: { rank: number; name: string }[] }[];
+    gallery?: { url: string; alt: string }[];
+  };
 };
 
 // TODO(content): final copy, schedule & partners from Events team.
@@ -448,4 +487,55 @@ export const eventContent: Record<string, Record<Locale, EventContent>> = {
       video: { title: "Highlights PadelCity Series 2025", thumbnail: "/images/events/series-video.jpg" },
     },
   },
+};
+
+/* ---------- Event formats (team feedback v-event-9) ----------
+ * The recurring formats as a series, not only as dates. Contentful: entry "eventFormat" (name, tag, text, image);
+ * the next date comes from the APL events of that format. The prototype matches events by id prefix. */
+
+export type EventFormat = {
+  id: string;
+  /** Event ids that belong to the format start with one of these. */
+  match: string[];
+  name: string;
+  tag: string;
+  text: string;
+  image: { url: string; alt: string };
+};
+
+const formatImages = {
+  opc: "/images/events/opc.jpg",
+  series: "/images/events/series.jpg",
+  afterwork: "/images/events/afterwork.jpg",
+  mix: "/images/events/gameplay-mix-1.jpg",
+  king: "/images/events/king-of-the-court.jpg",
+  kids: "/images/events/kids-camp.jpg",
+};
+
+// TODO(content): texts and images per format with the Events team.
+export const eventFormats: Record<Locale, EventFormat[]> = {
+  de: [
+    { id: "opc", match: ["opc-"], name: "One Point Challenge", tag: "powered by CUPRA", text: "Jeder Ballwechsel ist ein K.‑o.-Spiel: Profis, Promis und Qualifikanten aus allen Clubs spielen um bis zu 100.000 € Preisgeld.", image: { url: formatImages.opc, alt: "Center Court der One Point Challenge mit Zuschauern" } },
+    { id: "series", match: ["series-"], name: "PadelCity Series", tag: "powered by Babolat", text: "Eine Saison, alle Clubs, ein Finale – die PadelCity Series krönt ihre Champions.", image: { url: formatImages.series, alt: "Volle Halle bei einem PadelCity Turnier" } },
+    { id: "afterwork", match: ["afterwork-"], name: "Afterwork Americano", tag: "Social", text: "Wechselnde Partner, kurze Matches, danach Drinks und Community.", image: { url: formatImages.afterwork, alt: "Spielerinnen und Spieler mit Getränken am Netz" } },
+    { id: "mix", match: ["beginner-girls-", "intermediate-mix-", "advanced-mix-"], name: "Mix nach Level", tag: "Social", text: "Von Beginner Girls bis Advanced Mix: Du spielst mit Leuten auf deinem Level.", image: { url: formatImages.mix, alt: "Mixed-Match mit Zuschauern am Court" } },
+    { id: "king", match: ["king-of-the-court-"], name: "King of the Court", tag: "Turnier", text: "Turnierformat für ambitionierte Spieler:innen ab Level 4.", image: { url: formatImages.king, alt: "Turnier-Match mit Zuschauern am Court" } },
+    { id: "kids", match: ["kids-camp-"], name: "Kids Padel Camp", tag: "Training", text: "Spielerisch zum ersten Match: Camps für Kids von 6 bis 14 Jahren.", image: { url: formatImages.kids, alt: "Junge und Mädchen beim Padel-Schlag" } },
+  ],
+  en: [
+    { id: "opc", match: ["opc-"], name: "One Point Challenge", tag: "powered by CUPRA", text: "Every rally is a knockout: pros, famous faces and qualifiers from every club play for up to €100,000 in prize money.", image: { url: formatImages.opc, alt: "One Point Challenge centre court with spectators" } },
+    { id: "series", match: ["series-"], name: "PadelCity Series", tag: "powered by Babolat", text: "One season, every club, one final – the PadelCity Series crowns its champions.", image: { url: formatImages.series, alt: "Packed hall at a PadelCity tournament" } },
+    { id: "afterwork", match: ["afterwork-"], name: "Afterwork Americano", tag: "Social", text: "Rotating partners, short matches, then drinks and community.", image: { url: formatImages.afterwork, alt: "Players with drinks at the net" } },
+    { id: "mix", match: ["beginner-girls-", "intermediate-mix-", "advanced-mix-"], name: "Level mixes", tag: "Social", text: "From Beginner Girls to Advanced Mix: you play with people at your level.", image: { url: formatImages.mix, alt: "Mixed match with spectators courtside" } },
+    { id: "king", match: ["king-of-the-court-"], name: "King of the Court", tag: "Tournament", text: "Tournament format for ambitious players from level 4.", image: { url: formatImages.king, alt: "Tournament match with spectators courtside" } },
+    { id: "kids", match: ["kids-camp-"], name: "Kids Padel Camp", tag: "Training", text: "Playfully to the first match: camps for kids aged 6 to 14.", image: { url: formatImages.kids, alt: "Boy and girl hitting padel shots" } },
+  ],
+  pl: [
+    { id: "opc", match: ["opc-"], name: "One Point Challenge", tag: "powered by CUPRA", text: "Każda wymiana to mecz o wszystko: zawodowcy, znane twarze i kwalifikanci ze wszystkich klubów grają o pulę do 100 000 €.", image: { url: formatImages.opc, alt: "Kort centralny One Point Challenge z widzami" } },
+    { id: "series", match: ["series-"], name: "PadelCity Series", tag: "powered by Babolat", text: "Jeden sezon, wszystkie kluby, jeden finał – PadelCity Series koronuje swoich mistrzów.", image: { url: formatImages.series, alt: "Pełna hala podczas turnieju PadelCity" } },
+    { id: "afterwork", match: ["afterwork-"], name: "Afterwork Americano", tag: "Social", text: "Zmieniający się partnerzy, krótkie mecze, a potem drinki i społeczność.", image: { url: formatImages.afterwork, alt: "Zawodniczki i zawodnicy z napojami przy siatce" } },
+    { id: "mix", match: ["beginner-girls-", "intermediate-mix-", "advanced-mix-"], name: "Miks według poziomu", tag: "Social", text: "Od Beginner Girls po Advanced Mix: grasz z osobami na swoim poziomie.", image: { url: formatImages.mix, alt: "Mecz mikstowy z widzami przy korcie" } },
+    { id: "king", match: ["king-of-the-court-"], name: "King of the Court", tag: "Turniej", text: "Format turniejowy dla ambitnych graczy od poziomu 4.", image: { url: formatImages.king, alt: "Mecz turniejowy z widzami przy korcie" } },
+    { id: "kids", match: ["kids-camp-"], name: "Kids Padel Camp", tag: "Trening", text: "Na luzie do pierwszego meczu: obozy dla dzieci w wieku 6–14 lat.", image: { url: formatImages.kids, alt: "Chłopiec i dziewczynka uderzają piłkę w padlu" } },
+  ],
 };

@@ -11,8 +11,9 @@ import { Reveal } from "@/components/ui/Reveal";
 import { HeroEventCard } from "@/components/play/HeroEventCard";
 import { EventsExplorer } from "@/components/play/EventsExplorer";
 import { EventInquiryTeaser } from "@/components/events/EventInquiryTeaser";
+import { EventFormats } from "@/components/events/EventFormats";
 
-// Contentful: page "events" (modules: pageHero, featuredEvents, eventInquiryTeaser, eventList, appCta)
+// Contentful: page "events" (modules: pageHero, featuredEvents, eventInquiryTeaser, eventList, eventFormats, appCta)
 /** Events overview – shared by /events (de) and /en/events (en). */
 export async function EventsView({ locale }: { locale: Locale }) {
   const t = eventsContent[locale];
@@ -65,7 +66,17 @@ export async function EventsView({ locale }: { locale: Locale }) {
         <EventsExplorer events={localEvents} locale={locale} labels={t.explorer} typeLabels={t.types} />
       </Section>
 
+      {/* Contentful module: eventFormats – the formats as a series, each with its next date */}
       <Section tone="black">
+        <div className="mb-10 max-w-3xl">
+          <Eyebrow className="mb-4">{t.formats.eyebrow}</Eyebrow>
+          <Headline size="md">{t.formats.title}</Headline>
+          <p className="mt-4 text-lg text-fg/75">{t.formats.lead}</p>
+        </div>
+        <EventFormats events={events} locale={locale} />
+      </Section>
+
+      <Section tone="black" className="!pt-0">
         <AppCta locale={locale} campaign="events-page" />
       </Section>
     </>

@@ -24,6 +24,7 @@ import { Countdown } from "@/components/play/Countdown";
 import { LiteYouTube } from "@/components/play/LiteYouTube";
 import { eventIsoWithOffset, eventWallClock } from "@/components/play/eventFormat";
 import { CancellationTable, EventSignupCard, FactRow } from "@/components/events/EventFacts";
+import { EventRecap } from "@/components/events/EventRecap";
 
 /* ---------- Route helpers (used by the DE/EN wrappers) ---------- */
 
@@ -102,7 +103,7 @@ function eventJsonLd(event: ClubEvent, locale: Locale, club?: Club) {
 /**
  * Event detail – one page for every event, shared by /events/[slug] (de) and the EN/PL routes.
  * Base from the APL: head, key facts (date, place, format, sign-up deadline, free cancellation, price) and sign-up.
- * Optional Contentful modules (claim + countdown, intro + extra facts, format/schedule, video, partners) only show when filled.
+ * Optional Contentful modules (claim + countdown, intro + extra facts, recap, format/schedule, video, partners) only show when filled.
  */
 export async function EventDetailView({ slug, locale }: { slug: string; locale: Locale }) {
   const event = await loadEvent(slug, locale);
@@ -250,6 +251,13 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
           </div>
         </div>
       </section>
+
+      {/* Contentful module: eventRecap – results and photos, filled after the event */}
+      {content.recap && (
+        <Section tone="ink">
+          <EventRecap recap={content.recap} labels={t.detail} />
+        </Section>
+      )}
 
       {/* Contentful module: formatSteps (schedule) */}
       {content.schedule && content.schedule.length > 0 && (
