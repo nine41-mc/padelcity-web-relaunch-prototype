@@ -66,6 +66,10 @@ export type Club = {
   currency?: "EUR" | "PLN"; // club country currency (default EUR)
   /** Questions about this club (rental rackets, rebooking, access) – proposed Contentful field, answers come from Ops. */
   faq?: { id: string; q: string; a: string }[];
+  /** Current notice (closed court, changed hours …) – proposed Contentful field; shows until validUntil (ISO date). */
+  notice?: { text: string; validUntil?: string };
+  /** Arrival details beside the map – proposed Contentful fields (team feedback ort-4). */
+  arrival?: { parking?: string; checkIn?: string; transit?: string };
   mainImage?: ImageAsset;
   images: ImageAsset[];
   /** Club manager contact (Contentful contact entry). whatsappGroupUrl = proposed new Contentful field on club. */

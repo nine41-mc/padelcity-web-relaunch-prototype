@@ -195,7 +195,8 @@ const de = {
     sections: { pricesCourts: "Preise & Courts", hours: "Öffnungszeiten", facilities: "Ausstattung", highlights: "Highlights & News", find: "So findest du uns", faq: "Fragen zu {club}", faqAll: "Alle Fragen", closed: "Geschlossen", holidays: "Feiertage" },
     info: { label: "Info", close: "Schließen" },
     priceList: { label: "Preisliste", sport: "Sportart", time: "Zeit", offPeak: "Off-Peak", peak: "Peak", allDay: "ganztägig", centerCourt: "Center Court", note: "Preise pro Court & Stunde, gültig ab {date}." },
-    directions: { route: "Route öffnen" },
+    directions: { route: "Route öffnen", parking: "Parken", checkIn: "Check-in", transit: "Mit Bus & Bahn" },
+    notice: { label: "Aktueller Hinweis", until: "bis {date}" },
     contactBar: {
       label: "Kontakt zum Club",
       address: "Adresse",
@@ -419,7 +420,8 @@ const en: LocationsContent = {
     sections: { pricesCourts: "Prices & courts", hours: "Opening hours", facilities: "Facilities", highlights: "Highlights & news", find: "How to find us", faq: "Questions about {club}", faqAll: "All questions", closed: "Closed", holidays: "Public holidays" },
     info: { label: "Info", close: "Close" },
     priceList: { label: "Price list", sport: "Sport", time: "Time", offPeak: "Off-peak", peak: "Peak", allDay: "all day", centerCourt: "Center Court", note: "Prices per court & hour, valid from {date}." },
-    directions: { route: "Get directions" },
+    directions: { route: "Get directions", parking: "Parking", checkIn: "Check-in", transit: "By public transport" },
+    notice: { label: "Current notice", until: "until {date}" },
     contactBar: {
       label: "Club contact",
       address: "Address",
@@ -650,7 +652,8 @@ const pl: LocationsContent = {
     sections: { pricesCourts: "Ceny i korty", hours: "Godziny otwarcia", facilities: "Wyposażenie", highlights: "Highlighty i aktualności", find: "Jak nas znaleźć", faq: "Pytania o {club}", faqAll: "Wszystkie pytania", closed: "Zamknięte", holidays: "Święta" },
     info: { label: "Info", close: "Zamknij" },
     priceList: { label: "Cennik", sport: "Dyscyplina", time: "Godziny", offPeak: "Poza szczytem", peak: "Szczyt", allDay: "cały dzień", centerCourt: "Center Court", note: "Ceny za kort i godzinę, obowiązują od {date}." },
-    directions: { route: "Wyznacz trasę" },
+    directions: { route: "Wyznacz trasę", parking: "Parking", checkIn: "Check-in", transit: "Komunikacją miejską" },
+    notice: { label: "Aktualna informacja", until: "do {date}" },
     contactBar: {
       label: "Kontakt z klubem",
       address: "Adres",

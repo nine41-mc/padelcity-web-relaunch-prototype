@@ -21,6 +21,8 @@ import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { ClubNotice } from "@/components/locations/ClubNotice";
+import { ClubArrival } from "@/components/locations/ClubArrival";
 import { AppBookingBlock, ClubFacilities, formatPrice } from "@/components/locations/AppBooking";
 import { ClubPricesCourts } from "@/components/locations/SportCards";
 import { ClubInfo } from "@/components/locations/ClubInfo";
@@ -185,6 +187,9 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               <ShareButton title={club.fullName ?? club.name} locale={locale} track="share_club" />
             </div>
           </div>
+
+          {/* Contentful module: clubNotice – only while a current notice is filled */}
+          {club.notice && <ClubNotice notice={club.notice} locale={locale} labels={t.notice} className="mt-8" />}
 
           {/* Address (→ "So findest du uns"), club manager, phone, WhatsApp group */}
           <div className="mt-10">
@@ -357,6 +362,8 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
               <Navigation className="size-4" aria-hidden /> {t.directions.route}
             </a>
           </div>
+          {/* Contentful module: clubArrival – parking, check-in, public transport (only filled lines) */}
+          {club.arrival && <ClubArrival arrival={club.arrival} labels={t.directions} className="mt-6" />}
         </Section>
 
         {/* Nearby */}

@@ -170,6 +170,8 @@ export const contentModel: PageType[] = [
       { id: "clubDirections", name: "So findest du uns", fields: [f("Position", "api", "GET /clubs → position"), f("Karte", "external", undefined, "Karten-Anbieter offen")] },
       { id: "nearbyClubs", name: "Clubs in der Nähe", fields: [...clubCore(), f("Entfernung", "api", "GET /clubs → position", "wird auf der Website aus den Positionen berechnet")] },
       { id: "clubReviews", name: "Google-Bewertungen", fields: [f("Sterne, Anzahl, Auszüge", "external", "Google Places API")] },
+      { id: "clubNotice", name: "Aktueller Hinweis", text: "z. B. gesperrter Court, geänderte Zeiten", fields: [f("Text, gültig bis", "cms", undefined, "neues Feld am Club; verschwindet nach dem Enddatum")] },
+      { id: "clubArrival", name: "Parken, Check-in, Anreise", fields: [f("Parken, Check-in, Bus & Bahn", "cms", undefined, "neue Felder am Club; Inhalte liefert Operations")] },
       { id: "clubFaq", name: "Fragen zum Club", text: "Leihschläger, Umbuchen, Zugang", fields: [f("Fragen & Antworten je Club", "cms", undefined, "neues Feld am Club; Inhalte liefert Operations"), f("Allgemeine Antworten, solange der Club keine eigenen hat", "api", "GET /faq/sections, /faq/topics", "heute schon öffentlich")] },
     ],
   },

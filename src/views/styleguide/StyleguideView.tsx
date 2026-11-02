@@ -39,6 +39,9 @@ import codeConnect from "@/lib/codeConnect.json";
 import { FormDemo } from "./FormDemo";
 import { EventRecap } from "@/components/events/EventRecap";
 import { eventsContent } from "@/lib/content/events";
+import { locationsContent } from "@/lib/content/locations";
+import { ClubNotice } from "@/components/locations/ClubNotice";
+import { ClubArrival } from "@/components/locations/ClubArrival";
 
 /**
  * Hidden styleguide / pattern library (easter egg: footer © line).
@@ -620,6 +623,27 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
           Entfernung, A–Z, Z–A), „Gerade geöffnet“, Sportarten, Ausstattung (Indoor, Outdoor, Center Court, Franchise) und auf dem Handy auch die Länder. Auf dem Handy als Bottom
           Sheet, ab Tablet als Panel von rechts. Aktive Kriterien färben das Icon im Verlauf und zeigen einen Zähler. Filter wirken sofort; der Button zeigt die Trefferzahl.
         </p>
+
+        <H3>Club-Seite: aktueller Hinweis und Anfahrt</H3>
+        <p className="mb-6 max-w-3xl text-fg/75">
+          Zwei Module, die nur erscheinen, wenn der Club sie in Contentful gepflegt hat. Der Hinweis steht unter Name und Öffnungszeiten (gesperrter Court, geänderte Zeiten)
+          und verschwindet nach seinem Enddatum von selbst. Parken, Check-in und Anreise mit Bus &amp; Bahn stehen unter der Karte; leere Zeilen fallen weg. Beispieldaten:
+        </p>
+        <div className="grid gap-6 rounded-[24px] border border-fg/10 p-6 md:p-10">
+          <ClubNotice
+            notice={{ text: "Beispieltext: Court 3 ist wegen Wartung gesperrt.", validUntil: "2099-12-31" }}
+            locale="de"
+            labels={locationsContent.de.club.notice}
+          />
+          <ClubArrival
+            labels={locationsContent.de.club.directions}
+            arrival={{
+              parking: "Beispieltext: Parkplätze direkt vor der Halle.",
+              checkIn: "Beispieltext: Check-in an der Rezeption, Court-Nummer steht in der Buchung.",
+              transit: "Beispieltext: Bushaltestelle in fünf Minuten zu Fuß.",
+            }}
+          />
+        </div>
 
         <H3>Formulare</H3>
         <p className="mb-6 max-w-3xl text-fg/75">
