@@ -1,6 +1,6 @@
 import { keepTogether } from "@/lib/typography";
 import { HighlightDemo } from "@/components/home/HighlightDemo";
-import { ClaimDemo } from "@/components/home/ClaimDemo";
+import { ProtoControl } from "@/components/layout/ProtoControls";
 import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
@@ -61,12 +61,11 @@ export async function HomeView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis) */}
-      {/* Comparison switches for the brand discussion (home only): highlight colour and claim */}
-      <div data-capture-hide className="fixed bottom-4 left-4 z-50 flex max-w-[calc(100vw-6rem)] items-center gap-2">
+      {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis).
+          Sits in the prototype controls at the bottom left, next to the light/dark switch (SiteShell). */}
+      <ProtoControl>
         <HighlightDemo locale={locale} />
-        <ClaimDemo locale={locale} />
-      </div>
+      </ProtoControl>
       <HomeHero locale={locale} t={t.hero} />
 
       {/* Momentum ticker */}
@@ -74,15 +73,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         <Marquee>
           {t.ticker.map((item) => (
             <span key={item} lang={claimLang(item)} className="flex items-center gap-8 px-4 font-display text-2xl font-extrabold italic uppercase md:text-3xl">
-              {/* The claim follows the claim comparison (ClaimDemo) */}
-              {item === "Make some noise for Padel" ? (
-                <>
-                  <span data-claim-variant="noise">{item}</span>
-                  <span data-claim-variant="serve">We serve. You play.</span>
-                </>
-              ) : (
-                item
-              )}{" "}<span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-white/70" aria-hidden />
+              {item}{" "}<span className="inline-block size-[0.26em] translate-y-[0.03em] rounded-full bg-white/70" aria-hidden />
             </span>
           ))}
         </Marquee>

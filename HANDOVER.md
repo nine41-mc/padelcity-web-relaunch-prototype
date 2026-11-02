@@ -126,8 +126,7 @@ Code-Connect-Schreibrecht.
   Club-Seite, geführte Firmen-Anfrage, Haltung zu Partnerschaften.
 - **Navigation:** „Unternehmen“ ersetzt „Franchise“ im Hauptmenü (Franchise im Footer) – Abstimmung mit der
   Geschäftsführung zu Struktur, Navigation und Flows steht aus.
-- **Claim:** „We serve. You play.“ als Vorschlag des Teams; auf der Startseite per Button „Claim“ mit „Make some noise
-  for Padel.“ vergleichbar (Footer und Ticker), Entscheidung mit Brand offen.
+- **Claim:** „We serve. You play.“ (Vorschlag des Teams, 02.11.2026 übernommen) ersetzt „Make some noise for Padel.“ in Footer und Ticker; „Make some noise“ bleibt als Wert „Energy“ und im Magazin. Formale Freigabe mit Brand offen.
 - **Dauerbuchung (Club-Seite):** sendet im Prototyp nichts; Ziel-Postfach bei Operations offen.
 - **Feedback-Runde 2 (02.11.2026):** Tonalität (leere Zustände und Hinweise positiv, DE/EN/PL), „Unternehmen“ mit
   Meilensteinen, Vision und Mission (dieselben Einträge wie „Über uns“), „Unsere Formate“ auf `/events` mit dem nächsten

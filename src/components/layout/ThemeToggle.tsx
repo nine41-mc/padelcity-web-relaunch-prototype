@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { cn } from "@/components/ui/cn";
-import { applyTheme, storedTheme, systemTheme, type Theme } from "@/lib/theme";
+import { THEME_EVENT, applyTheme, storedTheme, systemTheme, type Theme } from "@/lib/theme";
 
 /**
  * Round button that switches between light and dark (header, mobile menu). The icon shows the mode it switches to.
@@ -25,7 +25,13 @@ export function ThemeToggle({ labels, className }: { labels: { toLight: string; 
       setTheme(next);
     };
     mq.addEventListener("change", onSystem);
-    return () => mq.removeEventListener("change", onSystem);
+    // other switches (menu, prototype controls) change the theme too – show the same state
+    const onChange = (e: Event) => setTheme((e as CustomEvent<Theme>).detail);
+    window.addEventListener(THEME_EVENT, onChange);
+    return () => {
+      mq.removeEventListener("change", onSystem);
+      window.removeEventListener(THEME_EVENT, onChange);
+    };
   }, []);
 
   const next: Theme = theme === "light" ? "dark" : "light";

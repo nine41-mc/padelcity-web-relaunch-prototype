@@ -21,7 +21,7 @@ const de = {
     ctaApp: "Court buchen in der App",
     ctaLocations: "Alle Standorte",
   },
-  ticker: ["Let's play Padel", "30+ Clubs", "200+ Courts", "25+ Städte", "Game. Set. Match.", "#bettertogether", "Make some noise for Padel", "Deutschlands Nr. 1 im Padel"],
+  ticker: ["Let's play Padel", "30+ Clubs", "200+ Courts", "25+ Städte", "Game. Set. Match.", "#bettertogether", "We serve. You play.", "Deutschlands Nr. 1 im Padel"],
   leader: {
     eyebrow: "Seit 2022 on court",
     title: "Deutschlands",
@@ -92,7 +92,7 @@ const en: HomeContent = {
     ctaApp: "Book a court in the app",
     ctaLocations: "All locations",
   },
-  ticker: ["Let's play Padel", "30+ clubs", "200+ courts", "25+ cities", "Game. Set. Match.", "#bettertogether", "Make some noise for Padel", "Germany's No. 1 in padel"],
+  ticker: ["Let's play Padel", "30+ clubs", "200+ courts", "25+ cities", "Game. Set. Match.", "#bettertogether", "We serve. You play.", "Germany's No. 1 in padel"],
   leader: {
     eyebrow: "On court since 2022",
     title: "Germany's",
@@ -158,7 +158,7 @@ const pl: HomeContent = {
     ctaApp: "Zarezerwuj kort w aplikacji",
     ctaLocations: "Wszystkie lokalizacje",
   },
-  ticker: ["Let's play Padel", "30+ klubów", "200+ kortów", "25+ miast", "Game. Set. Match.", "#bettertogether", "Make some noise for Padel", "Nr 1 w padlu w Niemczech"],
+  ticker: ["Let's play Padel", "30+ klubów", "200+ kortów", "25+ miast", "Game. Set. Match.", "#bettertogether", "We serve. You play.", "Nr 1 w padlu w Niemczech"],
   leader: {
     eyebrow: "Na korcie od 2022",
     title: "W Niemczech",

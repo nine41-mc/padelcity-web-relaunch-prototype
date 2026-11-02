@@ -430,7 +430,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             ["Öffnungsstatus", "Live-Info auf Club-Karten in Magenta 300, Court-Anzahl bleibt weiß"],
             ["Gutschein-Modul", "Startseite: „Verschenke eine Padel Session“ mit drei Schritten (Text von padelcity.de) und dem Gutschein im Look des physischen Gutscheins – heller Beton-Grund, Chevrons im Verlauf, PadelCity-Symbol im Verlauf, „Gutschein“ und „ab 10 € Geschenkwert“; kein Chip, keine Kreditkarten-Optik; Merch-Shop nur als Hinweis"],
             ["Highlight-Vergleich (Startseite)", "Klick auf ein Highlight-Element (Brush-Wort, Kennzahl, Haupt-CTA, Footer-Ball) oder auf den Button unten links wechselt reihum Optic Yellow · Purple · Magenta · Türkis #15C0D3 (App-Abo-Badge). Nur zum Vergleich; Text auf Highlight-Flächen über Token on-optic (dunkel bzw. weiß)"],
-            ["Claim-Vergleich (Startseite)", "Button unten links neben der Highlight-Farbe wechselt zwischen „Make some noise for Padel.“ und dem vorgeschlagenen „We serve. You play.“ – im Footer und im Ticker. Nur zum Vergleich, bis der Claim abgestimmt ist"],
+            ["Prototyp-Schalter", "Unten links auf jeder Seite: Hell/Dunkel (synchron mit dem Knopf im Header und im Menü), auf der Startseite zusätzlich die Highlight-Farbe. Gehören nicht zum Design und fehlen in den Figma-Aufnahmen; auf Club-Seiten rücken sie über die Buchungsleiste"],
             ["Content-Modell", "Footer-Link „Content-Modell“: alle Seitentypen und Module mit der Herkunft jedes Felds (API vorhanden, API erweitern, neuer Contentful-Space, extern, unklar) – Daten in src/lib/content/contentModel.ts"],
             ["Jobs: Personio-Embed", "Seite statisch aus Contentful; nur „Offene Stellen“ ist die eingebettete Personio-Karriereseite (iframe, Höhe per postMessage), als helle Karte mit Ansprechpartnerin daneben; bis die Personio-URL steht, zeigt eine Vorschau im Personio-Look die 8 Stellen von padelcity.de/jobs"],
             ["Franchise: Leistungen & Kontakt", "Drei Phasen-Karten (Bauphase, Aktivierung, Regelbetrieb) mit den Leistungen von padelcity.de, optionale Leistungen gedämpft markiert; Ansprechpartner mit Foto neben dem Formular"],
@@ -590,7 +590,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <H3>Footer</H3>
         <ul className="grid gap-3 md:grid-cols-2">
           {[
-            ["Claim + Newsletter", "„Make some noise for Padel.“ links, das Newsletter-Modul steht rechts für sich allein"],
+            ["Claim + Newsletter", "„We serve. You play.“ links, das Newsletter-Modul steht rechts für sich allein"],
             ["WhatsApp-Band", "Volle Breite im Brandbook-Verlauf: „Never play alone.“ mit Button ins Gruppen-Overlay"],
             ["Drei Spalten", "„Fall in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],
             ["Social-Reihenfolge", "LinkedIn, Facebook, Instagram, YouTube, TikTok – wie auf padelcity.de"],
@@ -793,7 +793,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
         <H3>Claims</H3>
         <div className="flex flex-wrap gap-3">
-          {["Game. Set. Match.", "Loyalty hits reach.", "Experience for the win.", "Make some noise for Padel.", "Never play alone.", "Fall in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
+          {["Game. Set. Match.", "Loyalty hits reach.", "Experience for the win.", "We serve. You play.", "Never play alone.", "Fall in love with padel.", "#bettertogether", "Let's play Padel!"].map((c) => (
             <span key={c} className="rounded-full bg-fg/5 px-4 py-2 font-display text-xl font-extrabold italic uppercase">
               {c}
             </span>

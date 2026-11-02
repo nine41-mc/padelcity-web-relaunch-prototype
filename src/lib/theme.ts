@@ -22,8 +22,12 @@ export function systemTheme(): Theme {
   return typeof matchMedia === "function" && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
 }
 
+/** Fired on window by applyTheme, so every switch (header, menu, prototype pill) shows the same state. */
+export const THEME_EVENT = "pc-theme-change";
+
 export function applyTheme(theme: Theme, store: boolean) {
   document.documentElement.setAttribute("data-theme", theme);
+  window.dispatchEvent(new CustomEvent<Theme>(THEME_EVENT, { detail: theme }));
   if (!store) return;
   try {
     localStorage.setItem(THEME_STORAGE_KEY, theme);

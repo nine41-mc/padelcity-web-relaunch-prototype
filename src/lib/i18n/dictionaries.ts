@@ -48,11 +48,9 @@ const de = {
     language: "Sprache",
   },
   footer: {
-    claim1: "Make some",
-    claimAccent: "noise",
-    claim2: "for Padel.",
-    // Variant for the claim comparison on the home page (ClaimDemo, team feedback m-6-2)
-    claimAlt: { claim1: "We serve. You", claimAccent: "play.", claim2: "" },
+    claim1: "We serve. You",
+    claimAccent: "play.",
+    claim2: "",
     community: {
       eyebrow: (n: number) => `WhatsApp-Community · ${n} Gruppen`,
       title: "Never play",
@@ -137,11 +135,9 @@ const en: Dictionary = {
     language: "Language",
   },
   footer: {
-    claim1: "Make some",
-    claimAccent: "noise",
-    claim2: "for Padel.",
-    // Variant for the claim comparison on the home page (ClaimDemo, team feedback m-6-2)
-    claimAlt: { claim1: "We serve. You", claimAccent: "play.", claim2: "" },
+    claim1: "We serve. You",
+    claimAccent: "play.",
+    claim2: "",
     community: {
       eyebrow: (n: number) => `WhatsApp community · ${n} groups`,
       title: "Never play",
@@ -224,11 +220,9 @@ const pl: Dictionary = {
     language: "Język",
   },
   footer: {
-    claim1: "Make some",
-    claimAccent: "noise",
-    claim2: "for Padel.",
-    // Variant for the claim comparison on the home page (ClaimDemo, team feedback m-6-2)
-    claimAlt: { claim1: "We serve. You", claimAccent: "play.", claim2: "" },
+    claim1: "We serve. You",
+    claimAccent: "play.",
+    claim2: "",
     community: {
       eyebrow: (n: number) => `Społeczność WhatsApp · ${n} ${n === 1 ? "grupa" : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? "grupy" : "grup"}`,
       title: "Never play",

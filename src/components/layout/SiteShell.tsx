@@ -8,6 +8,7 @@ import { localeTags } from "@/lib/i18n/config";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import { ProtoControls } from "./ProtoControls";
 import { basePath } from "@/lib/asset";
 
 export const siteViewport: Viewport = { themeColor: "#0b0b0f" };
@@ -100,6 +101,7 @@ export function SiteShell({ locale, children, bilingual = false }: { locale: Loc
           <Footer locale={locale} />
         )}
         <A11yPanel />
+        <ProtoControls locale={locale} />
       </body>
     </html>
   );
