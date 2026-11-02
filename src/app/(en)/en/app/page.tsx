@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { AppView } from "@/views/app/AppView";
 import { appContent } from "@/lib/content/app";
 import { alternates } from "@/lib/i18n/routes";
+import { ogFor } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: appContent.en.meta.title,
   description: appContent.en.meta.description,
   alternates: alternates("app", undefined, "en"),
+  openGraph: ogFor("en", "app"),
   other: { "apple-itunes-app": "app-id=6451471569" },
 };
 

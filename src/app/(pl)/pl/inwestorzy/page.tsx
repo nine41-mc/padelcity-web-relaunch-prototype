@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { InvestorsView } from "@/views/investors/InvestorsView";
 import { investorsContent } from "@/lib/content/investors";
 import { alternates } from "@/lib/i18n/routes";
+import { ogFor } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: investorsContent.pl.meta.title,
   description: investorsContent.pl.meta.description,
   alternates: alternates("investors", undefined, "pl"),
+  openGraph: ogFor("pl", "investors"),
 };
 
 export default function Page() {

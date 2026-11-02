@@ -11,7 +11,8 @@
     "figma:publish": "figma connect publish",
     "figma:audit": "node figma/audit/rest-check.mjs",
     "tokens:check": "node figma/tokens/check-theme.mjs",
-    "qa": "node scripts/qa.mjs"
+    "qa": "node scripts/qa.mjs",
+    "og": "node scripts/build-og.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

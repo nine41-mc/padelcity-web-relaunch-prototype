@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import { FranchiseView } from "@/views/franchise/FranchiseView";
 import { franchiseContent } from "@/lib/content/franchise";
 import { alternates } from "@/lib/i18n/routes";
+import { ogFor } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: franchiseContent.pl.meta.title,
   description: franchiseContent.pl.meta.description,
   alternates: alternates("franchise", undefined, "pl"),
+  openGraph: ogFor("pl", "franchise"),
 };
 
 export default function Page() {

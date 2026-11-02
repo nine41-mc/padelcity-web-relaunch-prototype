@@ -105,7 +105,10 @@ Code-Connect-Schreibrecht.
   (`src/components/play/eventFormat.ts`). Titel (≤ 65 Zeichen, Marke nur, wo Platz ist – `pageTitle()` in
   `src/lib/site.ts`) und Beschreibungen (50–160 Zeichen) sind auf allen Seiten im Ziel. `sitemap.xml` (alle Seiten mit
   hreflang, Domain padelcity.de) und `robots.txt` entstehen beim Build aus `src/app/sitemap.ts` und `src/app/robots.ts`;
-  zum Launch in `robots.ts` das Crawlen freigeben. Neu im Produktiv-Build: Open-Graph-Bilder pro Seitentyp.
+  zum Launch in `robots.ts` das Crawlen freigeben. Vorschaubilder beim Teilen (Open Graph, 1200 × 630): eine Karte je
+  Seitentyp und Sprache mit Hero-Foto und Headline (`public/og`, erzeugt von `npm run og` aus dem Export, Liste in
+  `src/lib/og.ts`); Club, Event und Artikel teilen ihr eigenes Foto, alle übrigen Seiten die Karte der Startseite. Im
+  Produktiv-Build die Karten beim Build erzeugen (z. B. `next/og`), damit neue Headlines nicht vergessen werden.
 - **Tracking und Consent:** GA4 server-side und CMP; die CTAs tragen bereits `data-track`-Attribute.
 - **Weiterleitungen (301) von padelcity.de:** fast alle URLs ändern sich (z. B. `/padelcity-unser-team/` →
   `/ueber-uns/`, `/berlin/` → `/standorte/berlin/`). Entwurf mit allen 139 URLs der heutigen Sitemap (Stand

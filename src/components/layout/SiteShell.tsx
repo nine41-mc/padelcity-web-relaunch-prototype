@@ -23,7 +23,9 @@ export function siteMetadata(locale: Locale): Metadata {
     metadataBase: new URL("https://www.padelcity.de"),
     title: { default: "PadelCity – Let's play Padel!", template: "%s | PadelCity" },
     description,
-    openGraph: { type: "website", locale: localeTags[locale].og, siteName: "PadelCity" },
+    // the home card is the default share preview; pages with their own card set it via ogFor() (src/lib/og.ts)
+    openGraph: { type: "website", locale: localeTags[locale].og, siteName: "PadelCity", images: [{ url: `/og/${locale}/home.jpg`, width: 1200, height: 630 }] },
+    twitter: { card: "summary_large_image" },
     robots: { index: false, follow: false }, // prototype
   };
 }
