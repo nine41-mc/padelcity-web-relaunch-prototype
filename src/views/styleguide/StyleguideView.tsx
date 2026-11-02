@@ -294,7 +294,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             <Eyebrow>Experience for the win.</Eyebrow>
           </Spec>
           <Spec label="Lead">
-            <Lead>Schlechte Nachrichten für deine Ausrede: Der nächste Court ist näher, als du denkst.</Lead>
+            <Lead>{"Der nächste Court ist näher, als du denkst. Such deine Stadt – und los geht's."}</Lead>
           </Spec>
           <Spec label="Fließtext · Poppins 400, 16–18 px">
             <p className="max-w-2xl text-fg/85">Padel ist der am schnellsten wachsende Sport Europas. Bei PadelCity spielst du in über 30 Clubs – indoor wie outdoor, für jedes Level.</p>
@@ -754,12 +754,14 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             "Echte Fotos aus den Clubs, echte Menschen: Gründer, Team, Coaches",
             "Clubnamen ohne „PadelCity“-Präfix in der Oberfläche",
             "Preise als Einstieg („ab 24 €/h“, auf Club-Karten unten rechts in der Headline-Schrift)",
+            "Leere Zustände und Hinweise positiv formulieren: was geht, nicht was fehlt („In {Stadt} spielst du jeden Tag.“)",
           ]}
           donts={[
             "Buchungsdaten: freie Slots, Auslastung, „noch X Plätze“",
             "Erfundene Bewertungen, Testimonials oder Fakten",
             "Zahlen aus der Finanzierungsrunde",
             "Stockfotos von Menschen, die nicht bei uns spielen",
+            "Negativ klingende Formulierungen („Schlechte Nachrichten …“, „Gerade keine Events“, „Kein Problem“)",
           ]}
         />
         <p className="mt-10 text-sm text-fg/60">

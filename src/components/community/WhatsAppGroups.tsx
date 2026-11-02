@@ -18,7 +18,7 @@ const copy = {
     channel: "Kanal",
     close: "Schließen",
     clear: "Suche löschen",
-    empty: "Für diese Stadt gibt es noch keine Gruppe.",
+    empty: "Die Gruppe für diese Stadt startet mit dem ersten Club.",
   },
   en: {
     title: "WhatsApp community",
@@ -28,7 +28,7 @@ const copy = {
     channel: "Channel",
     close: "Close",
     clear: "Clear search",
-    empty: "There's no group for this city yet.",
+    empty: "The group for this city starts with its first club.",
   },
   pl: {
     title: "Społeczność WhatsApp",
@@ -38,7 +38,7 @@ const copy = {
     channel: "Kanał",
     close: "Zamknij",
     clear: "Wyczyść wyszukiwanie",
-    empty: "Dla tego miasta nie ma jeszcze grupy.",
+    empty: "Grupa dla tego miasta wystartuje razem z pierwszym klubem.",
   },
 };
 

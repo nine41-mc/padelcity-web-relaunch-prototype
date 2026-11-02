@@ -14,7 +14,7 @@ const copy = {
   de: {
     title: "Ball im",
     accent: "Aus!",
-    text: "Diese Seite gibt es nicht (mehr). Kein Problem – nächster Punkt, neues Glück.",
+    text: "Diese Seite ist umgezogen oder vom Court verschwunden. Nächster Punkt, neues Glück.",
     home: "Zur Startseite",
     other: "English site",
     otherLocale: "en" as Locale,
@@ -25,7 +25,7 @@ const copy = {
   en: {
     title: "Ball",
     accent: "out!",
-    text: "This page doesn't exist (any more). No worries – next point, fresh start.",
+    text: "This page has moved or left the court. Next point, fresh start.",
     home: "Back to home",
     other: "Deutsche Seite",
     otherLocale: "de" as Locale,
@@ -36,7 +36,7 @@ const copy = {
   pl: {
     title: "Piłka w",
     accent: "aucie!",
-    text: "Ta strona nie istnieje (już). Nic się nie stało – kolejny punkt, nowa szansa.",
+    text: "Ta strona zmieniła adres albo zeszła z kortu. Kolejny punkt, nowa szansa.",
     home: "Na stronę główną",
     other: "English site",
     otherLocale: "en" as Locale,
