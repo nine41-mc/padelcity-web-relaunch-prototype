@@ -3,19 +3,25 @@ import { Briefcase, Building2, Handshake, LineChart } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { companyContent } from "@/lib/content/company";
+import { aboutContent, milestones } from "@/lib/content/about";
 import { PageHero } from "@/components/modules/PageHero";
+import { SectionIntro } from "@/components/brand/SectionIntro";
+import { Timeline } from "@/components/brand/Timeline";
 import { Button } from "@/components/ui/Button";
+import { InfoTile } from "@/components/ui/InfoTile";
 import { CardArrow } from "@/components/ui/CardArrow";
 import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 
 // Company hub: who we are, the paths for partners, franchise, investors and jobs, and the Series A block
-// (moved here from the home page, which now belongs to the players – team feedback m-1, m-9).
+// (moved here from the home page, which now belongs to the players – team feedback m-1, m-9). Vision, mission and
+// milestones are the same entries as on the about page (team feedback m-9-2), not a second copy of the texts.
 const PATH_ICONS = { partners: Handshake, franchise: Building2, investors: LineChart, jobs: Briefcase } as const;
 
 export function CompanyView({ locale }: { locale: Locale }) {
   const t = companyContent[locale];
+  const about = aboutContent[locale];
   return (
     <>
       <PageHero
@@ -43,6 +49,23 @@ export function CompanyView({ locale }: { locale: Locale }) {
             {t.who.cta}
           </Button>
         </Reveal>
+      </Section>
+
+      {/* Our story so far – the milestones of the about page */}
+      <Section tone="black">
+        <SectionIntro eyebrow={about.milestones.eyebrow} title={about.milestones.title} />
+        <Timeline items={milestones[locale]} locale={locale} />
+      </Section>
+
+      {/* Vision & mission – shared with the about page */}
+      <Section>
+        <div className="grid gap-4 md:grid-cols-2 md:gap-5">
+          {about.vision.map((b, i) => (
+            <Reveal key={b.k} delay={i * 0.08} className="h-full">
+              <InfoTile size="lg" label={b.k} value={b.t} text={b.d} />
+            </Reveal>
+          ))}
+        </div>
       </Section>
 
       {/* Paths: partners, franchise, investors, jobs */}

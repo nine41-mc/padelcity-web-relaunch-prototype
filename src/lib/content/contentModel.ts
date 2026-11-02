@@ -336,6 +336,8 @@ export const contentModel: PageType[] = [
     modules: [
       { id: "pageHero", name: "Hero", fields: sectionHead() },
       { id: "companyIntro", name: "Wer wir sind", fields: [f("Headline, Text, Link auf Über uns", "cms")] },
+      { id: "milestoneTimeline", name: "Meilensteine", text: "dieselben Einträge wie auf Über uns", fields: [f("Jahr, Titel, Text", "cms")] },
+      { id: "visionMission", name: "Vision & Mission", text: "dieselben Einträge wie auf Über uns", fields: [f("Vision, Mission", "cms")] },
       { id: "audienceEntries", name: "Zielgruppen-Einstiege", text: "Partner, Franchise, Investoren, Jobs", fields: [f("Kacheln (Titel, Text, Ziel)", "cms")] },
       { id: "seriesATeaser", name: "Series-A-Teaser", fields: [f("Text (qualitativ, keine Zahlen)", "cms")] },
     ],
