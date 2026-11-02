@@ -55,7 +55,7 @@ Library ↔ Code (Figma-Name, Komponente, Datei, Figma-Eigenschaften, Hinweise),
 ## 3. Inhalte und Daten
 
 - **Content-Modell:** Seite `/content-modell` (aus `src/lib/content/contentModel.ts`) und die Figma-Seite
-  „🧩 Content-Modell“ mit 193 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
+  „🧩 Content-Modell“ mit 197 Annotationen – jedes Modul mit seinen Feldern, der Datenquelle (API vorhanden, API
   erweitern, neuer Contentful-Space, externer Dienst, unklar) und Hinweisen.
 - **Datenschicht:** `src/lib/data/` als Fassade (Contentful → Mock-Fallback), Details in `src/lib/data/README.md`.
 - **Grundsatz:** keine Buchungssystem-Daten auf der Website. Einzige Ausnahme (seit 27.10.2026): Event-Detail mit
@@ -125,6 +125,11 @@ Code-Connect-Schreibrecht.
 - **Claim:** „We serve. You play.“ als Vorschlag des Teams; auf der Startseite per Button „Claim“ mit „Make some noise
   for Padel.“ vergleichbar (Footer und Ticker), Entscheidung mit Brand offen.
 - **Dauerbuchung (Club-Seite):** sendet im Prototyp nichts; Ziel-Postfach bei Operations offen.
+- **Feedback-Runde 2 (02.11.2026):** Tonalität (leere Zustände und Hinweise positiv, DE/EN/PL), „Unternehmen“ mit
+  Meilensteinen, Vision und Mission (dieselben Einträge wie „Über uns“), „Unsere Formate“ auf `/events` mit dem nächsten
+  Termin je Format, Rückblick-Modul auf der Event-Seite (Ergebnisse, Bilder) sowie „Aktueller Hinweis“ und „Parken /
+  Check-in / Bus & Bahn“ auf der Club-Seite. Rückblick und Club-Module erscheinen nur, wenn gepflegt – im Styleguide mit
+  Beispieldaten. Für die API offen: Zuordnung Event → Format, vergangene Events abrufbar halten.
 
 - **Event-Anfrage (`/events/anfrage`):** Der Prototyp sendet bewusst nichts. Für die Website laut Briefing eine Mail an
   das Events-Postfach mit festem Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie
@@ -141,8 +146,8 @@ Im Code als `TODO(content)` markiert (`grep -rn "TODO(content)" src`); hier nach
 
 | Wer | Was | Stelle im Code |
 |---|---|---|
-| Events-Team | finale Texte, Zeitpläne und Partner der Hero-Events; Ticketing („Zuschauer frei“); Preisgeld (Platzhalter `[XX.XXX] €`) | `lib/content/events.ts` |
-| Ops / AGB | Fristen für anteilige Zahlung; Storno-Fenster und Gebühren; Leihschläger und -bälle in jedem Club; Partner-Benefits je Club; Antworten „Fragen zu {Club}“ (Leihschläger, Umbuchen, Zugang) als neues Contentful-Feld; Postfach für Dauerbuchungen | `lib/content/faq.ts`, `views/locations/ClubView.tsx`, `components/locations/RecurringBookingForm.tsx` |
+| Events-Team | finale Texte, Zeitpläne und Partner der Hero-Events; Ticketing („Zuschauer frei“); Preisgeld (Platzhalter `[XX.XXX] €`); Texte und Bilder je Format („Unsere Formate“); Rückblicke (Ergebnisse, Bilder) nach den Events | `lib/content/events.ts` |
+| Ops / AGB | Fristen für anteilige Zahlung; Storno-Fenster und Gebühren; Leihschläger und -bälle in jedem Club; Partner-Benefits je Club; Antworten „Fragen zu {Club}“ (Leihschläger, Umbuchen, Zugang) als neues Contentful-Feld; Postfach für Dauerbuchungen; je Club Parken, Check-in, Anreise mit Bus & Bahn und aktuelle Hinweise (neue Felder) | `lib/content/faq.ts`, `views/locations/ClubView.tsx`, `components/locations/RecurringBookingForm.tsx` |
 | HR | Benefits; Personio-Subdomain und Karriereseiten-Design (danach Vorschau entfernen) | `lib/content/jobs.ts`, `components/brand/PersonioJobs.tsx` |
 | Franchise-Team | Mindestanzahl Courts, Deckenhöhe, Investitionsrahmen – erst nach Freigabe | `lib/content/franchise.ts` |
 | Investor Relations | Downloads als echte Dateien; eigenes IR-Postfach; Series-A-Details nur nach Freigabe | `lib/content/investors.ts`, `views/company/CompanyView.tsx` |
