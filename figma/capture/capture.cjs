@@ -30,6 +30,10 @@ const BASE = process.env.CAPTURE_BASE || "http://localhost:3010";
     deviceScaleFactor: 1,
     reducedMotion: "reduce",
   });
+  // Live texts (opening status, countdowns) depend on the clock. All captures of a run see the same moment:
+  // CAPTURE_NOW (ISO) or today 18:00 on this machine – clubs are open then, so the status reads "Geöffnet bis …".
+  const now = process.env.CAPTURE_NOW ? new Date(process.env.CAPTURE_NOW) : new Date(new Date().setHours(18, 0, 0, 0));
+  await ctx.clock.setFixedTime(now);
   // CAPTURE_THEME=light for the light captures; dark is stored explicitly, the page would otherwise follow the
   // browser's colour scheme (src/lib/theme.ts)
   const theme = process.env.CAPTURE_THEME === "light" ? "light" : "dark";

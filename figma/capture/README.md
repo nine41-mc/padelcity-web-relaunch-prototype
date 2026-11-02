@@ -10,6 +10,10 @@ NODE_PATH=<node_modules with playwright> node figma/capture/capture.cjs /app/ 14
 
 `CAPTURE_THEME=light` captures the light theme (default: dark, stored as the header toggle would).
 
+The page clock is fixed, so opening status and countdowns read the same in every capture of a run: `CAPTURE_NOW=<ISO>`
+(e.g. `2026-11-05T18:00`), default today 18:00 on the capturing machine. Event dates in the mock data count from the
+build, so captures from one build and one `CAPTURE_NOW` match exactly.
+
 `preview:<file.png>` instead of a capture ID writes a full-page screenshot of what would be captured, without
 sending anything to Figma.
 
