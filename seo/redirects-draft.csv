@@ -32,7 +32,7 @@ alte_url;neue_url;status;hinweis
 /en/fuerth/;/en/locations/fuerth/;eindeutig;
 /en/gelsenkirchen-en/;/en/locations/gelsenkirchen/;eindeutig;
 /en/heilsbronn/;/en/locations/heilsbronn/;eindeutig;
-/en/how-a-lack-of-space-turned-into-a-success-story/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/how-a-lack-of-space-turned-into-a-success-story/;/en/magazine/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Geschichte des Padel, Acapulco)
 /en/imprint/;/en/imprint/;eindeutig;
 /en/ingolstadt/;/en/locations/ingolstadt/;eindeutig;
 /en/innsbruck/;/en/locations/innsbruck/;eindeutig;
@@ -49,16 +49,16 @@ alte_url;neue_url;status;hinweis
 /en/muenchen-ffr-en/;/en/locations/muenchen-frankfurter-ring/;eindeutig;
 /en/muenchen-tucherpark/;/en/locations/muenchen-tucherpark/;eindeutig;
 /en/neu-ulm/;/en/locations/neu-ulm/;eindeutig;
-/en/neufahrn/;;offen;Club ist auf padelcity.de aktiv (Franchise-Partner, geprüft 31.10.2026), fehlt aber im Prototyp/Contentful – Club anlegen, dann /en/locations/neufahrn/
+/en/neufahrn/;/en/locations/;prüfen;Vorschlag: bis der Club in Contentful angelegt ist auf den Club-Finder, danach /en/locations/neufahrn/ (aktiver Franchise-Club)
 /en/padelcity-events/;/en/events/;eindeutig;
-/en/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio-item/one-point-challenge-tour-austria/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio-item/one-point-challenge-tourfrance-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio-item/one-point-challenge-tourthe-winner-takes-it-all-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio_entries/duesseldorf-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio_entries/innsbruck/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio_entries/oberhausen-2/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/en/portfolio_entries/solothurn/;/en/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/en/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf-2/;/en/events/;prüfen;Vorschlag: Referenz zum CUPRA Premier Padel P2 Düsseldorf – auf die Events-Übersicht – Alternative Partner-Seite (Case Studies)
+/en/portfolio-item/one-point-challenge-tour-austria/;/en/magazine/one-point-challenge/;prüfen;Vorschlag: One-Point-Challenge-Referenz → Magazin-Artikel zur One Point Challenge
+/en/portfolio-item/one-point-challenge-tourfrance-2/;/en/magazine/one-point-challenge/;prüfen;Vorschlag: One-Point-Challenge-Referenz → Magazin-Artikel zur One Point Challenge
+/en/portfolio-item/one-point-challenge-tourthe-winner-takes-it-all-2/;/en/magazine/one-point-challenge/;prüfen;Vorschlag: One-Point-Challenge-Referenz → Magazin-Artikel zur One Point Challenge
+/en/portfolio_entries/duesseldorf-2/;/en/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
+/en/portfolio_entries/innsbruck/;/en/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
+/en/portfolio_entries/oberhausen-2/;/en/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
+/en/portfolio_entries/solothurn/;/en/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
 /en/privacy-policy/;/en/privacy/;eindeutig;
 /en/radolfzell/;/en/locations/radolfzell/;eindeutig;
 /en/ravensburg/;/en/locations/ravensburg/;eindeutig;
@@ -70,15 +70,15 @@ alte_url;neue_url;status;hinweis
 /en/terms-of-use/;/en/terms/;eindeutig;
 /en/thepadelblog/;/en/magazine/;eindeutig;
 /en/this-is-padelcity/;/en/about/;eindeutig;Über-uns-Seite (geprüft 31.10.2026)
-/en/twelve-million-2/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/twelve-million-2/;/en/company/;prüfen;Vorschlag: nicht übernehmen – der Text spielt mit der Finanzierungssumme (keine Finanzierungszahlen auf der Website) – Ziel Company mit dem Series-A-Teaser
 /en/weihnachten/;/en/events/inquiry/;eindeutig;Weihnachtsfeiern für Gruppen mit unverbindlicher Anfrage – gleiche Anfrage wie Events
 /en/wetzlar-en/;/en/locations/wetzlar/;eindeutig;
-/en/what-exactly-is-padel/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/en/when-shots-slowly-start-becoming-a-game/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/en/when-the-plan-suddenly-flies-to-madrid-alone/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/en/why-padel-is-booming-right-now-2/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/en/why-padel-is-booming-right-now/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/en/why-the-best-padel-doesnt-start-on-the-court/;/en/magazine/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/en/what-exactly-is-padel/;/en/magazine/padel-regeln-in-5-minuten/;prüfen;Vorschlag: gleiches Thema (Einstieg ins Padel) – „Padel rules in 5 minutes“
+/en/when-shots-slowly-start-becoming-a-game/;/en/magazine/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Serie Katharina Hering in Madrid)
+/en/when-the-plan-suddenly-flies-to-madrid-alone/;/en/magazine/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Serie Katharina Hering in Madrid)
+/en/why-padel-is-booming-right-now-2/;/en/magazine/warum-padel-am-schnellsten-waechst/;prüfen;Vorschlag: Dublette, gleiches Thema – Artikel zum Padel-Boom im neuen Magazin
+/en/why-padel-is-booming-right-now/;/en/magazine/warum-padel-am-schnellsten-waechst/;prüfen;Vorschlag: gleiches Thema – Artikel zum Padel-Boom im neuen Magazin
+/en/why-the-best-padel-doesnt-start-on-the-court/;/en/magazine/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Athletik abseits des Courts) – Alternative /en/academy/
 /en/wiesbaden/;/en/locations/wiesbaden/;eindeutig;
 /erding/;/standorte/erding/;eindeutig;
 /erlangen/;/standorte/erlangen/;eindeutig;
@@ -105,21 +105,21 @@ alte_url;neue_url;status;hinweis
 /muenchen-frankfurter-ring/;/standorte/muenchen-frankfurter-ring/;eindeutig;
 /muenchen-tucherpark/;/standorte/muenchen-tucherpark/;eindeutig;
 /neu-ulm/;/standorte/neu-ulm/;eindeutig;
-/neufahrn/;;offen;Club ist auf padelcity.de aktiv (Franchise-Partner, geprüft 31.10.2026), fehlt aber im Prototyp/Contentful – Club anlegen, dann /standorte/neufahrn/
-/newsletter-bestaetigung/;;offen;Bestätigungsseite für das Double-Opt-in fehlt in der neuen Website – mit dem Newsletter-Anbieter klären
+/neufahrn/;/standorte/;prüfen;Vorschlag: bis der Club in Contentful angelegt ist auf den Club-Finder, danach /standorte/neufahrn/ (aktiver Franchise-Club)
+/newsletter-bestaetigung/;/;prüfen;Vorschlag: vorerst Startseite – final die Bestätigungsseite des Newsletter-Tools oder ein Bestätigungs-Zustand im Newsletter-Modul (mit dem Tool klären)
 /newsletter/;/#newsletter;eindeutig;Newsletter ist künftig ein Modul im Footer
 /padel-camp/;/academy/#programme;eindeutig;Kids-&-Teens-Camp in den Ferien – Camps stehen im Academy-Programm (Kids & Juniors)
-/padel-vs-tennis/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/padel-vs-tennis/;/magazin/;prüfen;Vorschlag: Magazin-Übersicht – die alte Seite war beim Abruf am 02.11.2026 nicht erreichbar, Inhalt nicht prüfbar
 /padelblog/;/magazin/;eindeutig;
 /padelcity-unser-team/;/ueber-uns/;eindeutig;
-/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio-item/one-point-challenge-tour-austria/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio-item/one-point-challenge-tourfrance/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio-item/one-point-challenge-tourthe-winner-takes-it-all-3-2/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio_entries/duesseldorf/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio_entries/innsbruck-2/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio_entries/oberhausen/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
-/portfolio_entries/solothurn-2/;/events/;offen;Referenz/Event-Rückblick – als Magazin-Artikel übernehmen oder auf Events leiten
+/portfolio-item/cupra-germany-premier-padel-p2castello-duesseldorf/;/events/;prüfen;Vorschlag: Referenz zum CUPRA Premier Padel P2 Düsseldorf – auf die Events-Übersicht – Alternative Partner-Seite (Case Studies)
+/portfolio-item/one-point-challenge-tour-austria/;/magazin/one-point-challenge/;prüfen;Vorschlag: One-Point-Challenge-Referenz → Magazin-Artikel zur One Point Challenge
+/portfolio-item/one-point-challenge-tourfrance/;/magazin/one-point-challenge/;prüfen;Vorschlag: One-Point-Challenge-Referenz → Magazin-Artikel zur One Point Challenge
+/portfolio-item/one-point-challenge-tourthe-winner-takes-it-all-3-2/;/magazin/one-point-challenge/;prüfen;Vorschlag: One-Point-Challenge-Referenz → Magazin-Artikel zur One Point Challenge
+/portfolio_entries/duesseldorf/;/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
+/portfolio_entries/innsbruck-2/;/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
+/portfolio_entries/oberhausen/;/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
+/portfolio_entries/solothurn-2/;/events/;prüfen;Vorschlag: alte Referenzseite ohne eigenen Inhalt (zeigt nur den Club Ravensburg) – auf die Events-Übersicht
 /radolfzell/;/standorte/radolfzell/;eindeutig;
 /ravensburg/;/standorte/ravensburg/;eindeutig;
 /recklinghausen/;/standorte/recklinghausen/;eindeutig;
@@ -127,14 +127,14 @@ alte_url;neue_url;status;hinweis
 /reutlingen/;/standorte/reutlingen/;eindeutig;
 /rothenburg/;/standorte/rothenburg/;eindeutig;
 /schwabach/;/standorte/schwabach/;eindeutig;
-/warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt-2/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/was-ist-padel-eigentlich/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt-2/;/magazin/;prüfen;Dublette – wie die Hauptversion
+/warum-das-beste-padel-oft-nicht-auf-dem-court-beginnt/;/magazin/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Athletik abseits des Courts) – Alternative /academy/
+/was-ist-padel-eigentlich/;/magazin/padel-regeln-in-5-minuten/;prüfen;Vorschlag: gleiches Thema (Einstieg ins Padel) – „Padel-Regeln in 5 Minuten“
 /weihnachten/;/events/anfrage/;eindeutig;Weihnachtsfeiern für Gruppen mit unverbindlicher Anfrage – gleiche Anfrage wie Events
-/wenn-aus-schlaegen-langsam-ein-spiel-wird/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/wenn-der-plan-ploetzlich-alleine-nach-madrid-fliegt/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/wenn-aus-schlaegen-langsam-ein-spiel-wird/;/magazin/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Serie Katharina Hering in Madrid)
+/wenn-der-plan-ploetzlich-alleine-nach-madrid-fliegt/;/magazin/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Serie Katharina Hering in Madrid)
 /wetzlar/;/standorte/wetzlar/;eindeutig;
-/wie-aus-platzmangel-eine-erfolgsgeschichte-wurde-2/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
-/wie-aus-platzmangel-eine-erfolgsgeschichte-wurde/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/wie-aus-platzmangel-eine-erfolgsgeschichte-wurde-2/;/magazin/;prüfen;Dublette – wie die Hauptversion
+/wie-aus-platzmangel-eine-erfolgsgeschichte-wurde/;/magazin/;prüfen;Vorschlag: als Magazin-Artikel übernehmen (eigene Story, zeitlos), dann 1:1 weiterleiten – bis dahin auf die Magazin-Übersicht (Geschichte des Padel, Acapulco)
 /wiesbaden/;/standorte/wiesbaden/;eindeutig;
-/zwoelf-millionen/;/magazin/;offen;Blog-Artikel ohne Gegenstück im neuen Magazin – nach Contentful übernehmen (dann 1:1 weiterleiten) oder auf die Magazin-Übersicht
+/zwoelf-millionen/;/unternehmen/;prüfen;Vorschlag: nicht übernehmen – der Text spielt mit der Finanzierungssumme (keine Finanzierungszahlen auf der Website) – Ziel Unternehmen mit dem Series-A-Teaser
