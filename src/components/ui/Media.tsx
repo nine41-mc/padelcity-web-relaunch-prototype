@@ -29,12 +29,13 @@ export function Media({
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
   // Static export: the image may finish loading before hydration, so onLoad/onError never fire.
+  // complete without pixels is not proof of a broken file: a lazy image that has not started (or is switching to a
+  // new srcset candidate after a resize) reports the same – decode() waits for it and only rejects when it is broken.
   useEffect(() => {
     const img = imgRef.current;
-    if (img?.complete) {
-      if (img.naturalWidth > 0) setLoaded(true);
-      else setFailed(true);
-    }
+    if (!img?.complete) return;
+    if (img.naturalWidth > 0) setLoaded(true);
+    else img.decode().then(() => setLoaded(true), () => setFailed(true));
   }, [src]);
   return (
     <div className={cn(!/(^|\s)!?(absolute|fixed|sticky)(\s|$)/.test(className ?? "") && "relative", "overflow-hidden bg-surface", className)}>
