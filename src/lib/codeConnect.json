@@ -514,10 +514,6 @@
         {
           "name": "Label",
           "kind": "Text"
-        },
-        {
-          "name": "Dot",
-          "kind": "Boolean"
         }
       ],
       "notes": ""

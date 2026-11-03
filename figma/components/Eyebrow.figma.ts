@@ -5,10 +5,9 @@
 import figma from 'figma'
 const instance = figma.selectedInstance
 const label = instance.getString('Label')
-const dot = instance.getBoolean('Dot')
 
 export default {
-  example: figma.code`<Eyebrow${dot ? '' : ' dot={false}'}>${label}</Eyebrow>`,
+  example: figma.code`<Eyebrow>${label}</Eyebrow>`,
   imports: ['import { Eyebrow } from "@/components/ui/Headline"'],
   id: 'eyebrow',
   metadata: { nestable: true },
