@@ -430,7 +430,3 @@ html[data-highlight-demo] :is(.text-optic-500, .bg-optic-500, [data-highlight-ta
 /* Partner and press logos are white artwork – inverted to ink on a light page. */
 :root[data-theme="light"] .logo-white:not([data-theme="dark"] *) { filter: invert(1); }
 
-/* Prototype controls (ProtoControls): above the sticky booking bar while it shows (club pages, below lg) */
-@media (max-width: 1023px) {
-  html:has([data-booking-bar="visible"]) #proto-controls { bottom: 6.5rem; }
-}

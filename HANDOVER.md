@@ -32,7 +32,7 @@ Komponente Quelle und Figma-Node.
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown, EventInquiryForm, EventInquiryTeaser (mit EventInquiryFacts) |
 | Formulare (`forms/`) | TextField, TextareaField (`Field.tsx`), ChoiceCards, YesNoRow, Consent, FormStep – genutzt von EventInquiryForm und LeadForm; in der Library unter Formulare (Input / Text, Input / Textarea, Choice Card, Yes-No Row, Consent, Form Step) |
 | Standorte (`locations/`) | CourtPill, AppBookingBar, ClubHours, Filter-Chip (`FilterSheet.tsx`), Map-Pin (`ClubMap.tsx`); ClubFinder mit Umkreissuche (`places.ts`, Ortsliste `public/data/places.json` aus GeoNames, CC BY 4.0, Skript `scripts/build-places.py`); RecurringBookingForm (Dauerbuchung auf der Club-Seite) |
-| Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand; nur im Prototyp: HighlightDemo und ClaimDemo (Vergleichs-Umschalter auf der Startseite) |
+| Module (`modules/`, `brand/`, `home/`) | PageHero, HomeHero, GermanyMap (Club Map), SectionIntro, NewsletterSignup, PartnerBand; nur im Prototyp: HighlightDemo (Highlight-Farbe unten links auf der Startseite) |
 | Barrierefreiheit (`a11y/`) | A11yPanel; `useSystemReducedMotion` in `src/lib/a11y.ts` (hydrationssicher); Einblendung beim Scrollen `Reveal` (`ui/Reveal.tsx`) |
 
 Seitenmodule (Header, Home Hero, Page Hero, Section, Partner Band, Footer) haben in Figma die Variante

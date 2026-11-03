@@ -1,6 +1,5 @@
 import { keepTogether } from "@/lib/typography";
 import { HighlightDemo } from "@/components/home/HighlightDemo";
-import { ProtoControl } from "@/components/layout/ProtoControls";
 import { claimLang } from "@/lib/i18n/claims";
 import { SocialWall } from "@/components/modules/SocialWall";
 import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
@@ -61,9 +60,10 @@ export async function HomeView({ locale }: { locale: Locale }) {
     <>
       {/* Brand discussion: click a highlight element to compare highlight colours (Optic Yellow, Purple, Magenta, Türkis).
           Sits in the prototype controls at the bottom left, next to the light/dark switch (SiteShell). */}
-      <ProtoControl>
+      {/* prototype only: highlight comparison for the brand discussion, hidden in Figma captures */}
+      <div data-capture-hide className="fixed bottom-4 left-4 z-50 max-w-[calc(100vw-6rem)]">
         <HighlightDemo locale={locale} />
-      </ProtoControl>
+      </div>
       <HomeHero locale={locale} t={t.hero} />
 
       {/* Momentum ticker */}
