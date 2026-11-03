@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/AppImage";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "./cn";
 

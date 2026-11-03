@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/AppImage";
 import type { Partner } from "@/lib/data/types";
 import { cn } from "./cn";
 

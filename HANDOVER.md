@@ -141,7 +141,6 @@ Code-Connect-Schreibrecht.
   (in Figma annotiert, „API · erweitern“).
 - **Personenfotos:** ohne bestätigtes Foto zeigt die Person Card den Marken-Platzhalter mit Initialen (Library:
   Person Card, Photo=false).
-- **Dev-Warnung:** der eigene `next/image`-Loader meldet im Dev-Modus eine Warnung; im statischen Export ohne Folgen.
 
 ## 8. Offene Inhalte (nach Zuständigkeit)
 

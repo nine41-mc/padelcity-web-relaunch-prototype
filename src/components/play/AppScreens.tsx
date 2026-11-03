@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { AppImage as Image } from "@/components/ui/AppImage";
 import type { AppScreenshot } from "@/lib/content/app";
 import { cn } from "@/components/ui/cn";
 
