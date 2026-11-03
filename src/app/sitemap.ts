@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getClubs, getEvents } from "@/lib/data";
-import { articleSlugs } from "@/lib/content/magazin";
+import { getArticleSlugs, getClubs, getEvents } from "@/lib/data";
 import { locales } from "@/lib/i18n/config";
 import { href, routes, type RouteKey } from "@/lib/i18n/routes";
 import { site } from "@/lib/site";
@@ -24,6 +23,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = (Object.keys(routes) as RouteKey[]).filter((k) => !EXCLUDED.includes(k)).flatMap((k) => entry(k));
   const clubs = (await getClubs("de")).flatMap((c) => entry("locations", c.slug));
   const events = (await getEvents()).flatMap((e) => entry("events", e.slug));
-  const articles = articleSlugs.flatMap((slug) => entry("magazine", slug));
+  const articles = (await getArticleSlugs()).flatMap((slug) => entry("magazine", slug));
   return [...pages, ...clubs, ...events, ...articles];
 }

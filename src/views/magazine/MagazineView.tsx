@@ -2,7 +2,8 @@ import Link from "next/link";
 import { Clock } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
-import { formatDate, getArticles, hubLabel, hubs, magazinContent } from "@/lib/content/magazin";
+import { formatDate, hubLabel, hubs, magazinContent } from "@/lib/content/magazin";
+import { getArticles } from "@/lib/data";
 import { Section } from "@/components/ui/Section";
 import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
@@ -16,10 +17,9 @@ import { CardArrow } from "@/components/ui/CardArrow";
 // Contentful page "magazine": contentHubs, featuredArticle, articleGrid (filter by hub), pressLogos
 
 /** Magazine hub – shared by /magazin (de) and /en/magazine (en). */
-export function MagazineView({ locale }: { locale: Locale }) {
-  // TODO(data): move behind @/lib/data (getArticles) once the Contentful adapter exists.
+export async function MagazineView({ locale }: { locale: Locale }) {
   const t = magazinContent[locale];
-  const articles = getArticles(locale);
+  const articles = await getArticles(locale);
   const featured = articles.find((a) => a.featured) ?? articles[0];
   const rest = articles.filter((a) => a.slug !== featured.slug);
   const cards = Object.fromEntries(rest.map((a) => [a.slug, <ArticleCard key={a.slug} article={a} locale={locale} />]));

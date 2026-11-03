@@ -385,22 +385,15 @@ function localise(seed: ArticleSeed, locale: Locale): MagazinArticle {
   };
 }
 
-export const articleSlugs = seeds.map((s) => s.slug);
+/**
+ * Static article source (seeds above, DE/EN/PL). Pages never import these directly – they read articles
+ * through the data facade (`getArticles`, `getArticle`, `getArticleSlugs`, `getRelatedArticles` in
+ * `@/lib/data`), so a Contentful adapter can replace this source without touching views.
+ */
+export const staticArticleSlugs = seeds.map((s) => s.slug);
 
-export function getArticles(locale: Locale): MagazinArticle[] {
+export function staticArticles(locale: Locale): MagazinArticle[] {
   return seeds.map((s) => localise(s, locale));
-}
-
-export function getArticle(slug: string, locale: Locale): MagazinArticle | undefined {
-  const seed = seeds.find((s) => s.slug === slug);
-  return seed ? localise(seed, locale) : undefined;
-}
-
-export function getRelated(article: MagazinArticle, locale: Locale, n = 3) {
-  const all = getArticles(locale);
-  const same = all.filter((a) => a.slug !== article.slug && a.hub === article.hub);
-  const rest = all.filter((a) => a.slug !== article.slug && a.hub !== article.hub);
-  return [...same, ...rest].slice(0, n);
 }
 
 export function hubLabel(hub: Hub, locale: Locale) {

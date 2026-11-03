@@ -4,8 +4,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { href, type RouteKey } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { legalNav, mainNav, secondaryNav } from "@/lib/site";
-import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
-import { getArticles } from "@/lib/content/magazin";
+import { getArticles, getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { COUNTRY_ORDER, locationsContent } from "@/lib/content/locations";
 import { Section } from "@/components/ui/Section";
 import { Eyebrow, Headline, Lead } from "@/components/ui/Headline";
@@ -56,7 +55,7 @@ export async function SitemapView({ locale }: { locale: Locale }) {
   const t = copy[locale];
   const d = getDictionary(locale);
   const [clubs, planned, events] = await Promise.all([getClubs(locale), getPlannedClubs(locale), getEvents({ locale })]);
-  const articles = getArticles(locale);
+  const articles = await getArticles(locale);
   const countryNames = locationsContent[locale].finder.countries;
 
   const byCountry = COUNTRY_ORDER.map((country) => ({

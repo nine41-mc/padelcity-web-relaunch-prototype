@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 import { Clock } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
-import { formatDate, getArticle, getRelated, hubLabel, magazinContent } from "@/lib/content/magazin";
+import { formatDate, hubLabel, magazinContent } from "@/lib/content/magazin";
+import { getArticle, getRelatedArticles } from "@/lib/data";
 import { site } from "@/lib/site";
 import { Section } from "@/components/ui/Section";
 import { Headline } from "@/components/ui/Headline";
@@ -16,14 +17,14 @@ import { YouTubeLite } from "@/components/brand/YouTubeLite";
 // pullQuote, inlineImage, videoEmbed, relatedArticles) – localised fields DE/EN
 
 /** Magazine article – shared by /magazin/[slug] (de) and /en/magazine/[slug] (en). */
-export function ArticleView({ slug, locale }: { slug: string; locale: Locale }) {
-  const article = getArticle(slug, locale);
+export async function ArticleView({ slug, locale }: { slug: string; locale: Locale }) {
+  const article = await getArticle(slug, locale);
   if (!article) notFound();
 
   const t = magazinContent[locale];
   const url = `${site.url}${href(locale, "magazine", article.slug)}/`;
   const body = article.body ?? [];
-  const related = getRelated(article, locale);
+  const related = await getRelatedArticles(article, locale);
   const [open, close] = locale === "de" ? ["„", "“"] : locale === "pl" ? ["„", "”"] : ["“", "”"];
 
   const jsonLd = {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ArticleView } from "@/views/magazine/ArticleView";
-import { articleSlugs, getArticle } from "@/lib/content/magazin";
+import { getArticle, getArticleSlugs } from "@/lib/data";
 import { alternates } from "@/lib/i18n/routes";
 import { localeTags } from "@/lib/i18n/config";
 import { pageTitle } from "@/lib/site";
@@ -9,13 +9,13 @@ type Params = { slug: string };
 
 export const dynamicParams = false;
 
-export function generateStaticParams(): Params[] {
-  return articleSlugs.map((slug) => ({ slug }));
+export async function generateStaticParams(): Promise<Params[]> {
+  return (await getArticleSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
-  const a = getArticle(slug, "de");
+  const a = await getArticle(slug, "de");
   if (!a) return {};
   return {
     title: pageTitle(a.title),

@@ -15,6 +15,7 @@ import { fetchContentfulClubs, isContentfulConfigured } from "./contentful";
 import { fetchContentfulCoaches } from "./contentful-coaches";
 import { coaches as peopleCoaches, type Person } from "../content/people";
 import { errorMessage, nameKey } from "./mappers";
+import { staticArticleSlugs, staticArticles, type MagazinArticle } from "../content/magazin";
 
 /**
  * Data facade used by all pages. Pages never talk to Contentful directly.
@@ -23,6 +24,7 @@ import { errorMessage, nameKey } from "./mappers";
  *           (live clubs missing in Contentful, e.g. Innsbruck, and planned "coming soon" clubs)
  *   events: mock (source for marketing events tbd – see README)
  *   coaches: Contentful `coach` + `coachTrainingTime` → src/lib/content/people.ts (real coaches, no contact/prices)
+ *   articles: static source in src/lib/content/magazin.ts (Contentful content type `article` tbd – see README)
  *
  * PRINCIPLE (PadelCity): the website never reads from the booking system.
  * No free slots, no availability, no occupancy/"spots left" – booking data stays in the app.
@@ -146,4 +148,26 @@ export const getCoaches = cache(async (locale: Locale = "de"): Promise<Person[]>
   return withStats.sort((a, b) => Number(isHead(b)) - Number(isHead(a)));
 });
 
+/**
+ * Magazine articles. Today the static source in content/magazin.ts; a Contentful adapter (content type
+ * `article`) slots in here with the same fallback pattern as clubs and coaches. Order = source order.
+ */
+export const getArticles = cache(async (locale: Locale = "de"): Promise<MagazinArticle[]> => staticArticles(locale));
+
+export async function getArticle(slug: string, locale: Locale = "de"): Promise<MagazinArticle | undefined> {
+  return (await getArticles(locale)).find((a) => a.slug === slug);
+}
+
+/** Slugs are shared across locales (static params, sitemap). */
+export async function getArticleSlugs(): Promise<string[]> {
+  return staticArticleSlugs;
+}
+
+/** Same hub first, then the rest – excluding the article itself. */
+export async function getRelatedArticles(article: MagazinArticle, locale: Locale = "de", n = 3): Promise<MagazinArticle[]> {
+  const others = (await getArticles(locale)).filter((a) => a.slug !== article.slug);
+  return [...others.filter((a) => a.hub === article.hub), ...others.filter((a) => a.hub !== article.hub)].slice(0, n);
+}
+
 export type { Club, ClubEvent, DataSource } from "./types";
+export type { MagazinArticle } from "../content/magazin";

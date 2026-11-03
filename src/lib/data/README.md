@@ -12,6 +12,7 @@ Seiten (Server Components) ──► @/lib/data (index.ts = Fassade)
                                    ├─ contentful-coaches.ts  Coaches inkl. Kontakt + Trainingsangebot
                                    ├─ faq.ts                 FAQ (Hilfe-Bereich der App) via api-platform /faq, öffentlich
                                    ├─ mappers.ts             reine Mapping-Helfer (Slug, Öffnungszeiten, Region)
+                                   ├─ ../content/magazin.ts  Magazin-Artikel (statische Quelle)
                                    └─ mock/*                 Fallback-Daten
 ```
 
@@ -21,6 +22,7 @@ Seiten (Server Components) ──► @/lib/data (index.ts = Fassade)
 | Events (Marketing) | noch offen – Vorschlag: eigener Content-Type in Contentful | Mock |
 | FAQ (`getFaq(locale)` in `faq.ts`) | api-platform `GET /faq/sections` + `/faq/sections/{id}/topics` (öffentlich) | `src/lib/content/faq.ts` (statisch) |
 | Coaches (`getCoaches(locale)`) | Contentful `coach` + `coachTrainingTime` (`contentful-coaches.ts`) | `src/lib/content/people.ts` (ohne Kontakt/Preise/Zahlen) |
+| Magazin (`getArticles`, `getArticle`, `getArticleSlugs`, `getRelatedArticles`) | noch statisch – Ziel: Content-Type `article` in Contentful (lokalisiert DE/EN/PL) | `src/lib/content/magazin.ts` |
 
 - Die Seite wird **statisch exportiert** (`output: "export"`); Contentful wird beim Build gelesen. Inhaltsänderungen → Pipeline neu laufen lassen (GitHub: Workflow „Build & Deploy“ manuell starten; GitLab: Schedule oder Contentful-Webhook auf den Pipeline-Trigger).
 - Fehlende Env-Variablen oder Fehler → stiller Fallback auf Mock-Daten (ein `console.warn` pro Build).

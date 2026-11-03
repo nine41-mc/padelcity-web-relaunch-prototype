@@ -7,7 +7,7 @@ import { WhatsAppGroups } from "@/components/community/WhatsAppGroups";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { formatPrice } from "@/lib/format";
-import { getClubs, getEvents, getPlannedClubs } from "@/lib/data";
+import { getArticles, getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { keyFacts } from "@/lib/content/partners";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -23,7 +23,6 @@ import { deeplinks } from "@/lib/site";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { EventCard } from "@/components/cards/EventCard";
 import { ArticleCard } from "@/components/brand/ArticleCard";
-import { getArticles } from "@/lib/content/magazin";
 import { AppCta } from "@/components/modules/AppCta";
 import { PartnerBand } from "@/components/modules/PartnerBand";
 import { Testimonials } from "@/components/modules/Testimonials";
@@ -41,8 +40,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
   const clubs = await getClubs(locale);
   const events = (await getEvents({ locale })).filter((e) => e.type !== "hero").slice(0, 3);
   const heroEvent = (await getEvents({ locale })).find((e) => e.isHighlighted);
-  // TODO(data): move behind @/lib/data (getArticles) once the Contentful adapter exists.
-  const articles = getArticles(locale).slice(0, 3);
+  const articles = (await getArticles(locale)).slice(0, 3);
   const planned = await getPlannedClubs(locale);
   // Countries with live clubs (DE · AT · PL), derived from data.
   const countries = [...new Set(clubs.map((c) => c.country))].sort((a, b) => (a === "DE" ? -1 : b === "DE" ? 1 : a.localeCompare(b)));
