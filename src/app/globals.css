@@ -142,7 +142,6 @@
   --shadow-optic: 0 0 0 1px color-mix(in srgb, var(--color-optic-500) 35%, transparent), 0 18px 50px -18px color-mix(in srgb, var(--color-optic-500) 55%, transparent);
 
   --animate-marquee: marquee 40s linear infinite;
-  --animate-pulse-dot: pulse-dot 1.8s ease-in-out infinite;
 
   @keyframes marquee {
     from { transform: translateX(0); }
@@ -171,10 +170,6 @@
   @keyframes story-progress {
     from { width: 0; }
     to { width: 100%; }
-  }
-  @keyframes pulse-dot {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.45; transform: scale(0.8); }
   }
 }
 

@@ -141,7 +141,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             swatch={<div className="h-28 rounded-[16px] bg-brand-gradient" />}
             values="#8412B5 → #DC05A1"
             bb={ROLE_BRANDBOOK.primary}
-            uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows", "Pulsierender Punkt im Eyebrow (Pink)", "Text im Verlauf (Kennzahlen, Titel): eine Stufe heller, Magenta 400 → Purple 400"]}
+            uses={["Primäre Buttons", "Aktive Zustände: Tab, Filter, Segment, gewählte Option", "Offene Akkordeons", "Lila Flächen und Glows", "Text im Verlauf (Kennzahlen, Titel): eine Stufe heller, Magenta 400 → Purple 400"]}
           />
           <RoleCard
             role="Secondary"

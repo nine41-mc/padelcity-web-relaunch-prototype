@@ -51,7 +51,7 @@ export async function LocationsView({ locale }: { locale: Locale }) {
 
       <Section tone="black" className="border-t border-fg/5">
         <Reveal>
-          <Eyebrow dot={false}>{t.cities.eyebrow}</Eyebrow>
+          <Eyebrow>{t.cities.eyebrow}</Eyebrow>
           <Headline size="md" className="mt-5 mb-12">
             {t.cities.title}
           </Headline>

@@ -54,18 +54,9 @@ export function Accent({
   );
 }
 
-export function Eyebrow({ children, className, dot = true }: { children: React.ReactNode; className?: string; dot?: boolean }) {
-  return (
-    <p
-      className={cn(
-        "inline-flex items-center gap-2 rounded-full border border-fg/15 bg-fg/5 px-3.5 py-1.5 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/85 backdrop-blur",
-        className,
-      )}
-    >
-      {dot && <span className="size-1.5 rounded-full bg-magenta-400 animate-pulse-dot" aria-hidden />}
-      {children}
-    </p>
-  );
+/** Plain caps label above a headline – no pill, no dot (team feedback 03.11.2026: pills read as "AI"). */
+export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
+  return <p className={cn("text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70", className)}>{children}</p>;
 }
 
 export function Lead({ children, className }: { children: React.ReactNode; className?: string }) {

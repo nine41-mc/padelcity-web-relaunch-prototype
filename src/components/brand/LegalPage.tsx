@@ -27,7 +27,7 @@ export function LegalPage({
   return (
     <section className="pt-36 pb-24 md:pt-44 md:pb-32">
       <div className="container-site max-w-4xl">
-        <Eyebrow dot={false}>{t.eyebrow}</Eyebrow>
+        <Eyebrow>{t.eyebrow}</Eyebrow>
         <Headline as="h1" size="md" className="mt-6">
           {title}
         </Headline>
