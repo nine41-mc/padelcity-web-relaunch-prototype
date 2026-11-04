@@ -88,24 +88,6 @@ export function HomeHero({ locale, t }: { locale: Locale; t: HomeContent["hero"]
         {playing ? <Pause className="size-4" aria-hidden /> : <Play className="size-4" aria-hidden />}
       </button>
       )}
-      {/* Brush stroke (brand book: dynamic gestures) */}
-      <svg className="pointer-events-none absolute -bottom-10 -left-20 -z-10 w-[140%] max-w-none opacity-70 md:w-[110%]" viewBox="0 0 1600 500" fill="none" aria-hidden>
-        <motion.path
-          d="M-20 420 C 220 120, 420 120, 520 330 S 860 520, 1000 300 S 1380 60, 1640 240"
-          stroke="url(#heroStroke)"
-          strokeWidth="70"
-          strokeLinecap="round"
-          initial={{ pathLength: reduce ? 1 : 0 }}
-          animate={{ pathLength: 1 }}
-          transition={{ duration: 2.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-        />
-        <defs>
-          <linearGradient id="heroStroke" x1="0" x2="1">
-            <stop offset="0" stopColor="#8412b5" />
-            <stop offset="1" stopColor="#e005c3" />
-          </linearGradient>
-        </defs>
-      </svg>
 
       <div className="container-site">
         <motion.h1
