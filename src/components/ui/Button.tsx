@@ -6,7 +6,7 @@ type Variant = "primary" | "gradient" | "optic" | "outline";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group/btn inline-flex items-center justify-center gap-3 rounded-full font-display italic uppercase tracking-wide transition-all duration-300 select-none whitespace-nowrap disabled:opacity-40 disabled:pointer-events-none";
+  "group/btn inline-flex items-center justify-center gap-3 rounded-full font-sans font-semibold transition-all duration-300 select-none whitespace-nowrap disabled:opacity-40 disabled:pointer-events-none";
 
 const variants: Record<Variant, string> = {
   // Elephant pitch: white pill + round gradient arrow
@@ -17,11 +17,11 @@ const variants: Record<Variant, string> = {
   outline: "border-2 border-fg/60 text-fg hover:border-fg hover:bg-fg/5",
 };
 
-// Söhne Schmal is condensed – it needs a larger size than Poppins to read well.
+// Buttons are set in Poppins SemiBold (design feedback 04.11.: Söhne Schmal only for headlines).
 const sizes: Record<Size, string> = {
-  sm: "h-11 text-lg",
-  md: "h-13 text-lg md:text-xl",
-  lg: "h-14 md:h-16 text-xl md:text-2xl",
+  sm: "h-11 text-sm",
+  md: "h-13 text-base",
+  lg: "h-14 md:h-16 text-base md:text-lg",
 };
 // With arrow: text left, round arrow right. Without arrow: symmetric padding so the label is centred.
 const paddings: Record<Size, { arrow: string; plain: string }> = {

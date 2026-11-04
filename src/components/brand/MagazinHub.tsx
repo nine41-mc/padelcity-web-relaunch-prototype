@@ -36,7 +36,7 @@ export function MagazinHub({
             onClick={() => setHub(h.id)}
             data-track="magazin_filter"
             className={cn(
-              "h-11 shrink-0 rounded-full border px-5 font-display text-lg italic uppercase transition-colors",
+              "h-11 shrink-0 rounded-full border px-5 font-sans text-base font-semibold transition-colors",
               hub === h.id ? "border-transparent bg-brand-gradient text-white" : "border-fg/20 text-fg/80 hover:border-fg/50",
             )}
           >

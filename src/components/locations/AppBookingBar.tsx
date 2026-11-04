@@ -54,7 +54,7 @@ export function AppBookingBar({ href, price, locale }: { href: string; price?: s
         <a
           href={href}
           data-track="club_book_in_app_bar"
-          className="flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-brand-gradient px-5 font-display text-lg italic uppercase tracking-wide text-white"
+          className="flex min-h-12 shrink-0 items-center justify-center gap-2 rounded-full bg-brand-gradient px-5 font-sans text-base font-semibold text-white"
         >
           {t.ctaShort} <ArrowUpRight className="size-5" aria-hidden />
         </a>

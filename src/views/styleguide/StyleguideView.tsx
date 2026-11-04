@@ -262,13 +262,13 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       <Block id="typo" eyebrow="03" title="Typografie" lead="Drei Schriften mit klaren Aufgaben: eine schreit, eine kritzelt, eine erklärt.">
         <div className="grid gap-5 lg:grid-cols-3">
           <TypeCard name="Söhne Schmal Fett Kursiv" role="Display" sample={<span className="font-display text-6xl font-extrabold italic uppercase leading-none">Game. Set. Match.</span>}>
-            Headlines, Buttons, Zahlen, Ticker. Immer in Versalien und kursiv. Schmal geschnitten, deshalb eine Stufe größer setzen als Poppins.
+            Nur Headlines, Zahlen und Ticker – nie Buttons. Immer in Versalien und kursiv. Schmal geschnitten, deshalb eine Stufe größer setzen als Poppins.
           </TypeCard>
           <TypeCard name="Good Brush" role="Akzent" sample={<span className="font-brush text-6xl leading-none text-highlight-fg">noise</span>}>
             Genau ein Wort pro Headline über die Accent-Komponente: leicht gedreht, in Optic Yellow. Nie für ganze Sätze und nie für Fließtext.
           </TypeCard>
           <TypeCard name="Poppins" role="Text" sample={<span className="text-3xl font-semibold leading-tight">Let&apos;s play Padel.</span>}>
-            Fließtext, Labels, Formulare, Navigation. Schnitte 400, 500, 600 und 700. Zeilenlänge maximal etwa 70 Zeichen.
+            Fließtext, Buttons (SemiBold), Labels, Formulare, Navigation. Schnitte 400, 500, 600 und 700. Zeilenlänge maximal etwa 70 Zeichen.
           </TypeCard>
         </div>
 
@@ -326,7 +326,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       </Block>
 
       {/* Buttons */}
-      <Block id="buttons" eyebrow="04" title="Buttons & Button-Sprache" lead="Pillenform, Söhne Schmal, optional mit rundem Pfeil. Der Pfeil dreht sich beim Hover um 45° und zeigt: Hier geht es weiter.">
+      <Block id="buttons" eyebrow="04" title="Buttons & Button-Sprache" lead="Pillenform, Poppins SemiBold, optional mit rundem Pfeil. Der Pfeil dreht sich beim Hover um 45° und zeigt: Hier geht es weiter.">
         <div className="grid gap-5 lg:grid-cols-2">
           <Demo label="primary · der Standard-CTA auf dunklem Grund">
             <Button href="#buttons">In der App buchen</Button>

@@ -25,10 +25,10 @@ export function EventSignup({
 }) {
   const t = getDictionary(locale).eventCard;
   const btn = cn(
-    "relative z-10 inline-flex items-center justify-center gap-2.5 rounded-full font-display italic uppercase leading-none tracking-wide transition-all",
-    size === "sm" && "h-11 px-4 text-base",
-    size === "md" && "h-12 px-5 text-lg",
-    size === "lg" && "h-14 px-6 text-xl md:h-16 md:text-2xl",
+    "relative z-10 inline-flex items-center justify-center gap-2.5 rounded-full font-sans font-semibold leading-none transition-all",
+    size === "sm" && "h-11 px-4 text-sm",
+    size === "md" && "h-12 px-5 text-sm",
+    size === "lg" && "h-14 px-6 text-base md:h-16 md:text-lg",
   );
   const primary = "bg-fg text-fg-inverse hover:shadow-glow";
   const secondary = "border-2 border-fg/60 bg-fg/5 text-fg backdrop-blur hover:border-fg hover:bg-fg hover:text-fg-inverse";

@@ -73,7 +73,7 @@ export function FilterSheet({
           <button type="button" onClick={onReset} className="min-h-12 flex-1 rounded-full border border-fg/40 px-4 text-sm font-medium text-fg hover:border-fg">
             {resetLabel}
           </button>
-          <button type="button" onClick={onClose} className="min-h-12 flex-[1.4] rounded-full bg-brand-gradient px-4 font-display text-lg italic uppercase tracking-wide text-white">
+          <button type="button" onClick={onClose} className="min-h-12 flex-[1.4] rounded-full bg-brand-gradient px-4 font-sans text-base font-semibold text-white">
             {showLabel}
           </button>
         </div>

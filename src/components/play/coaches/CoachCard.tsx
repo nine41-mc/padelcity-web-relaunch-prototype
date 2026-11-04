@@ -96,9 +96,9 @@ export function CoachCard({
       aria-haspopup="dialog"
       aria-label={fill(labels.openFor, { name: coach.name })}
       className={cn(
-        "z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-fg/25 bg-black/55 font-display uppercase italic tracking-wide backdrop-blur transition",
+        "z-10 inline-flex shrink-0 items-center justify-center gap-2 rounded-full border border-fg/25 bg-black/55 font-sans font-semibold backdrop-blur transition",
         "hover:border-fg hover:bg-fg/10 focus-visible:outline-none after:absolute after:inset-[-999px] after:content-['']",
-        feature ? "relative mt-4 h-11 px-4 text-base md:mt-0 md:text-lg" : "absolute right-3 top-3 size-11",
+        feature ? "relative mt-4 h-11 px-4 text-sm md:mt-0" : "absolute right-3 top-3 size-11",
       )}
     >
       {feature && <span className="leading-none">{labels.open}</span>}

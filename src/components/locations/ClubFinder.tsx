@@ -253,7 +253,7 @@ export function ClubFinder({ clubs, planned = [], locale = "de" }: { clubs: Club
           {geo === "loading" ? <Loader2 className="size-5 animate-spin" aria-hidden /> : <LocateFixed className="size-5" aria-hidden />}
           {user ? t.nearActive : t.near}
         </button>
-        <button type="submit" className="flex min-h-13 items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 font-display text-lg italic md:text-xl uppercase tracking-wide text-white transition hover:brightness-110">
+        <button type="submit" className="flex min-h-13 items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 font-sans text-base font-semibold text-white transition hover:brightness-110">
           {t.submit}
         </button>
       </form>
