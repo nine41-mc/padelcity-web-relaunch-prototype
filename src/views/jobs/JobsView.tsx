@@ -83,7 +83,7 @@ export function JobsView({ locale }: { locale: Locale }) {
           {values[locale].map((v) => (
             <span key={v.name} className="mx-5 flex items-center gap-10 font-display text-6xl font-extrabold italic uppercase md:text-8xl">
               {v.name}
-              <span className="font-brush text-3xl font-normal normal-case not-italic text-fg/70 md:text-5xl">{v.claim}</span>
+              <span className="font-brush tracking-[-0.02em] text-3xl font-normal normal-case not-italic text-fg/70 md:text-5xl">{v.claim}</span>
             </span>
           ))}
         </Marquee>

@@ -587,7 +587,6 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
         <ul className="grid gap-3 md:grid-cols-2">
           {[
             ["Claim + Newsletter", "„We serve. You play.“ links, das Newsletter-Modul steht rechts für sich allein"],
-            ["WhatsApp-Band", "Volle Breite im Brandbook-Verlauf: „Never play alone.“ mit Button ins Gruppen-Overlay"],
             ["Drei Spalten", "„Fall in love with padel.“ + Follow us! mit allen Social-Profilen · Spielen · PadelCity inkl. Sitemap"],
             ["Social-Reihenfolge", "LinkedIn, Facebook, Instagram, YouTube, TikTok – wie auf padelcity.de"],
             ["Copyright-Zeile", "Öffnet diesen Styleguide (Easter Egg, ohne sichtbaren Hinweis)"],

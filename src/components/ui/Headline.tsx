@@ -42,7 +42,7 @@ export function Accent({
   return (
     <span
       className={cn(
-        "font-brush not-italic font-normal normal-case relative -top-[0.06em] inline-block -rotate-2 px-[0.04em] text-[1.08em] leading-[0.8] align-baseline",
+        "font-brush not-italic font-normal normal-case tracking-[-0.02em] relative -top-[0.06em] inline-block -rotate-2 px-[0.04em] text-[1.08em] leading-[0.8] align-baseline",
         tone === "optic" && "text-highlight-fg",
         tone === "magenta" && "text-magenta-500",
         tone === "gradient" && "text-brand-gradient",

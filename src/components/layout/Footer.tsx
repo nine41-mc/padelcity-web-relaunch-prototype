@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { claimLang } from "@/lib/i18n/claims";
-import { Facebook, Instagram, Linkedin, MessageCircle, Youtube } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import { legalNav, mainNav, secondaryNav, site } from "@/lib/site";
 import { asset } from "@/lib/asset";
 import type { Locale } from "@/lib/i18n/config";
@@ -8,8 +8,6 @@ import { href, type RouteKey } from "@/lib/i18n/routes";
 import { getDictionary } from "@/lib/i18n/dictionaries";
 import { NewsletterSignup } from "../modules/NewsletterSignup";
 import { Accent } from "../ui/Headline";
-import { WhatsAppGroups } from "../community/WhatsAppGroups";
-import { whatsappGroupCount } from "@/lib/content/whatsapp";
 
 function TikTok({ className }: { className?: string }) {
   return (
@@ -70,23 +68,6 @@ export function Footer({ locale }: { locale: Locale }) {
           {/* Newsletter stands on its own */}
           {/* "Benachrichtige mich" on planned clubs jumps here (#newsletter) */}
           <NewsletterSignup locale={locale} id="newsletter" className="border-fg/15 bg-canvas/70 backdrop-blur-xl lg:mt-6" />
-        </div>
-
-        {/* WhatsApp community – full-width band, opens the overlay with every location's group */}
-        <div className="relative mt-20 overflow-hidden rounded-[32px] bg-brandbook-gradient pad-banner md:mt-28">
-          <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
-          <div className="relative grid items-center gap-8 md:grid-cols-[minmax(0,1fr)_auto]">
-            <div>
-              <p className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/85">
-                <MessageCircle className="size-4 text-fg" aria-hidden /> {t.footer.community.eyebrow(whatsappGroupCount)}
-              </p>
-              <p lang={claimLang(t.footer.community.title)} className="mt-4 font-display text-5xl leading-[0.9] font-extrabold italic uppercase md:text-6xl lg:text-7xl">
-                {t.footer.community.title} <Accent>{t.footer.community.accent}</Accent>
-              </p>
-              <p className="mt-4 max-w-xl text-fg/85 md:text-lg">{t.footer.community.text}</p>
-            </div>
-            <WhatsAppGroups locale={locale} label={t.footer.community.cta} variant="primary" size="md" className="w-full md:w-auto" track="footer_whatsapp_overlay" />
-          </div>
         </div>
 
         {/* Link columns */}
