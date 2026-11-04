@@ -33,6 +33,7 @@ export function ClubCard({
   locale = "de",
   active = false,
   lift = true,
+  anchor,
   className,
 }: {
   club: Club;
@@ -42,11 +43,13 @@ export function ClubCard({
   active?: boolean;
   /** Hover lift; off next to the map, where the list should stay put. */
   lift?: boolean;
+  /** Jump to a section of the club page, e.g. "coaching" from the Academy (design feedback 04.11.2026). */
+  anchor?: string;
   className?: string;
 }) {
   const t = getDictionary(locale).clubCard;
   const intl = localeTags[locale].intl;
-  const url = href(locale, "locations", club.slug);
+  const url = `${href(locale, "locations", club.slug)}${anchor ? `#${anchor}` : ""}`;
   const street = [club.address.streetName, club.address.buildingNumber].filter(Boolean).join(" ");
   const address = [street, [club.address.postalCode, club.address.localityName].filter(Boolean).join(" ")].filter(Boolean).join(", ");
   return (
