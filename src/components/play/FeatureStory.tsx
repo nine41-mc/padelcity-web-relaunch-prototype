@@ -4,12 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Check } from "lucide-react";
 import type { AppCallouts, AppFeature, AppScreenshot, ScreenKey } from "@/lib/content/app";
-import { deeplinks } from "@/lib/site";
-import type { Locale } from "@/lib/i18n/config";
-import { href } from "@/lib/i18n/routes";
 import { Accent } from "@/components/ui/Headline";
 import { AppIcon } from "@/components/ui/Icon";
-import { Button } from "@/components/ui/Button";
 import { cn } from "@/components/ui/cn";
 import { PhoneMockup } from "./PhoneMockup";
 import { AppScreenImage } from "./AppScreens";
@@ -17,22 +13,7 @@ import { AppPhone } from "./app/AppPhone";
 import { FeatureCallout } from "./app/FeatureCallout";
 import { useSystemReducedMotion } from "@/lib/a11y";
 
-function ctaHref(f: AppFeature, locale: Locale): string {
-  switch (f.deeplink) {
-    case "openMatches":
-      return deeplinks.openMatches("app-landing-page");
-    case "events":
-      return deeplinks.events("app-landing-page");
-    case "vouchers":
-      return deeplinks.vouchers("app-landing-page");
-    case "locations":
-      return href(locale, "locations");
-    default:
-      return "#download";
-  }
-}
-
-// Contentful module: featureStory (items: eyebrow, title, accent, text, bullets, screen, cta)
+// Contentful module: featureStory (items: eyebrow, title, accent, text, bullets, screen) – no buttons per feature (design feedback 04.11.2026)
 /**
  * Sticky-scroll storytelling: on desktop the phone stays pinned while the feature texts scroll
  * past and the screen swaps. On phone/tablet every feature renders its own inline phone.
@@ -42,13 +23,11 @@ export function FeatureStory({
   screens,
   callouts,
   phonePrefix,
-  locale,
 }: {
   features: AppFeature[];
   screens: Record<ScreenKey, AppScreenshot>;
   callouts: AppCallouts;
   phonePrefix: string;
-  locale: Locale;
 }) {
   const [active, setActive] = useState(0);
   const refs = useRef<(HTMLElement | null)[]>([]);
@@ -105,9 +84,6 @@ export function FeatureStory({
                     </li>
                   ))}
                 </ul>
-                <Button href={ctaHref(f, locale)} variant="outline" className="mt-8" data-track={f.track}>
-                  {f.cta}
-                </Button>
               </div>
               <div data-story-inline className="relative flex justify-center pb-16 lg:hidden">
                 <div className="relative">

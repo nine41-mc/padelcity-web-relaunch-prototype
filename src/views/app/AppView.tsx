@@ -1,5 +1,5 @@
 import { Star } from "lucide-react";
-import { site, storeLinks, stores } from "@/lib/site";
+import { site, stores } from "@/lib/site";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
@@ -8,9 +8,7 @@ import { Section } from "@/components/ui/Section";
 import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
 import { StoreBadges } from "@/components/ui/StoreBadges";
-import { Reveal } from "@/components/ui/Reveal";
 import { AppPhone } from "@/components/play/app/AppPhone";
-import { StoreGallery } from "@/components/play/app/StoreGallery";
 import { FeatureStory } from "@/components/play/FeatureStory";
 import { Faq } from "@/components/play/Faq";
 
@@ -32,7 +30,7 @@ function appJsonLd(locale: Locale) {
   };
 }
 
-// Contentful: page "app" (modules: appHero, featureStory, appStoreGallery, socialProof, howItWorks, faq, appFinalCta)
+// Contentful: page "app" (modules: appHero, featureStory, socialProof, faq)
 /** App landing page – shared by /app (de) and /en/app (en). */
 export function AppView({ locale }: { locale: Locale }) {
   const t = appContent[locale];
@@ -98,47 +96,7 @@ export function AppView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: featureStory */}
       <Section tone="ink">
-        <FeatureStory features={t.features.items} screens={t.screens} callouts={t.callouts} phonePrefix={t.phoneLabel} locale={locale} />
-      </Section>
-
-      {/* Contentful module: appStoreGallery (official App Store screenshots) */}
-      <Section tone="ink" className="!pt-0">
-        <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-          <div className="max-w-2xl">
-            <Headline size="md">{t.gallery.title}</Headline>
-            <p className="mt-4 text-fg/70">{t.gallery.text}</p>
-          </div>
-          <Button href={storeLinks("app-landing-page").ios} variant="outline" className="w-fit shrink-0" data-track="app_gallery_appstore_click">
-            {t.gallery.cta}
-          </Button>
-        </div>
-        <StoreGallery panels={t.gallery.panels} labels={t.gallery} />
-      </Section>
-
-      {/* Contentful module: howItWorks */}
-      <Section tone="ink">
-        <Headline size="md" className="mb-12">
-          {t.how.title}
-        </Headline>
-        <ol className="grid gap-5 md:grid-cols-3">
-          {t.how.steps.map((s, i) => (
-            <li key={s.step} className="h-full">
-              <Reveal delay={i * 0.08} className="h-full">
-              <div className="relative h-full overflow-hidden rounded-[20px] border border-fg/10 bg-raised pad-card">
-                {/* Decorative watermark as generated content: not text, so contrast checks do not report it */}
-                <span
-                  data-step={s.step}
-                  className="absolute -right-2 -top-6 font-display text-[120px] font-extrabold italic leading-none text-fg/[0.04] before:content-[attr(data-step)]"
-                  aria-hidden
-                />
-                <span className="font-display text-5xl font-extrabold italic text-brand-gradient">{s.step}</span>
-                <h3 className="mt-4 text-xl font-semibold md:min-h-[2lh]">{s.title}</h3>
-                <p className="mt-2 text-fg/70">{s.text}</p>
-              </div>
-              </Reveal>
-            </li>
-          ))}
-        </ol>
+        <FeatureStory features={t.features.items} screens={t.screens} callouts={t.callouts} phonePrefix={t.phoneLabel} />
       </Section>
 
       {/* Contentful module: faq */}
@@ -151,28 +109,6 @@ export function AppView({ locale }: { locale: Locale }) {
             </Button>
           </div>
           <Faq items={t.faq} />
-        </div>
-      </Section>
-
-      {/* Contentful module: appFinalCta */}
-      <Section tone="purple" className="overflow-hidden">
-        <div className="absolute inset-0 bg-court-lines opacity-60" aria-hidden />
-        <div className="relative grid items-center gap-12 md:grid-cols-[1.3fr_1fr]">
-          <div>
-            <Headline size="lg">
-              {t.final.title} <Accent>{t.final.accent}</Accent>
-            </Headline>
-            <p className="mt-6 max-w-lg text-lg text-fg/80">{t.final.text}</p>
-            <div className="mt-8 flex flex-col gap-5">
-              <StoreBadges locale={locale} campaign="app-landing-page" />
-              <Button href={href(locale, "locations")} variant="primary" size="md" className="w-fit">
-                {t.final.clubs}
-              </Button>
-            </div>
-          </div>
-          <div className="hidden justify-center md:flex">
-            <AppPhone shot={t.screens[t.final.phone]} prefix={t.phoneLabel} className="rotate-3" sizes="300px" />
-          </div>
         </div>
       </Section>
     </>

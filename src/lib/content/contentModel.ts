@@ -272,10 +272,7 @@ export const contentModel: PageType[] = [
     modules: [
       { id: "appHero", name: "Hero", fields: [...sectionHead(), f("Store-Bewertungen (Sterne, Anzahl)", "external", "App Store / Google Play"), f("Handy-Screens", "cms", "Contentful-Assets")] },
       { id: "featureStory", name: "Feature-Story", fields: [f("Features: Texte, Screens, Overlays", "cms")] },
-      { id: "appStoreGallery", name: "Store-Screenshots", fields: [f("Bilder DE/EN", "cms")] },
-      { id: "howItWorks", name: "So funktioniert's", fields: [f("Schritte", "cms")] },
       { id: "faq", name: "FAQ", fields: [f("Fragen & Antworten", "cms")] },
-      { id: "appFinalCta", name: "Schluss-CTA", fields: [...sectionHead(), f("Store-Badges, Handy-Screen", "cms"), ctas()] },
     ],
   },
   {

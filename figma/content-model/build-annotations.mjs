@@ -21,7 +21,7 @@ const A = {
   eventInquiry: ['eventInquiry', [['pageHero','16362:5'],['eventInquiryForm','16362:28'],['eventInquiryFacts','16362:222']]],
   event: ['event', [['eventHero','16275:8'],['eventSignupCard','16275:86','16275:169'],['richText','16275:84'],['formatSteps','16275:228'],['home:appCta','16275:230']]],
   heroEvent: ['event', [['eventHero','16381:8'],['eventIntro','16381:110','16381:111'],['eventSignupCard','16381:113','16381:223'],['factGrid','16381:195','16381:283'],['formatSteps','16381:285','16381:287'],['videoEmbed','16381:357'],['eventPartners','16381:384'],['home:appCta','16381:666']]],
-  app: ['app', [['appHero','16257:5'],['featureStory','16257:73'],['appStoreGallery','16257:489'],['howItWorks','16257:539'],['faq','16257:597'],['appFinalCta','16257:666']]],
+  app: ['app', [['appHero','16257:5'],['featureStory','16257:73'],['faq','16257:597']]],
   academy: ['academy', [['pageHero','16371:5'],['levelPath','16371:58'],['programmeGrid','16371:372'],['priceTable','16371:530'],['coachCarousel','16371:623'],['academyLocations','16371:1766'],['videoTeaserGrid','16371:2016'],['faq','16371:2080'],['home:appCta','16371:2142']]],
   magazine: ['magazine', [['pageHero','16286:5'],['article','16286:20'],['contentHubs','16286:57'],['pressLogos','16286:251']]],
   article: ['magazine', [['article','16293:5'],['relatedArticles','16293:103']]],

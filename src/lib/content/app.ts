@@ -2,7 +2,7 @@ import type { Locale } from "../i18n/config";
 
 /**
  * App landing page content (Contentful: page "app" with modules appHero, featureStory,
- * appStoreGallery, socialProof, howItWorks, faq). Prototype copy — TODO(content): review with Product/Marketing.
+ * socialProof, faq). Prototype copy — TODO(content): review with Product/Marketing.
  * Credo: the WEBSITE shows no live booking data – real-time availability is an APP feature.
  *
  * Feature claims are limited to what exists in mobile-app-flutter (lib/feature/*) or is visible
@@ -52,7 +52,6 @@ export type AppCallouts = {
   benefits: { title: string; text: string };
 };
 
-export type StorePanel = { src: string; width: number; height: number; alt: string };
 
 /*
  * Store ratings (socialProof.ratings) – real values, fetched 2026-10-13:
@@ -119,41 +118,6 @@ const calloutsPl: AppCallouts = {
   vouchers: { label: "Zrealizuj voucher", code: "PADEL-LOVE", applied: "Voucher zrealizowany" },
   benefits: { title: "Korzystaj ze swoich ekskluzywnych zniżek!", text: "Twoje osobiste zniżki na miejsce gracza wyświetlą się automatycznie przy płatności." },
 };
-
-// Store screens v1.32.0 (iPhone 6.9"), exported from Figma "PadelCity – Store Assets" (DE node 6529:6108, EN node 6529:7942) at 2x.
-const P = "/images/app/store/v1-32"; // versioned path → new URLs bypass old browser caches
-const panelsDe: StorePanel[] = [
-  "Willkommen in der Welt von PadelCity – Startseite der App",
-  "Entdecke Clubs in deiner Nähe – Court buchen mit Startzeiten und Preisen",
-  "Buche bequem deinen Court – Buchung abschließen mit Summe und Gutschein",
-  "Zahle deine Platzgebühren anteilig – Player Slots im Checkout aufteilen",
-  "Finde Mitspieler:innen für Open Matches – Match Details mit vier Spieler:innen",
-  "Trainiere mit unseren Top Coaches – Coach-Karte mit Preis pro Training",
-  "Erlebe coole Padel Events in deinem Club – Eventliste mit CUPRA One Point Challenge",
-  "Nutze deine Vorteile mit EGYM Wellpass und Hansefit – verknüpftes Benefit-Konto",
-].map((alt, i) => ({ src: `${P}/de/${i + 1}.jpg`, width: 860, height: 1864, alt: `App-Store-Screenshot ${i + 1}: ${alt}` }));
-
-const panelsEn: StorePanel[] = [
-  "Welcome to the world of PadelCity – app home screen",
-  "Explore clubs near you – book a court with start times and prices",
-  "Book your court with ease – checkout with total and voucher field",
-  "Split court fees among each other – choose your player slots",
-  "Find fellow players for open matches – match details with four players",
-  "Train with our top coaches – coach card with price per session",
-  "Experience cool padel events in your club – club event list",
-  "Benefit with EGYM Wellpass and Hansefit membership – linked benefit account",
-].map((alt, i) => ({ src: `${P}/en/${i + 1}.jpg`, width: 860, height: 1864, alt: `App Store screenshot ${i + 1}: ${alt}` }));
-
-const panelsPl: StorePanel[] = [
-  "Witaj w świecie PadelCity – ekran główny aplikacji",
-  "Odkryj kluby w pobliżu – rezerwacja kortu z godzinami rozpoczęcia i cenami",
-  "Wygodnie zarezerwuj kort – potwierdzenie rezerwacji z sumą i polem na voucher",
-  "Podziel opłatę za kort – wybór miejsc graczy",
-  "Znajdź partnerów do otwartych meczów – szczegóły meczu z czterema graczami",
-  "Trenuj z naszymi najlepszymi trenerami – karta trenera z ceną za trening",
-  "Przeżyj świetne eventy padlowe w swoim klubie – lista eventów klubu",
-  "Korzystaj z benefitów EGYM Wellpass i Hansefit – połączone konto benefitowe",
-].map((alt, i) => ({ src: `${P}/en/${i + 1}.jpg`, width: 860, height: 1864, alt: `Zrzut ekranu z App Store ${i + 1}: ${alt}` }));
 
 const de = {
   meta: {
@@ -252,16 +216,6 @@ const de = {
       },
     ] as AppFeature[],
   },
-  gallery: {
-    eyebrow: "Aus dem App Store",
-    title: "So sieht's in der App aus",
-    text: "Die offiziellen Screenshots aus dem App Store – zum Durchwischen.",
-    label: "App-Store-Screenshots der PadelCity App",
-    prev: "Vorheriger Screenshot",
-    next: "Nächster Screenshot",
-    cta: "Im App Store ansehen",
-    panels: panelsDe,
-  },
   socialProof: {
     eyebrow: "Community-Liebe",
     title: "Gespielt. Geliebt.",
@@ -272,15 +226,6 @@ const de = {
     ratingsLabel: (value: string, store: string, count: string) => `${value} von 5 Sternen im ${store}, ${count}`,
     outOf: "von 5 Sternen,",
   },
-  how: {
-    eyebrow: "So funktioniert's",
-    title: "In 3 Schritten auf den Court",
-    steps: [
-      { step: "01", title: "App laden", text: "Kostenlos für iOS und Android. Konto in einer Minute angelegt." },
-      { step: "02", title: "Club & Zeit wählen", text: "In der App siehst du freie Courts in deiner Nähe – oder springst in ein Open Match." },
-      { step: "03", title: "Let's play Padel!", text: "Bezahlen, Freunde einladen, auf den Court. #bettertogether" },
-    ],
-  },
   faqSection: { eyebrow: "FAQ", title: "Gut zu wissen", all: "Alle Fragen & Antworten" },
   faq: [
     { q: "Was kostet die App?", a: "Download und Konto sind kostenlos. Du zahlst nur, was du buchst – Courts, Events oder Trainings." },
@@ -290,13 +235,6 @@ const de = {
     // TODO(content): confirm payment methods
     { q: "Welche Zahlungsarten gibt es?", a: "Kreditkarte, Apple Pay, Google Pay und PayPal – sicher abgewickelt über unseren Zahlungsdienstleister." },
   ],
-  final: {
-    title: "Let's play",
-    accent: "Padel!",
-    text: "App laden, Court buchen, Freunde einladen. Wir sehen uns auf dem Court. #bettertogether",
-    clubs: "Erst mal Clubs ansehen",
-    phone: "events" as ScreenKey,
-  },
 };
 
 type AppContent = typeof de;
@@ -398,16 +336,6 @@ const en: AppContent = {
       },
     ],
   },
-  gallery: {
-    eyebrow: "From the App Store",
-    title: "See it in the app",
-    text: "The official App Store screenshots – swipe through.",
-    label: "App Store screenshots of the PadelCity app",
-    prev: "Previous screenshot",
-    next: "Next screenshot",
-    cta: "View on the App Store",
-    panels: panelsEn,
-  },
   socialProof: {
     eyebrow: "Community love",
     title: "Played. Loved.",
@@ -418,15 +346,6 @@ const en: AppContent = {
     ratingsLabel: (value: string, store: string, count: string) => `${value} out of 5 stars on ${store}, ${count}`,
     outOf: "out of 5 stars,",
   },
-  how: {
-    eyebrow: "How it works",
-    title: "On court in 3 steps",
-    steps: [
-      { step: "01", title: "Get the app", text: "Free for iOS and Android. Your account is set up in a minute." },
-      { step: "02", title: "Pick a club & time", text: "The app shows you free courts near you – or jump into an open match." },
-      { step: "03", title: "Let's play Padel!", text: "Pay, invite your friends, hit the court. #bettertogether" },
-    ],
-  },
   faqSection: { eyebrow: "FAQ", title: "Good to know", all: "All questions & answers" },
   faq: [
     { q: "How much does the app cost?", a: "Downloading it and creating an account are free. You only pay for what you book – courts, events or training." },
@@ -435,13 +354,6 @@ const en: AppContent = {
     { q: "How do I use EGYM Wellpass or Hansefit?", a: "Link your account in your profile. Your discount is shown automatically at checkout for eligible court bookings." },
     { q: "Which payment methods can I use?", a: "Credit card, Apple Pay, Google Pay and PayPal – processed securely by our payment provider." },
   ],
-  final: {
-    title: "Let's play",
-    accent: "Padel!",
-    text: "Get the app, book a court, invite your friends. See you on court. #bettertogether",
-    clubs: "Browse the clubs first",
-    phone: "events",
-  },
 };
 
 const pl: AppContent = {
@@ -541,16 +453,6 @@ const pl: AppContent = {
       },
     ],
   },
-  gallery: {
-    eyebrow: "Z App Store",
-    title: "Tak to wygląda w aplikacji",
-    text: "Oficjalne zrzuty ekranu z App Store – przesuń, aby zobaczyć więcej.",
-    label: "Zrzuty ekranu aplikacji PadelCity z App Store",
-    prev: "Poprzedni zrzut ekranu",
-    next: "Następny zrzut ekranu",
-    cta: "Zobacz w App Store",
-    panels: panelsPl,
-  },
   socialProof: {
     eyebrow: "Community love",
     title: "Grana. Kochana.",
@@ -561,15 +463,6 @@ const pl: AppContent = {
     ratingsLabel: (value: string, store: string, count: string) => `${value} na 5 gwiazdek w ${store}, ${count}`,
     outOf: "na 5 gwiazdek,",
   },
-  how: {
-    eyebrow: "Jak to działa",
-    title: "Na korcie w 3 krokach",
-    steps: [
-      { step: "01", title: "Pobierz aplikację", text: "Za darmo na iOS i Androida. Konto założysz w minutę." },
-      { step: "02", title: "Wybierz klub i godzinę", text: "W aplikacji zobaczysz wolne korty w pobliżu – albo dołączysz do otwartego meczu." },
-      { step: "03", title: "Let's play Padel!", text: "Zapłać, zaproś znajomych i wchodź na kort. #bettertogether" },
-    ],
-  },
   faqSection: { eyebrow: "FAQ", title: "Dobrze wiedzieć", all: "Wszystkie pytania i odpowiedzi" },
   faq: [
     { q: "Ile kosztuje aplikacja?", a: "Pobranie i założenie konta są bezpłatne. Płacisz tylko za to, co rezerwujesz – korty, eventy lub treningi." },
@@ -578,13 +471,6 @@ const pl: AppContent = {
     { q: "Jak korzystać z EGYM Wellpass lub Hansefit?", a: "Połącz konto w profilu. Przy uprawnionych rezerwacjach kortów zniżka wyświetli się automatycznie przy płatności." },
     { q: "Jakie są metody płatności?", a: "Karta kredytowa, Apple Pay, Google Pay i PayPal – bezpiecznie obsługiwane przez naszego operatora płatności." },
   ],
-  final: {
-    title: "Let's play",
-    accent: "Padel!",
-    text: "Pobierz aplikację, zarezerwuj kort, zaproś znajomych. Do zobaczenia na korcie. #bettertogether",
-    clubs: "Najpierw zobacz kluby",
-    phone: "events",
-  },
 };
 
 export const appContent: Record<Locale, AppContent> = { de, en, pl };
