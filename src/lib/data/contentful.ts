@@ -79,13 +79,24 @@ export async function getEntries(contentType: string, include: number, locale: C
     `https://cdn.contentful.com/spaces/${encodeURIComponent(cfg.spaceId)}` +
     `/environments/${encodeURIComponent(cfg.environmentId)}/entries` +
     `?content_type=${contentType}&include=${include}&locale=${locale}&limit=1000`;
-  const res = await fetch(url, {
-    headers: { Authorization: `Bearer ${cfg.token}` },
-    next: { revalidate: REVALIDATE_S, tags: ["contentful"] },
-    signal: AbortSignal.timeout(LIVE_TIMEOUT_MS),
-  });
-  if (!res.ok) throw new Error(`Contentful ${contentType}: HTTP ${res.status}`);
-  return (await res.json()) as CfResponse;
+  // The static export renders in several workers that fetch the same URL at once. A response read from the shared
+  // fetch cache came back broken once ("Bad control character in string literal"), the build fell back to mock data
+  // for one locale only and 16 PL club pages went missing. So: parse ourselves and retry past the cache.
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const res = await fetch(url, {
+        headers: { Authorization: `Bearer ${cfg.token}` },
+        ...(attempt === 0 ? { next: { revalidate: REVALIDATE_S, tags: ["contentful"] } } : { cache: "no-store" as const }),
+        signal: AbortSignal.timeout(LIVE_TIMEOUT_MS),
+      });
+      if (!res.ok) throw new Error(`Contentful ${contentType}: HTTP ${res.status}`);
+      return JSON.parse(await res.text()) as CfResponse;
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError;
 }
 
 const isEmpty = (v: unknown) =>

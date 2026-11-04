@@ -61,6 +61,9 @@ const resolveBaseClubs = cache(async (locale: Locale): Promise<Club[]> => {
       if (clubs.length === 0) throw new Error("no club entries");
       return clubs;
     } catch (err) {
+      // In CI a silent fallback would mix Contentful and mock clubs across locales (links to pages that were never
+      // built) – better a red build than a broken deploy.
+      if (process.env.CI) throw err;
       warnOnce("contentful", err);
     }
   }
