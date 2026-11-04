@@ -2,6 +2,7 @@ import type { Milestone } from "@/lib/content/about";
 import type { Locale } from "@/lib/i18n/config";
 import { brandStrings } from "./strings";
 import { Reveal } from "../ui/Reveal";
+import { Media } from "../ui/Media";
 import { cn } from "../ui/cn";
 
 // Contentful module: aboutContent / investorsContent – Meilensteine (entries: milestone { year, title, text, highlight })
@@ -10,7 +11,8 @@ import { cn } from "../ui/cn";
  * Milestone timeline shared by About and Investors.
  * Phone + tablet: horizontal snap-scroll strip. Desktop: all milestones in one row on a court line.
  */
-export function Timeline({ items, locale, className }: { items: Milestone[]; locale: Locale; className?: string }) {
+/** `images` (year → photo) puts a decorative photo on top of each card – used on the company page. */
+export function Timeline({ items, locale, images, className }: { items: Milestone[]; locale: Locale; images?: Record<string, string>; className?: string }) {
   const t = brandStrings[locale].timeline;
   return (
     <div className={cn("relative", className)}>
@@ -37,10 +39,11 @@ export function Timeline({ items, locale, className }: { items: Milestone[]; loc
               </div>
               <div
                 className={cn(
-                  "flex h-[calc(100%-2.25rem)] flex-col rounded-[20px] border pad-card",
+                  "flex h-[calc(100%-2.25rem)] flex-col overflow-hidden rounded-[20px] border pad-card",
                   m.highlight ? "border-magenta-500/50 bg-magenta-500/[0.08]" : "border-fg/10 bg-raised",
                 )}
               >
+                {images?.[m.year] && <Media src={images[m.year]} alt="" className="-mx-5 -mt-5 mb-5 aspect-[16/10]" sizes="(min-width:1024px) 20vw, 78vw" />}
                 <p className={cn("font-display text-5xl font-extrabold italic leading-none", m.highlight ? "text-fg" : "text-brand-gradient")}>{m.year}</p>
                 <h3 className="mt-4 min-h-[2lh] text-lg font-semibold leading-snug">{m.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-fg/70">{m.text}</p>
