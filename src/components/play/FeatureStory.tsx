@@ -5,7 +5,6 @@ import { AnimatePresence, motion } from "motion/react";
 import { Check } from "lucide-react";
 import type { AppCallouts, AppFeature, AppScreenshot, ScreenKey } from "@/lib/content/app";
 import { Accent } from "@/components/ui/Headline";
-import { AppIcon } from "@/components/ui/Icon";
 import { cn } from "@/components/ui/cn";
 import { PhoneMockup } from "./PhoneMockup";
 import { AppScreenImage } from "./AppScreens";
@@ -13,7 +12,7 @@ import { AppPhone } from "./app/AppPhone";
 import { FeatureCallout } from "./app/FeatureCallout";
 import { useSystemReducedMotion } from "@/lib/a11y";
 
-// Contentful module: featureStory (items: eyebrow, title, accent, text, bullets, screen) – no buttons per feature (design feedback 04.11.2026)
+// Contentful module: featureStory (items: title, accent, text, bullets, screen) – no label and no buttons per feature (design feedback 04.11.2026)
 /**
  * Sticky-scroll storytelling: on desktop the phone stays pinned while the feature texts scroll
  * past and the screen swaps. On phone/tablet every feature renders its own inline phone.
@@ -67,12 +66,6 @@ export function FeatureStory({
               )}
             >
               <div>
-                <p className="mb-5 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.14em] text-fg/70">
-                  <span className="grid size-9 place-items-center rounded-full bg-brand-gradient">
-                    <AppIcon name={f.icon} className="size-4" />
-                  </span>
-                  {f.eyebrow}
-                </p>
                 <h3 id={`feature-${f.id}`} className="font-display text-5xl font-extrabold uppercase italic leading-[0.92] text-balance md:text-6xl lg:text-7xl">
                   {f.title} <Accent>{f.accent}</Accent>
                 </h3>
