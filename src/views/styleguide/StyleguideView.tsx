@@ -319,7 +319,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
               <VarsityText className="text-fg/90">auf den Court</VarsityText>
             </p>
           </Spec>
-          <Spec label="CollegiateBadge · Academy-Hero, gedreht −4°, nur ab Tablet">
+          <Spec label="CollegiateBadge · Ersatz-Badge; der Academy-Hero zeigt seit 04.11. das echte Academy-Logo">
             <CollegiateBadge />
           </Spec>
         </div>

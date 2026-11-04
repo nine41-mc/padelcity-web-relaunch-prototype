@@ -47,7 +47,6 @@ const de = {
     accent: "Level.",
     ctaApp: "Kurs in der App finden",
     ctaProgrammes: "Programme ansehen",
-    badge: { top: "PadelCity", main: "Academy", bottom: "Est. 2022" },
   },
   path: {
     eyebrow: "Für jedes Level",
@@ -250,7 +249,6 @@ const en: AcademyContent = {
     accent: "level.",
     ctaApp: "Find a course in the app",
     ctaProgrammes: "See programmes",
-    badge: { top: "PadelCity", main: "Academy", bottom: "Est. 2022" },
   },
   path: {
     eyebrow: "For every level",
@@ -447,7 +445,6 @@ const pl: AcademyContent = {
     accent: "poziomie.",
     ctaApp: "Znajdź kurs w aplikacji",
     ctaProgrammes: "Zobacz programy",
-    badge: { top: "PadelCity", main: "Academy", bottom: "Est. 2022" },
   },
   path: {
     eyebrow: "Na każdy poziom",

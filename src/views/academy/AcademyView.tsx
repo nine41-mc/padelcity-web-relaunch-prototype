@@ -13,7 +13,8 @@ import { Chip } from "@/components/ui/Chip";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { ClubCard } from "@/components/cards/ClubCard";
-import { CollegiateBadge, VarsityText } from "@/components/play/Collegiate";
+import { VarsityText } from "@/components/play/Collegiate";
+import { AppImage } from "@/components/ui/AppImage";
 import { LevelPath } from "@/components/play/LevelPath";
 import { PriceList } from "@/components/play/PriceList";
 import { CoachExplorer } from "@/components/play/coaches/CoachExplorer";
@@ -56,7 +57,14 @@ export async function AcademyView({ locale }: { locale: Locale }) {
         >
           {t.hero.title} <Accent>{t.hero.accent}</Accent>
         </PageHero>
-        <CollegiateBadge {...t.hero.badge} className="absolute right-6 top-32 max-md:hidden lg:right-16 lg:top-44 lg:scale-125" />
+        {/* Official Academy logo (PadelCity, 04.11.2026) – replaces the rebuilt collegiate badge */}
+        <AppImage
+          src="/brand/academy/padel-academy-logo.svg"
+          alt="PadelCity Academy"
+          width={243}
+          height={243}
+          className="absolute right-6 top-32 size-36 -rotate-6 max-md:hidden lg:right-16 lg:top-44 lg:size-48"
+        />
       </div>
 
       {/* Contentful module: levelPath */}
