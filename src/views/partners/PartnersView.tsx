@@ -184,8 +184,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
         <div className="absolute inset-0 bg-court-lines opacity-50" aria-hidden />
         <div className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/85">{t.corporate.eyebrow}</p>
-            <Headline size="md" className="mt-5">
+            <Headline size="md">
               {t.corporate.title}
             </Headline>
             <p className="mt-6 max-w-lg text-lg text-fg/85">{t.corporate.text}</p>

@@ -13,7 +13,6 @@ const de = {
     prototype: "Prototyp: Es wurden keine Daten übermittelt.",
   },
   legal: {
-    eyebrow: "Rechtliches",
     notice: "Text übernommen von padelcity.de. Vor dem Go-live prüft und ergänzt die Rechtsabteilung ihn für die neue Website (Tracking, Consent, Newsletter, Formulare, Hosting).",
   },
   people: { photoSoon: "Foto folgt", linkedin: (name: string) => `${name} auf LinkedIn` },
@@ -33,7 +32,6 @@ const en: BrandStrings = {
     prototype: "Prototype: no data has been sent.",
   },
   legal: {
-    eyebrow: "Legal",
     notice: "Text taken over from padelcity.de. Before go-live our legal team reviews and extends it for the new website (tracking, consent, newsletter, forms, hosting).",
   },
   people: { photoSoon: "Photo coming soon", linkedin: (name: string) => `${name} on LinkedIn` },
@@ -51,7 +49,6 @@ const pl: BrandStrings = {
     prototype: "Prototyp: żadne dane nie zostały przesłane.",
   },
   legal: {
-    eyebrow: "Informacje prawne",
     notice: "Tekst przejęty z padelcity.de. Przed startem nasz dział prawny sprawdzi go i uzupełni pod kątem nowej strony (tracking, zgody, newsletter, formularze, hosting).",
   },
   people: { photoSoon: "Zdjęcie wkrótce", linkedin: (name: string) => `${name} na LinkedInie` },

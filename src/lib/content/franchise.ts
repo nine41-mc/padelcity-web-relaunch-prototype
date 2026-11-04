@@ -17,7 +17,6 @@ const de = {
       "Werde PadelCity Franchise-Partner: starke Marke, eigene App & Buchungsplattform, Academy, Events und Partnernetzwerk. Jetzt Standort anfragen.",
   },
   hero: {
-    eyebrow: "Franchise",
     imageAlt: "Luftaufnahme eines PadelCity Clubs mit Outdoor-Courts",
     title: "Bring PadelCity in deine",
     accent: "Stadt",
@@ -26,7 +25,6 @@ const de = {
     ctaSecondary: "So läuft's",
   },
   benefits: {
-    eyebrow: "Warum PadelCity",
     title: "Alles, was ein Club braucht. Aus einer Hand.",
     lead: `Du konzentrierst dich auf deinen Standort und deine Community – wir liefern Marke, Technologie und Know-how.`,
     items: [
@@ -39,7 +37,6 @@ const de = {
     ] as { title: string; text: string; icon: BenefitIcon }[],
   },
   partnership: {
-    eyebrow: "Partnerschaft",
     title: "Was wir liefern. Was du mitbringst.",
     weProvideLabel: "PadelCity liefert",
     youBringLabel: "Du bringst mit",
@@ -62,7 +59,6 @@ const de = {
   },
   // Services per phase – from padelcity.de/franchise (2026-10-15)
   phases: {
-    eyebrow: "Leistungen",
     title: "Wir begleiten dich in jeder Phase",
     optional: "optional, gegen Gebühr",
     items: [
@@ -72,7 +68,6 @@ const de = {
     ] as Phase[],
   },
   steps: {
-    eyebrow: "Ablauf",
     title: "In 5 Schritten zum eigenen Club",
     lead: "Vom ersten Call bis zum Opening-Abend begleitet dich ein festes Expansion-Team.",
     items: [
@@ -84,7 +79,6 @@ const de = {
     ],
   },
   requirements: {
-    eyebrow: "Voraussetzungen",
     title: "Das solltest du mitbringen",
     // TODO(content): minimum court count, ceiling height and investment range – only once confirmed by the franchise team.
     items: [
@@ -130,7 +124,6 @@ const en: FranchiseContent = {
       "Become a PadelCity franchise partner: a strong brand, our own app and booking platform, academy, events and partner network. Enquire about your site now.",
   },
   hero: {
-    eyebrow: "Franchise",
     imageAlt: "Aerial view of a PadelCity club with outdoor courts",
     title: "Bring PadelCity to your",
     accent: "city",
@@ -139,7 +132,6 @@ const en: FranchiseContent = {
     ctaSecondary: "How it works",
   },
   benefits: {
-    eyebrow: "Why PadelCity",
     title: "Everything a club needs. From a single source.",
     lead: `You focus on your site and your community – we bring the brand, the technology and the know-how.`,
     items: [
@@ -152,7 +144,6 @@ const en: FranchiseContent = {
     ],
   },
   partnership: {
-    eyebrow: "Partnership",
     title: "What we deliver. What you bring.",
     weProvideLabel: "PadelCity delivers",
     youBringLabel: "You bring",
@@ -174,7 +165,6 @@ const en: FranchiseContent = {
     ],
   },
   phases: {
-    eyebrow: "Services",
     title: "We're with you in every phase",
     optional: "optional, for a fee",
     items: [
@@ -184,7 +174,6 @@ const en: FranchiseContent = {
     ] as Phase[],
   },
   steps: {
-    eyebrow: "The process",
     title: "Five steps to your own club",
     lead: "From the first call to opening night, a dedicated expansion team is at your side.",
     items: [
@@ -196,7 +185,6 @@ const en: FranchiseContent = {
     ],
   },
   requirements: {
-    eyebrow: "Requirements",
     title: "What you should bring",
     items: [
       { title: "Hall / site", value: "20 × 10 m", text: "That's the size of one padel court. Ideally an indoor hall with enough ceiling height or an easily accessible outdoor site." },
@@ -239,7 +227,6 @@ const pl: FranchiseContent = {
       "Zostań partnerem franczyzowym PadelCity: silna marka, własna aplikacja do rezerwacji, Academy, wydarzenia i sieć partnerów. Zapytaj o swoją lokalizację.",
   },
   hero: {
-    eyebrow: "Franczyza",
     imageAlt: "Widok z lotu ptaka na klub PadelCity z kortami zewnętrznymi",
     title: "Przenieś PadelCity do swojego",
     accent: "miasta",
@@ -248,7 +235,6 @@ const pl: FranchiseContent = {
     ctaSecondary: "Jak to działa",
   },
   benefits: {
-    eyebrow: "Dlaczego PadelCity",
     title: "Wszystko, czego potrzebuje klub. Z jednego źródła.",
     lead: `Ty skupiasz się na swojej lokalizacji i swojej społeczności – my dostarczamy markę, technologię i know-how.`,
     items: [
@@ -261,7 +247,6 @@ const pl: FranchiseContent = {
     ],
   },
   partnership: {
-    eyebrow: "Partnerstwo",
     title: "Co dostarczamy my. Co wnosisz ty.",
     weProvideLabel: "PadelCity dostarcza",
     youBringLabel: "Ty wnosisz",
@@ -283,7 +268,6 @@ const pl: FranchiseContent = {
     ],
   },
   phases: {
-    eyebrow: "Usługi",
     title: "Wspieramy cię na każdym etapie",
     optional: "opcjonalnie, za opłatą",
     items: [
@@ -293,7 +277,6 @@ const pl: FranchiseContent = {
     ] as Phase[],
   },
   steps: {
-    eyebrow: "Przebieg",
     title: "5 kroków do własnego klubu",
     lead: "Od pierwszej rozmowy aż po wieczór otwarcia towarzyszy ci stały zespół ds. ekspansji.",
     items: [
@@ -305,7 +288,6 @@ const pl: FranchiseContent = {
     ],
   },
   requirements: {
-    eyebrow: "Wymagania",
     title: "To powinieneś mieć",
     items: [
       { title: "Hala / teren", value: "20 × 10 m", text: "Tyle mierzy jeden kort do padla. Idealnie: hala z odpowiednią wysokością lub łatwo dostępny teren na zewnątrz." },

@@ -78,7 +78,6 @@ export const testimonials: Testimonial[] = [
 /** Module copy ("Let the players talk" + lead taken over from padelcity.de). */
 export const testimonialsContent = {
   de: {
-    eyebrow: "Community",
     title: "Let the players",
     accent: "talk.",
     lead: "Zeit und Raum für die Hauptakteure.",
@@ -91,7 +90,6 @@ export const testimonialsContent = {
     photoAlt: "Porträt von {name}",
   },
   en: {
-    eyebrow: "Community",
     title: "Let the players",
     accent: "talk.",
     lead: "Time and space for the people who matter most.",
@@ -104,7 +102,6 @@ export const testimonialsContent = {
     photoAlt: "Portrait of {name}",
   },
   pl: {
-    eyebrow: "Community",
     title: "Let the players",
     accent: "talk.",
     lead: "Czas i miejsce dla głównych bohaterów.",

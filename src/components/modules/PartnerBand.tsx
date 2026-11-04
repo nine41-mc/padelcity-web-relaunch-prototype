@@ -11,9 +11,9 @@ import { PartnerLogo } from "../ui/PartnerLogo";
 
 // Contentful module: partnerLogos (references → partner entries). One partner band for the whole site.
 const copy = {
-  de: { eyebrow: "Unsere Partner", title: "Better", accent: "together.", cta: "Partner werden" },
-  en: { eyebrow: "Our partners", title: "Better", accent: "together.", cta: "Become a partner" },
-  pl: { eyebrow: "Nasi partnerzy", title: "Better", accent: "together.", cta: "Zostań partnerem" },
+  de: { title: "Better", accent: "together.", cta: "Partner werden" },
+  en: { title: "Better", accent: "together.", cta: "Become a partner" },
+  pl: { title: "Better", accent: "together.", cta: "Zostań partnerem" },
 };
 
 /** "Better together." – section intro with "Partner werden" and the partner logos as a running band. */

@@ -12,7 +12,6 @@ const de = {
     description: `Werde Partner von PadelCity: Club Branding, Event-Titelsponsoring, Apparel, App & Digital, PadelCity TV und Corporate Events in ${keyFacts.clubs}+ Clubs.`,
   },
   hero: {
-    eyebrow: "Partner & Sponsoring",
     imageAlt: "Spieler:innen in Partner-Shirts bei einem PadelCity Club-Opening",
     title: "Deine Marke. Unser",
     accent: "Court.",
@@ -22,7 +21,6 @@ const de = {
   },
   stats: { clubs: "Clubs", courts: "Courts", cities: "Städte", founded: "Seit" },
   formats: {
-    eyebrow: "Formate",
     title: "So wirst du Teil von PadelCity",
     lead: "Vom Court-Naming bis zum eigenen Turnier: Wir bauen das Paket, das zu deinen Zielen passt.",
     items: [
@@ -36,7 +34,6 @@ const de = {
     other: "Sonstiges",
   },
   personas: {
-    eyebrow: "Loyalty hits reach.",
     title: "Wen du bei uns erreichst",
     lead: "Sechs Personas aus unserem Brand Book – von der Turnierspielerin bis zum Kids-Academy-Spieler.",
     // TODO(content): align persona descriptions with the brand book persona sheets.
@@ -65,7 +62,6 @@ const de = {
     } as Record<string, string>,
   },
   cases: {
-    eyebrow: "Case Studies",
     title: "Partnerschaften, die man spürt",
     items: [
       {
@@ -85,7 +81,6 @@ const de = {
     ],
   },
   corporate: {
-    eyebrow: "Corporate Events & B2B",
     title: "Firmenevents buchen",
     text: "Teambuilding, das wirklich verbindet: Padel ist in zehn Minuten gelernt und sorgt für Gesprächsstoff bis zum nächsten Meeting. Wir organisieren alles – Courts, Coaches, Catering.",
     cta: "Event anfragen",
@@ -93,7 +88,6 @@ const de = {
   },
   // How we see partnerships (team feedback m-8-1). TODO(content): draft – wording to be approved by Marketing
   stance: {
-    eyebrow: "Partnerschaft",
     title: "Mehr als",
     accent: "Logos.",
     paragraphs: [
@@ -129,7 +123,6 @@ const en: SponsoringContent = {
     description: `Partner with PadelCity: club branding, event title sponsorship, apparel, app & digital, PadelCity TV and corporate events across ${keyFacts.clubs}+ clubs.`,
   },
   hero: {
-    eyebrow: "Partners & Sponsoring",
     imageAlt: "Players in partner shirts at a PadelCity club opening",
     title: "Your brand. Our",
     accent: "court.",
@@ -139,7 +132,6 @@ const en: SponsoringContent = {
   },
   stats: { clubs: "Clubs", courts: "Courts", cities: "Cities", founded: "Since" },
   formats: {
-    eyebrow: "Formats",
     title: "How to become part of PadelCity",
     lead: "From court naming to your own tournament: we'll build the package that fits your goals.",
     items: [
@@ -153,7 +145,6 @@ const en: SponsoringContent = {
     other: "Something else",
   },
   personas: {
-    eyebrow: "Loyalty hits reach.",
     title: "Who you'll reach with us",
     lead: "Six personas from our brand book – from the tournament player to the kids' academy star.",
     items: [
@@ -181,7 +172,6 @@ const en: SponsoringContent = {
     },
   },
   cases: {
-    eyebrow: "Case studies",
     title: "Partnerships you can feel",
     items: [
       {
@@ -201,14 +191,12 @@ const en: SponsoringContent = {
     ],
   },
   corporate: {
-    eyebrow: "Corporate events & B2B",
     title: "Book a corporate event",
     text: "Team building that genuinely brings people together: padel takes ten minutes to learn and gives everyone something to talk about until the next meeting. We take care of everything – courts, coaches, catering.",
     cta: "Enquire about an event",
     formats: ["Company tournament with prize-giving", "Team event with coach & taster session", "Client event in the club lounge", "Padel as an employee benefit"],
   },
   stance: {
-    eyebrow: "Partnership",
     title: "More than",
     accent: "logos.",
     paragraphs: [
@@ -242,7 +230,6 @@ const pl: SponsoringContent = {
     description: `Zostań partnerem PadelCity: branding klubów, sponsoring tytularny wydarzeń, odzież, aplikacja i digital, PadelCity TV oraz eventy firmowe w ${keyFacts.clubs}+ klubach.`,
   },
   hero: {
-    eyebrow: "Partnerzy i sponsoring",
     imageAlt: "Gracze w koszulkach partnerów podczas otwarcia klubu PadelCity",
     title: "Twoja marka. Nasz",
     accent: "kort.",
@@ -252,7 +239,6 @@ const pl: SponsoringContent = {
   },
   stats: { clubs: "Kluby", courts: "Korty", cities: "Miasta", founded: "Od" },
   formats: {
-    eyebrow: "Formaty",
     title: "Jak stać się częścią PadelCity",
     lead: "Od nazwy kortu po własny turniej: przygotujemy pakiet dopasowany do twoich celów.",
     items: [
@@ -266,7 +252,6 @@ const pl: SponsoringContent = {
     other: "Inne",
   },
   personas: {
-    eyebrow: "Loyalty hits reach.",
     title: "Do kogo docierasz z nami",
     lead: "Sześć person z naszego brand booka – od zawodniczki turniejowej po gracza Kids Academy.",
     items: [
@@ -294,7 +279,6 @@ const pl: SponsoringContent = {
     },
   },
   cases: {
-    eyebrow: "Case studies",
     title: "Partnerstwa, które widać i czuć",
     items: [
       {
@@ -314,14 +298,12 @@ const pl: SponsoringContent = {
     ],
   },
   corporate: {
-    eyebrow: "Eventy firmowe i B2B",
     title: "Zarezerwuj event firmowy",
     text: "Teambuilding, który naprawdę łączy: padla nauczysz się w dziesięć minut, a tematów do rozmów wystarczy do następnego spotkania. Organizujemy wszystko – korty, trenerów, catering.",
     cta: "Zapytaj o event",
     formats: ["Turniej firmowy z dekoracją zwycięzców", "Event zespołowy z trenerem i lekcją próbną", "Event dla klientów w klubowym lounge", "Padel dla pracowników jako benefit"],
   },
   stance: {
-    eyebrow: "Partnerstwo",
     title: "Więcej niż",
     accent: "logo.",
     paragraphs: [

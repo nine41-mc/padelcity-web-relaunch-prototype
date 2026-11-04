@@ -27,7 +27,6 @@ export type AppFeatureId = "booking" | "split" | "matches" | "events" | "voucher
 
 export type AppFeature = {
   id: AppFeatureId;
-  eyebrow: string;
   title: string;
   accent: string; // one word rendered as <Accent>
   text: string;
@@ -138,7 +137,6 @@ const de = {
     items: [
       {
         id: "booking",
-        eyebrow: "Court buchen",
         title: "Court buchen in 3",
         accent: "Klicks",
         text: "Club wählen, Zeit tippen, bezahlen. Sofortbestätigung und Kalender-Eintrag inklusive.",
@@ -151,7 +149,6 @@ const de = {
       },
       {
         id: "split",
-        eyebrow: "Anteilige Zahlung",
         title: "Kosten fair",
         accent: "teilen",
         text: "Aktiviere im Checkout die anteilige Zahlung: Jede:r zahlt den eigenen Player Slot – oder du übernimmst gleich mehrere.",
@@ -164,7 +161,6 @@ const de = {
       },
       {
         id: "matches",
-        eyebrow: "Open Matches",
         title: "Nie wieder ohne",
         accent: "Partner",
         text: "Dir fehlt die Vierte? Erstell ein Open Match oder spring in eins rein. Sobald genug Spieler:innen dabei sind, ist der Court verbindlich gebucht.",
@@ -177,7 +173,6 @@ const de = {
       },
       {
         id: "events",
-        eyebrow: "Events & Training",
         title: "Events & Training mit einem",
         accent: "Tap",
         text: "Turniere wie die CUPRA One Point Challenge, Events in deinem Club und Trainings mit unseren Coaches – anmelden, bezahlen, fertig. Für Events geht das auch im Web.",
@@ -190,7 +185,6 @@ const de = {
       },
       {
         id: "vouchers",
-        eyebrow: "Gutscheine",
         title: "Padel",
         accent: "verschenken",
         text: "Gutscheinwert wählen, der Code kommt per E-Mail – eingelöst wird er direkt im Checkout, für Court- und Coach-Buchungen.",
@@ -203,7 +197,6 @@ const de = {
       },
       {
         id: "benefits",
-        eyebrow: "Corporate Benefits",
         title: "Mit deinem Firmen-",
         accent: "Benefit",
         text: "EGYM Wellpass oder Hansefit? Verknüpfe dein Konto im Profil – dein Discount wird automatisch im Checkout angezeigt.",
@@ -217,7 +210,6 @@ const de = {
     ] as AppFeature[],
   },
   socialProof: {
-    eyebrow: "Community-Liebe",
     title: "Gespielt. Geliebt.",
     ratings: [
       { store: "App Store", value: "4,7", count: "4.500+ Bewertungen", track: "app_rating_ios" },
@@ -226,7 +218,7 @@ const de = {
     ratingsLabel: (value: string, store: string, count: string) => `${value} von 5 Sternen im ${store}, ${count}`,
     outOf: "von 5 Sternen,",
   },
-  faqSection: { eyebrow: "FAQ", title: "Gut zu wissen", all: "Alle Fragen & Antworten" },
+  faqSection: { title: "Gut zu wissen", all: "Alle Fragen & Antworten" },
   faq: [
     { q: "Was kostet die App?", a: "Download und Konto sind kostenlos. Du zahlst nur, was du buchst – Courts, Events oder Trainings." },
     { q: "Kann ich Courts auch auf der Website buchen?", a: "Nein, die Buchung läuft exklusiv über die App. Auf der Website findest du alle Clubs mit Infos und Preisen – ein Tap bringt dich direkt zum Club in der App." },
@@ -258,7 +250,6 @@ const en: AppContent = {
     items: [
       {
         id: "booking",
-        eyebrow: "Book a court",
         title: "Book a court in 3",
         accent: "taps",
         text: "Pick a club, tap a time, pay. Instant confirmation and a calendar entry included.",
@@ -271,7 +262,6 @@ const en: AppContent = {
       },
       {
         id: "split",
-        eyebrow: "Split payment",
         title: "Split the cost",
         accent: "fairly",
         text: "Switch on split payment at checkout: everyone pays for their own player slot – or you cover a few.",
@@ -284,7 +274,6 @@ const en: AppContent = {
       },
       {
         id: "matches",
-        eyebrow: "Open matches",
         title: "Never short of a",
         accent: "partner",
         text: "Missing a fourth? Create an open match or jump into one. As soon as enough players have joined, the court is booked for good.",
@@ -297,7 +286,6 @@ const en: AppContent = {
       },
       {
         id: "events",
-        eyebrow: "Events & training",
         title: "Events & training in one",
         accent: "tap",
         text: "Tournaments like the CUPRA One Point Challenge, events at your club and sessions with our coaches – sign up, pay, done. Events work on the web too.",
@@ -310,7 +298,6 @@ const en: AppContent = {
       },
       {
         id: "vouchers",
-        eyebrow: "Gift vouchers",
         title: "Give the gift of",
         accent: "padel",
         text: "Pick a voucher value and the code arrives by email – it's redeemed right at checkout for court and coach bookings.",
@@ -323,7 +310,6 @@ const en: AppContent = {
       },
       {
         id: "benefits",
-        eyebrow: "Corporate benefits",
         title: "Play with your company",
         accent: "benefit",
         text: "EGYM Wellpass or Hansefit? Link your account in your profile – your discount shows up automatically at checkout.",
@@ -337,7 +323,6 @@ const en: AppContent = {
     ],
   },
   socialProof: {
-    eyebrow: "Community love",
     title: "Played. Loved.",
     ratings: [
       { store: "App Store", value: "4.7", count: "4,500+ ratings", track: "app_rating_ios" },
@@ -346,7 +331,7 @@ const en: AppContent = {
     ratingsLabel: (value: string, store: string, count: string) => `${value} out of 5 stars on ${store}, ${count}`,
     outOf: "out of 5 stars,",
   },
-  faqSection: { eyebrow: "FAQ", title: "Good to know", all: "All questions & answers" },
+  faqSection: { title: "Good to know", all: "All questions & answers" },
   faq: [
     { q: "How much does the app cost?", a: "Downloading it and creating an account are free. You only pay for what you book – courts, events or training." },
     { q: "Can I book courts on the website?", a: "No, booking happens exclusively in the app. On the website you'll find every club with info and prices – one tap takes you straight to the club in the app." },
@@ -375,7 +360,6 @@ const pl: AppContent = {
     items: [
       {
         id: "booking",
-        eyebrow: "Rezerwacja kortu",
         title: "Zarezerwuj kort w 3",
         accent: "kliknięciach",
         text: "Wybierz klub, kliknij godzinę, zapłać. Natychmiastowe potwierdzenie i wpis do kalendarza w pakiecie.",
@@ -388,7 +372,6 @@ const pl: AppContent = {
       },
       {
         id: "split",
-        eyebrow: "Dzielenie płatności",
         title: "Dziel koszty",
         accent: "uczciwie",
         text: "Włącz dzielenie płatności przy potwierdzaniu rezerwacji: każdy płaci za swoje miejsce gracza – albo ty bierzesz na siebie kilka.",
@@ -401,7 +384,6 @@ const pl: AppContent = {
       },
       {
         id: "matches",
-        eyebrow: "Otwarte mecze",
         title: "Nigdy więcej bez",
         accent: "partnera",
         text: "Brakuje ci czwartej osoby? Utwórz otwarty mecz albo dołącz do istniejącego. Gdy zbierze się wystarczająco dużo graczy, kort jest wiążąco zarezerwowany.",
@@ -414,7 +396,6 @@ const pl: AppContent = {
       },
       {
         id: "events",
-        eyebrow: "Eventy i treningi",
         title: "Eventy i treningi jednym",
         accent: "kliknięciem",
         text: "Turnieje takie jak CUPRA One Point Challenge, eventy w twoim klubie i treningi z naszymi trenerami – zapisz się, zapłać, gotowe. Na eventy zapiszesz się też online.",
@@ -427,7 +408,6 @@ const pl: AppContent = {
       },
       {
         id: "vouchers",
-        eyebrow: "Vouchery",
         title: "Podaruj",
         accent: "padla",
         text: "Wybierz wartość vouchera, a kod przyjdzie e-mailem – zrealizujesz go od razu przy płatności za rezerwację kortu lub trenera.",
@@ -440,7 +420,6 @@ const pl: AppContent = {
       },
       {
         id: "benefits",
-        eyebrow: "Benefity firmowe",
         title: "Graj z benefitem",
         accent: "firmowym",
         text: "EGYM Wellpass albo Hansefit? Połącz konto w profilu – zniżka wyświetli się automatycznie przy płatności.",
@@ -454,7 +433,6 @@ const pl: AppContent = {
     ],
   },
   socialProof: {
-    eyebrow: "Community love",
     title: "Grana. Kochana.",
     ratings: [
       { store: "App Store", value: "4,7", count: "4500+ ocen", track: "app_rating_ios" },
@@ -463,7 +441,7 @@ const pl: AppContent = {
     ratingsLabel: (value: string, store: string, count: string) => `${value} na 5 gwiazdek w ${store}, ${count}`,
     outOf: "na 5 gwiazdek,",
   },
-  faqSection: { eyebrow: "FAQ", title: "Dobrze wiedzieć", all: "Wszystkie pytania i odpowiedzi" },
+  faqSection: { title: "Dobrze wiedzieć", all: "Wszystkie pytania i odpowiedzi" },
   faq: [
     { q: "Ile kosztuje aplikacja?", a: "Pobranie i założenie konta są bezpłatne. Płacisz tylko za to, co rezerwujesz – korty, eventy lub treningi." },
     { q: "Czy mogę rezerwować korty na stronie internetowej?", a: "Nie, rezerwacje odbywają się wyłącznie w aplikacji. Na stronie znajdziesz wszystkie kluby z informacjami i cenami – jedno kliknięcie przeniesie cię prosto do klubu w aplikacji." },

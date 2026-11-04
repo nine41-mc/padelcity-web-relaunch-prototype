@@ -40,7 +40,6 @@ const de = {
       "Schnupperkurs, Kurs-Serien, Privattraining, Kids & Juniors, Corporate Workshops und Performance Center: Die PadelCity Academy bringt dich aufs nächste Level.",
   },
   hero: {
-    eyebrow: "PadelCity Academy",
     imageAlt: "Coach und Spielerin beim Training am Netz",
     lead: "Vom ersten Schlag bis zur Series: Unsere Coaches holen dich da ab, wo du stehst – für jedes Skill-Level.",
     title: "Padel lernen. Für jedes",
@@ -49,7 +48,6 @@ const de = {
     ctaProgrammes: "Programme ansehen",
   },
   path: {
-    eyebrow: "Für jedes Level",
     line1: "Dein Weg",
     line2: "auf den Court",
     scaleLabel: "PadelCity Level-Skala von 1 (Starter) bis 7 (Professional) – Level wählen",
@@ -90,7 +88,6 @@ const de = {
     { level: 7, label: "Professional", text: "Du bist Stammgast bei den größten Padel-Turnieren Deutschlands und kannst mit der deutschen Elite mithalten. Technik und Taktik sind bei dir auf höchstem Niveau. Wer weiß, wie weit die Reise geht, wenn du alles reinlegst!" },
   ] as AcademyLevel[],
   programmesSection: {
-    eyebrow: "Programme",
     title: "Such dir dein Training aus",
     startHere: "Start hier",
     inquiry: "Anfrage senden",
@@ -149,7 +146,6 @@ const de = {
     },
   ] as Programme[],
   coachesSection: {
-    eyebrow: "Coaches",
     title: "Die mit dem",
     accent: "Plan",
     listLabel: "Academy Coaches",
@@ -197,7 +193,6 @@ const de = {
     mailSubject: "Training mit {name}",
   },
   pricesSection: {
-    eyebrow: "Preise",
     title: "Einzel- und",
     accent: "Gruppentraining",
     text: "Vereinbare individuell deine Trainingsstunden und bring dein Spiel gemeinsam mit unseren Coaches auf das nächste Level.",
@@ -214,15 +209,15 @@ const de = {
       { title: "Gruppe", sub: "4er Training", coach: 13.5, headCoach: 16.5 },
     ] as PriceRow[],
   },
-  locationsSection: { eyebrow: "Academy-Standorte", title: "Training in deiner Nähe", all: "Alle Standorte" },
-  videosSection: { eyebrow: "Learn with PadelCity", title: "Tipps zum Mitnehmen", channel: "YouTube-Kanal" },
+  locationsSection: { title: "Training in deiner Nähe", all: "Alle Standorte" },
+  videosSection: { title: "Tipps zum Mitnehmen", channel: "YouTube-Kanal" },
   // TODO(content): real YouTube IDs from the PadelCity channel ("Learn with PadelCity").
   videoTeasers: [
     { id: "v1", title: "Die Bandeja in 3 Schritten", duration: "4:12", thumbnail: "/images/academy/video-bandeja.jpg" },
     { id: "v2", title: "Spielen mit der Rückwand", duration: "5:40", thumbnail: "/images/academy/video-wall.jpg" },
     { id: "v3", title: "Positionsspiel im Doppel", duration: "6:05", thumbnail: "/images/academy/video-position.jpg" },
   ] as VideoTeaser[],
-  faqSection: { eyebrow: "FAQ", title: "Noch Fragen?" },
+  faqSection: { title: "Noch Fragen?" },
   faq: [
     { q: "Brauche ich eigene Ausrüstung?", a: "Nein. Schläger und Bälle bekommst du bei allen Einsteigerkursen gestellt. Bequeme Sportkleidung und Hallenschuhe reichen." },
     { q: "Wie finde ich mein Level heraus?", a: "Nach deinem ersten Training stuft dich dein Coach auf der PadelCity-Skala von 1 bis 7 ein. Dein Level siehst du danach in der App – und findest passende Matches & Events." },
@@ -242,7 +237,6 @@ const en: AcademyContent = {
       "Taster sessions, course series, private coaching, kids & juniors, corporate workshops and a performance centre: the PadelCity Academy takes your game further.",
   },
   hero: {
-    eyebrow: "PadelCity Academy",
     imageAlt: "Coach and player training at the net",
     lead: "From your first shot to the Series: our coaches meet you where you are – whatever your level.",
     title: "Learn padel. At every",
@@ -251,7 +245,6 @@ const en: AcademyContent = {
     ctaProgrammes: "See programmes",
   },
   path: {
-    eyebrow: "For every level",
     line1: "Your road",
     line2: "to the court",
     scaleLabel: "PadelCity level scale from 1 (Starter) to 7 (Professional) – choose a level",
@@ -291,7 +284,6 @@ const en: AcademyContent = {
     { level: 7, label: "Professional", text: "You're a regular at Germany's biggest padel tournaments and can keep up with the German elite. Your technique and tactics are top level. Who knows how far you'll go if you give it everything!" },
   ] as AcademyLevel[],
   programmesSection: {
-    eyebrow: "Programmes",
     title: "Pick your training",
     startHere: "Start here",
     inquiry: "send an enquiry",
@@ -350,7 +342,6 @@ const en: AcademyContent = {
     },
   ],
   coachesSection: {
-    eyebrow: "Coaches",
     title: "The ones with the",
     accent: "plan",
     listLabel: "Academy coaches",
@@ -398,7 +389,6 @@ const en: AcademyContent = {
     mailSubject: "Training with {name}",
   },
   pricesSection: {
-    eyebrow: "Prices",
     title: "Private and",
     accent: "group training",
     text: "Arrange your training sessions individually and take your game to the next level with our coaches.",
@@ -414,14 +404,14 @@ const en: AcademyContent = {
       { title: "Group", sub: "4-person training", coach: 13.5, headCoach: 16.5 },
     ] as PriceRow[],
   },
-  locationsSection: { eyebrow: "Academy clubs", title: "Training near you", all: "All locations" },
-  videosSection: { eyebrow: "Learn with PadelCity", title: "Tips to take away", channel: "YouTube channel" },
+  locationsSection: { title: "Training near you", all: "All locations" },
+  videosSection: { title: "Tips to take away", channel: "YouTube channel" },
   videoTeasers: [
     { id: "v1", title: "The bandeja in 3 steps", duration: "4:12", thumbnail: "/images/academy/video-bandeja.jpg" },
     { id: "v2", title: "Playing off the back wall", duration: "5:40", thumbnail: "/images/academy/video-wall.jpg" },
     { id: "v3", title: "Doubles positioning", duration: "6:05", thumbnail: "/images/academy/video-position.jpg" },
   ],
-  faqSection: { eyebrow: "FAQ", title: "Any questions?" },
+  faqSection: { title: "Any questions?" },
   faq: [
     { q: "Do I need my own kit?", a: "No. Rackets and balls are provided on all beginner courses. Comfortable sportswear and indoor trainers are all you need." },
     { q: "How do I find out my level?", a: "After your first session, your coach rates you on the PadelCity scale from 1 to 7. You'll then see your level in the app – and find matches and events to suit." },
@@ -438,7 +428,6 @@ const pl: AcademyContent = {
       "Lekcja próbna, cykle kursów, treningi indywidualne, Kids & Juniors, warsztaty firmowe i Performance Center: PadelCity Academy wprowadzi cię na kolejny poziom.",
   },
   hero: {
-    eyebrow: "PadelCity Academy",
     imageAlt: "Trener i zawodniczka podczas treningu przy siatce",
     lead: "Od pierwszego uderzenia aż po Series: nasi trenerzy zaczynają tam, gdzie właśnie jesteś – na każdym poziomie.",
     title: "Naucz się padla. Na każdym",
@@ -447,7 +436,6 @@ const pl: AcademyContent = {
     ctaProgrammes: "Zobacz programy",
   },
   path: {
-    eyebrow: "Na każdy poziom",
     line1: "Twoja droga",
     line2: "na kort",
     scaleLabel: "Skala poziomów PadelCity od 1 (Starter) do 7 (Professional) – wybierz poziom",
@@ -487,7 +475,6 @@ const pl: AcademyContent = {
     { level: 7, label: "Professional", text: "Jesteś stałym bywalcem największych turniejów padla w Niemczech i dotrzymujesz kroku niemieckiej elicie. Technika i taktyka są u ciebie na najwyższym poziomie. Kto wie, jak daleko zajdziesz, jeśli dasz z siebie wszystko!" },
   ] as AcademyLevel[],
   programmesSection: {
-    eyebrow: "Programy",
     title: "Wybierz swój trening",
     startHere: "Zacznij tutaj",
     inquiry: "wyślij zapytanie",
@@ -546,7 +533,6 @@ const pl: AcademyContent = {
     },
   ],
   coachesSection: {
-    eyebrow: "Trenerzy",
     title: "Ci, którzy mają",
     accent: "plan",
     listLabel: "Trenerzy Academy",
@@ -594,7 +580,6 @@ const pl: AcademyContent = {
     mailSubject: "Trening z {name}",
   },
   pricesSection: {
-    eyebrow: "Ceny",
     title: "Treningi indywidualne",
     accent: "i grupowe",
     text: "Umawiaj godziny treningów indywidualnie i razem z naszymi trenerami wejdź ze swoją grą na kolejny poziom.",
@@ -610,14 +595,14 @@ const pl: AcademyContent = {
       { title: "Grupa", sub: "Trening w 4 osoby", coach: 13.5, headCoach: 16.5 },
     ] as PriceRow[],
   },
-  locationsSection: { eyebrow: "Lokalizacje Academy", title: "Trening w twojej okolicy", all: "Wszystkie lokalizacje" },
-  videosSection: { eyebrow: "Learn with PadelCity", title: "Wskazówki na wynos", channel: "Kanał YouTube" },
+  locationsSection: { title: "Trening w twojej okolicy", all: "Wszystkie lokalizacje" },
+  videosSection: { title: "Wskazówki na wynos", channel: "Kanał YouTube" },
   videoTeasers: [
     { id: "v1", title: "Bandeja w 3 krokach", duration: "4:12", thumbnail: "/images/academy/video-bandeja.jpg" },
     { id: "v2", title: "Gra z tylną ścianą", duration: "5:40", thumbnail: "/images/academy/video-wall.jpg" },
     { id: "v3", title: "Gra pozycyjna w deblu", duration: "6:05", thumbnail: "/images/academy/video-position.jpg" },
   ],
-  faqSection: { eyebrow: "FAQ", title: "Masz pytania?" },
+  faqSection: { title: "Masz pytania?" },
   faq: [
     { q: "Czy potrzebuję własnego sprzętu?", a: "Nie. Na wszystkich kursach dla początkujących dostaniesz rakietę i piłki. Wystarczy wygodny strój sportowy i buty halowe." },
     { q: "Jak sprawdzić swój poziom?", a: "Po pierwszym treningu trener określi twój poziom na skali PadelCity od 1 do 7. Potem zobaczysz go w aplikacji – i znajdziesz pasujące mecze i wydarzenia." },

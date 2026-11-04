@@ -57,7 +57,6 @@ const de = {
     description: "Arbeite bei PadelCity: offene Stellen in unseren Clubs, in der Academy und im Headquarter in München.",
   },
   hero: {
-    eyebrow: "Jobs & Karriere",
     imageAlt: "Empfang und Shop in einem PadelCity Club",
     title: "Mach Padel zu deinem",
     accent: "Job",
@@ -66,7 +65,6 @@ const de = {
     ctaSecondary: "Initiativ bewerben",
   },
   benefits: {
-    eyebrow: "Benefits",
     title: "Mehr als ein Job",
     lead: "Wir arbeiten hart, spielen viel und wachsen zusammen.",
     // TODO(content): confirm actual benefits with HR.
@@ -80,19 +78,16 @@ const de = {
     ] as { title: string; text: string; icon: BenefitIcon }[],
   },
   culture: {
-    eyebrow: "Kultur",
     title: "Sieben Werte, die du bei uns jeden Tag spürst",
     imageAlt: "Gruppenfoto der PadelCity Community bei einem Club-Opening",
     text: "Bei uns zählt, was du bewegst – nicht, wie lange du im Büro sitzt. Wir sind ein Team aus Sportverrückten, Builder:innen und Gastgeber:innen, das jeden Club so eröffnet, als wäre es der erste.",
   },
   faces: {
-    eyebrow: "Faces of PadelCity",
     title: "Mit diesen Leuten arbeitest du",
     lead: "Club-Teams, Events, Operations, Brand – ein Ausschnitt aus unserem Team.",
     all: "Ganzes Team ansehen",
   },
   openings: {
-    eyebrow: "Offene Stellen",
     title: "Finde deine Rolle",
     lead: "Alle offenen Stellen kommen direkt aus unserem Bewerbermanagement. Rolle aussuchen, Lebenslauf hochladen – kein Anschreiben-Template, wir wollen dich kennenlernen.",
   },
@@ -101,7 +96,7 @@ const de = {
     placeholder: { title: "Hier laufen die Stellen aus Personio ein", text: "Vorschau im Personio-Look mit den Stellen von padelcity.de/jobs. Live erscheint hier die Personio-Karriereseite von PadelCity mit Stellenanzeigen und Bewerbungsformular." },
   },
 
-  contact: { eyebrow: "Deine Ansprechpartnerin", text: "Fragen zu einer Stelle oder zur Bewerbung? Melde dich direkt bei Astrid.", mail: "E-Mail", phone: "Telefon" },
+  contact: { text: "Fragen zu einer Stelle oder zur Bewerbung? Melde dich direkt bei Astrid.", mail: "E-Mail", phone: "Telefon" },
   initiative: {
     title: "Nichts dabei? Bewirb dich",
     accent: "initiativ",
@@ -118,7 +113,6 @@ const en: JobsContent = {
     description: "Work at PadelCity: jobs in clubs, academy, tech, marketing and expansion. Free padel included.",
   },
   hero: {
-    eyebrow: "Jobs & careers",
     imageAlt: "Reception and shop at a PadelCity club",
     title: "Make padel your",
     accent: "job",
@@ -127,7 +121,6 @@ const en: JobsContent = {
     ctaSecondary: "Apply speculatively",
   },
   benefits: {
-    eyebrow: "Benefits",
     title: "More than a job",
     lead: "We work hard, play a lot and grow together.",
     items: [
@@ -140,19 +133,16 @@ const en: JobsContent = {
     ],
   },
   culture: {
-    eyebrow: "Culture",
     title: "Seven values you'll feel here every day",
     imageAlt: "Group photo of the PadelCity community at a club opening",
     text: "What counts is what you get moving – not how long you sit at your desk. We're a team of sports fanatics, builders and hosts who open every club as if it were our first.",
   },
   faces: {
-    eyebrow: "Faces of PadelCity",
     title: "The people you'll work with",
     lead: "Club teams, events, operations, brand – a snapshot of our team.",
     all: "Meet the whole team",
   },
   openings: {
-    eyebrow: "Open positions",
     title: "Find your role",
     lead: "All open positions come straight from our applicant management. Pick a role, upload your CV – no cover-letter template, we want to get to know you.",
   },
@@ -161,7 +151,7 @@ const en: JobsContent = {
     placeholder: { title: "Personio jobs appear here", text: "Preview in the Personio look with the roles from padelcity.de/jobs. On the live site PadelCity's Personio career page appears here, with job ads and the application form." },
   },
 
-  contact: { eyebrow: "Your contact", text: "Questions about a role or your application? Get in touch with Astrid directly.", mail: "E-mail", phone: "Phone" },
+  contact: { text: "Questions about a role or your application? Get in touch with Astrid directly.", mail: "E-mail", phone: "Phone" },
   initiative: {
     title: "Nothing that fits? Apply",
     accent: "anyway",
@@ -176,7 +166,6 @@ const pl: JobsContent = {
     description: "Pracuj w PadelCity: oferty pracy w naszych klubach, w Akademii i w centrali w Monachium.",
   },
   hero: {
-    eyebrow: "Praca i kariera",
     imageAlt: "Recepcja i sklep w klubie PadelCity",
     title: "Zrób z padla swoją",
     accent: "pracę",
@@ -185,7 +174,6 @@ const pl: JobsContent = {
     ctaSecondary: "Aplikuj spontanicznie",
   },
   benefits: {
-    eyebrow: "Benefity",
     title: "Więcej niż praca",
     lead: "Ciężko pracujemy, dużo gramy i rośniemy razem.",
     items: [
@@ -198,19 +186,16 @@ const pl: JobsContent = {
     ],
   },
   culture: {
-    eyebrow: "Kultura",
     title: "Siedem wartości, które czujesz u nas każdego dnia",
     imageAlt: "Zdjęcie grupowe społeczności PadelCity na otwarciu klubu",
     text: "Liczy się to, co ruszasz z miejsca – a nie to, jak długo siedzisz w biurze. Jesteśmy zespołem zapaleńców sportu, budowniczych i gospodarzy, który otwiera każdy klub tak, jakby był pierwszy.",
   },
   faces: {
-    eyebrow: "Faces of PadelCity",
     title: "Z tymi ludźmi będziesz pracować",
     lead: "Zespoły klubowe, eventy, operacje, marka – wycinek naszego zespołu.",
     all: "Poznaj cały zespół",
   },
   openings: {
-    eyebrow: "Oferty pracy",
     title: "Znajdź swoją rolę",
     lead: "Wszystkie oferty pochodzą bezpośrednio z naszego systemu rekrutacyjnego. Wybierz rolę, wgraj CV – bez szablonowego listu motywacyjnego, chcemy poznać ciebie.",
   },
@@ -219,7 +204,7 @@ const pl: JobsContent = {
     placeholder: { title: "Tu pojawią się oferty z Personio", text: "Podgląd w stylu Personio z ofertami z padelcity.de/jobs. Na stronie produkcyjnej pojawi się tu strona kariery PadelCity z Personio – z ogłoszeniami i formularzem aplikacyjnym." },
   },
 
-  contact: { eyebrow: "Twoja osoba kontaktowa", text: "Masz pytania o ofertę lub rekrutację? Napisz albo zadzwoń bezpośrednio do Astrid.", mail: "E-mail", phone: "Telefon" },
+  contact: { text: "Masz pytania o ofertę lub rekrutację? Napisz albo zadzwoń bezpośrednio do Astrid.", mail: "E-mail", phone: "Telefon" },
   initiative: {
     title: "Nic dla ciebie? Aplikuj",
     accent: "spontanicznie",

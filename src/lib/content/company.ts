@@ -12,10 +12,10 @@ export const companyContent: Record<
   Locale,
   {
     meta: { title: string; description: string };
-    hero: { eyebrow: string; title: string; accent: string; lead: string; cta: string; imageAlt: string };
-    who: { eyebrow: string; title: string; accent: string; text: string; cta: string };
+    hero: { title: string; accent: string; lead: string; cta: string; imageAlt: string };
+    who: { title: string; accent: string; text: string; cta: string };
     paths: { title: string; accent: string; items: Path[] };
-    momentum: { eyebrow: string; title: string; title2: string; accent: string; text: string; ir: string; jobs: string };
+    momentum: { title: string; title2: string; accent: string; text: string; ir: string; jobs: string };
   }
 > = {
   de: {
@@ -24,7 +24,6 @@ export const companyContent: Record<
       description: "PadelCity als Unternehmen: wer wir sind, wohin wir wachsen und wie du Partner, Franchise-Partner, Investor oder Teil des Teams wirst.",
     },
     hero: {
-      eyebrow: "Unternehmen",
       title: "Mehr als",
       accent: "Courts.",
       lead: "Wer hinter PadelCity steht, wohin wir wachsen – und wie du mit uns zusammenarbeitest: als Partner, Franchise-Partner, Investor oder im Team.",
@@ -32,7 +31,6 @@ export const companyContent: Record<
       imageAlt: "PadelCity Team bei einem Event",
     },
     who: {
-      eyebrow: "Wer wir sind",
       title: "Gekommen fürs Spiel.",
       accent: "Geblieben für die Community.",
       text: "Was 2022 mit dem ersten Club in Ingolstadt begann, ist heute die größte Padel-Community des Landes. Wir bauen Courts, bringen Menschen zusammen und machen Padel zum Breitensport.",
@@ -49,7 +47,6 @@ export const companyContent: Record<
       ],
     },
     momentum: {
-      eyebrow: "Momentum 2026",
       title: "Series A.",
       title2: "Next",
       accent: "level.",
@@ -64,7 +61,6 @@ export const companyContent: Record<
       description: "PadelCity as a company: who we are, where we are growing and how to become a partner, franchise partner, investor or part of the team.",
     },
     hero: {
-      eyebrow: "Company",
       title: "More than",
       accent: "courts.",
       lead: "Who is behind PadelCity, where we are growing – and how to work with us: as a partner, franchise partner, investor or on the team.",
@@ -72,7 +68,6 @@ export const companyContent: Record<
       imageAlt: "PadelCity team at an event",
     },
     who: {
-      eyebrow: "Who we are",
       title: "Came for the game.",
       accent: "Stayed for the community.",
       text: "What started in 2022 with our first club in Ingolstadt is now the country's biggest padel community. We build courts, bring people together and make padel a sport for everyone.",
@@ -89,7 +84,6 @@ export const companyContent: Record<
       ],
     },
     momentum: {
-      eyebrow: "Momentum 2026",
       title: "Series A.",
       title2: "Next",
       accent: "level.",
@@ -104,7 +98,6 @@ export const companyContent: Record<
       description: "PadelCity jako firma: kim jesteśmy, dokąd rośniemy i jak zostać partnerem, franczyzobiorcą, inwestorem lub częścią zespołu.",
     },
     hero: {
-      eyebrow: "Firma",
       title: "Więcej niż",
       accent: "korty.",
       lead: "Kto stoi za PadelCity, dokąd rośniemy – i jak możesz z nami współpracować: jako partner, franczyzobiorca, inwestor albo w zespole.",
@@ -112,7 +105,6 @@ export const companyContent: Record<
       imageAlt: "Zespół PadelCity podczas eventu",
     },
     who: {
-      eyebrow: "Kim jesteśmy",
       title: "Przyszli dla gry.",
       accent: "Zostali dla społeczności.",
       text: "To, co zaczęło się w 2022 roku od pierwszego klubu w Ingolstadt, jest dziś największą społecznością padlową w kraju. Budujemy korty, łączymy ludzi i sprawiamy, że padel staje się sportem dla wszystkich.",
@@ -129,7 +121,6 @@ export const companyContent: Record<
       ],
     },
     momentum: {
-      eyebrow: "Momentum 2026",
       title: "Series A.",
       title2: "Next",
       accent: "level.",

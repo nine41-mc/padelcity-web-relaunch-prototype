@@ -74,8 +74,7 @@ export function JobsView({ locale }: { locale: Locale }) {
 
       <section className="overflow-hidden bg-brandbook-gradient py-16 md:py-24" aria-labelledby="kultur">
         <div className="container-site">
-          <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-fg/85">{t.culture.eyebrow}</p>
-          <h2 id="kultur" className="mt-4 max-w-3xl font-display text-4xl font-extrabold italic uppercase leading-[0.95] text-balance md:text-5xl lg:text-6xl">
+          <h2 id="kultur" className="max-w-3xl font-display text-4xl font-extrabold italic uppercase leading-[0.95] text-balance md:text-5xl lg:text-6xl">
             {t.culture.title}
           </h2>
         </div>

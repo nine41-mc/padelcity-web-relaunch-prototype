@@ -12,7 +12,6 @@ import { CountryFlag } from "@/components/locations/CountryFlag";
 
 const copy = {
   de: {
-    eyebrow: "Alle Seiten",
     title: "Sitemap",
     lead: "Alles auf einen Blick: Seiten, Clubs, Events und Magazin-Artikel.",
     pages: "Seiten",
@@ -24,7 +23,6 @@ const copy = {
     count: (n: number) => `${n} Clubs`,
   },
   en: {
-    eyebrow: "All pages",
     title: "Sitemap",
     lead: "Everything at a glance: pages, clubs, events and magazine articles.",
     pages: "Pages",
@@ -36,7 +34,6 @@ const copy = {
     count: (n: number) => `${n} clubs`,
   },
   pl: {
-    eyebrow: "Wszystkie strony",
     title: "Mapa strony",
     lead: "Wszystko w jednym miejscu: strony, kluby, eventy i artykuły z magazynu.",
     pages: "Strony",

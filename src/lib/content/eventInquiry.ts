@@ -12,14 +12,12 @@ const de = {
     description: "Firmen-Event, Geburtstag oder Mannschaftsabend: Frag dein Padel-Event ab 2 Courts à 2 Stunden an – wir melden uns mit einem unverbindlichen Angebot.",
   },
   hero: {
-    eyebrow: "Events",
     title: "Dein Event",
     accent: "anfragen",
     lead: "Teambuilding on and off the court! Gemeinsam gestalten wir ein unvergessliches Padel-Erlebnis für euer Team, eure Kunden oder eure Freunde.",
     imageAlt: "Volle Halle bei einem PadelCity Event",
   },
   teaser: {
-    eyebrow: "Teambuilding",
     title: "Dein Event",
     accent: "bei uns",
     text: "Teambuilding on and off the court! Gemeinsam gestalten wir ein unvergessliches Padel-Erlebnis für euer Team, eure Kunden oder eure Freunde.",
@@ -96,14 +94,12 @@ const en: EventInquiryContent = {
     description: "Company event, birthday or team night: request your padel event from 2 courts for 2 hours – we'll get back to you with a no-obligation offer.",
   },
   hero: {
-    eyebrow: "Events",
     title: "Request your",
     accent: "event",
     lead: "Team building on and off the court! Together we'll create an unforgettable padel experience for your team, your clients or your friends.",
     imageAlt: "Packed hall at a PadelCity event",
   },
   teaser: {
-    eyebrow: "Team building",
     title: "Your event",
     accent: "with us",
     text: "Team building on and off the court! Together we'll create an unforgettable padel experience for your team, your clients or your friends.",
@@ -178,14 +174,12 @@ const pl: EventInquiryContent = {
     description: "Event firmowy, urodziny czy wieczór drużynowy: zapytaj o event padlowy od 2 kortów na 2 godziny – odezwiemy się z niezobowiązującą ofertą.",
   },
   hero: {
-    eyebrow: "Eventy",
     title: "Zapytaj o",
     accent: "event",
     lead: "Teambuilding na korcie i poza nim! Razem stworzymy niezapomniane padlowe przeżycie dla twojego zespołu, klientów lub przyjaciół.",
     imageAlt: "Pełna hala podczas eventu PadelCity",
   },
   teaser: {
-    eyebrow: "Teambuilding",
     title: "Twój event",
     accent: "u nas",
     text: "Teambuilding na korcie i poza nim! Razem stworzymy niezapomniane padlowe przeżycie dla twojego zespołu, klientów lub przyjaciół.",

@@ -11,7 +11,6 @@ const de = {
   },
   hero: {
     // {clubs}/{cities} = approved key facts (keyFacts), {countries} = derived from open clubs
-    eyebrow: "{clubs}+ Clubs · {cities}+ Städte · {countries} Länder",
     imageAlt: "Padel-Spieler beim Schlag auf einem PadelCity Court",
     lead: "Der nächste Court ist näher, als du denkst. Such deine Stadt – und los geht's.",
     title: "Finde deinen Court. Starte dein",
@@ -62,9 +61,8 @@ const de = {
     view: "Club ansehen →",
     osm: "OpenStreetMap-Mitwirkende",
   },
-  cities: { eyebrow: "Alle Städte", title: "Von Ingolstadt bis Warschau.", other: "Weitere", courts: "Courts", soon: "bald" },
+  cities: { title: "Von Ingolstadt bis Warschau.", other: "Weitere", courts: "Courts", soon: "bald" },
   planned: {
-    eyebrow: "Coming soon",
     title: "Bald",
     accent: "eröffnet.",
     lead: "Hier rollen bald die Bälle. Trag dich ein und wir sagen dir Bescheid, sobald dein Club eröffnet.",
@@ -161,7 +159,6 @@ const de = {
     facilities: { title: "Facilities" },
     coaching: {
       imageAlt: "Coach erklärt einer Gruppe die Vorhand auf dem Court",
-      eyebrow: "PadelCity Academy",
       title: "Besser werden.",
       accent: "Gemeinsam.",
       text: "Schnupperkurs, Technik-Training oder Kids-Camp: Unsere Coaches in {city} holen dich auf deinem Level ab.",
@@ -236,7 +233,6 @@ const en: LocationsContent = {
     clubDescription: "{club}: {n} courts, opening hours, facilities & directions. Book your court in the PadelCity app.",
   },
   hero: {
-    eyebrow: "{clubs}+ clubs · {cities}+ cities · {countries} countries",
     imageAlt: "Padel player hitting a shot on a PadelCity court",
     lead: "The nearest court is closer than you think. Find your city – and off you go.",
     title: "Find your court. Start your",
@@ -287,9 +283,8 @@ const en: LocationsContent = {
     view: "View club →",
     osm: "OpenStreetMap contributors",
   },
-  cities: { eyebrow: "All cities", title: "From Ingolstadt to Warsaw.", other: "Other", courts: "courts", soon: "soon" },
+  cities: { title: "From Ingolstadt to Warsaw.", other: "Other", courts: "courts", soon: "soon" },
   planned: {
-    eyebrow: "Coming soon",
     title: "Opening",
     accent: "soon.",
     lead: "The balls will be flying here soon. Sign up and we'll let you know as soon as your club opens.",
@@ -385,7 +380,6 @@ const en: LocationsContent = {
     facilities: { title: "Facilities" },
     coaching: {
       imageAlt: "Coach explaining the forehand to a group on court",
-      eyebrow: "PadelCity Academy",
       title: "Level up.",
       accent: "Together.",
       text: "Taster session, technique training or kids' camp: our coaches in {city} meet you at your level.",
@@ -465,7 +459,6 @@ const pl: LocationsContent = {
     clubDescription: "{club}: korty ({n}), godziny otwarcia, udogodnienia i dojazd. Zarezerwuj kort w aplikacji PadelCity.",
   },
   hero: {
-    eyebrow: "{clubs}+ klubów · {cities}+ miast · {countries} kraje",
     imageAlt: "Gracz padla uderza piłkę na korcie PadelCity",
     lead: "Najbliższy kort jest bliżej, niż myślisz. Znajdź swoje miasto – i do gry.",
     title: "Znajdź swój kort. Zacznij swoją",
@@ -516,9 +509,8 @@ const pl: LocationsContent = {
     view: "Zobacz klub →",
     osm: "Współtwórcy OpenStreetMap",
   },
-  cities: { eyebrow: "Wszystkie miasta", title: "Od Ingolstadt po Warszawę.", other: "Inne", courts: "korty", soon: "wkrótce" },
+  cities: { title: "Od Ingolstadt po Warszawę.", other: "Inne", courts: "korty", soon: "wkrótce" },
   planned: {
-    eyebrow: "Coming soon",
     title: "Wkrótce",
     accent: "otwarcie.",
     lead: "Już niedługo polecą tu piłki. Zapisz się, a damy ci znać, gdy tylko twój klub zostanie otwarty.",
@@ -615,7 +607,6 @@ const pl: LocationsContent = {
     facilities: { title: "Udogodnienia" },
     coaching: {
       imageAlt: "Trener tłumaczy grupie forhend na korcie",
-      eyebrow: "PadelCity Academy",
       title: "Graj lepiej.",
       accent: "Razem.",
       text: "Lekcja próbna, trening techniki czy obóz dla dzieci: nasi trenerzy w mieście {city} dopasują się do twojego poziomu.",

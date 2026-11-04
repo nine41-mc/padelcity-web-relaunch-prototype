@@ -155,7 +155,6 @@ const de = {
       "Wir wollten mehr Padel spielen – also haben wir PadelCity gegründet. Story, Mission, Werte und die Menschen hinter Deutschlands führendem Padel-Betreiber.",
   },
   hero: {
-    eyebrow: `Seit ${keyFacts.foundedYear}`,
     imageAlt: "Die PadelCity Community feiert nach einem Turnier",
     title: "Wir wollten mehr Padel",
     accent: "spielen",
@@ -163,7 +162,6 @@ const de = {
     cta: "Unsere Story",
   },
   story: {
-    eyebrow: "Die Story",
     paragraphs: [
       "Alles begann mit einem simplen Problem: Wir wollten mehr Padel spielen – und fanden keine Courts. Die wenigen, die es gab, waren Wochen im Voraus ausgebucht.",
       `Also haben wir ${keyFacts.foundedYear} selbst angefangen zu bauen. Der erste Club entstand in ${keyFacts.firstClub}. Heute spielt unsere Community in über ${keyFacts.clubs} PadelCity Clubs auf mehr als ${keyFacts.courts} Courts in über ${keyFacts.cities} Städten.`,
@@ -174,15 +172,14 @@ const de = {
     { k: "Vision", t: "Padel für alle.", d: "Jede:r in Deutschland – und darüber hinaus – soll einen PadelCity Court in der Nähe haben." },
     { k: "Mission", t: "Infrastruktur + Community.", d: "Wir bauen Clubs, eine App und eine Community, die Padel zum Breitensport machen. #bettertogether" },
   ],
-  values: { eyebrow: "Unsere Werte", title: "Sieben Werte. Ein Team.", lead: "Was uns antreibt – auf dem Court, im Club und im Office.", aria: "Unsere Werte" },
-  pillars: { eyebrow: "Was PadelCity ausmacht", title: "Die 7 Säulen von PadelCity" },
-  founders: { eyebrow: "Gründer", title: "Die Köpfe hinter PadelCity" },
+  values: { title: "Sieben Werte. Ein Team.", lead: "Was uns antreibt – auf dem Court, im Club und im Office.", aria: "Unsere Werte" },
+  pillars: { title: "Die 7 Säulen von PadelCity" },
+  founders: { title: "Die Köpfe hinter PadelCity" },
   faces: {
-    eyebrow: "Faces of PadelCity",
     title: "Das Team hinter den Clubs",
     lead: "Club-Teams, Events, Operations, Brand: Sie machen PadelCity jeden Tag zu dem, was es ist.",
   },
-  milestones: { eyebrow: "Meilensteine", title: "Unsere Reise bis heute" },
+  milestones: { title: "Unsere Reise bis heute" },
   jobs: {
     title: "Werde Teil vom",
     accent: "Team",
@@ -201,7 +198,6 @@ const en: AboutContent = {
       "We wanted to play more padel – so we founded PadelCity. The story, mission, values and people behind Germany's leading padel operator.",
   },
   hero: {
-    eyebrow: `Since ${keyFacts.foundedYear}`,
     imageAlt: "The PadelCity community celebrating after a tournament",
     title: "We just wanted to play more",
     accent: "padel",
@@ -209,7 +205,6 @@ const en: AboutContent = {
     cta: "Our story",
   },
   story: {
-    eyebrow: "The story",
     paragraphs: [
       "It all started with a simple problem: we wanted to play more padel – and couldn't find a court. The few that existed were booked up weeks in advance.",
       `So in ${keyFacts.foundedYear} we started building our own. The first club opened in ${keyFacts.firstClub}. Today our community plays at more than ${keyFacts.clubs} PadelCity clubs on over ${keyFacts.courts} courts in more than ${keyFacts.cities} cities.`,
@@ -220,15 +215,14 @@ const en: AboutContent = {
     { k: "Vision", t: "Padel for everyone.", d: "Everyone in Germany – and beyond – should have a PadelCity court nearby." },
     { k: "Mission", t: "Infrastructure + community.", d: "We build clubs, an app and a community that make padel a sport for everyone. #bettertogether" },
   ],
-  values: { eyebrow: "Our values", title: "Seven values. One team.", lead: "What drives us – on court, in the club and in the office.", aria: "Our values" },
-  pillars: { eyebrow: "What makes PadelCity", title: "The 7 pillars of PadelCity" },
-  founders: { eyebrow: "Founders", title: "The minds behind PadelCity" },
+  values: { title: "Seven values. One team.", lead: "What drives us – on court, in the club and in the office.", aria: "Our values" },
+  pillars: { title: "The 7 pillars of PadelCity" },
+  founders: { title: "The minds behind PadelCity" },
   faces: {
-    eyebrow: "Faces of PadelCity",
     title: "The team behind the clubs",
     lead: "Club teams, events, operations, brand: they make PadelCity what it is, every single day.",
   },
-  milestones: { eyebrow: "Milestones", title: "Our journey so far" },
+  milestones: { title: "Our journey so far" },
   jobs: {
     title: "Join the",
     accent: "team",
@@ -245,7 +239,6 @@ const pl: AboutContent = {
       "Chcieliśmy więcej grać w padla – więc założyliśmy PadelCity. Historia, misja, wartości i ludzie stojący za wiodącym operatorem padla w Niemczech.",
   },
   hero: {
-    eyebrow: `Od ${keyFacts.foundedYear}`,
     imageAlt: "Społeczność PadelCity świętuje po turnieju",
     title: "Chcieliśmy po prostu więcej",
     accent: "grać",
@@ -253,7 +246,6 @@ const pl: AboutContent = {
     cta: "Nasza historia",
   },
   story: {
-    eyebrow: "Historia",
     paragraphs: [
       "Wszystko zaczęło się od prostego problemu: chcieliśmy więcej grać w padla – i nie mogliśmy znaleźć kortów. Te nieliczne, które istniały, były zarezerwowane na tygodnie do przodu.",
       `Więc w ${keyFacts.foundedYear} roku sami zaczęliśmy budować. Pierwszy klub powstał w ${keyFacts.firstClub}. Dziś nasza społeczność gra w ponad ${keyFacts.clubs} klubach PadelCity na ponad ${keyFacts.courts} kortach w ponad ${keyFacts.cities} miastach.`,
@@ -264,15 +256,14 @@ const pl: AboutContent = {
     { k: "Wizja", t: "Padel dla wszystkich.", d: "Każdy w Niemczech – i nie tylko – powinien mieć kort PadelCity w pobliżu." },
     { k: "Misja", t: "Infrastruktura + społeczność.", d: "Budujemy kluby, aplikację i społeczność, dzięki którym padel staje się sportem dla każdego. #bettertogether" },
   ],
-  values: { eyebrow: "Nasze wartości", title: "Siedem wartości. Jeden zespół.", lead: "Co nas napędza – na korcie, w klubie i w biurze.", aria: "Nasze wartości" },
-  pillars: { eyebrow: "Co wyróżnia PadelCity", title: "7 filarów PadelCity" },
-  founders: { eyebrow: "Założyciele", title: "Ludzie stojący za PadelCity" },
+  values: { title: "Siedem wartości. Jeden zespół.", lead: "Co nas napędza – na korcie, w klubie i w biurze.", aria: "Nasze wartości" },
+  pillars: { title: "7 filarów PadelCity" },
+  founders: { title: "Ludzie stojący za PadelCity" },
   faces: {
-    eyebrow: "Faces of PadelCity",
     title: "Zespół, który stoi za klubami",
     lead: "Zespoły klubowe, eventy, operacje, marka: to oni każdego dnia tworzą PadelCity.",
   },
-  milestones: { eyebrow: "Kamienie milowe", title: "Nasza dotychczasowa droga" },
+  milestones: { title: "Nasza dotychczasowa droga" },
   jobs: {
     title: "Dołącz do",
     accent: "zespołu",

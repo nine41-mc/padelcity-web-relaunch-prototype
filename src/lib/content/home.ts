@@ -23,7 +23,6 @@ const de = {
   },
   ticker: ["Let's play Padel", "30+ Clubs", "200+ Courts", "25+ Städte", "Game. Set. Match.", "#bettertogether", "We serve. You play.", "Deutschlands Nr. 1 im Padel"],
   leader: {
-    eyebrow: "Seit 2022 on court",
     title: "Deutschlands",
     accent: "Nr. 1",
     titleEnd: "für Padel.",
@@ -35,11 +34,10 @@ const de = {
     company: "Mehr über PadelCity",
     // {cities} = open clubs outside Germany, derived from data (e.g. "Innsbruck & Warschau")
   },
-  showcase: { eyebrow: "Unsere Clubs", title: "Clubs mit", accent: "Vibe.", all: "Alle Standorte", prev: "Zurück", next: "Weiter", slugs: showcaseSlugs },
-  events: { eyebrow: "Social Events & Turniere", title: "Mehr als ein", accent: "Match.", all: "Alle Events", hero: "Hero Event", more: "Mehr erfahren" },
+  showcase: { title: "Clubs mit", accent: "Vibe.", all: "Alle Standorte", prev: "Zurück", next: "Weiter", slugs: showcaseSlugs },
+  events: { title: "Mehr als ein", accent: "Match.", all: "Alle Events", hero: "Hero Event", more: "Mehr erfahren" },
   // Newcomers (team feedback m-5): facts only from the FAQ, the rules article and the club prices
   newbies: {
-    eyebrow: "Neu im Padel",
     title: "Zum ersten Mal",
     accent: "Padel?",
     lead: "So geht's – in vier Schritten vom ersten Schlag zum ersten Match.",
@@ -50,9 +48,8 @@ const de = {
       { key: "book", title: "Erster Court", text: "In der App Club wählen, Zeit und Court aussuchen, bezahlen – die Bestätigung kommt sofort. Lieber mit Coach? Starte mit einem Schnupperkurs.", link: "Schnupperkurs" },
     ],
   },
-  news: { eyebrow: "News & Magazin", title: "Stories vom", accent: "Court.", all: "Zum Magazin" },
+  news: { title: "Stories vom", accent: "Court.", all: "Zum Magazin" },
   community: {
-    eyebrow: "#bettertogether",
     title: "Everybody's",
     accent: "welcome.",
     text: "Erster Schlag oder Turnierroutine – bei uns findest du deine Leute. Finde Mitspieler:innen in der App, komm zu unseren Social Events oder join die WhatsApp-Community deiner Stadt.",
@@ -62,7 +59,6 @@ const de = {
   },
   // Copy from padelcity.de (voucher section), combined
   shop: {
-    eyebrow: "Gutscheine",
     title: "Verschenke eine",
     accent: "Padel Session",
     subline: "Schenk Zeit auf dem Court.",
@@ -94,7 +90,6 @@ const en: HomeContent = {
   },
   ticker: ["Let's play Padel", "30+ clubs", "200+ courts", "25+ cities", "Game. Set. Match.", "#bettertogether", "We serve. You play.", "Germany's No. 1 in padel"],
   leader: {
-    eyebrow: "On court since 2022",
     title: "Germany's",
     accent: "No. 1",
     titleEnd: "for padel.",
@@ -105,10 +100,9 @@ const en: HomeContent = {
     mapLabel: "Map: PadelCity clubs in Germany, Austria and Poland",
     company: "More about PadelCity",
   },
-  showcase: { eyebrow: "Our clubs", title: "Clubs with", accent: "vibes.", all: "All locations", prev: "Previous", next: "Next", slugs: showcaseSlugs },
-  events: { eyebrow: "Social events & tournaments", title: "More than a", accent: "match.", all: "All events", hero: "Hero event", more: "Learn more" },
+  showcase: { title: "Clubs with", accent: "vibes.", all: "All locations", prev: "Previous", next: "Next", slugs: showcaseSlugs },
+  events: { title: "More than a", accent: "match.", all: "All events", hero: "Hero event", more: "Learn more" },
   newbies: {
-    eyebrow: "New to padel",
     title: "First time",
     accent: "padel?",
     lead: "Here's how – four steps from your first swing to your first match.",
@@ -119,9 +113,8 @@ const en: HomeContent = {
       { key: "book", title: "First court", text: "In the app: pick a club, choose a time and court, pay – confirmation comes straight away. Rather start with a coach? Book a taster session.", link: "Taster session" },
     ],
   },
-  news: { eyebrow: "News & magazine", title: "Stories from the", accent: "court.", all: "To the magazine" },
+  news: { title: "Stories from the", accent: "court.", all: "To the magazine" },
   community: {
-    eyebrow: "#bettertogether",
     title: "Everybody's",
     accent: "welcome.",
     text: "First swing or tournament routine – this is where you find your people. Find players in the app, join our social events or the WhatsApp community in your city.",
@@ -130,7 +123,6 @@ const en: HomeContent = {
     imgAlt: "PadelCity community",
   },
   shop: {
-    eyebrow: "Gift vouchers",
     title: "Give a",
     accent: "padel session",
     subline: "Give time on court.",
@@ -160,7 +152,6 @@ const pl: HomeContent = {
   },
   ticker: ["Let's play Padel", "30+ klubów", "200+ kortów", "25+ miast", "Game. Set. Match.", "#bettertogether", "We serve. You play.", "Nr 1 w padlu w Niemczech"],
   leader: {
-    eyebrow: "Na korcie od 2022",
     title: "W Niemczech",
     accent: "Nr 1",
     titleEnd: "w padlu.",
@@ -171,10 +162,9 @@ const pl: HomeContent = {
     mapLabel: "Mapa: kluby PadelCity w Niemczech, Austrii i Polsce",
     company: "Więcej o PadelCity",
   },
-  showcase: { eyebrow: "Nasze kluby", title: "Kluby z", accent: "klimatem.", all: "Wszystkie lokalizacje", prev: "Wstecz", next: "Dalej", slugs: showcaseSlugs },
-  events: { eyebrow: "Eventy towarzyskie i turnieje", title: "Więcej niż", accent: "mecz.", all: "Wszystkie eventy", hero: "Hero Event", more: "Dowiedz się więcej" },
+  showcase: { title: "Kluby z", accent: "klimatem.", all: "Wszystkie lokalizacje", prev: "Wstecz", next: "Dalej", slugs: showcaseSlugs },
+  events: { title: "Więcej niż", accent: "mecz.", all: "Wszystkie eventy", hero: "Hero Event", more: "Dowiedz się więcej" },
   newbies: {
-    eyebrow: "Nowy w padlu",
     title: "Pierwszy raz",
     accent: "padel?",
     lead: "Tak to działa – cztery kroki od pierwszego uderzenia do pierwszego meczu.",
@@ -185,9 +175,8 @@ const pl: HomeContent = {
       { key: "book", title: "Pierwszy kort", text: "W aplikacji wybierz klub, godzinę i kort, zapłać – potwierdzenie przychodzi od razu. Wolisz zacząć z trenerem? Zarezerwuj lekcję próbną.", link: "Lekcja próbna" },
     ],
   },
-  news: { eyebrow: "News i magazyn", title: "Historie z", accent: "kortu.", all: "Do magazynu" },
+  news: { title: "Historie z", accent: "kortu.", all: "Do magazynu" },
   community: {
-    eyebrow: "#bettertogether",
     title: "Everybody's",
     accent: "welcome.",
     text: "Pierwsze uderzenie czy turniejowa rutyna – u nas znajdziesz swoich ludzi. Znajdź partnerów do gry w aplikacji, wpadnij na nasze eventy towarzyskie albo dołącz do społeczności WhatsApp w swoim mieście.",
@@ -196,7 +185,6 @@ const pl: HomeContent = {
     imgAlt: "Społeczność PadelCity",
   },
   shop: {
-    eyebrow: "Vouchery",
     title: "Podaruj",
     accent: "sesję padla",
     subline: "Podaruj czas na korcie.",

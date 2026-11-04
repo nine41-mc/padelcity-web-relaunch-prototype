@@ -62,8 +62,7 @@ export function AboutView({ locale }: { locale: Locale }) {
       <Section id="story" className="scroll-mt-16">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <Reveal>
-            <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-accent-fg">{t.story.eyebrow}</p>
-            <div className="mt-6 space-y-5 text-lg leading-relaxed text-fg/80">
+            <div className="space-y-5 text-lg leading-relaxed text-fg/80">
               {t.story.paragraphs.map((p) => (
                 <p key={p}>{p}</p>
               ))}

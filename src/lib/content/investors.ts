@@ -37,7 +37,6 @@ const de = {
       "PadelCity ist Deutschlands führender Padel-Betreiber. Series A closed: Equity Story, Kennzahlen, Meilensteine, Gründer und Pressematerial.",
   },
   hero: {
-    eyebrow: "Series A closed",
     imageAlt: "Business-Runde bei PadelCity",
     title: "Series A. Next",
     accent: "Level",
@@ -58,7 +57,6 @@ const de = {
     "Neue Länder",
   ],
   equity: {
-    eyebrow: "Equity Story",
     title: "Vier Gründe, warum PadelCity gewinnt",
     lead: "Markt, Plattform, Skalierung, Team – die Kurzfassung unserer Investment-These.",
     aria: "Kapitel der Equity Story",
@@ -106,20 +104,17 @@ const de = {
     ] satisfies EquityChapter[],
   },
   kpis: {
-    eyebrow: "Kennzahlen",
     title: "PadelCity in Zahlen",
     lead: "Stand: Oktober 2026.",
     items: kpis({ clubs: "Clubs", courts: "Courts", cities: "Städte", founded: "Gegründet", firstClub: `Erster Club: ${keyFacts.firstClub}` }),
   },
-  milestones: { eyebrow: "Meilensteine", title: "Von Ingolstadt zur Series A" },
+  milestones: { title: "Von Ingolstadt zur Series A" },
   leadership: {
-    eyebrow: "Gründer & Leadership",
     title: "Das Team hinter PadelCity",
     lead: "Unternehmertum und Spitzensport – vereint in einer Mission: Padel zum Breitensport machen.",
     management: "Geschäftsführung",
   },
   press: {
-    eyebrow: "Presse & Downloads",
     title: "Press Kit",
     note: "Auf Anfrage",
     requestLabel: "anfragen",
@@ -132,7 +127,6 @@ const de = {
     ] satisfies PressItem[],
   },
   contact: {
-    eyebrow: "Investor Relations",
     title: "Lass uns sprechen.",
     text: "Fragen zu PadelCity, zur Series A oder zu Co-Investments? Schreib uns – wir melden uns.",
     mailLabel: "E-Mail schreiben",
@@ -149,7 +143,6 @@ const en: InvestorsContent = {
       "PadelCity is Germany's leading padel operator. Series A closed: equity story, key figures, milestones, founders and press material.",
   },
   hero: {
-    eyebrow: "Series A closed",
     imageAlt: "Business meeting at PadelCity",
     title: "Series A. Next",
     accent: "level",
@@ -170,7 +163,6 @@ const en: InvestorsContent = {
     "New countries",
   ],
   equity: {
-    eyebrow: "Equity story",
     title: "Four reasons PadelCity wins",
     lead: "Market, platform, scale, team – our investment case in a nutshell.",
     aria: "Equity story chapters",
@@ -218,20 +210,17 @@ const en: InvestorsContent = {
     ],
   },
   kpis: {
-    eyebrow: "Key figures",
     title: "PadelCity in numbers",
     lead: "As of October 2026.",
     items: kpis({ clubs: "Clubs", courts: "Courts", cities: "Cities", founded: "Founded", firstClub: `First club: ${keyFacts.firstClub}` }),
   },
-  milestones: { eyebrow: "Milestones", title: "From Ingolstadt to Series A" },
+  milestones: { title: "From Ingolstadt to Series A" },
   leadership: {
-    eyebrow: "Founders & leadership",
     title: "The team behind PadelCity",
     lead: "Entrepreneurship and elite sport – united by one mission: making padel a sport for everyone.",
     management: "Management",
   },
   press: {
-    eyebrow: "Press & downloads",
     title: "Press kit",
     note: "On request",
     requestLabel: "request",
@@ -243,7 +232,6 @@ const en: InvestorsContent = {
     ],
   },
   contact: {
-    eyebrow: "Investor Relations",
     title: "Let's talk.",
     text: "Questions about PadelCity, our Series A or co-investment? Drop us a line – we'll get back to you.",
     mailLabel: "Send an email",
@@ -258,7 +246,6 @@ const pl: InvestorsContent = {
       "PadelCity to wiodący operator padla w Niemczech. Series A closed: equity story, kluczowe wskaźniki, kamienie milowe, założyciele i materiały prasowe.",
   },
   hero: {
-    eyebrow: "Series A closed",
     imageAlt: "Spotkanie biznesowe w PadelCity",
     title: "Series A. Next",
     accent: "Level",
@@ -279,7 +266,6 @@ const pl: InvestorsContent = {
     "Nowe kraje",
   ],
   equity: {
-    eyebrow: "Equity story",
     title: "Cztery powody, dla których PadelCity wygrywa",
     lead: "Rynek, platforma, skalowanie, zespół – nasza teza inwestycyjna w skrócie.",
     aria: "Rozdziały equity story",
@@ -327,20 +313,17 @@ const pl: InvestorsContent = {
     ],
   },
   kpis: {
-    eyebrow: "Kluczowe wskaźniki",
     title: "PadelCity w liczbach",
     lead: "Stan: październik 2026.",
     items: kpis({ clubs: "Kluby", courts: "Korty", cities: "Miasta", founded: "Rok założenia", firstClub: `Pierwszy klub: ${keyFacts.firstClub}` }),
   },
-  milestones: { eyebrow: "Kamienie milowe", title: "Od Ingolstadt do Series A" },
+  milestones: { title: "Od Ingolstadt do Series A" },
   leadership: {
-    eyebrow: "Założyciele i kierownictwo",
     title: "Zespół stojący za PadelCity",
     lead: "Przedsiębiorczość i sport wyczynowy – połączone jedną misją: zrobić z padla sport masowy.",
     management: "Zarząd",
   },
   press: {
-    eyebrow: "Prasa i materiały do pobrania",
     title: "Press kit",
     note: "Na zapytanie",
     requestLabel: "– wyślij zapytanie",
@@ -352,7 +335,6 @@ const pl: InvestorsContent = {
     ],
   },
   contact: {
-    eyebrow: "Investor Relations",
     title: "Porozmawiajmy.",
     text: "Masz pytania o PadelCity, Series A albo koinwestycje? Napisz do nas – odezwiemy się.",
     mailLabel: "Napisz e-mail",

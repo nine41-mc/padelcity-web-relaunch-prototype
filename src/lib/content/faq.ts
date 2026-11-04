@@ -41,7 +41,6 @@ const de = {
     description: "Buchen & Bezahlen in der App, Stornierung, Leihschläger, Hansefit & EGYM Wellpass, Academy und dein Konto: Antworten auf die häufigsten Fragen.",
   },
   hero: {
-    eyebrow: "FAQ",
     title: "Fragen?",
     accent: "Antworten.",
     lead: "Buchen, bezahlen, stornieren, Benefits und Academy – hier findest du schnell, was du wissen musst. Let's play Padel!",
@@ -63,7 +62,6 @@ const de = {
     sourceApi: "Die Antworten kommen aus dem Hilfe-Bereich der PadelCity App.",
   },
   contact: {
-    eyebrow: "Noch Fragen?",
     title: "Schreib",
     accent: "uns.",
     text: "Noch eine Frage offen? Unser Team antwortet dir per Mail. Fragen zu einem bestimmten Club beantwortet dir das Club-Team – Kontakt findest du auf jeder Clubseite.",
@@ -182,7 +180,6 @@ const en: FaqContent = {
     description: "Booking & paying in the app, cancellations, hire rackets, Hansefit & EGYM Wellpass, the Academy and your account: answers to the most common questions.",
   },
   hero: {
-    eyebrow: "FAQ",
     title: "Questions?",
     accent: "Answers.",
     lead: "Booking, paying, cancelling, benefits and the Academy – everything you need to know, fast. Let's play Padel!",
@@ -204,7 +201,6 @@ const en: FaqContent = {
     sourceApi: "These answers come from the help section of the PadelCity app.",
   },
   contact: {
-    eyebrow: "Still curious?",
     title: "Drop us",
     accent: "a line.",
     text: "Still have a question? Our team will get back to you by email. For anything about a specific club, the club team is your best bet – you'll find their contact on every club page.",
@@ -317,7 +313,6 @@ const pl: FaqContent = {
     description: "Rezerwacja i płatność w aplikacji, anulowanie, rakiety do wypożyczenia, Hansefit i EGYM Wellpass, Akademia i twoje konto: odpowiedzi na najczęstsze pytania.",
   },
   hero: {
-    eyebrow: "FAQ",
     title: "Pytania?",
     accent: "Odpowiedzi.",
     lead: "Rezerwacja, płatność, anulowanie, benefity i Akademia – tu szybko znajdziesz to, co musisz wiedzieć. Let's play Padel!",
@@ -339,7 +334,6 @@ const pl: FaqContent = {
     sourceApi: "Odpowiedzi pochodzą z sekcji pomocy w aplikacji PadelCity.",
   },
   contact: {
-    eyebrow: "Masz jeszcze pytania?",
     title: "Napisz",
     accent: "do nas.",
     text: "Masz jeszcze pytanie? Nasz zespół odpowie ci mailowo. Na pytania o konkretny klub odpowie zespół klubu – kontakt znajdziesz na stronie każdego klubu.",

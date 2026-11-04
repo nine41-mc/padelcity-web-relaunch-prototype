@@ -1,14 +1,13 @@
 import { Mail, Phone } from "lucide-react";
 import { asset } from "@/lib/asset";
 
-type Contact = { name: string; role: string; email: string; phone: string; image: string; eyebrow: string; text: string };
+type Contact = { name: string; role: string; email: string; phone: string; image: string; text: string };
 
 /** People & Culture contact next to the open positions (Contentful: jobs page). */
 export function JobsContact({ contact }: { contact: Contact }) {
   return (
     <aside className="h-fit rounded-[24px] border border-fg/10 bg-raised pad-panel lg:sticky lg:top-28">
-      <p className="text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{contact.eyebrow}</p>
-      <div className="mt-4 flex items-center gap-4">
+      <div className="flex items-center gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={asset(contact.image)} alt={contact.name} className="size-20 shrink-0 rounded-full object-cover" loading="lazy" />
         <div>

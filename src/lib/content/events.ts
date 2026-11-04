@@ -13,7 +13,6 @@ const de = {
     description: "Social Events, Turniere und Trainings in allen PadelCity Clubs – plus Highlights wie die One Point Challenge und die PadelCity Series Finals.",
   },
   hero: {
-    eyebrow: "Game. Set. Match.",
     imageAlt: "Volle Tribüne bei einem PadelCity Turnier",
     lead: "Vom Afterwork-Americano bis zur 100.000-€-Challenge: Hier spielt die Community. Komm vorbei, misch mit, #bettertogether.",
     title: "Social",
@@ -23,11 +22,9 @@ const de = {
     ctaApp: "In der App öffnen",
   },
   highlights: {
-    eyebrow: "Highlights",
     title: "Die großen Bühnen",
   },
   formats: {
-    eyebrow: "Unsere Formate",
     title: "Jede Woche. Jede Saison.",
     lead: "Diese Formate laufen immer wieder – in deinem Club oder auf der großen Bühne. Such dir deins aus.",
     filter: "Nach Format filtern",
@@ -36,7 +33,6 @@ const de = {
     none: "Nächste Termine in der App",
   },
   local: {
-    eyebrow: "In deinem Club",
     title: "Spielen, lachen, wiederkommen",
   },
   explorer: {
@@ -107,7 +103,6 @@ const en: EventsContent = {
     description: "Social events, tournaments and training sessions at every PadelCity club – plus headline moments like the One Point Challenge and the PadelCity Series Finals.",
   },
   hero: {
-    eyebrow: "Game. Set. Match.",
     imageAlt: "Packed stands at a PadelCity tournament",
     lead: "From after-work Americanos to a €100,000 challenge: this is where the community plays. Drop in, join the mix, #bettertogether.",
     title: "Social",
@@ -117,11 +112,9 @@ const en: EventsContent = {
     ctaApp: "Open in the app",
   },
   highlights: {
-    eyebrow: "Highlights",
     title: "The big stages",
   },
   formats: {
-    eyebrow: "Our formats",
     title: "Every week. Every season.",
     lead: "These formats come back again and again – at your club or on the big stage. Pick yours.",
     filter: "Filter by format",
@@ -130,7 +123,6 @@ const en: EventsContent = {
     none: "Next dates in the app",
   },
   local: {
-    eyebrow: "At your club",
     title: "Play, laugh, come back",
   },
   explorer: {
@@ -199,7 +191,6 @@ const pl: EventsContent = {
     description: "Social eventy, turnieje i treningi we wszystkich klubach PadelCity – plus highlighty takie jak One Point Challenge i PadelCity Series Finals.",
   },
   hero: {
-    eyebrow: "Game. Set. Match.",
     imageAlt: "Pełne trybuny podczas turnieju PadelCity",
     lead: "Od Americano po pracy po challenge za 100 000 €: tu gra społeczność. Wpadnij, dołącz do gry, #bettertogether.",
     title: "Social",
@@ -209,11 +200,9 @@ const pl: EventsContent = {
     ctaApp: "Otwórz w aplikacji",
   },
   highlights: {
-    eyebrow: "Highlights",
     title: "Wielkie sceny",
   },
   formats: {
-    eyebrow: "Nasze formaty",
     title: "Co tydzień. Co sezon.",
     lead: "Te formaty wracają regularnie – w twoim klubie albo na dużej scenie. Wybierz swój.",
     filter: "Filtruj według formatu",
@@ -222,7 +211,6 @@ const pl: EventsContent = {
     none: "Najbliższe terminy w aplikacji",
   },
   local: {
-    eyebrow: "W twoim klubie",
     title: "Graj, śmiej się, wracaj",
   },
   explorer: {
