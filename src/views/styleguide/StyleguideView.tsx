@@ -148,7 +148,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             swatch={<div className="grid h-28 place-items-center rounded-[16px] border border-fg/15 bg-canvas text-2xl font-semibold text-fg">Aa</div>}
             values="#FFFFFF auf #0B0B0F"
             bb={ROLE_BRANDBOOK.secondary}
-            uses={["Fließtext und alle Icons", "Outline-Buttons, Rahmen, Hover", "Textlinks im Hover: Magenta 300", "Ausnahme: Öffnungsstatus auf Club-Karten in Magenta 300"]}
+            uses={["Fließtext und alle Icons", "Outline-Buttons, Rahmen, Hover", "Textlinks im Hover: Magenta 300"]}
           />
           <RoleCard
             role="Highlight"

@@ -11,13 +11,11 @@
  * PRIMARY   = brand gradient purple #8412B5 → magenta #E005C3 (`bg-brand-gradient`, purple-* and magenta-* tokens).
  *             Primary CTAs (Button "gradient", the round arrow on white "primary" buttons), active
  *             states (active tab / nav underline, selected filter chip, segmented control, selected
- *             option), open accordion toggles, purple surfaces and glows (`shadow-glow`), the pulsing dot in
- *             eyebrows (magenta-400, PadelCity, 15.10.2026).
+ *             option), open accordion toggles, purple surfaces and glows (`shadow-glow`).
  * SECONDARY = white on ink. Body text, ALL icons (facility, sport, contact, clock, map pin, social,
  *             filter, select), outline buttons, borders, hover states (→ white, or magenta-300 for
  *             text links), carousel arrows, rating stars. Never Optic Yellow on hover.
- *             Exception: the opening status line on club cards ("Geöffnet bis 22:00" + clock icon)
- *             is magenta-300 – PadelCity pink for live club info.
+ *             The opening status line on club cards is white too (design feedback 04.11.2026; was magenta-300).
  * HIGHLIGHT = Optic Yellow #dfff4f (`optic-*`, tennis-ball colour, ITF name; replaced the earlier neon #b4e854 on 19.10.2026). ONLY these uses:
  *             1. <Accent> brush word in headlines          6. keyboard focus ring / skip link (a11y)
  *             2. Optic Yellow marquee / ticker bands (home+footer)  7. active pin + pin label on the HOME map

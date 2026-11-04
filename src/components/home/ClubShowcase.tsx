@@ -93,7 +93,7 @@ export function ClubPoster({ club, locale, fill = false }: { club: Club; locale:
       {/* Purple sky + grain (top), darkening for the stats (bottom) */}
       <PosterSky />
 
-      {/* Opening status (PadelCity pink) where the Instagram posts carry their chip */}
+      {/* Opening status (white) where the Instagram posts carry their chip */}
       <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1.5 backdrop-blur">
         <OpenStatus club={club} locale={locale} />
       </span>
