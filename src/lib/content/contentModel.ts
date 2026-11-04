@@ -199,11 +199,10 @@ export const contentModel: PageType[] = [
       },
       {
         id: "eventFormats",
-        name: "Unsere Formate",
-        text: "One Point Challenge, Series, Afterwork Americano, Mix nach Level, King of the Court, Kids Camp",
+        name: "Formate (Filter der Event-Liste)",
+        text: "One Point Challenge, Series, Afterwork Americano, Mix nach Level, King of the Court, Kids Camp – als Leiste über der Liste, ein Klick filtert die Termine",
         fields: [
-          ...sectionHead(),
-          f("Format: Name, Etikett, Text, Bild", "cms"),
+          f("Format: Name, Bild", "cms"),
           f("Nächster Termin je Format", "apiExtend", "GET /v2/club-events", "Zuordnung Event → Format fehlt; heute nur über den Titel möglich"),
         ],
       },

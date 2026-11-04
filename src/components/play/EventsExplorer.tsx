@@ -6,7 +6,9 @@ import { CalendarSearch, MapPin, RotateCcw } from "lucide-react";
 import type { ClubEvent } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
-import { EventCard } from "@/components/cards/EventCard";
+import { EventCard, formatEventDate } from "@/components/cards/EventCard";
+import { Media } from "@/components/ui/Media";
+import type { EventFormat } from "@/lib/content/events";
 import { Reveal } from "@/components/ui/Reveal";
 import { Select } from "@/components/ui/Select";
 import { cn } from "@/components/ui/cn";
@@ -29,23 +31,36 @@ export type EventsExplorerLabels = {
   reset: string;
 };
 
+export type EventFormatLabels = { filter: string; all: string; next: string; none: string };
+
 // Contentful module: eventList (filters configurable; events from Contentful/mocks – no booking data)
-/** Filter bar (type, city, date window "this week" on the event dates) + grid of local events. */
+/**
+ * Formats strip (each with its next date, design feedback 04.11.2026: one section instead of list + formats) above the
+ * filter bar (type, city, "this week") and the grid. Without a format, hero events stay out – they have their own
+ * section above; picking a format shows all its dates, hero events included.
+ */
 export function EventsExplorer({
   events,
   locale,
   labels: t,
   typeLabels,
+  formats = [],
+  formatLabels,
 }: {
   events: ClubEvent[];
   locale: Locale;
   labels: EventsExplorerLabels;
   typeLabels: Record<ClubEvent["type"], string>;
+  formats?: EventFormat[];
+  formatLabels?: EventFormatLabels;
 }) {
   const typeOptions = typeValues.map((value) => ({ value, label: value === "all" ? t.all : typeLabels[value] }));
   const [type, setType] = useState<TypeFilter>("all");
   const [city, setCity] = useState("all");
   const [thisWeek, setThisWeek] = useState(false);
+  const [format, setFormat] = useState("all");
+  const inFormat = (e: ClubEvent, f: EventFormat) => f.match.some((m) => e.id.startsWith(m));
+  const activeFormat = formats.find((f) => f.id === format);
 
   const cities = useMemo(() => Array.from(new Set(events.map((e) => e.city).filter(Boolean) as string[])).sort((a, b) => a.localeCompare(b, localeTags[locale].intl)), [events, locale]);
 
@@ -53,6 +68,7 @@ export function EventsExplorer({
     const now = Date.now();
     const weekEnd = now + 7 * 86_400_000;
     return events
+      .filter((e) => (activeFormat ? inFormat(e, activeFormat) : e.type !== "hero"))
       .filter((e) => type === "all" || e.type === type)
       .filter((e) => city === "all" || e.city === city)
       .filter((e) => {
@@ -61,17 +77,60 @@ export function EventsExplorer({
         return t >= now - 86_400_000 && t <= weekEnd;
       })
       .sort((a, b) => a.start.localeCompare(b.start));
-  }, [events, type, city, thisWeek]);
+  }, [events, type, city, thisWeek, activeFormat]);
 
   const reset = () => {
     setType("all");
     setCity("all");
     setThisWeek(false);
+    setFormat("all");
   };
-  const dirty = type !== "all" || city !== "all" || thisWeek;
+  const dirty = type !== "all" || city !== "all" || thisWeek || format !== "all";
 
   return (
     <div>
+      {formats.length > 0 && formatLabels && (
+        <div className="-mx-4 mb-6 flex gap-3 overflow-x-auto px-4 pb-1 scrollbar-none md:mx-0 md:px-0" role="radiogroup" aria-label={formatLabels.filter}>
+          <button
+            type="button"
+            role="radio"
+            aria-checked={format === "all"}
+            onClick={() => setFormat("all")}
+            className={cn(
+              "flex min-h-20 shrink-0 items-center rounded-[20px] px-5 text-sm font-semibold transition-colors",
+              format === "all" ? "bg-brand-gradient text-white" : "border border-fg/25 text-fg/85 hover:border-fg/60",
+            )}
+          >
+            {formatLabels.all}
+          </button>
+          {formats.map((f) => {
+            const next = events.filter((e) => inFormat(e, f)).sort((a, b) => a.start.localeCompare(b.start))[0];
+            const on = format === f.id;
+            return (
+              <button
+                key={f.id}
+                type="button"
+                role="radio"
+                aria-checked={on}
+                onClick={() => setFormat(on ? "all" : f.id)}
+                data-track="event_format_filter"
+                className={cn(
+                  "flex min-h-20 w-64 shrink-0 items-center gap-3 rounded-[20px] p-2 pr-4 text-left transition-colors",
+                  on ? "bg-brand-gradient text-white" : "border border-fg/25 bg-raised hover:border-fg/60",
+                )}
+              >
+                <Media src={f.image.url} alt="" className="size-16 shrink-0 overflow-hidden rounded-[14px]" sizes="64px" />
+                <span className="min-w-0">
+                  <span className="block truncate text-sm font-semibold">{f.name}</span>
+                  <span className={cn("block truncate text-xs", on ? "text-white/85" : "text-fg/65")}>
+                    {next ? `${formatLabels.next}: ${formatEventDate(next.start, locale)}` : formatLabels.none}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
       <div
         role="search"
         aria-label={t.filterLabel}
