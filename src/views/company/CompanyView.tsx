@@ -10,7 +10,7 @@ import { Timeline } from "@/components/brand/Timeline";
 import { Button } from "@/components/ui/Button";
 import { InfoTile } from "@/components/ui/InfoTile";
 import { CardArrow } from "@/components/ui/CardArrow";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 
@@ -25,7 +25,6 @@ export function CompanyView({ locale }: { locale: Locale }) {
   return (
     <>
       <PageHero
-        eyebrow={t.hero.eyebrow}
         image={{ url: "/images/hero/community.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
@@ -40,8 +39,7 @@ export function CompanyView({ locale }: { locale: Locale }) {
       {/* Who we are – the long version (story, values, team) lives on the about page */}
       <Section>
         <Reveal className="max-w-3xl">
-          <Eyebrow>{t.who.eyebrow}</Eyebrow>
-          <Headline className="mt-6">
+          <Headline>
             {t.who.title} <Accent>{t.who.accent}</Accent>
           </Headline>
           <Lead className="mt-6">{t.who.text}</Lead>
@@ -53,7 +51,7 @@ export function CompanyView({ locale }: { locale: Locale }) {
 
       {/* Our story so far – the milestones of the about page */}
       <Section tone="black">
-        <SectionIntro eyebrow={about.milestones.eyebrow} title={about.milestones.title} />
+        <SectionIntro title={about.milestones.title} />
         <Timeline items={milestones[locale]} locale={locale} />
       </Section>
 
@@ -104,8 +102,7 @@ export function CompanyView({ locale }: { locale: Locale }) {
         <div className="absolute -right-32 -top-32 -z-10 size-[520px] rounded-full bg-magenta-500/40 blur-[120px]" />
         <div className="container-site grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <Eyebrow>{t.momentum.eyebrow}</Eyebrow>
-            <Headline size="lg" className="mt-6">
+            <Headline size="lg">
               {t.momentum.title} <br />
               {t.momentum.title2} <Accent>{t.momentum.accent}</Accent>
             </Headline>

@@ -1,5 +1,5 @@
 import type { EventContent } from "@/lib/content/events";
-import { Eyebrow, Headline, Lead } from "../ui/Headline";
+import { Headline, Lead } from "../ui/Headline";
 import { Media } from "../ui/Media";
 
 type Labels = { recapEyebrow: string; recapTitle: string; results: string; gallery: string };
@@ -10,7 +10,6 @@ export function EventRecap({ recap, labels }: { recap: NonNullable<EventContent[
   return (
     <div className="grid gap-10">
       <div className="max-w-3xl">
-        <Eyebrow className="mb-4">{labels.recapEyebrow}</Eyebrow>
         <Headline size="md">{labels.recapTitle}</Headline>
         {recap.text && <Lead className="mt-5">{recap.text}</Lead>}
       </div>

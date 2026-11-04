@@ -47,7 +47,6 @@ export function AboutView({ locale }: { locale: Locale }) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
 
       <PageHero
-        eyebrow={t.hero.eyebrow}
         image={{ url: "/images/about/hero.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
@@ -110,13 +109,13 @@ export function AboutView({ locale }: { locale: Locale }) {
 
       {/* Values */}
       <Section>
-        <SectionIntro eyebrow={t.values.eyebrow} title={t.values.title} lead={t.values.lead} />
+        <SectionIntro title={t.values.title} lead={t.values.lead} />
         <ValuesGrid items={values[locale]} ariaLabel={t.values.aria} />
       </Section>
 
       {/* Pillars */}
       <Section tone="black">
-        <SectionIntro eyebrow={t.pillars.eyebrow} title={t.pillars.title} />
+        <SectionIntro title={t.pillars.title} />
         <ul className="grid gap-3 md:grid-cols-2 lg:grid-cols-4 lg:gap-4">
           {pillars[locale].map((p, i) => {
             const inner = (
@@ -149,13 +148,13 @@ export function AboutView({ locale }: { locale: Locale }) {
 
       {/* Founders */}
       <Section>
-        <SectionIntro eyebrow={t.founders.eyebrow} title={t.founders.title} />
+        <SectionIntro title={t.founders.title} />
         <PeopleGrid people={founders} locale={locale} showBio />
       </Section>
 
       {/* Faces of PadelCity – real team from padelcity.de */}
       <Section tone="black">
-        <SectionIntro eyebrow={t.faces.eyebrow} title={t.faces.title} lead={t.faces.lead} />
+        <SectionIntro title={t.faces.title} lead={t.faces.lead} />
         <PeopleGrid people={team} locale={locale} compact />
       </Section>
 
@@ -166,7 +165,7 @@ export function AboutView({ locale }: { locale: Locale }) {
 
       {/* Milestones */}
       <Section tone="black">
-        <SectionIntro eyebrow={t.milestones.eyebrow} title={t.milestones.title} />
+        <SectionIntro title={t.milestones.title} />
         <Timeline items={milestones[locale]} locale={locale} />
       </Section>
 

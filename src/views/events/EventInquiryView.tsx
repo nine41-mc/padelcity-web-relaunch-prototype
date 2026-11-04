@@ -3,7 +3,7 @@ import type { Locale } from "@/lib/i18n/config";
 import { eventInquiryContent } from "@/lib/content/eventInquiry";
 import { PageHero } from "@/components/modules/PageHero";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { EventInquiryFacts } from "@/components/events/EventInquiryTeaser";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
 
@@ -17,14 +17,13 @@ export async function EventInquiryView({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <PageHero eyebrow={t.hero.eyebrow} image={{ url: "/images/events/hero.jpg", alt: t.hero.imageAlt }} lead={t.hero.lead}>
+      <PageHero image={{ url: "/images/events/hero.jpg", alt: t.hero.imageAlt }} lead={t.hero.lead}>
         {t.hero.title} <Accent>{t.hero.accent}</Accent>
       </PageHero>
 
       <Section tone="black" id="anfrage" className="scroll-mt-20">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-4">
-            <Eyebrow className="mb-4">{t.hero.eyebrow}</Eyebrow>
             <Headline size="md">{t.intro.title}</Headline>
             <p className="mt-6 text-lg text-fg/75">{t.intro.text}</p>
           </div>

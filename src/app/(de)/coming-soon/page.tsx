@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
 import { StoreBadges } from "@/components/ui/StoreBadges";
 import { PadelPong } from "@/components/brand/PadelPong";
@@ -14,8 +14,7 @@ export default function Page() {
     <Section tone="ink" className="pt-32 md:pt-40">
       <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-14">
         <div>
-          <Eyebrow>Bald in der App · Coming soon</Eyebrow>
-          <Headline as="h1" size="lg" className="mt-6">
+          <Headline as="h1" size="lg">
             Coming <Accent>soon.</Accent>
           </Headline>
           <Lead className="mt-6">Dieser Link führt bald direkt in die PadelCity App. Bis dahin: ein kleines Match für zwischendurch.</Lead>

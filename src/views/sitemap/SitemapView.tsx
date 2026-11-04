@@ -7,7 +7,7 @@ import { legalNav, mainNav, secondaryNav } from "@/lib/site";
 import { getArticles, getClubs, getEvents, getPlannedClubs } from "@/lib/data";
 import { COUNTRY_ORDER, locationsContent } from "@/lib/content/locations";
 import { Section } from "@/components/ui/Section";
-import { Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Headline, Lead } from "@/components/ui/Headline";
 import { CountryFlag } from "@/components/locations/CountryFlag";
 
 const copy = {
@@ -73,7 +73,6 @@ export async function SitemapView({ locale }: { locale: Locale }) {
   return (
     <>
       <Section tone="ink" className="!pb-10 pt-36 md:!pb-14 md:pt-44">
-        <Eyebrow className="mb-6">{t.eyebrow}</Eyebrow>
         <Headline as="h1" size="lg">
           {t.title}
         </Headline>

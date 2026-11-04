@@ -9,7 +9,7 @@ import { getFaq } from "@/lib/data/faq";
 import { PageHero } from "@/components/modules/PageHero";
 import { AppCta } from "@/components/modules/AppCta";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { FaqExplorer } from "@/components/faq/FaqExplorer";
 
 // Contentful: page "faq" (modules: pageHero, faqExplorer, contactTeaser, appCta)
@@ -31,7 +31,7 @@ export async function FaqView({ locale }: { locale: Locale }) {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <PageHero eyebrow={t.hero.eyebrow} lead={t.hero.lead} image={{ url: "/images/hero/community.jpg", alt: t.hero.imageAlt }} className="lg:min-h-[56vh]">
+      <PageHero lead={t.hero.lead} image={{ url: "/images/hero/community.jpg", alt: t.hero.imageAlt }} className="lg:min-h-[56vh]">
         {t.hero.title} <Accent>{t.hero.accent}</Accent>
       </PageHero>
 
@@ -44,7 +44,6 @@ export async function FaqView({ locale }: { locale: Locale }) {
       <Section tone="black">
         <div className="grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-end md:gap-12">
           <div>
-            <Eyebrow className="mb-4">{t.contact.eyebrow}</Eyebrow>
             <Headline size="md">
               {t.contact.title} <Accent>{t.contact.accent}</Accent>
             </Headline>

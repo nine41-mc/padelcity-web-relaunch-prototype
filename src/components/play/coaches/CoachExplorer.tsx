@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GalleryHorizontal, LayoutGrid, MapPin, RotateCcw } from "lucide-react";
 import type { Person } from "@/lib/content/people";
 import type { Locale } from "@/lib/i18n/config";
-import { Eyebrow } from "@/components/ui/Headline";
 import { Select } from "@/components/ui/Select";
 import { cn } from "@/components/ui/cn";
 import { CoachCard } from "./CoachCard";
@@ -117,7 +116,6 @@ export function CoachExplorer({
 
   return (
     <div>
-      <Eyebrow>Coaches</Eyebrow>
 
       <div className="mt-6">{heading}</div>
 

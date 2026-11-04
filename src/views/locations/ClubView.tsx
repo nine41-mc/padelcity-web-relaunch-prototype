@@ -17,7 +17,7 @@ import { ClubCard, courtSummary } from "@/components/cards/ClubCard";
 import { SportList } from "@/components/cards/ClubMeta";
 import { EventCard } from "@/components/cards/EventCard";
 import { Button } from "@/components/ui/Button";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
@@ -288,7 +288,6 @@ export async function ClubView({ slug, locale }: { slug: string; locale: Locale 
             <div className="grid overflow-hidden rounded-[28px] border border-fg/10 bg-raised md:grid-cols-2">
               <Media src="/images/academy/coaching.jpg" alt={t.coaching.imageAlt} className="aspect-[16/10] md:aspect-auto md:min-h-[320px]" sizes="(min-width:768px) 50vw, 100vw" />
               <div className="flex min-w-0 flex-col justify-center gap-5 p-6 md:p-10">
-                <Eyebrow>{t.coaching.emptyEyebrow}</Eyebrow>
                 <Headline size="sm">
                   {t.coaching.emptyTitle} <Accent>{t.coaching.emptyAccent}</Accent>
                 </Headline>

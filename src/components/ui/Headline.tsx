@@ -54,10 +54,6 @@ export function Accent({
   );
 }
 
-/** Plain caps label above a headline – no pill, no dot (team feedback 03.11.2026: pills read as "AI"). */
-export function Eyebrow({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <p className={cn("text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70", className)}>{children}</p>;
-}
 
 export function Lead({ children, className }: { children: React.ReactNode; className?: string }) {
   return <p className={cn("max-w-2xl text-lg leading-relaxed text-fg/85 md:text-xl text-pretty", className)}>{children}</p>;

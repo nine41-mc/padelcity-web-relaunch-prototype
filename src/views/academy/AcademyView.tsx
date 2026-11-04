@@ -7,7 +7,7 @@ import { academyContent } from "@/lib/content/academy";
 import { PageHero } from "@/components/modules/PageHero";
 import { AppCta } from "@/components/modules/AppCta";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { Media } from "@/components/ui/Media";
@@ -41,7 +41,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
     <>
       <div className="relative">
         <PageHero
-          eyebrow={t.hero.eyebrow}
           image={{ url: "/images/academy/hero.jpg", alt: t.hero.imageAlt }}
           lead={t.hero.lead}
           actions={
@@ -63,7 +62,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       {/* Contentful module: levelPath */}
       <Section tone="ink" className="!pt-8 md:!pt-12">
         <div className="mb-12">
-          <Eyebrow className="mb-4">{t.path.eyebrow}</Eyebrow>
           <h2 className="text-[2.6rem] leading-[0.95] md:text-7xl">
             <VarsityText>{t.path.line1}</VarsityText>
             <br />
@@ -76,7 +74,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       {/* Contentful module: programmeGrid */}
       <Section tone="black" id="programme" className="scroll-mt-20">
         <div className="mb-12">
-          <Eyebrow className="mb-4">{t.programmesSection.eyebrow}</Eyebrow>
           <Headline size="md">{t.programmesSection.title}</Headline>
         </div>
         <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
@@ -122,7 +119,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       <Section tone="black" id="preise" className="scroll-mt-20 !pt-4 md:!pt-8">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.15fr] lg:items-center lg:gap-16">
           <div>
-            <Eyebrow className="mb-4">{t.pricesSection.eyebrow}</Eyebrow>
             <Headline size="md">
               {t.pricesSection.title} <Accent>{t.pricesSection.accent}</Accent>
             </Headline>
@@ -165,7 +161,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       <Section tone="black">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <Eyebrow className="mb-4">{t.locationsSection.eyebrow}</Eyebrow>
             <Headline size="md">{t.locationsSection.title}</Headline>
           </div>
           <Button href={href(locale, "locations")} variant="outline" className="w-fit">
@@ -186,7 +181,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       <Section tone="ink">
         <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
-            <Eyebrow className="mb-4">{t.videosSection.eyebrow}</Eyebrow>
             <Headline size="md">{t.videosSection.title}</Headline>
           </div>
           <Button href={site.social.youtube} variant="outline" size="sm" data-track="youtube_channel_click">
@@ -212,7 +206,6 @@ export async function AcademyView({ locale }: { locale: Locale }) {
       <Section tone="black">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
           <div>
-            <Eyebrow className="mb-4">{t.faqSection.eyebrow}</Eyebrow>
             <Headline size="md">{t.faqSection.title}</Headline>
           </div>
           <Faq items={t.faq} />

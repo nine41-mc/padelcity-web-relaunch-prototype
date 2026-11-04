@@ -26,7 +26,7 @@ import { AppCta } from "@/components/modules/AppCta";
 import { PartnerBand } from "@/components/modules/PartnerBand";
 import { Testimonials } from "@/components/modules/Testimonials";
 import { Button } from "@/components/ui/Button";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Marquee } from "@/components/ui/Marquee";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
@@ -82,8 +82,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
         <div className="grid items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <Reveal>
-              <Eyebrow>{t.leader.eyebrow}</Eyebrow>
-              <Headline className="mt-6">
+              <Headline>
                 {t.leader.title} <Accent>{t.leader.accent}</Accent> {t.leader.titleEnd}
               </Headline>
               <Lead className="mt-6">
@@ -121,8 +120,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <section className="relative bg-canvas-deep py-20 md:py-28">
         <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
-            <Eyebrow>{t.showcase.eyebrow}</Eyebrow>
-            <Headline className="mt-6">
+            <Headline>
               {t.showcase.title} <Accent>{t.showcase.accent}</Accent>
             </Headline>
           </Reveal>
@@ -143,8 +141,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       {/* First time padel? Four steps for newcomers (team feedback m-5) */}
       <Section>
         <Reveal className="max-w-3xl">
-          <Eyebrow>{t.newbies.eyebrow}</Eyebrow>
-          <Headline className="mt-6">
+          <Headline>
             {t.newbies.title} <Accent>{t.newbies.accent}</Accent>
           </Headline>
           <Lead className="mt-6">{t.newbies.lead}</Lead>
@@ -171,8 +168,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <Section>
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
-            <Eyebrow>{t.events.eyebrow}</Eyebrow>
-            <Headline className="mt-6">
+            <Headline>
               {t.events.title} <Accent>{t.events.accent}</Accent>
             </Headline>
           </Reveal>
@@ -221,8 +217,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <Section tone="black">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <Reveal>
-            <Eyebrow>{t.news.eyebrow}</Eyebrow>
-            <Headline className="mt-6">
+            <Headline>
               {t.news.title} <Accent>{t.news.accent}</Accent>
             </Headline>
           </Reveal>
@@ -243,8 +238,7 @@ export async function HomeView({ locale }: { locale: Locale }) {
       <Section className="overflow-hidden">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <Eyebrow>{t.community.eyebrow}</Eyebrow>
-            <Headline className="mt-6">
+            <Headline>
               {t.community.title} <Accent>{t.community.accent}</Accent>
             </Headline>
             <Lead className="mt-6">
@@ -281,7 +275,6 @@ export async function HomeView({ locale }: { locale: Locale }) {
         <div className="relative grid items-center gap-12 overflow-hidden rounded-[32px] border border-fg/10 bg-canvas pad-banner lg:grid-cols-[1.1fr_1fr] lg:gap-16">
           <div className="absolute -left-24 -top-24 size-80 rounded-full bg-purple-600/30 blur-[110px]" aria-hidden />
           <div className="relative">
-            <Eyebrow className="mb-4">{t.shop.eyebrow}</Eyebrow>
             <Headline size="md">
               {t.shop.title}
               <br />

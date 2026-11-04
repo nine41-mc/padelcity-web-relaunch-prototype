@@ -30,7 +30,7 @@ export function EventInquiryTeaser({ locale }: { locale: Locale }) {
   const t = eventInquiryContent[locale].teaser;
   return (
     <Section tone="black">
-      <SectionIntro eyebrow={t.eyebrow} title={<>{t.title} <Accent>{t.accent}</Accent></>} lead={t.text} />
+      <SectionIntro title={<>{t.title} <Accent>{t.accent}</Accent></>} lead={t.text} />
       <EventInquiryFacts locale={locale} />
       <Button href={href(locale, "eventInquiry")} variant="gradient" arrow className="mt-8" data-track="event_inquiry_open">
         {t.cta}

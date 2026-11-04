@@ -4,7 +4,7 @@ import { partners as allPartners } from "@/lib/content/partners";
 import type { Partner } from "@/lib/data/types";
 import { Section } from "../ui/Section";
 import { Reveal } from "../ui/Reveal";
-import { Accent, Eyebrow, Headline } from "../ui/Headline";
+import { Accent, Headline } from "../ui/Headline";
 import { Button } from "../ui/Button";
 import { Marquee } from "../ui/Marquee";
 import { PartnerLogo } from "../ui/PartnerLogo";
@@ -23,8 +23,7 @@ export function PartnerBand({ locale, partners = allPartners }: { locale: Locale
     <Section tone="black" bleed className="border-t border-fg/10">
       <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <Reveal>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <Headline className="mt-6">
+          <Headline>
             {t.title} <Accent>{t.accent}</Accent>
           </Headline>
         </Reveal>

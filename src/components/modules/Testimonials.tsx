@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { Locale } from "@/lib/i18n/config";
 import { testimonials as allTestimonials, testimonialsContent, type Testimonial } from "@/lib/content/testimonials";
-import { Accent, Eyebrow, Headline, Lead } from "../ui/Headline";
+import { Accent, Headline, Lead } from "../ui/Headline";
 
 import { Reveal } from "../ui/Reveal";
 import { cn } from "../ui/cn";
@@ -56,8 +56,7 @@ export function Testimonials({ locale, items = allTestimonials }: { locale: Loca
   return (
     <div>
       <Reveal className="mb-10 md:mb-12">
-        <Eyebrow>{c.eyebrow}</Eyebrow>
-        <Headline className="mt-6" size="md">
+        <Headline size="md">
           <span lang="en">{c.title}</span> <Accent>{c.accent}</Accent>
         </Headline>
         <Lead className="mt-5">{c.lead}</Lead>

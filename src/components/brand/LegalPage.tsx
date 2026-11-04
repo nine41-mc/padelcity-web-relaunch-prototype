@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n/config";
-import { Eyebrow, Headline } from "../ui/Headline";
+import { Headline } from "../ui/Headline";
 import { brandStrings } from "./strings";
 
 // Contentful module: legalPage { title, body (rich text), updatedAt }
@@ -27,8 +27,7 @@ export function LegalPage({
   return (
     <section className="pt-36 pb-24 md:pt-44 md:pb-32">
       <div className="container-site max-w-4xl">
-        <Eyebrow>{t.eyebrow}</Eyebrow>
-        <Headline as="h1" size="md" className="mt-6">
+        <Headline as="h1" size="md">
           {title}
         </Headline>
         <p className="mt-6 rounded-2xl border border-dashed border-fg/25 bg-fg/[0.03] p-4 text-sm text-fg/70">{t.notice}</p>

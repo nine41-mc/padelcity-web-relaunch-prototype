@@ -5,7 +5,7 @@ import { eventsContent, localizeEvent } from "@/lib/content/events";
 import { PageHero } from "@/components/modules/PageHero";
 import { AppCta } from "@/components/modules/AppCta";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroEventCard } from "@/components/play/HeroEventCard";
@@ -24,7 +24,6 @@ export async function EventsView({ locale }: { locale: Locale }) {
   return (
     <>
       <PageHero
-        eyebrow={<span lang="en">{t.hero.eyebrow}</span>}
         image={{ url: "/images/events/hero.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
@@ -44,7 +43,6 @@ export async function EventsView({ locale }: { locale: Locale }) {
       {/* Contentful module: featuredEvents */}
       <Section tone="ink" className="!pt-8 md:!pt-12">
         <div className="mb-10">
-          <Eyebrow className="mb-4">{t.highlights.eyebrow}</Eyebrow>
           <Headline size="md">{t.highlights.title}</Headline>
         </div>
         <div className="grid gap-5 lg:grid-cols-2 lg:gap-6">
@@ -60,7 +58,6 @@ export async function EventsView({ locale }: { locale: Locale }) {
 
       <Section tone="ink" id="events" className="scroll-mt-20">
         <div className="mb-8">
-          <Eyebrow className="mb-4">{t.local.eyebrow}</Eyebrow>
           <Headline size="md">{t.local.title}</Headline>
         </div>
         <EventsExplorer events={localEvents} locale={locale} labels={t.explorer} typeLabels={t.types} />
@@ -69,7 +66,6 @@ export async function EventsView({ locale }: { locale: Locale }) {
       {/* Contentful module: eventFormats – the formats as a series, each with its next date */}
       <Section tone="black">
         <div className="mb-10 max-w-3xl">
-          <Eyebrow className="mb-4">{t.formats.eyebrow}</Eyebrow>
           <Headline size="md">{t.formats.title}</Headline>
           <p className="mt-4 text-lg text-fg/75">{t.formats.lead}</p>
         </div>

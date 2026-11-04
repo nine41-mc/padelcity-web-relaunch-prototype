@@ -2,7 +2,7 @@ import { Instagram, Play } from "lucide-react";
 import type { Locale } from "@/lib/i18n/config";
 import { site } from "@/lib/site";
 import { Media } from "../ui/Media";
-import { Accent, Eyebrow, Headline } from "../ui/Headline";
+import { Accent, Headline } from "../ui/Headline";
 import { Button } from "../ui/Button";
 
 /*
@@ -40,8 +40,7 @@ export function SocialWall({ locale }: { locale: Locale }) {
     <section aria-labelledby="social-wall-title" className="bg-canvas py-20 md:py-28">
       <div className="container-site mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <Headline size="md" className="mt-6">
+          <Headline size="md">
             <span id="social-wall-title">
               {t.title} <Accent>{t.accent}</Accent>
             </span>

@@ -13,7 +13,7 @@ import { partners } from "@/lib/content/partners";
 import { eventContent, eventsContent, localizeEvent } from "@/lib/content/events";
 import { AppCta } from "@/components/modules/AppCta";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { EventSignup } from "@/components/events/EventSignup";
 import { ShareButton } from "@/components/ui/ShareButton";
 import { Chip } from "@/components/ui/Chip";
@@ -264,7 +264,6 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
         <Section tone="black">
           <div className="grid gap-10 lg:grid-cols-[1fr_2fr]">
             <div>
-              <Eyebrow className="mb-4">{t.detail.scheduleEyebrow}</Eyebrow>
               <Headline size="sm">{t.detail.scheduleTitle}</Headline>
               <p className="mt-4 text-fg/70">{t.detail.scheduleNote}</p>
             </div>
@@ -292,7 +291,6 @@ export async function EventDetailView({ slug, locale }: { slug: string; locale: 
         <Section tone="ink">
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.6fr]">
             <div>
-              <Eyebrow className="mb-4">{t.detail.videoEyebrow}</Eyebrow>
               <Headline size="md">{t.detail.videoTitle}</Headline>
               <p className="mt-4 max-w-md text-fg/70">{t.detail.videoNote}</p>
             </div>

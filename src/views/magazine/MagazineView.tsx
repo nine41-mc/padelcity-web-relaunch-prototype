@@ -5,7 +5,7 @@ import { href } from "@/lib/i18n/routes";
 import { formatDate, hubLabel, hubs, magazinContent } from "@/lib/content/magazin";
 import { getArticles } from "@/lib/data";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
@@ -29,7 +29,6 @@ export async function MagazineView({ locale }: { locale: Locale }) {
       <section className="relative overflow-hidden pt-36 pb-10 md:pt-44 md:pb-14">
         <div className="pointer-events-none absolute -top-40 right-[-20%] h-[520px] w-[520px] rounded-full bg-magenta-500/25 blur-[140px]" aria-hidden />
         <div className="container-site relative">
-          <Eyebrow className="mb-6">{t.hero.eyebrow}</Eyebrow>
           <Headline as="h1" size="xl">
             {t.hero.title} <Accent>{t.hero.accent}</Accent>
           </Headline>

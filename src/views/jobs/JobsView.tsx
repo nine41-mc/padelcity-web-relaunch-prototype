@@ -27,7 +27,6 @@ export function JobsView({ locale }: { locale: Locale }) {
   return (
     <>
       <PageHero
-        eyebrow={t.hero.eyebrow}
         image={{ url: "/images/jobs/hero.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
@@ -46,7 +45,7 @@ export function JobsView({ locale }: { locale: Locale }) {
 
       {/* Open positions directly below the hero */}
       <Section id="stellen" className="scroll-mt-16">
-        <SectionIntro eyebrow={t.openings.eyebrow} title={t.openings.title} lead={t.openings.lead} />
+        <SectionIntro title={t.openings.title} lead={t.openings.lead} />
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-12">
           {/* Personio embed (like apploft.de/karriere/#jobs) – list, job ads and application form come from Personio */}
           <PersonioJobs locale={locale} title={t.personio.title} placeholder={t.personio.placeholder} />
@@ -55,7 +54,7 @@ export function JobsView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section>
-        <SectionIntro eyebrow={t.benefits.eyebrow} title={t.benefits.title} lead={t.benefits.lead} />
+        <SectionIntro title={t.benefits.title} lead={t.benefits.lead} />
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
           {t.benefits.items.map((b, i) => (
             <li key={b.title}>
@@ -97,7 +96,6 @@ export function JobsView({ locale }: { locale: Locale }) {
       {/* Team snapshot – real people from people.ts */}
       <Section tone="black">
         <SectionIntro
-          eyebrow={t.faces.eyebrow}
           title={t.faces.title}
           lead={t.faces.lead}
           actions={

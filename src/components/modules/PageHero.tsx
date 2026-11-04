@@ -1,10 +1,9 @@
 import { Media } from "../ui/Media";
-import { Eyebrow, Headline, Lead } from "../ui/Headline";
+import { Headline, Lead } from "../ui/Headline";
 import { cn } from "../ui/cn";
 
 /** Standard hero for sub-pages. Pass the headline as children (use <Accent> for one word). */
 export function PageHero({
-  eyebrow,
   lead,
   image,
   actions,
@@ -12,7 +11,6 @@ export function PageHero({
   children,
   align = "left",
 }: {
-  eyebrow?: React.ReactNode;
   lead?: React.ReactNode;
   image?: { url: string; alt: string };
   actions?: React.ReactNode;
@@ -33,7 +31,6 @@ export function PageHero({
         <div className="absolute inset-0 bg-grain" />
       </div>
       <div className={cn("container-site", align === "center" && "flex flex-col items-center text-center")}>
-        {eyebrow && <Eyebrow className="mb-6">{eyebrow}</Eyebrow>}
         <Headline as="h1" size="lg" className={cn("max-w-5xl", align === "center" && "mx-auto")}>
           {children}
         </Headline>

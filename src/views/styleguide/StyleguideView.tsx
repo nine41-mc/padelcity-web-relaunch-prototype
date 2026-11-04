@@ -24,7 +24,7 @@ import {
 import type { Locale } from "@/lib/i18n/config";
 import { getClubs, getEvents } from "@/lib/data";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { CollegiateBadge, VarsityText } from "@/components/play/Collegiate";
 import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
@@ -105,7 +105,6 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
       <Section tone="purple" className="pt-36 md:pt-44 !pb-16">
         <div className="absolute inset-0 bg-court-lines opacity-50" aria-hidden />
         <div className="relative">
-          <Eyebrow className="mb-6">Easter Egg · Prototyp Oktober 2026</Eyebrow>
           <Headline as="h1" size="lg" className="max-w-5xl">
             Styleguide & <Accent>Patterns</Accent>
           </Headline>
@@ -294,9 +293,6 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
             <Headline as="p" size="sm">
               Events & Turniere
             </Headline>
-          </Spec>
-          <Spec label="Eyebrow">
-            <Eyebrow>Experience for the win.</Eyebrow>
           </Spec>
           <Spec label="Lead">
             <Lead>{"Der nächste Court ist näher, als du denkst. Such deine Stadt – und los geht's."}</Lead>
@@ -537,7 +533,7 @@ export async function StyleguideView({ locale }: { locale: Locale }) {
 
         <H3>Partner-Modul („Better together.“)</H3>
         <p className="max-w-3xl text-fg/75">
-          Ein Partner-Modul für die ganze Website: Eyebrow „Unsere Partner“, Headline „Better together.“, Button „Partner werden“, darunter die Logos als Laufband in Graustufen.
+          Ein Partner-Modul für die ganze Website: Headline „Better together.“, Button „Partner werden“, darunter die Logos als Laufband in Graustufen.
           Auf der Startseite mit allen Partnern, auf Event-Seiten nur mit den Partnern des Events. Einen zweiten Logo-Streifen gibt es nicht.
         </p>
 

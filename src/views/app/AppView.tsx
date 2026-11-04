@@ -5,7 +5,7 @@ import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
 import { appContent } from "@/lib/content/app";
 import { Section } from "@/components/ui/Section";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Button } from "@/components/ui/Button";
 import { StoreBadges } from "@/components/ui/StoreBadges";
 import { Reveal } from "@/components/ui/Reveal";
@@ -105,7 +105,6 @@ export function AppView({ locale }: { locale: Locale }) {
       <Section tone="ink" className="!pt-0">
         <div className="mb-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <Eyebrow className="mb-4">{t.gallery.eyebrow}</Eyebrow>
             <Headline size="md">{t.gallery.title}</Headline>
             <p className="mt-4 text-fg/70">{t.gallery.text}</p>
           </div>
@@ -118,7 +117,6 @@ export function AppView({ locale }: { locale: Locale }) {
 
       {/* Contentful module: howItWorks */}
       <Section tone="ink">
-        <Eyebrow className="mb-4">{t.how.eyebrow}</Eyebrow>
         <Headline size="md" className="mb-12">
           {t.how.title}
         </Headline>
@@ -147,7 +145,6 @@ export function AppView({ locale }: { locale: Locale }) {
       <Section tone="black">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.6fr]">
           <div>
-            <Eyebrow className="mb-4">{t.faqSection.eyebrow}</Eyebrow>
             <Headline size="md">{t.faqSection.title}</Headline>
             <Button href={href(locale, "faq")} variant="outline" className="mt-6 w-fit">
               {t.faqSection.all}

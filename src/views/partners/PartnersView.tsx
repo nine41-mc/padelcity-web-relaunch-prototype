@@ -9,7 +9,7 @@ import type { Partner } from "@/lib/data/types";
 import { PageHero } from "@/components/modules/PageHero";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { Accent, Eyebrow, Headline } from "@/components/ui/Headline";
+import { Accent, Headline } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
 import { Media } from "@/components/ui/Media";
 import { Chip } from "@/components/ui/Chip";
@@ -37,7 +37,6 @@ export function PartnersView({ locale }: { locale: Locale }) {
   return (
     <>
       <PageHero
-        eyebrow={t.hero.eyebrow}
         image={{ url: "/images/partner/hero.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
@@ -69,7 +68,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
       </div>
 
       <Section>
-        <SectionIntro eyebrow={t.formats.eyebrow} title={t.formats.title} lead={t.formats.lead} />
+        <SectionIntro title={t.formats.title} lead={t.formats.lead} />
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {t.formats.items.map((item, i) => (
             <li key={item.title}>
@@ -86,7 +85,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section tone="black">
-        <SectionIntro eyebrow={<span lang="en">{t.personas.eyebrow}</span>} title={t.personas.title} lead={t.personas.lead} />
+        <SectionIntro title={t.personas.title} lead={t.personas.lead} />
         <ul className="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4 lg:grid-cols-3">
           {t.personas.items.map((p, i) => (
             <li key={p.name}>
@@ -153,7 +152,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
       </Section>
 
       <Section>
-        <SectionIntro eyebrow={t.cases.eyebrow} title={t.cases.title} />
+        <SectionIntro title={t.cases.title} />
         <div className="grid gap-5 lg:grid-cols-2">
           {t.cases.items.map((c, i) => (
             <Reveal key={c.title} delay={i * 0.08} className="h-full">
@@ -215,8 +214,7 @@ export function PartnersView({ locale }: { locale: Locale }) {
       <Section tone="black">
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <Reveal>
-            <Eyebrow>{t.stance.eyebrow}</Eyebrow>
-            <Headline size="md" className="mt-6">
+            <Headline size="md">
               {t.stance.title} <Accent>{t.stance.accent}</Accent>
             </Headline>
           </Reveal>

@@ -26,7 +26,7 @@ Komponente Quelle und Figma-Node.
 
 | Bereich | Komponenten (Datei) |
 |---|---|
-| Basis (`ui/`) | Button (4 Varianten), Chip, Eyebrow + Headline + Accent (`Headline.tsx`), Section, Select, SearchInput, FaqItem/FaqGroup, CardArrow, CarouselArrow, InfoTile, ShareButton, Overlay/OverlaySection, StoreBadges, Marquee (Ticker) |
+| Basis (`ui/`) | Button (4 Varianten), Chip, Headline + Accent + Lead (`Headline.tsx`), Section, Select, SearchInput, FaqItem/FaqGroup, CardArrow, CarouselArrow, InfoTile, ShareButton, Overlay/OverlaySection, StoreBadges, Marquee (Ticker) |
 | Layout (`layout/`) | Header mit NavLink (Nav Item), MobileMenu, LanguageSwitch, Footer |
 | Karten (`cards/`, `brand/`, `play/coaches/`) | ClubCard, EventCard, ArticleCard, CoachCard, KpiTiles, TestimonialCard, VoucherCard, PersonCard, OpenStatus (`ClubMeta.tsx`) |
 | Events (`events/`, `play/`) | FactRow, EventSignupCard, CancellationTable (`EventFacts.tsx`), EventSignup, Countdown, EventInquiryForm, EventInquiryTeaser (mit EventInquiryFacts) |

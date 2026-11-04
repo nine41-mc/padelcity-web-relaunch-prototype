@@ -6,7 +6,7 @@ import { investorsContent, irMailto } from "@/lib/content/investors";
 import { founders, team } from "@/lib/content/people";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { Accent, Eyebrow, Headline, Lead } from "@/components/ui/Headline";
+import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Media } from "@/components/ui/Media";
 import { Reveal } from "@/components/ui/Reveal";
 import { Marquee } from "@/components/ui/Marquee";
@@ -36,7 +36,6 @@ export function InvestorsView({ locale }: { locale: Locale }) {
           <div className="absolute inset-0 bg-grain" />
         </div>
         <div className="container-site">
-          <Eyebrow className="mb-6">{t.hero.eyebrow}</Eyebrow>
           <Headline as="h1" size="xl" className="max-w-6xl">
             {t.hero.title} <Accent>{t.hero.accent}</Accent> {t.hero.titleEnd}
           </Headline>
@@ -63,22 +62,22 @@ export function InvestorsView({ locale }: { locale: Locale }) {
       </div>
 
       <Section id="equity-story" className="scroll-mt-16">
-        <SectionIntro eyebrow={t.equity.eyebrow} title={t.equity.title} lead={t.equity.lead} />
+        <SectionIntro title={t.equity.title} lead={t.equity.lead} />
         <EquityStory chapters={t.equity.chapters} ariaLabel={t.equity.aria} />
       </Section>
 
       <Section tone="black">
-        <SectionIntro eyebrow={t.kpis.eyebrow} title={t.kpis.title} lead={t.kpis.lead} />
+        <SectionIntro title={t.kpis.title} lead={t.kpis.lead} />
         <KpiTiles items={t.kpis.items} intl={intl} />
       </Section>
 
       <Section>
-        <SectionIntro eyebrow={t.milestones.eyebrow} title={t.milestones.title} />
+        <SectionIntro title={t.milestones.title} />
         <Timeline items={milestones[locale]} locale={locale} />
       </Section>
 
       <Section tone="black">
-        <SectionIntro eyebrow={t.leadership.eyebrow} title={t.leadership.title} lead={t.leadership.lead} />
+        <SectionIntro title={t.leadership.title} lead={t.leadership.lead} />
         <PeopleGrid people={founders} locale={locale} showBio />
         {management.length > 0 && (
           <>
@@ -91,7 +90,7 @@ export function InvestorsView({ locale }: { locale: Locale }) {
       <Section id="kontakt" className="scroll-mt-16">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-12">
           <div>
-            <SectionIntro eyebrow={t.press.eyebrow} title={t.press.title} className="mb-8 md:mb-10" />
+            <SectionIntro title={t.press.title} className="mb-8 md:mb-10" />
             {/* Contentful module: investorsContent – Downloads. TODO(content): real files; until then every item is requested by email */}
             <ul className="divide-y divide-fg/10 border-y border-fg/10">
               {t.press.items.map((d) => (

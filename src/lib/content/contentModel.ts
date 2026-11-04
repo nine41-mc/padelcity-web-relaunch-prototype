@@ -29,7 +29,7 @@ const clubCore = (): Field[] => [
 const clubSlug = () => f("Sprechende URL (Slug)", "apiExtend", undefined, "fehlt komplett – SEO, Redirects; Pflege im operativen Contentful oder Backend klären");
 const priceFrom = () => f("Preis „ab … €/h“", "apiExtend", "Club.defaultPricePerHour", "gespeichert, aber nicht ausgegeben; nur indirekt als minimumCourtFee über /club-schedules/clubs");
 const coachStats = () => f("Kennzahlen „Std. on Court“, „Trainierende“", "unknown", undefined, "keine Felder in der API; redaktionell pflegen oder weglassen");
-const sectionHead = (): Field[] => [f("Eyebrow, Headline, Akzentwort, Text", "cms")];
+const sectionHead = (): Field[] => [f("Headline, Akzentwort, Text", "cms")];
 const ctas = () => f("Buttons (Label, Ziel)", "cms");
 
 export const contentModel: PageType[] = [

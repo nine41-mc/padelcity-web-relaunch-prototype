@@ -1,7 +1,7 @@
 import type { Locale } from "@/lib/i18n/config";
 import { contentModel, contentModelMeta } from "@/lib/content/contentModel";
 import { Section } from "@/components/ui/Section";
-import { Eyebrow, Headline, Accent } from "@/components/ui/Headline";
+import { Headline, Accent } from "@/components/ui/Headline";
 import { ContentModelExplorer } from "./ContentModelExplorer";
 
 /**
@@ -14,7 +14,6 @@ export function ContentModelView({ locale }: { locale: Locale }) {
     // Its colour key (amber, sky … for the data sources) is made for ink, so it stays dark in the light theme.
     <div lang="de" data-theme="dark">
       <Section tone="ink" className="!pt-36 md:!pt-44">
-        <Eyebrow className="mb-5">Intern · Website-Relaunch</Eyebrow>
         <Headline as="h1" size="lg">
           Content-<Accent>Modell</Accent>
         </Headline>

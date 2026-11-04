@@ -27,7 +27,6 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
   return (
     <>
       <PageHero
-        eyebrow={<span lang="en">{t.hero.eyebrow}</span>}
         image={{ url: "/images/franchise/hero.jpg", alt: t.hero.imageAlt }}
         lead={t.hero.lead}
         actions={
@@ -46,7 +45,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
 
       {/* Why PadelCity */}
       <Section>
-        <SectionIntro eyebrow={t.benefits.eyebrow} title={t.benefits.title} lead={t.benefits.lead} />
+        <SectionIntro title={t.benefits.title} lead={t.benefits.lead} />
         <ul className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {t.benefits.items.map((b, i) => (
             <li key={b.title}>
@@ -64,7 +63,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
 
       {/* We provide vs. partner brings */}
       <Section tone="black">
-        <SectionIntro eyebrow={t.partnership.eyebrow} title={t.partnership.title} />
+        <SectionIntro title={t.partnership.title} />
         <div className="grid gap-4 md:grid-cols-2 md:gap-5">
           <Reveal className="h-full">
             <div className="relative h-full overflow-hidden rounded-[28px] bg-brandbook-gradient pad-banner">
@@ -104,7 +103,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
 
       {/* Services per phase (padelcity.de/franchise) */}
       <Section>
-        <SectionIntro eyebrow={t.phases.eyebrow} title={t.phases.title} />
+        <SectionIntro title={t.phases.title} />
         <ol className="grid gap-4 md:grid-cols-3 md:gap-5">
           {t.phases.items.map((ph, i) => (
             <li key={ph.title}>
@@ -135,7 +134,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
 
       {/* Process */}
       <Section id="ablauf" className="scroll-mt-16">
-        <SectionIntro eyebrow={t.steps.eyebrow} title={t.steps.title} lead={t.steps.lead} />
+        <SectionIntro title={t.steps.title} lead={t.steps.lead} />
         <ol className="relative grid gap-4 md:grid-cols-5 md:gap-3 lg:gap-5">
           <span
             className="absolute left-[23px] top-6 bottom-6 w-px bg-gradient-to-b from-magenta-500 to-purple-500/20 md:left-6 md:right-6 md:top-[23px] md:bottom-auto md:h-px md:w-auto md:bg-gradient-to-r"
@@ -160,7 +159,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
 
       {/* Requirements – qualitative only until the franchise team confirms figures */}
       <Section tone="black">
-        <SectionIntro eyebrow={t.requirements.eyebrow} title={t.requirements.title} />
+        <SectionIntro title={t.requirements.title} />
         <ul className="grid gap-4 md:grid-cols-3">
           {t.requirements.items.map((r, i) => (
             <li key={r.title}>
@@ -187,7 +186,7 @@ export async function FranchiseView({ locale }: { locale: Locale }) {
       {/* Live franchise clubs */}
       {franchiseClubs.length > 0 && (
         <Section>
-          <SectionIntro eyebrow={`${franchiseClubs.length} ${t.clubs.eyebrowSuffix}`} title={t.clubs.title} lead={t.clubs.lead} />
+          <SectionIntro title={t.clubs.title} lead={t.clubs.lead} />
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {franchiseClubs.map((c, i) => (
               <li key={c.id} className="min-w-0">
