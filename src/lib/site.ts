@@ -83,11 +83,12 @@ const WEBAPP_BASE = process.env.NEXT_PUBLIC_WEBAPP_BASE ?? "https://app.padelcit
 /**
  * PadelCity web app (web-app-flutter). Event sign-up works in the app OR on the web;
  * court booking stays app-only (deeplinks.club).
- * Route mirrors web-app-flutter `/events/:eventId` (pre-prod: https://app.pre-prod.padelcity.de).
+ * Event sign-up on the web opens the booking flow via `/?event_id=<id>` (example from PadelCity, 04.11.2026;
+ * pre-prod: https://app.pre-prod.padelcity.de).
  */
 export const webApp = {
   base: WEBAPP_BASE,
-  event: (eventId: string) => (EVENT_LINKS_LIVE ? `${WEBAPP_BASE}/events/${eventId}` : COMING_SOON),
+  event: (eventId: string) => (EVENT_LINKS_LIVE ? `${WEBAPP_BASE}/?event_id=${encodeURIComponent(eventId)}` : COMING_SOON),
 };
 
 export const deeplinks = {

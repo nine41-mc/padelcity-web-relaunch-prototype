@@ -75,7 +75,7 @@ const de = {
   },
   clubCard: { from: "ab", courts: "Courts", court: "Court", indoor: "Indoor", outdoor: "Outdoor", indoorOutdoor: "Indoor & Outdoor", parking: "Parkplätze", view: "ansehen", perHour: "/ Std.", openUntil: "Geöffnet bis {t}", closedOpensToday: "Geschlossen · Öffnet um {t}", closedOpensOn: "Geschlossen · Öffnet {d} um {t}", closed: "Geschlossen", sportsLabel: "Sportarten" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Soccer", multisport: "Multisport" },
-  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", signupLead: "Jetzt anmelden und buchen:", web: "Im Web", app: "In der App", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der App anmelden (PadelCity App)", free: "Kostenlos", time: "Uhr" },
+  eventCard: { tournament: "Turnier", training: "Training", event: "Event", signup: "Im Web anmelden", signupApp: "In der App", signupLabel: "Anmelden", signupLead: "Jetzt anmelden und buchen:", web: "Im Web anmelden", app: "In der App anmelden", webAria: "Im Web anmelden (öffnet neuen Tab)", appAria: "In der App anmelden (PadelCity App)", free: "Kostenlos", time: "Uhr" },
   media: { placeholder: "Bild folgt" },
   share: { label: "Teilen", copied: "Link kopiert" },
 };
@@ -155,7 +155,7 @@ const en: Dictionary = {
   },
   clubCard: { from: "from", courts: "courts", court: "court", indoor: "Indoor", outdoor: "Outdoor", indoorOutdoor: "Indoor & outdoor", parking: "Parking", view: "view", perHour: "/ hr", openUntil: "Open until {t}", closedOpensToday: "Closed · Opens {t}", closedOpensOn: "Closed · Opens {d} {t}", closed: "Closed", sportsLabel: "Sports" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tennis", squash: "Squash", badminton: "Badminton", soccer: "Football", multisport: "Multisport" },
-  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", signupLabel: "Sign up", signupLead: "Sign up and book now:", web: "On the web", app: "In the app", webAria: "Sign up on the web (opens new tab)", appAria: "Sign up in the app (PadelCity app)", free: "Free", time: "" },
+  eventCard: { tournament: "Tournament", training: "Training", event: "Event", signup: "Sign up on the web", signupApp: "In the app", signupLabel: "Sign up", signupLead: "Sign up and book now:", web: "Sign up on the web", app: "Sign up in the app", webAria: "Sign up on the web (opens new tab)", appAria: "Sign up in the app (PadelCity app)", free: "Free", time: "" },
   media: { placeholder: "Image coming soon" },
   share: { label: "Share", copied: "Link copied" },
 };
@@ -233,7 +233,7 @@ const pl: Dictionary = {
   },
   clubCard: { from: "od", courts: "kortów", court: "kort", indoor: "kryte", outdoor: "odkryte", indoorOutdoor: "kryte i odkryte", parking: "Parking", view: "zobacz", perHour: "/ godz.", openUntil: "Otwarte do {t}", closedOpensToday: "Zamknięte · Otwarcie o {t}", closedOpensOn: "Zamknięte · Otwarcie {d} o {t}", closed: "Zamknięte", sportsLabel: "Dyscypliny" },
   sports: { padel: "Padel", pickleball: "Pickleball", tennis: "Tenis", squash: "Squash", badminton: "Badminton", soccer: "Piłka nożna", multisport: "Multisport" },
-  eventCard: { tournament: "Turniej", training: "Trening", event: "Event", signup: "Zapisz się online", signupApp: "W aplikacji", signupLabel: "Zapisz się", signupLead: "Zapisz się i zarezerwuj już teraz:", web: "Online", app: "W aplikacji", webAria: "Zapisz się online (otwiera nową kartę)", appAria: "Zapisz się w aplikacji (PadelCity)", free: "Bezpłatnie", time: "" },
+  eventCard: { tournament: "Turniej", training: "Trening", event: "Event", signup: "Zapisz się online", signupApp: "W aplikacji", signupLabel: "Zapisz się", signupLead: "Zapisz się i zarezerwuj już teraz:", web: "Zapisz się online", app: "Zapisz się w aplikacji", webAria: "Zapisz się online (otwiera nową kartę)", appAria: "Zapisz się w aplikacji (PadelCity)", free: "Bezpłatnie", time: "" },
   media: { placeholder: "Zdjęcie wkrótce" },
   share: { label: "Udostępnij", copied: "Link skopiowany" },
 };
