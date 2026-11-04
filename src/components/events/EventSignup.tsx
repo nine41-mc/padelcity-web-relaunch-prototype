@@ -25,7 +25,7 @@ export function EventSignup({
 }) {
   const t = getDictionary(locale).eventCard;
   const btn = cn(
-    "relative z-10 inline-flex items-center justify-center gap-2.5 rounded-full font-sans font-semibold leading-none transition-all",
+    "relative z-10 inline-flex items-center justify-center gap-2.5 rounded-full font-sans font-semibold leading-none whitespace-nowrap transition-all",
     size === "sm" && "h-11 px-4 text-sm",
     size === "md" && "h-12 px-5 text-sm",
     size === "lg" && "h-14 px-6 text-base md:h-16 md:text-lg",
@@ -36,7 +36,8 @@ export function EventSignup({
   return (
     <div className={cn("relative z-10", className)}>
       {showLabel && <p className="mb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/85">{t.signupLabel}</p>}
-      <div className="grid grid-cols-2 gap-2.5">
+      {/* cards (sm) stack the two buttons – the full labels do not fit side by side in a card */}
+      <div className={cn("grid gap-2.5", size === "sm" ? "grid-cols-1" : "grid-cols-2")}>
         <a {...linkProps(deeplinks.event(eventId))} aria-label={t.appAria} data-track="event_signup_app" className={cn(btn, primary)}>
           <Smartphone className={cn(icon, "shrink-0")} aria-hidden />
           {t.app}

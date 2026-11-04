@@ -2,7 +2,7 @@
 
 import { plural } from "@/lib/i18n/plural";
 import { useMemo, useState } from "react";
-import { CalendarSearch, MapPin, RotateCcw } from "lucide-react";
+import { CalendarDays, CalendarSearch, MapPin, RotateCcw } from "lucide-react";
 import type { ClubEvent } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
@@ -115,15 +115,25 @@ export function EventsExplorer({
                 onClick={() => setFormat(on ? "all" : f.id)}
                 data-track="event_format_filter"
                 className={cn(
-                  "flex min-h-20 w-64 shrink-0 items-center gap-3 rounded-[20px] p-2 pr-4 text-left transition-colors",
+                  "flex min-h-20 w-72 shrink-0 items-center gap-3 rounded-[20px] p-2 pr-4 text-left transition-colors",
                   on ? "bg-brand-gradient text-white" : "border border-fg/25 bg-raised hover:border-fg/60",
                 )}
               >
                 <Media src={f.image.url} alt="" className="size-16 shrink-0 overflow-hidden rounded-[14px]" sizes="64px" />
                 <span className="min-w-0">
                   <span className="block truncate text-sm font-semibold">{f.name}</span>
-                  <span className={cn("block truncate text-xs", on ? "text-white/85" : "text-fg/65")}>
-                    {next ? `${formatLabels.next}: ${formatEventDate(next.start, locale)}` : formatLabels.none}
+                  <span className={cn("mt-0.5 flex items-center gap-1.5 truncate text-xs", on ? "text-white/85" : "text-fg/65")}>
+                    <CalendarDays className="size-3.5 shrink-0" aria-hidden />
+                    <span className="truncate">
+                      {next ? (
+                        <>
+                          <span className="sr-only">{formatLabels.next}: </span>
+                          {formatEventDate(next.start, locale)}
+                        </>
+                      ) : (
+                        formatLabels.none
+                      )}
+                    </span>
                   </span>
                 </span>
               </button>
