@@ -1,11 +1,10 @@
-// Contentful module: appBooking (config only: headline, text, steps) + facilityGrid (club entry)
+// Contentful module: appBooking (config only: headline, text) + facilityGrid (club entry)
 
-import { Smartphone } from "lucide-react";
 import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { deeplinks } from "@/lib/site";
-import { fill, locationsContent } from "@/lib/content/locations";
-import { appContent } from "@/lib/content/app";
+import { locationsContent } from "@/lib/content/locations";
+import { href } from "@/lib/i18n/routes";
 import { Button } from "@/components/ui/Button";
 import { Accent, Headline } from "@/components/ui/Headline";
 import { AppIcon } from "@/components/ui/Icon";
@@ -31,69 +30,31 @@ export function ClubFacilities({ club }: { club: Club }) {
 }
 
 /**
- * "Court buchen in der App" at the end of the club page: pitch + deep link, what only the app can do, 3 steps.
+ * "Court buchen in der App" on the club page: pitch + deep link straight to this club in the app, plus a link to the
+ * app page. How the app works (features, steps) lives on the app page only (design feedback 04.11.2026).
  * PadelCity credo: no times, slots or availability on the website – booking lives in the app.
  */
 export function AppBookingBlock({ club, locale }: { club: Club; locale: Locale }) {
   const t = locationsContent[locale].club.book;
-  // App-only features, copy shared with the app page (split payment, open matches, corporate benefits)
-  const exclusive = appContent[locale].features.items.filter((f) => ["split", "matches", "benefits"].includes(f.id));
-
   return (
     <div className="relative overflow-hidden rounded-[28px] border border-fg/10 bg-raised">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_0%_0%,rgb(132_18_181/0.55),transparent_55%),radial-gradient(ellipse_at_100%_100%,rgb(224_5_195/0.3),transparent_55%)]" aria-hidden />
       <div className="absolute inset-0 bg-court-lines opacity-40" aria-hidden />
-
-      <div className="relative grid gap-10 p-6 md:p-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:p-14">
-        {/* Pitch + CTA */}
-        <div className="flex flex-col">
+      <div className="relative grid gap-8 p-6 md:p-10 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end lg:p-14">
+        <div>
           <Headline size="md">
             {t.title} <Accent>{t.accent}</Accent>
           </Headline>
-          <p className="mt-5 max-w-lg text-fg/75 md:text-lg">{t.text}</p>
-          <div className="mt-8 flex flex-col gap-5">
-            <Button href={deeplinks.club(club.slug)} variant="primary" size="md" className="w-full sm:w-fit" data-track="club_book_in_app">
-              {t.cta}
-            </Button>
-          </div>
+          <p className="mt-5 max-w-xl text-fg/75 md:text-lg">{t.text}</p>
         </div>
-
-        {/* App features you only get in the app */}
-        <div>
-          <ul className="grid gap-3">
-            {exclusive.map((f) => (
-              <li key={f.id} className="flex gap-4 rounded-[20px] border border-fg/10 bg-canvas/70 pad-card backdrop-blur">
-                <span className="grid size-11 shrink-0 place-items-center rounded-full bg-brand-gradient">
-                  <AppIcon name={f.icon} className="size-5 text-fg" />
-                </span>
-                <span>
-                  <span className="block font-display text-xl font-extrabold italic uppercase leading-tight">{f.eyebrow}</span>
-                  <span className="mt-1 block text-sm text-fg/70">{f.text}</span>
-                </span>
-              </li>
-            ))}
-          </ul>
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Button href={deeplinks.club(club.slug)} variant="primary" size="md" data-track="club_book_in_app">
+            {t.cta}
+          </Button>
+          <Button href={href(locale, "app")} variant="outline" size="md" arrow={false} data-track="club_app_page">
+            {t.appPage}
+          </Button>
         </div>
-      </div>
-
-      {/* So buchst du */}
-      <div className="relative border-t border-fg/10 px-6 py-8 md:px-10 lg:px-14 lg:py-10">
-        <h3 className="mb-6 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">
-          <Smartphone className="size-4" aria-hidden /> {t.stepsTitle}
-        </h3>
-        <ol className="grid gap-6 md:grid-cols-3 md:gap-8">
-          {t.steps.map((s, i) => (
-            <li key={s.title} className="flex gap-4">
-              <span className="font-display text-5xl leading-none font-extrabold italic text-transparent [-webkit-text-stroke:1.5px_color-mix(in_srgb,var(--color-fg)_60%,transparent)]" aria-hidden>
-                {i + 1}
-              </span>
-              <span>
-                <span className="block font-display text-xl font-extrabold italic uppercase">{s.title}</span>
-                <span className="mt-1 block text-sm text-fg/70">{fill(s.text, { club: club.name })}</span>
-              </span>
-            </li>
-          ))}
-        </ol>
       </div>
     </div>
   );

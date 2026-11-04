@@ -139,7 +139,7 @@ export const contentModel: PageType[] = [
       {
         id: "clubContact",
         name: "Kontakt-Kacheln",
-        text: "Je Kachel eine Aktion (Route, Anrufen, E-Mail, Beitreten) und Kopieren – keine eigenen Inhalte.",
+        text: "Je Kachel eine Aktion (Route, Anrufen, E-Mail, Beitreten, Jetzt buchen) und Kopieren – keine eigenen Inhalte. Die fünfte Kachel führt per Deeplink direkt zum Club in der App.",
         fields: [
           f("Adresse", "api", "GET /clubs → address"),
           f("Club Manager: Name, E-Mail, Telefon, Profilbild", "api", "GET /clubs → contact.name, emailAddress, phoneNumber, profileImageUrl", "ein Kontakt pro Club; ob Name/E-Mail öffentlich gezeigt werden, ist offen"),
@@ -164,7 +164,7 @@ export const contentModel: PageType[] = [
         id: "appBooking",
         name: "In der App buchen",
         text: "Keine freien Slots, keine Auslastung auf der Website.",
-        fields: [f("Headline, Text, 3 Schritte", "cms"), f("Deeplink zum Club", "external", "Link-Service mit Club-ID", "API baut heute nur Match-Deeplinks")],
+        fields: [f("Headline, Text", "cms"), f("Deeplink zum Club", "external", "Link-Service mit Club-ID", "API baut heute nur Match-Deeplinks")],
       },
       { id: "recurringBooking", name: "Dauerbuchung anfragen", fields: [f("Headline, Text, Formularfelder", "cms"), f("Ziel der Anfragen", "unknown", undefined, "Postfach von Operations offen")] },
       { id: "clubDirections", name: "So findest du uns", fields: [f("Position", "api", "GET /clubs → position"), f("Karte", "external", undefined, "Karten-Anbieter offen")] },

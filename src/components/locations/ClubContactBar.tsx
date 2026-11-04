@@ -1,11 +1,13 @@
 // Contentful module: clubContact (club → contact entry: club manager name, email, phone; + proposed field whatsappGroupUrl)
 import type { LucideIcon } from "lucide-react";
-import { Mail, MapPin, MessageCircle, Navigation, Phone } from "lucide-react";
+import { CalendarCheck, Mail, MapPin, MessageCircle, Navigation, Phone, Smartphone } from "lucide-react";
 import { CopyButton } from "@/components/ui/CopyButton";
 import { Media } from "@/components/ui/Media";
 import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { locationsContent } from "@/lib/content/locations";
+import { deeplinks } from "@/lib/site";
+import { cn } from "@/components/ui/cn";
 
 type Tile = {
   key: string;
@@ -14,11 +16,14 @@ type Tile = {
   value: React.ReactNode;
   action?: { label: string; icon: LucideIcon; href: string; external?: boolean; track: string };
   copy?: { value: string; label: string; track: string };
+  /** the booking tile stands out in the brand gradient */
+  accent?: boolean;
 };
 
 /**
- * Club contact right under the club name – four tiles with one anatomy: icon (photo for the club manager), label,
- * value, and a footer with one action (Route · Anrufen · E-Mail · Beitreten) plus a copy button, as on Google.
+ * Club contact right under the club name – five tiles with one anatomy: icon (photo for the club manager), label,
+ * value, and a footer with one action (Route · Anrufen · E-Mail · Beitreten · Jetzt buchen) plus a copy button, as on
+ * Google. The fifth tile books a court in the app without scrolling (design feedback 04.11.2026).
  * Missing values are shown as "folgt"/"tbc", never invented.
  */
 export function ClubContactBar({ club, locale, managerImage }: { club: Club; locale: Locale; managerImage?: string }) {
@@ -78,17 +83,25 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
       value: c?.whatsappGroupUrl ? t.whatsappText : pending,
       action: c?.whatsappGroupUrl ? { label: t.join, icon: MessageCircle, href: c.whatsappGroupUrl, external: true, track: "club_whatsapp_join" } : undefined,
     },
+    {
+      key: "book",
+      label: t.book,
+      media: icon(CalendarCheck),
+      value: t.bookText,
+      action: { label: t.bookCta, icon: Smartphone, href: deeplinks.club(club.slug), external: true, track: "club_book_tile" },
+      accent: true,
+    },
   ];
 
   return (
     <section id="contact" aria-label={t.label} className="scroll-mt-44">
-      <ul className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
+      <ul className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-5">
         {tiles.map((tile) => (
-          <li key={tile.key} className="flex min-w-0 flex-col rounded-[20px] border border-fg/12 bg-raised p-3.5 sm:p-5">
+          <li key={tile.key} className={cn("flex min-w-0 flex-col rounded-[20px] border p-3.5 sm:p-5", tile.accent ? "col-span-2 border-transparent bg-brand-gradient text-white lg:col-span-1" : "border-fg/12 bg-raised")}>
             {/* phones: two columns, so the icon sits above the label */}
             <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-3">
-              <span className="grid size-10 shrink-0 sm:size-11 place-items-center overflow-hidden rounded-full bg-fg/[0.06]">{tile.media}</span>
-              <span className="text-[11px] font-semibold uppercase tracking-[0.1em] text-fg/70 sm:text-[13px] sm:tracking-[0.12em]">{tile.label}</span>
+              <span className={cn("grid size-10 shrink-0 sm:size-11 place-items-center overflow-hidden rounded-full", tile.accent ? "bg-white/15" : "bg-fg/[0.06]")}>{tile.media}</span>
+              <span className={cn("text-[11px] font-semibold uppercase tracking-[0.1em] sm:text-[13px] sm:tracking-[0.12em]", tile.accent ? "text-white/85" : "text-fg/70")}>{tile.label}</span>
             </div>
             <p className="mt-3 text-sm font-semibold leading-snug sm:mt-4 sm:text-base">{tile.value}</p>
             {/* every tile ends on the same line: one action, copy on the right */}
@@ -99,7 +112,7 @@ export function ClubContactBar({ club, locale, managerImage }: { club: Club; loc
                     href={tile.action.href}
                     {...(tile.action.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                     data-track={tile.action.track}
-                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/30 px-3 text-[13px] font-semibold transition hover:border-transparent hover:bg-brand-gradient sm:px-4 sm:text-sm"
+                    className={cn("inline-flex min-h-11 items-center gap-2 rounded-full px-3 text-[13px] font-semibold transition sm:px-4 sm:text-sm", tile.accent ? "bg-white text-ink-800 hover:shadow-glow" : "border border-white/30 hover:border-transparent hover:bg-brand-gradient")}
                   >
                     <tile.action.icon className="hidden size-4 sm:block" aria-hidden /> {tile.action.label}
                   </a>
