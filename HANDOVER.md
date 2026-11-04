@@ -133,6 +133,14 @@ Code-Connect-Schreibrecht.
   Termin je Format, Rückblick-Modul auf der Event-Seite (Ergebnisse, Bilder) sowie „Aktueller Hinweis“ und „Parken /
   Check-in / Bus & Bahn“ auf der Club-Seite. Rückblick und Club-Module erscheinen nur, wenn gepflegt – im Styleguide mit
   Beispieldaten. Für die API offen: Zuordnung Event → Format, vergangene Events abrufbar halten.
+- **Design-Feedback PadelCity (04.11.2026):** keine Labels mehr über Headlines; Buttons in Poppins SemiBold statt
+  Söhne Schmal; Good Brush 2 % enger; WhatsApp-Band aus dem Footer (bleibt auf Startseite und Club-Seite);
+  Startseiten-Hero ohne Pinselschwung; Öffnungszeit auf Bildkarten weiß; Event-Buttons „In der App anmelden“ /
+  „Im Web anmelden“ (Web: `app.padelcity.de/?event_id=…`); `/standorte` ohne App-Sektion, alle Clubs als kompakte
+  Linkliste; Club-Seite mit fünfter Kachel „Court buchen“ und schlankem Buchungsblock; App-Seite nur noch Hero,
+  Feature-Story (ohne Buttons), Bewertungen, FAQ; Events: Formate als Filterleiste über der Liste; Academy mit
+  offiziellem Logo, Standorte springen zu den Coaches; „Unternehmen“ mit Fotos und Kennzahlen. Offen: Partner auf allen
+  Seiten (Partnerships), echte Personas (Marketing), Länge der Startseite und Highlights & News (Konzeption).
 
 - **Event-Anfrage (`/events/anfrage`):** Der Prototyp sendet bewusst nichts. Für die Website laut Briefing eine Mail an
   das Events-Postfach mit festem Betreff „[Eventanfrage] Anlass | Standort | Name, Vorname“, damit Mail-Regeln sie

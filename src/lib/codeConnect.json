@@ -500,26 +500,6 @@
     },
     {
       "kind": "component",
-      "id": "eyebrow",
-      "code": "Eyebrow",
-      "figma": "Eyebrow",
-      "nodeId": "15120:140",
-      "url": "https://www.figma.com/design/n3QOz0mQUCyzzVmxX4nKw3/PadelCity-Website-Relaunch?node-id=15120-140",
-      "source": "src/components/ui/Headline.tsx",
-      "imports": [
-        "import {} from \"@/components/ui/Headline\""
-      ],
-      "area": "Basis",
-      "props": [
-        {
-          "name": "Label",
-          "kind": "Text"
-        }
-      ],
-      "notes": ""
-    },
-    {
-      "kind": "component",
       "id": "fact-row",
       "code": "FactRow",
       "figma": "Fact Row",
@@ -881,10 +861,6 @@
           "kind": "Variante"
         },
         {
-          "name": "Eyebrow",
-          "kind": "Boolean"
-        },
-        {
           "name": "Lead",
           "kind": "Boolean"
         },
@@ -895,10 +871,6 @@
         {
           "name": "Lead text",
           "kind": "Text"
-        },
-        {
-          "name": "Label",
-          "kind": "Textebene"
         },
         {
           "name": "Headline",
@@ -1004,16 +976,8 @@
           "kind": "Text"
         },
         {
-          "name": "Eyebrow",
-          "kind": "Boolean"
-        },
-        {
           "name": "Actions",
           "kind": "Boolean"
-        },
-        {
-          "name": "Label",
-          "kind": "Textebene"
         }
       ],
       "notes": "Wrap the one accent word of the title in <Accent>…</Accent> (Good Brush, Optic Yellow)."
