@@ -2,7 +2,6 @@ import { getClubs, getPlannedClubs } from "@/lib/data";
 import type { Locale } from "@/lib/i18n/config";
 import { locationsContent } from "@/lib/content/locations";
 import { PageHero } from "@/components/modules/PageHero";
-import { AppCta } from "@/components/modules/AppCta";
 import { Section } from "@/components/ui/Section";
 import { Accent, Headline, Lead } from "@/components/ui/Headline";
 import { Reveal } from "@/components/ui/Reveal";
@@ -44,24 +43,18 @@ export async function LocationsView({ locale }: { locale: Locale }) {
         </Section>
       )}
 
-      <Section tone="black" className="border-t border-fg/5">
-        <Reveal>
-          <Headline size="md" className="mb-12">
-            {t.cities.title}
-          </Headline>
-        </Reveal>
-        <CityIndex clubs={clubs} planned={planned} locale={locale} />
-      </Section>
-
-      {/* Stacked panels: 24 px between franchise teaser and app banner (grid gap, see pad-* scale) */}
-      <Section className="!pb-6">
+      <Section>
         <Reveal>
           <FranchiseTeaser locale={locale} />
         </Reveal>
       </Section>
 
-      <Section className="!pt-0">
-        <AppCta locale={locale} showStores={false} />
+      {/* All clubs as a compact link list – no repeat of the finder, but every club stays one link away (SEO) */}
+      <Section tone="black" className="border-t border-fg/5 !py-14 md:!py-20">
+        <Headline size="sm" className="mb-8">
+          {t.cities.title}
+        </Headline>
+        <CityIndex clubs={clubs} locale={locale} />
       </Section>
     </>
   );

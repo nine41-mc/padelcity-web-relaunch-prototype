@@ -1,92 +1,48 @@
-// Contentful module: cityIndex (auto-generated from club entries, grouped by country → region)
+// Contentful module: cityIndex (auto-generated from club entries, one line per country)
 
-import { plural } from "@/lib/i18n/plural";
-import { getDictionary } from "@/lib/i18n/dictionaries";
 import Link from "next/link";
-import type { Club, ClubCountry } from "@/lib/data/types";
+import type { Club } from "@/lib/data/types";
 import type { Locale } from "@/lib/i18n/config";
 import { localeTags } from "@/lib/i18n/config";
 import { href } from "@/lib/i18n/routes";
-import { COUNTRY_ORDER, locationsContent, regionLabel } from "@/lib/content/locations";
+import { COUNTRY_ORDER, locationsContent } from "@/lib/content/locations";
 import { CountryFlag } from "./CountryFlag";
 
-type Groups = Map<ClubCountry, Map<string, Map<string, Club[]>>>; // country → region → city → clubs
-
 /**
- * Compact "Alle Städte" directory grouped by country, then region (Bundesland / Land / Woiwodschaft).
- * Open clubs link to their detail page; planned clubs are listed unlinked with a "bald / soon" marker.
- * Good for SEO + quick scanning.
+ * Compact link list of every open club, one line per country (design feedback 04.11.2026: the full directory repeated
+ * the club finder above). Keeps a crawlable link to each club page for SEO; planned clubs live in „Bald eröffnet“.
  */
-export function CityIndex({ clubs, planned = [], locale = "de" }: { clubs: Club[]; planned?: Club[]; locale?: Locale }) {
-  const t = locationsContent[locale].cities;
-  const dict = getDictionary(locale).clubCard;
+export function CityIndex({ clubs, locale = "de" }: { clubs: Club[]; locale?: Locale }) {
   const countryNames = locationsContent[locale].finder.countries;
   const intl = localeTags[locale].intl;
-
-  const groups: Groups = new Map();
-  for (const c of [...clubs, ...planned]) {
-    const regions = groups.get(c.country) ?? new Map<string, Map<string, Club[]>>();
-    const region = c.region ? regionLabel(c.region, locale) : t.other;
-    const cities = regions.get(region) ?? new Map<string, Club[]>();
-    cities.set(c.city, [...(cities.get(c.city) ?? []), c]);
-    regions.set(region, cities);
-    groups.set(c.country, regions);
-  }
-  const countries = COUNTRY_ORDER.filter((cc) => groups.has(cc));
+  const countries = COUNTRY_ORDER.filter((cc) => clubs.some((c) => c.country === cc));
+  // "München · Tucherpark" when a city has more than one club, otherwise just the city
+  const perCity = new Map<string, number>();
+  for (const c of clubs) perCity.set(c.city, (perCity.get(c.city) ?? 0) + 1);
+  const label = (c: Club) => (perCity.get(c.city)! > 1 ? `${c.city} · ${c.name.replace(/^PadelCity\s*/, "").replace(c.city, "").trim() || c.name}` : c.city);
 
   return (
-    <div className="space-y-12">
-      {countries.map((country) => {
-        const regions = [...(groups.get(country) ?? new Map<string, Map<string, Club[]>>()).entries()].sort(
-          (a, b) => b[1].size - a[1].size || a[0].localeCompare(b[0], intl),
-        );
-        return (
-          <section key={country} aria-labelledby={`cities-${country}`}>
-            <h3 id={`cities-${country}`} className="mb-6 flex items-center gap-3 font-display text-2xl italic uppercase">
-              <CountryFlag country={country} className="size-6" />
-              {countryNames[country]}
-            </h3>
-            <div className="columns-1 gap-8 md:columns-2 lg:columns-4">
-              {regions.map(([region, cities]) => (
-                <section key={region} className="mb-8 break-inside-avoid">
-                  <h4 className="mb-3 border-b border-fg/10 pb-2 text-[13px] font-semibold uppercase tracking-[0.14em] text-fg/70">{region}</h4>
-                  <ul className="space-y-1">
-                    {[...cities.entries()]
-                      .sort((a, b) => a[0].localeCompare(b[0], intl))
-                      .flatMap(([city, list]) =>
-                        list.map((club) => {
-                          const label = (
-                            <span>
-                              <span className="font-medium">{city}</span>
-                              {list.length > 1 && (
-                                <span className="text-fg/70"> · {club.name.replace(/^PadelCity\s*/, "").replace(city, "").trim() || club.name}</span>
-                              )}
-                            </span>
-                          );
-                          return club.status === "planned" ? (
-                            <li key={club.id} className="flex min-h-11 items-center justify-between gap-3 py-1.5 text-fg/70">
-                              {label}
-                              <span className="rounded-full border border-fg/20 px-2 py-0.5 text-[13px] font-semibold uppercase tracking-wide text-fg/70">{t.soon}</span>
-                            </li>
-                          ) : (
-                            <li key={club.id}>
-                              <Link href={href(locale, "locations", club.slug)} className="group flex min-h-11 items-center justify-between gap-3 py-1.5 text-fg/85 hover:text-fg">
-                                {label}
-                                <span className="text-sm text-fg/70 transition-colors group-hover:text-fg">
-                                  {club.courts.length > 0 ? `${club.courts.length} ${plural(locale, club.courts.length, dict.court, dict.courts)} →` : "→"}
-                                </span>
-                              </Link>
-                            </li>
-                          );
-                        }),
-                      )}
-                  </ul>
-                </section>
+    <div className="space-y-6">
+      {countries.map((country) => (
+        <section key={country} aria-labelledby={`cities-${country}`} className="grid gap-3 md:grid-cols-[12rem_minmax(0,1fr)] md:gap-6">
+          <h3 id={`cities-${country}`} className="flex items-center gap-2 text-sm font-semibold text-fg/70">
+            <CountryFlag country={country} className="size-5" />
+            {countryNames[country]}
+          </h3>
+          <ul className="flex flex-wrap gap-x-5 gap-y-1">
+            {clubs
+              .filter((c) => c.country === country)
+              .sort((a, b) => label(a).localeCompare(label(b), intl))
+              .map((club) => (
+                <li key={club.id}>
+                  <Link href={href(locale, "locations", club.slug)} className="inline-flex min-h-11 items-center text-fg/85 underline-offset-4 hover:text-fg hover:underline">
+                    {label(club)}
+                  </Link>
+                </li>
               ))}
-            </div>
-          </section>
-        );
-      })}
+          </ul>
+        </section>
+      ))}
     </div>
   );
 }

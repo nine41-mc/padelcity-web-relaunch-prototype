@@ -105,13 +105,13 @@ export const contentModel: PageType[] = [
           f("Kartenkacheln", "external", undefined, "Karten-Anbieter offen (OSM/CARTO braucht Key)"),
         ],
       },
-      { id: "cityIndex", name: "Städte-Index", fields: [f("Stadt", "api", "GET /clubs → address.localityName"), f("Land, Region (Bundesland)", "apiExtend", "Club.subdivisionCode, Club.country", "gespeichert, aber für Spieler nicht ausgegeben")] },
       {
         id: "plannedClubs",
         name: "Bald eröffnet",
         fields: [f("Geplante Clubs mit Stadt", "apiExtend", undefined, "Status „geplant“ + Eröffnungszeitraum fehlen; inaktive Clubs werden gefiltert"), f("Stadt-Illustrationen", "cms"), f("„Benachrichtige mich“", "unknown", undefined, "führt zur Newsletter-Anmeldung im Footer; Newsletter-Tool offen")],
       },
       { id: "franchiseTeaser", name: "Franchise-Teaser", fields: [...sectionHead(), f("Kennzahlen im Text (Clubs, Courts)", "cms", undefined, "nur freigegebene Zahlen"), ctas()] },
+      { id: "cityIndex", name: "Alle Clubs (Linkliste)", fields: [f("Club-Name und Stadt je Land, Link zur Club-Seite", "api", "GET /clubs → name, address.localityName")] },
     ],
   },
   {
